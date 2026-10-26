@@ -352,13 +352,9 @@
         <div class="rv-grid">
           <div class="card">
             <h3>Your next level</h3>
-            <div class="controls" style="margin-top:12px">
-              <div class="field">
-                <label for="rvFrom">Your current RV</label>
-                <select id="rvFrom"></select>
-                <span class="hint" id="rvNextLabel"></span>
-              </div>
-            </div>
+            <p style="margin-top:12px;font-weight:700">Your current RV: <strong id="rvCurrentDisplay">RV 20</strong></p>
+            <p class="hint" id="rvNextLabel" style="margin-top:4px"></p>
+            <p class="src" style="margin-top:8px">This follows the RV level you picked in Stage 1 above — you only pick your level once. Change it there and this section updates on its own.</p>
             <p class="src" style="margin-top:12px">There is no Home Coin box on purpose: it is a cost in the bill, not a balance worth tracking. The bill below always shows the full amounts for the next level.</p>
           </div>
           <div class="card">
@@ -1278,7 +1274,7 @@
       renderLayout();
       if(levelingOn) renderRvPlan();
       var area = document.getElementById("planArea");
-      if(!basket.length && !levelingOn){
+      if(!basket.length && !levelingItems()){
         area.innerHTML = '<div class="empty-plan">🌱 Your plan appears here. Add a recipe above and watch the whole chain unfold: every crop to grow, every material to gather, and every craft in the right order.</div>';
         return;
       }
@@ -1522,7 +1518,7 @@
       var t = e.target;
       if(!t || !t.getAttribute) return;
       var touched = false;
-      if(t.id === "rvLevel" || t.id === "rvFrom"){ crewGate.rv = true; touched = true; }
+      if(t.id === "rvLevel"){ crewGate.rv = true; touched = true; }
       if(t.id === "levelingToggle"){ crewGate.leveling = true; touched = true; }
       var modId = t.getAttribute("data-modlvl");
       if(modId && crewGate.modules.hasOwnProperty(modId)){ crewGate.modules[modId] = true; touched = true; }
@@ -2179,9 +2175,13 @@
     var ORE_CHAIN = ["Mineral Sand","Coarse-Sifted Ore","Sintered Ore Brick","Refined Ore","Microcrystalline Ore Plate"];
     var TIER_COST = [0, 8, 8, 8, 4]; /* cost in tier below to make 1 of tier i */
 
-    var rvFrom = 6;
+    /* Single source of truth for RV level: rvFrom always mirrors userRV,
+       the one picker in Stage 1. There is no second picker to keep in sync. */
+    var rvFrom = userRV;
     var levelingOn = false;
+    function rvHasNext(){ return rvFrom < 20; }
     function rvNext(){ return Math.min(20, rvFrom + 1); }
+    function syncRvFrom(){ rvFrom = userRV; }
 
     /* Wood Blocks per Woodland plot per harvest, by Woodland level.
        Wood Blocks per plot by Woodland level, from your screenshots,
@@ -2271,7 +2271,7 @@
         return it && it.kind === "gather" && it.facility === "Mine" && (bp.net[n] || 0) > 0;
       }).sort(function(a, b){ var d = (bp.net[b] || 0) - (bp.net[a] || 0); return d !== 0 ? d : a.localeCompare(b); });
       basketMine.forEach(function(n){ add(n, "basket", "your basket needs it"); });
-      if(levelingOn){
+      if(levelingOn && rvHasNext()){
         var bill = computeRvBill();
         if(bill.oreStill > 0) add("Mineral Sand", "leveling", "the bill for your next RV level needs it");
       }
@@ -2353,7 +2353,7 @@
        toggle is on: base materials still to gather (after the basket
        offset) plus every tier still to craft. */
     function levelingItems(){
-      if(!levelingOn) return null;
+      if(!levelingOn || !rvHasNext()) return null;
       var bill = computeRvBill();
       var gather = {}, craft = {};
       if(bill.woodStill > 0) gather["Wood Block"] = bill.woodStill;
@@ -2399,6 +2399,11 @@
 
     function renderGates(){
       var el = document.getElementById("rvGates");
+      if(!el) return;
+      if(!rvHasNext()){
+        el.innerHTML = "<li><b>🎉 You're at RV 20</b> — the top level in the ladder, so there is no next level to prepare for.</li>";
+        return;
+      }
       var target = LADDER[rvNext() - 1], g = target.gates || {};
       var items = [];
       if(g.f) items.push("<b>🌾 Farmland plots placed:</b> " + g.f);
@@ -2448,11 +2453,19 @@
     }
 
     function renderRvPlan(){
+      syncRvFrom();
       renderGates();
+      var curDisplay = document.getElementById("rvCurrentDisplay");
+      if(curDisplay) curDisplay.textContent = "RV " + rvFrom;
       var nextLabel = document.getElementById("rvNextLabel");
-      if(nextLabel) nextLabel.textContent = "Next level: RV " + rvNext() + " · build timer " + LADDER[rvNext() - 1].time + " in game · Aniimo cap " + LADDER[rvNext() - 1].cap;
+      if(nextLabel) nextLabel.textContent = rvHasNext() ? ("Next level: RV " + rvNext() + " · build timer " + LADDER[rvNext() - 1].time + " in game · Aniimo cap " + LADDER[rvNext() - 1].cap) : "You're at the top level — no next level to price.";
       var area = document.getElementById("rvPlanArea");
+      if(!area) return;
       if(!levelingOn){ area.innerHTML = ""; return; }
+      if(!rvHasNext()){
+        area.innerHTML = '<div class="note note-good" style="margin-top:16px"><h4>🎉 Already at the top</h4><p>You are at RV 20, the highest level in the ladder, so there is no next-level bill to add to your plan.</p></div>';
+        return;
+      }
       var bill = computeRvBill();
       var row = bill.row;
       var needs = bill.needs;
@@ -3705,7 +3718,10 @@
          what is left. It is sized on the current setup, the one the
          player has while earning the level. */
       var lvlBill = null, levelingClaim = {};
-      if(levelingOn){
+      if(levelingOn && !rvHasNext()){
+        goalNotes.push("Leveling is on, but you are at RV 20, the top level, so there is no next-level bill to make first.");
+      }
+      if(levelingOn && rvHasNext()){
         lvlBill = computeRvBill();
         var lvlSeed = {};
         Object.keys(lvlBill.needs).forEach(function(n){
@@ -4209,22 +4225,13 @@
       rvSel.addEventListener("change", function(){
         crewGate.rv = true;
         userRV = parseInt(rvSel.value, 10) || 20;
+        syncRvFrom();
         /* Facility counts and levels always equal the most this RV allows,
            so they re-derive from the picker by themselves; everything
-           downstream (greying, plans, layout, crew, money crops)
+           downstream (greying, plans, layout, crew, money crops, and the
+           RV level-up bill, which follows this same one picker)
            just re-renders with the new numbers. */
-        renderFacilities(); renderPicker(); renderPlan(); renderCrops(); renderLayout();
-      });
-
-      var fromSel = document.getElementById("rvFrom");
-      var fo = "";
-      for(var a = 1; a <= 19; a++){ fo += '<option value="' + a + '"' + (a === rvFrom ? " selected" : "") + ">RV " + a + "</option>"; }
-      fromSel.innerHTML = fo;
-      fromSel.addEventListener("change", function(){
-        crewGate.rv = true;
-        rvFrom = parseInt(fromSel.value, 10) || 1;
-        renderRvPlan();
-        renderPlan();
+        renderFacilities(); renderPicker(); renderRvPlan(); renderPlan(); renderCrops(); renderLayout();
         markBpStale();
       });
       var levelingToggle = document.getElementById("levelingToggle");
