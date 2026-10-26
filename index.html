@@ -299,7 +299,7 @@
             </div>
           </div>
           <div class="chips" id="catChips" role="group" aria-label="Recipe categories"></div>
-          <p class="src" style="margin-top:8px">Event marks: <span class="event-badge ev-season">🌕 Harvest Moon Festival</span> = season recipe: its Recipe Note comes from the Season Exchange or as a festival quest reward, and each card says which. <span class="event-badge ev-feast">🎪 Grand Feast</span> = a dish Jojo asks for at the festival feast (the three season dishes wear both badges). The 🎪 Event &amp; Feast filter above gathers them all in one place.</p>
+          <p class="src" style="margin-top:8px">Event marks: <span class="event-badge ev-season">🌕 Harvest Moon Festival</span> = season recipe: its Recipe Note comes from the Season Exchange or as a festival quest reward, and each card says which. <span class="event-badge ev-feast">🎪 Grand Feast</span> = a dish Jojo asks for at the festival feast (the three season dishes wear both badges). The 🎪 Event &amp; Feast filter above gathers them all in one place. In the recipe lists below, the same emoji sit right in the name: 🌕 for a season recipe, 🎪 for a feast dish, and ⭐ for a special recipe that takes a rare currency unlock (Rose Shortbread, Potato Kvass).</p>
           <p class="src" id="pickerCount" style="margin-top:10px"></p>
           <div class="hide-row">
             <label class="hide-toggle" for="hideLockedToggle"><input type="checkbox" id="hideLockedToggle" /> <span>Only show recipes I can make</span></label>
@@ -982,6 +982,17 @@
       if(it.event === "feast" || it.feast) t += " [🎪 Grand Feast dish]";
       return t;
     }
+    /* Plain-text marks for <option> labels, where HTML badges cannot render:
+       event and limited-time recipes carry their emoji right in the list
+       name, matching the badges on their cards. */
+    function optionMarks(it){
+      if(!it) return "";
+      var m = "";
+      if(it.event === "season") m += " 🌕";
+      if(it.event === "feast" || it.feast) m += " 🎪";
+      if(it.special) m += " ⭐";
+      return m;
+    }
 
     var depthMemo = {};
     function depthOf(name, seen){
@@ -1159,7 +1170,7 @@
       var options = '<option value="">' + (entry ? "✕ Clear this slot" : "Choose a recipe…") + "</option>" +
         opts.map(function(n){
           var lk = lockInfo(ITEMS[n]);
-          return '<option value="' + esc(n) + '"' + (entry && entry.name === n ? " selected" : "") + ">" + esc(n) + (lk ? " 🔒" : "") + "</option>";
+          return '<option value="' + esc(n) + '"' + (entry && entry.name === n ? " selected" : "") + ">" + esc(n) + optionMarks(ITEMS[n]) + (lk ? " 🔒" : "") + "</option>";
         }).join("");
       var html = '<div class="pslot' + (entry ? " filled" : "") + '"><div class="pslot-head">' +
         '<span class="slot-label">Recipe ' + (i + 1) + '</span>' +
