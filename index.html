@@ -106,6 +106,11 @@
       .putout-cap .over{color:var(--bad)}
       .putout-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
       .putout-list li{background:#fff;border:2px solid var(--card-line);border-radius:10px;padding:8px 11px;font-weight:700}
+      .putout-list li[data-tip]{cursor:help}
+      .putout-list li[data-tip] strong{border-bottom:2px dotted var(--accent)}
+      .ab-mark{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.92rem;line-height:1;vertical-align:-7px;margin-right:7px;flex:none}
+      .ab-mark.ring{box-shadow:0 0 0 2px #fff,0 0 0 4.5px #e9a13b}
+      span[data-tip]{cursor:help}
       .team-counts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
       .job-chip{background:var(--bg-soft);border:2px solid var(--card-line);border-radius:999px;padding:5px 13px;font-weight:800;font-size:.92rem}
       .job-chip b{font-family:"Baloo 2",sans-serif;font-size:1.05rem}
@@ -495,7 +500,7 @@
           <li><strong>The Best Plan Finder</strong> picks recipes by your ranked goals, in order, leftovers to Home Coins, the Aniimax model. Home Coin math uses Co-op Store sell prices from the filed shop price research (the Aniimo Homeland Shop Prices page, checked Oct 24, 2026): each finished item is compared with the sell value of its direct ingredients, the margin caution in that research, and seed buy prices come from the same file. Prices two sources agree on (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90, Harvest Platter 5,290) are marked cross-checked; most mid and late game prices are Aniiland only, so the plan marks them single source, spot-check in game, and never calls them verified. Items with no listed sell price in the research (Wood Block, Mineral Sand, the building tiers, the growth items and the Aniipods) cannot earn Home Coins in a plan. Per minute rates use the grow cycle only: crops grow side by side, so one cycle lasts as long as its slowest crop, from the grow times already on this page. Craft and gather cycle times are not in the verified data, so rates are grow cycle rates and say so. Aniimo XP per recipe, Harvest Moon Points per dish and the Mineral Sand amount per Mine run have no verified figures in any source behind this planner, so those goals are flagged on the plan, never filled with guessed numbers. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of best plans: the planner does not know whether you own their rare currency unlocks. By the player's own rule, the Best Plan (and only the Best Plan; the basket, Team Helper and Layout Helper are unchanged in this respect) also includes items not verified yet but sensible, each flagged on its line as "Not verified yet, included because it makes sense" with the short reason. Star is one: Aniimax uses it too and flags it unverified there, so best plans gather Star at the Starfall Hammock for the Advanced Wind Chime chain instead of leaving those recipes out, and the plan states how much of the counted Home Coins rests on Star recipes. Wood Blocks from Woodland trees are counted exactly by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6. Moondew Radish and Waxing Moon Pepper raw sales are included as plantings to gather, at the 74 Home Coins each Aniiland lists, with the conflict printed on the line: aniimoguide says moon crops cannot be sold raw and must be cooked first. That income sits only in the unverified-included total, never the counted total, and the plan prints the total if the unverified items pay off. Where no figure exists at all, none is invented: Aniimo XP per recipe and Harvest Moon Points per dish still read "Not verified yet", with no rates.</li>
           <li><strong>The Starfall Hammock</strong> is a facility in its own right, not part of a generic leisure station: it unlocks at RV 12 at Lv 1, its only level, and the most you can put out is 1 from RV 12 and 2 at RV 20 (<a href="https://aniiland.wintira.win/guides/recipes-aniimo-materials">Aniiland's materials buildings guide</a>; AniimoTools' RV 12 table likewise shows one at Lv 1, and the RV 20 step rests on Aniiland alone, so it carries the count single source flag). Like every other facility, Stage 3 assumes you put out the max your RV level allows: 1 at RV 14, none below RV 12. Its one product is Star, gathered for the Advanced Wind Chime chain and flagged unverified wherever a plan uses it, and the Best Plan sets that chain running when the hammock is out rather than leaving Star out. The hammock is also the first facility here with an environment need: <strong>it needs a Cool temperature to work</strong>, from the player's own lookup (Oct 25, 2026), so the Layout Helper stands it inside a Cooling Unit zone whenever a plan gathers Star, and that zone counts toward Cooling Unit coverage like a Cool crop's zone.</li>
           <li><strong>Module levels and verified unlocks (checked Oct 24, 2026):</strong> the four boxes in the Stage 3 panel are Ecological (max Lv 8), Kitchen (max Lv 7), Resource Detector (max Lv 8) and Crafting (max Lv 7), all starting at 0. The unlock map is <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels, the RV modules section</a>, cross-checked against <a href="https://aniimoguide.com/homeland">aniimoguide's Homeland guide</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">the Aniiland RV level roadmap</a>. Ecological: Lv 1 Quick Wheat (RV 3), Lv 2 Quick Bamboo (RV 7), Lv 3 Quick Potato (RV 8), Lv 4 Quick Lemon (RV 11), Lv 5 Quick Rice (RV 12), Lv 6 Quick Maple Syrup (RV 14), Lv 7 Quick Strawberry (RV 17), Lv 8 Quick Coconut (RV 18). Kitchen: Lv 1 Aniimo Feeding (RV 2), Lv 2 Premium Bread (RV 4), Lv 3 Premium Potato Soup (RV 8), Lv 4 Premium Sweet Rice Wine (RV 10), Lv 5 Premium Salted Lemon (RV 13), Lv 6 Premium Jello (RV 16), Lv 7 Premium Berry Chocolate Coconut Pudding (RV 19). Resource Detector: Lv 1 Quick Well Water (RV 5), Lv 2 Quick Sea Salt (RV 8), Lv 3 Quick Aromathyst (RV 11), Lv 4 Quick Fresh Water (RV 12), Lv 5 Quick Wool (RV 13), Lv 6 Quick Deep Rock Spring Water (RV 15), Lv 7 Quick Natural Mineral Water (RV 17), Lv 8 Quick Scales (RV 19). Crafting: Lv 1 Premium River-Washed Stones (RV 5), Lv 2 Premium Rose Freshener (RV 7), Lv 3 Advanced Lemon Incense (RV 10), Lv 4 Premium Wind Chime (RV 12), Lv 5 Premium Soap (RV 17), Lv 6 Premium Gemstone Dust (RV 18), Lv 7 Premium Mixed Perfume (RV 19). Only three of these change this planner's numbers, and they switch on by themselves from your Ecological level: Maple Syrup harvest ×30 at Lv 6, Strawberry harvest ×26 at Lv 7 and Coconut harvest ×8 at Lv 8, in the Grow list, Money Crops and Layout Helper alike. The Kitchen, Resource Detector and Crafting unlocks are Premium or Advanced variants already covered by their base entries at the same ingredients, so they are shown for ownership and change no amounts. <strong>Still unverified, never guessed:</strong> Premium Wheat appears in no module ladder in any source checked. The roadmap lists it only as a Farmland Lv 6 crop arriving at RV 12, with no module named, so it stays a manual tap in the panel, flagged as unverified, and no level ever switches it on for you.</li>
-          <li><strong>Team Helper crew counts, the single crew suggestion</strong> are worked out from your entire plan, never fixed: the basket plan plus, when you have run one, the Best Plan's facilities unioned in and deduped by facility so a facility needed by both counts once, plus leveling jobs when leveling is on. There is no crew inside the Best Plan panel anymore. Best counts one dedicated worker per busy facility, and Minimum counts one Aniimo per job, shared part time across all of that job's facilities. Somniwing is the one known double act (Grass Lv 4 and Leisure Lv 4), so it covers both jobs at once and is counted as one Aniimo in Best and Minimum alike — crews count individuals with their full ability sets, never one head per job — and when a Somniwing is already on the crew, the planting Grass Aniimo is that same individual, not an extra. A planner that counts differently, one worker per crop or per station run instead of per facility or per job, will land on a bigger number for the same basket: that is the counting rule, not missing crew. Every facility this plan sets running is counted here, including Farmland and Woodland below. Best-worker names and ability levels: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 and Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3 (Dewy Lv 1 also works). Jobs follow the planner's recipe data, where every craft names its worker, plus the verified gather pairings Well = Water, Mine = Earth and Tidewhisper Sandcastle = Leisure. Which ability staffs Farmland, Woodland, the Dewy House and the leisure station is <span class="verdict v-mix">not verified yet</span>, so no worker is named for those runs in the panel; each of those stations still adds one Aniimo to the crew total, because the runs still need doing, and Ice, Light and Hauling read 0 until a facility in the data asks for them; Grass never reads 0, because planting always counts at least 1 Grass Aniimo by the player's rule. By the player's own rule (Oct 25, 2026), nine facilities also carry an Aniimo each in their own right whenever they are out at the picked RV level: Sunlamp, Heat Furnace, Cooling Unit, Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle and Nimbus Bed, 1 Aniimo per building out at the derived RV count, typed where verified (Mine Earth, Well Water, Sandcastle and Hammock Leisure, Cooling Unit Ice — cooling units need Ice Aniimo, the player's own word) and flagged type not verified yet where it is not; those Aniimo sit inside the crew total and the put-out list, and the same nine appear in the Layout Helper with their counts and Aniimo. Hauling and extra Water watering are named in the panel with their types, their counts flagged not verified yet and never invented; Grass planting is named too, with its floor of 1 counted in the crew and only the count beyond 1 flagged not verified yet.</li>
+          <li><strong>Team Helper crew counts, the single crew suggestion</strong> are worked out from your entire plan, never fixed: the basket plan plus, when you have run one, the Best Plan's facilities unioned in and deduped by facility so a facility needed by both counts once, plus leveling jobs when leveling is on. There is no crew inside the Best Plan panel anymore. Best counts one dedicated worker per busy facility, and Minimum counts one Aniimo per job, shared part time across all of that job's facilities. Somniwing is the one known double act (Grass Lv 4 and Leisure Lv 4), so it covers both jobs at once and is counted as one Aniimo in Best and Minimum alike — crews count individuals with their full ability sets, never one head per job — and when a Somniwing is already on the crew, the planting Grass Aniimo is that same individual, not an extra. A planner that counts differently, one worker per crop or per station run instead of per facility or per job, will land on a bigger number for the same basket: that is the counting rule, not missing crew. Every facility this plan sets running is counted here, including Farmland and Woodland below. Best-worker names and ability levels: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 and Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3 (Dewy Lv 1 also works). Jobs follow the planner's recipe data, where every craft names its worker, plus the verified gather pairings Well = Water, Mine = Earth and Tidewhisper Sandcastle = Leisure. Which ability staffs Farmland, Woodland, the Dewy House and the leisure station is <span class="verdict v-mix">not verified yet</span>, so no worker is named for those runs in the panel; each of those stations still adds one Aniimo to the crew total, because the runs still need doing, and Ice, Light and Hauling read 0 until a facility in the data asks for them; Grass never reads 0, because planting always counts at least 1 Grass Aniimo by the player's rule. By the player's own rule (Oct 25, 2026), nine facilities also carry an Aniimo each in their own right whenever they are out at the picked RV level: Sunlamp, Heat Furnace, Cooling Unit, Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle and Nimbus Bed, 1 Aniimo per building out at the derived RV count, typed where verified (Mine Earth, Well Water, Sandcastle and Hammock Leisure, Cooling Unit Ice — cooling units need Ice Aniimo, the player's own word) and flagged type not verified yet where it is not; those Aniimo sit inside the crew total and the put-out list, and the same nine appear in the Layout Helper with their counts and Aniimo. Hauling and extra Water watering are named in the panel with their types, their counts flagged not verified yet and never invented; Grass planting is named too, with its floor of 1 counted in the crew and only the count beyond 1 flagged not verified yet. Grass and Ice stand in the team as named jobs, not just numbers inside the totals. The team is labelled by ability and count, the way Aniimax's team panel labels its crew — Ice Aniimo ×2 on the Cooling Units, Grass Aniimo on Planting — and no entry names a species the player must use: the strongest known Aniimo for a job (Geoclaw Lv 3 for Ice, Somniwing Lv 4 for Grass) appears only as a hint inside the entry's hover or tap note, together with the ability level, the best personality with its +20% note, and the facility with what it is making. The Ice chip counts the Cooling Units' Aniimo, the Grass chip never reads 0 while a plan is growing anything, and when a Somniwing already on the crew covers the planting, its entry and worker row read Grass + Leisure and say it also does the planting, instead of the Grass line disappearing into a footnote. Entries and rows carry the Aniimax ability markers: a circle in the ability's game colour with the Aniimo level inside, ringed in gold where the plan counts on that facility's personality bonus (+20%), the same markers on the Layout Helper's Aniimo lines, and a short How to read this note sits with the team and in the layout legend explaining the entries and the markers in plain words.</li>
           <li><strong>Aniimo caps (how many Aniimo you can put out):</strong> the cap at each RV is the "place N Aniimo in your Home" number from <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, and it matches <a href="https://metabot.gg/en/aniimo/guides/homeland">MetaBot.GG's retail-file Homeland guide</a> at every level: RV 2 is 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44 and 45 at RV 20; RV 1 has none yet. The Team Helper checks its whole Put out total against that cap — plan crew, the nine facilities' attached Aniimo and the planting Grass Aniimo together, nothing counted outside it — and never shows a crew over the cap at all: a crew you cannot put out is not a plan, so an over-cap crew's toggle switches off with the reason on it, the view lands on the crew that fits, and when neither Best nor Minimum fits, no crew is shown — just what each would need and what has to change. Crews are counted in individuals, not job slots: where one Aniimo's verified abilities cover more than one needed job it is counted once in both Best and Minimum (Somniwing, Grass Lv 4 and Leisure Lv 4, is the verified multi-ability case the page's best-worker data supports, and the counting machinery groups any species the data names for two jobs the same way), multi-ability Aniimo are preferred when sharing is what makes a crew fit, and the planting Grass Aniimo adds no extra head when a crew member already holds Grass. One flag, honestly: aniimoguide prints a second, lower set of numbers read from the RV upgrade cards, from RV 13 on (40 at RV 20), and advises planning on the lower set until the live game settles it. This planner follows the AniimoTools and MetaBot "place in your Home" numbers instead, because they match the player's own game: 36 slots at her RV 14.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> are the Master Guide's verified table, where GameWith, Game8, AniimoTools and Selphie1999 Gaming agree: E Energetic at the Bouncy Brew Keg and Woodworking Bench; I Instinctive at the Phonolfactory Table and Dewy House; S Practical at the Claw Game Cooker and Chimney Kiln; N Nimble at the Jukebox Dryer and Blazing Stove; T Tenacious at the Carousel Mill and Simmering Pot; F Faithful at the Joy Wheel Loom and Well; J Judicious at the Crafting Table and Tidewhisper Sandcastle; P Playful at the Mine and Pickling Jar. Farmland, Woodland, the Dance Pad Polisher, the Aniipod Maker and the leisure station have no verified match in that table, and the panel says so rather than guessing.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
@@ -1531,6 +1536,29 @@
       SPECIES_JOBS[s].push(j);
     });
     function speciesJobs(species){ return SPECIES_JOBS[species] || [ ]; }
+    /* Ability markers, the way Aniimax's panels show them: a circle
+       in the ability's game colour with the Aniimo level inside. A
+       gold ring around the circle means the plan counts on that
+       facility's personality bonus (+20%). The level shown is the
+       strongest known Aniimo's for that ability — a marker never
+       names a species; any Aniimo with the ability works. */
+    var JOB_COLORS = {
+      "Fire":{ bg:"#e2483d", fg:"#ffffff" }, "Water":{ bg:"#3d7be0", fg:"#ffffff" },
+      "Grass":{ bg:"#58a447", fg:"#ffffff" }, "Lightning":{ bg:"#f2c230", fg:"#3d2a47" },
+      "Earth":{ bg:"#a0662c", fg:"#ffffff" }, "Wind":{ bg:"#3fa7a0", fg:"#ffffff" },
+      "Dark":{ bg:"#5e4b8b", fg:"#ffffff" }, "Ice":{ bg:"#79c7de", fg:"#23424e" },
+      "Light":{ bg:"#f0d060", fg:"#3d2a47" }, "Hauling":{ bg:"#8a6d4b", fg:"#ffffff" },
+      "Artisanship":{ bg:"#d2793d", fg:"#ffffff" }, "Leisure":{ bg:"#e07bab", fg:"#ffffff" },
+      "Perfumery":{ bg:"#9b6bc7", fg:"#ffffff" }
+    };
+    function abilityMarker(job, ring, tip){
+      var bw = BEST_WORKERS[job];
+      if(!bw) return "";
+      var c = JOB_COLORS[job] || { bg:"#888888", fg:"#ffffff" };
+      return '<span class="ab-mark' + (ring ? " ring" : "") + '" style="background:' + c.bg + ";color:" + c.fg + '"' +
+        (tip ? ' tabindex="0" data-tip="' + escA(tip) + '"' : "") +
+        ' role="img" aria-label="' + escA(job + " ability, Lv." + bw.lvl) + '">' + bw.lvl + "</span>";
+    }
     /* The planting Grass Aniimo is covered — adds no extra head — when
        an Aniimo already on the crew holds Grass among its abilities:
        a Grass job's worker, or a Leisure job's Somniwing (Grass Lv 4
@@ -1757,6 +1785,15 @@
          the same species are one Aniimo covering all of them (Somniwing:
          Grass + Leisure), counted once, not once per job. */
       var rows = [], bySpecies = {}, speciesOrder = [];
+      /* Planting is a Grass job in its own right and stays named as
+         one: when the Aniimo covering planting is on this crew through
+         another job (a Leisure Somniwing, Grass Lv 4 alongside), Grass
+         joins that individual's job list — the row reads Grass +
+         Leisure — instead of the Grass job vanishing into a footnote.
+         Display only: the row still counts the one individual. Grass
+         leads the list because it precedes the covering job in
+         JOB_ORDER for the one multi-ability species in the data. */
+      var coverer = plantingCoveredBy({ byFac:byFac });
       JOB_ORDER.forEach(function(job){
         if(!jobs[job]) return;
         var sp = BEST_WORKERS[job].name;
@@ -1764,6 +1801,10 @@
         bySpecies[sp].jobs.push(job);
         bySpecies[sp].assigns = bySpecies[sp].assigns.concat(jobs[job]);
       });
+      if(coverer && !jobs["Grass"] && bySpecies[coverer]){
+        bySpecies[coverer].jobs.unshift("Grass");
+        bySpecies[coverer].planting = true;
+      }
       speciesOrder.forEach(function(sp){
         var r = bySpecies[sp];
         r.assigns.sort(function(x, y){ return x.facility.localeCompare(y.facility); });
@@ -1801,21 +1842,38 @@
       }
       return lines;
     }
-    /* One put-out line per building out for the nine named facilities:
-       1 Aniimo each, the type named where it is verified and flagged
-       where it is not. These lines ride in both team modes: a building's
-       attached Aniimo is not shared part time the way a job worker is. */
+    /* One put-out entry per facility for the nine named facilities,
+       labelled by ability and count, the way Aniimax's team panel
+       labels its crew — "Ice Aniimo ×2" for the Cooling Units — never
+       by a species the player must use, so Ice and Grass stand in the
+       team as real jobs, not counts buried in a note. The detail
+       rides in the entry's hover/tap note: the ability level, the
+       strongest known Aniimo for the job as a hint only, the best
+       personality with its +20% note where one is verified, and the
+       per-building rule. Where the type is not verified yet it is
+       flagged and no worker is invented. An entry carries data-heads
+       with its Aniimo count, so the put-out total still counts every
+       individual. These entries ride in both team modes: a building's
+       attached Aniimo is not shared part time the way a job worker
+       is. */
     function putOutPlacedLines(team){
       var lines = [];
       if(!team.placed) return lines;
       FAC_ANIIMO.forEach(function(fa){
         var p = team.placed[fa.facility];
         if(!p) return;
-        for(var i = 0; i < p.count; i++){
-          lines.push("<li><strong>1 Aniimo</strong> · " + esc(fa.facility) + " · " +
-            (fa.job ? esc(fa.job) + " Aniimo · 1 per building out (" + p.count + " out at RV " + userRV + ")"
-                    : "Type not verified yet · 1 per building out (" + p.count + " out at RV " + userRV + ")") + "</li>");
+        var bw = fa.job ? BEST_WORKERS[fa.job] : null;
+        var label = fa.job ? esc(fa.job) + " Aniimo" : (p.count > 1 ? "Aniimo" : "1 Aniimo");
+        if(p.count > 1) label += " ×" + p.count;
+        if(!bw){
+          lines.push('<li data-heads="' + p.count + '"><strong>' + label + "</strong> · " + esc(fa.facility) + " · Type not verified yet · 1 per building out (" + p.count + " out at RV " + userRV + ")</li>");
+          return;
         }
+        var t = FAC_TRAIT[fa.facility];
+        var tip = fa.job + " Lv." + bw.lvl + " · strongest known: " + bw.name + " Lv." + bw.lvl +
+          (t ? " · Best personality: " + t.name + " (" + t.letter + ") (+20% work efficiency)" : " · no verified personality match in the guide data") +
+          " · " + fa.facility + " · 1 Aniimo per building out (" + p.count + " out at RV " + userRV + ")";
+        lines.push('<li data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(tip) + '">' + abilityMarker(fa.job, !!t) + "<strong>" + label + "</strong> · " + esc(fa.facility) + " · 1 per building out (" + p.count + " out at RV " + userRV + ")</li>");
       });
       return lines;
     }
@@ -1851,17 +1909,32 @@
       opts = opts || {};
       var mode = opts.mode || teamMode;
       var lines = [];
+      /* The Aniimo covering planting, when one already on the crew
+         holds Grass (a Leisure Somniwing, Grass Lv 4 alongside): its
+         own line below names Grass alongside its other job, so the
+         Grass job is read off the checklist itself, not a footnote. */
+      var plantCover = plantingCoveredBy(team);
+      var grassFacPresent = Object.keys(team.byFac).some(function(f){ return team.byFac[f].job === "Grass"; });
       if(mode === "best"){
         var facs = Object.keys(team.byFac).map(function(f){ return team.byFac[f]; });
         facs.sort(function(a, b){
           var d = JOB_ORDER.indexOf(a.job) - JOB_ORDER.indexOf(b.job);
           return d !== 0 ? d : a.facility.localeCompare(b.facility);
         });
+        /* Lines are labelled by ability, Aniimax-style — "Fire
+           Aniimo", "Grass + Leisure Aniimo" — never by a species the
+           player must use. The strongest known Aniimo, the ability
+           level, the best personality with its +20% note, and the
+           facility with what it is making ride in the line's hover
+           or tap note, keeping the visible list simple. */
         function dedicatedLine(bf){
           var bw = BEST_WORKERS[bf.job];
-          var tl = traitLabel(bf.facility);
-          return "<li><strong>" + esc(bw.name) + "</strong> · " + esc(bf.job) + " · " + esc(bf.facility) +
-            (tl ? " · Best personality: " + esc(tl) : " · No best personality verified yet") + "</li>";
+          var covers = plantCover && bw.name === plantCover && bf.job !== "Grass" && !grassFacPresent;
+          var tip = "Strongest known: " + bw.name + " Lv." + bw.lvl + " · " + tipText(bf.job, bw.lvl, bf.facility, bf.items) +
+            (covers ? " · This Aniimo also does the planting: Grass Lv." + BEST_WORKERS.Grass.lvl : "");
+          var marks = (covers ? abilityMarker("Grass", false) : "") + abilityMarker(bf.job, !!FAC_TRAIT[bf.facility]);
+          return '<li tabindex="0" data-tip="' + escA(tip) + '">' + marks + "<strong>" + (covers ? "Grass + " + esc(bf.job) : esc(bf.job)) + " Aniimo</strong> · " + esc(bf.facility) +
+            (covers ? " · also does the planting" : "") + "</li>";
         }
         /* Individuals, not job slots: facilities whose jobs one
            multi-ability species covers are paired onto one Aniimo —
@@ -1878,15 +1951,11 @@
             var present = lists.map(function(l){ return l[i]; }).filter(Boolean);
             present.forEach(function(f){ usedFac[f.facility] = true; });
             if(present.length > 1){
-              var pers = [];
-              present.forEach(function(bf){
-                var tl = traitLabel(bf.facility);
-                if(tl) pers.push(bf.facility + ": " + tl);
-              });
-              lines.push("<li><strong>" + esc(sp) + "</strong> · " + esc(present.map(function(f){ return f.job; }).join(" + ")) + " · " +
+              var pairTip = "Strongest known: " + sp + " · " + present.map(function(bf){ return tipText(bf.job, BEST_WORKERS[bf.job].lvl, bf.facility, bf.items); }).join(" · ");
+              var pairMarks = present.map(function(bf){ return abilityMarker(bf.job, !!FAC_TRAIT[bf.facility]); }).join("");
+              lines.push('<li tabindex="0" data-tip="' + escA(pairTip) + '">' + pairMarks + "<strong>" + esc(present.map(function(f){ return f.job; }).join(" + ")) + " Aniimo</strong> · " +
                 present.map(function(f){ return esc(f.facility); }).join(", ") +
-                " · One Aniimo covers both jobs, counted once" +
-                (pers.length ? " · Best personality: " + esc(pers.join(", ")) : " · No best personality verified yet") + "</li>");
+                " · One Aniimo covers both jobs, counted once</li>");
             } else {
               lines.push(dedicatedLine(present[0]));
             }
@@ -1897,34 +1966,42 @@
         teamMinRows(team.byFac).forEach(function(r){
           var facsSorted = r.assigns.slice().sort(function(x, y){ return x.facility.localeCompare(y.facility); });
           var facNames = facsSorted.map(function(bf){ return bf.facility; }).join(", ");
-          var pers = [];
-          facsSorted.forEach(function(bf){
-            var tl = traitLabel(bf.facility);
-            if(tl) pers.push(facsSorted.length === 1 ? tl : bf.facility + ": " + tl);
-          });
-          lines.push("<li><strong>" + esc(r.worker) + "</strong> · " + esc(r.jobs.join(" + ")) + " · " + esc(facNames) +
-            (pers.length ? " · Best personality: " + esc(pers.join(", ")) : " · No best personality verified yet") + "</li>");
+          var tip = "Strongest known: " + r.worker + " · " + facsSorted.map(function(bf){ return tipText(bf.job, BEST_WORKERS[bf.job].lvl, bf.facility, bf.items); }).join(" · ") +
+            (r.planting ? " · This Aniimo also does the planting: Grass Lv." + BEST_WORKERS.Grass.lvl : "");
+          var minMarks = r.jobs.map(function(j){ return abilityMarker(j, false); }).join("");
+          lines.push('<li tabindex="0" data-tip="' + escA(tip) + '">' + minMarks + "<strong>" + esc(r.jobs.join(" + ")) + " Aniimo</strong> · " + esc(facNames) +
+            (r.planting ? " · also does the planting" : "") + "</li>");
         });
       }
       lines = lines.concat(putOutFarmLines(team.uncounted, includeAllUncounted));
       lines = lines.concat(putOutPlacedLines(team));
       /* Planting always puts out its floor of Grass Aniimo (player's
-         rule): the line sits in this list so the put-out total counts
-         it like every other line — unless an Aniimo already in this
-         list holds Grass among its abilities (a Somniwing on Leisure
-         work, Grass Lv 4 as well), in which case that same individual
-         does the planting and no extra line, or head, is added. */
-      if(team.planting && !plantingCoveredBy(team)){
-        lines.push("<li><strong>" + team.planting + " Aniimo</strong> · Planting · Grass Aniimo · at least " + team.planting + " for planting; exact count beyond " + team.planting + " not verified yet</li>");
+         rule): the entry sits in this list labelled by its ability —
+         "Grass Aniimo · Planting", with the strongest known Aniimo
+         only a hint in its hover/tap note — so the put-out total
+         counts it like every other entry, unless an Aniimo already
+         in this list holds Grass among its abilities (a Somniwing on
+         Leisure work, Grass Lv 4 as well), in which case that same
+         individual's own entry above reads Grass + its other job and
+         names the planting, and no extra entry, or head, is added. */
+      if(team.planting && !plantCover){
+        var gw = BEST_WORKERS.Grass;
+        var pTip = "Grass Lv." + gw.lvl + " · strongest known: " + gw.name + " Lv." + gw.lvl + (gw.alt ? " (or " + gw.alt.name + " Lv." + gw.alt.lvl + ")" : "") + " · Planting · at least " + team.planting + " for planting; exact count beyond " + team.planting + " not verified yet";
+        lines.push('<li tabindex="0" data-tip="' + escA(pTip) + '">' + abilityMarker("Grass", false) + "<strong>Grass Aniimo</strong> · Planting · at least " + team.planting + " for planting; exact count beyond " + team.planting + " not verified yet</li>");
       }
       if(!lines.length) return "";
+      /* The total counts individuals, not entries: an aggregated
+         entry (a facility's Aniimo, labelled with its ×count) carries
+         data-heads with the number of Aniimo it stands for, and every
+         other entry stands for one. */
+      var totalHeads = lines.reduce(function(a, l){ var m = l.match(/data-heads="(\d+)"/); return a + (m ? parseInt(m[1], 10) : 1); }, 0);
       var capNow = aniimoCapFor(userRV);
       var capLine = aniimoCapText(userRV);
-      if(capNow !== null && capNow > 0 && lines.length > capNow){
-        capLine += ' · <span class="over">' + (lines.length - capNow) + " over the RV " + userRV + " limit</span>";
+      if(capNow !== null && capNow > 0 && totalHeads > capNow){
+        capLine += ' · <span class="over">' + (totalHeads - capNow) + " over the RV " + userRV + " limit</span>";
       }
       return '<div class="putout"><h3>' + esc(opts.title || "🐾 Put out") + '</h3>' +
-        '<p class="putout-total">Put out ' + lines.length + " Aniimo</p>" +
+        '<p class="putout-total">Put out ' + totalHeads + " Aniimo</p>" +
         (capLine ? '<p class="putout-cap">' + capLine + "</p>" : "") +
         '<ul class="putout-list">' + lines.join("") + "</ul></div>";
     }
@@ -2051,7 +2128,8 @@
         capHtml = '<div class="note note-info"><h4>⭐ Best does not fit RV ' + userRV + ', so it is not shown</h4><p>' +
           "Best needs " + bestSize + " Aniimo, " + (bestSize - cap) + " over your limit of " + cap + ". The Minimum crew below is the one that fits: it puts out " + minSize + " Aniimo because its workers are shared, one Aniimo per job across every facility that needs that job. Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — facilities just take turns, so everything runs slower than Best.</p></div>";
       }
-      var html = capHtml + putOutHtml(team, true, null) + crewExtraHtml() + '<div class="summary-strip">' +
+      var howToHtml = '<div class="note note-info"><h4>📖 How to read this</h4><p>Each entry is Aniimo to put out, labelled by <strong>ability and count</strong> — <strong>Ice Aniimo ×2</strong> means two Aniimo with the Ice ability, and any Aniimo with that ability works: no entry names one you must use. The <strong>coloured circle</strong> is the ability in its game colour, with the Aniimo level inside; a <strong>gold ring</strong> around it means the plan counts on that facility\'s personality bonus (+20%). <strong>Hover or tap an entry</strong>, or its circle, for the details: the ability level, the strongest known Aniimo as a hint only, the best personality, and the facility with what it is making.</p></div>';
+      var html = capHtml + howToHtml + putOutHtml(team, true, null) + crewExtraHtml() + '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? "Best" : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
         '<div class="sum-chip"><b>' + (facs.length + uncountedFacs.length + placedFacs.length) + '</b><span>facilities running</span></div>' +
@@ -2070,14 +2148,21 @@
         if(liT){ Object.keys(liT.craft).forEach(function(n){ var f = ITEMS[n].facility; if(lvlFacs.indexOf(f) === -1) lvlFacs.push(f); }); Object.keys(liT.gather).forEach(function(n){ var f2 = ITEMS[n].facility; if(FAC_JOB[f2] && lvlFacs.indexOf(f2) === -1) lvlFacs.push(f2); }); }
         if(lvlFacs.length) html += '<p class="src" style="margin-top:10px">🚐 Leveling jobs for RV ' + rvNext() + " are in this crew because the leveling toggle is on in the RV section: " + lvlFacs.sort().map(function(f){ return esc(f); }).join(", ") + ".</p>";
       }
-      if(facs.length) html += '<div class="team-counts" aria-label="Workers needed per job">' + JOB_ORDER.map(function(j){
+      if(facs.length || placedFacs.length || team.planting) html += '<div class="team-counts" aria-label="Workers needed per job">' + JOB_ORDER.map(function(j){
         var c = jobFacCount[j] ? (teamMode === "best" ? jobFacCount[j] : 1) : 0;
         /* Grass carries the planting floor as well, so it never reads
-           0 while the plan is growing anything — unless a multi-ability
-           Aniimo already on the crew holds Grass, in which case that
-           same individual is the planting Aniimo and adds no head. */
+           0 while the plan is growing anything: the planting Aniimo is
+           a real Grass job on the team. When a multi-ability Aniimo
+           already on the crew holds Grass, that same individual is
+           the planting Aniimo and adds no head — the chip still reads
+           1, that individual, never 0. */
         if(j === "Grass") c += plantingAdd;
-        var mark = (merged && (j === "Grass" || j === "Leisure")) || (plantingBy && j === "Leisure" && !jobFacCount["Grass"]) ? " ‡" : "";
+        if(j === "Grass" && team.planting && c === 0) c = 1;
+        /* Ice is a real job on the team too: no recipe calls for it,
+           but every Cooling Unit out carries its own Ice Aniimo, so
+           the chip counts those Aniimo like the put-out list does. */
+        if(j === "Ice" && team.placed && team.placed["Cooling Unit"]) c += team.placed["Cooling Unit"].count;
+        var mark = (merged && (j === "Grass" || j === "Leisure")) || (plantingBy && (j === "Grass" || j === "Leisure") && !jobFacCount["Grass"]) ? " ‡" : "";
         return '<span class="job-chip' + (c ? "" : " zero") + '">' + j + " <b>" + c + "</b>" + mark + "</span>";
       }).join("") + "</div>";
       if(merged) html += '<p class="src" style="margin-top:8px">‡ One Aniimo covers both: Somniwing holds Grass Lv 4 and Leisure Lv 4, so the crew total counts it once, not once per job.</p>';
@@ -2093,8 +2178,13 @@
             traitCell = '<span class="src">No verified +20% personality match in the guide data for ' + r.assigns.map(function(bf){ return esc(bf.facility); }).join(" or ") + ".</span>";
           }
           var workerCell = r.merged
-            ? "<strong>" + esc(r.worker) + '</strong><br /><span class="src">' + esc(r.job) + " · one Aniimo covers all these jobs (" + r.jobs.map(function(j){ return j + " Lv." + BEST_WORKERS[j].lvl; }).join(", ") + ") · counted once per pair, not once per job</span>"
-            : "<strong>" + esc(r.worker) + '</strong><br /><span class="src">' + r.job + " Lv." + r.lvl + (r.alt ? " · or " + esc(r.alt.name) + " Lv." + r.alt.lvl : "") + "</span>";
+            ? r.jobs.map(function(j){
+                var ring = r.assigns.some(function(bf){ return bf.job === j && FAC_TRAIT[bf.facility]; });
+                return abilityMarker(j, ring, j + " Lv." + BEST_WORKERS[j].lvl + " · strongest known: " + r.worker + " · one Aniimo covers all these jobs");
+              }).join("") +
+              "<strong>" + esc(r.job) + ' Aniimo</strong><br /><span class="src">one Aniimo covers all these jobs (' + r.jobs.map(function(j){ return j + " Lv." + BEST_WORKERS[j].lvl; }).join(", ") + ") · strongest known: " + esc(r.worker) + " · counted once per pair, not once per job</span>"
+            : abilityMarker(r.job, !!r.trait, r.job + " Lv." + r.lvl + " · strongest known: " + r.worker + " Lv." + r.lvl + (r.trait ? " · Best personality: " + r.trait.name + " (" + r.trait.letter + ") (+20% work efficiency)" : " · no verified personality match in the guide data")) +
+              "<strong>" + r.job + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + (r.alt ? " · or " + esc(r.alt.name) + " Lv." + r.alt.lvl : "") + (plantingBy && r.worker === plantingBy && r.job !== "Grass" && !jobFacCount["Grass"] ? " · also covers Planting (Grass Lv." + BEST_WORKERS.Grass.lvl + ")" : "") + "</span>";
           return "<tr><td>" + workerCell + '</td><td class="num"><strong>' + (r.count || r.assigns.length) + "</strong></td>" +
             "<td>" + traitCell + "</td>" +
             "<td>" + r.assigns.map(function(bf){ return assignHtml(bf, bf.job, r.lvl); }).join("") + "</td></tr>";
@@ -2103,9 +2193,11 @@
         html += teamTable(teamMinRows(team.byFac).map(function(r){
           var workerCell;
           if(r.jobs.length > 1){
-            workerCell = "<strong>" + esc(r.worker) + '</strong><br /><span class="src">' + r.jobs.join(" + ") + " · one Aniimo, two jobs · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities") + "</span>";
+            workerCell = r.jobs.map(function(j){ return abilityMarker(j, false, j + " Lv." + BEST_WORKERS[j].lvl + " · strongest known: " + r.worker + " · one Aniimo, " + r.jobs.length + " jobs, shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities")); }).join("") +
+              "<strong>" + r.jobs.join(" + ") + ' Aniimo</strong><br /><span class="src">one Aniimo, ' + (r.jobs.length === 2 ? "two jobs" : r.jobs.length + " jobs") + " · strongest known: " + esc(r.worker) + " (" + r.jobs.map(function(j){ return j + " Lv." + BEST_WORKERS[j].lvl; }).join(", ") + ") · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities") + "</span>";
           } else {
-            workerCell = "<strong>Any " + r.jobs[0] + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + " · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities") + "</span>";
+            workerCell = abilityMarker(r.jobs[0], false, r.jobs[0] + " Lv." + r.lvl + " · strongest known: " + r.worker + " Lv." + r.lvl + " · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities")) +
+              "<strong>Any " + r.jobs[0] + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + " · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities") + "</span>";
           }
           var traitCell = '<span class="src">One worker carries one personality, so it can only match one of these facilities at a time. Each assignment below lists its own match.</span>';
           return "<tr><td>" + workerCell + '</td><td class="num"><strong>1</strong></td><td>' + traitCell + "</td><td>" +
@@ -3166,7 +3258,7 @@
                 ["Facility", esc(info.building) + " · footprint " + buildingLabel(info.building)],
                 ["Count", chunk.length + " of " + per + " " + fac + " plots in this zone · zone " + (z + 1) + " of " + zones],
                 ["Producing", prodLine(counts)],
-                ["Aniimo", info.building === "Cooling Unit" ? "1 Ice Aniimo · Geoclaw Lv 3 (cooling units need Ice Aniimo)" : "1 " + esc(info.building) + ' Aniimo · type <span class="verdict v-mix">not verified yet</span>'],
+                ["Aniimo", info.building === "Cooling Unit" ? abilityMarker("Ice", false, "Ice Lv.3 · strongest known: Geoclaw · cooling units need Ice Aniimo") + "1 Ice Aniimo · strongest known: Geoclaw Lv 3 (cooling units need Ice Aniimo)" : "1 " + esc(info.building) + ' Aniimo · type <span class="verdict v-mix">not verified yet</span>'],
                 ["Why", esc(why)]
               ]) + "</div></div>");
           }
@@ -3193,7 +3285,7 @@
             ["Facility", "Starfall Hammock × " + facCount("Starfall Hammock") + " out at RV " + userRV],
             ["Count", f.hammock.own ? "Stands in a Cooling Unit zone of its own, counted in this layout's Cooling Units" : "Stands inside one of this layout's Cooling Unit zones, counted once"],
             ["Producing", "Star, for this plan"],
-            ["Aniimo", "1 Leisure Aniimo per hammock"],
+            ["Aniimo", abilityMarker("Leisure", false, "Leisure Lv.4 · strongest known: Somniwing · 1 per Starfall Hammock") + "1 Leisure Aniimo per hammock · strongest known: Somniwing Lv 4"],
             ["Why", "Needs a Cool environment to work (your lookup, Oct 25, 2026)"]
           ]) + "</div></div>");
       }
@@ -3207,6 +3299,7 @@
         '<p class="lg-row"><span class="lg-sw" style="background:#f2f4f2"></span>Pale ground: the zone one building covers, 18 × 18 cells. Filled squares are plots in this layout; pale dashed squares are room left in the zone.</p>' +
         '<p class="lg-row"><span class="lg-sw" style="background:#fff"></span>Hover any square or shape and it names itself.</p>' +
         '<p class="lg-row"><span class="lg-sw" style="background:#e9a13b"></span>Space counts the buildings too: every space total adds the tiles the buildings stand on to the tiles the plots take.</p>' +
+        '<p class="lg-row">' + abilityMarker("Ice", false, "Ice Lv.3 · strongest known: Geoclaw · cooling units need Ice Aniimo") + abilityMarker("Grass", true, "Grass Lv.4 · strongest known: Somniwing · a gold ring means the plan counts on that facility's personality bonus (+20%)") + 'Coloured circles on the Aniimo lines: the ability in its game colour, with the Aniimo level inside. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Hover or tap a circle for its details.</p>' +
         '</div><p class="src" style="margin-top:8px">Footprints measured from your placement screenshots, Oct 24, 2026: Cooling Unit 2 × 2 (4 tiles), Heat Furnace 1 × 1 (1 tile), Sunlamp 1 × 1 (1 tile), Crackle Generator 2 × 2 (4 tiles), Power Pole 1 × 1 (1 tile).</p></div>';
     }
     /* The nine named facilities, in the layout as in the crew: available
@@ -3238,13 +3331,14 @@
         blocks.push('<div class="fac-block"><h4>' + esc(fa.facility) + '</h4><div class="zb-rows">' +
           '<div class="zb-row"><span class="zb-k">Count</span><span>' + c + " out at RV " + userRV + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(prod[fa.facility]) + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Aniimo</span><span>' + (fa.job ? "1 " + fa.job + " Aniimo each, " + c + " in all" : "1 Aniimo each, " + c + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building out (" + c + " out at RV " + userRV + ")") + '"' : "") + '>' + (fa.job ? abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + c + " in all" : "1 Aniimo each, " + c + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(why[fa.facility] || ("Available at RV " + userRV + ", so it is out")) + '</span></div>' +
           "</div></div>");
       });
       if(!blocks.length) return "";
       return '<h3 class="layout-sec-head">🏭 Facilities out in this layout</h3><p class="sec-sub" style="margin:8px 0 0">' +
         (onlyFacs ? "Minimum shows only the facilities this plan actually uses. Each one carries 1 Aniimo in your crew below." : "If a facility is available at your RV level, it is out, and each one carries 1 Aniimo in your crew below.") +
+        ' The coloured circle on an Aniimo row is that ability in its game colour, with the Aniimo level inside; a gold ring means the plan counts on that facility\'s personality bonus (+20%). Hover or tap the row for the details, including the strongest known Aniimo as a hint.' +
         '</p><div class="fac-blocks">' + blocks.join("") + "</div>";
     }
 
