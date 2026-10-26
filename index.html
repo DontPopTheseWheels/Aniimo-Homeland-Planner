@@ -666,7 +666,7 @@
     GA("Quartz Ore","Mine",5,4,"Mined, no ingredients.");
     GA("Gem","Mine",6,2,"Mined, no ingredients.");
     GA("Mineral Sand","Mine",1,null,"Comes out of the Mine alongside Rock, so the amount per run varies. No fixed yield is printed on purpose.");
-    GA("Wood Block","Woodland",1,null,"Rides along with every Woodland harvest. Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026: Level 1 gives 1 per plot, Level 2 gives 8, Level 3 gives 21, Level 4 gives 47, Level 5 gives 75, Level 6 gives 122.");
+    GA("Wood Block","Woodland",1,null,"Tree byproduct, never planted: Wood Blocks ride along with every Woodland tree harvest at a fixed rate per plot, so they have no seed and no plot of their own. Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026: Level 1 gives 1 per plot, Level 2 gives 8, Level 3 gives 21, Level 4 gives 47, Level 5 gives 75, Level 6 gives 122.");
     GA("Sea Salt","Tidewhisper Sandcastle",1,10,"Made only at the Tidewhisper Sandcastle. The known bottleneck: stock up early.");
     GA("Pearl","Tidewhisper Sandcastle",3,2,"Gathered at the Tidewhisper Sandcastle, no ingredients.");
     GA("Wool","Homeland leisure station",1,4,"Gathered with no ingredients at a leisure station.");
@@ -1251,6 +1251,11 @@
           if(kind === "craft"){ extra = " (" + plan.batches[n] + " batches at " + it.facility + ")" + eventText(it); }
           else if(it.kind === "grow"){ extra = " (" + plan.runs[n] + " batches/runs at " + it.facility + ", " + effYld(it) + " per batch" + (it.facility === "Woodland" ? ", " + woodPlotText(n) : "") + ")" + climateText(n); }
           else if(it.yld){ extra = " (" + plan.runs[n] + " batches/runs at " + it.facility + ", " + it.yld + " per batch)"; }
+          else if(n === "Wood Block"){
+            var wf = woodFromPlan(plan);
+            extra = " (tree byproduct at the Woodland: never planted, no seed and no plot of their own; they ride along with every tree harvest at a fixed rate per plot" +
+              (wf.prod > 0 ? "; this plan's trees bring in " + fmt(wf.prod) + " (" + woodBreakdownText(wf.details) + ")" : "; this plan grows no trees, so harvest any Woodland trees to bring them in") + ")";
+          }
           else { extra = " (at " + it.facility + ", yield varies)"; }
           lines.push("- " + n + ": need " + fmt(plan.net[n]) + extra);
         });
@@ -1342,6 +1347,12 @@
           var g = plan.gross[n], still = plan.net[n];
           var runsCell;
           if(it.yld){ var left = plan.runs[n] * effYld(it) - still; runsCell = "<strong>" + fmt(plan.runs[n]) + "</strong>" + (left > 0 ? ' <span class="src">(+' + left + " spare)</span>" : ""); }
+          else if(n === "Wood Block"){
+            var wf2 = woodFromPlan(plan);
+            runsCell = wf2.prod > 0
+              ? "from your trees: <strong>" + fmt(wf2.prod) + '</strong> counted<br /><span class="src">(' + wf2.details.map(function(d){ return esc(d.name) + " " + d.runs + " × " + d.per + " = " + fmt(d.total); }).join(", ") + ")</span>"
+              : '<span class="src">comes in with tree harvests; no trees in this plan</span>';
+          }
           else { runsCell = '<span class="src">yield varies, see note</span>'; }
           var where = it.kind === "grow" ? esc(it.facility) + " · " + esc(it.time) + " · seed: " + esc(it.seed) + (it.yld ? " · " + effYld(it) + " per seed" + (it.modYld && it.mod && modulesOwned[it.mod] ? " (module recipe)" : "") : "") + (it.facility === "Woodland" ? " · " + woodPlotText(n) : "") + " · " + climateHtml(n)
                                         : esc(it.facility) + (it.yld ? " · " + it.yld + " per run" : "");
@@ -2209,6 +2220,27 @@
     var WOOD_BYPRODUCT = {};
     Object.keys(ITEMS).forEach(function(n){ var v = woodPerPlot(n); if(v !== null) WOOD_BYPRODUCT[n] = v; });
 
+    /* Wood Blocks a given plan's own Woodland plots bring in, as a
+       byproduct of the tree harvests: tree plots times the fixed
+       per-plot rate for that tree's Woodland level. Wood Blocks are
+       never planted, so every list words them this way, never as a
+       grow or gather instruction. */
+    function woodFromPlan(plan){
+      var prod = 0, details = [];
+      Object.keys(plan.gross).forEach(function(n){
+        var it = ITEMS[n];
+        if(!it || it.kind !== "grow" || it.facility !== "Woodland") return;
+        var runs = plan.runs[n] || 0;
+        if(!runs) return;
+        var per = woodPerPlot(n);
+        if(per !== null){ prod += runs * per; details.push({ name:n, runs:runs, per:per, total:runs * per }); }
+      });
+      return { prod:prod, details:details };
+    }
+    function woodBreakdownText(details){
+      return details.map(function(d){ return d.name + " " + d.runs + (d.runs === 1 ? " plot" : " plots") + " × " + d.per + " = " + fmt(d.total); }).join(", ");
+    }
+
     /* What the basket plan itself produces, net of what it consumes.
        Production is counted only where a verified yield exists. */
     function basketByproducts(){
@@ -2426,7 +2458,7 @@
       lines.push("- RV " + bill.next + ": " + fmt(bill.coin) + " Home Coin + " + bill.row.mats.map(function(m){ return m[0] + " x" + fmt(m[1]); }).join(" + ") + " · build " + bill.row.time + " · Aniimo cap " + bill.row.cap);
       lines.push("");
       if(bill.woodOffsetApplied > 0) lines.push("Basket offset: less " + fmt(bill.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops (basket produces " + fmt(bill.by.woodProd) + " counted Wood Blocks, basket recipes use " + fmt(bill.by.woodConsumed) + ", surplus " + fmt(bill.by.woodSurplus) + ").");
-      lines.push("Wood chain: gather " + fmt(bill.woodStill) + " Wood Block; craft " + WOOD_CHAIN.slice(1).map(function(n, i){ return n + " x" + fmt(bill.wood.crafted[i + 1]); }).join(", "));
+      lines.push("Wood chain: " + fmt(bill.woodStill) + " Wood Blocks still needed, from tree harvests (a tree byproduct, never planted); craft " + WOOD_CHAIN.slice(1).map(function(n, i){ return n + " x" + fmt(bill.wood.crafted[i + 1]); }).join(", "));
       lines.push("Ore chain: gather " + fmt(bill.oreStill) + " Mineral Sand; craft " + ORE_CHAIN.slice(1).map(function(n, i){ return n + " x" + fmt(bill.ore.crafted[i + 1]); }).join(", "));
       return lines.join("\n");
     }
@@ -2475,7 +2507,7 @@
 
       var html = '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + fmt(bill.coin) + '</b><span>Home Coin cost for RV ' + bill.next + ' (a cost, not a tracked balance)</span></div>' +
-        '<div class="sum-chip"><b>' + fmt(bill.woodStill) + '</b><span>Wood Blocks still to gather' + (bill.woodOffsetApplied > 0 ? " (less " + fmt(bill.woodOffsetApplied) + " from your basket)" : "") + "</span></div>" +
+        '<div class="sum-chip"><b>' + fmt(bill.woodStill) + '</b><span>Wood Blocks still needed, from tree harvests' + (bill.woodOffsetApplied > 0 ? " (less " + fmt(bill.woodOffsetApplied) + " from your basket)" : "") + "</span></div>" +
         '<div class="sum-chip"><b>' + fmt(bill.oreStill) + '</b><span>Mineral Sand still to gather</span></div>' +
         '<div class="sum-chip"><b>' + fmtMins(row.mins) + '</b><span>RV upgrade timer (in game) for RV ' + bill.next + "</span></div>" +
         '<div class="sum-chip"><b>' + row.cap + '</b><span>Aniimo cap at RV ' + bill.next + "</span></div></div>";
@@ -2487,20 +2519,20 @@
         (row.mats.length ? row.mats.map(function(m){ return esc(m[0]) + " ×" + fmt(m[1]); }).join(" + ") : "None") +
         '</td><td>' + esc(row.time) + '</td><td>' + esc(row.unlock) + "</td></tr></tbody></table></div>";
 
-      function chainCard(title, emoji, chain, bd, benchName){
+      function chainCard(title, emoji, chain, bd, benchName, baseSuffix, baseNote){
         var rowsHtml = "";
         for(var t = 4; t >= 1; t--){
           var headline = (needs[chain[t]] || 0);
           rowsHtml += "<tr><td><strong>" + esc(chain[t]) + '</strong></td><td class="num">' + fmt(headline) + '</td><td class="num"><strong>' + fmt(bd.crafted[t]) + "</strong></td>" +
             '<td class="src">1 = ' + TIER_COST[t] + " × " + esc(chain[t - 1]) + "</td></tr>";
         }
-        rowsHtml += '<tr><td><strong>' + esc(chain[0]) + ' (base)</strong></td><td class="num">' + fmt(bd.need[0]) + '</td><td class="num"><strong>' + fmt(bd.baseStill) + " to gather</strong></td>" +
-          '<td class="src">Total base need after expanding every tier down the chain</td></tr>';
+        rowsHtml += '<tr><td><strong>' + esc(chain[0]) + ' (base)</strong></td><td class="num">' + fmt(bd.need[0]) + '</td><td class="num"><strong>' + fmt(bd.baseStill) + (baseSuffix || " to gather") + "</strong></td>" +
+          '<td class="src">' + (baseNote || "Total base need after expanding every tier down the chain") + "</td></tr>";
         return '<div class="card" style="margin-top:16px"><h3>' + emoji + " " + title + '</h3><p class="sec-sub" style="margin-bottom:0">Every tier is made at the ' + benchName + " from the tier below (8 to 1, or 4 to 1 at the top tier), and the bill counts the full amounts from scratch.</p>" +
           '<div class="tbl-wrap"><table><thead><tr><th>Tier</th><th class="num">Headline need</th><th class="num">To craft / gather</th><th>How it converts</th></tr></thead><tbody>' + rowsHtml + "</tbody></table></div></div>";
       }
       html += '<div class="rv-grid" style="grid-template-columns:1fr">' +
-        chainCard("Wood chain, expanded", "🪵", WOOD_CHAIN, wood, "Woodworking Bench") +
+        chainCard("Wood chain, expanded", "🪵", WOOD_CHAIN, wood, "Woodworking Bench", " from tree harvests", "Total base need after expanding every tier down the chain. Wood Blocks are a tree byproduct, never planted: they ride along with every Woodland tree harvest at a fixed rate per plot") +
         chainCard("Ore chain, expanded", "⛏️", ORE_CHAIN, ore, "Chimney Kiln") + "</div>";
 
       if(bill.woodStill === 0 && bill.oreStill === 0){
@@ -4018,7 +4050,25 @@
         } else if(it.kind === "gather" && (res.exp.gross[n] || 0) > 0){
           var ps2 = res.exp.parents[n] || [];
           var r = res.exp.runs[n];
-          if(r === null || r === undefined) add(it.facility, n, res.exp.gross[n], "needed, yield varies", ps2.length ? "Used for " + ps2.join(", ") : "Gathered for the plan");
+          if(n === "Wood Block"){
+            /* Wood Blocks are a tree byproduct, never planted: word the
+               row as what it is, with the tree x plots x rate breakdown
+               behind this plan's counted production, instead of the
+               generic "needed, yield varies" the Mine's Mineral Sand
+               (whose amount per run really does vary) gets. */
+            var wdetails = [];
+            Object.keys(res.seedRows).sort().forEach(function(tn){
+              var tit = ITEMS[tn];
+              if(!tit || tit.facility !== "Woodland") return;
+              var per = woodPerPlot(tn);
+              if(per !== null) wdetails.push({ name:tn, runs:res.seedRows[tn], per:per, total:res.seedRows[tn] * per });
+            });
+            var wwhy = "Tree byproduct, never planted: Wood Blocks ride along with every tree harvest at a fixed rate per plot, so they have no seed and no plot of their own. " +
+              (wdetails.length ? "This plan's trees bring in " + fmt(res.woodCycle) + " per cycle (" + woodBreakdownText(wdetails) + "). " : "This plan grows no trees, so none come in from it: harvest any Woodland trees to bring them in. ") +
+              "The " + fmt(res.exp.gross[n]) + " counted here is what this plan's crafts use in total" + (ps2.length ? ", for " + ps2.join(", ") : "") + ": keep harvesting your trees and the blocks come in with the harvests.";
+            add(it.facility, n, res.exp.gross[n], "needed in total, tree byproduct", wwhy);
+          }
+          else if(r === null || r === undefined) add(it.facility, n, res.exp.gross[n], "needed, yield varies", ps2.length ? "Used for " + ps2.join(", ") : "Gathered for the plan");
           else add(it.facility, n, r, r === 1 ? "run" : "runs", ps2.length ? "Used for " + ps2.join(", ") : "Gathered for the plan");
         }
       });
@@ -4074,7 +4124,16 @@
       if(res.starSell > 0) lines.push("- Of that counted total, " + fmt(res.starSell) + " Home Coins rests on recipes that use Star (" + res.starRecipes.join(", ") + "). Star: " + UNVERIFIED_FLAG + ", Aniimax uses it too, flagged unverified there.");
       if(res.unverifiedRawSell > 0) lines.push("- Unverified-included extra, not in the counted total: " + fmt(res.unverifiedRawSell) + " Home Coins per cycle from Moondew raw sales at 74 each. Sources conflict: Aniiland lists 74 each, aniimoguide says moon crops cannot be sold raw and must be cooked first.");
       lines.push("- If the unverified items pay off: " + fmt(res.coinsCycle + res.unverifiedRawSell) + " Home Coins per cycle.");
-      if(res.woodCycle > 0) lines.push("- Wood Blocks: " + fmt(res.woodCycle) + " counted per cycle. " + WOOD_SOURCE + ".");
+      if(res.woodCycle > 0){
+        var wdet = [];
+        Object.keys(res.seedRows).sort().forEach(function(tn){
+          var tit = ITEMS[tn];
+          if(!tit || tit.facility !== "Woodland") return;
+          var per = woodPerPlot(tn);
+          if(per !== null) wdet.push({ name:tn, runs:res.seedRows[tn], per:per, total:res.seedRows[tn] * per });
+        });
+        lines.push("- Wood Blocks: " + fmt(res.woodCycle) + " counted per cycle, a tree byproduct that rides along with this plan's tree harvests, never planted (" + woodBreakdownText(wdet) + "). " + WOOD_SOURCE + ".");
+      }
       lines.push("");
       lines.push("Recipes to make:");
       Object.keys(res.exp.batches).filter(function(n){ return (res.exp.batches[n] || 0) > 0; }).sort().forEach(function(n){
@@ -4140,7 +4199,7 @@
         (res.starSell > 0 ? ' Of that counted total, <strong>' + fmt(res.starSell) + ' Home Coins</strong> rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "") +
         ' Unverified-included extra, not in the counted total: <strong>' + fmt(res.unverifiedRawSell) + ' Home Coins per cycle</strong> from Moondew raw sales at 74 each <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniiland lists 74 each, aniimoguide says moon crops cannot be sold raw</span>." +
         ' If the unverified items pay off: <strong>' + fmt(res.coinsCycle + res.unverifiedRawSell) + ' Home Coins per cycle</strong>' + (res.cycleMins > 0 ? " (" + fmtRate((res.coinsCycle + res.unverifiedRawSell) / res.cycleMins) + " per minute)" : "") + "." +
-        (res.woodCycle > 0 ? ' Wood Blocks: <strong>' + fmt(res.woodCycle) + ' counted</strong> per cycle. ' + WOOD_SOURCE + '.' : "") +
+        (res.woodCycle > 0 ? ' Wood Blocks: <strong>' + fmt(res.woodCycle) + ' counted</strong> per cycle, a tree byproduct that rides along with this plan\'s tree harvests, never planted. ' + WOOD_SOURCE + '.' : "") +
         "</p></div>";
 
       html += "<h3 style='margin-top:22px'>🍳 Recipes to make</h3>";
