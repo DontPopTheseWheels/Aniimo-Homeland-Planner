@@ -267,6 +267,7 @@
           <div class="step"><span class="n">Stage 2</span><br /><b>🚐 RV level-up</b><p>Pick where you are. You get what the very next level needs, from the verified RV 1 to 20 ladder, material tiers expanded down to Wood Blocks and Mineral Sand. Turn leveling on there and that bill joins your basket plan and your team.</p></div>
           <div class="step"><span class="n">Stage 3</span><br /><b>🏭 Facilities &amp; modules</b><p>Your facilities set themselves: counts and levels always match the most your RV level allows, so there is nothing to fill in there. Type your four module levels once. The planner works out which verified module recipes you own and uses their yields for you. Basket, plans and money crops follow <em>your</em> homeland. The Stage 4 layout helper below turns your basket and best plan choices into plot and climate-zone plans on its own.</p></div>
           <div class="step"><span class="n">New</span><br /><b>⭐ Best Plan</b><p>Rank your goals, tap Find the best plan, and the planner picks the recipes for you, sized to the facilities your RV level allows and the module levels you entered in Stage 3. Prices come from the filed shop price research. Best Plan only: an item not verified yet but sensible is still included and flagged on its line, so your homeland misses nothing, and its money shows separately from the counted total.</p></div>
+          <div class="step"><span class="n">Home</span><br /><b>🏠 Home side &amp; Bud Tickets</b><p>Production and home share one Aniimo pool. Whatever slots your plan's crew doesn't use become Homebuilding Zone residents earning Bud Tickets — no set number to pick, the reserve is whatever the plan leaves, so it grows and shrinks as the plan changes.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes come from the game data on Daily Aniimo and AniimoTools, and the RV ladder is the one cross-checked for the Master Guide. Anything shaky is flagged on the page, never quietly filled in.</p></div>
         </div>
       </header>
@@ -279,6 +280,7 @@
         <a href="#crops">🌱 Money Crops</a>
         <a href="#layout">🗺️ Layout Helper</a>
         <a href="#team">👥 Team Helper</a>
+        <a href="#home">🏠 Home &amp; Bud Tickets</a>
         <a href="#sources">🔍 Sources &amp; Flags</a>
       </nav>
 
@@ -459,7 +461,7 @@
       <!-- ================= TEAM HELPER ================= -->
       <section id="team">
         <div class="sec-head"><span class="sec-num">Team</span><h2>👥 Team Helper</h2></div>
-        <p class="sec-sub">Who staffs everything above? This is the one crew suggestion for the whole planner, shown only after everything is picked out. Your basket and, when you have run one, your Best Plan decide which facilities run, deduped so a facility needed by both counts once, plus leveling jobs when leveling is on. Toggle between <strong>⭐ Best</strong> (a dedicated worker per facility) and <strong>🪶 Minimum</strong> (one shared Aniimo per job): only one crew shows at a time, and <strong>Best is always fitted inside your RV level's Aniimo limit</strong> — if a dedicated worker at every facility would go over the limit, a worker is shared at just the few facilities the limit forces, and the plan says which ones share; only if even Minimum cannot fit does no crew show, with what has to change. It rebuilds whenever your basket, your Best Plan or your RV level changes. Hover an assignment for its full detail, or tap it on a touch screen. <strong>Hauling is always in the total, and always more than one:</strong> it grows with the facilities your plan sets running, some of it covered by Aniimo already on the crew doing hauling as a secondary ability (counted once, in their main job), the rest added as dedicated haulers. <strong>Climate Aniimo follow your layout:</strong> only the Heat Furnaces, Cooling Units and Sunlamps the Layout Helper actually puts out are staffed, 1 Aniimo per building out, so plots sharing a climate building in the layout directly cuts the Aniimo this plan needs.</p>
+        <p class="sec-sub">Who staffs everything above? This is the one crew suggestion for the whole planner, shown only after everything is picked out. Your basket and, when you have run one, your Best Plan decide which facilities run, deduped so a facility needed by both counts once, plus leveling jobs when leveling is on. Toggle between <strong>⭐ Best</strong> (a dedicated worker per facility) and <strong>🪶 Minimum</strong> (one shared Aniimo per job): only one crew shows at a time, and <strong>Best is always fitted inside your RV level's Aniimo limit</strong> — if a dedicated worker at every facility would go over the limit, a worker is shared at just the few facilities the limit forces, and the plan says which ones share; only if even Minimum cannot fit does no crew show, with what has to change. It rebuilds whenever your basket, your Best Plan or your RV level changes. Hover an assignment for its full detail, or tap it on a touch screen. <strong>Hauling is always in the total, and always more than one:</strong> it grows with the facilities your plan sets running, some of it covered by Aniimo already on the crew doing hauling as a secondary ability (counted once, in their main job), the rest added as dedicated haulers. <strong>Climate Aniimo follow your layout:</strong> only the Heat Furnaces, Cooling Units and Sunlamps the Layout Helper actually puts out are staffed, 1 Aniimo per building out, so plots sharing a climate building in the layout directly cuts the Aniimo this plan needs. <strong>Whatever slots this crew doesn't use are not wasted:</strong> they are your home residents in the 🏠 Home &amp; Bud Tickets section below, earning Bud Tickets — so a smaller crew here means more tickets there, and the reserve moves with the plan.</p>
         <div class="note note-info" style="margin:0 0 16px"><p><strong>Decide leveling before you use this crew.</strong> Turning on Include leveling resources in my plan in the RV Level-Up section adds leveling jobs to this crew, so the crew can grow when leveling is on.</p></div>
         <div class="card">
           <div id="teamGate"></div>
@@ -471,6 +473,39 @@
           <p class="src" id="teamModeNote" style="margin-top:10px"></p>
           <div id="teamArea"></div>
           </div>
+        </div>
+      </section>
+
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
+      <!-- ================= HOME SIDE & BUD TICKETS ================= -->
+      <section id="home">
+        <div class="sec-head"><span class="sec-num">Home</span><h2>🏠 Home Side &amp; Bud Tickets</h2></div>
+        <p class="sec-sub">Bud Tickets don't come from production at all. They drip from Aniimo <strong>living in the Homebuilding Zone</strong> (opens at <strong>RV 8</strong>) into a Bud Ticket Jar, and you spend them at the Furniture Store on decor. Production and home draw on <strong>one shared Aniimo pool</strong> — your RV level's cap — so every slot spent on production is a resident not earning tickets, and every slot production doesn't need is a resident who is. <strong>There is no set reserve number to pick:</strong> this section works it out from your plan as it stands — <strong>cap − your production crew = places left for home</strong> — so it fluctuates with the plan, exactly as it should. Make the plan bigger and the reserve shrinks; trim it, share workers (🪶 Minimum), or share climate buildings in the layout, and the reserve grows back. Overfilling production buys nothing extra: a facility with no post to work adds no output, so leaving the spare slots at home is the better use of them.</p>
+
+        <div class="card">
+          <div class="controls">
+            <div class="field" style="flex:1 1 100%;min-width:0">
+              <label for="budMix">Your home Aniimo are mostly…</label>
+              <select id="budMix" style="width:100%;min-width:0">
+                <option value="regular" selected>Regular Aniimo — 120 tickets a day each</option>
+                <option value="single">Sparkling or Prismana — 180 a day each</option>
+                <option value="both">Sparkling + Prismana — 270 a day each</option>
+                <option value="mixed">Mixed — half regular, half Sparkling + Prismana</option>
+              </select>
+              <span class="hint">No ability changes the rate — it's the Aniimo's tags. Pick the line closest to the residents you'd actually put at home; the ticket figures below follow it. The places left for home never depend on this choice, only on your plan.</span>
+            </div>
+          </div>
+          <div id="homeOut" aria-live="polite"></div>
+        </div>
+
+        <div class="note note-teal">
+          <h4>🎫 How Bud Tickets work</h4>
+          <p>Each resident pays into the Jar every day: <strong>120</strong> for a regular Aniimo, <strong>180</strong> if it's Sparkling or Prismana, <strong>270</strong> if it carries both tags (Game8). At the Furniture Store, nearly every decor piece gives about <strong>1 Habitability per ticket spent</strong>, and Habitability is what gates the higher RV levels — 13,000 for RV 10, rising to 20,000 for RV 20 on the ladder above (AniimoTools) — so home residents are quietly paying for your next levels while production runs. Level-up rewards and Home Orders add tickets on top; those amounts aren't part of the daily Jar figures here. Two honest unknowns: the Jar's capacity couldn't be confirmed in any source checked, so no cap is printed and nothing here assumes one; and a claimed extra 100 tickets a day from a daily home chest rests on one source only, so it is <strong>not</strong> counted in any figure on this page.</p>
+        </div>
+        <div class="note note-info">
+          <h4>🛋️ Not the same thing as the Leisure buildings</h4>
+          <p>The Leisure facilities — Nimbus Bed, Dewy House, Tidewhisper Sandcastle and Starfall Hammock — sit in the Production Zone and are already staffed in your crews above. The home side in this section is the <strong>residents</strong>: Aniimo placed in the Homebuilding Zone itself. Different ground, different job — residents need no ability at all to earn tickets.</p>
         </div>
       </section>
 
@@ -503,6 +538,7 @@
           <li><strong>Module levels and verified unlocks (checked Oct 24, 2026):</strong> the four boxes in the Stage 3 panel are Ecological (max Lv 8), Kitchen (max Lv 7), Resource Detector (max Lv 8) and Crafting (max Lv 7), all starting at 0. The unlock map is <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels, the RV modules section</a>, cross-checked against <a href="https://aniimoguide.com/homeland">aniimoguide's Homeland guide</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">the Aniiland RV level roadmap</a>. Ecological: Lv 1 Quick Wheat (RV 3), Lv 2 Quick Bamboo (RV 7), Lv 3 Quick Potato (RV 8), Lv 4 Quick Lemon (RV 11), Lv 5 Quick Rice (RV 12), Lv 6 Quick Maple Syrup (RV 14), Lv 7 Quick Strawberry (RV 17), Lv 8 Quick Coconut (RV 18). Kitchen: Lv 1 Aniimo Feeding (RV 2), Lv 2 Premium Bread (RV 4), Lv 3 Premium Potato Soup (RV 8), Lv 4 Premium Sweet Rice Wine (RV 10), Lv 5 Premium Salted Lemon (RV 13), Lv 6 Premium Jello (RV 16), Lv 7 Premium Berry Chocolate Coconut Pudding (RV 19). Resource Detector: Lv 1 Quick Well Water (RV 5), Lv 2 Quick Sea Salt (RV 8), Lv 3 Quick Aromathyst (RV 11), Lv 4 Quick Fresh Water (RV 12), Lv 5 Quick Wool (RV 13), Lv 6 Quick Deep Rock Spring Water (RV 15), Lv 7 Quick Natural Mineral Water (RV 17), Lv 8 Quick Scales (RV 19). Crafting: Lv 1 Premium River-Washed Stones (RV 5), Lv 2 Premium Rose Freshener (RV 7), Lv 3 Advanced Lemon Incense (RV 10), Lv 4 Premium Wind Chime (RV 12), Lv 5 Premium Soap (RV 17), Lv 6 Premium Gemstone Dust (RV 18), Lv 7 Premium Mixed Perfume (RV 19). Only three of these change this planner's numbers, and they switch on by themselves from your Ecological level: Maple Syrup harvest ×30 at Lv 6, Strawberry harvest ×26 at Lv 7 and Coconut harvest ×8 at Lv 8, in the Grow list, Money Crops and Layout Helper alike. The Kitchen, Resource Detector and Crafting unlocks are Premium or Advanced variants already covered by their base entries at the same ingredients, so they are shown for ownership and change no amounts. <strong>Still unverified, never guessed:</strong> Premium Wheat appears in no module ladder in any source checked. The roadmap lists it only as a Farmland Lv 6 crop arriving at RV 12, with no module named, so it stays a manual tap in the panel, flagged as unverified, and no level ever switches it on for you.</li>
           <li><strong>Team Helper crew counts, the single crew suggestion</strong> are worked out from your entire plan, never fixed: the basket plan plus, when you have run one, the Best Plan's facilities unioned in and deduped by facility so a facility needed by both counts once, plus leveling jobs when leveling is on. There is no crew inside the Best Plan panel anymore. Best counts one dedicated worker per busy facility, and Minimum counts one Aniimo per job, shared part time across all of that job's facilities. Somniwing is the one known double act (Grass Lv 4 and Leisure Lv 4), so it covers both jobs at once and is counted as one Aniimo in Best and Minimum alike — crews count individuals with their full ability sets, never one head per job — and when a Somniwing is already on the crew, the planting Grass Aniimo is that same individual, not an extra. A planner that counts differently, one worker per crop or per station run instead of per facility or per job, will land on a bigger number for the same basket: that is the counting rule, not missing crew. Every facility this plan sets running is counted here, including Farmland and Woodland below. Best-worker names and ability levels: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 and Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3 (Dewy Lv 1 also works). Jobs follow the planner's recipe data, where every craft names its worker, plus the verified gather pairings Well = Water, Mine = Earth and Tidewhisper Sandcastle = Leisure. Which ability staffs Farmland, Woodland, the Dewy House and the leisure station is <span class="verdict v-mix">not verified yet</span>, so no worker is named for those runs in the panel; each of those stations still adds one Aniimo to the crew total, because the runs still need doing, and Ice and Light read 0 until a facility in the data asks for them — Ice's one exception is the Cooling Units the layout puts out, below. Hauling never reads 0: by the player's rule (Oct 27, 2026) every plan carries more than one Hauling Aniimo, the count growing with the facilities the plan sets running (2 while five or fewer facilities run, then one more per five more facilities, up to 6), some of them Aniimo already on the crew for another job doing hauling as a secondary ability and counted once in their main job, the rest dedicated haulers added to the crew total. Grass never reads 0, because planting always counts at least 1 Grass Aniimo by the player's rule. By the player's own rule (Oct 25, 2026), nine facilities also carry an Aniimo each in their own right whenever they are out: Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle and Nimbus Bed whenever they are out at the picked RV level, and the three climate buildings — Sunlamp, Heat Furnace, Cooling Unit — only where the Layout Helper's layout actually puts them out (player's rule, Oct 27, 2026: Farmland and Woodland plots that need the same building share its coverage zones there, packed into the fewest buildings that cover the plan and never more than the RV count, so all the Cool plots under one Cooling Unit zone count one Ice Aniimo; the buildings out, the plots sharing them and the Aniimo saved by sharing are stated in the layout and in the crew), 1 Aniimo per building out, typed where verified (Mine Earth, Well Water, Sandcastle and Hammock Leisure, Cooling Unit Ice — cooling units need Ice Aniimo, the player's own word) and flagged type not verified yet where it is not; those Aniimo sit inside the crew total and the put-out list, and the same nine appear in the Layout Helper with their counts and Aniimo. Extra Water watering is named in the panel with its type, its count flagged not verified yet and never invented; Hauling is counted by the player's scaling rule above, stated on its put-out line with the dedicated/secondary split; Grass planting is named too, with its floor of 1 counted in the crew and only the count beyond 1 flagged not verified yet. Grass and Ice stand in the team as named jobs, not just numbers inside the totals. The team is labelled by ability and count, the way Aniimax's team panel labels its crew — Ice Aniimo ×2 on the Cooling Units, Grass Aniimo on Planting — and no entry names a species the player must use: the strongest known Aniimo for a job (Geoclaw Lv 3 for Ice, Somniwing Lv 4 for Grass) appears only as a hint inside the entry's hover or tap note, together with the ability level, the best personality with its +20% note, and the facility with what it is making. The Ice chip counts the Cooling Units' Aniimo, the Grass chip never reads 0 while a plan is growing anything, and when a Somniwing already on the crew covers the planting, its entry and worker row read Grass + Leisure and say it also does the planting, instead of the Grass line disappearing into a footnote. Entries and rows carry the Aniimax ability markers: a circle in the ability's game colour with the Aniimo level inside, ringed in gold where the plan counts on that facility's personality bonus (+20%), the same markers on the Layout Helper's Aniimo lines, and a short How to read this note sits with the team and in the layout legend explaining the entries and the markers in plain words.</li>
           <li><strong>Aniimo caps (how many Aniimo you can put out):</strong> the cap at each RV is the "place N Aniimo in your Home" number from <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, and it matches <a href="https://metabot.gg/en/aniimo/guides/homeland">MetaBot.GG's retail-file Homeland guide</a> at every level: RV 2 is 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44 and 45 at RV 20; RV 1 has none yet. The Team Helper checks its whole Put out total against that cap — plan crew, the nine facilities' attached Aniimo (climate buildings only where the layout puts them out), the planting Grass Aniimo and the dedicated haulers together, nothing counted outside it — and never shows a crew over the cap at all: a crew you cannot put out is not a plan. When the full Best crew is over the cap, Best is fitted down to the cap instead of switched off — workers are shared at as few facilities as the cap forces, starting where sharing crowds a job least, every facility keeps running, and the plan names the facilities that share — and only when even Minimum, one shared Aniimo per job, is over the cap does no crew show, just what each would need and what has to change. Crews are counted in individuals, not job slots: where one Aniimo's verified abilities cover more than one needed job it is counted once in both Best and Minimum (Somniwing, Grass Lv 4 and Leisure Lv 4, is the verified multi-ability case the page's best-worker data supports, and the counting machinery groups any species the data names for two jobs the same way), multi-ability Aniimo are preferred when sharing is what makes a crew fit, and the planting Grass Aniimo adds no extra head when a crew member already holds Grass. One flag, honestly: aniimoguide prints a second, lower set of numbers read from the RV upgrade cards, from RV 13 on (40 at RV 20), and advises planning on the lower set until the live game settles it. This planner follows the AniimoTools and MetaBot "place in your Home" numbers instead, because they match the player's own game: 36 slots at her RV 14.</li>
+          <li><strong>Bud Tickets and the home side (added Oct 27, 2026, by the player's request):</strong> Bud Tickets are earned by Aniimo living in the Homebuilding Zone, which opens at RV 8 (the RV 8 ladder row above: "Homebuilding Zone opens"), not by production. Rates are Game8's: 120 a day per regular resident, 180 for Sparkling or Prismana, 270 for both tags; no ability changes the rate. Tickets are spent at the Furniture Store, where nearly every decor piece gives about 1 Habitability per ticket, and Habitability gates RV 10 to 20 on the AniimoTools ladder (13,000 at RV 10 rising to 20,000 at RV 20). Production and home share the one cap above — AniimoTools' own planner likewise counts home places as the total minus the production team — so this planner never asks for a fixed reserve number: the Home Side section derives it per plan as cap minus the production crew on show (Best as fitted, or Minimum), and it changes whenever the basket, a Best Plan, leveling, the layout's climate sharing or the RV level changes. Where the production crew would use the whole cap, the section says so and shows what Minimum would free, instead of quietly spending every slot on production. Level-up rewards and Home Orders also grant tickets, but no verified daily amount is printed for them here. The Bud Ticket Jar's capacity could not be confirmed in any source checked, so none is stated, and a single-source claim of 100 extra tickets a day from a daily home chest is not counted anywhere on this page. The Leisure buildings (Nimbus Bed, Dewy House, Tidewhisper Sandcastle, Starfall Hammock) are Production Zone facilities already staffed in the crew; they are not the home residents this section counts.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> are the Master Guide's verified table, where GameWith, Game8, AniimoTools and Selphie1999 Gaming agree: E Energetic at the Bouncy Brew Keg and Woodworking Bench; I Instinctive at the Phonolfactory Table and Dewy House; S Practical at the Claw Game Cooker and Chimney Kiln; N Nimble at the Jukebox Dryer and Blazing Stove; T Tenacious at the Carousel Mill and Simmering Pot; F Faithful at the Joy Wheel Loom and Well; J Judicious at the Crafting Table and Tidewhisper Sandcastle; P Playful at the Mine and Pickling Jar. Farmland, Woodland, the Dance Pad Polisher, the Aniipod Maker and the leisure station have no verified match in that table, and the panel says so rather than guessing.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy (added from a firsthand screenshot):</strong> reported missing from an in-game Daily Orders panel and checked against the Daily Aniimo recipe book before adding. The book confirms Grapes x9, Rock Candy x1, Claw Game Cooker Lv 5, Fire worker and workload 243. The screenshot's second ingredient icon looked like plain sugar cubes, but the book names it Rock Candy, so the planner follows the book and plans call for Rock Candy (which itself crafts from Sugarcane and Plain Fresh Water at the Simmering Pot). The screenshot panel also shows unit price 2850 Home Coins, and Claw Game Cooker Lv 5 sits at RV 12 in this planner's facility tiers.</li>
@@ -2281,6 +2317,118 @@
         '. One Aniimo for each of these stations is already inside the crew total above: these runs still need doing. Which ability staffs these stations is not in the verified data behind this planner yet, so no worker is invented for them.</p></div>';
     }
 
+    /* ============ Home side & Bud Tickets ============
+       One shared pool: the RV cap covers production and home together.
+       The reserve is never a number the player picks — by her rule
+       (Oct 27, 2026) it is whatever the plan can get away with, so it is
+       derived here, per plan, as cap minus the production crew, and it
+       fluctuates as the basket, a Best Plan, leveling, the layout's
+       climate sharing and the RV level change. Rates are Game8's:
+       120 a day per regular resident, 180 Sparkling or Prismana,
+       270 both tags; no ability changes the rate. */
+    function budMix(){
+      var s = document.getElementById("budMix");
+      return s ? s.value : "regular";
+    }
+    function budTicketsFor(reserve, mix){
+      if(!reserve || reserve <= 0) return 0;
+      if(mix === "single") return reserve * 180;
+      if(mix === "both") return reserve * 270;
+      if(mix === "mixed"){
+        var both = Math.floor(reserve / 2);
+        return (reserve - both) * 120 + both * 270;
+      }
+      return reserve * 120;
+    }
+    function budMixLabel(mix){
+      return mix === "single" ? "Sparkling or Prismana residents (180 a day each)"
+        : mix === "both" ? "Sparkling + Prismana residents (270 a day each)"
+        : mix === "mixed" ? "mixed residents (half regular at 120, half Sparkling + Prismana at 270)"
+        : "regular residents (120 a day each)";
+    }
+    /* Production crew sizes for the home math, counted exactly the way
+       renderTeam counts them: individuals, placed facilities' attached
+       Aniimo, the planting floor when it adds a head, and dedicated
+       haulers. Best is the size on show — fitted to the cap when the
+       full Best crew would go over it and Minimum fits. */
+    function homeCrewSizes(team){
+      var uncountedCount = Object.keys(team.uncounted).length;
+      var placedFacs = team.placed ? Object.keys(team.placed) : [];
+      var placedTotal = placedFacs.reduce(function(a, f){ return a + team.placed[f].count; }, 0);
+      var jobFacCount = {};
+      Object.keys(team.byFac).forEach(function(f){ jobFacCount[team.byFac[f].job] = (jobFacCount[team.byFac[f].job] || 0) + 1; });
+      var plantingBy = plantingCoveredBy(team);
+      var plantingAdd = plantingBy ? 0 : (team.planting || 0);
+      var haulingAdd = team.hauling ? team.hauling.dedicated : 0;
+      var extra = uncountedCount + placedTotal + plantingAdd + haulingAdd;
+      var bestSize = bestIndividualCount(team.byFac) + extra;
+      var minSize = minIndividualCount(jobFacCount) + extra;
+      var cap = aniimoCapFor(userRV);
+      var fittedSize = null;
+      if(cap !== null && bestSize > cap && minSize <= cap){
+        var fr = fitBestRows(team.byFac, cap - extra);
+        if(fr) fittedSize = fr.reduce(function(a, r){ return a + r.count; }, 0) + extra;
+      }
+      return { bestSize:bestSize, minSize:minSize, fittedSize:fittedSize,
+        bestUsable:(fittedSize !== null ? fittedSize : bestSize), cap:cap };
+    }
+    function renderHome(){
+      var out = document.getElementById("homeOut");
+      if(!out) return;
+      var mix = budMix();
+      var cap = aniimoCapFor(userRV);
+      var capText = cap === null ? "" : (cap === 0 ? "RV " + userRV + " allows no Aniimo yet" : "RV " + userRV + " allows " + cap + " Aniimo, production and home together");
+      if(userRV < 8){
+        out.innerHTML = '<div class="note note-warn" style="margin-top:14px"><h4>🔒 The home side opens at RV 8</h4><p>The Homebuilding Zone unlocks at <strong>RV 8</strong> (quest: Dream Cottage, Part 1), so at RV ' + userRV + ' there are no home residents and no Bud Tickets yet — every slot is production-side for now. ' + esc(capText) + '. From RV 8 on, this section works out your home places from each plan automatically: at RV 8 the cap is 24, so a plan whose crew is 18 leaves <strong>6 residents</strong>, earning <strong>' + fmt(budTicketsFor(6, mix)) + ' Bud Tickets a day</strong> at your mix above. The rates to plan ahead with: 120 a day per regular resident, 180 Sparkling or Prismana, 270 with both tags.</p></div>';
+        return;
+      }
+      var missing = crewMissing();
+      if(missing.length){
+        out.innerHTML = '<div class="empty-plan" style="text-align:left"><strong>Your home places appear here once your plan is plugged in, the same inputs as your crew.</strong><p style="margin:8px 0 0">The reserve is worked out from the production crew, so it needs the crew\'s inputs set on purpose first. Still to plug in:</p><ul class="check-list">' + missing.map(function(m){ return "<li>" + esc(m) + "</li>"; }).join("") + '</ul><p style="margin:10px 0 0">' + esc(capText) + '. Every one of those slots your crew doesn\'t use becomes a home resident here — no number for you to pick.</p></div>';
+        return;
+      }
+      if(!basket.length && !levelingOn && !(typeof bpResult !== "undefined" && bpResult)){
+        out.innerHTML = '<div class="empty-plan">Pick recipes in your basket or run a Best Plan, and the places your production crew leaves for the Homebuilding Zone — and the Bud Tickets they earn — appear here on their own.</div>';
+        return;
+      }
+      var team = computeTeam();
+      var s = homeCrewSizes(team);
+      if(cap === null || cap === 0){
+        out.innerHTML = '<div class="empty-plan">' + esc(capText) + ', so there are no slots to split between production and home yet.</div>';
+        return;
+      }
+      if(s.minSize > cap){
+        out.innerHTML = '<div class="note note-warn" style="margin-top:14px"><h4>🏠 No home places in this plan — production alone is over the cap</h4><p>Even the Minimum production crew needs <strong>' + s.minSize + ' Aniimo</strong> and Best needs <strong>' + s.bestSize + '</strong>, against ' + esc(capText) + '. There is nothing left for the Homebuilding Zone, so this plan earns <strong>0 Bud Tickets a day</strong> from residents. Take recipes out of the basket so fewer facilities run at once, turn leveling off, or level the RV up first — the moment a crew fits, the slots it doesn\'t use show up here as home places.</p></div>';
+        return;
+      }
+      var currentSize = teamMode === "best" ? s.bestUsable : s.minSize;
+      var reserve = cap - currentSize;
+      var reserveBest = cap - s.bestUsable;
+      var reserveMin = cap - s.minSize;
+      var tickets = budTicketsFor(reserve, mix);
+      var html = '<div class="summary-strip">' +
+        '<div class="sum-chip"><b>' + cap + '</b><span>Aniimo allowed at RV ' + userRV + ' (one shared pool)</span></div>' +
+        '<div class="sum-chip"><b>' + currentSize + '</b><span>on production (' + (teamMode === "best" ? (s.fittedSize !== null ? "Best team, fitted" : "Best team") : "Minimum team") + ')</span></div>' +
+        '<div class="sum-chip"><b>' + reserve + '</b><span>places left for home</span></div>' +
+        '<div class="sum-chip"><b>' + fmt(tickets) + '</b><span>Bud Tickets a day (' + esc(budMixLabel(mix)) + ')</span></div>' +
+        '<div class="sum-chip"><b>' + fmt(tickets * 7) + '</b><span>Bud Tickets a week</span></div></div>';
+      if(reserve === 0){
+        html += '<div class="note note-warn"><h4>🏠 This plan uses every slot — no residents, no tickets</h4><p>Your ' + (teamMode === "best" ? "Best" : "Minimum") + ' production crew takes all ' + cap + ' slots at RV ' + userRV + ', so the Homebuilding Zone stands empty and earns <strong>0 Bud Tickets a day</strong>.' +
+          (reserveMin > 0 ? ' The 🪶 Minimum crew would free <strong>' + reserveMin + (reserveMin === 1 ? ' place' : ' places') + '</strong> — ' + fmt(budTicketsFor(reserveMin, mix)) + ' Bud Tickets a day at your mix — tap 🪶 Minimum team in the Team Helper to see the reserve move.' : ' Even Minimum uses every slot here: take a recipe out of the basket, or turn leveling off, and places free up for home.') + '</p></div>';
+      } else {
+        html += '<div class="note note-good"><h4>🎫 ' + reserve + (reserve === 1 ? ' resident' : ' residents') + ' earning at home</h4><p>Your production crew leaves <strong>' + reserve + (reserve === 1 ? ' place' : ' places') + '</strong> in the Homebuilding Zone. As ' + esc(budMixLabel(mix)) + ', that is <strong>' + fmt(tickets) + ' Bud Tickets a day</strong>, ' + fmt(tickets * 7) + ' a week. Spent at the Furniture Store at about 1 ticket to 1 Habitability, that is roughly ' + fmt(tickets) + ' Habitability a day toward the RV gates (13,000 for RV 10, rising to 20,000 for RV 20). Change the plan and this number changes with it — it is recalculated from the crew every time, never a fixed reserve.</p></div>';
+      }
+      if(s.fittedSize !== null && teamMode === "best"){
+        html += '<p class="src" style="margin-top:10px">⭐ The full Best crew would need ' + s.bestSize + ' Aniimo, over your cap, so the Best on show is fitted to ' + s.fittedSize + ' — the fitting already spends the whole cap, which is why Best leaves ' + reserveBest + ' home places here even though a smaller plan would leave more.</p>';
+      }
+      html += '<div class="tbl-wrap"><table><thead><tr><th>Crew on show</th><th class="num">On production</th><th class="num">Places left for home</th><th class="num">Bud Tickets / day</th><th class="num">Bud Tickets / week</th></tr></thead><tbody>' +
+        '<tr><td><strong>⭐ Best</strong>' + (s.fittedSize !== null ? ' (fitted to RV ' + userRV + ')' : '') + '</td><td class="num">' + s.bestUsable + '</td><td class="num"><strong>' + reserveBest + '</strong></td><td class="num">' + fmt(budTicketsFor(reserveBest, mix)) + '</td><td class="num">' + fmt(budTicketsFor(reserveBest, mix) * 7) + '</td></tr>' +
+        '<tr><td><strong>🪶 Minimum</strong></td><td class="num">' + s.minSize + '</td><td class="num"><strong>' + reserveMin + '</strong></td><td class="num">' + fmt(budTicketsFor(reserveMin, mix)) + '</td><td class="num">' + fmt(budTicketsFor(reserveMin, mix) * 7) + '</td></tr>' +
+        '</tbody></table></div>' +
+        '<p class="src" style="margin-top:10px">Ticket figures use your mix above (' + esc(budMixLabel(mix)) + ') for both rows. Flip between ⭐ Best and 🪶 Minimum in the Team Helper and the headline above follows the crew on show. The Leisure buildings are production, already counted in the crew — the residents here are separate Aniimo placed in the Homebuilding Zone, and they need no ability to earn.</p>';
+      out.innerHTML = html;
+    }
+
     function renderTeam(){
       hideTip();
       var area = document.getElementById("teamArea");
@@ -2297,6 +2445,7 @@
         }
         if(contentEl) contentEl.hidden = true;
         area.innerHTML = "";
+        renderHome();
         return;
       }
       if(gateEl){ gateEl.hidden = true; gateEl.innerHTML = ""; }
@@ -2310,6 +2459,7 @@
         : "Minimum is an approximation: one Aniimo per job, shared part time across every facility that needs that job, so facilities take turns and everything runs slower than Best. The smallest crew that keeps the plan moving, not a timetable.";
       if(!basket.length && !levelingOn && !(typeof bpResult !== "undefined" && bpResult)){
         area.innerHTML = '<div class="empty-plan">Your crew appears here once your basket has a recipe in it or you have run a Best Plan. Pick recipes above or run the Best Plan Finder and the helper works out who needs to staff every facility your plan sets running.</div>';
+        renderHome();
         return;
       }
       var team = computeTeam();
@@ -2383,6 +2533,7 @@
           "Best would need <strong>" + bestSize + " Aniimo</strong> and even Minimum, with workers shared one per job, would need <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so both are over and neither is shown — there is no usable crew to list. " +
           "The count covers the whole crew together: the plan's workers, the Aniimo attached to the facilities out at RV " + userRV + ", the planting Grass Aniimo and the dedicated haulers, with nothing counted outside it. " +
           "To get a crew that fits: take recipes out of the basket so fewer facilities run at once, turn leveling off, or level the RV up first.</p></div>";
+        renderHome();
         return;
       }
       if(teamMode === "best" && bestHidden) teamMode = "minimum";
@@ -2424,7 +2575,15 @@
         '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? (fittedRows ? "Best, fitted to RV " + userRV : "Best") : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
         '<div class="sum-chip"><b>' + (facs.length + uncountedFacs.length + placedFacs.length) + '</b><span>facilities running</span></div>' +
-        '<div class="sum-chip"><b>' + Object.keys(jobFacCount).length + '</b><span>jobs covered</span></div></div>';
+        '<div class="sum-chip"><b>' + Object.keys(jobFacCount).length + '</b><span>jobs covered</span></div>' +
+        (cap !== null && cap > 0 ? (userRV >= 8
+          ? '<div class="sum-chip"><b>' + Math.max(0, cap - teamSize) + '</b><span>places left for home (🏠 below)</span></div>' +
+            '<div class="sum-chip"><b>' + fmt(budTicketsFor(Math.max(0, cap - teamSize), budMix())) + '</b><span>Bud Tickets a day from those residents</span></div>'
+          : '<div class="sum-chip"><b>RV 8</b><span>Homebuilding Zone opens — no Bud Tickets yet</span></div>') : "") +
+        '</div>';
+      if(cap !== null && cap > 0 && userRV >= 8){
+        html += '<p class="src" style="margin-top:10px">🏠 Home split: this crew uses ' + teamSize + ' of your ' + cap + ' slots, leaving <strong>' + Math.max(0, cap - teamSize) + ' places for Homebuilding Zone residents</strong> — ' + fmt(budTicketsFor(Math.max(0, cap - teamSize), budMix())) + ' Bud Tickets a day at the mix picked in the 🏠 Home &amp; Bud Tickets section below. The reserve is whatever this plan leaves, so it moves when the plan does.</p>';
+      }
       if(placedFacs.length){
         html += '<p class="src" style="margin-top:10px">🏭 That total includes ' + placedTotal + ' Aniimo attached to the facilities out at RV ' + userRV + ', 1 per building: ' + FAC_ANIIMO.filter(function(fa){ return team.placed[fa.facility]; }).map(function(fa){
           return esc(fa.facility) + " ×" + team.placed[fa.facility].count + (fa.job ? " (" + fa.job + ")" : " (type not verified yet)");
@@ -2516,6 +2675,7 @@
       }
       html += uncountedHtml(team.uncounted);
       area.innerHTML = html;
+      renderHome();
     }
 
     /* assignment tooltips: hover on desktop, tap toggles on touch, focus works too */
@@ -5121,6 +5281,8 @@
         toast("Best plan ready, sized to your Stage 3 setup.");
         document.getElementById("bestPlanOut").scrollIntoView({ behavior:"smooth", block:"start" });
       });
+      var budMixSel = document.getElementById("budMix");
+      if(budMixSel) budMixSel.addEventListener("change", function(){ renderHome(); renderTeam(); });
       renderGoals();
       renderFacilities();
       renderChips();
