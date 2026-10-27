@@ -263,7 +263,7 @@
         <p class="tagline">Pick up to ten things to make. The planner works out the whole chain: what to grow, what to gather, and what to craft first. Then check what your next RV level will cost.</p>
         <div class="emoji-strip" aria-hidden="true">🧺 🌱 💧 🔥 🚐</div>
         <div class="how">
-          <div class="step"><span class="n">Stage 1</span><br /><b>🧺 Recipe basket</b><p>Choose recipes, and quantities only if you need exact amounts. The plan assumes you make everything from scratch, so every list shows the full amounts to grow, gather and craft.</p></div>
+          <div class="step"><span class="n">Stage 1</span><br /><b>🧺 Recipe basket</b><p>Choose the recipes you want — no amounts to type. The planner sizes the plan to your facilities, your plots and your Aniimo limit, works out the whole chain from scratch, and tells you how much of each thing your homeland keeps making per hour.</p></div>
           <div class="step"><span class="n">Stage 2</span><br /><b>🚐 RV level-up</b><p>Pick where you are. You get what the very next level needs, from the verified RV 1 to 20 ladder, material tiers expanded down to Wood Blocks and Mineral Sand. Turn leveling on there and that bill joins your basket plan and your team.</p></div>
           <div class="step"><span class="n">Stage 3</span><br /><b>🏭 Facilities &amp; modules</b><p>Your facilities set themselves: counts and levels always match the most your RV level allows, so there is nothing to fill in there. Type your four module levels once. The planner works out which verified module recipes you own and uses their yields for you. Basket, plans and money crops follow <em>your</em> homeland. The Stage 4 layout helper below turns your basket and best plan choices into plot and climate-zone plans on its own.</p></div>
           <div class="step"><span class="n">New</span><br /><b>⭐ Best Plan</b><p>Rank your goals, tap Find the best plan, and the planner picks the recipes for you, sized to the facilities your RV level allows and the module levels you entered in Stage 3. Prices come from the filed shop price research. Best Plan only: an item not verified yet but sensible is still included and flagged on its line, so your homeland misses nothing, and its money shows separately from the counted total.</p></div>
@@ -313,7 +313,7 @@
           <p class="src" id="hideCount" style="margin-top:8px" hidden></p>
           <h3 style="margin-top:14px">🎒 Your ten recipe slots <span class="src" id="basketCount"></span></h3>
           <p class="src" style="margin-top:4px">One slot per recipe, up to ten, matching the basket cap. Every list is alphabetical, and the search box and category chips above narrow all ten lists at once. Picked the wrong recipe? Open its slot and choose "✕ Clear this slot".</p>
-          <p class="src" style="margin-top:4px"><strong>Quantities are optional, never required.</strong> Every recipe starts at 1, and you can leave them all at 1: just pick what you want to make and the planner works from your picks, basket plan, Layout Helper and crew alike. Raise a quantity only when you need an exact amount for a target, like a Daily Order asking for 3 of something.</p>
+          <p class="src" style="margin-top:4px"><strong>No amounts to type, ever.</strong> The basket is just the recipes you want to make. The planner works out how much of each your homeland can keep producing — one batch per facility per cycle, on no more plots than your RV level allows, with a crew inside your Aniimo limit — and reports it below as per-cycle and per-hour rates, the Aniimax way. The basket plan, the Layout Helper and the crew all follow that same sizing.</p>
           <div class="picker-slots" id="recipeSlots"></div>
         </div>
 
@@ -335,7 +335,7 @@
 
         <div class="note note-teal">
           <h4>🌱 Grow times: should you worry? Not really</h4>
-          <p>Good news: almost everything grows on the same <strong>40-minute cycle</strong>, so no slow crop hides in your basket. Wheat is the fast exception at 4 minutes, and Potato and Willow Wood take 10 min 40 s. Everything else, Farmland and Woodland alike, is 40 minutes. Crops grow <strong>side by side at the same time</strong>, so times do not add up: one batch of each crop, planted together, is ready in about 40 minutes total. Time only adds up when one crop needs several batches and the same plots take turns. Check the <strong>Plots (batches)</strong> column in the Grow list: 1 means one 40-minute cycle, 3 means up to three cycles. Happy to plant, wander off, and come back later? Ignore grow times and just follow the amounts. The amounts are what this planner is careful about.</p>
+          <p>Good news: almost everything grows on the same <strong>40-minute cycle</strong>, so no slow crop hides in your basket. Wheat is the fast exception at 4 minutes, and Potato and Willow Wood take 10 min 40 s. Everything else, Farmland and Woodland alike, is 40 minutes. Crops grow <strong>side by side at the same time</strong>, so times do not add up: one batch of each crop, planted together, is ready in about 40 minutes total. Time only adds up when one crop needs several batches and the same plots take turns. Check the <strong>Plots</strong> column in the Grow list: it is how many plots of that crop one cycle plants, and the cycle lasts as long as its slowest crop. Happy to plant, wander off, and come back later? Ignore grow times and just follow the amounts. The amounts are what this planner is careful about.</p>
         </div>
 
         <div id="planArea"></div>
@@ -350,7 +350,7 @@
 
         <div class="hide-row" style="margin:0 0 16px">
           <label class="hide-toggle" for="levelingToggle"><input type="checkbox" id="levelingToggle" /> <span>Include leveling resources in my plan</span></label>
-          <span class="hide-hint">Off: this section is a quiet reference. The ladder below stays for looking up, but the bill and the gates checklist tuck away, and nothing from leveling enters your basket plan or your Team Helper. On: the next level's bill joins your Grow, Gather and Craft lists, its jobs join your team, and what your basket already produces (like Wood Blocks from Woodland crops) comes off the bill, shown line by line.</span>
+          <span class="hide-hint">Off: this section is a quiet reference. The ladder below stays for looking up, but the bill and the gates checklist tuck away, and nothing from leveling enters your Team Helper. On: the next level's bill is priced in full as a one-time package (it never becomes part of your plan's per-hour rates), its jobs join your team, and what your basket already produces (like Wood Blocks from Woodland crops) comes off the bill, shown line by line.</span>
         </div>
 
         <div id="rvActive" hidden>
@@ -459,7 +459,7 @@
       <!-- ================= TEAM HELPER ================= -->
       <section id="team">
         <div class="sec-head"><span class="sec-num">Team</span><h2>👥 Team Helper</h2></div>
-        <p class="sec-sub">Who staffs everything above? This is the one crew suggestion for the whole planner, shown only after everything is picked out. Your basket and, when you have run one, your Best Plan decide which facilities run, deduped so a facility needed by both counts once, plus leveling jobs when leveling is on. Toggle between <strong>⭐ Best</strong> (a dedicated worker per facility) and <strong>🪶 Minimum</strong> (one shared Aniimo per job): only one crew shows at a time, and <strong>a crew that goes over your RV level's Aniimo limit is never shown at all</strong> — if Best is over, its button switches off and you get the Minimum that fits; if both are over, no crew shows, just what has to change. It rebuilds whenever your basket, your Best Plan or your RV level changes. Hover an assignment for its full detail, or tap it on a touch screen.</p>
+        <p class="sec-sub">Who staffs everything above? This is the one crew suggestion for the whole planner, shown only after everything is picked out. Your basket and, when you have run one, your Best Plan decide which facilities run, deduped so a facility needed by both counts once, plus leveling jobs when leveling is on. Toggle between <strong>⭐ Best</strong> (a dedicated worker per facility) and <strong>🪶 Minimum</strong> (one shared Aniimo per job): only one crew shows at a time, and <strong>Best is always fitted inside your RV level's Aniimo limit</strong> — if a dedicated worker at every facility would go over the limit, a worker is shared at just the few facilities the limit forces, and the plan says which ones share; only if even Minimum cannot fit does no crew show, with what has to change. It rebuilds whenever your basket, your Best Plan or your RV level changes. Hover an assignment for its full detail, or tap it on a touch screen.</p>
         <div class="note note-info" style="margin:0 0 16px"><p><strong>Decide leveling before you use this crew.</strong> Turning on Include leveling resources in my plan in the RV Level-Up section adds leveling jobs to this crew, so the crew can grow when leveling is on.</p></div>
         <div class="card">
           <div id="teamGate"></div>
@@ -489,19 +489,20 @@
           <li><strong>Wood Blocks by Woodland level.</strong> Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026: Woodland Level 1 gives 1 per plot, Level 2 gives 8, Level 3 gives 21, Level 4 gives 47, Level 5 gives 75, and Level 6 gives 122, the same for every tree at that level, regular and Quick Formula alike, using the card level for each tree. Mineral Sand comes out of the Mine alongside Rock in amounts that vary, so the planner shows the amounts you need without inventing a fake plots figure for it.</li>
           <li><strong>Climate coverage:</strong> Verified from the player's own in-game Edit-mode screenshot of the Heat Furnace (Oct 23, 2026): climate buildings (Cooling Unit, Heat Furnace, Sunlamp) affect a square area 9 grid cells across, centered on the building, as shown by the game's own placement highlight.</li>
           <li><strong>Plot footprints and power zones (Layout Helper):</strong> measured from the player's own in-game screenshots (Oct 23, 2026), in the build grid's fine cells (bold lines sit every 2 fine cells). Farmland plots are 4 × 4 fine cells, Woodland plots 7 × 7, climate zones 18 × 18 fine cells (9 × 9 bold), the Crackle Generator's electric zone 22 × 22 (11 × 11 bold) and a Crackle Power Pole's zone 14 × 14 (7 × 7 bold). Packing figures assume plots sit edge to edge with no paths between them. The zone overlap blends in the Layout Helper come from the Steam RV/Homeland Guide's homeland lesson, not from measurement.</li>
-          <li><strong>RV next level, the leveling toggle, and the basket offset:</strong> the RV planner always prices the single next level from the level you pick: pick RV 6 and it bills RV 7. Home Coin is printed as that level's cost and is never an input, because a coin balance changes constantly and tracking one is not realistic. There are no stock boxes anywhere in this planner: the basket plan and the RV bill always show full amounts from scratch, and lower tiers still process up. With the <strong>Include leveling resources in my plan</strong> toggle off (the default), the RV bill and gates tuck away, the full ladder stays as reference, and nothing from leveling enters the basket plan or the Team Helper. With it on, the next level's still-needed materials join the Grow, Gather and Craft lists, its facility jobs join the Team Helper (Woodworking Bench is Artisanship and Chimney Kiln is Fire, from the same recipe data as every other craft; the Mine is Earth, a verified gather pairing; Wood Block gathering sits at the Woodland, whose job is not verified, so it is flagged with the other runs whose jobs are not verified, never guessed), and the basket offsets the bill with net math shown line by line: counted Wood Block production from the basket's Woodland plots, minus the Wood Blocks the basket recipes themselves use, is the surplus taken off the bill. Counted production uses the Wood Blocks ladder by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6, the same for every tree at that level. Mineral Sand rides along with Mine runs in amounts that vary with no fixed yield, so it is not counted: it is flagged in the offset note instead of guessed.</li>
-          <li><strong>The Layout Helper reads your basket:</strong> under <strong>From your basket</strong> it lists every crop your plan still needs to grow, grouped by the same climate rules as hand picks, with plot counts from the plan itself (the Grow list's own Plots column: amount still needed divided by yield per seed, module harvests included when your module levels switch them on), so helper and Grow list never disagree. The − and + buttons on each basket crop add or take away plots from that count, and the change sticks to the crop when the basket updates the count; a crop stepped down to 0 stays listed with a + button so it is never lost. Changing a basket quantity updates the list on its own. Hand picks are optional extras only, added from the picker below the automatic groups, and stay in their own group, <strong>Your extra crops, added by hand</strong>, one plot each, and recomputing the basket list never touches them; a crop can appear in both groups, and its counts are never merged into one number. Above-level basket crops stay listed, greyed, with their unlock note, and still count toward plots and climate buildings.</li>
+          <li><strong>RV next level, the leveling toggle, and the basket offset:</strong> the RV planner always prices the single next level from the level you pick: pick RV 6 and it bills RV 7. Home Coin is printed as that level's cost and is never an input, because a coin balance changes constantly and tracking one is not realistic. There are no stock boxes anywhere in this planner: the basket plan is sized to your homeland and shows per-cycle amounts with per-hour rates, the RV bill always shows the full one-time amounts from scratch, and lower tiers still process up. With the <strong>Include leveling resources in my plan</strong> toggle off (the default), the RV bill and gates tuck away, the full ladder stays as reference, and nothing from leveling enters the basket plan or the Team Helper. With it on, the next level's still-needed materials join the Grow, Gather and Craft lists, its facility jobs join the Team Helper (Woodworking Bench is Artisanship and Chimney Kiln is Fire, from the same recipe data as every other craft; the Mine is Earth, a verified gather pairing; Wood Block gathering sits at the Woodland, whose job is not verified, so it is flagged with the other runs whose jobs are not verified, never guessed), and the basket offsets the bill with net math shown line by line: counted Wood Block production from the basket's Woodland plots, minus the Wood Blocks the basket recipes themselves use, is the surplus taken off the bill. Counted production uses the Wood Blocks ladder by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6, the same for every tree at that level. Mineral Sand rides along with Mine runs in amounts that vary with no fixed yield, so it is not counted: it is flagged in the offset note instead of guessed.</li>
+          <li><strong>The basket takes recipes only, never amounts:</strong> you pick what to make, and the planner sizes the production itself, the Aniimax way. Each picked recipe starts at one batch per facility you have out that makes it, per cycle; the whole chain under it (crafted ingredients, crops, gathered materials) is worked out from that. Then the plan is fitted inside your limits before anything is shown: no facility runs more batches per cycle than its Stage 3 count, the Farmland and Woodland plots a cycle plants never pass your RV level's counts, and where a limit binds, production scales down to fit it and the plan names the limit that bound. Amounts are per cycle; one cycle lasts as long as the cycle's slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds, the grow times already on this page), and the per-hour rate is the per-cycle amount scaled by 60 ÷ the cycle minutes, the same grow-cycle basis the Best Plan's rates already used. Craft and gather cycle times are not in the verified data, so rates are grow-cycle rates and say so. The leveling bill is never sized this way: it stays the fixed one-time package priced in the RV section.</li>
+          <li><strong>The Layout Helper reads your basket:</strong> under <strong>From your basket</strong> it lists every crop your plan still needs to grow, grouped by the same climate rules as hand picks, with plot counts from the plan itself (the Grow list's own Plots column: the plan's per-cycle amount divided by yield per seed, module harvests included when your module levels switch them on), so helper and Grow list never disagree. The − and + buttons on each basket crop add or take away plots from that count, and the change sticks to the crop when the basket updates the count; a crop stepped down to 0 stays listed with a + button so it is never lost. Changing your basket updates the list on its own. Hand picks are optional extras only, added from the picker below the automatic groups, and stay in their own group, <strong>Your extra crops, added by hand</strong>, one plot each, and recomputing the basket list never touches them; a crop can appear in both groups, and its counts are never merged into one number. Above-level basket crops stay listed, greyed, with their unlock note, and still count toward plots and climate buildings.</li>
           <li><strong>The Layout Helper shows two layouts, toggled, never more:</strong> ⭐ Best (the full field) and 🪶 Minimum (one plot of each crop, the fewest climate buildings), and the per-source lists under them are only the counts behind the one layout on show, not layouts of their own. The layout at the top of the helper is the one field to plant, and it is fitted to the Stage 3 counts at whatever RV is picked: it plants at most the Farmland count and the Woodland count your RV level allows (RV 14's most is 30 Farmland and 15 Woodland, from the same verified count ladder as the Best Plan), and it lays out at most the count of each climate building your RV level allows (Cooling Unit, Heat Furnace and Sunlamp, from the Aniiland RV roadmap ladder in the Stage 3 panel: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19, with the RV 7 unlock also backed by GameWith and the RV 14 values of 2, 2 and 2 matching the player's own setup; the steps rest on Aniiland alone, so they carry the count single source flag). The layout fills the available plots first, with the crops the plan needs most covered under the climate buildings; when a climate group's plots would need more zones than the building count your RV level allows, only what fits under cover is planted in the layout and the plan says so. The three sources (basket, best plan, extra hand picks) stay in their own unmerged sections as the accounting; the layout combines them, because that combined planting is what actually goes in the ground. What each source wants decides what the layout plants. The whole-plan totals lead the helper: total plots per crop across the full need, total seeds (one seed per plot, the same counts the Grow list and the best plan work from), total climate buildings for the whole need, and total grow time. When the whole need is bigger than one field, the helper never draws an impossible all-at-once planting: it shows the best full-field layout and says plainly to replant that same layout as harvests complete until the totals are met. The time estimate's basis: everything in the layout grows side by side, so one planting lasts as long as its slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds, from the grow times already on this page); a crop whose total passes the plots the layout gives it is replanted into the same layout as its harvests free its plots, each replanting adding its grow time again, and the crops run side by side, so the whole plan takes as long as the longest of those chains.</li>
           <li><strong>Overlap in the Layout Helper:</strong> the only blends applied are the Steam RV/Homeland Guide's verified two: a crop in both a Scorching zone and a Cool zone counts as Warm, and a crop in both a Freezing zone and a Warm zone counts as Cool. When one source's groups lay out both partner zones, the served group's zones are counted as overlap bands shared with those partner zones, so the layout totals count them once instead of adding separate buildings for them, in the group totals, the summary chips and the copied plan alike. No other crossing is claimed: Scorching with Freezing, and every other pairing, is not in the verified rule and is never used. The band's exact size and how many plots fit inside it are <strong>not verified</strong> in any source behind this planner, so each served group keeps its standalone zone count printed next to the overlap note, flagged, and the layout is still packed with the safe, unshared zone counts, so it never needs more buildings than you have: in the layout's per-zone blocks, a served group's plots sit in its overlap band block and its buildings are not counted a second time. Treat a band as a bonus that can save buildings, never as a promise. The layout is drawn as one small grid per zone, not one big map: each zone block shows its building's zone over the crops it covers, with short writing beside the grid, and a served group gets a band block where the two partner zones meet. Whether a Warm crop is better served by a Heat Furnace zone of its own or by a band is likewise not verified, so the planner shows both numbers and does not pick for you. Light is handled independently of temperature throughout: Adequate-light crops (Sunlamp) may sit inside temperature zones with Sunlamp coverage overlaid, so their ground is counted once, in the temperature zone, and only the Sunlamps themselves are added.</li>
           <li><strong>The Layout Helper also reads your best plan:</strong> once you run the Best Plan Finder, the seeds to plant from that plan appear under <strong>From your best plan</strong>, in their own group, never merged with the basket group or your own picks. The counts are the plan's own seed counts (amount needed divided by yield per seed, module harvests included when your module levels switch them on, the same math as the basket group), grouped by the same climate rules and the same climate building counts (one zone per 16 Farmland plots or 4 Woodland plots), with the layout at the top of this helper drawn from those same counts, and the same − and + steppers: an adjustment sticks to its crop when the plan is run again, and a crop stepped to 0 stays listed under "Set to 0 by you". Before any best plan is run the group stays hidden; with no basket picked and no best plan run yet, the helper shows one plain line saying the layout appears once either exists, with nothing to fill out; if a plan plants nothing, the group says so plainly instead of inventing crops; and if your setup or goals change after a run, the group keeps the run's counts and says the plan is out of date until you run it again.</li>
           <li><strong>Building footprints in the space totals:</strong> the Layout Helper's space totals count plot tiles plus building tiles. Plot tiles are measured (Farmland 4 × 4 cells = 16 tiles, Woodland 7 × 7 = 49, from the player's own screenshots, same source as the plot footprints bullet above). A climate building's coverage zone is verified at 18 × 18 cells from those same screenshots. The building footprints themselves are now measured from the player's own placement screenshots (Oct 24, 2026), replacing the earlier 4 × 4 assumption: Cooling Unit 2 × 2 cells = 4 tiles (confirmed by the white square measurement from the player's still screenshot, Oct 24, 2026: the white square is divided by one interior vertical grid line and one interior horizontal grid line into 2 columns by 2 rows, so it is 2 tiles wide by 2 tiles deep, not 3 wide); Heat Furnace 1 × 1 = 1 tile (identity confirmed by the player); Sunlamp 1 × 1 = 1 tile (identity confirmed by the player); Crackle Generator 2 × 2 = 4 tiles (the white square around the unit, confirmed by the player as the footprint); Power Pole 1 × 1 = 1 tile (identity confirmed by the player). Each building is drawn as the dark square in the middle of its zone map, scaled to its measured footprint where the map scale allows, and its true tile count is named in the caption. Zone capacity is unchanged by this: a zone still holds 16 Farmland plots or 4 Woodland plots, because the building stands in the middle of its coverage either way; the building tiles are counted so you can see what the buildings cost in space, not to shrink the verified capacity. In the power reference, the Generator zone is 484 tiles with 4 building tiles, leaving 480, and the Pole zone is 196 tiles with 1 building tile, leaving 195.</li>
           <li><strong>Stage 3 has started:</strong> the facility &amp; module panel above the basket takes your module levels, and your facility counts and levels always sit at the most your RV level allows, worked out from the tables below with nothing to type. The recipe greying, the plans and Money Crops all follow them. Facility tier caps per RV come from AniimoTools' station tables. Facility counts sit in the same panel, each one the most you can have out at your RV (see the next bullet); they size the Best Plan (one batch per processing facility per cycle, one plot per Farmland or Woodland count) and change nothing else. Plot layouts are built (Stage 4 Layout Helper), and the Team Helper right after the basket turns your plan into a crew.</li>
           <li><strong>Facility max counts (what your RV level allows):</strong> the most you can have out of each facility at each RV comes from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked three ways. <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms the counts against the game's data files to RV 11, and the Farmland, Woodland and Mine counts agree with the RV requirements in those files at every RV, so those three are solid at all 20 levels. <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools' max-out table</a> matches this ladder exactly for all 21 facilities at RV 12. Above RV 12, the other facilities' count steps rest on Aniiland alone (aniimoguide calls those player-reported), so the Stage 3 panel flags them <span class="verdict v-mix">count single source</span> at the RVs where they apply. Well is the exception: the Steam RV/Homeland guide confirms three Wells before RV 19 and the fourth at RV 19. One correction this research settled: an earlier note said Farmland maxes at 28 at RV 14. That 28 is the RV 13 cap. Aniiland's ladder, aniimoguide's RV 15 requirement (30 Farmland placed) and real RV 14 homelands all agree the RV 14 max is 30, so the planner uses 30. The three climate buildings now follow the same roadmap ladder, approved by the player: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19. The RV 7 unlock is also backed by GameWith, and the RV 14 values (2, 2 and 2) match the player's own setup. Those steps rest on Aniiland alone beyond that, so the Stage 3 panel flags the climate counts <span class="verdict v-mix">count single source</span> like the other facility counts, and the Layout Helper never lays out more zones of a climate building than the derived count.</li>
-          <li><strong>The Best Plan Finder</strong> picks recipes by your ranked goals, in order, leftovers to Home Coins, the Aniimax model. Home Coin math uses Co-op Store sell prices from the filed shop price research (the Aniimo Homeland Shop Prices page, checked Oct 24, 2026): each finished item is compared with the sell value of its direct ingredients, the margin caution in that research, and seed buy prices come from the same file. Prices two sources agree on (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90, Harvest Platter 5,290) are marked cross-checked; most mid and late game prices are Aniiland only, so the plan marks them single source, spot-check in game, and never calls them verified. Items with no listed sell price in the research (Wood Block, Mineral Sand, the building tiers, the growth items and the Aniipods) cannot earn Home Coins in a plan. Per minute rates use the grow cycle only: crops grow side by side, so one cycle lasts as long as its slowest crop, from the grow times already on this page. Craft and gather cycle times are not in the verified data, so rates are grow cycle rates and say so. Aniimo XP per recipe, Harvest Moon Points per dish and the Mineral Sand amount per Mine run have no verified figures in any source behind this planner, so those goals are flagged on the plan, never filled with guessed numbers. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of best plans: the planner does not know whether you own their rare currency unlocks. By the player's own rule, the Best Plan (and only the Best Plan; the basket, Team Helper and Layout Helper are unchanged in this respect) also includes items not verified yet but sensible, each flagged on its line as "Not verified yet, included because it makes sense" with the short reason. Star is one: Aniimax uses it too and flags it unverified there, so best plans gather Star at the Starfall Hammock for the Advanced Wind Chime chain instead of leaving those recipes out, and the plan states how much of the counted Home Coins rests on Star recipes. Wood Blocks from Woodland trees are counted exactly by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6. Moondew Radish and Waxing Moon Pepper raw sales are included as plantings to gather, at the 74 Home Coins each Aniiland lists, with the conflict printed on the line: aniimoguide says moon crops cannot be sold raw and must be cooked first. That income sits only in the unverified-included total, never the counted total, and the plan prints the total if the unverified items pay off. Where no figure exists at all, none is invented: Aniimo XP per recipe and Harvest Moon Points per dish still read "Not verified yet", with no rates.</li>
+          <li><strong>The Best Plan Finder</strong> picks recipes by your ranked goals, in order, leftovers to Home Coins, the Aniimax model. Home Coin math uses Co-op Store sell prices from the filed shop price research (the Aniimo Homeland Shop Prices page, checked Oct 24, 2026): each finished item is compared with the sell value of its direct ingredients, the margin caution in that research, and seed buy prices come from the same file. Prices two sources agree on (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90, Harvest Platter 5,290) are marked cross-checked; most mid and late game prices are Aniiland only, so the plan marks them single source, spot-check in game, and never calls them verified. Items with no listed sell price in the research (Wood Block, Mineral Sand, the building tiers, the growth items and the Aniipods) cannot earn Home Coins in a plan. Per hour rates use the grow cycle only: crops grow side by side, so one cycle lasts as long as its slowest crop, from the grow times already on this page. Craft and gather cycle times are not in the verified data, so rates are grow cycle rates and say so. Aniimo XP per recipe, Harvest Moon Points per dish and the Mineral Sand amount per Mine run have no verified figures in any source behind this planner, so those goals are flagged on the plan, never filled with guessed numbers. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of best plans: the planner does not know whether you own their rare currency unlocks. By the player's own rule, the Best Plan (and only the Best Plan; the basket, Team Helper and Layout Helper are unchanged in this respect) also includes items not verified yet but sensible, each flagged on its line as "Not verified yet, included because it makes sense" with the short reason. Star is one: Aniimax uses it too and flags it unverified there, so best plans gather Star at the Starfall Hammock for the Advanced Wind Chime chain instead of leaving those recipes out, and the plan states how much of the counted Home Coins rests on Star recipes. Wood Blocks from Woodland trees are counted exactly by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6. Moondew Radish and Waxing Moon Pepper raw sales are included as plantings to gather, at the 74 Home Coins each Aniiland lists, with the conflict printed on the line: aniimoguide says moon crops cannot be sold raw and must be cooked first. That income sits only in the unverified-included total, never the counted total, and the plan prints the total if the unverified items pay off. Where no figure exists at all, none is invented: Aniimo XP per recipe and Harvest Moon Points per dish still read "Not verified yet", with no rates.</li>
           <li><strong>The Starfall Hammock</strong> is a facility in its own right, not part of a generic leisure station: it unlocks at RV 12 at Lv 1, its only level, and the most you can put out is 1 from RV 12 and 2 at RV 20 (<a href="https://aniiland.wintira.win/guides/recipes-aniimo-materials">Aniiland's materials buildings guide</a>; AniimoTools' RV 12 table likewise shows one at Lv 1, and the RV 20 step rests on Aniiland alone, so it carries the count single source flag). Like every other facility, Stage 3 assumes you put out the max your RV level allows: 1 at RV 14, none below RV 12. Its one product is Star, gathered for the Advanced Wind Chime chain and flagged unverified wherever a plan uses it, and the Best Plan sets that chain running when the hammock is out rather than leaving Star out. The hammock is also the first facility here with an environment need: <strong>it needs a Cool temperature to work</strong>, from the player's own lookup (Oct 25, 2026), so the Layout Helper stands it inside a Cooling Unit zone whenever a plan gathers Star, and that zone counts toward Cooling Unit coverage like a Cool crop's zone.</li>
           <li><strong>Module levels and verified unlocks (checked Oct 24, 2026):</strong> the four boxes in the Stage 3 panel are Ecological (max Lv 8), Kitchen (max Lv 7), Resource Detector (max Lv 8) and Crafting (max Lv 7), all starting at 0. The unlock map is <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels, the RV modules section</a>, cross-checked against <a href="https://aniimoguide.com/homeland">aniimoguide's Homeland guide</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">the Aniiland RV level roadmap</a>. Ecological: Lv 1 Quick Wheat (RV 3), Lv 2 Quick Bamboo (RV 7), Lv 3 Quick Potato (RV 8), Lv 4 Quick Lemon (RV 11), Lv 5 Quick Rice (RV 12), Lv 6 Quick Maple Syrup (RV 14), Lv 7 Quick Strawberry (RV 17), Lv 8 Quick Coconut (RV 18). Kitchen: Lv 1 Aniimo Feeding (RV 2), Lv 2 Premium Bread (RV 4), Lv 3 Premium Potato Soup (RV 8), Lv 4 Premium Sweet Rice Wine (RV 10), Lv 5 Premium Salted Lemon (RV 13), Lv 6 Premium Jello (RV 16), Lv 7 Premium Berry Chocolate Coconut Pudding (RV 19). Resource Detector: Lv 1 Quick Well Water (RV 5), Lv 2 Quick Sea Salt (RV 8), Lv 3 Quick Aromathyst (RV 11), Lv 4 Quick Fresh Water (RV 12), Lv 5 Quick Wool (RV 13), Lv 6 Quick Deep Rock Spring Water (RV 15), Lv 7 Quick Natural Mineral Water (RV 17), Lv 8 Quick Scales (RV 19). Crafting: Lv 1 Premium River-Washed Stones (RV 5), Lv 2 Premium Rose Freshener (RV 7), Lv 3 Advanced Lemon Incense (RV 10), Lv 4 Premium Wind Chime (RV 12), Lv 5 Premium Soap (RV 17), Lv 6 Premium Gemstone Dust (RV 18), Lv 7 Premium Mixed Perfume (RV 19). Only three of these change this planner's numbers, and they switch on by themselves from your Ecological level: Maple Syrup harvest ×30 at Lv 6, Strawberry harvest ×26 at Lv 7 and Coconut harvest ×8 at Lv 8, in the Grow list, Money Crops and Layout Helper alike. The Kitchen, Resource Detector and Crafting unlocks are Premium or Advanced variants already covered by their base entries at the same ingredients, so they are shown for ownership and change no amounts. <strong>Still unverified, never guessed:</strong> Premium Wheat appears in no module ladder in any source checked. The roadmap lists it only as a Farmland Lv 6 crop arriving at RV 12, with no module named, so it stays a manual tap in the panel, flagged as unverified, and no level ever switches it on for you.</li>
           <li><strong>Team Helper crew counts, the single crew suggestion</strong> are worked out from your entire plan, never fixed: the basket plan plus, when you have run one, the Best Plan's facilities unioned in and deduped by facility so a facility needed by both counts once, plus leveling jobs when leveling is on. There is no crew inside the Best Plan panel anymore. Best counts one dedicated worker per busy facility, and Minimum counts one Aniimo per job, shared part time across all of that job's facilities. Somniwing is the one known double act (Grass Lv 4 and Leisure Lv 4), so it covers both jobs at once and is counted as one Aniimo in Best and Minimum alike — crews count individuals with their full ability sets, never one head per job — and when a Somniwing is already on the crew, the planting Grass Aniimo is that same individual, not an extra. A planner that counts differently, one worker per crop or per station run instead of per facility or per job, will land on a bigger number for the same basket: that is the counting rule, not missing crew. Every facility this plan sets running is counted here, including Farmland and Woodland below. Best-worker names and ability levels: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 and Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3 (Dewy Lv 1 also works). Jobs follow the planner's recipe data, where every craft names its worker, plus the verified gather pairings Well = Water, Mine = Earth and Tidewhisper Sandcastle = Leisure. Which ability staffs Farmland, Woodland, the Dewy House and the leisure station is <span class="verdict v-mix">not verified yet</span>, so no worker is named for those runs in the panel; each of those stations still adds one Aniimo to the crew total, because the runs still need doing, and Ice, Light and Hauling read 0 until a facility in the data asks for them; Grass never reads 0, because planting always counts at least 1 Grass Aniimo by the player's rule. By the player's own rule (Oct 25, 2026), nine facilities also carry an Aniimo each in their own right whenever they are out at the picked RV level: Sunlamp, Heat Furnace, Cooling Unit, Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle and Nimbus Bed, 1 Aniimo per building out at the derived RV count, typed where verified (Mine Earth, Well Water, Sandcastle and Hammock Leisure, Cooling Unit Ice — cooling units need Ice Aniimo, the player's own word) and flagged type not verified yet where it is not; those Aniimo sit inside the crew total and the put-out list, and the same nine appear in the Layout Helper with their counts and Aniimo. Hauling and extra Water watering are named in the panel with their types, their counts flagged not verified yet and never invented; Grass planting is named too, with its floor of 1 counted in the crew and only the count beyond 1 flagged not verified yet. Grass and Ice stand in the team as named jobs, not just numbers inside the totals. The team is labelled by ability and count, the way Aniimax's team panel labels its crew — Ice Aniimo ×2 on the Cooling Units, Grass Aniimo on Planting — and no entry names a species the player must use: the strongest known Aniimo for a job (Geoclaw Lv 3 for Ice, Somniwing Lv 4 for Grass) appears only as a hint inside the entry's hover or tap note, together with the ability level, the best personality with its +20% note, and the facility with what it is making. The Ice chip counts the Cooling Units' Aniimo, the Grass chip never reads 0 while a plan is growing anything, and when a Somniwing already on the crew covers the planting, its entry and worker row read Grass + Leisure and say it also does the planting, instead of the Grass line disappearing into a footnote. Entries and rows carry the Aniimax ability markers: a circle in the ability's game colour with the Aniimo level inside, ringed in gold where the plan counts on that facility's personality bonus (+20%), the same markers on the Layout Helper's Aniimo lines, and a short How to read this note sits with the team and in the layout legend explaining the entries and the markers in plain words.</li>
-          <li><strong>Aniimo caps (how many Aniimo you can put out):</strong> the cap at each RV is the "place N Aniimo in your Home" number from <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, and it matches <a href="https://metabot.gg/en/aniimo/guides/homeland">MetaBot.GG's retail-file Homeland guide</a> at every level: RV 2 is 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44 and 45 at RV 20; RV 1 has none yet. The Team Helper checks its whole Put out total against that cap — plan crew, the nine facilities' attached Aniimo and the planting Grass Aniimo together, nothing counted outside it — and never shows a crew over the cap at all: a crew you cannot put out is not a plan, so an over-cap crew's toggle switches off with the reason on it, the view lands on the crew that fits, and when neither Best nor Minimum fits, no crew is shown — just what each would need and what has to change. Crews are counted in individuals, not job slots: where one Aniimo's verified abilities cover more than one needed job it is counted once in both Best and Minimum (Somniwing, Grass Lv 4 and Leisure Lv 4, is the verified multi-ability case the page's best-worker data supports, and the counting machinery groups any species the data names for two jobs the same way), multi-ability Aniimo are preferred when sharing is what makes a crew fit, and the planting Grass Aniimo adds no extra head when a crew member already holds Grass. One flag, honestly: aniimoguide prints a second, lower set of numbers read from the RV upgrade cards, from RV 13 on (40 at RV 20), and advises planning on the lower set until the live game settles it. This planner follows the AniimoTools and MetaBot "place in your Home" numbers instead, because they match the player's own game: 36 slots at her RV 14.</li>
+          <li><strong>Aniimo caps (how many Aniimo you can put out):</strong> the cap at each RV is the "place N Aniimo in your Home" number from <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, and it matches <a href="https://metabot.gg/en/aniimo/guides/homeland">MetaBot.GG's retail-file Homeland guide</a> at every level: RV 2 is 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44 and 45 at RV 20; RV 1 has none yet. The Team Helper checks its whole Put out total against that cap — plan crew, the nine facilities' attached Aniimo and the planting Grass Aniimo together, nothing counted outside it — and never shows a crew over the cap at all: a crew you cannot put out is not a plan. When the full Best crew is over the cap, Best is fitted down to the cap instead of switched off — workers are shared at as few facilities as the cap forces, starting where sharing crowds a job least, every facility keeps running, and the plan names the facilities that share — and only when even Minimum, one shared Aniimo per job, is over the cap does no crew show, just what each would need and what has to change. Crews are counted in individuals, not job slots: where one Aniimo's verified abilities cover more than one needed job it is counted once in both Best and Minimum (Somniwing, Grass Lv 4 and Leisure Lv 4, is the verified multi-ability case the page's best-worker data supports, and the counting machinery groups any species the data names for two jobs the same way), multi-ability Aniimo are preferred when sharing is what makes a crew fit, and the planting Grass Aniimo adds no extra head when a crew member already holds Grass. One flag, honestly: aniimoguide prints a second, lower set of numbers read from the RV upgrade cards, from RV 13 on (40 at RV 20), and advises planning on the lower set until the live game settles it. This planner follows the AniimoTools and MetaBot "place in your Home" numbers instead, because they match the player's own game: 36 slots at her RV 14.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> are the Master Guide's verified table, where GameWith, Game8, AniimoTools and Selphie1999 Gaming agree: E Energetic at the Bouncy Brew Keg and Woodworking Bench; I Instinctive at the Phonolfactory Table and Dewy House; S Practical at the Claw Game Cooker and Chimney Kiln; N Nimble at the Jukebox Dryer and Blazing Stove; T Tenacious at the Carousel Mill and Simmering Pot; F Faithful at the Joy Wheel Loom and Well; J Judicious at the Crafting Table and Tidewhisper Sandcastle; P Playful at the Mine and Pickling Jar. Farmland, Woodland, the Dance Pad Polisher, the Aniipod Maker and the leisure station have no verified match in that table, and the panel says so rather than guessing.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy (added from a firsthand screenshot):</strong> reported missing from an in-game Daily Orders panel and checked against the Daily Aniimo recipe book before adding. The book confirms Grapes x9, Rock Candy x1, Claw Game Cooker Lv 5, Fire worker and workload 243. The screenshot's second ingredient icon looked like plain sugar cubes, but the book names it Rock Candy, so the planner follows the book and plans call for Rock Candy (which itself crafts from Sugarcane and Plain Fresh Water at the Simmering Pot). The screenshot panel also shows unit price 2850 Home Coins, and Claw Game Cooker Lv 5 sits at RV 12 in this planner's facility tiers.</li>
@@ -1026,7 +1027,7 @@
     function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
 
     /* ============ Stage 1 state ============ */
-    var basket = [];            /* [{name, qty}] max 10 */
+    var basket = [];            /* [{name}] recipe picks only, max 10, no amounts */
     var activeCat = "all";
     var hideLocked = false;
     var userRV = 20;
@@ -1093,47 +1094,130 @@
 
     function inBasket(name){ return basket.some(function(b){ return b.name === name; }); }
 
-    function computePlan(){
+    /* Expand a seed of per-cycle amounts ({item: amount}) down the whole
+       chain, exactly: a craft's batches are its amount divided by its
+       yield, never rounded up, and a shared ingredient is expanded once
+       from its final total. The recipe graph is a DAG, so totals settle
+       level by level well within the round cap. */
+    function expandAmounts(seed){
       var gross = {};
-      basket.forEach(function(b){ gross[b.name] = (gross[b.name] || 0) + b.qty; });
-      /* Expand to a fixed point. Each round rebuilds the whole demand from
-         the basket plus every craft's ingredient demand at its current
-         total, so a shared ingredient is expanded exactly once, from its
-         final total, no matter how many parents it has or in what order
-         they are discovered. (The old pass-by-pass expansion re-added a
-         shared ingredient's needs in full every time another parent was
-         processed in a later pass, inflating its totals.) The recipe graph
-         is a DAG, so totals settle level by level well within the cap. */
+      Object.keys(seed).forEach(function(k){ gross[k] = seed[k]; });
       for(var round = 0; round < 200; round++){
         var demand = {};
-        basket.forEach(function(b){ demand[b.name] = (demand[b.name] || 0) + b.qty; });
+        Object.keys(seed).forEach(function(k){ demand[k] = (demand[k] || 0) + seed[k]; });
         Object.keys(gross).forEach(function(name){
           var it = ITEMS[name];
           if(!it || it.kind !== "craft") return;
-          var n = gross[name] || 0;
-          var b = n > 0 ? Math.ceil(n / it.yld) : 0;
+          var b = (gross[name] || 0) / it.yld;
           if(b > 0){ for(var k in it.needs){ demand[k] = (demand[k] || 0) + b * it.needs[k]; } }
         });
         var changed = false, keys = {};
         Object.keys(gross).forEach(function(k){ keys[k] = true; });
         Object.keys(demand).forEach(function(k){ keys[k] = true; });
-        Object.keys(keys).forEach(function(k){ if((gross[k] || 0) !== (demand[k] || 0)) changed = true; });
+        Object.keys(keys).forEach(function(k){ if(Math.abs((gross[k] || 0) - (demand[k] || 0)) > 1e-9) changed = true; });
         gross = demand;
         if(!changed) break;
       }
-      var net = {}, batches = {}, runs = {};
+      return gross;
+    }
+
+    /* The basket plan, the Aniimax way: the basket holds recipes only,
+       never amounts. The planner sizes the production itself, per cycle,
+       fitted inside the current limits before anything is shown:
+       - each picked recipe starts at one batch per facility out that
+         makes it (a recipe whose facility is not out yet still seeds one
+         batch, so locked recipes plan ahead as they always have);
+       - no processing or gathering facility runs more batches or runs
+         per cycle than its Stage 3 count (Farmland and Woodland are
+         fitted by plots instead, below);
+       - the whole plots a cycle plants never pass the Farmland and
+         Woodland counts for the picked RV level.
+       Where a limit binds, the whole plan scales down to fit it and the
+       binding limits are named in plan.limits. One cycle lasts as long
+       as the cycle's slowest crop, crops side by side; plan.perHour is
+       the multiplier from a per-cycle amount to its per-hour rate. */
+    function computePlan(){
+      var empty = { gross:{}, net:{}, batches:{}, runs:{}, cycleMins:0, scale:1, limits:[], perHour:0 };
+      if(!basket.length) return empty;
+      var seed0 = {};
+      basket.forEach(function(b){
+        var it = ITEMS[b.name];
+        if(!it) return;
+        seed0[b.name] = (seed0[b.name] || 0) + Math.max(1, facCount(it.facility)) * it.yld;
+      });
+      function facilityLoads(g){
+        var loads = {};
+        Object.keys(g).forEach(function(name){
+          var it = ITEMS[name];
+          if(!it || !(g[name] > 0) || it.kind === "grow") return;
+          var ey = it.kind === "craft" ? it.yld : effYld(it);
+          if(!ey) return;
+          loads[it.facility] = (loads[it.facility] || 0) + g[name] / ey;
+        });
+        return loads;
+      }
+      var gross = expandAmounts(seed0);
+      var loads = facilityLoads(gross);
+      var scale = 1, limits = [];
+      Object.keys(loads).forEach(function(f){
+        var cap = facCount(f);
+        if(!(cap > 0)) return;
+        if(loads[f] > cap + 1e-9){ var r = cap / loads[f]; if(r < scale) scale = r; }
+      });
+      var seed = {};
+      Object.keys(seed0).forEach(function(k){ seed[k] = seed0[k] * scale; });
+      if(scale < 1){
+        gross = expandAmounts(seed);
+        Object.keys(loads).forEach(function(f){
+          var cap = facCount(f);
+          if(cap > 0 && loads[f] > cap + 1e-9 && Math.abs(cap / loads[f] - scale) < 1e-6 && limits.indexOf(f) === -1) limits.push(f);
+        });
+      }
+      function plotsFor(g){
+        var plots = {}, farm = 0, wood = 0;
+        Object.keys(g).forEach(function(name){
+          var it = ITEMS[name];
+          if(!it || it.kind !== "grow" || !(g[name] > 0)) return;
+          var ey = effYld(it);
+          if(!ey) return;
+          var p = Math.ceil(g[name] / ey - 1e-9);
+          plots[name] = p;
+          if(it.facility === "Farmland") farm += p;
+          else if(it.facility === "Woodland") wood += p;
+        });
+        return { plots:plots, farm:farm, wood:wood };
+      }
+      var farmCap = facCount("Farmland"), woodCap = facCount("Woodland");
+      for(var iter = 0; iter < 6; iter++){
+        var pf = plotsFor(gross);
+        var f1 = (farmCap > 0 && pf.farm > farmCap) ? farmCap / pf.farm : 1;
+        var f2 = (woodCap > 0 && pf.wood > woodCap) ? woodCap / pf.wood : 1;
+        var f = Math.min(f1, f2);
+        if(f >= 1) break;
+        if(f1 < 1 && limits.indexOf("Farmland plots") === -1) limits.push("Farmland plots");
+        if(f2 < 1 && limits.indexOf("Woodland plots") === -1) limits.push("Woodland plots");
+        scale *= f;
+        Object.keys(seed).forEach(function(k){ seed[k] *= f; });
+        gross = expandAmounts(seed);
+      }
+      var pfFinal = plotsFor(gross);
+      var batches = {}, runs = {}, net = {}, cycleMins = 0;
       Object.keys(gross).forEach(function(name){
         var it = ITEMS[name];
         var n = gross[name] || 0;
         net[name] = n;
         if(it.kind === "craft"){
-          batches[name] = n > 0 ? Math.ceil(n / it.yld) : 0;
+          batches[name] = n > 0 ? n / it.yld : 0;
+        } else if(it.kind === "grow"){
+          runs[name] = pfFinal.plots[name] || 0;
+          var t = parseTimeMin(it.time);
+          if(n > 0 && t > cycleMins) cycleMins = t;
         } else {
-          var ey = effYld(it);
-          runs[name] = (n > 0 && ey) ? Math.ceil(n / ey) : (n > 0 ? null : 0);
+          var ey2 = effYld(it);
+          runs[name] = (n > 0 && ey2) ? Math.ceil(n / ey2 - 1e-9) : (n > 0 ? null : 0);
         }
       });
-      return { gross:gross, net:net, batches:batches, runs:runs };
+      return { gross:gross, net:net, batches:batches, runs:runs, cycleMins:cycleMins, scale:scale, limits:limits, perHour:(cycleMins > 0 ? 60 / cycleMins : 0) };
     }
 
     function treeItems(){
@@ -1199,10 +1283,7 @@
           (cropIngs.length ? '<div class="ing">🌡️ Crops in this recipe: ' + cropIngs.map(function(k){ return esc(k) + ": Climate: " + climateLabel(k); }).join(" · ") + "</div>" : "") +
           (it.blurb ? '<div class="ing">' + esc(it.blurb) + "</div>" : "") +
           "</div>" +
-          '<div class="pslot-actions"><span class="src">Quantity (optional, 1 is fine)</span><div class="stepper"><button type="button" data-dec="' + i + '" aria-label="One less">−</button>' +
-          '<input type="number" min="1" max="999" value="' + entry.qty + '" data-qty="' + i + '" aria-label="Quantity for ' + esc(entry.name) + '" />' +
-          '<button type="button" data-inc="' + i + '" aria-label="One more">+</button></div>' +
-          '<button type="button" class="btn btn-small" data-remove="' + i + '">Remove</button></div>';
+          '<div class="pslot-actions"><button type="button" class="btn btn-small" data-remove="' + i + '">Remove</button></div>';
       }
       return html + "</div>";
     }
@@ -1245,22 +1326,26 @@
             if(basket[i]){ var nm = basket[i].name; basket.splice(i, 1); renderAll(); toast(nm + " removed."); }
             return;
           }
-          if(i < basket.length){ basket[i] = { name:v, qty:1 }; }
-          else { basket.push({ name:v, qty:1 }); }
+          if(i < basket.length){ basket[i] = { name:v }; }
+          else { basket.push({ name:v }); }
           renderAll();
           toast(v + " picked for Recipe " + (i + 1) + ".");
         });
       });
-      el.querySelectorAll("[data-inc]").forEach(function(btn){ btn.addEventListener("click", function(){ var i = +btn.getAttribute("data-inc"); basket[i].qty = Math.min(999, basket[i].qty + 1); renderAll(); }); });
-      el.querySelectorAll("[data-dec]").forEach(function(btn){ btn.addEventListener("click", function(){ var i = +btn.getAttribute("data-dec"); basket[i].qty = Math.max(1, basket[i].qty - 1); renderAll(); }); });
       el.querySelectorAll("[data-remove]").forEach(function(btn){ btn.addEventListener("click", function(){ var i = +btn.getAttribute("data-remove"); var nm = basket[i].name; basket.splice(i, 1); renderAll(); toast(nm + " removed."); }); });
-      el.querySelectorAll("[data-qty]").forEach(function(inp){ inp.addEventListener("change", function(){ var i = +inp.getAttribute("data-qty"); var v = parseInt(inp.value, 10); basket[i].qty = isNaN(v) ? 1 : Math.min(999, Math.max(1, v)); renderAll(); }); });
     }
 
     function planText(plan){
       var lines = [];
-      lines.push("Aniimo basket plan");
-      lines.push("Making: " + basket.map(function(b){ return b.name + " x" + b.qty + eventText(ITEMS[b.name]); }).join(", "));
+      lines.push("Aniimo basket plan — recipes picked by you, amounts sized by the planner to your homeland (RV " + userRV + ")");
+      lines.push("Recipes: " + basket.map(function(b){ return b.name + eventText(ITEMS[b.name]); }).join(", "));
+      lines.push("Sizing: one batch per facility per cycle, fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
+      if(plan.perHour > 0){
+        lines.push("One cycle lasts about " + fmtRate(plan.cycleMins) + " minutes (the slowest crop; crops grow side by side). Per hour, your picked recipes make:");
+        basket.forEach(function(b){ lines.push("- " + b.name + ": " + fmtRate((plan.gross[b.name] || 0) * plan.perHour) + " per hour (" + fmtRate(plan.gross[b.name] || 0) + " per cycle)"); });
+      } else {
+        lines.push("This plan grows no crops, so it has no grow cycle to set a pace: amounts below are per cycle.");
+      }
       function section(title, kind){
         var rows = Object.keys(plan.gross).filter(function(n){ return ITEMS[n].kind === kind && plan.net[n] > 0; });
         if(!rows.length) return;
@@ -1270,16 +1355,16 @@
         rows.forEach(function(n){
           var it = ITEMS[n];
           var extra = "";
-          if(kind === "craft"){ extra = " (" + plan.batches[n] + " batches at " + it.facility + ")" + eventText(it); }
-          else if(it.kind === "grow"){ extra = " (" + plan.runs[n] + " batches/runs at " + it.facility + ", " + effYld(it) + " per batch" + (it.facility === "Woodland" ? ", " + woodPlotText(n) : "") + ")" + climateText(n); }
-          else if(it.yld){ extra = " (" + plan.runs[n] + " batches/runs at " + it.facility + ", " + it.yld + " per batch)"; }
+          if(kind === "craft"){ extra = " (" + fmtRate(plan.batches[n]) + " batches per cycle at " + it.facility + ")" + eventText(it); }
+          else if(it.kind === "grow"){ extra = " (" + plan.runs[n] + " plots at " + it.facility + ", " + effYld(it) + " per plot" + (it.facility === "Woodland" ? ", " + woodPlotText(n) : "") + ")" + climateText(n); }
+          else if(it.yld){ extra = " (" + plan.runs[n] + " runs per cycle at " + it.facility + ", " + it.yld + " per run)"; }
           else if(n === "Wood Block"){
             var wf = woodFromPlan(plan);
             extra = " (tree byproduct at the Woodland: never planted, no seed and no plot of their own; they ride along with every tree harvest at a fixed rate per plot" +
-              (wf.prod > 0 ? "; this plan's trees bring in " + fmt(wf.prod) + " (" + woodBreakdownText(wf.details) + ")" : "; this plan grows no trees, so harvest any Woodland trees to bring them in") + ")";
+              (wf.prod > 0 ? "; this plan's trees bring in " + fmt(wf.prod) + " per cycle (" + woodBreakdownText(wf.details) + ")" : "; this plan grows no trees, so harvest any Woodland trees to bring them in") + ")";
           }
           else { extra = " (at " + it.facility + ", yield varies)"; }
-          lines.push("- " + n + ": need " + fmt(plan.net[n]) + extra);
+          lines.push("- " + n + ": " + fmtRate(plan.net[n]) + " per cycle" + (plan.perHour > 0 ? ", " + fmtRate(plan.net[n] * plan.perHour) + " per hour" : "") + extra);
         });
       }
       section("Grow:", "grow");
@@ -1287,11 +1372,11 @@
       section("Craft (deepest ingredients first in the app):", "craft");
       lines.push("");
       lines.push("Set your Mines to: " + mineSetupText(mineSetup(null)));
-      if(plan._lvl){
-        var bill = plan._lvl.bill;
+      if(levelingOn && rvHasNext()){
+        var bill = computeRvBill();
         lines.push("");
-        lines.push("RV level-up included (leveling toggle on): RV " + rvFrom + " to RV " + bill.next + ", Home Coin cost " + fmt(bill.coin) + ". The leveling amounts are already inside the Grow, Gather and Craft lists above.");
-        if(bill.woodOffsetApplied > 0) lines.push("Basket offset already applied inside those lists: less " + fmt(bill.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops (produced " + fmt(bill.by.woodProd) + ", basket recipes use " + fmt(bill.by.woodConsumed) + ", surplus " + fmt(bill.by.woodSurplus) + ").");
+        lines.push("Leveling is on: the RV " + rvFrom + " to RV " + bill.next + " bill is a fixed one-time package, priced in the RV Level-Up section, and is not part of the per-cycle amounts or per-hour rates above. Home Coin cost " + fmt(bill.coin) + "." +
+          (bill.woodOffsetApplied > 0 ? " Basket offset: less " + fmt(bill.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops (produced " + fmt(bill.by.woodProd) + " per cycle, basket recipes use " + fmt(bill.by.woodConsumed) + " per cycle, surplus " + fmt(bill.by.woodSurplus) + ")." : ""));
       }
       return lines.join("\n");
     }
@@ -1301,29 +1386,38 @@
       renderLayout();
       if(levelingOn) renderRvPlan();
       var area = document.getElementById("planArea");
-      if(!basket.length && !levelingItems()){
-        area.innerHTML = '<div class="empty-plan">🌱 Your plan appears here. Add a recipe above and watch the whole chain unfold: every crop to grow, every material to gather, and every craft in the right order.</div>';
+      if(!basket.length){
+        area.innerHTML = '<div class="empty-plan">🌱 Your plan appears here. Pick the recipes you want above — no amounts to type — and the planner sizes the whole chain to your homeland: every crop to grow, every material to gather, and every craft in the right order, with per-hour rates.</div>';
         return;
       }
-      var plan = augmentPlan(computePlan());
+      var plan = computePlan();
       var growNames = Object.keys(plan.gross).filter(function(n){ return ITEMS[n].kind === "grow"; });
       var gatherNames = Object.keys(plan.gross).filter(function(n){ return ITEMS[n].kind === "gather"; });
       var craftNames = Object.keys(plan.gross).filter(function(n){ return ITEMS[n].kind === "craft"; });
-      var totalCraftBatches = craftNames.reduce(function(s, n){ return s + (plan.batches[n] || 0); }, 0);
-      var totalRuns = growNames.concat(gatherNames).reduce(function(s, n){ return s + (plan.runs[n] || 0); }, 0);
+      var facsRunning = {};
+      Object.keys(plan.gross).forEach(function(n){ if((plan.net[n] || 0) > 0) facsRunning[ITEMS[n].facility] = true; });
 
       var html = '<div class="summary-strip">' +
-        '<div class="sum-chip"><b>' + basket.length + '</b><span>recipes in basket</span></div>' +
+        '<div class="sum-chip"><b>' + basket.length + '</b><span>recipes picked</span></div>' +
         '<div class="sum-chip"><b>' + growNames.length + '</b><span>crops to grow</span></div>' +
         '<div class="sum-chip"><b>' + gatherNames.length + '</b><span>materials to gather</span></div>' +
-        '<div class="sum-chip"><b>' + fmt(totalCraftBatches) + '</b><span>craft batches</span></div>' +
-        '<div class="sum-chip"><b>' + fmt(totalRuns) + '</b><span>grow &amp; gather runs</span></div></div>';
+        '<div class="sum-chip"><b>' + Object.keys(facsRunning).length + '</b><span>facilities running</span></div>' +
+        '<div class="sum-chip"><b>' + (plan.cycleMins > 0 ? fmtRate(plan.cycleMins) + " min" : "—") + '</b><span>one cycle (slowest crop)</span></div></div>';
 
-      /* leveling bill merged into this plan (toggle on in the RV section) */
-      if(plan._lvl){
-        var lb = plan._lvl.bill;
-        html += '<div class="note note-info"><h4>🚐 Leveling is in this plan: RV ' + rvFrom + " to RV " + lb.next + '</h4><p>The next level\'s materials are inside the Grow, Gather and Craft lists below, after the basket offset. Home Coin cost for RV ' + lb.next + ": <strong>" + fmt(lb.coin) + "</strong>, a cost of the level, not a balance to track." +
-          (lb.woodOffsetApplied > 0 ? " <strong>less " + fmt(lb.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops</strong> (counted production " + fmt(lb.by.woodProd) + ", basket recipes use " + fmt(lb.by.woodConsumed) + ", net surplus " + fmt(lb.by.woodSurplus) + ")." : "") +
+      /* how the amounts were sized, stated on the plan itself */
+      html += '<div class="note note-info"><h4>🧮 Sized to your homeland, the Aniimax way</h4><p>You picked the recipes; these amounts are what your homeland can keep making, cycle after cycle. Each picked recipe runs <strong>one batch per facility you have out</strong> that makes it, the chain under it is worked out from there, and the whole plan is fitted inside your limits before it is shown: no facility runs past its count, a cycle never plants more Farmland or Woodland plots than your RV ' + userRV + ' allows (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland), and the crew below stays inside your Aniimo limit (' + aniimoCapText(userRV) + ').' +
+        (plan.limits.length ? ' Your tightest limit here is <strong>' + plan.limits.map(function(l){ return esc(l); }).join(", ") + '</strong>, so production is scaled down to fit it — every facility still runs, just at the rate your homeland can sustain.' : ' Nothing here had to be scaled down: the full one-batch-per-facility pace fits your limits as it stands.') +
+        (plan.perHour > 0 ? ' Amounts are <strong>per cycle</strong>; one cycle lasts about ' + fmtRate(plan.cycleMins) + ' minutes (the slowest crop, everything growing side by side), and the <strong>per hour</strong> column is that cycle\'s output at that pace.' : ' This plan grows no crops, so there is no grow cycle to set a pace: amounts are per cycle only.') +
+        '</p></div>';
+
+      /* leveling: the bill stays a fixed one-time package in the RV
+         section; it never enters these per-cycle lists or the rates.
+         Its jobs still join the Team Helper, and the basket offset
+         still comes off the bill there. */
+      if(levelingOn && rvHasNext()){
+        var lb = computeRvBill();
+        html += '<div class="note note-info"><h4>🚐 Leveling is on: RV ' + rvFrom + " to RV " + lb.next + '</h4><p>The next level\'s bill is a <strong>fixed one-time package</strong>, priced in full in the RV Level-Up section below — it is not part of the per-cycle amounts or per-hour rates above. Its jobs are in your crew in the Team Helper, and Home Coin cost for RV ' + lb.next + " is <strong>" + fmt(lb.coin) + "</strong>." +
+          (lb.woodOffsetApplied > 0 ? " <strong>less " + fmt(lb.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops</strong> (counted production " + fmt(lb.by.woodProd) + " per cycle, basket recipes use " + fmt(lb.by.woodConsumed) + " per cycle, net surplus " + fmt(lb.by.woodSurplus) + ")." : "") +
           "</p></div>";
       }
       /* Mines setup instruction: max Mines for this RV, and the material
@@ -1352,7 +1446,7 @@
       }
       /* salt callout */
       if(plan.net["Sea Salt"] > 0){
-        html += '<div class="note note-warn"><h4>🧂 Salt check: ' + fmt(plan.net["Sea Salt"]) + ' Sea Salt still needed</h4><p>Sea Salt comes only from the <strong>Tidewhisper Sandcastle</strong> (10 per run at recipe Lv 1, 23 at Lv 2), and a long list of dishes ask for it. Community homeland guides call it the bottleneck for a reason: start the Sandcastle on salt first and let it run while you grow everything else.</p></div>';
+        html += '<div class="note note-warn"><h4>🧂 Salt check: ' + fmtRate(plan.net["Sea Salt"]) + ' Sea Salt per cycle</h4><p>Sea Salt comes only from the <strong>Tidewhisper Sandcastle</strong> (10 per run at recipe Lv 1, 23 at Lv 2), and a long list of dishes ask for it. Community homeland guides call it the bottleneck for a reason: start the Sandcastle on salt first and let it run while you grow everything else.</p></div>';
       }
       /* money crop bonus */
       var moneyHits = growNames.filter(function(n){ return MONEY[n] && plan.net[n] > 0; });
@@ -1368,24 +1462,25 @@
           var it = ITEMS[n];
           var g = plan.gross[n], still = plan.net[n];
           var runsCell;
-          if(it.yld){ var left = plan.runs[n] * effYld(it) - still; runsCell = "<strong>" + fmt(plan.runs[n]) + "</strong>" + (left > 0 ? ' <span class="src">(+' + left + " spare)</span>" : ""); }
+          if(it.yld){ var left = plan.runs[n] * effYld(it) - still; runsCell = "<strong>" + fmt(plan.runs[n]) + "</strong>" + (left > 0.05 ? ' <span class="src">(+' + fmtRate(left) + " spare)</span>" : ""); }
           else if(n === "Wood Block"){
             var wf2 = woodFromPlan(plan);
             runsCell = wf2.prod > 0
-              ? "from your trees: <strong>" + fmt(wf2.prod) + '</strong> counted<br /><span class="src">(' + wf2.details.map(function(d){ return esc(d.name) + " " + d.runs + " × " + d.per + " = " + fmt(d.total); }).join(", ") + ")</span>"
+              ? "from your trees: <strong>" + fmt(wf2.prod) + '</strong> counted per cycle<br /><span class="src">(' + wf2.details.map(function(d){ return esc(d.name) + " " + d.runs + " × " + d.per + " = " + fmt(d.total); }).join(", ") + ")</span>"
               : '<span class="src">comes in with tree harvests; no trees in this plan</span>';
           }
           else { runsCell = '<span class="src">yield varies, see note</span>'; }
           var where = it.kind === "grow" ? esc(it.facility) + " · " + esc(it.time) + " · seed: " + esc(it.seed) + (it.yld ? " · " + effYld(it) + " per seed" + (it.modYld && it.mod && modulesOwned[it.mod] ? " (module recipe)" : "") : "") + (it.facility === "Woodland" ? " · " + woodPlotText(n) : "") + " · " + climateHtml(n)
                                         : esc(it.facility) + (it.yld ? " · " + it.yld + " per run" : "");
           return "<tr><td><strong>" + esc(n) + '</strong><br /><span class="src">' + where + (it.note ? "<br />" + esc(it.note) : "") + '</span></td>' +
-            '<td class="num"><strong>' + fmt(g) + "</strong></td>" +
+            '<td class="num"><strong>' + fmtRate(g) + "</strong></td>" +
+            '<td class="num">' + (plan.perHour > 0 ? fmtRate(g * plan.perHour) : "—") + "</td>" +
             '<td class="num">' + runsCell + "</td></tr>";
         }).join("");
-        return "<h3 style='margin-top:22px'>" + emoji + " " + title + '</h3><div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="num">Total need</th><th class="num">' + runLabel + "</th></tr></thead><tbody>" + rows + "</tbody></table></div>";
+        return "<h3 style='margin-top:22px'>" + emoji + " " + title + '</h3><div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="num">Per cycle</th><th class="num">Per hour</th><th class="num">' + runLabel + "</th></tr></thead><tbody>" + rows + "</tbody></table></div>";
       }
-      html += rawTable("Grow these", "🌱", growNames, "Plots (batches)");
-      html += rawTable("Gather these", "💧", gatherNames, "Runs");
+      html += rawTable("Grow these", "🌱", growNames, "Plots");
+      html += rawTable("Gather these", "💧", gatherNames, "Runs per cycle");
 
       /* craft steps, shallowest depth last: craft lowest depth first */
       var steps = craftNames.filter(function(n){ return (plan.batches[n] || 0) > 0; })
@@ -1395,10 +1490,11 @@
         html += '<div class="craft-steps">' + steps.map(function(n, i){
           var it = ITEMS[n];
           var target = inBasket(n);
-          return '<div class="craft-step"><span class="step-n">' + (i + 1) + '</span><div><h4>' + esc(n) + eventBadge(it) + " ×" + fmt(plan.batches[n] * it.yld) +
-            ' <span class="src">(' + fmt(plan.batches[n]) + " batches at " + esc(it.facility) + ", recipe Lv " + it.lvl + ", " + esc(it.worker) + " Aniimo" + (target ? " · your recipe" : " · ingredient") + ")</span></h4>" +
-            "<p>Per batch: " + esc(needsText(it)) + ". Total in: " +
-            Object.keys(it.needs).map(function(k){ return k + " ×" + fmt(it.needs[k] * plan.batches[n]); }).join(" · ") + ".</p></div></div>";
+          var perCycle = plan.batches[n] * it.yld;
+          return '<div class="craft-step"><span class="step-n">' + (i + 1) + '</span><div><h4>' + esc(n) + eventBadge(it) + " ×" + fmtRate(perCycle) + " per cycle" + (plan.perHour > 0 ? " · ≈" + fmtRate(perCycle * plan.perHour) + " per hour" : "") +
+            ' <span class="src">(' + fmtRate(plan.batches[n]) + " batches per cycle at " + esc(it.facility) + ", recipe Lv " + it.lvl + ", " + esc(it.worker) + " Aniimo" + (target ? " · your recipe" : " · ingredient") + ")</span></h4>" +
+            "<p>Per batch: " + esc(needsText(it)) + ". Per cycle in: " +
+            Object.keys(it.needs).map(function(k){ return k + " ×" + fmtRate(it.needs[k] * plan.batches[n]); }).join(" · ") + ".</p></div></div>";
         }).join("") + "</div>";
       } else {
         html += '<div class="note note-good"><h4>🎉 Nothing to craft</h4><p>This plan needs no crafted steps at all: just grow and gather what is listed above.</p></div>';
@@ -1813,6 +1909,78 @@
       return rows;
     }
 
+    /* Fitted Best: the full Best crew gives every busy facility its own
+       dedicated worker. When that crew is over the RV Aniimo cap but
+       the Minimum crew fits, Best is fitted to the cap instead of
+       hidden: workers are shared, one facility at a time, only where
+       sharing crowds a job least, until the crew is inside the cap.
+       Every facility keeps running and every job stays covered — the
+       shared facilities take turns, like Minimum, but only at as many
+       facilities as the cap forces. Rows come from teamBestRows with
+       their counts lowered; a row's count never drops below 1. If a
+       job is split across personality rows, its rows merge before
+       they would floor at one worker each, so the floor is one Aniimo
+       per job — the Minimum crew's own count — and fitting succeeds
+       whenever Minimum fits. Returns null only if even that floor is
+       over the budget. */
+    function fitBestRows(byFac, budget){
+      var rows = teamBestRows(byFac).map(function(r){
+        var c = { job:r.job, lvl:r.lvl, worker:r.worker, alt:r.alt, trait:r.trait, assigns:r.assigns, count:r.count || r.assigns.length };
+        if(r.merged){ c.merged = true; c.jobs = r.jobs; }
+        return c;
+      });
+      function total(){ return rows.reduce(function(a, r){ return a + r.count; }, 0); }
+      /* Share one more facility: take a worker off the row where the
+         facilities left per worker stay fewest afterwards, so the
+         sharing lands where it crowds a job least. */
+      function shareStep(){
+        var pick = -1, pickScore = null;
+        rows.forEach(function(r, i){
+          if(r.count <= 1) return;
+          var score = r.assigns.length / (r.count - 1);
+          if(pickScore === null || score < pickScore ||
+             (score === pickScore && (r.count > rows[pick].count ||
+              (r.count === rows[pick].count && r.assigns.length > rows[pick].assigns.length)))){
+            pick = i; pickScore = score;
+          }
+        });
+        if(pick === -1) return false;
+        rows[pick].count--;
+        return true;
+      }
+      /* Share one facility at a time while any row can. When every
+         row is down to one worker, a job split over two personality
+         rows still floors at two workers, one per row: merge the
+         least crowded such job's rows into one shared row so it can
+         floor at one worker, the way Minimum counts it, then go back
+         to sharing — so the sharing spreads across jobs instead of
+         collapsing the first job merged. */
+      var guard = 0;
+      while(total() > budget && guard++ < 500){
+        if(shareStep()) continue;
+        var byJob = {};
+        rows.forEach(function(r, i){ if(!r.merged){ if(!byJob[r.job]) byJob[r.job] = []; byJob[r.job].push(i); } });
+        var cands = Object.keys(byJob).filter(function(j){ return byJob[j].length > 1; });
+        if(!cands.length) break;
+        cands.sort(function(a, b){
+          var fa = byJob[a].reduce(function(s, i){ return s + rows[i].assigns.length; }, 0);
+          var fb = byJob[b].reduce(function(s, i){ return s + rows[i].assigns.length; }, 0);
+          return fa !== fb ? fa - fb : byJob[b].length - byJob[a].length;
+        });
+        var job = cands[0];
+        var idxs = byJob[job].slice().sort(function(a, b){ return b - a; });
+        var first = rows[idxs[idxs.length - 1]];
+        var mergedRow = { job:job, lvl:first.lvl, worker:first.worker, alt:null, trait:null, sharedJob:true, assigns:[], count:0 };
+        idxs.forEach(function(i){ mergedRow.assigns = mergedRow.assigns.concat(rows[i].assigns); mergedRow.count += rows[i].count; });
+        mergedRow.assigns.sort(function(x, y){ return x.facility.localeCompare(y.facility); });
+        idxs.forEach(function(i){ rows.splice(i, 1); });
+        rows.push(mergedRow);
+      }
+      if(total() > budget) return null;
+      rows.forEach(function(r){ r.shared = r.count < r.assigns.length; });
+      return rows;
+    }
+
     /* Plain put-out checklist lines. Every station whose job is not
        verified yet gets a line each with no worker named, because its
        job is not verified yet: Farmland, Woodland, the Dewy House and
@@ -1962,6 +2130,50 @@
           }
         });
         facs.forEach(function(bf){ if(!usedFac[bf.facility]) lines.push(dedicatedLine(bf)); });
+      } else if(mode === "fitted"){
+        /* Fitted Best lines: one line per individual in the fitted
+           rows, that row's facilities shared out among its workers
+           as evenly as the counts allow, so the list's length is the
+           fitted crew's plan count — the same number the cap is
+           checked against and the worker table below shows. */
+        (opts.fittedRows || []).forEach(function(r){
+          var rowJobs = r.jobs || [r.job];
+          var groups = [];
+          if(r.merged){
+            var perJob = rowJobs.map(function(j){ return r.assigns.filter(function(bf){ return bf.job === j; }); });
+            var mx = Math.max.apply(null, perJob.map(function(l){ return l.length; }));
+            for(var gi = 0; gi < mx; gi++){
+              var g0 = [];
+              perJob.forEach(function(l){ if(l[gi]) g0.push(l[gi]); });
+              if(g0.length) groups.push(g0);
+            }
+            while(groups.length > r.count) groups[groups.length - 2] = groups[groups.length - 2].concat(groups.pop());
+          } else {
+            var sorted = r.assigns.slice().sort(function(x, y){ return x.facility.localeCompare(y.facility); });
+            var base = Math.floor(sorted.length / r.count), rem = sorted.length % r.count, pos = 0;
+            for(var wi = 0; wi < r.count; wi++){
+              var take = base + (wi < rem ? 1 : 0);
+              groups.push(sorted.slice(pos, pos + take));
+              pos += take;
+            }
+          }
+          groups.forEach(function(g, gix){
+            var gJobs = [];
+            g.forEach(function(bf){ if(gJobs.indexOf(bf.job) === -1) gJobs.push(bf.job); });
+            var covers = plantCover && r.worker === plantCover && rowJobs.indexOf("Grass") === -1 && !grassFacPresent && gix === 0;
+            var tip = "Strongest known: " + r.worker + " · " + g.map(function(bf){ return tipText(bf.job, BEST_WORKERS[bf.job].lvl, bf.facility, bf.items); }).join(" · ") +
+              (covers ? " · This Aniimo also does the planting: Grass Lv." + BEST_WORKERS.Grass.lvl : "");
+            var marks = (covers ? abilityMarker("Grass", false) : "") + gJobs.map(function(j){
+              var ring = g.some(function(bf){ return bf.job === j && FAC_TRAIT[bf.facility]; });
+              return abilityMarker(j, ring);
+            }).join("");
+            var label = (covers ? "Grass + " : "") + gJobs.join(" + ") + " Aniimo";
+            lines.push('<li tabindex="0" data-tip="' + escA(tip) + '">' + marks + "<strong>" + esc(label) + "</strong> · " +
+              g.map(function(bf){ return esc(bf.facility); }).join(", ") +
+              (g.length > 1 ? (gJobs.length > 1 ? " · One Aniimo covers both jobs, counted once" : " · shared across " + g.length + " facilities") : "") +
+              (covers ? " · also does the planting" : "") + "</li>");
+          });
+        });
       } else {
         teamMinRows(team.byFac).forEach(function(r){
           var facsSorted = r.assigns.slice().sort(function(x, y){ return x.facility.localeCompare(y.facility); });
@@ -2098,12 +2310,27 @@
       var cap = aniimoCapFor(userRV);
       var overBest = cap !== null && bestSize > cap;
       var overMin = cap !== null && minSize > cap;
-      /* A crew over the cap is never shown at all: you cannot use it, so
-         listing it only confuses. Its toggle button switches off with
-         the reason on it, and the view lands on the crew that fits. If
-         neither crew fits, no crew is shown: one plain note says what
-         each would need and what has to change. */
-      if(bBtn){ bBtn.disabled = overBest; bBtn.title = overBest ? "Best needs " + bestSize + " Aniimo, over your RV " + userRV + " limit of " + cap : ""; }
+      /* Best is fitted to the cap, never just hidden: when the full
+         Best crew — a dedicated worker at every busy facility — is
+         over the cap but Minimum fits, fitBestRows shares workers at
+         as few facilities as the cap forces, so the Best on show is
+         the best crew that fits inside the RV limit, every facility
+         still running and every job still covered. Best is hidden
+         only when even Minimum is over the cap: then no crew is
+         shown at all, just what each would need and what has to
+         change. */
+      var fittedRows = null, fittedSize = 0;
+      if(overBest && !overMin){
+        fittedRows = fitBestRows(team.byFac, cap - uncountedFacs.length - placedTotal - plantingAdd);
+        if(fittedRows) fittedSize = fittedRows.reduce(function(a, r){ return a + r.count; }, 0) + uncountedFacs.length + placedTotal + plantingAdd;
+      }
+      var bestHidden = overBest && !fittedRows;
+      if(bBtn){
+        bBtn.disabled = bestHidden;
+        bBtn.title = fittedRows ? "Best, fitted to your RV " + userRV + " limit: " + fittedSize + " of " + cap + " Aniimo"
+          : (bestHidden ? "Best needs " + bestSize + " Aniimo, over your RV " + userRV + " limit of " + cap : "");
+        bBtn.textContent = fittedRows ? "⭐ Best team · fits RV " + userRV : "⭐ Best team";
+      }
       if(mBtn){ mBtn.disabled = overMin; mBtn.title = overMin ? "Minimum needs " + minSize + " Aniimo, over your RV " + userRV + " limit of " + cap : ""; }
       if(overBest && overMin){
         if(note) note.textContent = "Neither crew fits RV " + userRV + ", so no crew is shown: a crew you cannot put out is not a plan.";
@@ -2113,24 +2340,43 @@
           "To get a crew that fits: take recipes out of the basket so fewer facilities run at once, turn leveling off, or level the RV up first.</p></div>";
         return;
       }
-      if(teamMode === "best" && overBest) teamMode = "minimum";
+      if(teamMode === "best" && bestHidden) teamMode = "minimum";
       if(teamMode === "minimum" && overMin) teamMode = "best";
       merged = teamMode === "minimum" && jobFacCount["Grass"] && jobFacCount["Leisure"];
       if(bBtn) bBtn.setAttribute("aria-pressed", teamMode === "best" ? "true" : "false");
       if(mBtn) mBtn.setAttribute("aria-pressed", teamMode === "minimum" ? "true" : "false");
-      teamSize = teamMode === "best" ? bestSize : minSize;
+      teamSize = teamMode === "best" ? (fittedRows ? fittedSize : bestSize) : minSize;
+      var fittedJobWorkers = {};
+      if(fittedRows) fittedRows.forEach(function(r){ (r.jobs || [r.job]).forEach(function(j){ fittedJobWorkers[j] = (fittedJobWorkers[j] || 0) + r.count; }); });
       if(note) note.textContent = (teamMode === "best"
-        ? "Best: every busy facility gets its own dedicated worker, the strongest known Aniimo for that job, so no facility waits on a worker finishing somewhere else. Aniimo are counted as individuals, not job slots: where one Aniimo's abilities cover two needed jobs (Somniwing: Grass Lv 4 and Leisure Lv 4), it is counted once, in Best too."
+        ? (fittedRows
+          ? "Best, fitted to RV " + userRV + ": the full Best crew needs " + bestSize + " Aniimo, over your limit of " + cap + ", so this crew shares a worker at just the facilities the cap forces and fits at " + fittedSize + ". Every facility still runs and every job is still covered; the shared facilities take turns. Aniimo are counted as individuals, not job slots: where one Aniimo's abilities cover two needed jobs (Somniwing: Grass Lv 4 and Leisure Lv 4), it is counted once."
+          : "Best: every busy facility gets its own dedicated worker, the strongest known Aniimo for that job, so no facility waits on a worker finishing somewhere else. Aniimo are counted as individuals, not job slots: where one Aniimo's abilities cover two needed jobs (Somniwing: Grass Lv 4 and Leisure Lv 4), it is counted once, in Best too.")
         : "Minimum is an approximation: one Aniimo per job, shared part time across every facility that needs that job, so facilities take turns and everything runs slower than Best. Multi-ability Aniimo are preferred here: one Aniimo whose abilities cover two jobs (Somniwing: Grass and Leisure) does both and counts once — that sharing is what makes Minimum fit when Best cannot. The smallest crew that keeps the plan moving, not a timetable.") +
-        (overBest ? " ⭐ Best is not shown: it needs " + bestSize + " Aniimo and " + aniimoCapText(userRV) + ", so only the Minimum that fits is offered." : "");
+        (bestHidden ? " ⭐ Best is not shown: it needs " + bestSize + " Aniimo and " + aniimoCapText(userRV) + ", so only the Minimum that fits is offered." : "") +
+        (fittedRows && teamMode === "minimum" ? " ⭐ Best fits your RV " + userRV + " limit too, fitted to " + fittedSize + " Aniimo — tap ⭐ Best team above to see it." : "");
       var capHtml = "";
-      if(overBest && teamMode === "minimum" && cap !== null){
+      if(fittedRows && cap !== null){
+        if(teamMode === "best"){
+          var sharedBits = fittedRows.filter(function(r){ return r.shared; }).map(function(r){
+            var jobs = (r.jobs || [r.job]).join(" + ");
+            return "<strong>" + esc(jobs) + " Aniimo</strong>: " + r.count + (r.count === 1 ? " worker covers " : " workers cover ") + r.assigns.length + " facilities (" + r.assigns.map(function(bf){ return esc(bf.facility); }).join(", ") + ")";
+          });
+          capHtml = '<div class="note note-info"><h4>⭐ Best, fitted inside RV ' + userRV + '</h4><p>' +
+            "The full Best crew, a dedicated worker at every busy facility, needs " + bestSize + " Aniimo — " + (bestSize - cap) + " over your RV " + userRV + " limit of " + cap + ". So this Best crew shares a worker at just the facilities the cap forces and fits: it puts out " + fittedSize + " Aniimo, inside your limit." +
+            (sharedBits.length ? " Sharing: " + sharedBits.join(" · ") + "." : "") +
+            " Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — the shared facilities take turns, so they run slower than a dedicated worker each, but nothing is dropped.</p></div>";
+        } else {
+          capHtml = '<div class="note note-info"><h4>⭐ Best fits RV ' + userRV + ' too</h4><p>' +
+            "The Minimum crew below is the smallest that fits. Best is on its toggle above, fitted to your limit at " + fittedSize + " Aniimo: a worker is shared at only the facilities your RV " + userRV + " cap of " + cap + " forces, where the full Best crew would need " + bestSize + ".</p></div>";
+        }
+      } else if(bestHidden && teamMode === "minimum" && cap !== null){
         capHtml = '<div class="note note-info"><h4>⭐ Best does not fit RV ' + userRV + ', so it is not shown</h4><p>' +
           "Best needs " + bestSize + " Aniimo, " + (bestSize - cap) + " over your limit of " + cap + ". The Minimum crew below is the one that fits: it puts out " + minSize + " Aniimo because its workers are shared, one Aniimo per job across every facility that needs that job. Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — facilities just take turns, so everything runs slower than Best.</p></div>";
       }
       var howToHtml = '<div class="note note-info"><h4>📖 How to read this</h4><p>Each entry is Aniimo to put out, labelled by <strong>ability and count</strong> — <strong>Ice Aniimo ×2</strong> means two Aniimo with the Ice ability, and any Aniimo with that ability works: no entry names one you must use. The <strong>coloured circle</strong> is the ability in its game colour, with the Aniimo level inside; a <strong>gold ring</strong> around it means the plan counts on that facility\'s personality bonus (+20%). <strong>Hover or tap an entry</strong>, or its circle, for the details: the ability level, the strongest known Aniimo as a hint only, the best personality, and the facility with what it is making.</p></div>';
-      var html = capHtml + howToHtml + putOutHtml(team, true, null) + crewExtraHtml() + '<div class="summary-strip">' +
-        '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? "Best" : "Minimum") + ')</span></div>' +
+      var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml() + '<div class="summary-strip">' +
+        '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? (fittedRows ? "Best, fitted to RV " + userRV : "Best") : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
         '<div class="sum-chip"><b>' + (facs.length + uncountedFacs.length + placedFacs.length) + '</b><span>facilities running</span></div>' +
         '<div class="sum-chip"><b>' + Object.keys(jobFacCount).length + '</b><span>jobs covered</span></div></div>';
@@ -2149,7 +2395,7 @@
         if(lvlFacs.length) html += '<p class="src" style="margin-top:10px">🚐 Leveling jobs for RV ' + rvNext() + " are in this crew because the leveling toggle is on in the RV section: " + lvlFacs.sort().map(function(f){ return esc(f); }).join(", ") + ".</p>";
       }
       if(facs.length || placedFacs.length || team.planting) html += '<div class="team-counts" aria-label="Workers needed per job">' + JOB_ORDER.map(function(j){
-        var c = jobFacCount[j] ? (teamMode === "best" ? jobFacCount[j] : 1) : 0;
+        var c = jobFacCount[j] ? (teamMode === "best" ? (fittedRows ? (fittedJobWorkers[j] || 0) : jobFacCount[j]) : 1) : 0;
         /* Grass carries the planting floor as well, so it never reads
            0 while the plan is growing anything: the planting Aniimo is
            a real Grass job on the team. When a multi-ability Aniimo
@@ -2168,9 +2414,11 @@
       if(merged) html += '<p class="src" style="margin-top:8px">‡ One Aniimo covers both: Somniwing holds Grass Lv 4 and Leisure Lv 4, so the crew total counts it once, not once per job.</p>';
       if(plantingBy && !merged) html += '<p class="src" style="margin-top:8px">‡ Planting is covered by ' + esc(plantingBy) + ', already on this crew: it holds Grass Lv 4 alongside its other ability, so the planting Aniimo is that same individual — counted once in the total, not added again.</p>';
       if(facs.length && teamMode === "best"){
-        html += teamTable(teamBestRows(team.byFac).map(function(r){
+        html += teamTable((fittedRows || teamBestRows(team.byFac)).map(function(r){
           var traitCell;
-          if(r.merged){
+          if(r.sharedJob){
+            traitCell = '<span class="src">Shared to fit your RV limit: these workers cover the facilities below between them, and one worker carries one personality, so it can only match one facility at a time. Each assignment below lists its own match.</span>';
+          } else if(r.merged){
             traitCell = '<span class="src">One Aniimo, ' + r.jobs.length + ' jobs: it carries one personality, so it matches one of these facilities at a time. Each assignment below lists its own match.</span>';
           } else if(r.trait){
             traitCell = '<span class="verdict v-ok">' + r.trait.letter + " · " + esc(r.trait.name) + " (+20%)</span>";
@@ -2182,9 +2430,9 @@
                 var ring = r.assigns.some(function(bf){ return bf.job === j && FAC_TRAIT[bf.facility]; });
                 return abilityMarker(j, ring, j + " Lv." + BEST_WORKERS[j].lvl + " · strongest known: " + r.worker + " · one Aniimo covers all these jobs");
               }).join("") +
-              "<strong>" + esc(r.job) + ' Aniimo</strong><br /><span class="src">one Aniimo covers all these jobs (' + r.jobs.map(function(j){ return j + " Lv." + BEST_WORKERS[j].lvl; }).join(", ") + ") · strongest known: " + esc(r.worker) + " · counted once per pair, not once per job</span>"
+              "<strong>" + esc(r.job) + ' Aniimo</strong><br /><span class="src">one Aniimo covers all these jobs (' + r.jobs.map(function(j){ return j + " Lv." + BEST_WORKERS[j].lvl; }).join(", ") + ") · strongest known: " + esc(r.worker) + " · counted once per pair, not once per job" + (r.shared ? " · fitted to your RV limit: " + r.count + (r.count === 1 ? " Aniimo covers" : " Aniimo cover") + " these " + r.assigns.length + " facilities between them" : "") + "</span>"
             : abilityMarker(r.job, !!r.trait, r.job + " Lv." + r.lvl + " · strongest known: " + r.worker + " Lv." + r.lvl + (r.trait ? " · Best personality: " + r.trait.name + " (" + r.trait.letter + ") (+20% work efficiency)" : " · no verified personality match in the guide data")) +
-              "<strong>" + r.job + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + (r.alt ? " · or " + esc(r.alt.name) + " Lv." + r.alt.lvl : "") + (plantingBy && r.worker === plantingBy && r.job !== "Grass" && !jobFacCount["Grass"] ? " · also covers Planting (Grass Lv." + BEST_WORKERS.Grass.lvl + ")" : "") + "</span>";
+              "<strong>" + r.job + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + (r.alt ? " · or " + esc(r.alt.name) + " Lv." + r.alt.lvl : "") + (plantingBy && r.worker === plantingBy && r.job !== "Grass" && !jobFacCount["Grass"] ? " · also covers Planting (Grass Lv." + BEST_WORKERS.Grass.lvl + ")" : "") + (r.shared ? " · fitted to your RV limit: " + r.count + (r.count === 1 ? " worker" : " workers") + " shared across these " + r.assigns.length + " facilities" : "") + "</span>";
           return "<tr><td>" + workerCell + '</td><td class="num"><strong>' + (r.count || r.assigns.length) + "</strong></td>" +
             "<td>" + traitCell + "</td>" +
             "<td>" + r.assigns.map(function(bf){ return assignHtml(bf, bf.job, r.lvl); }).join("") + "</td></tr>";
@@ -2652,22 +2900,6 @@
       return { bill:bill, gather:gather, craft:craft };
     }
 
-    /* A copy of the basket plan with the leveling bill merged in, used for
-       the plan lists only. The basket plan itself is never mutated, so the
-       Layout Helper's basket group stays basket-only. */
-    function augmentPlan(plan){
-      var li = levelingItems();
-      if(!li) return plan;
-      var gross = {}, net = {}, batches = {}, runs = {};
-      Object.keys(plan.gross).forEach(function(n){ gross[n] = plan.gross[n]; });
-      Object.keys(plan.net).forEach(function(n){ net[n] = plan.net[n]; });
-      Object.keys(plan.batches).forEach(function(n){ batches[n] = plan.batches[n]; });
-      Object.keys(plan.runs).forEach(function(n){ runs[n] = plan.runs[n]; });
-      Object.keys(li.gather).forEach(function(n){ gross[n] = (gross[n] || 0) + li.gather[n]; net[n] = (net[n] || 0) + li.gather[n]; if(runs[n] === undefined) runs[n] = 0; });
-      Object.keys(li.craft).forEach(function(n){ gross[n] = (gross[n] || 0) + li.craft[n]; net[n] = (net[n] || 0) + li.craft[n]; batches[n] = (batches[n] || 0) + li.craft[n]; });
-      return { gross:gross, net:net, batches:batches, runs:runs, _lvl:li };
-    }
-
     function chainBreakdown(chain, needs){
       /* needs: {itemName: qty} aggregated headline needs across the range.
          The bill always starts from scratch: every headline amount is
@@ -2727,7 +2959,7 @@
       var by = bill.by;
       var parts = [];
       if(by.woodDetails.length){
-        parts.push("Your basket's Woodland plots produce counted Wood Blocks: " + by.woodDetails.map(function(d){ return "<strong>" + esc(d.name) + "</strong> " + d.runs + (d.runs === 1 ? " plot" : " plots") + " × " + d.per + " = " + fmt(d.total); }).join(", ") + ". Total produced: <strong>" + fmt(by.woodProd) + "</strong>.");
+        parts.push("Your basket's Woodland plots produce counted Wood Blocks each cycle: " + by.woodDetails.map(function(d){ return "<strong>" + esc(d.name) + "</strong> " + d.runs + (d.runs === 1 ? " plot" : " plots") + " × " + d.per + " = " + fmt(d.total); }).join(", ") + ". Total produced per cycle: <strong>" + fmt(by.woodProd) + "</strong>.");
       } else {
         parts.push("Your basket has no Woodland crops, so counted Wood Block production is <strong>0</strong>.");
       }
@@ -4255,10 +4487,10 @@
       var rates = [];
       function rateRow(gid){
         var g = bpGoalDef(gid);
-        if(gid === "coins") return { rank:0, name:g.name, cycle:fmt(coinsCycle) + " Home Coins", min:cycleMins > 0 ? fmtRate(coinsCycle / cycleMins) + " Home Coins" : "Not counted: this plan grows nothing, so it has no grow cycle to divide by" };
+        if(gid === "coins") return { rank:0, name:g.name, cycle:fmt(coinsCycle) + " Home Coins", min:cycleMins > 0 ? fmtRate(coinsCycle / cycleMins * 60) + " Home Coins" : "Not counted: this plan grows nothing, so it has no grow cycle to divide by" };
         if(gid === "xp") return { rank:0, name:g.name, cycle:"Not verified yet", min:"Not verified yet" };
         if(gid === "mega") return { rank:0, name:g.name, cycle:fmt(megaCycle) + " Aniipod Mega", min:"Not verified yet: the Aniipod Maker cycle time is not in the verified data" };
-        if(gid === "wood") return { rank:0, name:g.name, cycle:fmt(woodCycle) + " Wood Blocks counted", min:cycleMins > 0 ? fmtRate(woodCycle / cycleMins) + " Wood Blocks counted" : "Not counted: this plan grows nothing" };
+        if(gid === "wood") return { rank:0, name:g.name, cycle:fmt(woodCycle) + " Wood Blocks counted", min:cycleMins > 0 ? fmtRate(woodCycle / cycleMins * 60) + " Wood Blocks counted" : "Not counted: this plan grows nothing" };
         if(gid === "sand") return { rank:0, name:g.name, cycle:"Not verified yet: the amount per Mine run varies", min:"Not verified yet" };
         return { rank:0, name:g.name, cycle:fmt(hmpDishes) + " festival dish batches, points per dish not verified", min:"Not verified yet" };
       }
@@ -4319,7 +4551,7 @@
         farmCount:facCount("Farmland"), woodCount:facCount("Woodland"),
         leveling: lvlBill ? { from:rvFrom, next:lvlBill.next, coin:lvlBill.coin, needs:lvlBill.needs } : null,
         claims: (basket.length || lvlBill) ? {
-          basketItems: basket.map(function(b){ return { name:b.name, qty:b.qty }; }),
+          basketItems: basket.map(function(b){ return b.name; }),
           basketBatches: basketClaimBatches,
           basketFacs: Object.keys(basketClaim).sort(),
           basketFarmUsed: basketFarmUsed, basketWoodUsed: basketWoodUsed,
@@ -4434,7 +4666,7 @@
       lines.push("Setup used: RV " + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", with your Stage 3 facility counts and levels.");
       lines.push("Goals in ranked order: " + bpGoalOrder.map(function(gid, i){ return (i + 1) + ". " + bpGoalDef(gid).name + (bpGoalOn[gid] ? "" : " (off)"); }).join(", ") + ". Whatever is left goes to Home Coins.");
       if(res.claims && res.claims.basketItems.length){
-        lines.push("Already planned: your basket (" + res.claims.basketItems.map(function(b){ return b.name + " x" + b.qty; }).join(", ") + ") claims " + res.claims.basketBatches + " batches at " + res.claims.basketFacs.join(", ") + " and plants " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots. Goal recipes below are picked from the remaining capacity only.");
+        lines.push("Already planned: your basket (" + res.claims.basketItems.join(", ") + ") claims " + fmtRate(res.claims.basketBatches) + " batches per cycle at " + res.claims.basketFacs.join(", ") + " and plants " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots. Goal recipes below are picked from the remaining capacity only.");
       }
       if(res.leveling){
         lines.push("Leveling first: the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill is made before the ranked goals: " + Object.keys(res.leveling.needs).map(function(n){ return n + " x" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them. The level costs " + fmt(res.leveling.coin) + " Home Coins" + (res.coinsCycle > 0 ? ", about " + (Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10) + " cycles at this plan's counted rate." : "."));
@@ -4445,7 +4677,7 @@
       lines.push("Set your Mines to: " + mineSetupText(res.mine));
       lines.push("");
       lines.push("Rates:");
-      res.rates.forEach(function(r){ lines.push("- " + r.name + ": " + r.cycle + " per cycle, " + r.min + " per minute"); });
+      res.rates.forEach(function(r){ lines.push("- " + r.name + ": " + r.cycle + " per cycle, " + r.min + " per hour"); });
       lines.push("- Counted Home Coins per cycle, after seed costs: " + fmt(res.coinsCycle) + ".");
       if(res.starSell > 0) lines.push("- Of that counted total, " + fmt(res.starSell) + " Home Coins rests on recipes that use Star (" + res.starRecipes.join(", ") + "). Star: " + UNVERIFIED_FLAG + ", Aniimax uses it too, flagged unverified there.");
       if(res.unverifiedRawSell > 0) lines.push("- Unverified-included extra, not in the counted total: " + fmt(res.unverifiedRawSell) + " Home Coins per cycle from Moondew raw sales at 74 each. Sources conflict: Aniiland lists 74 each, aniimoguide says moon crops cannot be sold raw and must be cooked first.");
@@ -4504,7 +4736,7 @@
         var cyc = res.leveling && res.coinsCycle > 0 ? Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10 : null;
         var cp = [];
         if(res.claims.basketItems.length){
-          cp.push("Your basket (" + res.claims.basketItems.map(function(b){ return esc(b.name) + " ×" + b.qty; }).join(", ") + ") already runs <strong>" + res.claims.basketBatches + (res.claims.basketBatches === 1 ? " batch" : " batches") + "</strong> at " + res.claims.basketFacs.map(function(f){ return esc(f); }).join(", ") + (res.claims.basketFarmUsed + res.claims.basketWoodUsed > 0 ? ", and plants <strong>" + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots</strong>" : "") + ".");
+          cp.push("Your basket (" + res.claims.basketItems.map(function(n){ return esc(n); }).join(", ") + ") already runs <strong>" + fmtRate(res.claims.basketBatches) + " batches per cycle</strong> at " + res.claims.basketFacs.map(function(f){ return esc(f); }).join(", ") + (res.claims.basketFarmUsed + res.claims.basketWoodUsed > 0 ? ", and plants <strong>" + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots</strong>" : "") + ".");
         }
         if(res.leveling){
           cp.push("Leveling is on, so the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill (" + Object.keys(res.leveling.needs).map(function(n){ return esc(n) + " ×" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them) is produced too, on the setup you have now" + (res.claims.levelingFacs.length ? ", running at " + res.claims.levelingFacs.map(function(f){ return esc(f); }).join(", ") : "") + ".");
@@ -4518,13 +4750,13 @@
       if(res.farmUsed > res.farmCount || res.woodUsed > res.woodCount){
         html += '<div class="note note-warn"><h4>🌱 More plots than your counts</h4><p>This plan needs ' + res.farmUsed + " Farmland plots and " + res.woodUsed + " Woodland plots, and your counts say " + res.farmCount + " Farmland and " + res.woodCount + " Woodland" + (res.claims && (res.claims.basketFarmUsed + res.claims.basketWoodUsed) > 0 ? ", before your basket's " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots on top" : "") + ". The plan still stands: plant in rounds, first round in the ground while the first batches craft. Your plot counts follow your RV level, so a higher RV allows more.</p></div>";
       }
-      html += "<h3 style='margin-top:22px'>📈 Your rates</h3><p class='sec-sub' style='margin-bottom:0'>Per cycle first, then per minute. Per minute uses the grow cycle only: crops grow side by side and the slowest crop sets the pace. Craft and gather times are not in the verified data, so a goal with no verified rate says so instead of guessing.</p>";
-      html += '<div class="tbl-wrap"><table><thead><tr><th class="num">Rank</th><th>Goal</th><th>Per cycle</th><th>Per minute</th></tr></thead><tbody>' +
+      html += "<h3 style='margin-top:22px'>📈 Your rates</h3><p class='sec-sub' style='margin-bottom:0'>Per cycle first, then per hour. Per hour uses the grow cycle only: crops grow side by side and the slowest crop sets the pace, so an hour holds 60 ÷ cycle minutes cycles. Craft and gather times are not in the verified data, so a goal with no verified rate says so instead of guessing.</p>";
+      html += '<div class="tbl-wrap"><table><thead><tr><th class="num">Rank</th><th>Goal</th><th>Per cycle</th><th>Per hour</th></tr></thead><tbody>' +
         res.rates.map(function(r){ return '<tr><td class="num">' + r.rank + "</td><td><strong>" + esc(r.name) + "</strong></td><td>" + esc(r.cycle) + "</td><td>" + esc(r.min) + "</td></tr>"; }).join("") + "</tbody></table></div>";
-      html += '<div class="note note-info"><h4>💰 Counted money and unverified-included money, kept apart</h4><p>Counted: <strong>' + fmt(res.coinsCycle) + ' Home Coins per cycle</strong> after seed costs' + (res.cycleMins > 0 ? ", " + fmtRate(res.coinsCycle / res.cycleMins) + " per minute" : "") + '.' +
+      html += '<div class="note note-info"><h4>💰 Counted money and unverified-included money, kept apart</h4><p>Counted: <strong>' + fmt(res.coinsCycle) + ' Home Coins per cycle</strong> after seed costs' + (res.cycleMins > 0 ? ", " + fmtRate(res.coinsCycle / res.cycleMins * 60) + " per hour" : "") + '.' +
         (res.starSell > 0 ? ' Of that counted total, <strong>' + fmt(res.starSell) + ' Home Coins</strong> rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "") +
         ' Unverified-included extra, not in the counted total: <strong>' + fmt(res.unverifiedRawSell) + ' Home Coins per cycle</strong> from Moondew raw sales at 74 each <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniiland lists 74 each, aniimoguide says moon crops cannot be sold raw</span>." +
-        ' If the unverified items pay off: <strong>' + fmt(res.coinsCycle + res.unverifiedRawSell) + ' Home Coins per cycle</strong>' + (res.cycleMins > 0 ? " (" + fmtRate((res.coinsCycle + res.unverifiedRawSell) / res.cycleMins) + " per minute)" : "") + "." +
+        ' If the unverified items pay off: <strong>' + fmt(res.coinsCycle + res.unverifiedRawSell) + ' Home Coins per cycle</strong>' + (res.cycleMins > 0 ? " (" + fmtRate((res.coinsCycle + res.unverifiedRawSell) / res.cycleMins * 60) + " per hour)" : "") + "." +
         (res.woodCycle > 0 ? ' Wood Blocks: <strong>' + fmt(res.woodCycle) + ' counted</strong> per cycle, a tree byproduct that rides along with this plan\'s tree harvests, never planted. ' + WOOD_SOURCE + '.' : "") +
         "</p></div>";
 
@@ -4644,9 +4876,9 @@
       }
       document.getElementById("exampleBtn").addEventListener("click", function(){
         basket = [
-          { name:"Berry Chocolate Coconut Pudding", qty:2 },
-          { name:"Bread", qty:3 },
-          { name:"Rose Shortbread", qty:1 }
+          { name:"Berry Chocolate Coconut Pudding" },
+          { name:"Bread" },
+          { name:"Rose Shortbread" }
         ];
         renderAll();
         toast("Example basket loaded: pudding, bread and shortbread. Watch the salt and cocoa chains.");
