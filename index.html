@@ -322,7 +322,7 @@
           <p class="sec-sub" style="margin-bottom:4px">Every facility below already sits at the most your RV level allows, count and level together, and the list updates on its own whenever you change the RV picker in Stage 1. There is nothing to type here: the planner assumes you put out everything you are allowed, fully upgraded. Recipe greying follows these levels, and the Best Plan below sizes itself from these counts, one batch per processing facility per cycle and one plot per Farmland or Woodland count. Levels are what unlock recipes.</p>
           <div class="fac-grid" id="facGrid"></div>
           <h4 style="margin-top:20px">🌡️ Your climate buildings</h4>
-          <p class="src" style="margin-top:4px">Counts only, no levels, and nothing to type: like the facilities above, each climate building count below is the most your RV level allows, worked out from the Aniiland RV roadmap ladder (the RV 7 unlock is also backed by GameWith), and it updates on its own whenever you change the RV picker in Stage 1. The planner assumes you put out everything you are allowed. The Layout Helper's layout works with these counts: it never lays out more zones of a building than the count shown here, and never plants more plots than your Farmland and Woodland counts above. At RV 14 all three counts are 2, matching a real RV 14 setup. The ladder steps rest on Aniiland alone, so each count carries the count single source flag, like the other facility counts.</p>
+          <p class="src" style="margin-top:4px">Counts only, no levels, and nothing to type: like the facilities above, each climate building count below is the most your RV level allows, worked out from the Aniiland RV roadmap ladder (the RV 7 unlock is also backed by GameWith), and it updates on its own whenever you change the RV picker in Stage 1. The planner assumes you put out everything you are allowed. The Layout Helper's layout works with these counts: it never lays out more zones of a building than the count shown here, and never plants more plots than your Farmland and Woodland counts above. Within that, the layout only puts out the climate buildings the plan actually needs — plots that need the same building share its zones — and the Team Helper staffs only those, so a climate building the layout leaves in storage costs no Aniimo. At RV 14 all three counts are 2, matching a real RV 14 setup. The ladder steps rest on Aniiland alone, so each count carries the count single source flag, like the other facility counts.</p>
           <div class="fac-grid" id="climGrid"></div>
           <h4 style="margin-top:20px">🧩 Your module levels</h4>
           <p class="src" style="margin-top:4px">Type each RV module's level, exactly as the game shows it in Component Upgrade. Every box starts at 0. No need to remember which module recipe you own: the planner checks your levels against the verified unlock table below and switches the matching harvest yields on in the Grow list, the Money Crops table and the Layout Helper plot counts. Only unlocks verified against AniimoTools, aniimoguide and the Aniiland roadmap are automatic. Anything unverified stays manual, says so, and is never guessed.</p>
@@ -429,7 +429,7 @@
       <!-- ================= STAGE 4: LAYOUT ================= -->
       <section id="layout">
         <div class="sec-head"><span class="sec-num">Stage 4</span><h2>🗺️ Homeland Layout Helper</h2></div>
-        <p class="sec-sub">Just <strong>two layouts</strong>, and you toggle between them: <strong>⭐ Best</strong> plants the full field your RV level allows, and <strong>🪶 Minimum</strong> plants one plot of each crop, the smallest start that still grows everything. Both stay inside your RV level's limits — never more Farmland or Woodland plots than your level allows, and never more climate buildings than your level allows. The lists under the layout are just the counts behind it, not more layouts. The − and + buttons on each crop still change its count, and adding crops by hand further down is optional extras only. Sizes in grid cells: a Farmland plot is 4 × 4, a Woodland plot 7 × 7, and one climate building covers an 18 × 18 square centered on itself.</p>
+        <p class="sec-sub">Just <strong>two layouts</strong>, and you toggle between them: <strong>⭐ Best</strong> plants the full field your RV level allows, and <strong>🪶 Minimum</strong> plants one plot of each crop, the smallest start that still grows everything. Both stay inside your RV level's limits — never more Farmland or Woodland plots than your level allows, and never more climate buildings than your level allows. Farmland and Woodland plots that need the same climate building <strong>share its coverage zones</strong>: the layout packs them into the fewest Heat Furnaces, Cooling Units and Sunlamps that cover the plan, says plainly which plots share each building, and your crew in the Team Helper only staffs the climate buildings the layout actually puts out — so sharing here cuts the Aniimo the plan needs. The lists under the layout are just the counts behind it, not more layouts. The − and + buttons on each crop still change its count, and adding crops by hand further down is optional extras only. Sizes in grid cells: a Farmland plot is 4 × 4, a Woodland plot 7 × 7, and one climate building covers an 18 × 18 square centered on itself.</p>
 
         <div class="team-toggle" role="group" aria-label="Layout view" style="margin-bottom:6px">
           <button type="button" class="chip" id="layoutBestBtn" aria-pressed="true">⭐ Best layout</button>
@@ -459,7 +459,7 @@
       <!-- ================= TEAM HELPER ================= -->
       <section id="team">
         <div class="sec-head"><span class="sec-num">Team</span><h2>👥 Team Helper</h2></div>
-        <p class="sec-sub">Who staffs everything above? This is the one crew suggestion for the whole planner, shown only after everything is picked out. Your basket and, when you have run one, your Best Plan decide which facilities run, deduped so a facility needed by both counts once, plus leveling jobs when leveling is on. Toggle between <strong>⭐ Best</strong> (a dedicated worker per facility) and <strong>🪶 Minimum</strong> (one shared Aniimo per job): only one crew shows at a time, and <strong>Best is always fitted inside your RV level's Aniimo limit</strong> — if a dedicated worker at every facility would go over the limit, a worker is shared at just the few facilities the limit forces, and the plan says which ones share; only if even Minimum cannot fit does no crew show, with what has to change. It rebuilds whenever your basket, your Best Plan or your RV level changes. Hover an assignment for its full detail, or tap it on a touch screen.</p>
+        <p class="sec-sub">Who staffs everything above? This is the one crew suggestion for the whole planner, shown only after everything is picked out. Your basket and, when you have run one, your Best Plan decide which facilities run, deduped so a facility needed by both counts once, plus leveling jobs when leveling is on. Toggle between <strong>⭐ Best</strong> (a dedicated worker per facility) and <strong>🪶 Minimum</strong> (one shared Aniimo per job): only one crew shows at a time, and <strong>Best is always fitted inside your RV level's Aniimo limit</strong> — if a dedicated worker at every facility would go over the limit, a worker is shared at just the few facilities the limit forces, and the plan says which ones share; only if even Minimum cannot fit does no crew show, with what has to change. It rebuilds whenever your basket, your Best Plan or your RV level changes. Hover an assignment for its full detail, or tap it on a touch screen. <strong>Hauling is always in the total, and always more than one:</strong> it grows with the facilities your plan sets running, some of it covered by Aniimo already on the crew doing hauling as a secondary ability (counted once, in their main job), the rest added as dedicated haulers. <strong>Climate Aniimo follow your layout:</strong> only the Heat Furnaces, Cooling Units and Sunlamps the Layout Helper actually puts out are staffed, 1 Aniimo per building out, so plots sharing a climate building in the layout directly cuts the Aniimo this plan needs.</p>
         <div class="note note-info" style="margin:0 0 16px"><p><strong>Decide leveling before you use this crew.</strong> Turning on Include leveling resources in my plan in the RV Level-Up section adds leveling jobs to this crew, so the crew can grow when leveling is on.</p></div>
         <div class="card">
           <div id="teamGate"></div>
@@ -492,7 +492,7 @@
           <li><strong>RV next level, the leveling toggle, and the basket offset:</strong> the RV planner always prices the single next level from the level you pick: pick RV 6 and it bills RV 7. Home Coin is printed as that level's cost and is never an input, because a coin balance changes constantly and tracking one is not realistic. There are no stock boxes anywhere in this planner: the basket plan is sized to your homeland and shows per-cycle amounts with per-hour rates, the RV bill always shows the full one-time amounts from scratch, and lower tiers still process up. With the <strong>Include leveling resources in my plan</strong> toggle off (the default), the RV bill and gates tuck away, the full ladder stays as reference, and nothing from leveling enters the basket plan or the Team Helper. With it on, the next level's still-needed materials join the Grow, Gather and Craft lists, its facility jobs join the Team Helper (Woodworking Bench is Artisanship and Chimney Kiln is Fire, from the same recipe data as every other craft; the Mine is Earth, a verified gather pairing; Wood Block gathering sits at the Woodland, whose job is not verified, so it is flagged with the other runs whose jobs are not verified, never guessed), and the basket offsets the bill with net math shown line by line: counted Wood Block production from the basket's Woodland plots, minus the Wood Blocks the basket recipes themselves use, is the surplus taken off the bill. Counted production uses the Wood Blocks ladder by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6, the same for every tree at that level. Mineral Sand rides along with Mine runs in amounts that vary with no fixed yield, so it is not counted: it is flagged in the offset note instead of guessed.</li>
           <li><strong>The basket takes recipes only, never amounts:</strong> you pick what to make, and the planner sizes the production itself, the Aniimax way. Each picked recipe starts at one batch per facility you have out that makes it, per cycle; the whole chain under it (crafted ingredients, crops, gathered materials) is worked out from that. Then the plan is fitted inside your limits before anything is shown: no facility runs more batches per cycle than its Stage 3 count, the Farmland and Woodland plots a cycle plants never pass your RV level's counts, and where a limit binds, production scales down to fit it and the plan names the limit that bound. Amounts are per cycle; one cycle lasts as long as the cycle's slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds, the grow times already on this page), and the per-hour rate is the per-cycle amount scaled by 60 ÷ the cycle minutes, the same grow-cycle basis the Best Plan's rates already used. Craft and gather cycle times are not in the verified data, so rates are grow-cycle rates and say so. The leveling bill is never sized this way: it stays the fixed one-time package priced in the RV section.</li>
           <li><strong>The Layout Helper reads your basket:</strong> under <strong>From your basket</strong> it lists every crop your plan still needs to grow, grouped by the same climate rules as hand picks, with plot counts from the plan itself (the Grow list's own Plots column: the plan's per-cycle amount divided by yield per seed, module harvests included when your module levels switch them on), so helper and Grow list never disagree. The − and + buttons on each basket crop add or take away plots from that count, and the change sticks to the crop when the basket updates the count; a crop stepped down to 0 stays listed with a + button so it is never lost. Changing your basket updates the list on its own. Hand picks are optional extras only, added from the picker below the automatic groups, and stay in their own group, <strong>Your extra crops, added by hand</strong>, one plot each, and recomputing the basket list never touches them; a crop can appear in both groups, and its counts are never merged into one number. Above-level basket crops stay listed, greyed, with their unlock note, and still count toward plots and climate buildings.</li>
-          <li><strong>The Layout Helper shows two layouts, toggled, never more:</strong> ⭐ Best (the full field) and 🪶 Minimum (one plot of each crop, the fewest climate buildings), and the per-source lists under them are only the counts behind the one layout on show, not layouts of their own. The layout at the top of the helper is the one field to plant, and it is fitted to the Stage 3 counts at whatever RV is picked: it plants at most the Farmland count and the Woodland count your RV level allows (RV 14's most is 30 Farmland and 15 Woodland, from the same verified count ladder as the Best Plan), and it lays out at most the count of each climate building your RV level allows (Cooling Unit, Heat Furnace and Sunlamp, from the Aniiland RV roadmap ladder in the Stage 3 panel: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19, with the RV 7 unlock also backed by GameWith and the RV 14 values of 2, 2 and 2 matching the player's own setup; the steps rest on Aniiland alone, so they carry the count single source flag). The layout fills the available plots first, with the crops the plan needs most covered under the climate buildings; when a climate group's plots would need more zones than the building count your RV level allows, only what fits under cover is planted in the layout and the plan says so. The three sources (basket, best plan, extra hand picks) stay in their own unmerged sections as the accounting; the layout combines them, because that combined planting is what actually goes in the ground. What each source wants decides what the layout plants. The whole-plan totals lead the helper: total plots per crop across the full need, total seeds (one seed per plot, the same counts the Grow list and the best plan work from), total climate buildings for the whole need, and total grow time. When the whole need is bigger than one field, the helper never draws an impossible all-at-once planting: it shows the best full-field layout and says plainly to replant that same layout as harvests complete until the totals are met. The time estimate's basis: everything in the layout grows side by side, so one planting lasts as long as its slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds, from the grow times already on this page); a crop whose total passes the plots the layout gives it is replanted into the same layout as its harvests free its plots, each replanting adding its grow time again, and the crops run side by side, so the whole plan takes as long as the longest of those chains.</li>
+          <li><strong>The Layout Helper shows two layouts, toggled, never more:</strong> ⭐ Best (the full field) and 🪶 Minimum (one plot of each crop, the fewest climate buildings), and the per-source lists under them are only the counts behind the one layout on show, not layouts of their own. The layout at the top of the helper is the one field to plant, and it is fitted to the Stage 3 counts at whatever RV is picked: it plants at most the Farmland count and the Woodland count your RV level allows (RV 14's most is 30 Farmland and 15 Woodland, from the same verified count ladder as the Best Plan), and it lays out at most the count of each climate building your RV level allows (Cooling Unit, Heat Furnace and Sunlamp, from the Aniiland RV roadmap ladder in the Stage 3 panel: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19, with the RV 7 unlock also backed by GameWith and the RV 14 values of 2, 2 and 2 matching the player's own setup; the steps rest on Aniiland alone, so they carry the count single source flag). The layout fills the available plots first, with the crops the plan needs most covered under the climate buildings; Plots that need the same climate building share its zones: the layout packs same-building plots into the fewest zones that cover them (one land type per zone, since Farmland plots are 4 × 4 and Woodland plots 7 × 7; the building and its Aniimo are what is shared), states which plots share each building in the layout, the copied plan and the crew, and the Team Helper counts an attached Aniimo only for the climate buildings the layout puts out, so sharing directly reduces the crew total — the Aniimo saved are stated in both places. when a climate group's plots would need more zones than the building count your RV level allows, only what fits under cover is planted in the layout and the plan says so. The three sources (basket, best plan, extra hand picks) stay in their own unmerged sections as the accounting; the layout combines them, because that combined planting is what actually goes in the ground. What each source wants decides what the layout plants. The whole-plan totals lead the helper: total plots per crop across the full need, total seeds (one seed per plot, the same counts the Grow list and the best plan work from), total climate buildings for the whole need, and total grow time. When the whole need is bigger than one field, the helper never draws an impossible all-at-once planting: it shows the best full-field layout and says plainly to replant that same layout as harvests complete until the totals are met. The time estimate's basis: everything in the layout grows side by side, so one planting lasts as long as its slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds, from the grow times already on this page); a crop whose total passes the plots the layout gives it is replanted into the same layout as its harvests free its plots, each replanting adding its grow time again, and the crops run side by side, so the whole plan takes as long as the longest of those chains.</li>
           <li><strong>Overlap in the Layout Helper:</strong> the only blends applied are the Steam RV/Homeland Guide's verified two: a crop in both a Scorching zone and a Cool zone counts as Warm, and a crop in both a Freezing zone and a Warm zone counts as Cool. When one source's groups lay out both partner zones, the served group's zones are counted as overlap bands shared with those partner zones, so the layout totals count them once instead of adding separate buildings for them, in the group totals, the summary chips and the copied plan alike. No other crossing is claimed: Scorching with Freezing, and every other pairing, is not in the verified rule and is never used. The band's exact size and how many plots fit inside it are <strong>not verified</strong> in any source behind this planner, so each served group keeps its standalone zone count printed next to the overlap note, flagged, and the layout is still packed with the safe, unshared zone counts, so it never needs more buildings than you have: in the layout's per-zone blocks, a served group's plots sit in its overlap band block and its buildings are not counted a second time. Treat a band as a bonus that can save buildings, never as a promise. The layout is drawn as one small grid per zone, not one big map: each zone block shows its building's zone over the crops it covers, with short writing beside the grid, and a served group gets a band block where the two partner zones meet. Whether a Warm crop is better served by a Heat Furnace zone of its own or by a band is likewise not verified, so the planner shows both numbers and does not pick for you. Light is handled independently of temperature throughout: Adequate-light crops (Sunlamp) may sit inside temperature zones with Sunlamp coverage overlaid, so their ground is counted once, in the temperature zone, and only the Sunlamps themselves are added.</li>
           <li><strong>The Layout Helper also reads your best plan:</strong> once you run the Best Plan Finder, the seeds to plant from that plan appear under <strong>From your best plan</strong>, in their own group, never merged with the basket group or your own picks. The counts are the plan's own seed counts (amount needed divided by yield per seed, module harvests included when your module levels switch them on, the same math as the basket group), grouped by the same climate rules and the same climate building counts (one zone per 16 Farmland plots or 4 Woodland plots), with the layout at the top of this helper drawn from those same counts, and the same − and + steppers: an adjustment sticks to its crop when the plan is run again, and a crop stepped to 0 stays listed under "Set to 0 by you". Before any best plan is run the group stays hidden; with no basket picked and no best plan run yet, the helper shows one plain line saying the layout appears once either exists, with nothing to fill out; if a plan plants nothing, the group says so plainly instead of inventing crops; and if your setup or goals change after a run, the group keeps the run's counts and says the plan is out of date until you run it again.</li>
           <li><strong>Building footprints in the space totals:</strong> the Layout Helper's space totals count plot tiles plus building tiles. Plot tiles are measured (Farmland 4 × 4 cells = 16 tiles, Woodland 7 × 7 = 49, from the player's own screenshots, same source as the plot footprints bullet above). A climate building's coverage zone is verified at 18 × 18 cells from those same screenshots. The building footprints themselves are now measured from the player's own placement screenshots (Oct 24, 2026), replacing the earlier 4 × 4 assumption: Cooling Unit 2 × 2 cells = 4 tiles (confirmed by the white square measurement from the player's still screenshot, Oct 24, 2026: the white square is divided by one interior vertical grid line and one interior horizontal grid line into 2 columns by 2 rows, so it is 2 tiles wide by 2 tiles deep, not 3 wide); Heat Furnace 1 × 1 = 1 tile (identity confirmed by the player); Sunlamp 1 × 1 = 1 tile (identity confirmed by the player); Crackle Generator 2 × 2 = 4 tiles (the white square around the unit, confirmed by the player as the footprint); Power Pole 1 × 1 = 1 tile (identity confirmed by the player). Each building is drawn as the dark square in the middle of its zone map, scaled to its measured footprint where the map scale allows, and its true tile count is named in the caption. Zone capacity is unchanged by this: a zone still holds 16 Farmland plots or 4 Woodland plots, because the building stands in the middle of its coverage either way; the building tiles are counted so you can see what the buildings cost in space, not to shrink the verified capacity. In the power reference, the Generator zone is 484 tiles with 4 building tiles, leaving 480, and the Pole zone is 196 tiles with 1 building tile, leaving 195.</li>
@@ -501,8 +501,8 @@
           <li><strong>The Best Plan Finder</strong> picks recipes by your ranked goals, in order, leftovers to Home Coins, the Aniimax model. Home Coin math uses Co-op Store sell prices from the filed shop price research (the Aniimo Homeland Shop Prices page, checked Oct 24, 2026): each finished item is compared with the sell value of its direct ingredients, the margin caution in that research, and seed buy prices come from the same file. Prices two sources agree on (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90, Harvest Platter 5,290) are marked cross-checked; most mid and late game prices are Aniiland only, so the plan marks them single source, spot-check in game, and never calls them verified. Items with no listed sell price in the research (Wood Block, Mineral Sand, the building tiers, the growth items and the Aniipods) cannot earn Home Coins in a plan. Per hour rates use the grow cycle only: crops grow side by side, so one cycle lasts as long as its slowest crop, from the grow times already on this page. Craft and gather cycle times are not in the verified data, so rates are grow cycle rates and say so. Aniimo XP per recipe, Harvest Moon Points per dish and the Mineral Sand amount per Mine run have no verified figures in any source behind this planner, so those goals are flagged on the plan, never filled with guessed numbers. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of best plans: the planner does not know whether you own their rare currency unlocks. By the player's own rule, the Best Plan (and only the Best Plan; the basket, Team Helper and Layout Helper are unchanged in this respect) also includes items not verified yet but sensible, each flagged on its line as "Not verified yet, included because it makes sense" with the short reason. Star is one: Aniimax uses it too and flags it unverified there, so best plans gather Star at the Starfall Hammock for the Advanced Wind Chime chain instead of leaving those recipes out, and the plan states how much of the counted Home Coins rests on Star recipes. Wood Blocks from Woodland trees are counted exactly by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6. Moondew Radish and Waxing Moon Pepper raw sales are included as plantings to gather, at the 74 Home Coins each Aniiland lists, with the conflict printed on the line: aniimoguide says moon crops cannot be sold raw and must be cooked first. That income sits only in the unverified-included total, never the counted total, and the plan prints the total if the unverified items pay off. Where no figure exists at all, none is invented: Aniimo XP per recipe and Harvest Moon Points per dish still read "Not verified yet", with no rates.</li>
           <li><strong>The Starfall Hammock</strong> is a facility in its own right, not part of a generic leisure station: it unlocks at RV 12 at Lv 1, its only level, and the most you can put out is 1 from RV 12 and 2 at RV 20 (<a href="https://aniiland.wintira.win/guides/recipes-aniimo-materials">Aniiland's materials buildings guide</a>; AniimoTools' RV 12 table likewise shows one at Lv 1, and the RV 20 step rests on Aniiland alone, so it carries the count single source flag). Like every other facility, Stage 3 assumes you put out the max your RV level allows: 1 at RV 14, none below RV 12. Its one product is Star, gathered for the Advanced Wind Chime chain and flagged unverified wherever a plan uses it, and the Best Plan sets that chain running when the hammock is out rather than leaving Star out. The hammock is also the first facility here with an environment need: <strong>it needs a Cool temperature to work</strong>, from the player's own lookup (Oct 25, 2026), so the Layout Helper stands it inside a Cooling Unit zone whenever a plan gathers Star, and that zone counts toward Cooling Unit coverage like a Cool crop's zone.</li>
           <li><strong>Module levels and verified unlocks (checked Oct 24, 2026):</strong> the four boxes in the Stage 3 panel are Ecological (max Lv 8), Kitchen (max Lv 7), Resource Detector (max Lv 8) and Crafting (max Lv 7), all starting at 0. The unlock map is <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels, the RV modules section</a>, cross-checked against <a href="https://aniimoguide.com/homeland">aniimoguide's Homeland guide</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">the Aniiland RV level roadmap</a>. Ecological: Lv 1 Quick Wheat (RV 3), Lv 2 Quick Bamboo (RV 7), Lv 3 Quick Potato (RV 8), Lv 4 Quick Lemon (RV 11), Lv 5 Quick Rice (RV 12), Lv 6 Quick Maple Syrup (RV 14), Lv 7 Quick Strawberry (RV 17), Lv 8 Quick Coconut (RV 18). Kitchen: Lv 1 Aniimo Feeding (RV 2), Lv 2 Premium Bread (RV 4), Lv 3 Premium Potato Soup (RV 8), Lv 4 Premium Sweet Rice Wine (RV 10), Lv 5 Premium Salted Lemon (RV 13), Lv 6 Premium Jello (RV 16), Lv 7 Premium Berry Chocolate Coconut Pudding (RV 19). Resource Detector: Lv 1 Quick Well Water (RV 5), Lv 2 Quick Sea Salt (RV 8), Lv 3 Quick Aromathyst (RV 11), Lv 4 Quick Fresh Water (RV 12), Lv 5 Quick Wool (RV 13), Lv 6 Quick Deep Rock Spring Water (RV 15), Lv 7 Quick Natural Mineral Water (RV 17), Lv 8 Quick Scales (RV 19). Crafting: Lv 1 Premium River-Washed Stones (RV 5), Lv 2 Premium Rose Freshener (RV 7), Lv 3 Advanced Lemon Incense (RV 10), Lv 4 Premium Wind Chime (RV 12), Lv 5 Premium Soap (RV 17), Lv 6 Premium Gemstone Dust (RV 18), Lv 7 Premium Mixed Perfume (RV 19). Only three of these change this planner's numbers, and they switch on by themselves from your Ecological level: Maple Syrup harvest ×30 at Lv 6, Strawberry harvest ×26 at Lv 7 and Coconut harvest ×8 at Lv 8, in the Grow list, Money Crops and Layout Helper alike. The Kitchen, Resource Detector and Crafting unlocks are Premium or Advanced variants already covered by their base entries at the same ingredients, so they are shown for ownership and change no amounts. <strong>Still unverified, never guessed:</strong> Premium Wheat appears in no module ladder in any source checked. The roadmap lists it only as a Farmland Lv 6 crop arriving at RV 12, with no module named, so it stays a manual tap in the panel, flagged as unverified, and no level ever switches it on for you.</li>
-          <li><strong>Team Helper crew counts, the single crew suggestion</strong> are worked out from your entire plan, never fixed: the basket plan plus, when you have run one, the Best Plan's facilities unioned in and deduped by facility so a facility needed by both counts once, plus leveling jobs when leveling is on. There is no crew inside the Best Plan panel anymore. Best counts one dedicated worker per busy facility, and Minimum counts one Aniimo per job, shared part time across all of that job's facilities. Somniwing is the one known double act (Grass Lv 4 and Leisure Lv 4), so it covers both jobs at once and is counted as one Aniimo in Best and Minimum alike — crews count individuals with their full ability sets, never one head per job — and when a Somniwing is already on the crew, the planting Grass Aniimo is that same individual, not an extra. A planner that counts differently, one worker per crop or per station run instead of per facility or per job, will land on a bigger number for the same basket: that is the counting rule, not missing crew. Every facility this plan sets running is counted here, including Farmland and Woodland below. Best-worker names and ability levels: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 and Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3 (Dewy Lv 1 also works). Jobs follow the planner's recipe data, where every craft names its worker, plus the verified gather pairings Well = Water, Mine = Earth and Tidewhisper Sandcastle = Leisure. Which ability staffs Farmland, Woodland, the Dewy House and the leisure station is <span class="verdict v-mix">not verified yet</span>, so no worker is named for those runs in the panel; each of those stations still adds one Aniimo to the crew total, because the runs still need doing, and Ice, Light and Hauling read 0 until a facility in the data asks for them; Grass never reads 0, because planting always counts at least 1 Grass Aniimo by the player's rule. By the player's own rule (Oct 25, 2026), nine facilities also carry an Aniimo each in their own right whenever they are out at the picked RV level: Sunlamp, Heat Furnace, Cooling Unit, Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle and Nimbus Bed, 1 Aniimo per building out at the derived RV count, typed where verified (Mine Earth, Well Water, Sandcastle and Hammock Leisure, Cooling Unit Ice — cooling units need Ice Aniimo, the player's own word) and flagged type not verified yet where it is not; those Aniimo sit inside the crew total and the put-out list, and the same nine appear in the Layout Helper with their counts and Aniimo. Hauling and extra Water watering are named in the panel with their types, their counts flagged not verified yet and never invented; Grass planting is named too, with its floor of 1 counted in the crew and only the count beyond 1 flagged not verified yet. Grass and Ice stand in the team as named jobs, not just numbers inside the totals. The team is labelled by ability and count, the way Aniimax's team panel labels its crew — Ice Aniimo ×2 on the Cooling Units, Grass Aniimo on Planting — and no entry names a species the player must use: the strongest known Aniimo for a job (Geoclaw Lv 3 for Ice, Somniwing Lv 4 for Grass) appears only as a hint inside the entry's hover or tap note, together with the ability level, the best personality with its +20% note, and the facility with what it is making. The Ice chip counts the Cooling Units' Aniimo, the Grass chip never reads 0 while a plan is growing anything, and when a Somniwing already on the crew covers the planting, its entry and worker row read Grass + Leisure and say it also does the planting, instead of the Grass line disappearing into a footnote. Entries and rows carry the Aniimax ability markers: a circle in the ability's game colour with the Aniimo level inside, ringed in gold where the plan counts on that facility's personality bonus (+20%), the same markers on the Layout Helper's Aniimo lines, and a short How to read this note sits with the team and in the layout legend explaining the entries and the markers in plain words.</li>
-          <li><strong>Aniimo caps (how many Aniimo you can put out):</strong> the cap at each RV is the "place N Aniimo in your Home" number from <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, and it matches <a href="https://metabot.gg/en/aniimo/guides/homeland">MetaBot.GG's retail-file Homeland guide</a> at every level: RV 2 is 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44 and 45 at RV 20; RV 1 has none yet. The Team Helper checks its whole Put out total against that cap — plan crew, the nine facilities' attached Aniimo and the planting Grass Aniimo together, nothing counted outside it — and never shows a crew over the cap at all: a crew you cannot put out is not a plan. When the full Best crew is over the cap, Best is fitted down to the cap instead of switched off — workers are shared at as few facilities as the cap forces, starting where sharing crowds a job least, every facility keeps running, and the plan names the facilities that share — and only when even Minimum, one shared Aniimo per job, is over the cap does no crew show, just what each would need and what has to change. Crews are counted in individuals, not job slots: where one Aniimo's verified abilities cover more than one needed job it is counted once in both Best and Minimum (Somniwing, Grass Lv 4 and Leisure Lv 4, is the verified multi-ability case the page's best-worker data supports, and the counting machinery groups any species the data names for two jobs the same way), multi-ability Aniimo are preferred when sharing is what makes a crew fit, and the planting Grass Aniimo adds no extra head when a crew member already holds Grass. One flag, honestly: aniimoguide prints a second, lower set of numbers read from the RV upgrade cards, from RV 13 on (40 at RV 20), and advises planning on the lower set until the live game settles it. This planner follows the AniimoTools and MetaBot "place in your Home" numbers instead, because they match the player's own game: 36 slots at her RV 14.</li>
+          <li><strong>Team Helper crew counts, the single crew suggestion</strong> are worked out from your entire plan, never fixed: the basket plan plus, when you have run one, the Best Plan's facilities unioned in and deduped by facility so a facility needed by both counts once, plus leveling jobs when leveling is on. There is no crew inside the Best Plan panel anymore. Best counts one dedicated worker per busy facility, and Minimum counts one Aniimo per job, shared part time across all of that job's facilities. Somniwing is the one known double act (Grass Lv 4 and Leisure Lv 4), so it covers both jobs at once and is counted as one Aniimo in Best and Minimum alike — crews count individuals with their full ability sets, never one head per job — and when a Somniwing is already on the crew, the planting Grass Aniimo is that same individual, not an extra. A planner that counts differently, one worker per crop or per station run instead of per facility or per job, will land on a bigger number for the same basket: that is the counting rule, not missing crew. Every facility this plan sets running is counted here, including Farmland and Woodland below. Best-worker names and ability levels: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 and Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3 (Dewy Lv 1 also works). Jobs follow the planner's recipe data, where every craft names its worker, plus the verified gather pairings Well = Water, Mine = Earth and Tidewhisper Sandcastle = Leisure. Which ability staffs Farmland, Woodland, the Dewy House and the leisure station is <span class="verdict v-mix">not verified yet</span>, so no worker is named for those runs in the panel; each of those stations still adds one Aniimo to the crew total, because the runs still need doing, and Ice and Light read 0 until a facility in the data asks for them — Ice's one exception is the Cooling Units the layout puts out, below. Hauling never reads 0: by the player's rule (Oct 27, 2026) every plan carries more than one Hauling Aniimo, the count growing with the facilities the plan sets running (2 while five or fewer facilities run, then one more per five more facilities, up to 6), some of them Aniimo already on the crew for another job doing hauling as a secondary ability and counted once in their main job, the rest dedicated haulers added to the crew total. Grass never reads 0, because planting always counts at least 1 Grass Aniimo by the player's rule. By the player's own rule (Oct 25, 2026), nine facilities also carry an Aniimo each in their own right whenever they are out: Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle and Nimbus Bed whenever they are out at the picked RV level, and the three climate buildings — Sunlamp, Heat Furnace, Cooling Unit — only where the Layout Helper's layout actually puts them out (player's rule, Oct 27, 2026: Farmland and Woodland plots that need the same building share its coverage zones there, packed into the fewest buildings that cover the plan and never more than the RV count, so all the Cool plots under one Cooling Unit zone count one Ice Aniimo; the buildings out, the plots sharing them and the Aniimo saved by sharing are stated in the layout and in the crew), 1 Aniimo per building out, typed where verified (Mine Earth, Well Water, Sandcastle and Hammock Leisure, Cooling Unit Ice — cooling units need Ice Aniimo, the player's own word) and flagged type not verified yet where it is not; those Aniimo sit inside the crew total and the put-out list, and the same nine appear in the Layout Helper with their counts and Aniimo. Extra Water watering is named in the panel with its type, its count flagged not verified yet and never invented; Hauling is counted by the player's scaling rule above, stated on its put-out line with the dedicated/secondary split; Grass planting is named too, with its floor of 1 counted in the crew and only the count beyond 1 flagged not verified yet. Grass and Ice stand in the team as named jobs, not just numbers inside the totals. The team is labelled by ability and count, the way Aniimax's team panel labels its crew — Ice Aniimo ×2 on the Cooling Units, Grass Aniimo on Planting — and no entry names a species the player must use: the strongest known Aniimo for a job (Geoclaw Lv 3 for Ice, Somniwing Lv 4 for Grass) appears only as a hint inside the entry's hover or tap note, together with the ability level, the best personality with its +20% note, and the facility with what it is making. The Ice chip counts the Cooling Units' Aniimo, the Grass chip never reads 0 while a plan is growing anything, and when a Somniwing already on the crew covers the planting, its entry and worker row read Grass + Leisure and say it also does the planting, instead of the Grass line disappearing into a footnote. Entries and rows carry the Aniimax ability markers: a circle in the ability's game colour with the Aniimo level inside, ringed in gold where the plan counts on that facility's personality bonus (+20%), the same markers on the Layout Helper's Aniimo lines, and a short How to read this note sits with the team and in the layout legend explaining the entries and the markers in plain words.</li>
+          <li><strong>Aniimo caps (how many Aniimo you can put out):</strong> the cap at each RV is the "place N Aniimo in your Home" number from <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, and it matches <a href="https://metabot.gg/en/aniimo/guides/homeland">MetaBot.GG's retail-file Homeland guide</a> at every level: RV 2 is 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44 and 45 at RV 20; RV 1 has none yet. The Team Helper checks its whole Put out total against that cap — plan crew, the nine facilities' attached Aniimo (climate buildings only where the layout puts them out), the planting Grass Aniimo and the dedicated haulers together, nothing counted outside it — and never shows a crew over the cap at all: a crew you cannot put out is not a plan. When the full Best crew is over the cap, Best is fitted down to the cap instead of switched off — workers are shared at as few facilities as the cap forces, starting where sharing crowds a job least, every facility keeps running, and the plan names the facilities that share — and only when even Minimum, one shared Aniimo per job, is over the cap does no crew show, just what each would need and what has to change. Crews are counted in individuals, not job slots: where one Aniimo's verified abilities cover more than one needed job it is counted once in both Best and Minimum (Somniwing, Grass Lv 4 and Leisure Lv 4, is the verified multi-ability case the page's best-worker data supports, and the counting machinery groups any species the data names for two jobs the same way), multi-ability Aniimo are preferred when sharing is what makes a crew fit, and the planting Grass Aniimo adds no extra head when a crew member already holds Grass. One flag, honestly: aniimoguide prints a second, lower set of numbers read from the RV upgrade cards, from RV 13 on (40 at RV 20), and advises planning on the lower set until the live game settles it. This planner follows the AniimoTools and MetaBot "place in your Home" numbers instead, because they match the player's own game: 36 slots at her RV 14.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> are the Master Guide's verified table, where GameWith, Game8, AniimoTools and Selphie1999 Gaming agree: E Energetic at the Bouncy Brew Keg and Woodworking Bench; I Instinctive at the Phonolfactory Table and Dewy House; S Practical at the Claw Game Cooker and Chimney Kiln; N Nimble at the Jukebox Dryer and Blazing Stove; T Tenacious at the Carousel Mill and Simmering Pot; F Faithful at the Joy Wheel Loom and Well; J Judicious at the Crafting Table and Tidewhisper Sandcastle; P Playful at the Mine and Pickling Jar. Farmland, Woodland, the Dance Pad Polisher, the Aniipod Maker and the leisure station have no verified match in that table, and the panel says so rather than guessing.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy (added from a firsthand screenshot):</strong> reported missing from an in-game Daily Orders panel and checked against the Daily Aniimo recipe book before adding. The book confirms Grapes x9, Rock Candy x1, Claw Game Cooker Lv 5, Fire worker and workload 243. The screenshot's second ingredient icon looked like plain sugar cubes, but the book names it Rock Candy, so the planner follows the book and plans call for Rock Candy (which itself crafts from Sugarcane and Plain Fresh Water at the Simmering Pot). The screenshot panel also shows unit price 2850 Home Coins, and Claw Game Cooker Lv 5 sits at RV 12 in this planner's facility tiers.</li>
@@ -1585,8 +1585,8 @@
        the count beyond 1 stays flagged. */
     var CREW_EXTRA = [
       { label:"Hauling", type:"Hauling",
-        html:"Hauling Aniimo move everything the plan makes and gathers. Count <span class=\"verdict v-mix\">not verified yet</span>: no verified hauling count is in the data behind this planner, so none is invented.",
-        text:"Hauling Aniimo move everything the plan makes and gathers. Count not verified yet, so none is invented." },
+        html:"Hauling Aniimo move everything the plan makes and gathers. By your rule (Oct 27, 2026) a plan always carries <strong>more than one</strong>: 2 while five or fewer facilities run, then one more per five more facilities, up to 6 — so the count grows as the plan gets bigger. Some of them are Aniimo already on the crew for another job, hauling as a secondary ability, counted once in their main job; the rest are dedicated haulers added to the crew total. The exact split for this plan is in the put-out list above.",
+        text:"Hauling Aniimo move everything the plan makes and gathers. By your rule (Oct 27, 2026) a plan always carries more than one: 2 while five or fewer facilities run, then one more per five more facilities, up to 6, so the count grows as the plan gets bigger. Some are Aniimo already on the crew for another job, hauling as a secondary ability and counted once in their main job; the rest are dedicated haulers added to the crew total." },
       { label:"Planting", type:"Grass",
         html:"Grass Aniimo do the planting, and at least 1 is counted in the crew: it is in the put-out list and inside the crew total. The exact count beyond 1 is <span class=\"verdict v-mix\">not verified yet</span>: bigger plantings may need more, so no larger number is invented.",
         text:"Grass Aniimo do the planting, and at least 1 is counted in the crew. The exact count beyond 1 is not verified yet, so no larger number is invented." },
@@ -1808,17 +1808,43 @@
       Object.keys(byFac).forEach(function(f){ byFac[f].items.sort(); });
       Object.keys(uncounted).forEach(function(f){ uncounted[f].items.sort(); });
       /* The nine named facilities join the crew in their own right:
-         available at the RV level means out, so every building out adds
-         its 1 Aniimo to the crew, typed where verified and flagged
-         where not. This is on top of the plan-driven crew above: a
-         facility the plan also runs keeps both, because the attached
-         Aniimo is a separate slot from the plan's worker. */
+         every building out adds its 1 Aniimo to the crew, typed where
+         verified and flagged where not. This is on top of the
+         plan-driven crew above: a facility the plan also runs keeps
+         both, because the attached Aniimo is a separate slot from the
+         plan's worker. The three climate buildings are the exception
+         to "available means out" (player's rule, Oct 27, 2026): they
+         are out only where the Layout Helper's layout actually puts
+         them out — Farmland and Woodland plots that need the same
+         building share its zones there, packed into the fewest
+         buildings — so only the layout's used count of each is
+         staffed here. If all the Cool plots fit under one Cooling
+         Unit's zone, one Cooling Unit is out and one Ice Aniimo is
+         counted, however many the RV level allows. */
+      var climInfo = (typeof climateLayoutInfo === "function") ? climateLayoutInfo() : null;
       var placed = {};
       FAC_ANIIMO.forEach(function(fa){
         var c = facCount(fa.facility);
+        if(CLIM_BUILDINGS.indexOf(fa.facility) > -1) c = climInfo ? (climInfo.used[fa.facility] || 0) : 0;
         if(c > 0) placed[fa.facility] = { facility:fa.facility, count:c, job:fa.job };
       });
-      return { byFac:byFac, uncounted:uncounted, placed:placed, planting:PLANTING_MIN };
+      /* Hauling (player's rule, Oct 27, 2026): always more than one
+         in the total, and more as the plan gets bigger — 2 while
+         five or fewer facilities run, then one more per five more
+         facilities, up to 6. Some of those haulers are Aniimo
+         already on this crew for another job: hauling is their
+         secondary ability, so they are counted once, in their main
+         job (half the need, rounded down, is covered that way).
+         The rest are dedicated haulers, and only they add heads to
+         the crew total. */
+      var facsRunning = Object.keys(byFac).length + Object.keys(uncounted).length;
+      var hauling = null;
+      if(facsRunning > 0 || Object.keys(placed).length){
+        var hNeed = Math.min(6, 2 + Math.floor(Math.max(0, facsRunning - 1) / 5));
+        var hCovered = Math.floor(hNeed / 2);
+        hauling = { need:hNeed, covered:hCovered, dedicated:hNeed - hCovered, facilities:facsRunning };
+      }
+      return { byFac:byFac, uncounted:uncounted, placed:placed, planting:PLANTING_MIN, hauling:hauling, climate:climInfo };
     }
 
     function teamBestRows(byFac){
@@ -2048,9 +2074,14 @@
     /* The extra crew the player named: Hauling, Grass for planting,
        Water for the wells and watering. Named with their types; the
        counts are flagged not verified yet, never invented. */
-    function crewExtraHtml(){
+    function crewExtraHtml(team){
       return '<div class="note note-info"><h4>🐾 More crew this plan needs</h4><p>' +
-        CREW_EXTRA.map(function(x){ return "<strong>" + esc(x.label) + " (" + esc(x.type) + "):</strong> " + x.html; }).join("<br />") +
+        CREW_EXTRA.map(function(x){
+          if(x.label === "Hauling" && team && team.hauling){
+            return "<strong>Hauling (Hauling):</strong> This plan carries <strong>" + team.hauling.need + " Hauling Aniimo</strong> for the " + team.hauling.facilities + (team.hauling.facilities === 1 ? " facility" : " facilities") + " it sets running: " + team.hauling.covered + (team.hauling.covered === 1 ? " is" : " are") + " already on this crew for another job, hauling as a secondary ability and counted once, and " + team.hauling.dedicated + " dedicated " + (team.hauling.dedicated === 1 ? "hauler is" : "haulers are") + " added to the crew total. Bigger plans carry more: the count grows with the facilities running.";
+          }
+          return "<strong>" + esc(x.label) + " (" + esc(x.type) + "):</strong> " + x.html;
+        }).join("<br />") +
         "</p></div>";
     }
     /* Aniimo cap: how many Aniimo can be put out (placed) in your Home
@@ -2201,6 +2232,16 @@
         var pTip = "Grass Lv." + gw.lvl + " · strongest known: " + gw.name + " Lv." + gw.lvl + (gw.alt ? " (or " + gw.alt.name + " Lv." + gw.alt.lvl + ")" : "") + " · Planting · at least " + team.planting + " for planting; exact count beyond " + team.planting + " not verified yet";
         lines.push('<li tabindex="0" data-tip="' + escA(pTip) + '">' + abilityMarker("Grass", false) + "<strong>Grass Aniimo</strong> · Planting · at least " + team.planting + " for planting; exact count beyond " + team.planting + " not verified yet</li>");
       }
+      /* Hauling, in the put-out list like every other job: the line
+         stands for the plan's whole hauling count, and its data-heads
+         is only the dedicated haulers — the rest of the count is
+         Aniimo already listed above for another job, hauling as a
+         secondary ability, counted once in their main job. */
+      if(team.hauling && team.hauling.need > 0){
+        var hw = BEST_WORKERS.Hauling;
+        var hTip = "Hauling Lv." + hw.lvl + " · strongest known: " + hw.name + " Lv." + hw.lvl + " · Hauling · " + team.hauling.need + " Hauling Aniimo in all for the " + team.hauling.facilities + (team.hauling.facilities === 1 ? " facility" : " facilities") + " this plan sets running: " + team.hauling.covered + " covered by Aniimo already on this crew as a secondary ability (counted once, in their main job), " + team.hauling.dedicated + " dedicated hauler" + (team.hauling.dedicated === 1 ? "" : "s") + " added to the total";
+        lines.push('<li data-heads="' + team.hauling.dedicated + '" tabindex="0" data-tip="' + escA(hTip) + '">' + abilityMarker("Hauling", false) + "<strong>Hauling Aniimo ×" + team.hauling.need + "</strong> · Hauling · " + team.hauling.covered + " covered by Aniimo already on this crew (secondary ability, counted once) · " + team.hauling.dedicated + " dedicated " + (team.hauling.dedicated === 1 ? "hauler" : "haulers") + " added</li>");
+      }
       if(!lines.length) return "";
       /* The total counts individuals, not entries: an aggregated
          entry (a facility's Aniimo, labelled with its ×count) carries
@@ -2305,8 +2346,12 @@
          holds Grass (Somniwing, Grass Lv 4 and Leisure Lv 4). */
       var plantingBy = plantingCoveredBy(team);
       var plantingAdd = plantingBy ? 0 : (team.planting || 0);
-      var bestSize = bestIndividualCount(team.byFac) + uncountedFacs.length + placedTotal + plantingAdd;
-      var minSize = minIndividualCount(jobFacCount) + uncountedFacs.length + placedTotal + plantingAdd;
+      /* Dedicated haulers add heads; the hauling Aniimo covered by
+         crew members' secondary ability are already inside the
+         counts they add nothing to. */
+      var haulingAdd = team.hauling ? team.hauling.dedicated : 0;
+      var bestSize = bestIndividualCount(team.byFac) + uncountedFacs.length + placedTotal + plantingAdd + haulingAdd;
+      var minSize = minIndividualCount(jobFacCount) + uncountedFacs.length + placedTotal + plantingAdd + haulingAdd;
       var cap = aniimoCapFor(userRV);
       var overBest = cap !== null && bestSize > cap;
       var overMin = cap !== null && minSize > cap;
@@ -2321,8 +2366,8 @@
          change. */
       var fittedRows = null, fittedSize = 0;
       if(overBest && !overMin){
-        fittedRows = fitBestRows(team.byFac, cap - uncountedFacs.length - placedTotal - plantingAdd);
-        if(fittedRows) fittedSize = fittedRows.reduce(function(a, r){ return a + r.count; }, 0) + uncountedFacs.length + placedTotal + plantingAdd;
+        fittedRows = fitBestRows(team.byFac, cap - uncountedFacs.length - placedTotal - plantingAdd - haulingAdd);
+        if(fittedRows) fittedSize = fittedRows.reduce(function(a, r){ return a + r.count; }, 0) + uncountedFacs.length + placedTotal + plantingAdd + haulingAdd;
       }
       var bestHidden = overBest && !fittedRows;
       if(bBtn){
@@ -2336,7 +2381,7 @@
         if(note) note.textContent = "Neither crew fits RV " + userRV + ", so no crew is shown: a crew you cannot put out is not a plan.";
         area.innerHTML = '<div class="note note-warn"><h4>No crew fits RV ' + userRV + ' yet</h4><p>' +
           "Best would need <strong>" + bestSize + " Aniimo</strong> and even Minimum, with workers shared one per job, would need <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so both are over and neither is shown — there is no usable crew to list. " +
-          "The count covers the whole crew together: the plan's workers, the Aniimo attached to the facilities out at RV " + userRV + " and the planting Grass Aniimo, with nothing counted outside it. " +
+          "The count covers the whole crew together: the plan's workers, the Aniimo attached to the facilities out at RV " + userRV + ", the planting Grass Aniimo and the dedicated haulers, with nothing counted outside it. " +
           "To get a crew that fits: take recipes out of the basket so fewer facilities run at once, turn leveling off, or level the RV up first.</p></div>";
         return;
       }
@@ -2375,7 +2420,7 @@
           "Best needs " + bestSize + " Aniimo, " + (bestSize - cap) + " over your limit of " + cap + ". The Minimum crew below is the one that fits: it puts out " + minSize + " Aniimo because its workers are shared, one Aniimo per job across every facility that needs that job. Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — facilities just take turns, so everything runs slower than Best.</p></div>";
       }
       var howToHtml = '<div class="note note-info"><h4>📖 How to read this</h4><p>Each entry is Aniimo to put out, labelled by <strong>ability and count</strong> — <strong>Ice Aniimo ×2</strong> means two Aniimo with the Ice ability, and any Aniimo with that ability works: no entry names one you must use. The <strong>coloured circle</strong> is the ability in its game colour, with the Aniimo level inside; a <strong>gold ring</strong> around it means the plan counts on that facility\'s personality bonus (+20%). <strong>Hover or tap an entry</strong>, or its circle, for the details: the ability level, the strongest known Aniimo as a hint only, the best personality, and the facility with what it is making.</p></div>';
-      var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml() + '<div class="summary-strip">' +
+      var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml(team) + '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? (fittedRows ? "Best, fitted to RV " + userRV : "Best") : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
         '<div class="sum-chip"><b>' + (facs.length + uncountedFacs.length + placedFacs.length) + '</b><span>facilities running</span></div>' +
@@ -2384,6 +2429,17 @@
         html += '<p class="src" style="margin-top:10px">🏭 That total includes ' + placedTotal + ' Aniimo attached to the facilities out at RV ' + userRV + ', 1 per building: ' + FAC_ANIIMO.filter(function(fa){ return team.placed[fa.facility]; }).map(function(fa){
           return esc(fa.facility) + " ×" + team.placed[fa.facility].count + (fa.job ? " (" + fa.job + ")" : " (type not verified yet)");
         }).join(" · ") + ".</p>";
+      }
+      if(team.climate){
+        var climOut = CLIM_BUILDINGS.filter(function(b){ return (team.climate.used[b] || 0) > 0; });
+        html += '<p class="src" style="margin-top:10px">🌡️ Climate buildings out in your layout: ' +
+          (climOut.length ? climOut.map(function(b){ return "<strong>" + esc(b) + " ×" + team.climate.used[b] + "</strong> (" + (FAC_ANIIMO.filter(function(fa){ return fa.facility === b; })[0].job || "type not verified yet") + " Aniimo ×" + team.climate.used[b] + ")"; }).join(" · ") : "none — this plan's layout puts no climate building out") +
+          ". Only the climate buildings your layout puts out are staffed: Farmland and Woodland plots that need the same building share its zones there, so sharing cuts the Aniimo this plan needs — <strong>" + team.climate.savedAniimo + " Aniimo saved</strong> against staffing all " + CLIM_BUILDINGS.reduce(function(a, b){ return a + (team.climate.owned[b] || 0); }, 0) + " climate buildings your RV level allows" +
+          (team.climate.savedZones > 0 ? ", and sharing zones saved " + team.climate.savedZones + (team.climate.savedZones === 1 ? " building" : " buildings") + " against giving every climate its own zones" : "") +
+          (team.climate.sharedZones && team.climate.sharedZones.length ? ". Shared zones: " + team.climate.sharedZones.map(function(z){ return esc(z.keys.join(" + ")) + " " + esc(z.facility) + " plots share one " + esc(z.building); }).join(" · ") : "") + ".</p>";
+      }
+      if(team.hauling){
+        html += '<p class="src" style="margin-top:10px">🚚 That total includes <strong>' + team.hauling.dedicated + ' dedicated Hauling Aniimo</strong>: the plan carries ' + team.hauling.need + ' Hauling Aniimo in all, and ' + team.hauling.covered + ' of them ' + (team.hauling.covered === 1 ? "is an Aniimo" : "are Aniimo") + ' already counted above for another job, hauling as a secondary ability — counted once, never twice.</p>';
       }
       if(uncountedFacs.length){
         html += '<p class="src" style="margin-top:10px">🌱 That total includes one Aniimo each for ' + uncountedFacs.map(function(f){ return esc(f); }).join(" and ") + ': those stations still need a worker each, but which job staffs them is not verified yet, so no worker is named for them below.</p>';
@@ -2408,9 +2464,15 @@
            but every Cooling Unit out carries its own Ice Aniimo, so
            the chip counts those Aniimo like the put-out list does. */
         if(j === "Ice" && team.placed && team.placed["Cooling Unit"]) c += team.placed["Cooling Unit"].count;
+        /* Hauling reads its whole count, dedicated plus secondary:
+           the chip shows every Hauling Aniimo the plan carries,
+           while the crew total only adds the dedicated ones. */
+        if(j === "Hauling" && team.hauling) c = team.hauling.need;
         var mark = (merged && (j === "Grass" || j === "Leisure")) || (plantingBy && (j === "Grass" || j === "Leisure") && !jobFacCount["Grass"]) ? " ‡" : "";
+        if(j === "Hauling" && team.hauling && team.hauling.covered > 0) mark += " §";
         return '<span class="job-chip' + (c ? "" : " zero") + '">' + j + " <b>" + c + "</b>" + mark + "</span>";
       }).join("") + "</div>";
+      if(team.hauling && team.hauling.covered > 0) html += '<p class="src" style="margin-top:8px">§ Hauling: ' + team.hauling.covered + ' of the ' + team.hauling.need + ' Hauling Aniimo ' + (team.hauling.covered === 1 ? "is" : "are") + ' already on this crew for another job and haul' + (team.hauling.covered === 1 ? "s" : "") + ' as a secondary ability, so the crew total counts ' + (team.hauling.covered === 1 ? "it" : "them") + ' once, in their main job — only the ' + team.hauling.dedicated + ' dedicated haulers add to the total.</p>';
       if(merged) html += '<p class="src" style="margin-top:8px">‡ One Aniimo covers both: Somniwing holds Grass Lv 4 and Leisure Lv 4, so the crew total counts it once, not once per job.</p>';
       if(plantingBy && !merged) html += '<p class="src" style="margin-top:8px">‡ Planting is covered by ' + esc(plantingBy) + ', already on this crew: it holds Grass Lv 4 alongside its other ability, so the planting Aniimo is that same individual — counted once in the total, not added again.</p>';
       if(facs.length && teamMode === "best"){
@@ -2512,8 +2574,8 @@
     document.getElementById("teamBestBtn").addEventListener("click", function(){ teamMode = "best"; renderTeam(); });
     document.getElementById("teamMinBtn").addEventListener("click", function(){ teamMode = "minimum"; renderTeam(); });
     var layoutBestBtn = document.getElementById("layoutBestBtn"), layoutMinBtn = document.getElementById("layoutMinBtn");
-    if(layoutBestBtn) layoutBestBtn.addEventListener("click", function(){ layoutMode = "best"; renderLayout(); });
-    if(layoutMinBtn) layoutMinBtn.addEventListener("click", function(){ layoutMode = "minimum"; renderLayout(); });
+    if(layoutBestBtn) layoutBestBtn.addEventListener("click", function(){ layoutMode = "best"; renderLayout(); renderTeam(); });
+    if(layoutMinBtn) layoutMinBtn.addEventListener("click", function(){ layoutMode = "minimum"; renderLayout(); renderTeam(); });
 
     /* ============ Stage 3: facility & module inputs ============ */
     function renderFacilities(){
@@ -3303,7 +3365,7 @@
       var owned = {};
       CLIM_BUILDINGS.forEach(function(b){ owned[b] = Math.max(0, facCount(b)); });
       var groups = buildLayoutGroups(counts);
-      var field = { entries:[], byKey:{}, farmUsed:0, woodUsed:0, mins:0, slowest:"" };
+      var field = { entries:[], byKey:{}, farmUsed:0, woodUsed:0, mins:0, slowest:"", zoneList:[], buildingZones:{} };
       var unplaced = [], notes = [];
       function entryFor(grp){
         var e = field.byKey[grp.info.key];
@@ -3313,10 +3375,44 @@
         }
         return e;
       }
-      function zonesUsedByOthers(building, self){
-        var z = 0;
-        field.entries.forEach(function(e){ if(e !== self && e.grp.info.building === building) z += e.zonesFarm + e.zonesWood; });
-        return z;
+      /* Climate sharing (player's rule, Oct 27, 2026): plots that need
+         the same climate building SHARE its coverage zones. Zones are
+         packed by building and land type — every crop a building
+         serves, whatever its climate tag, fills the open zone for
+         that building and land type before a new zone is opened, and
+         Farmland and Woodland zones both count against the one
+         building pool — so the layout puts out the fewest furnaces,
+         cooling units and sunlamps that cover the plan, and never
+         more than the RV level's derived count. A zone's contents
+         live in field.zoneList, so what shares a building is stated,
+         not hidden. Plot sizes differ by land, so a single zone holds
+         one land type; the building is what is shared. */
+      var sharedOpen = {};
+      function addToZone(zone, name, key, count){
+        zone.crops[name] = (zone.crops[name] || 0) + count;
+        if(zone.keys.indexOf(key) === -1) zone.keys.push(key);
+        zone.plots += count;
+      }
+      function packIntoZones(B, fac, key, name, take){
+        var per = plotsPerZone(fac);
+        var skey = B + "|" + fac;
+        var sh = sharedOpen[skey] || (sharedOpen[skey] = { open:0, zone:null });
+        var rem = take;
+        if(sh.open > 0 && sh.zone){
+          var fill = Math.min(sh.open, rem);
+          addToZone(sh.zone, name, key, fill);
+          sh.open -= fill; rem -= fill;
+          if(sh.open <= 0){ sh.open = 0; sh.zone = null; }
+        }
+        while(rem > 0){
+          var zc = Math.min(per, rem);
+          var zone = { building:B, facility:fac, crops:{}, keys:[], plots:0 };
+          field.zoneList.push(zone);
+          field.buildingZones[B] = (field.buildingZones[B] || 0) + 1;
+          addToZone(zone, name, key, zc);
+          sh.zone = zone; sh.open = per - zc; rem -= zc;
+          if(sh.open <= 0){ sh.open = 0; sh.zone = null; }
+        }
       }
       groups.forEach(function(grp){
         var B = grp.info.building;
@@ -3336,27 +3432,35 @@
           var e = entryFor(grp);
           var room = fac === "Farmland" ? farmAvail - field.farmUsed : woodAvail - field.woodUsed;
           if(B && owned[B] > 0){
+            /* Shared zone room: the open zone for this building and
+               land type still has room in it (shared with whichever
+               crops of this building are already in it), plus whole
+               new zones while the building pool — Farmland and
+               Woodland zones together — is under the RV count. */
             var per = plotsPerZone(fac);
-            var cur = fac === "Farmland" ? e.farm : e.wood;
-            var curZones = cur ? Math.ceil(cur / per) : 0;
-            var partial = cur % per ? per - (cur % per) : 0;
-            /* The zone pool is shared: zones this same group already uses
-               in the layout for the other land type come off the room too,
-               not just the zones other groups use. */
-            var ownOtherZones = fac === "Farmland" ? e.zonesWood : e.zonesFarm;
-            var zoneRoom = owned[B] - zonesUsedByOthers(B, e) - ownOtherZones - curZones;
-            room = Math.min(room, partial + Math.max(0, zoneRoom) * per);
+            var shNow = sharedOpen[B + "|" + fac];
+            var openRoom = shNow ? shNow.open : 0;
+            var newZones = Math.max(0, owned[B] - (field.buildingZones[B] || 0));
+            room = Math.min(room, openRoom + newZones * per);
           }
           var take = Math.max(0, Math.min(total, room));
           if(take > 0){
             if(fac === "Farmland"){ e.farm += take; e.farmCrops[n] = (e.farmCrops[n] || 0) + take; field.farmUsed += take; }
             else { e.wood += take; e.woodCrops[n] = (e.woodCrops[n] || 0) + take; field.woodUsed += take; }
-            e.zonesFarm = e.farm ? Math.ceil(e.farm / plotsPerZone("Farmland")) : 0;
-            e.zonesWood = e.wood ? Math.ceil(e.wood / plotsPerZone("Woodland")) : 0;
+            if(B) packIntoZones(B, fac, grp.info.key, n, take);
             var t = parseTimeMin(ITEMS[n].time);
             if(t > field.mins){ field.mins = t; field.slowest = n; }
           }
         });
+      });
+      /* Per-entry zone touches, read off the shared zone list: a zone
+         shared by two climate groups counts for both entries here,
+         which is why building totals always come from fieldBuildings
+         (distinct zones), never from summing these. */
+      field.entries.forEach(function(e){
+        if(!e.grp.info.building) return;
+        e.zonesFarm = field.zoneList.filter(function(z){ return z.building === e.grp.info.building && z.facility === "Farmland" && z.keys.indexOf(e.grp.info.key) > -1; }).length;
+        e.zonesWood = field.zoneList.filter(function(z){ return z.building === e.grp.info.building && z.facility === "Woodland" && z.keys.indexOf(e.grp.info.key) > -1; }).length;
       });
       /* What the one layout actually holds, per crop, and what is still
          owed after it: the still-owed plots are replanted into this same
@@ -3391,11 +3495,10 @@
          layout's Cooling Unit coverage like a Cool crop's zone. */
       if(hammock){
         var servedF = fieldServedKeys(field);
-        var hasCU = field.entries.some(function(e){ return e.grp.info.building === "Cooling Unit" && !servedF[e.grp.info.key] && e.farm + e.wood > 0; });
+        var hasCU = field.zoneList.some(function(z){ return z.building === "Cooling Unit" && !z.keys.every(function(k){ return servedF[k]; }); });
         /* Its own zone only when one is spare: the layout never lays out
            more Cooling Units than the RV level allows, hammock included. */
-        var cuUsed = 0;
-        field.entries.forEach(function(e){ if(e.grp.info.building === "Cooling Unit" && !servedF[e.grp.info.key]) cuUsed += e.zonesFarm + e.zonesWood; });
+        var cuUsed = fieldBuildings(field)["Cooling Unit"] || 0;
         field.hammock = { own:!hasCU && cuUsed < owned["Cooling Unit"] };
       }
       return {
@@ -3420,12 +3523,98 @@
     function fieldBuildings(f){
       var served = fieldServedKeys(f);
       var used = {};
-      f.entries.forEach(function(e){
-        var b = e.grp.info.building;
-        if(b && !served[e.grp.info.key]) used[b] = (used[b] || 0) + e.zonesFarm + e.zonesWood;
-      });
+      if(f.zoneList){
+        /* Distinct zones the layout actually puts out, shared zones
+           counted once: a zone is out unless every climate in it is
+           served by an overlap band instead. */
+        f.zoneList.forEach(function(z){
+          if(z.keys.length && z.keys.every(function(k){ return served[k]; })) return;
+          used[z.building] = (used[z.building] || 0) + 1;
+        });
+      } else {
+        f.entries.forEach(function(e){
+          var b = e.grp.info.building;
+          if(b && !served[e.grp.info.key]) used[b] = (used[b] || 0) + e.zonesFarm + e.zonesWood;
+        });
+      }
       if(f.hammock && f.hammock.own) used["Cooling Unit"] = (used["Cooling Unit"] || 0) + 1;
       return used;
+    }
+    /* Climate buildings a set of plot counts would need if it were all
+       planted at once, packed the sharing way: same-building plots
+       share zones (per land type, since plot sizes differ), and a
+       group served by a verified overlap band needs no building of
+       its own. Returns zones per building plus the total. */
+    function sharedBuildingNeed(counts){
+      var groups = buildLayoutGroups(counts);
+      var farmSum = {}, woodSum = {}, order = [];
+      groups.forEach(function(g){
+        var b = g.info.building;
+        if(!b || (g.overlapShared || 0) > 0) return;
+        if(farmSum[b] === undefined){ farmSum[b] = 0; woodSum[b] = 0; order.push(b); }
+        farmSum[b] += g.farm; woodSum[b] += g.wood;
+      });
+      var zones = {}, total = 0;
+      order.forEach(function(b){
+        zones[b] = (farmSum[b] ? Math.ceil(farmSum[b] / plotsPerZone("Farmland")) : 0) +
+                   (woodSum[b] ? Math.ceil(woodSum[b] / plotsPerZone("Woodland")) : 0);
+        total += zones[b];
+      });
+      return { zones:zones, total:total };
+    }
+    /* Plain sharing facts for one field layout: which buildings are
+       out, which zones are shared and by what, and the savings —
+       buildings saved by sharing zones against every climate group
+       having zones of its own, and attached Aniimo saved in the crew
+       against staffing every climate building the RV level allows
+       (climate buildings are staffed only where the layout puts them
+       out, 1 Aniimo each: see computeTeam). */
+    function climateSharingInfo(plan){
+      var f = plan.field;
+      var usedRaw = fieldBuildings(f);
+      var used = {}, ownedTotal = 0, usedTotal = 0;
+      CLIM_BUILDINGS.forEach(function(b){
+        var o = Math.max(0, plan.owned[b] || 0);
+        ownedTotal += o;
+        used[b] = Math.min(usedRaw[b] || 0, o);
+        usedTotal += used[b];
+      });
+      var served = fieldServedKeys(f);
+      var standalone = 0;
+      f.entries.forEach(function(e){
+        if(!e.grp.info.building || served[e.grp.info.key]) return;
+        standalone += (e.farm ? Math.ceil(e.farm / plotsPerZone("Farmland")) : 0) + (e.wood ? Math.ceil(e.wood / plotsPerZone("Woodland")) : 0);
+      });
+      var usedRawTotal = Object.keys(usedRaw).reduce(function(a, b){ return a + usedRaw[b]; }, 0);
+      var sharedZones = (f.zoneList || []).filter(function(z){ return z.keys.length > 1; });
+      return { used:used, usedRaw:usedRaw, usedTotal:usedTotal, ownedTotal:ownedTotal,
+        standalone:standalone, savedZones:Math.max(0, standalone - usedRawTotal),
+        savedAniimo:Math.max(0, ownedTotal - usedTotal), sharedZones:sharedZones };
+    }
+    /* The climate buildings the current layout puts out, worked out
+       from the same sources and mode as the Layout Helper itself, so
+       the Team Helper staffs exactly the buildings the layout shows:
+       basket crops + best plan crops + hand picks, combined the way
+       renderLayout combines them, in the layout mode on show. Null
+       when nothing is picked, so no climate building is staffed. */
+    function climateLayoutInfo(){
+      var autoGroups = computeBasketLayout();
+      var bpGroups = (typeof bpResult !== "undefined" && bpResult) ? computeBpLayout() : [];
+      var manualGroups = computeLayout();
+      var combined = combinedLayoutCounts(autoGroups, bpGroups, manualGroups);
+      if(!Object.keys(combined).length) return null;
+      var fieldCounts = combined;
+      if(layoutMode === "minimum"){
+        fieldCounts = {};
+        Object.keys(combined).forEach(function(n){ fieldCounts[n] = 1; });
+      }
+      var starNeeded = false;
+      if(basket.length && (computePlan().gross["Star"] || 0) > 0) starNeeded = true;
+      if(typeof bpResult !== "undefined" && bpResult && (bpResult.exp.gross["Star"] || 0) > 0) starNeeded = true;
+      var plan = computeFieldLayout(fieldCounts, starNeeded && facCount("Starfall Hammock") > 0);
+      var sharing = climateSharingInfo(plan);
+      return { plan:plan, used:sharing.used, usedRaw:sharing.usedRaw, owned:plan.owned,
+        savedAniimo:sharing.savedAniimo, savedZones:sharing.savedZones, sharedZones:sharing.sharedZones };
     }
     /* The Starfall Hammock's own zone diagram: a Cooling Unit zone with
        the hammock inside it, gold star, every mark hover-labeled. */
@@ -3471,30 +3660,35 @@
             ]) + "</div></div>");
           return;
         }
-        ["Farmland", "Woodland"].forEach(function(fac){
-          var src = fac === "Farmland" ? e.farmCrops : e.woodCrops;
-          var list = [];
-          Object.keys(src).sort().forEach(function(n){ for(var i = 0; i < src[n]; i++) list.push(n); });
-          var per = plotsPerZone(fac);
-          var zones = Math.ceil(list.length / per);
-          for(var z = 0; z < zones; z++){
-            var chunk = list.slice(z * per, (z + 1) * per);
-            var counts = {};
-            chunk.forEach(function(n){ counts[n] = (counts[n] || 0) + 1; });
-            var why = "Covers the " + info.tag + " crops in this zone";
-            if(info.building === "Sunlamp") why = "Sunlamp overlays temperature zones: ground counted once, one Sunlamp per light zone";
-            blocks.push('<div class="zone-block"><div class="zb-grid">' +
-              zoneSvg(ZONE_CELLS, PLOT_SIZE[fac], chunk.length, style, info.building + " zone " + (z + 1) + " of " + zones + ": " + chunk.length + " of " + per + " " + fac + " plots filled, with the " + info.building + " itself in the middle on " + buildingLabel(info.building) + " of its own ground", true, buildingSide(info.building)) +
-              '</div><div class="zb-side"><h3>' + style.emoji + " " + esc(info.tag) + " · " + esc(info.building) + "</h3>" +
-              rowsHtml([
-                ["Facility", esc(info.building) + " · footprint " + buildingLabel(info.building)],
-                ["Count", chunk.length + " of " + per + " " + fac + " plots in this zone · zone " + (z + 1) + " of " + zones],
-                ["Producing", prodLine(counts)],
-                ["Aniimo", info.building === "Cooling Unit" ? abilityMarker("Ice", false, "Ice Lv.3 · strongest known: Geoclaw · cooling units need Ice Aniimo") + "1 Ice Aniimo · strongest known: Geoclaw Lv 3 (cooling units need Ice Aniimo)" : "1 " + esc(info.building) + ' Aniimo · type <span class="verdict v-mix">not verified yet</span>'],
-                ["Why", esc(why)]
-              ]) + "</div></div>");
-          }
-        });
+      });
+      /* One block per zone the layout actually puts out, read off the
+         shared packing: a zone shared by two climates (or by Farmland
+         and Woodland crops of one building) is drawn once, with
+         everything it covers, and says it is shared. */
+      var zoneNums = {};
+      (f.zoneList || []).forEach(function(z){
+        if(z.keys.length && z.keys.every(function(k){ return served[k]; })) return;
+        var zkey = z.building + "|" + z.facility;
+        zoneNums[zkey] = (zoneNums[zkey] || 0) + 1;
+        var zTotal = (f.zoneList || []).filter(function(w){ return w.building === z.building && w.facility === z.facility && !(w.keys.length && w.keys.every(function(k){ return served[k]; })); }).length;
+        var per = plotsPerZone(z.facility);
+        var style0 = GROUP_STYLE[z.keys[0]] || GROUP_STYLE["none"];
+        var tags = z.keys.map(function(k){ var g0 = f.byKey[k]; return g0 ? g0.grp.info.tag : k; });
+        var shared = z.keys.length > 1;
+        var why = shared
+          ? "Shared zone: " + tags.join(" and ") + " plots share this one " + z.building + " — one building covers them all, counted once, and only this one building's Aniimo is counted for it"
+          : "Covers the " + tags.join(", ") + " crops in this zone";
+        if(z.building === "Sunlamp" && !shared) why = "Sunlamp overlays temperature zones: ground counted once, one Sunlamp per light zone";
+        blocks.push('<div class="zone-block"><div class="zb-grid">' +
+          zoneSvg(ZONE_CELLS, PLOT_SIZE[z.facility], z.plots, style0, z.building + " zone " + zoneNums[zkey] + " of " + zTotal + ": " + z.plots + " of " + per + " " + z.facility + " plots filled (" + tags.join(" + ") + "), with the " + z.building + " itself in the middle on " + buildingLabel(z.building) + " of its own ground", true, buildingSide(z.building)) +
+          '</div><div class="zb-side"><h3>' + z.keys.map(function(k){ return (GROUP_STYLE[k] || GROUP_STYLE["none"]).emoji; }).join(" ") + " " + esc(tags.join(" + ")) + " · " + esc(z.building) + (shared ? " · shared zone" : "") + "</h3>" +
+          rowsHtml([
+            ["Facility", esc(z.building) + " · footprint " + buildingLabel(z.building)],
+            ["Count", z.plots + " of " + per + " " + z.facility + " plots in this zone · zone " + zoneNums[zkey] + " of " + zTotal + " for this building and land"],
+            ["Producing", prodLine(z.crops)],
+            ["Aniimo", z.building === "Cooling Unit" ? abilityMarker("Ice", false, "Ice Lv.3 · strongest known: Geoclaw · cooling units need Ice Aniimo") + "1 Ice Aniimo · strongest known: Geoclaw Lv 3 (cooling units need Ice Aniimo)" : "1 " + esc(z.building) + ' Aniimo · type <span class="verdict v-mix">not verified yet</span>'],
+            ["Why", esc(why)]
+          ]) + "</div></div>");
       });
       f.entries.forEach(function(e){
         if(e.grp.info.building) return;
@@ -3537,7 +3731,7 @@
     /* The nine named facilities, in the layout as in the crew: available
        at the RV level means out, at the derived RV count, each with its
        1 Aniimo, the type named where verified and flagged where not. */
-    function facilityBlocksHtml(onlyFacs){
+    function facilityBlocksHtml(onlyFacs, climateUsed){
       var prod = {
         "Sunlamp":"Adequate light over its crops",
         "Heat Furnace":"Warm and Scorching zones",
@@ -3558,6 +3752,11 @@
       var blocks = [];
       FAC_ANIIMO.forEach(function(fa){
         var c = facCount(fa.facility);
+        /* Climate buildings are out only where the layout puts them
+           out: their count here is the layout's used count (capped at
+           the RV count), so a climate building the layout never uses
+           shows no block and staffs no Aniimo in the crew. */
+        if(climateUsed && CLIM_BUILDINGS.indexOf(fa.facility) > -1) c = Math.min(climateUsed[fa.facility] || 0, c);
         if(c <= 0) return;
         if(onlyFacs && !onlyFacs[fa.facility]) return;
         blocks.push('<div class="fac-block"><h4>' + esc(fa.facility) + '</h4><div class="zb-rows">' +
@@ -3581,9 +3780,9 @@
       var s = '<h3 class="layout-sec-head">🗺️ Your ' + (minMode ? "🪶 Minimum" : "⭐ Best") + ' layout</h3>';
       s += '<p class="sec-sub" style="margin:8px 0 0">' +
         (minMode ? "Minimum plants <strong>one plot of each crop</strong> — the smallest planting that still grows everything in the plan — with the fewest climate buildings. Replant each plot as its harvest comes in until the whole-plan totals below are met. " : "Best plants <strong>as much of the plan as one full field holds</strong>. ") +
-        'Whole-plan totals first, then the layout as one grid per zone with short notes beside each grid. The totals are the <strong>whole need, not one planting</strong>: this note sits here once, at the top, and holds for everything below. Your RV level allows <strong>' + plan.farmAvail + " Farmland</strong> and <strong>" + plan.woodAvail + " Woodland</strong> plots at once; climate buildings out: " + ownedText + ". This layout never uses more than that.</p>";
+        'Whole-plan totals first, then the layout as one grid per zone with short notes beside each grid. The totals are the <strong>whole need, not one planting</strong>: this note sits here once, at the top, and holds for everything below. Your RV level allows <strong>' + plan.farmAvail + " Farmland</strong> and <strong>" + plan.woodAvail + " Woodland</strong> plots at once; climate buildings your RV level allows: " + ownedText + " — the layout below puts out only the ones the plan needs, sharing zones between plots that need the same building. This layout never uses more than that.</p>";
       s += '<div class="layout-group" style="margin-top:14px"><h3>📋 Your whole plan, in all</h3>';
-      s += '<p class="totals" style="margin-top:8px"><strong>In all: ' + fmt(totalFarm) + " Farmland plots and " + fmt(totalWood) + " Woodland plots to grow</strong>, " + fmt(totalFarm + totalWood) + " seeds in all (one seed per plot), and " + fmt(totalB) + " climate buildings if it were all planted at once (overlap bands counted once in that figure, not added on top).</p>";
+      s += '<p class="totals" style="margin-top:8px"><strong>In all: ' + fmt(totalFarm) + " Farmland plots and " + fmt(totalWood) + " Woodland plots to grow</strong>, " + fmt(totalFarm + totalWood) + " seeds in all (one seed per plot), and " + fmt(totalB) + " climate buildings if it were all planted at once (plots that need the same building share its zones in that figure, and overlap bands are counted once, not added on top).</p>";
       s += '<p class="totals">Per crop, in all: ' + Object.keys(counts).sort().map(function(n){ return esc(n) + " ×" + counts[n] + ' <span class="src">(' + ITEMS[n].facility + ")</span>"; }).join(" · ") + "</p>";
       s += '<p class="totals">Estimated growing time in all: <strong>about ' + fmtDur(plan.totalMins) + '</strong>. Basis: everything in the layout grows side by side, so one planting takes as long as its slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds); a crop whose total passes the plots the layout gives it is replanted into the same layout as its harvests come in, each replanting adding its grow time again, and the crops run side by side, so the whole plan takes as long as the longest of those chains' + (plan.bottleneck ? " (here, " + esc(plan.bottleneck) + ")" : "") + ".</p>";
       s += "</div>";
@@ -3607,6 +3806,18 @@
             return esc(b) + " × " + used[b] + warn;
           }).join(" · ") + "</p>";
         }
+        var share = climateSharingInfo(plan);
+        var hasClimate = f.entries.some(function(e){ return e.grp.info.building && (e.farm + e.wood) > 0; });
+        if(hasClimate){
+          s += '<p class="totals">🌡️ <strong>Sharing climate buildings:</strong> Farmland and Woodland plots that need the same building share its zones, packed into the fewest buildings that cover them. This layout puts out <strong>' +
+            CLIM_BUILDINGS.filter(function(b){ return share.used[b] > 0; }).map(function(b){ return esc(b) + " × " + share.used[b]; }).join(" · ") +
+            '</strong> of the ' + share.ownedTotal + " climate buildings your RV level allows (" + CLIM_BUILDINGS.map(function(b){ return esc(b) + " × " + plan.owned[b]; }).join(" · ") + ")." +
+            (share.sharedZones.length ? " Zones shared in this layout: " + share.sharedZones.map(function(z){
+              return esc(z.keys.map(function(k){ return f.byKey[k] ? f.byKey[k].grp.info.tag : k; }).join(" + ")) + " " + esc(z.facility) + " plots share one " + esc(z.building) + " (" + Object.keys(z.crops).sort().map(function(n){ return esc(n) + " ×" + z.crops[n]; }).join(", ") + ")";
+            }).join(" · ") + "." : " No zone in this layout holds two climates; the saving below comes from packing each building's plots into full zones.") +
+            (share.savedZones > 0 ? " Sharing zones saves <strong>" + share.savedZones + (share.savedZones === 1 ? " building" : " buildings") + "</strong> against giving every climate its own zones." : "") +
+            " Only the buildings out here are staffed in your crew, so this saves <strong>" + share.savedAniimo + " Aniimo</strong> against staffing every climate building your RV level allows (1 Aniimo per building out).</p>";
+        }
       }
       var onlyFacs = null;
       if(minMode){
@@ -3619,7 +3830,7 @@
           Object.keys(bpResult.exp.gross).forEach(function(n){ var it2 = ITEMS[n]; if(it2 && (bpResult.exp.gross[n] || 0) > 0) onlyFacs[it2.facility] = true; });
         }
       }
-      s += facilityBlocksHtml(onlyFacs);
+      s += facilityBlocksHtml(onlyFacs, fieldBuildings(f));
       if(plan.unplaced.length){
         s += '<p class="totals" style="margin-top:10px"><span class="layout-warn">Not in the layout:</span> ' + plan.unplaced.map(function(u){
           return esc(u.name) + " (" + fmt(u.count) + " " + u.facility + " plots)";
@@ -3650,9 +3861,16 @@
           else lines.push(info.tag + " (" + info.strength + "), covered by " + info.building);
           Object.keys(e.farmCrops).sort().forEach(function(n){ lines.push("- " + n + ": " + e.farmCrops[n] + (e.farmCrops[n] === 1 ? " plot" : " plots") + " (Farmland)"); });
           Object.keys(e.woodCrops).sort().forEach(function(n){ lines.push("- " + n + ": " + e.woodCrops[n] + (e.woodCrops[n] === 1 ? " plot" : " plots") + " (Woodland)"); });
-          if(info.building && !servedF[info.key]) lines.push(info.building + " in this layout: " + (e.zonesFarm + e.zonesWood) + " (your RV level allows " + plan.owned[info.building] + ")");
+          if(info.building && !servedF[info.key]) lines.push(info.building + " zones this group touches in this layout: " + (e.zonesFarm + e.zonesWood) + " (zones shared with another climate are counted once in the layout's building total below; your RV level allows " + plan.owned[info.building] + ")");
         });
         if(f.hammock) lines.push("Starfall Hammock: needs a Cool environment to work (player's lookup, Oct 25, 2026), so it stands inside a Cooling Unit zone" + (f.hammock.own ? ", its own zone in this layout because the layout plants no Cool or Freezing crops, counted in this layout's Cooling Units" : ", sharing the zone that covers this layout's cold crops, counted once") + ".");
+        var shareT = climateSharingInfo(plan);
+        var usedT = fieldBuildings(f);
+        lines.push("Climate buildings in this layout, counted once each: " + Object.keys(usedT).map(function(b){ return b + " x " + usedT[b]; }).join("; ") + ".");
+        lines.push("Sharing: Farmland and Woodland plots that need the same building share its zones, packed into the fewest buildings that cover them. This layout puts out " + shareT.usedTotal + " of the " + shareT.ownedTotal + " climate buildings your RV level allows." +
+          (shareT.sharedZones.length ? " Zones shared: " + shareT.sharedZones.map(function(z){ return z.keys.map(function(k){ return f.byKey[k] ? f.byKey[k].grp.info.tag : k; }).join(" + ") + " " + z.facility + " plots share one " + z.building + " (" + Object.keys(z.crops).sort().map(function(n){ return n + " x" + z.crops[n]; }).join(", ") + ")"; }).join("; ") + "." : "") +
+          (shareT.savedZones > 0 ? " Sharing zones saves " + shareT.savedZones + (shareT.savedZones === 1 ? " building" : " buildings") + " against giving every climate its own zones." : "") +
+          " Only the buildings out here are staffed in the crew, saving " + shareT.savedAniimo + " Aniimo against staffing every climate building your RV level allows (1 Aniimo per building out).");
       }
       if(plan.unplaced.length) lines.push("Not in the layout: " + plan.unplaced.map(function(u){ return u.name + " (" + u.count + " " + u.facility + " plots)"; }).join("; ") + ". The Stage 3 plot count for that land is 0.");
       return lines;
@@ -3726,6 +3944,7 @@
         if(layoutPicks[n]) delete layoutPicks[n]; else layoutPicks[n] = 1;
         renderLayoutPicker();
         renderLayout();
+        renderTeam();
       }); });
     }
 
@@ -3735,7 +3954,7 @@
         lines.push("");
         var allG = autoGroups.concat(bpGroups || [], groups);
         var tFarm = allG.reduce(function(a, g){ return a + g.farm; }, 0), tWood = allG.reduce(function(a, g){ return a + g.wood; }, 0);
-        var tB = allG.reduce(function(a, g){ return a + g.buildings - (g.overlapShared || 0); }, 0);
+        var tB = sharedBuildingNeed(combinedLayoutCounts(autoGroups, bpGroups, groups)).total;
         layoutText(plan, combinedLayoutCounts(autoGroups, bpGroups, groups), tFarm, tWood, tB).forEach(function(l){ lines.push(l); });
       }
       var totalFarm = 0, totalWood = 0, totalB = 0, totalPlotTiles = 0, totalBuildingTiles = 0, totalShared = 0;
@@ -3761,13 +3980,18 @@
       section("From your basket (plot counts worked out from your plan):", autoGroups);
       section("From your best plan (the seeds to plant from the best plan you ran):", bpGroups || []);
       section("Your extra crops, added by hand (one plot each):", groups);
+      var sharedTxt = sharedBuildingNeed(combinedLayoutCounts(autoGroups, bpGroups || [], groups));
+      totalB = sharedTxt.total;
+      totalBuildingTiles = Object.keys(sharedTxt.zones).reduce(function(a, b){ return a + sharedTxt.zones[b] * buildingTiles(b); }, 0);
       lines.push("");
-      lines.push("Totals (the whole need from every source; the layout above plants the best full field, and the rest is replanted into that same layout as harvests complete, until these totals are met): " + totalFarm + " Farmland plots, " + totalWood + " Woodland plots, " + totalB + " climate building zones if it were all planted at once" + (totalShared > 0 ? " (" + totalShared + " more zones are overlap bands shared with their partner zones, counted once in that figure, not added on top)" : ""));
+      lines.push("Totals (the whole need from every source; the layout above plants the best full field, and the rest is replanted into that same layout as harvests complete, until these totals are met): " + totalFarm + " Farmland plots, " + totalWood + " Woodland plots, " + totalB + " climate building zones if it were all planted at once" + (totalShared > 0 ? " (" + totalShared + " more zones are overlap bands shared with their partner zones, counted once in that figure, not added on top)" : "") + " (plots that need the same building share its zones in that figure)");
       lines.push("Space in all: " + (totalPlotTiles + totalBuildingTiles) + " grid tiles, plots " + totalPlotTiles + " tiles plus the buildings themselves " + totalBuildingTiles + " tiles. Building tiles use the measured footprints from your placement screenshots (Oct 24, 2026): Cooling Unit 2 x 2 = 4 tiles, Heat Furnace 1 x 1 = 1 tile, Sunlamp 1 x 1 = 1 tile.");
       lines.push("Packing assumes plots edge to edge with no paths. Power zones (Crackle Generator 22 x 22 cells, Power Pole 14 x 14) are reference only, for E-mode facilities later, not needed for growing.");
       var facLines = [];
+      var planClim = plan ? fieldBuildings(plan.field) : null;
       FAC_ANIIMO.forEach(function(fa){
         var c = facCount(fa.facility);
+        if(planClim && CLIM_BUILDINGS.indexOf(fa.facility) > -1) c = Math.min(planClim[fa.facility] || 0, c);
         if(c > 0) facLines.push("- " + fa.facility + " x" + c + " out: " + (fa.job ? "1 " + fa.job + " Aniimo each" : "1 Aniimo each, type not verified yet"));
       });
       if(facLines.length){
@@ -3839,24 +4063,24 @@
       scope.querySelectorAll("[data-adj-inc]").forEach(function(btn){ btn.addEventListener("click", function(){
         var n = btn.getAttribute("data-adj-inc");
         layoutAutoAdj[n] = (layoutAutoAdj[n] || 0) + 1;
-        renderLayout();
+        renderLayout(); renderTeam();
       }); });
       scope.querySelectorAll("[data-adj-dec]").forEach(function(btn){ btn.addEventListener("click", function(){
         var n = btn.getAttribute("data-adj-dec");
         var base = basketBaseRuns()[n] || 0;
         layoutAutoAdj[n] = Math.max(-base, (layoutAutoAdj[n] || 0) - 1);
-        renderLayout();
+        renderLayout(); renderTeam();
       }); });
       scope.querySelectorAll("[data-bpadj-inc]").forEach(function(btn){ btn.addEventListener("click", function(){
         var n = btn.getAttribute("data-bpadj-inc");
         layoutBpAdj[n] = (layoutBpAdj[n] || 0) + 1;
-        renderLayout();
+        renderLayout(); renderTeam();
       }); });
       scope.querySelectorAll("[data-bpadj-dec]").forEach(function(btn){ btn.addEventListener("click", function(){
         var n = btn.getAttribute("data-bpadj-dec");
         var base = bpBaseRuns()[n] || 0;
         layoutBpAdj[n] = Math.max(-base, (layoutBpAdj[n] || 0) - 1);
-        renderLayout();
+        renderLayout(); renderTeam();
       }); });
     }
     function zeroedHtml(zeroed, bp){
@@ -3924,6 +4148,13 @@
       if(basket.length && (computePlan().gross["Star"] || 0) > 0) starNeeded = true;
       if(bpResult && (bpResult.exp.gross["Star"] || 0) > 0) starNeeded = true;
       var combined = combinedLayoutCounts(autoGroups, bpGroups, groups);
+      /* Whole-need climate buildings, packed the sharing way: plots
+         that need the same building share its zones across every
+         source and climate, so this figure is the fewest buildings
+         that cover the whole need, not a per-group sum. */
+      var sharedNeed = sharedBuildingNeed(combined);
+      totalB = sharedNeed.total;
+      totalBuildingTiles = Object.keys(sharedNeed.zones).reduce(function(a, b){ return a + sharedNeed.zones[b] * buildingTiles(b); }, 0);
       /* One layout, two modes. Best plants the combined need into the
          full field. Minimum plants one plot of each crop — the smallest
          planting that still grows everything — and its whole-plan time
@@ -4024,7 +4255,7 @@
       }
       var clearBtn = document.getElementById("clearLayoutBtn");
       if(clearBtn) clearBtn.addEventListener("click", function(){
-        layoutPicks = {}; renderLayoutPicker(); renderLayout(); toast("Your extra crops cleared. The automatic groups above are untouched.");
+        layoutPicks = {}; renderLayoutPicker(); renderLayout(); renderTeam(); toast("Your extra crops cleared. The automatic groups above are untouched.");
       });
     }
 
