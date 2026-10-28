@@ -322,7 +322,7 @@
             </div>
           </div>
           <div class="chips" id="catChips" role="group" aria-label="Recipe categories"></div>
-          <p class="src" style="margin-top:8px">Marks in recipe names: 🌕 season recipe (Recipe Note from the Season Exchange or a festival quest — each card says which), 🎪 a Grand Feast dish for Jojo, ⭐ a special recipe needing a rare-currency unlock. The 🎪 filter above gathers the event dishes.</p>
+          <p class="src" style="margin-top:8px">Marks in recipe names: ⭐ a special recipe needing a rare-currency unlock.</p>
           <p class="src" id="pickerCount" style="margin-top:10px"></p>
           <div class="hide-row">
             <label class="hide-toggle" for="hideLockedToggle"><input type="checkbox" id="hideLockedToggle" /> <span>Only show recipes I can make</span></label>
@@ -331,7 +331,7 @@
           <p class="src" id="hideCount" style="margin-top:8px" hidden></p>
           <h3 style="margin-top:14px">🎒 Your ten recipe slots <span class="src" id="basketCount"></span></h3>
           <p class="src" style="margin-top:4px">One slot per recipe, up to ten. Lists are alphabetical; search and chips narrow all ten at once. To undo a pick, choose "✕ Clear this slot" in its slot.</p>
-          <p class="src" style="margin-top:4px"><strong>No amounts to type.</strong> The planner sizes production to your facilities, plots and Aniimo limit, and reports per-cycle and per-hour rates below.</p>
+          <p class="src" style="margin-top:4px"><strong>No amounts to type.</strong> The planner sizes production to your facilities, plots and Aniimo limit, and reports per-hour rates below.</p>
           <div class="picker-slots" id="recipeSlots"></div>
         </div>
 
@@ -357,7 +357,7 @@
 
         <div class="note note-teal">
           <h4>🌱 Grow times: should you worry? Not really</h4>
-          <p>Almost everything grows on the same <strong>40-minute cycle</strong> (Wheat 4 min; Potato and Willow Wood 10 min 40 s). Crops grow side by side, so times don't add up — a cycle lasts as long as its slowest crop. Follow the amounts; grow times rarely matter.</p>
+          <p>Almost everything is ready within about <strong>40 minutes</strong> (Wheat 4 min; Potato and Willow Wood 10 min 40 s). Crops grow side by side, so times don't add up — the slowest crop sets the pace. Follow the amounts; grow times rarely matter.</p>
         </div>
 
         <div id="planArea"></div>
@@ -433,7 +433,7 @@
       <!-- ================= STRATEGY PLAN ================= -->
       <section id="bestplan">
         <div class="sec-head"><span class="sec-num">Plan</span><h2>⭐ Strategy Plan Finder</h2></div>
-        <p class="sec-sub">Your basket claims facility slots and plots first. The strategy fills what is left: the next RV bill in Level Up mode, your ranked goals in Goals mode. One cycle = one batch per facility, one planting per plot, crops side by side.</p>
+        <p class="sec-sub">Your basket claims facility slots and plots first. The strategy fills what is left: the next RV bill in Level Up mode, your ranked goals in Goals mode. Everything it makes and earns is shown per hour.</p>
 
         <div class="card">
           <div id="goalsInactive">
@@ -455,7 +455,7 @@
 
         <div class="note note-info">
           <h4>🔍 How to read the prices and flags on a best plan</h4>
-          <p>Sell prices come from the filed shop price research (checked Oct 24, 2026). <span class="verdict v-ok">Cross-checked</span> = two sources agree. <span class="verdict v-mix">Single source, spot-check in game</span> = Aniiland only — check before a big spend. <span class="verdict v-lock">No verified sell price</span> = cannot earn Home Coins. Unverified-but-sensible items (Star; raw Moondew Radish and Waxing Moon Pepper sales, which sources conflict on) are included and flagged <span class="verdict v-mix">Not verified yet, included because it makes sense</span>, with their money shown separately from the counted total. Aniimo XP, Harvest Moon Points and Mineral Sand per Mine run have no verified figures, so they are flagged, never invented.</p>
+          <p>Sell prices come from the filed shop price research (checked Oct 24, 2026). <span class="verdict v-ok">Cross-checked</span> = two sources agree. <span class="verdict v-mix">Single source, spot-check in game</span> = Aniiland only — check before a big spend. <span class="verdict v-lock">No verified sell price</span> = cannot earn Home Coins. Unverified-but-sensible items (Star) are included and flagged <span class="verdict v-mix">Not verified yet, included because it makes sense</span>, and counted — the plan says how much of the counted rate rests on them. Aniimo XP and Mineral Sand per Mine run have no verified figures, so they are flagged, never invented.</p>
         </div>
       </section>
 
@@ -467,7 +467,7 @@
         <p class="sec-sub">Best Home Coin per plot per hour at the Co-op Store — plant spare plots with these. Tree figures include their Wood Blocks. <span id="cropsRv"></span></p>
         <div class="tbl-wrap">
           <table>
-            <thead><tr><th>Crop (per plot)</th><th class="num">Cycle</th><th class="num">Home Coin</th><th class="num">Home Coin / hour</th><th>Unlocks</th><th>Notes</th></tr></thead>
+            <thead><tr><th>Crop (per plot)</th><th class="num">Grow time</th><th class="num">Home Coin</th><th class="num">Home Coin / hour</th><th>Unlocks</th><th>Notes</th></tr></thead>
             <tbody id="cropsBody"></tbody>
           </table>
         </div>
@@ -562,14 +562,14 @@
           <li><strong>Grow amounts use base yields.</strong> Higher yields exist (facility levels, module recipes); the planner counts the base yield, so plots finish early, never late.</li>
           <li><strong>Premium variants are not listed twice.</strong> Premium versions use the same ingredients as the regular version, so one entry covers both.</li>
           <li><strong>Special recipes:</strong> Rose Shortbread and Potato Kvass unlock with Dream Sparks at the Dream Spark Exchange (Home Shop, BINI #2333). Their exact note prices are not verified yet. Plans only make sense once you own them.</li>
-          <li><strong>Event recipes:</strong> 🌕 = Harvest Moon Festival season recipe; its Recipe Note costs Moonray Wheat at the Season Exchange (Umbral Hot Pot, Umbral Pickle, Umbral Sweet Spicy Sauce: 80 each). <strong>Harvest Platter's price is disputed: 110 by Game8, 120 by aniimoguide and two other databases — check the shop.</strong> 🎪 = one of the six Grand Feast dishes for Jojo, five of each. Festival: Sep 15–Oct 27, needs RV 10. Sources: <a href="https://aniimotools.dev/systems/homeland/home-season/">AniimoTools, Harvest Moon Festival</a> and <a href="https://aniimoguide.com/news/aniimo-harvest-moon-festival-guide">aniimoguide's festival guide</a>; ingredients checked against Daily Aniimo.</li>
-          <li><strong>Crop environments (verified from your own game, Oct 23, 2026):</strong> two separate tags — a temperature tag (Recommended: grows best there, still grows elsewhere) and Adequate light (Required: hard requirement). Cooling Unit serves Freeze/Cool; Heat Furnace serves Warm/Scorching; Sunlamp serves Adequate light. Cool: Rose, Strawberry, Ginseng, Apple. Freeze: Cranberry, Maple Syrup. Warm: Cherry Blossom, Chestnut. Scorching: Sugarcane, Agave, Palm Bark, Natural Rubber, Coconut, Cocoa. Adequate light: Lavender, Grapes, Walnut, Orange Flower. Moondew Radish and Waxing Moon Pepper show no environment line. Every other crop: no special environment needed.</li>
+          <li><strong>Harvest Moon Festival recipes were removed when the festival ended</strong> (Oct 27, 2026): the moon crops and every dish whose Recipe Note cost Moonray Wheat are gone from the planner.</li>
+          <li><strong>Crop environments (verified from your own game, Oct 23, 2026):</strong> two separate tags — a temperature tag (Recommended: grows best there, still grows elsewhere) and Adequate light (Required: hard requirement). Cooling Unit serves Freeze/Cool; Heat Furnace serves Warm/Scorching; Sunlamp serves Adequate light. Cool: Rose, Strawberry, Ginseng, Apple. Freeze: Cranberry, Maple Syrup. Warm: Cherry Blossom, Chestnut. Scorching: Sugarcane, Agave, Palm Bark, Natural Rubber, Coconut, Cocoa. Adequate light: Lavender, Grapes, Walnut, Orange Flower. Every other crop: no special environment needed.</li>
           <li><strong>Sea Salt is the known bottleneck</strong> <span class="verdict v-mix">single community source</span>: it comes only from the Tidewhisper Sandcastle. Per your in-game panels (Oct 27, 2026): Sea Salt needs the <strong>Susuta family</strong>, Pearl needs the <strong>Shelly family</strong>, Star (Starfall Hammock) takes <strong>any Aniimo from the Celestis family</strong>.</li>
           <li><strong>Wood Blocks by Woodland level</strong> (your screenshots, Oct 25, 2026): Lv 1 = 1, Lv 2 = 8, Lv 3 = 21, Lv 4 = 47, Lv 5 = 75, Lv 6 = 122 per plot, same for every tree at that level. Mineral Sand comes from the Mine in amounts that vary, so no fake yield is shown.</li>
           <li><strong>Climate coverage:</strong> a climate building affects an 18 × 18 square centered on itself (your Edit-mode screenshot, Oct 23, 2026).</li>
           <li><strong>Plot footprints and power zones</strong> (your screenshots, Oct 23, 2026): Farmland 4 × 4 cells, Woodland 7 × 7, climate zone 18 × 18, Crackle Generator zone 22 × 22, Power Pole zone 14 × 14. Packing assumes plots edge to edge.</li>
           <li><strong>Strategy, the next-level bill, and the basket offset:</strong> one strategy at a time (player's rule, Oct 27, 2026, the Aniimax model). Level Up targets the single next level's bill as a fixed one-time package, outside per-hour rates; Goals runs the ranked goals and the bill plays no part. In Level Up mode, the basket's net Wood Block surplus (counted production by Woodland level, minus what basket recipes use) comes off the bill, shown line by line. Mineral Sand is never offset: it rides along with Mine runs in amounts that vary, so it is flagged, not guessed.</li>
-          <li><strong>The basket takes recipes only, never amounts (max 10).</strong> Each picked recipe starts at one batch per facility out; the chain under it is worked out, then the plan is fitted inside your limits (facility counts, plot counts) and scaled down where a limit binds — the plan names the limit. Amounts are per cycle; per-hour = per cycle × 60 ÷ cycle minutes (grow-cycle basis; craft/gather times are not verified, and rates say so).</li>
+          <li><strong>The basket takes recipes only, never amounts (max 10).</strong> The planner sizes each picked recipe to the facilities you have out; the chain under it is worked out, then the plan is fitted inside your limits (facility counts, plot counts) and scaled down where a limit binds — the plan names the limit. What the plan makes and earns is shown per hour, worked out at the slowest crop's pace (craft and gather times are not verified, and rates say so).</li>
           <li><strong>The Layout Helper reads your basket:</strong> every crop the plan needs, grouped by climate, with the Grow list's own plot counts. The − and + buttons adjust a crop's count and the change sticks; a crop at 0 stays listed. Hand picks are optional extras in their own group, never merged. Above-level crops stay listed, greyed, and still count.</li>
           <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, packs same-building plots into the fewest shared zones, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
           <li><strong>Overlap (Layout Helper):</strong> only the Steam guide's two verified blends are used — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so layouts are packed with the safe unshared counts and bands are shown as a possible bonus, never a promise. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
@@ -577,7 +577,7 @@
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity is unchanged (16 Farmland or 4 Woodland plots per zone); building tiles are counted so you can see their space cost.</li>
           <li><strong>Stage 3:</strong> Fill from RV level sets facility counts, facility levels, climate counts and module levels to the most your RV level allows; any box can then be typed over, and changing the RV picker never overwrites the boxes. A value typed above the RV maximum is used as typed and flagged "above RV max". Recipe greying, plans and Money Crops follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
           <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19.</li>
-          <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90, Harvest Platter 5,290); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates use the grow cycle only and say so. Aniimo XP, Harvest Moon Points and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged, income split: Star (Aniimax uses it too, flagged there), and raw Moondew Radish / Waxing Moon Pepper sales at Aniiland's 74 each — aniimoguide says moon crops cannot be sold raw, so that income sits only in the unverified-included total. Wood Blocks are counted by Woodland level (see above).</li>
+          <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
           <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 8): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 8): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales. Crafting (max 7): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Premium Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume. Only three change numbers, auto-applied from Ecological: Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8). Premium Wheat appears in no module ladder — it stays manual, flagged, never auto-applied.</li>
           <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = one Aniimo per job, shared. Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the recipe data; verified gather pairings: Well = Water, Mine = Earth, Tidewhisper Sandcastle = Leisure. Farmland, Woodland, Dewy House and the leisure station have no verified job <span class="verdict v-mix">not verified yet</span> — no worker is named, but each station still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. Nine facilities carry an attached Aniimo each when out: Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle, Nimbus Bed, and the three climate buildings only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
@@ -589,7 +589,7 @@
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
           <li><strong>Full recipe audit (Oct 24, 2026):</strong> the whole Daily Aniimo recipe book (209 rows) was diffed against this planner: 56 verified recipes added, makeable recipes 68 → 124, plus Captain Spud and one middle step (Rose Incense). Every addition carries its facility, level and Worker from the book; RV unlocks follow the verified facility tier tables.</li>
           <li><strong>Level variants:</strong> where the book lists an item at several levels with bigger yields, there is <strong>one entry per item at its base level and base yield</strong>, so plans never come up short. Where two different items share ingredients without the Premium pattern (Wind Chime / Advanced Wind Chime, Gemstone Dust / Advanced Gemstone Dust, Lemon Incense / Advanced Lemon Incense), both are listed separately and say so.</li>
-          <li><strong>Flagged in the audit, never guessed:</strong> (1) Captain Spud has no climate tag — it wasn't in the verified in-game survey. (2) Umbral Sweet Spicy Sauce is a 🌕 season dish (Note: 80 Moonray Wheat, Aniiland + aniimoguide, confirmed in your game), not a Grand Feast dish. (3) The book lists no prices or blurbs, so none were invented for the additions.</li>
+          <li><strong>Flagged in the audit, never guessed:</strong> (1) Captain Spud has no climate tag — it wasn't in the verified in-game survey. (2) The book lists no prices or blurbs, so none were invented for the additions.</li>
         </ul>
         <p>Companion pages: the Aniimo Master Guide and the Aniimo Quick-Reference Graphics carry the combat, traits, RV Parks and myth-busting reference that this planner builds on.</p>
       </footer>
@@ -724,12 +724,10 @@
     function C(name, facility, lvl, worker, needs, opts){
       opts = opts || {};
       ITEMS[name] = { name:name, kind:"craft", facility:facility, lvl:lvl, worker:worker, needs:needs,
-        yld: opts.yld || 1, cat: opts.cat || null, blurb: opts.blurb || "", special: !!opts.special, event: opts.event || null, feast: !!opts.feast };
+        yld: opts.yld || 1, cat: opts.cat || null, blurb: opts.blurb || "", special: !!opts.special };
     }
     /* Farmland, base yields */
     G("Wheat","Farmland",1,5,"4 min","Wheat Seed");
-    G("Moondew Radish","Farmland",1,8,"40 min","Moondew Radish Seeds");
-    G("Waxing Moon Pepper","Farmland",1,8,"40 min","Waxing Moon Pepper Seeds");
     G("Captain Spud","Farmland",1,5,"13 min 20 s","Sweet Potato Seeds","Added in the full recipe audit from the Daily Aniimo book. Climate not verified: this crop was not in the player's verified in-game climate survey, so no environment tag is claimed for it. See Sources & Flags.");
     G("Potato","Farmland",2,2,"10 min 40 s","Potato Seed","A higher Farmland recipe harvests far more per seed. The planner counts the base 2 so you never come up short.");
     G("Rice","Farmland",3,18,"40 min","Rice Seed");
@@ -798,7 +796,6 @@
     C("Aniipod Pro","Aniipod Maker",2,"Lightning",{ "Clay":10 }, { cat:"growth", blurb:"A better pod, from clay." });
     C("Aniipod Mega","Aniipod Maker",3,"Lightning",{ "Shell":6 }, { cat:"growth", blurb:"The best pod this station makes, from shells." });
     /* Crafting Table */
-    C("Harvest Platter","Crafting Table",1,"Artisanship",{ "Roasted Waxing Moon Pepper":1, "Moondew Radish Slices":1 }, { cat:"food", event:"season", feast:true, blurb:"Season dish: its Recipe Note comes from the Season Exchange (110 Moonray Wheat by Game8's count, 120 by aniimoguide's, so check the shop). Grand Feast: Jojo asks for five." });
     C("Pottery","Crafting Table",3,"Artisanship",{ "Clay":15, "Well Water":8 }, { cat:"craft", blurb:"Clay and well water, shaped and fired." });
     C("Bouquet","Crafting Table",4,"Artisanship",{ "Rose":8, "Lavender":7 }, { cat:"craft", blurb:"A full rose harvest plus a lavender harvest." });
     C("Lavender Sachet","Crafting Table",4,"Artisanship",{ "Lavender Powder":1, "Cotton Fabric":1 }, { cat:"craft", blurb:"Mill and loom work in one little bag." });
@@ -827,8 +824,7 @@
     C("Apple Tart","Claw Game Cooker",3,"Fire",{ "Wheatmeal":1, "Apple":8 }, { cat:"food", blurb:"One apple harvest in a wheatmeal crust." });
     C("Maple Candy Roasted Potatoes","Claw Game Cooker",3,"Fire",{ "Potato":8, "Maple Syrup":9, "Sea Salt":10 }, { cat:"food", blurb:"Sweet, salty, and very maple." });
     C("Rose Shortbread","Claw Game Cooker",3,"Fire",{ "Rose Concentrate":1, "Wheatmeal":1 }, { cat:"food", special:true, blurb:"Special recipe: takes a rare currency unlock. Premium version uses the same ingredients." });
-    C("Lavender Cookies","Claw Game Cooker",4,"Fire",{ "Lavender Powder":1, "Wheatmeal":1 }, { cat:"food", event:"feast", blurb:"One lavender harvest, milled, per batch of cookies. Grand Feast: Jojo asks for five of these at the Harvest Moon Festival feast." });
-    C("Roasted Waxing Moon Pepper","Claw Game Cooker",1,"Fire",{ "Waxing Moon Pepper":8, "Sea Salt":23 }, { cat:"food", event:"season", blurb:"Season dish for the Harvest Platter. Its Recipe Note arrives as a reward from the festival's opening quest, Harvest Under the Moon. Mind the salt: 23 per batch." });
+    C("Lavender Cookies","Claw Game Cooker",4,"Fire",{ "Lavender Powder":1, "Wheatmeal":1 }, { cat:"food", blurb:"One lavender harvest, milled, per batch of cookies." });
     C("Grape Candy","Claw Game Cooker",5,"Fire",{ "Grapes":9, "Rock Candy":1 }, { cat:"food", blurb:"Extracted natural grape sugars concentrated into tiny candies that capture the fruit's sweet, fragrant essence." });
     C("Coconut Cookie","Claw Game Cooker",6,"Fire",{ "Shredded Coconut":1, "Refined Flour":1 }, { cat:"food", blurb:"Dryer plus mill, then the cooker." });
     C("Berry Chocolate Coconut Pudding","Claw Game Cooker",7,"Fire",{ "Cocoa Spread":1, "Strawberry":16, "Coconut Milk":1 }, { cat:"food", blurb:"The deepest dessert chain in the book: cocoa, malt sugar, strawberries and coconut milk." });
@@ -856,13 +852,12 @@
     C("Rose Concentrate","Simmering Pot",2,"Fire",{ "Rose":12, "Well Water":8 });
     C("Rock Candy","Simmering Pot",3,"Fire",{ "Sugarcane":6, "Plain Fresh Water":8 }, { cat:"pantry", blurb:"The sweetener half the drinks cabinet runs on." });
     C("Strawberry Jam","Simmering Pot",3,"Fire",{ "Strawberry":8 }, { cat:"food", blurb:"One strawberry harvest, jammed." });
-    C("Maple Candy Apple Jam","Simmering Pot",3,"Fire",{ "Maple Syrup":9, "Apple":8 }, { cat:"food", event:"feast", blurb:"Grand Feast: Jojo asks for five of these at the Harvest Moon Festival feast. One maple harvest plus one apple harvest each." });
+    C("Maple Candy Apple Jam","Simmering Pot",3,"Fire",{ "Maple Syrup":9, "Apple":8 }, { cat:"food", blurb:"One maple harvest plus one apple harvest each." });
     C("Maple Sugar Chunk","Simmering Pot",5,"Fire",{ "Maple Syrup":18 });
     C("Malt Sugar","Simmering Pot",5,"Fire",{ "Premium Wheat":15, "Milled Rice":2, "Deep Rock Spring Water":6 }, { cat:"pantry", blurb:"The hidden engine inside Cocoa Spread and Cranberry Jam." });
     C("Agave Syrup","Simmering Pot",6,"Fire",{ "Agave":6, "Plain Fresh Water":9 });
     C("Cocoa Spread","Simmering Pot",6,"Fire",{ "Cocoa Powder":1, "Malt Sugar":1 }, { cat:"pantry", blurb:"Two pantry staples away from pudding." });
     /* Simmering Pot additions, full recipe audit (Daily Aniimo book) */
-    C("Umbral Sweet Spicy Sauce","Simmering Pot",1,"Fire",{ "Moondew Radish":8, "Waxing Moon Pepper":8, "Sea Salt":23 }, { cat:"food", event:"season", blurb:"Season dish: its Recipe Note costs 80 Moonray Wheat at the Season Exchange. The two moon crops with a salty kick. Mind the salt: 23 per batch." });
     C("Chestnut Purée","Simmering Pot",4,"Fire",{ "Chestnut":7 }, { cat:"pantry" });
     C("Ginseng Porridge","Simmering Pot",4,"Fire",{ "Dried Ginseng":1, "Milled Rice":2 }, { cat:"food" });
     C("Grape Jam","Simmering Pot",4,"Fire",{ "Grapes":9 }, { cat:"food" });
@@ -888,9 +883,7 @@
     /* Blazing Stove */
     C("Cherry Blossom Rice Ball","Blazing Stove",1,"Fire",{ "Salted Cherry Blossom":1, "Milled Rice":1 }, { cat:"food", blurb:"Pickling jar meets mill, on the stove." });
     C("Creamy Potato Soup","Blazing Stove",1,"Fire",{ "Potato":15, "Plain Fresh Water":8 }, { cat:"food", blurb:"Premium Potato Soup uses the same ingredients." });
-    C("Umbral Hot Pot","Blazing Stove",1,"Fire",{ "Moondew Radish":8, "Waxing Moon Pepper":8, "Plain Fresh Water":8 }, { cat:"food", event:"season", feast:true, blurb:"Season dish: its Recipe Note costs 80 Moonray Wheat at the Season Exchange. The two moon crops, together at last. Grand Feast: Jojo asks for five." });
-    C("Moondew Radish Slices","Blazing Stove",1,"Fire",{ "Moondew Radish":8, "Rock Candy":1 }, { cat:"food", event:"season", blurb:"Season dish for the Harvest Platter. Its Recipe Note arrives as a reward from the festival's opening quest, Harvest Under the Moon." });
-    C("Tanghulu","Blazing Stove",2,"Fire",{ "Strawberry":8, "Rock Candy":1 }, { cat:"food", event:"feast", blurb:"Strawberries on a stick, candied. Grand Feast: Jojo asks for five of these at the Harvest Moon Festival feast." });
+    C("Tanghulu","Blazing Stove",2,"Fire",{ "Strawberry":8, "Rock Candy":1 }, { cat:"food", blurb:"Strawberries on a stick, candied." });
     C("Jello","Blazing Stove",4,"Fire",{ "Petals":6, "Maple Sugar Chunk":1, "Deep Rock Spring Water":6 }, { cat:"food", blurb:"Petals and a lot of maple. Premium Jello uses the same ingredients." });
     C("Strawberry Cream Puff","Blazing Stove",5,"Fire",{ "Refined Flour":1, "Strawberry":16, "Coconut Oil":1 }, { cat:"food", blurb:"Two strawberry harvests plus mill work." });
     /* Blazing Stove additions, full recipe audit (Daily Aniimo book) */
@@ -905,7 +898,6 @@
     C("Cranberry Chocolate","Blazing Stove",5,"Fire",{ "Cocoa Spread":1, "Dried Cranberries":1 }, { cat:"food" });
     /* Pickling Jar */
     C("Salted Cherry Blossom","Pickling Jar",1,"Dark",{ "Cherry Blossom":7, "Sea Salt":13 });
-    C("Umbral Pickle","Pickling Jar",1,"Dark",{ "Moondew Radish":8, "Waxing Moon Pepper":8, "Cider Vinegar":1 }, { cat:"food", event:"season", feast:true, blurb:"Season dish: its Recipe Note costs 80 Moonray Wheat at the Season Exchange. Grand Feast: Jojo asks for five." });
     C("Soy Sauce","Pickling Jar",1,"Dark",{ "Soybean":16, "Sea Salt":13 }, { cat:"pantry", blurb:"One soybean harvest and a lot of salt." });
     C("Cider Vinegar","Pickling Jar",2,"Dark",{ "Apple":8 });
     /* Pickling Jar additions, full recipe audit (Daily Aniimo book) */
@@ -1014,7 +1006,6 @@
 
     var CATS = [
       { id:"all", label:"All recipes" },
-      { id:"event", label:"🎪 Event & Feast" },
       { id:"food", label:"🍽️ Food & Sweets" },
       { id:"drink", label:"🥤 Drinks" },
       { id:"pantry", label:"🫙 Pantry & Staples" },
@@ -1029,9 +1020,8 @@
        Temperature tags (Freeze, Cool, Warm, Scorching) are "Recommended
        Environment" in game; Freeze and Cool are served by a Cooling Unit,
        Warm and Scorching by a Heat Furnace. "Adequate light" is a lighting
-       tag, a "Required Environment" in game, served by a Sunlamp. Moondew
-       Radish and Waxing Moon Pepper carry no environment line on their
-       in-game panels at all. Everything not listed here: the player's
+       tag, a "Required Environment" in game, served by a Sunlamp.
+       Everything not listed here: the player's
        complete in-game survey (Oct 23, 2026) confirmed that the
        screenshotted crops are ALL the crops with special environment
        conditions among everything visible in her game, so every other crop,
@@ -1056,9 +1046,7 @@
       "Natural Rubber": { tag:"Scorching", strength:"Recommended", building:"Heat Furnace" },
       "Coconut":        { tag:"Scorching", strength:"Recommended", building:"Heat Furnace" },
       "Cocoa":          { tag:"Scorching", strength:"Recommended", building:"Heat Furnace" },
-      "Orange Flower":  { tag:"Adequate light", strength:"Required", building:"Sunlamp" },
-      "Moondew Radish": { none:true },
-      "Waxing Moon Pepper": { none:true }
+      "Orange Flower":  { tag:"Adequate light", strength:"Required", building:"Sunlamp" }
     };
     function climateLabel(name){
       var c = CLIMATE[name];
@@ -1072,28 +1060,12 @@
     function climateText(name){
       return " [climate: " + climateLabel(name) + "]";
     }
-    function eventBadge(it){
-      if(!it || !it.event) return "";
-      var b = "";
-      if(it.event === "season") b += ' <span class="event-badge ev-season">🌕 Harvest Moon Festival</span>';
-      if(it.event === "feast" || it.feast) b += ' <span class="event-badge ev-feast">🎪 Grand Feast</span>';
-      return b;
-    }
-    function eventText(it){
-      if(!it || !it.event) return "";
-      var t = "";
-      if(it.event === "season") t += " [🌕 Harvest Moon Festival season recipe]";
-      if(it.event === "feast" || it.feast) t += " [🎪 Grand Feast dish]";
-      return t;
-    }
-    /* Plain-text marks for <option> labels, where HTML badges cannot render:
-       event and limited-time recipes carry their emoji right in the list
-       name, matching the badges on their cards. */
+    function eventBadge(it){ return ""; }
+    function eventText(it){ return ""; }
+    /* Plain-text marks for <option> labels, where HTML badges cannot render. */
     function optionMarks(it){
       if(!it) return "";
       var m = "";
-      if(it.event === "season") m += " 🌕";
-      if(it.event === "feast" || it.feast) m += " 🎪";
       if(it.special) m += " ⭐";
       return m;
     }
@@ -1359,8 +1331,7 @@
     }
     function recipeMatches(n, q){
       var it = ITEMS[n];
-      if(activeCat === "event"){ if(!it.event) return false; }
-      else if(activeCat !== "all" && it.cat !== activeCat) return false;
+      if(activeCat !== "all" && it.cat !== activeCat) return false;
       if(q && (n + " " + it.facility + " " + needsText(it)).toLowerCase().indexOf(q) === -1) return false;
       return true;
     }
@@ -1393,7 +1364,6 @@
         var lock = lockInfo(it);
         var cropIngs = Object.keys(it.needs).filter(function(k){ return ITEMS[k] && ITEMS[k].kind === "grow"; });
         html += '<div class="pslot-details">' +
-          (it.event ? "<div>" + eventBadge(it) + "</div>" : "") +
           '<div class="meta">' + esc(it.facility) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + "</div>" +
           (lock ? '<div class="lock-note">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + ". Yours is " + (lock.have === 0 ? "not built yet" : "Lv " + lock.have) + ". That facility level unlocks at RV " + rv + ", and you can still plan with the recipe. Facility levels follow your RV picker and are listed in the Stage 3 panel below.</div>" : "") +
           '<div class="ing">Needs: ' + esc(needsText(it)) + "</div>" +
@@ -1455,13 +1425,13 @@
     function planText(plan){
       var lines = [];
       lines.push("Aniimo basket plan — recipes picked by you, amounts sized by the planner to your homeland (RV " + userRV + ")");
-      lines.push("Recipes: " + basket.map(function(b){ return b.name + eventText(ITEMS[b.name]); }).join(", "));
-      lines.push("Sizing: one batch per facility per cycle, fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
+      lines.push("Recipes: " + basket.map(function(b){ return b.name; }).join(", "));
+      lines.push("Sizing: production is fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
       if(plan.perHour > 0){
-        lines.push("One cycle lasts about " + fmtRate(plan.cycleMins) + " minutes (the slowest crop; crops grow side by side). Per hour, your picked recipes make:");
-        basket.forEach(function(b){ lines.push("- " + b.name + ": " + fmtRate((plan.gross[b.name] || 0) * plan.perHour) + " per hour (" + fmtRate(plan.gross[b.name] || 0) + " per cycle)"); });
+        lines.push("The slowest crop takes about " + fmtRate(plan.cycleMins) + " minutes to grow (crops grow side by side), and the per-hour rates run at that pace. Per hour, your picked recipes make:");
+        basket.forEach(function(b){ lines.push("- " + b.name + ": " + fmtRate((plan.gross[b.name] || 0) * plan.perHour) + " per hour"); });
       } else {
-        lines.push("This plan grows no crops, so it has no grow cycle to set a pace: amounts below are per cycle.");
+        lines.push("This plan grows no crops, and craft and gather times are not verified, so there is no per-hour rate for it: the lists below name what to gather and make, in order, without amounts.");
       }
       function section(title, kind){
         var rows = Object.keys(plan.gross).filter(function(n){ return ITEMS[n].kind === kind && plan.net[n] > 0; });
@@ -1472,16 +1442,16 @@
         rows.forEach(function(n){
           var it = ITEMS[n];
           var extra = "";
-          if(kind === "craft"){ extra = " (" + fmtRate(plan.batches[n]) + " batches per cycle at " + it.facility + ")" + eventText(it); }
+          if(kind === "craft"){ extra = " (at " + it.facility + ")"; }
           else if(it.kind === "grow"){ extra = " (" + plan.runs[n] + " plots at " + it.facility + ", " + effYld(it) + " per plot" + (it.facility === "Woodland" ? ", " + woodPlotText(n) : "") + ")" + climateText(n); }
-          else if(it.yld){ extra = " (" + plan.runs[n] + " runs per cycle at " + it.facility + ", " + it.yld + " per run)"; }
+          else if(it.yld){ extra = plan.perHour > 0 ? " (about " + fmtRate(plan.runs[n] * plan.perHour) + " runs per hour at " + it.facility + ", " + it.yld + " each time)" : " (at " + it.facility + ", " + it.yld + " each time)"; }
           else if(n === "Wood Block"){
             var wf = woodFromPlan(plan);
             extra = " (tree byproduct at the Woodland: never planted, no seed and no plot of their own; they ride along with every tree harvest at a fixed rate per plot" +
-              (wf.prod > 0 ? "; this plan's trees bring in " + fmt(wf.prod) + " per cycle (" + woodBreakdownText(wf.details) + ")" : "; this plan grows no trees, so harvest any Woodland trees to bring them in") + ")";
+              (wf.prod > 0 ? "; this plan's trees bring in about " + fmtRate(wf.prod * plan.perHour) + " per hour (" + wf.details.map(function(d){ return d.name + " " + fmtRate(d.total * plan.perHour) + " per hour"; }).join(", ") + ")" : "; this plan grows no trees, so harvest any Woodland trees to bring them in") + ")";
           }
           else { extra = " (at " + it.facility + ", yield varies)"; }
-          lines.push("- " + n + ": " + fmtRate(plan.net[n]) + " per cycle" + (plan.perHour > 0 ? ", " + fmtRate(plan.net[n] * plan.perHour) + " per hour" : "") + extra);
+          lines.push("- " + n + (plan.perHour > 0 ? ": " + fmtRate(plan.net[n] * plan.perHour) + " per hour" : "") + extra);
         });
       }
       section("Grow:", "grow");
@@ -1493,8 +1463,8 @@
       if(levelingOn && rvHasNext()){
         var bill = computeRvBill();
         lines.push("");
-        lines.push("Strategy: Level Up. The RV " + rvFrom + " to RV " + bill.next + " bill is the target: a fixed one-time package, priced in the Level Up section, and is not part of the per-cycle amounts or per-hour rates above. Home Coin cost " + fmt(bill.coin) + "." +
-          (bill.woodOffsetApplied > 0 ? " Basket offset: less " + fmt(bill.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops (produced " + fmt(bill.by.woodProd) + " per cycle, basket recipes use " + fmt(bill.by.woodConsumed) + " per cycle, surplus " + fmt(bill.by.woodSurplus) + ")." : ""));
+        lines.push("Strategy: Level Up. The RV " + rvFrom + " to RV " + bill.next + " bill is the target: a fixed one-time package, priced in the Level Up section, and is not part of the per-hour rates above. Home Coin cost " + fmt(bill.coin) + "." +
+          (bill.woodOffsetApplied > 0 ? " Basket offset: less " + fmt(bill.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops (basket produces " + fmt(bill.by.woodProd) + " counted Wood Blocks, basket recipes use " + fmt(bill.by.woodConsumed) + ", surplus " + fmt(bill.by.woodSurplus) + ")." : ""));
       }
       return lines.join("\n");
     }
@@ -1519,23 +1489,22 @@
         '<div class="sum-chip"><b>' + basket.length + '</b><span>recipes picked</span></div>' +
         '<div class="sum-chip"><b>' + growNames.length + '</b><span>crops to grow</span></div>' +
         '<div class="sum-chip"><b>' + gatherNames.length + '</b><span>materials to gather</span></div>' +
-        '<div class="sum-chip"><b>' + Object.keys(facsRunning).length + '</b><span>facilities running</span></div>' +
-        '<div class="sum-chip"><b>' + (plan.cycleMins > 0 ? fmtRate(plan.cycleMins) + " min" : "—") + '</b><span>one cycle (slowest crop)</span></div></div>';
+        '<div class="sum-chip"><b>' + Object.keys(facsRunning).length + '</b><span>facilities running</span></div></div>';
 
       /* how the amounts were sized, stated on the plan itself */
-      html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>One batch per facility out, fitted inside your RV ' + userRV + ' limits (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland, crew ' + aniimoCapText(userRV) + ').' +
+      html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>Production fitted inside your RV ' + userRV + ' limits (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland, crew ' + aniimoCapText(userRV) + ').' +
         (plan.limits.length ? ' Tightest limit: <strong>' + plan.limits.map(function(l){ return esc(l); }).join(", ") + '</strong> — production is scaled down to fit it.' : ' Nothing had to be scaled down.') +
-        (plan.perHour > 0 ? ' Amounts are <strong>per cycle</strong> (about ' + fmtRate(plan.cycleMins) + ' min, slowest crop); <strong>per hour</strong> is that cycle at that pace.' : ' No crops in this plan, so amounts are per cycle only.') +
+        (plan.perHour > 0 ? ' Rates are <strong>per hour</strong>, at the pace of the slowest crop (about ' + fmtRate(plan.cycleMins) + ' min; crops grow side by side).' : ' This plan grows no crops, and craft and gather times are not verified, so there is <strong>no per-hour rate</strong> for it: the lists below name what to gather and make, in order, without amounts.') +
         '</p></div>';
 
       /* leveling: the bill stays a fixed one-time package in the RV
-         section; it never enters these per-cycle lists or the rates.
+         section; it never enters these lists or the rates.
          Its jobs still join the Team Helper, and the basket offset
          still comes off the bill there. */
       if(levelingOn && rvHasNext()){
         var lb = computeRvBill();
-        html += '<div class="note note-info"><h4>🚐 Strategy: Level Up — target RV ' + rvFrom + " to RV " + lb.next + '</h4><p>The RV ' + lb.next + ' bill is this plan\'s <strong>target package</strong>, priced in the Level Up section below — not part of the per-cycle or per-hour rates above. Its jobs are in your crew. Home Coin cost: <strong>' + fmt(lb.coin) + '</strong>.' +
-          (lb.woodOffsetApplied > 0 ? " <strong>less " + fmt(lb.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops</strong> (counted production " + fmt(lb.by.woodProd) + " per cycle, basket recipes use " + fmt(lb.by.woodConsumed) + " per cycle, net surplus " + fmt(lb.by.woodSurplus) + ")." : "") +
+        html += '<div class="note note-info"><h4>🚐 Strategy: Level Up — target RV ' + rvFrom + " to RV " + lb.next + '</h4><p>The RV ' + lb.next + ' bill is this plan\'s <strong>target package</strong>, priced in the Level Up section below — not part of the per-hour rates above. Its jobs are in your crew. Home Coin cost: <strong>' + fmt(lb.coin) + '</strong>.' +
+          (lb.woodOffsetApplied > 0 ? " <strong>less " + fmt(lb.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops</strong> (counted production " + fmt(lb.by.woodProd) + ", basket recipes use " + fmt(lb.by.woodConsumed) + ", net surplus " + fmt(lb.by.woodSurplus) + ")." : "") +
           "</p></div>";
       }
       /* Mines setup instruction: max Mines for this RV, and the material
@@ -1552,19 +1521,9 @@
       if((plan.gross["Premium Wheat"] || 0) > 0 && plan.net["Premium Wheat"] > 0 && !modulesOwned.premiumWheat){
         html += '<div class="note note-info"><h4>🌾 Premium Wheat needs its recipe, marked by hand</h4><p>This plan grows <strong>Premium Wheat</strong>: one Wheat Seed grows Premium Wheat instead of regular Wheat. No module unlock for it could be verified in the sources checked, so the planner never switches it on from a level: it stays manual on purpose. It is not marked as owned in your Stage 3 panel, so the plan assumes you will get it (or swap the dishes that need Refined Flour and Malt Sugar). Already own it in game? Tap <strong>Premium Wheat recipe (manual, unverified)</strong> in the panel and this flag clears.</p></div>';
       }
-      /* event callout */
-      var evBasket = basket.filter(function(b){ return ITEMS[b.name].event; });
-      if(evBasket.length){
-        var seasonNames = evBasket.filter(function(b){ return ITEMS[b.name].event === "season"; }).map(function(b){ return "<strong>" + esc(b.name) + "</strong>"; });
-        html += '<div class="note note-info"><h4>🎪 Event dishes in this basket</h4><p>' +
-          evBasket.map(function(b){ var bi = ITEMS[b.name]; return "<strong>" + esc(b.name) + "</strong>" + (bi.event === "season" ? " 🌕" : "") + (bi.event === "feast" || bi.feast ? " 🎪" : ""); }).join(", ") +
-          " belong to the <strong>Harvest Moon Festival</strong> (runs to Oct 27, needs RV 10)." +
-          (seasonNames.length ? " The 🌕 season dishes need their <strong>Recipe Note</strong> from the Season Exchange before they can be made at all: " + seasonNames.join(", ") + "." : "") +
-          " The 🎪 dishes are ordinary recipes Jojo asks for at the Grand Feast, five of each.</p></div>";
-      }
       /* salt callout */
       if(plan.net["Sea Salt"] > 0){
-        html += '<div class="note note-warn"><h4>🧂 Salt check: ' + fmtRate(plan.net["Sea Salt"]) + ' Sea Salt per cycle</h4><p>Sea Salt comes only from the <strong>Tidewhisper Sandcastle</strong> (10 per run at recipe Lv 1, 23 at Lv 2), and a long list of dishes ask for it. Community homeland guides call it the bottleneck for a reason: start the Sandcastle on salt first and let it run while you grow everything else. The Aniimo on salt there must be from the Susuta family (the game note on the Sandcastle panel, from your screenshot); Pearl gathering at the same Sandcastle needs the Shelly family instead.</p></div>';
+        html += '<div class="note note-warn"><h4>🧂 Salt check' + (plan.perHour > 0 ? ": ≈" + fmtRate(plan.net["Sea Salt"] * plan.perHour) + ' Sea Salt per hour' : '') + '</h4><p>Sea Salt comes only from the <strong>Tidewhisper Sandcastle</strong> (recipe Lv 1 makes 10 each time, Lv 2 makes 23), and a long list of dishes ask for it. Community homeland guides call it the bottleneck for a reason: start the Sandcastle on salt first and let it run while you grow everything else. The Aniimo on salt there must be from the Susuta family (the game note on the Sandcastle panel, from your screenshot); Pearl gathering at the same Sandcastle needs the Shelly family instead.</p></div>';
       }
       /* money crop bonus */
       var moneyHits = growNames.filter(function(n){ return MONEY[n] && plan.net[n] > 0; });
@@ -1580,25 +1539,24 @@
           var it = ITEMS[n];
           var g = plan.gross[n], still = plan.net[n];
           var runsCell;
-          if(it.yld){ var left = plan.runs[n] * effYld(it) - still; runsCell = "<strong>" + fmt(plan.runs[n]) + "</strong>" + (left > 0.05 ? ' <span class="src">(+' + fmtRate(left) + " spare)</span>" : ""); }
+          if(it.yld){ var left = plan.runs[n] * effYld(it) - still; runsCell = it.kind === "grow" ? "<strong>" + fmt(plan.runs[n]) + "</strong>" + (left > 0.05 && plan.perHour > 0 ? ' <span class="src">(+' + fmtRate(left * plan.perHour) + " spare per hour)</span>" : "") : "<strong>" + (plan.perHour > 0 ? fmtRate(plan.runs[n] * plan.perHour) : "—") + "</strong>"; }
           else if(n === "Wood Block"){
             var wf2 = woodFromPlan(plan);
             runsCell = wf2.prod > 0
-              ? "from your trees: <strong>" + fmt(wf2.prod) + '</strong> counted per cycle<br /><span class="src">(' + wf2.details.map(function(d){ return esc(d.name) + " " + d.runs + " × " + d.per + " = " + fmt(d.total); }).join(", ") + ")</span>"
+              ? "from your trees: <strong>" + fmtRate(wf2.prod * plan.perHour) + '</strong> counted per hour<br /><span class="src">(' + wf2.details.map(function(d){ return esc(d.name) + " " + fmtRate(d.total * plan.perHour) + " per hour"; }).join(", ") + ")</span>"
               : '<span class="src">comes in with tree harvests; no trees in this plan</span>';
           }
           else { runsCell = '<span class="src">yield varies, see note</span>'; }
           var where = it.kind === "grow" ? esc(it.facility) + " · " + esc(it.time) + " · seed: " + esc(it.seed) + (it.yld ? " · " + effYld(it) + " per seed" + (it.modYld && it.mod && modulesOwned[it.mod] ? " (module recipe)" : "") : "") + (it.facility === "Woodland" ? " · " + woodPlotText(n) : "") + " · " + climateHtml(n)
-                                        : esc(it.facility) + (it.yld ? " · " + it.yld + " per run" : "");
+                                        : esc(it.facility) + (it.yld ? " · yields " + it.yld + " each time" : "");
           return "<tr><td><strong>" + esc(n) + '</strong><br /><span class="src">' + where + (it.note ? "<br />" + esc(it.note) : "") + '</span></td>' +
-            '<td class="num"><strong>' + fmtRate(g) + "</strong></td>" +
-            '<td class="num">' + (plan.perHour > 0 ? fmtRate(g * plan.perHour) : "—") + "</td>" +
+            '<td class="num"><strong>' + (plan.perHour > 0 ? fmtRate(g * plan.perHour) : "—") + "</strong></td>" +
             '<td class="num">' + runsCell + "</td></tr>";
         }).join("");
-        return "<h3 style='margin-top:22px'>" + emoji + " " + title + '</h3><div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="num">Per cycle</th><th class="num">Per hour</th><th class="num">' + runLabel + "</th></tr></thead><tbody>" + rows + "</tbody></table></div>";
+        return "<h3 style='margin-top:22px'>" + emoji + " " + title + '</h3><div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="num">Per hour</th><th class="num">' + runLabel + "</th></tr></thead><tbody>" + rows + "</tbody></table></div>";
       }
       html += rawTable("Grow these", "🌱", growNames, "Plots");
-      html += rawTable("Gather these", "💧", gatherNames, "Runs per cycle");
+      html += rawTable("Gather these", "💧", gatherNames, "Runs per hour");
 
       /* craft steps, shallowest depth last: craft lowest depth first */
       var steps = craftNames.filter(function(n){ return (plan.batches[n] || 0) > 0; })
@@ -1609,10 +1567,10 @@
           var it = ITEMS[n];
           var target = inBasket(n);
           var perCycle = plan.batches[n] * it.yld;
-          return '<div class="craft-step"><span class="step-n">' + (i + 1) + '</span><div><h4>' + esc(n) + eventBadge(it) + " ×" + fmtRate(perCycle) + " per cycle" + (plan.perHour > 0 ? " · ≈" + fmtRate(perCycle * plan.perHour) + " per hour" : "") +
-            ' <span class="src">(' + fmtRate(plan.batches[n]) + " batches per cycle at " + esc(it.facility) + ", recipe Lv " + it.lvl + ", " + esc(it.worker) + " Aniimo" + (target ? " · your recipe" : " · ingredient") + ")</span></h4>" +
-            "<p>Per batch: " + esc(needsText(it)) + ". Per cycle in: " +
-            Object.keys(it.needs).map(function(k){ return k + " ×" + fmtRate(it.needs[k] * plan.batches[n]); }).join(" · ") + ".</p></div></div>";
+          return '<div class="craft-step"><span class="step-n">' + (i + 1) + '</span><div><h4>' + esc(n) + (plan.perHour > 0 ? " ×" + fmtRate(perCycle * plan.perHour) + " per hour" : "") +
+            ' <span class="src">(at ' + esc(it.facility) + ", recipe Lv " + it.lvl + ", " + esc(it.worker) + " Aniimo" + (target ? " · your recipe" : " · ingredient") + ")</span></h4>" +
+            "<p>Each one takes: " + esc(needsText(it)) + (plan.perHour > 0 ? ". Per hour that uses: " +
+            Object.keys(it.needs).map(function(k){ return k + " ×" + fmtRate(it.needs[k] * plan.batches[n] * plan.perHour); }).join(" · ") + "." : ".") + "</p></div></div>";
         }).join("") + "</div>";
       } else {
         html += '<div class="note note-good"><h4>🎉 Nothing to craft</h4><p>This plan needs no crafted steps at all: just grow and gather what is listed above.</p></div>';
@@ -3331,7 +3289,7 @@
       { lvl:7, cap:22, coin:69000, mats:[["Rough Lumber",290],["Coarse-Sifted Ore",360]], time:"2 h", mins:120, prereq:"Student III title · 14 Farmland, 7 Woodland · quest: Environmental Control System, Part 1", unlock:"Ecological Module Lv. 2, Crafting Module Lv. 2", gates:{ f:14, w:7, title:"Student III", quests:["Environmental Control System, Part 1"] } },
       { lvl:8, cap:24, coin:180000, mats:[["Rough Lumber",1100],["Coarse-Sifted Ore",640]], time:"2 h 30 min", mins:150, prereq:"16 Farmland, 8 Woodland, 4 Mines · quest: Dream Cottage, Part 1", unlock:"Homebuilding Zone opens, Resource Detector Lv. 2, Kitchen Module Lv. 3, Ecological Module Lv. 3", gates:{ f:16, w:8, m:4, quests:["Dream Cottage, Part 1"] } },
       { lvl:9, cap:26, coin:260000, mats:[["Rough Lumber",1520],["Coarse-Sifted Ore",800]], time:"3 h", mins:180, prereq:"18 Farmland, 9 Woodland, 2 Wells", unlock:"Orders cap up, Incubation Reaction Module for sale, Plant Research Module Lv. 2", gates:{ f:18, w:9, wells:2 } },
-      { lvl:10, cap:28, coin:510000, mats:[["Rough Lumber",2000],["Coarse-Sifted Ore",2400]], time:"3 h 30 min", mins:210, prereq:"13,000 Habitability · 20 Farmland, 10 Woodland, 5 Mines · quest: Dream Cottage, Part 2", unlock:"Home Season event, Crafting Module Lv. 3, Kitchen Module Lv. 4", gates:{ f:20, w:10, m:5, hab:13000, quests:["Dream Cottage, Part 2"] } },
+      { lvl:10, cap:28, coin:510000, mats:[["Rough Lumber",2000],["Coarse-Sifted Ore",2400]], time:"3 h 30 min", mins:210, prereq:"13,000 Habitability · 20 Farmland, 10 Woodland, 5 Mines · quest: Dream Cottage, Part 2", unlock:"Crafting Module Lv. 3, Kitchen Module Lv. 4", gates:{ f:20, w:10, m:5, hab:13000, quests:["Dream Cottage, Part 2"] } },
       { lvl:11, cap:30, coin:680000, mats:[["Standard Planks",320],["Sintered Ore Brick",350]], time:"4 h", mins:240, prereq:"Wayfarer I title · 13,500 Habitability · 22 Farmland, 11 Woodland · quest: Festival of Astra", unlock:"Signal Transmitter Lv. 2 (2 Aniimo on trips), Resource Detector Lv. 3, Ecological Module Lv. 4", gates:{ f:22, w:11, hab:13500, title:"Wayfarer I", quests:["Festival of Astra"] } },
       { lvl:12, cap:32, coin:1060000, mats:[["Standard Planks",910],["Sintered Ore Brick",480]], time:"4 h 30 min", mins:270, prereq:"14,000 Habitability · 24 Farmland, 12 Woodland, 6 Mines · quest: Facilities, Orders, and Life, Part 1", unlock:"Orders cap up, Power Module for sale, Plant Research Module Lv. 3, Crafting Module Lv. 4, Ecological Module Lv. 5", gates:{ f:24, w:12, m:6, hab:14000, quests:["Facilities, Orders, and Life, Part 1"] } },
       { lvl:13, cap:34, coin:1930000, mats:[["Standard Planks",1230],["Sintered Ore Brick",760]], time:"5 h", mins:300, prereq:"14,500 Habitability · 26 Farmland, 13 Woodland", unlock:"Resource Detector Lv. 4, Kitchen Module Lv. 5", gates:{ f:26, w:13, hab:14500 } },
@@ -3509,7 +3467,7 @@
         }
       }
       if(ms.sandClaimed) s += ' Mineral Sand per Mine run is <span class="verdict v-mix">Not verified yet</span>: it rides along in amounts that vary, so no sand amount or rate is counted.';
-      if(ms.goalsShutOut) s += ' Your basket' + (levelingOn ? ' and the Level Up bill' : '') + ' already claim everything the Mines are set to in this plan, so the goals do not change the Mines this cycle.';
+      if(ms.goalsShutOut) s += ' Your basket' + (levelingOn ? ' and the Level Up bill' : '') + ' already claim everything the Mines are set to in this plan, so the goals do not change the Mines in this plan.';
       return s + '</p></div>';
     }
     function mineSetupText(ms){
@@ -3528,7 +3486,7 @@
         if(others.length) s += " Also needed from the Mine in this plan, in the same order: " + others.map(function(c){ return c.name + (ITEMS[c.name].lvl > ms.lvl ? " (needs Mine Lv " + ITEMS[c.name].lvl + ", above yours, so it waits)" : ""); }).join(", ") + "." + (ms.count > 1 ? " With " + ms.count + " Mines out, you can run more than one material at once." : "");
       }
       if(ms.sandClaimed) s += " Mineral Sand per Mine run is Not verified yet: it rides along in amounts that vary, so no sand amount or rate is counted.";
-      if(ms.goalsShutOut) s += " Your basket" + (levelingOn ? " and the Level Up bill" : "") + " already claim everything the Mines are set to in this plan, so the goals do not change the Mines this cycle.";
+      if(ms.goalsShutOut) s += " Your basket" + (levelingOn ? " and the Level Up bill" : "") + " already claim everything the Mines are set to in this plan, so the goals do not change the Mines in this plan.";
       return s;
     }
 
@@ -3622,7 +3580,7 @@
       var by = bill.by;
       var parts = [];
       if(by.woodDetails.length){
-        parts.push("Your basket's Woodland plots produce counted Wood Blocks each cycle: " + by.woodDetails.map(function(d){ return "<strong>" + esc(d.name) + "</strong> " + d.runs + (d.runs === 1 ? " plot" : " plots") + " × " + d.per + " = " + fmt(d.total); }).join(", ") + ". Total produced per cycle: <strong>" + fmt(by.woodProd) + "</strong>.");
+        parts.push("Your basket's Woodland plots produce counted Wood Blocks: " + by.woodDetails.map(function(d){ return "<strong>" + esc(d.name) + "</strong> " + d.runs + (d.runs === 1 ? " plot" : " plots") + " × " + d.per + " = " + fmt(d.total); }).join(", ") + ". Total produced: <strong>" + fmt(by.woodProd) + "</strong>.");
       } else {
         parts.push("Your basket has no Woodland crops, so counted Wood Block production is <strong>0</strong>.");
       }
@@ -4893,7 +4851,6 @@
       "Sea Salt":16, "Aromathyst":56, "Wool":140, "Scales":210, "Petals":230, "Star":390, "Pearl":450,
       "Wheatmeal":70, "Tofu":230, "Milled Rice":240, "Lavender Powder":650, "Ginseng Powder":1160, "Refined Flour":1260, "Coconut Oil":1580, "Rice Drink":1860, "Cocoa Powder":2470, "Coconut Milk":3820,
       "Bread":280, "Roasted Soybeans":450, "Apple Tart":590, "Maple Candy Roasted Potatoes":850, "Rose Shortbread":1310, "Lavender Cookies":1040, "Apple Candy":1980, "Grape Candy":2850, "Maple Candy Star":2810, "Caramel Nut Chips":3130, "Flower Bread":4610, "Berry Chocolate Coconut Pudding":17890,
-      "Roasted Waxing Moon Pepper":1520, "Moondew Radish Slices":2370, "Umbral Hot Pot":2150, "Umbral Pickle":2290, "Umbral Sweet Spicy Sauce":2390, "Harvest Platter":5290,
       "Creamy Potato Soup":750, "Soy Sauce Fried Rice":1280, "Cherry Blossom Rice Ball":1410, "Soy Sauce Tofu":1470, "Tanghulu":2260, "Sugar-Roasted Chestnuts":2470, "Ginseng Chestnut Cake":2510, "Steamed Vermicelli Roll":2510, "Walnut Cake":3550, "Jello":4790, "Rich Grape Compote":5050, "Strawberry Cream Puff":5650, "Strawberry Candy":6840, "Cranberry Chocolate":13480,
       "Strawberry Jam":650, "Plain Rice Porridge":660, "Rose Concentrate":770, "Maple Candy Apple Jam":950, "Chestnut Purée":980, "Maple Sugar Chunk":1060, "Grape Jam":1120, "Rock Candy":1180, "Ginseng Porridge":2440, "Agave Syrup":3080, "Malt Sugar":3440, "Cranberry Jam":7350, "Cocoa Spread":8350,
       "Wheat Tea":330, "Sugarcane Juice":650, "Toasted Rice Green Tea":740, "Apple Juice":1000, "Strawberry Juice":1180, "Coconut Cooler":1650, "Walnut Milk":2270, "Grape Juice":2390, "Potato Kvass":2640, "Ginseng Water":2670, "Grape Lemon Drink":2970, "Cranberry Juice":4060, "Orange Flower Dew":4700, "Coconut Cocoa":4930, "Hot Cocoa":5330, "Agave Drink":6610,
@@ -4903,18 +4860,12 @@
       "Bamboo Joss Stick":470, "Lemon Incense":700, "Rose Incense":790, "Cherry Incense":840, "Advanced Lemon Incense":900, "Lavender Incense":1270, "Herbal Ginseng Aroma":2360, "Orange Flower Incense":3640, "Mixed Perfume":4850, "Soap":5500, "Lotion":7030,
       "Cotton Thread":410, "Cotton Fabric":610, "Woolen Yarn":760, "Palm Rope":1150, "Wool Fabric":1190, "Dyed Cotton Fabric":6920
     };
-    var CROSS_PRICE = { "Wheatmeal":1, "Bamboo":1, "Rock":1, "Wood Sculpture":1, "Harvest Platter":1 };
+    var CROSS_PRICE = { "Wheatmeal":1, "Bamboo":1, "Rock":1, "Wood Sculpture":1 };
     /* Unverified but sensible, included in Best Plans only, by the player's
        own rule: she does not want to miss gathering something just because
-       it is not verified. These prices are NEVER part of the counted Home
-       Coin total; they live only in the unverified-included total. The moon
-       crops are the disputed case from the filed shop price research:
-       Aniiland lists Moondew Radish and Waxing Moon Pepper at 74 Home Coins
-       each raw, aniimoguide says moon crops cannot be sold raw and must be
-       cooked first. Star needs no price here: its sell price is in SELL
+       it is not verified. Star needs no price here: its sell price is in SELL
        like the rest, but the item itself is flagged wherever a plan uses
        it, the same flag Aniimax carries. */
-    var UNVERIFIED_SELL = { "Moondew Radish":74, "Waxing Moon Pepper":74 };
     var UNVERIFIED_FLAG = "Not verified yet, included because it makes sense";
     function usesStar(name){
       var it = ITEMS[name];
@@ -4922,12 +4873,10 @@
     }
     function unverifiedFlagHtml(name){
       if(name === "Star" || usesStar(name)) return ' <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>";
-      if(UNVERIFIED_SELL[name] !== undefined) return ' <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": sources conflict on the raw sale, Aniiland lists 74 each, aniimoguide says moon crops cannot be sold raw</span>";
       return "";
     }
     function unverifiedFlagText(name){
       if(name === "Star" || usesStar(name)) return " (" + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there)";
-      if(UNVERIFIED_SELL[name] !== undefined) return " (" + UNVERIFIED_FLAG + ": sources conflict on the raw sale, Aniiland lists 74 Home Coins each, aniimoguide says moon crops cannot be sold raw and must be cooked first)";
       return "";
     }
     var SEED_PRICE = {
@@ -4942,11 +4891,10 @@
       { id:"xp", name:"Aniimo XP", desc:"No verified XP per recipe figures yet, so this goal is flagged, never guessed" },
       { id:"mega", name:"Aniipod Mega", desc:"Made at the Aniipod Maker from Shells gathered at the Mine" },
       { id:"wood", name:"Wood Blocks", desc:"Counted exactly by Woodland level: 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, 122 at Level 6. Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026" },
-      { id:"sand", name:"Mineral Sand", desc:"Rides along with Mine runs, amount varies, no verified fixed yield" },
-      { id:"hmp", name:"Harvest Moon Points", desc:"Festival dishes are picked first for this goal, but points per dish are not verified yet" }
+      { id:"sand", name:"Mineral Sand", desc:"Rides along with Mine runs, amount varies, no verified fixed yield" }
     ];
-    var bpGoalOrder = ["coins", "xp", "mega", "wood", "sand", "hmp"];
-    var bpGoalOn = { coins:true, xp:true, mega:true, wood:true, sand:true, hmp:true };
+    var bpGoalOrder = ["coins", "xp", "mega", "wood", "sand"];
+    var bpGoalOn = { coins:true, xp:true, mega:true, wood:true, sand:true };
     var bpResult = null, bpStale = false;
     var BP_PROC = ["Carousel Mill", "Dance Pad Polisher", "Aniipod Maker", "Crafting Table", "Claw Game Cooker", "Jukebox Dryer", "Simmering Pot", "Bouncy Brew Keg", "Chimney Kiln", "Woodworking Bench", "Phonolfactory Table", "Joy Wheel Loom", "Blazing Stove", "Pickling Jar"];
     var BP_FAC_ORDER = Object.keys(FAC_RV).concat(["Homeland leisure station"]);
@@ -4955,13 +4903,11 @@
 
     function bpGoalDef(id){ return BP_GOALS.filter(function(g){ return g.id === id; })[0]; }
     function priceFlagHtml(name){
-      if(UNVERIFIED_SELL[name] !== undefined) return '<span class="verdict v-mix">' + UNVERIFIED_FLAG + '</span>';
       if(SELL[name] === undefined) return '<span class="verdict v-lock">No verified sell price</span>';
       if(CROSS_PRICE[name]) return '<span class="verdict v-ok">Cross-checked</span>';
       return '<span class="verdict v-mix">Single source, spot-check in game</span>';
     }
     function priceFlagText(name){
-      if(UNVERIFIED_SELL[name] !== undefined) return UNVERIFIED_FLAG + ", disputed raw sale price";
       if(SELL[name] === undefined) return "no verified sell price";
       if(CROSS_PRICE[name]) return "cross-checked price";
       return "single source price, spot-check in game";
@@ -5177,12 +5123,6 @@
           if(bpChainOk("Aniipod Mega")) assign("Aniipod Mega", "mega", free["Aniipod Maker"] || 0);
           else goalNotes.push("Aniipod Mega is switched on, but it cannot be made at your setup yet: it needs Aniipod Maker Lv 3 and Shells from the Mine at Lv 3. Check your Stage 3 levels.");
         }
-        else if(gid === "hmp"){
-          Object.keys(ITEMS).filter(function(n){
-            var it = ITEMS[n];
-            return it.kind === "craft" && it.event && !it.special && bpChainOk(n);
-          }).sort().forEach(function(n){ if(!chosen[n]) assign(n, "hmp", 1); });
-        }
         else if(gid === "xp"){
           goalNotes.push("Aniimo XP is switched on, but no verified XP per recipe figures exist in the sources behind this planner, so no recipe can be picked for XP yet. It is flagged here, never guessed, and the other goals still run as ranked.");
         }
@@ -5207,7 +5147,7 @@
       if(starDropped && facCount("Starfall Hammock") > 0 && bpChainOk("Advanced Wind Chime")){
         if((free["Crafting Table"] || 0) > 0){
           assign("Advanced Wind Chime", "coins", 1);
-          goalNotes.push("Star is factored in: your Starfall Hammock is out at your RV level, so one batch of Advanced Wind Chime runs for its chain and the plan gathers the Star it needs at the hammock, flagged on its line. Star: " + UNVERIFIED_FLAG + ".");
+          goalNotes.push("Star is factored in: your Starfall Hammock is out at your RV level, so Advanced Wind Chime runs for its chain and the plan gathers the Star it needs at the hammock, flagged on its line. Star: " + UNVERIFIED_FLAG + ".");
         } else {
           var disp = null, dispMargin = Infinity;
           Object.keys(chosen).forEach(function(n){
@@ -5225,7 +5165,7 @@
             }
             chosen["Advanced Wind Chime"] = (chosen["Advanced Wind Chime"] || 0) + ITEMS["Advanced Wind Chime"].yld;
             if(!assignedGoal["Advanced Wind Chime"]){ assignedGoal["Advanced Wind Chime"] = "coins"; assignedOrder.push("Advanced Wind Chime"); }
-            goalNotes.push("Star is factored in: your Starfall Hammock is out at your RV level, so one Crafting Table batch goes to Advanced Wind Chime for its chain and the plan gathers the Star it needs at the hammock, ahead of " + disp + ", the lowest-margin recipe the goals had put on the table. Star: " + UNVERIFIED_FLAG + ".");
+            goalNotes.push("Star is factored in: your Starfall Hammock is out at your RV level, so one Crafting Table slot goes to Advanced Wind Chime for its chain and the plan gathers the Star it needs at the hammock, ahead of " + disp + ", the lowest-margin recipe the goals had put on the table. Star: " + UNVERIFIED_FLAG + ".");
           }
         }
       }
@@ -5268,37 +5208,19 @@
           if(woodLeft > 0){ var bw = bestRaw("Woodland"); if(bw){ rawPicks.push({ name:bw, plots:woodLeft, goal:"coins" }); woodLeft = 0; } }
         }
       }
-      /* Unverified but sensible, by the player's rule: before the spare
-         Farmland plots fill with the best verified earner, set one plot
-         aside for each moon crop, so the plan tells her to plant and
-         gather them and she can check the disputed raw sale herself.
-         Their income never enters the counted total below; it is tracked
-         on its own in unverifiedRawSell. */
-      if(farmLeft > 0 && !lockInfo(ITEMS["Moondew Radish"])){
-        rawPicks.push({ name:"Moondew Radish", plots:1, goal:"unverified", unverified:true });
-        farmLeft -= 1;
-      }
-      if(farmLeft > 0 && !lockInfo(ITEMS["Waxing Moon Pepper"])){
-        rawPicks.push({ name:"Waxing Moon Pepper", plots:1, goal:"unverified", unverified:true });
-        farmLeft -= 1;
-      }
       if(strategy === "goals") bpGoalOrder.forEach(function(gid){ if(bpGoalOn[gid]) plotPass(gid); });
       plotPass("coins");
 
       var finalSell = 0;
       Object.keys(chosen).forEach(function(n){ if(SELL[n] !== undefined) finalSell += SELL[n] * chosen[n]; });
-      var rawSell = 0, unverifiedRawSell = 0;
-      rawPicks.forEach(function(p){
-        if(p.unverified){ unverifiedRawSell += (UNVERIFIED_SELL[p.name] || 0) * effYld(ITEMS[p.name]) * p.plots; }
-        else rawSell += SELL[p.name] * effYld(ITEMS[p.name]) * p.plots;
-      });
+      var rawSell = 0;
+      rawPicks.forEach(function(p){ rawSell += SELL[p.name] * effYld(ITEMS[p.name]) * p.plots; });
       var seedRows = {};
       Object.keys(exp.gross).forEach(function(n){ if(ITEMS[n].kind === "grow" && (exp.runs[n] || 0) > 0) seedRows[n] = (seedRows[n] || 0) + exp.runs[n]; });
       rawPicks.forEach(function(p){ seedRows[p.name] = (seedRows[p.name] || 0) + p.plots; });
-      var seedCost = 0, seedUnknown = [], moonSeeds = [];
+      var seedCost = 0, seedUnknown = [];
       Object.keys(seedRows).forEach(function(n){
         var it = ITEMS[n];
-        if(it.seed === "Moondew Radish Seeds" || it.seed === "Waxing Moon Pepper Seeds"){ if(moonSeeds.indexOf(n) === -1) moonSeeds.push(n); return; }
         if(SEED_PRICE[it.seed] === undefined){ if(seedUnknown.indexOf(n) === -1) seedUnknown.push(n); }
         else seedCost += SEED_PRICE[it.seed] * seedRows[n];
       });
@@ -5318,24 +5240,23 @@
         if(usesStar(n) && SELL[n] !== undefined){ starSell += SELL[n] * chosen[n]; starRecipes.push(n); }
       });
       var megaCycle = chosen["Aniipod Mega"] || 0;
-      var hmpDishes = 0;
-      Object.keys(chosen).forEach(function(n){ if(ITEMS[n].event) hmpDishes += exp.batches[n] || 0; });
 
       var rates = [];
       function rateRow(gid){
         var g = bpGoalDef(gid);
-        if(gid === "coins") return { rank:0, name:g.name, cycle:fmt(coinsCycle) + " Home Coins", min:cycleMins > 0 ? fmtRate(coinsCycle / cycleMins * 60) + " Home Coins" : "Not counted: this plan grows nothing, so it has no grow cycle to divide by" };
-        if(gid === "xp") return { rank:0, name:g.name, cycle:"Not verified yet", min:"Not verified yet" };
-        if(gid === "mega") return { rank:0, name:g.name, cycle:fmt(megaCycle) + " Aniipod Mega", min:"Not verified yet: the Aniipod Maker cycle time is not in the verified data" };
-        if(gid === "wood") return { rank:0, name:g.name, cycle:fmt(woodCycle) + " Wood Blocks counted", min:cycleMins > 0 ? fmtRate(woodCycle / cycleMins * 60) + " Wood Blocks counted" : "Not counted: this plan grows nothing" };
-        if(gid === "sand") return { rank:0, name:g.name, cycle:"Not verified yet: the amount per Mine run varies", min:"Not verified yet" };
-        return { rank:0, name:g.name, cycle:fmt(hmpDishes) + " festival dish batches, points per dish not verified", min:"Not verified yet" };
+        if(gid === "coins") return { rank:0, name:g.name, min:cycleMins > 0 ? fmtRate(coinsCycle / cycleMins * 60) + " Home Coins per hour" : "No per-hour rate — this plan grows no crops, and craft and gather times are not verified" };
+        if(gid === "xp") return { rank:0, name:g.name, min:"Not verified yet" };
+        if(gid === "mega") return { rank:0, name:g.name, min:cycleMins > 0 ? fmtRate(megaCycle / cycleMins * 60) + " Aniipod Mega per hour" : "Not verified yet: how long the Aniipod Maker takes is not in the verified data" };
+        if(gid === "wood") return { rank:0, name:g.name, min:cycleMins > 0 ? fmtRate(woodCycle / cycleMins * 60) + " Wood Blocks counted per hour" : "No per-hour rate — this plan grows no crops, and craft and gather times are not verified" };
+        if(gid === "sand") return { rank:0, name:g.name, min:"Not verified yet" };
+        return { rank:0, name:g.name, min:"Not verified yet" };
       }
       if(strategy === "levelup"){
         if(lvlBill){
           rates.push({ rank:"Target", name:"Level Up — RV " + lvlBill.next + " bill",
-            cycle: fmt(lvlBill.coin) + " Home Coins + " + Object.keys(lvlBill.needs).map(function(n){ return n + " x" + fmt(lvlBill.needs[n]); }).join(", ") + " (one-time target package, not a per-cycle rate)",
-            min: coinsCycle > 0 ? "Coin part alone: about " + fmtRate(Math.ceil(lvlBill.coin / coinsCycle * 10) / 10) + " cycles at this plan's counted Home Coin rate" : "This plan earns no counted Home Coins per cycle, so the coin part has to come from somewhere else" });
+            min: coinsCycle <= 0 ? "This plan earns no counted Home Coins, so the coin part has to come from somewhere else"
+              : cycleMins > 0 ? "Coin part alone: about " + fmtRate(Math.ceil(lvlBill.coin / (coinsCycle * 60 / cycleMins) * 10) / 10) + " hours at this plan's counted Home Coin rate"
+              : "No per-hour rate for this plan, so no time estimate for the coin part is shown" });
         }
         var rl = rateRow("coins"); rl.name = "Home Coins (production beyond the bill)"; rl.rank = "Leftovers"; rates.push(rl);
         var rw = rateRow("wood"); rw.rank = "—"; rates.push(rw);
@@ -5346,11 +5267,8 @@
 
       var flags = goalNotes.slice();
       flags.push("Special unlock recipes are left out of best plans: Rose Shortbread and Potato Kvass take a rare currency unlock, and the planner does not know whether you own them.");
-      if(exp.gross["Star"] > 0) flags.push("Star: " + UNVERIFIED_FLAG + ". Aniimax uses Star too and flags it unverified there, and it is the Starfall Hammock product the Advanced Wind Chime chain needs, so this plan gathers Star at the Starfall Hammock instead of leaving those recipes out." + (starRecipes.length ? " Recipes in this plan that use Star: " + starRecipes.join(", ") + ". They account for " + fmt(starSell) + " of the counted Home Coins, so that much of the counted total rests on Star." : ""));
-      if(moonSeeds.length) flags.push("Moon crop seeds in this plan (" + moonSeeds.join(", ") + ") are bought with Moonray Wheat at the Season Exchange, 4 per seed purchase in the filed research, not with Home Coins, so they are left out of the Home Coin seed cost.");
+      if(exp.gross["Star"] > 0) flags.push("Star: " + UNVERIFIED_FLAG + ". Aniimax uses Star too and flags it unverified there, and it is the Starfall Hammock product the Advanced Wind Chime chain needs, so this plan gathers Star at the Starfall Hammock instead of leaving those recipes out." + (starRecipes.length ? " Recipes in this plan that use Star: " + starRecipes.join(", ") + ". " + (cycleMins > 0 ? "They account for " + fmtRate(starSell / cycleMins * 60) + " Home Coins per hour of the counted rate, so that much of the counted rate rests on Star." : "Part of the counted earnings rests on them.") : ""));
       if(seedUnknown.length) flags.push("No seed buy price could be verified for: " + seedUnknown.join(", ") + ". Their seed cost is left out of the Home Coin total rather than guessed.");
-      var moonRawPicks = rawPicks.filter(function(p){ return p.unverified; });
-      if(moonRawPicks.length) flags.push("Moondew raw sale: " + UNVERIFIED_FLAG + ". The plan sets aside " + moonRawPicks.map(function(p){ return p.plots + (p.plots === 1 ? " plot" : " plots") + " of " + p.name; }).join(" and ") + " to plant and sell raw. The sources conflict: Aniiland lists Moondew Radish and Waxing Moon Pepper at 74 Home Coins each raw, aniimoguide says moon crops cannot be sold raw and must be cooked first. The " + fmt(unverifiedRawSell) + " Home Coins those plots would earn sits only in the unverified-included total below, never in the counted total. If the raw sale turns out not to exist, cook those harvests into the festival dishes instead and nothing is wasted.");
       var singleCount = 0;
       Object.keys(chosen).forEach(function(n){ if(SELL[n] !== undefined && !CROSS_PRICE[n]) singleCount++; });
       if(singleCount > 0) flags.push(singleCount + (singleCount === 1 ? " recipe price" : " recipe prices") + " in this plan rest on a single source (Aniiland) and are flagged in the recipe table. Spot-check one in game before a big spend.");
@@ -5392,9 +5310,8 @@
 
       bpResult = { mine:bpMine, chosen:chosen, assignedGoal:assignedGoal, assignedOrder:assignedOrder, exp:exp, rawPicks:rawPicks,
         seedRows:seedRows, seedCost:seedCost, coinsCycle:coinsCycle, cycleMins:cycleMins, woodCycle:woodCycle,
-        unverifiedRawSell:unverifiedRawSell,
         starSell:starSell, starRecipes:starRecipes,
-        megaCycle:megaCycle, hmpDishes:hmpDishes, rates:rates, flags:flags, farmUsed:farmUsed, woodUsed:woodUsed,
+        megaCycle:megaCycle, rates:rates, flags:flags, farmUsed:farmUsed, woodUsed:woodUsed,
         farmCount:facCount("Farmland"), woodCount:facCount("Woodland"),
         strategy: strategy,
         goalOrderSnap: bpGoalOrder.slice(),
@@ -5417,7 +5334,6 @@
       if(res.chosen[name]){
         if(res.assignedGoal[name] === "leveling") return "Made for your Level Up target, the RV " + (res.leveling ? res.leveling.next : "") + " bill, after your basket";
         if(res.assignedGoal[name] === "mega") return "Made for your Aniipod Mega goal";
-        if(res.assignedGoal[name] === "hmp") return "Picked for your Harvest Moon Points goal, and it sells directly";
         return "Sells directly";
       }
       var ps = exp.parents[name] || [];
@@ -5471,9 +5387,10 @@
               var per = woodPerPlot(tn);
               if(per !== null) wdetails.push({ name:tn, runs:res.seedRows[tn], per:per, total:res.seedRows[tn] * per });
             });
+            var wPerH = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
             var wwhy = "Tree byproduct, never planted: Wood Blocks ride along with every tree harvest at a fixed rate per plot, so they have no seed and no plot of their own. " +
-              (wdetails.length ? "This plan's trees bring in " + fmt(res.woodCycle) + " per cycle (" + woodBreakdownText(wdetails) + "). " : "This plan grows no trees, so none come in from it: harvest any Woodland trees to bring them in. ") +
-              "The " + fmt(res.exp.gross[n]) + " counted here is what this plan's crafts use in total" + (ps2.length ? ", for " + ps2.join(", ") : "") + ": keep harvesting your trees and the blocks come in with the harvests.";
+              (wdetails.length ? "This plan's trees bring in " + (wPerH > 0 ? fmtRate(res.woodCycle * wPerH) + " per hour (" + wdetails.map(function(d){ return d.name + " " + fmtRate(d.total * wPerH) + " per hour"; }).join(", ") + "). " : "them with every harvest. ") : "This plan grows no trees, so none come in from it: harvest any Woodland trees to bring them in. ") +
+              (wPerH > 0 ? "This plan's crafts use " + fmtRate(res.exp.gross[n] * wPerH) + " of them per hour" : "This plan's crafts use them") + (ps2.length ? ", for " + ps2.join(", ") : "") + ": keep harvesting your trees and the blocks come in with the harvests.";
             add(it.facility, n, res.exp.gross[n], "needed in total, tree byproduct", wwhy);
           }
           else if(r === null || r === undefined) add(it.facility, n, res.exp.gross[n], "needed, yield varies", ps2.length ? "Used for " + ps2.join(", ") : "Gathered for the plan");
@@ -5482,13 +5399,7 @@
       });
       res.rawPicks.forEach(function(p){
         var it = ITEMS[p.name];
-        var key = it.facility + "|" + p.name;
-        if(p.unverified && rows[key]){
-          rows[key].count += p.plots;
-          rows[key].why += " Plus " + p.plots + (p.plots === 1 ? " plot" : " plots") + " planted to sell raw. " + UNVERIFIED_FLAG + ": sources conflict, Aniiland lists 74 Home Coins each, aniimoguide says moon crops cannot be sold raw";
-          return;
-        }
-        add(it.facility, p.name, p.plots, p.plots === 1 ? "plot" : "plots", p.unverified ? "Planted to sell raw. " + UNVERIFIED_FLAG + ": sources conflict, Aniiland lists 74 Home Coins each, aniimoguide says moon crops cannot be sold raw" : (p.goal === "wood" ? "Planted for your Wood Blocks goal, and the harvest sells directly" : "Sells directly"));
+        add(it.facility, p.name, p.plots, p.plots === 1 ? "plot" : "plots", p.goal === "wood" ? "Planted for your Wood Blocks goal, and the harvest sells directly" : "Sells directly");
       });
       var list = Object.keys(rows).map(function(k){ return rows[k]; });
       var busyFacs = {};
@@ -5510,30 +5421,72 @@
       return list;
     }
 
+    /* The facility table groups bpFacRows to ONE row per facility the
+       plan uses. Its only number is how many of that building are
+       working, capped at the count entered in Stage 3 (facCount) —
+       the batches/runs totals used to sit bare beside the facility
+       name and read as building counts ("Well 5" for five runs on her
+       three Wells), and by her word (Oct 28, 2026) the table carries
+       no cycle counts at all: no batches, no runs, no rounds. What a
+       facility makes is product names only; amounts live in the
+       Recipes to make table. Idle facilities get no row. */
+    function bpFacGroups(res){
+      var groups = [], byFac = {};
+      bpFacRows(res).forEach(function(r){
+        if(r.idle) return;
+        if(!byFac[r.facility]){
+          byFac[r.facility] = { facility:r.facility, items:[], totalWork:0 };
+          groups.push(byFac[r.facility]);
+        }
+        var g = byFac[r.facility];
+        if(g.items.indexOf(r.item) === -1) g.items.push(r.item);
+        if(r.unit === "batch" || r.unit === "batches" || r.unit === "run" || r.unit === "runs" || r.unit === "plot" || r.unit === "plots") g.totalWork += r.count;
+      });
+      groups.forEach(function(g){
+        g.out = facCount(g.facility);
+        g.isField = g.facility === "Farmland" || g.facility === "Woodland";
+        /* A facility with no Stage 3 count of its own (the Homeland
+           leisure station) is a single station: it is working, count
+           1 — never its runs total, which is exactly the kind of
+           number this table must not show. */
+        if(!FAC_RV[g.facility] && !CLIM_COUNT[g.facility]){ g.working = 1; return; }
+        if(g.totalWork > 0) g.working = g.out > 0 ? Math.min(g.totalWork, g.out) : g.totalWork;
+        /* Only "needed, yield varies" rows (Mineral Sand, Star): the
+           work is not counted in runs, so every building out is
+           working on it. */
+        else g.working = g.out;
+      });
+      return groups;
+    }
+
     function bpPlanText(res){
       var lines = [];
       var snapOrder = res.goalOrderSnap || bpGoalOrder, snapOn = res.goalOnSnap || bpGoalOn;
       lines.push(res.strategy === "levelup" ? "Aniimo strategy plan — Strategy: Level Up" : "Aniimo strategy plan — Strategy: Goals");
       lines.push("Setup used: RV " + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", with your Stage 3 facility counts and levels.");
       if(res.strategy === "levelup" && res.leveling){
-        lines.push("Target: the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill — " + fmt(res.leveling.coin) + " Home Coins + " + Object.keys(res.leveling.needs).map(function(n){ return n + " x" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them. Your basket is produced first, then the bill; production beyond the bill goes to Home Coins. The bill is a one-time target package and stays outside the per-hour income rates below" + (res.coinsCycle > 0 ? "; the coin part alone is about " + (Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10) + " cycles at this plan's counted rate." : "."));
+        lines.push("Target: the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill — " + fmt(res.leveling.coin) + " Home Coins + " + Object.keys(res.leveling.needs).map(function(n){ return n + " x" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them. Your basket is produced first, then the bill; production beyond the bill goes to Home Coins. The bill is a one-time target package and stays outside the per-hour income rates below" + (res.coinsCycle > 0 ? (res.cycleMins > 0 ? "; the coin part alone is about " + fmtRate(Math.ceil(res.leveling.coin / (res.coinsCycle * 60 / res.cycleMins) * 10) / 10) + " hours at this plan's counted rate." : "; no time estimate is shown for the coin part, because this plan has no per-hour rate.") : "."));
       } else {
         lines.push("Goals in your ranked order: " + snapOrder.map(function(gid, i){ return (i + 1) + ". " + bpGoalDef(gid).name + (snapOn[gid] ? "" : " (off)"); }).join(", ") + ". The plan fills goal 1 as far as it can, then the next with what is left; whatever is left at the end goes to Home Coins. The leveling bill plays no part in this mode.");
       }
       if(res.claims && res.claims.basketItems.length){
-        lines.push("Planned first: your basket (" + res.claims.basketItems.join(", ") + ") claims " + fmtRate(res.claims.basketBatches) + " batches per cycle at " + res.claims.basketFacs.join(", ") + " and plants " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots. " + (res.strategy === "levelup" ? "The bill and the Home Coin leftovers below are produced from the remaining capacity only." : "Goal recipes below are picked from the remaining capacity only."));
+        lines.push("Planned first: your basket (" + res.claims.basketItems.join(", ") + ") already uses " + res.claims.basketFacs.join(", ") + " and plants " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots. " + (res.strategy === "levelup" ? "The bill and the Home Coin leftovers below are produced from the remaining capacity only." : "Goal recipes below are picked from the remaining capacity only."));
       }
       if(res.noRoomForGoals){
-        lines.push("The already-planned work claims every facility slot and spare plot this cycle, so no goal recipes could be added.");
+        lines.push("The already-planned work claims every facility slot and spare plot in this plan, so no goal recipes could be added.");
       }
       lines.push("Set your Mines to: " + mineSetupText(res.mine));
       lines.push("");
-      lines.push("Rates:");
-      res.rates.forEach(function(r){ lines.push("- " + r.name + ": " + r.cycle + " per cycle, " + r.min + " per hour"); });
-      lines.push("- Counted Home Coins per cycle, after seed costs: " + fmt(res.coinsCycle) + ".");
-      if(res.starSell > 0) lines.push("- Of that counted total, " + fmt(res.starSell) + " Home Coins rests on recipes that use Star (" + res.starRecipes.join(", ") + "). Star: " + UNVERIFIED_FLAG + ", Aniimax uses it too, flagged unverified there.");
-      if(res.unverifiedRawSell > 0) lines.push("- Unverified-included extra, not in the counted total: " + fmt(res.unverifiedRawSell) + " Home Coins per cycle from Moondew raw sales at 74 each. Sources conflict: Aniiland lists 74 each, aniimoguide says moon crops cannot be sold raw and must be cooked first.");
-      lines.push("- If the unverified items pay off: " + fmt(res.coinsCycle + res.unverifiedRawSell) + " Home Coins per cycle.");
+      lines.push("Rates (per hour):");
+      var bpPerH = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
+      res.rates.forEach(function(r){ lines.push("- " + r.name + ": " + r.min); });
+      if(bpPerH > 0){
+        lines.push("- Counted Home Coins per hour, after seed costs: " + fmtRate(res.coinsCycle * bpPerH) + ".");
+        if(res.starSell > 0) lines.push("- Of that counted rate, " + fmtRate(res.starSell * bpPerH) + " Home Coins per hour rests on recipes that use Star (" + res.starRecipes.join(", ") + "). Star: " + UNVERIFIED_FLAG + ", Aniimax uses it too, flagged unverified there.");
+      } else {
+        lines.push("- No per-hour rate for this plan: it grows no crops, and craft and gather times are not verified, so earnings are not shown as totals here.");
+        if(res.starSell > 0) lines.push("- Part of what this plan would earn rests on recipes that use Star (" + res.starRecipes.join(", ") + "). Star: " + UNVERIFIED_FLAG + ", Aniimax uses it too, flagged unverified there.");
+      }
       if(res.woodCycle > 0){
         var wdet = [];
         Object.keys(res.seedRows).sort().forEach(function(tn){
@@ -5542,17 +5495,23 @@
           var per = woodPerPlot(tn);
           if(per !== null) wdet.push({ name:tn, runs:res.seedRows[tn], per:per, total:res.seedRows[tn] * per });
         });
-        lines.push("- Wood Blocks: " + fmt(res.woodCycle) + " counted per cycle, a tree byproduct that rides along with this plan's tree harvests, never planted (" + woodBreakdownText(wdet) + "). " + WOOD_SOURCE + ".");
+        lines.push("- Wood Blocks: " + fmtRate(res.woodCycle * bpPerH) + " counted per hour, a tree byproduct that rides along with this plan's tree harvests, never planted (" + wdet.map(function(d){ return d.name + " " + fmtRate(d.total * bpPerH) + " per hour"; }).join(", ") + "). " + WOOD_SOURCE + ".");
       }
       lines.push("");
-      lines.push("Recipes to make:");
+      lines.push(bpPerH > 0 ? "Recipes to make (per hour):" : "Recipes to make:");
       Object.keys(res.exp.batches).filter(function(n){ return (res.exp.batches[n] || 0) > 0; }).sort().forEach(function(n){
         var it = ITEMS[n];
-        lines.push("- " + n + ": " + res.exp.batches[n] + (res.exp.batches[n] === 1 ? " batch" : " batches") + " at " + it.facility + ", makes " + fmt(res.exp.batches[n] * it.yld) + ". " + bpWhy(n, res) + ". Sell price: " + (SELL[n] !== undefined ? fmt(SELL[n]) + " Home Coins each (" + priceFlagText(n) + ")" : "none verified") + "." + unverifiedFlagText(n));
+        lines.push("- " + n + ": " + (bpPerH > 0 ? fmtRate(res.exp.batches[n] * it.yld * bpPerH) + " per hour" : "no per-hour rate for this plan") + " at " + it.facility + ". " + bpWhy(n, res) + ". Sell price: " + (SELL[n] !== undefined ? fmt(SELL[n]) + " Home Coins each (" + priceFlagText(n) + ")" : "none verified") + "." + unverifiedFlagText(n));
       });
       res.rawPicks.forEach(function(p){
-        if(p.unverified) lines.push("- Plant and gather: " + p.name + ", " + p.plots + (p.plots === 1 ? " plot" : " plots") + " at " + ITEMS[p.name].facility + ", to sell raw at " + fmt(UNVERIFIED_SELL[p.name]) + " Home Coins each" + unverifiedFlagText(p.name) + ". This income is in the unverified-included total only.");
-        else lines.push("- Plant and sell: " + p.name + ", " + p.plots + (p.plots === 1 ? " plot" : " plots") + " at " + ITEMS[p.name].facility + ", sells at " + fmt(SELL[p.name]) + " Home Coins each (" + priceFlagText(p.name) + ").");
+        lines.push("- Plant and sell: " + p.name + ", " + p.plots + (p.plots === 1 ? " plot" : " plots") + " at " + ITEMS[p.name].facility + ", sells at " + fmt(SELL[p.name]) + " Home Coins each (" + priceFlagText(p.name) + ").");
+      });
+      lines.push("");
+      lines.push("What each facility should do — one entry per facility the plan uses. The number is how many of that building are working, never more than the count you entered in Stage 3; amounts are in the Recipes to make list above:");
+      var facGroupsTxt = bpFacGroups(res);
+      if(!facGroupsTxt.length) lines.push("- None: this plan works no facility.");
+      facGroupsTxt.forEach(function(g){
+        lines.push("- " + g.facility + ": " + fmt(g.working) + " working" + (g.out > 0 ? " of your " + g.out + (g.isField ? " plots" : " out") + " (Stage 3)" : "") + " — making " + g.items.join(", ") + ".");
       });
       lines.push("");
       lines.push("Seeds to plant:");
@@ -5580,13 +5539,13 @@
       });
 
       var html = '<p class="src" id="bpStaleNote" hidden>Your setup changed since this plan was made. Tap Find the best plan to run it again with the new numbers.</p>';
+      var bpPerHH = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
       html += '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + (res.assignedOrder.length + res.rawPicks.length) + '</b><span>recipes and plantings picked for you</span></div>' +
         '<div class="sum-chip"><b>' + Object.keys(busyCount).length + '</b><span>facilities running</span></div>' +
-        '<div class="sum-chip"><b>' + fmt(res.coinsCycle) + '</b><span>counted Home Coins per cycle, after seed costs</span></div>' +
-        '<div class="sum-chip"><b>' + fmt(res.unverifiedRawSell) + '</b><span>unverified-included extra per cycle, Moondew raw sales only, not in the counted total</span></div>' +
-        '<div class="sum-chip"><b>' + fmt(res.coinsCycle + res.unverifiedRawSell) + '</b><span>Home Coins per cycle if the unverified items pay off</span></div>' +
-        '<div class="sum-chip"><b>' + (res.cycleMins > 0 ? fmtRate(res.cycleMins) + " min" : "No crops") + '</b><span>grow cycle, crops side by side</span></div></div>';
+        (bpPerHH > 0
+          ? '<div class="sum-chip"><b>' + fmtRate(res.coinsCycle * bpPerHH) + '</b><span>counted Home Coins per hour, after seed costs</span></div></div>'
+          : '<div class="sum-chip"><b>—</b><span>no per-hour rate for this plan — it grows no crops, and craft and gather times are not verified</span></div></div>');
       var snapOrderR = res.goalOrderSnap || bpGoalOrder, snapOnR = res.goalOnSnap || bpGoalOn;
       html += '<p class="src" style="margin-top:10px">Setup used: RV ' + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", and your Stage 3 facility counts and levels. " +
         (res.strategy === "levelup" && res.leveling
@@ -5597,64 +5556,77 @@
         var perH = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
         html += '<div class="note note-teal"><h4>🎯 Level Up target: the RV ' + res.leveling.next + ' bill</h4><p>Target package: <strong>' + fmt(res.leveling.coin) + ' Home Coins</strong> + ' + Object.keys(res.leveling.needs).map(function(n){ return "<strong>" + esc(n) + " ×" + fmt(res.leveling.needs[n]) + "</strong>"; }).join(" + ") + " — the Woodworking Bench item and the Chimney Kiln item for RV " + res.leveling.next + ", expanded in full in the Level Up section above" +
           (tb.woodOffsetApplied > 0 ? ", with <strong>less " + fmt(tb.woodOffsetApplied) + " Wood Blocks from your basket's Woodland surplus</strong> taken off the bill there (" + fmt(tb.woodStill) + " Wood Blocks still needed)" : "") +
-          ". This plan works toward it at: " + Object.keys(res.leveling.needs).map(function(n){ var g = res.exp.gross[n] || 0; return "<strong>" + esc(n) + " " + fmtRate(g) + " per cycle</strong>" + (perH > 0 ? " (" + fmtRate(g * perH) + " per hour)" : ""); }).join(", ") +
-          ", plus <strong>" + fmt(res.coinsCycle) + " counted Home Coins per cycle</strong>" + (perH > 0 ? " (" + fmtRate(res.coinsCycle * perH) + " per hour)" : "") + " toward the coin part" +
-          (res.coinsCycle > 0 ? " — about <strong>" + fmtRate(Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10) + " cycles</strong> for the coin part alone" : "") +
+          ". This plan works toward it at: " + Object.keys(res.leveling.needs).map(function(n){ var g = res.exp.gross[n] || 0; return perH > 0 ? "<strong>" + esc(n) + " " + fmtRate(g * perH) + " per hour</strong>" : "<strong>" + esc(n) + "</strong>"; }).join(", ") +
+          (perH > 0
+            ? ", plus <strong>" + fmtRate(res.coinsCycle * perH) + " counted Home Coins per hour</strong> toward the coin part" +
+              (res.coinsCycle > 0 ? " — about <strong>" + fmtRate(Math.ceil(res.leveling.coin / (res.coinsCycle * perH) * 10) / 10) + " hours</strong> of running this plan for the coin part alone" : "")
+            : "") +
           ". The bill itself stays a one-time target package, outside the per-hour income rates.</p></div>";
       }
       if(res.claims){
-        var cyc = res.leveling && res.coinsCycle > 0 ? Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10 : null;
+        var perHCl = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
+        var cycH = res.leveling && res.coinsCycle > 0 && perHCl > 0 ? Math.ceil(res.leveling.coin / (res.coinsCycle * perHCl) * 10) / 10 : null;
         var cp = [];
         if(res.claims.basketItems.length){
-          cp.push("Your basket (" + res.claims.basketItems.map(function(n){ return esc(n); }).join(", ") + ") already runs <strong>" + fmtRate(res.claims.basketBatches) + " batches per cycle</strong> at " + res.claims.basketFacs.map(function(f){ return esc(f); }).join(", ") + (res.claims.basketFarmUsed + res.claims.basketWoodUsed > 0 ? ", and plants <strong>" + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots</strong>" : "") + ".");
+          cp.push("Your basket (" + res.claims.basketItems.map(function(n){ return esc(n); }).join(", ") + ") already runs at " + res.claims.basketFacs.map(function(f){ return esc(f); }).join(", ") + (res.claims.basketFarmUsed + res.claims.basketWoodUsed > 0 ? ", and plants <strong>" + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots</strong>" : "") + ".");
         }
         if(res.leveling){
           cp.push("Level Up is your strategy, so the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill (" + Object.keys(res.leveling.needs).map(function(n){ return esc(n) + " ×" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them) is the target produced next, on the setup you have now" + (res.claims.levelingFacs.length ? ", running at " + res.claims.levelingFacs.map(function(f){ return esc(f); }).join(", ") : "") + ".");
         }
         cp.push(res.strategy === "levelup"
-          ? "Your basket's batches and plots come off this cycle's capacity first, then the bill is produced from what is left, and anything beyond the bill goes to Home Coins — so nothing is assigned twice, and no goal claims a slot in this mode."
-          : "Those batches and plots come off this cycle's capacity first, and the goal recipes below are picked only from what is left, so nothing already planned is assigned twice.");
-        if(res.noRoomForGoals) cp.push("<strong>That already-planned work claims every facility slot and spare plot this cycle, so no goal recipes could be added: what follows is your already-planned production and the rates it earns.</strong>");
+          ? "Your basket's work and plots come off the capacity first, then the bill is produced from what is left, and anything beyond the bill goes to Home Coins — so nothing is assigned twice, and no goal claims a slot in this mode."
+          : "That work and those plots come off the capacity first, and the goal recipes below are picked only from what is left, so nothing already planned is assigned twice.");
+        if(res.noRoomForGoals) cp.push("<strong>That already-planned work claims every facility slot and spare plot in this plan, so no goal recipes could be added: what follows is your already-planned production and the rates it earns.</strong>");
         html += '<div class="note note-info"><h4>🧺 ' + (res.strategy === "levelup" ? "Planned first: your basket, then the bill" : "Already planned, before your goals") + '</h4><p>' + cp.join(" ") + "</p>" +
-          (res.leveling ? '<p style="margin-top:8px">The level itself costs <strong>' + fmt(res.leveling.coin) + ' Home Coins</strong>' + (cyc !== null ? ": at this plan's counted <strong>" + fmt(res.coinsCycle) + " Home Coins per cycle</strong>, the coin cost alone is about <strong>" + cyc + (cyc === 1 ? " cycle" : " cycles") + "</strong> of running this plan." : ": this plan earns no counted Home Coins per cycle, so those coins have to come from somewhere else.") + "</p>" : "") + "</div>";
+          (res.leveling ? '<p style="margin-top:8px">The level itself costs <strong>' + fmt(res.leveling.coin) + ' Home Coins</strong>' + (cycH !== null ? ": at this plan's counted <strong>" + fmtRate(res.coinsCycle * perHCl) + " Home Coins per hour</strong>, the coin cost alone is about <strong>" + cycH + (cycH === 1 ? " hour" : " hours") + "</strong> of running this plan." : res.coinsCycle > 0 ? ": this plan has no per-hour rate, so no time estimate for the coin part is shown." : ": this plan earns no counted Home Coins, so those coins have to come from somewhere else.") + "</p>" : "") + "</div>";
       }
       html += mineSetupHtml(res.mine);
       if(res.farmUsed > res.farmCount || res.woodUsed > res.woodCount){
-        html += '<div class="note note-warn"><h4>🌱 More plots than your counts</h4><p>This plan needs ' + res.farmUsed + " Farmland plots and " + res.woodUsed + " Woodland plots, and your counts say " + res.farmCount + " Farmland and " + res.woodCount + " Woodland" + (res.claims && (res.claims.basketFarmUsed + res.claims.basketWoodUsed) > 0 ? ", before your basket's " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots on top" : "") + ". The plan still stands: plant in rounds, first round in the ground while the first batches craft. Your plot counts follow your RV level, so a higher RV allows more.</p></div>";
+        html += '<div class="note note-warn"><h4>🌱 More plots than your counts</h4><p>This plan needs ' + res.farmUsed + " Farmland plots and " + res.woodUsed + " Woodland plots, and your counts say " + res.farmCount + " Farmland and " + res.woodCount + " Woodland" + (res.claims && (res.claims.basketFarmUsed + res.claims.basketWoodUsed) > 0 ? ", before your basket's " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots on top" : "") + ". The plan still stands: plant what fits and replant the same plots as harvests finish. Your plot counts follow your RV level, so a higher RV allows more.</p></div>";
       }
-      html += "<h3 style='margin-top:22px'>📈 Your rates</h3><p class='sec-sub' style='margin-bottom:0'>Per cycle first, then per hour. Per hour uses the grow cycle only: crops grow side by side and the slowest crop sets the pace, so an hour holds 60 ÷ cycle minutes cycles. Craft and gather times are not in the verified data, so a goal with no verified rate says so instead of guessing.</p>";
-      html += '<div class="tbl-wrap"><table><thead><tr><th class="num">Rank</th><th>Goal</th><th>Per cycle</th><th>Per hour</th></tr></thead><tbody>' +
-        res.rates.map(function(r){ return '<tr><td class="num">' + r.rank + "</td><td><strong>" + esc(r.name) + "</strong></td><td>" + esc(r.cycle) + "</td><td>" + esc(r.min) + "</td></tr>"; }).join("") + "</tbody></table></div>";
-      html += '<div class="note note-info"><h4>💰 Counted money and unverified-included money, kept apart</h4><p>Counted: <strong>' + fmt(res.coinsCycle) + ' Home Coins per cycle</strong> after seed costs' + (res.cycleMins > 0 ? ", " + fmtRate(res.coinsCycle / res.cycleMins * 60) + " per hour" : "") + '.' +
-        (res.starSell > 0 ? ' Of that counted total, <strong>' + fmt(res.starSell) + ' Home Coins</strong> rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "") +
-        ' Unverified-included extra, not in the counted total: <strong>' + fmt(res.unverifiedRawSell) + ' Home Coins per cycle</strong> from Moondew raw sales at 74 each <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniiland lists 74 each, aniimoguide says moon crops cannot be sold raw</span>." +
-        ' If the unverified items pay off: <strong>' + fmt(res.coinsCycle + res.unverifiedRawSell) + ' Home Coins per cycle</strong>' + (res.cycleMins > 0 ? " (" + fmtRate((res.coinsCycle + res.unverifiedRawSell) / res.cycleMins * 60) + " per hour)" : "") + "." +
-        (res.woodCycle > 0 ? ' Wood Blocks: <strong>' + fmt(res.woodCycle) + ' counted</strong> per cycle, a tree byproduct that rides along with this plan\'s tree harvests, never planted. ' + WOOD_SOURCE + '.' : "") +
+      html += "<h3 style='margin-top:22px'>📈 Your rates</h3><p class='sec-sub' style='margin-bottom:0'>Per hour throughout: crops grow side by side and the slowest crop sets the pace, so the per-hour figures run at that pace. Craft and gather times are not in the verified data, so a goal with no verified rate says so instead of guessing.</p>";
+      html += '<div class="tbl-wrap"><table><thead><tr><th class="num">Rank</th><th>Goal</th><th>Per hour</th></tr></thead><tbody>' +
+        res.rates.map(function(r){ return '<tr><td class="num">' + r.rank + "</td><td><strong>" + esc(r.name) + "</strong></td><td>" + esc(r.min) + "</td></tr>"; }).join("") + "</tbody></table></div>";
+      html += '<div class="note note-info"><h4>💰 What this plan earns</h4><p>' + (bpPerHH > 0
+        ? 'Counted: <strong>' + fmtRate(res.coinsCycle * bpPerHH) + ' Home Coins per hour</strong> after seed costs.' +
+          (res.starSell > 0 ? ' Of that counted rate, <strong>' + fmtRate(res.starSell * bpPerHH) + ' Home Coins per hour</strong> rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "") +
+          (res.woodCycle > 0 ? ' Wood Blocks: <strong>' + fmtRate(res.woodCycle * bpPerHH) + ' counted per hour</strong>, a tree byproduct that rides along with this plan\'s tree harvests, never planted. ' + WOOD_SOURCE + '.' : "")
+        : 'This plan grows no crops, and craft and gather times are not verified, so it has <strong>no per-hour rate</strong>: earnings are not shown as totals here.' +
+          (res.starSell > 0 ? ' Part of what it would earn rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "")) +
         "</p></div>";
 
       html += "<h3 style='margin-top:22px'>🍳 Recipes to make</h3>";
       if(craftNames.length){
-        html += '<div class="tbl-wrap"><table><thead><tr><th>Recipe</th><th>Facility</th><th class="num">Batches</th><th class="num">Makes</th><th class="num">Sell price each</th><th>Price check</th><th>Why</th></tr></thead><tbody>' +
+        html += '<p class="sec-sub" style="margin-bottom:0">How much of each recipe this setup makes per hour, and what each one sells for.</p>' +
+        '<div class="tbl-wrap"><table><thead><tr><th>Recipe</th><th>Facility</th><th class="num">Makes per hour</th><th class="num">Sell price each</th><th>Price check</th><th>Why</th></tr></thead><tbody>' +
           craftNames.map(function(n){
             var it = ITEMS[n];
-            return "<tr><td><strong>" + esc(n) + "</strong>" + eventBadge(it) + unverifiedFlagHtml(n) + "</td><td>" + esc(it.facility) + '</td><td class="num">' + fmt(res.exp.batches[n]) + '</td><td class="num">' + fmt(res.exp.batches[n] * it.yld) + '</td><td class="num">' + (SELL[n] !== undefined ? fmt(SELL[n]) : "None") + "</td><td>" + priceFlagHtml(n) + "</td><td>" + esc(bpWhy(n, res)) + "</td></tr>";
+            return "<tr><td><strong>" + esc(n) + "</strong>" + unverifiedFlagHtml(n) + "</td><td>" + esc(it.facility) + '</td><td class="num">' + (bpPerHH > 0 ? fmtRate(res.exp.batches[n] * it.yld * bpPerHH) : "—") + '</td><td class="num">' + (SELL[n] !== undefined ? fmt(SELL[n]) : "None") + "</td><td>" + priceFlagHtml(n) + "</td><td>" + esc(bpWhy(n, res)) + "</td></tr>";
           }).join("") + "</tbody></table></div>";
       } else {
-        html += '<div class="empty-plan">No crafted recipe fits your setup and goals this cycle. The plantings below still earn, and a higher RV level opens more recipes.</div>';
+        html += '<div class="empty-plan">No crafted recipe fits your setup and goals in this plan. The plantings below still earn, and a higher RV level opens more recipes.</div>';
       }
       if(res.rawPicks.length){
         html += '<p class="sec-sub" style="margin:12px 0 0">Planted to sell, on plots the recipes did not need: ' + res.rawPicks.map(function(p){
-          if(p.unverified) return "<strong>" + esc(p.name) + "</strong> ×" + p.plots + " plots at " + esc(ITEMS[p.name].facility) + ", to sell raw at " + fmt(UNVERIFIED_SELL[p.name]) + " Home Coins each" + unverifiedFlagHtml(p.name) + " (income counted in the unverified-included total only)";
           return "<strong>" + esc(p.name) + "</strong> ×" + p.plots + " plots at " + esc(ITEMS[p.name].facility) + " (" + fmt(SELL[p.name]) + " Home Coins each, " + priceFlagText(p.name) + ")";
         }).join(", ") + ".</p>";
       }
 
       html += "<h3 style='margin-top:22px'>🏭 What each facility should do</h3>";
-      html += '<div class="tbl-wrap"><table><thead><tr><th>Facility</th><th class="num">Count</th><th>Producing</th><th>Why</th></tr></thead><tbody>' +
-        facRows.map(function(r){
-          return "<tr><td><strong>" + esc(r.facility) + '</strong></td><td class="num">' + (r.idle ? "0" : fmt(r.count)) + "</td><td>" + (r.idle ? "Nothing" : "<strong>" + esc(r.item) + "</strong> <span class='src'>(" + esc(r.unit) + ")</span>" + (r.item === "Star" ? unverifiedFlagHtml("Star") : "")) + "</td><td>" + esc(r.why) + "</td></tr>";
-        }).join("") + "</tbody></table></div>";
-      html += '<p class="src" style="margin-top:8px">Counts are batches, plots or runs in one cycle. Batches past the count of a facility just take extra rounds at that station: the plan lists what to make, your counts decide how much runs at once.</p>';
+      html += '<p class="sec-sub" style="margin-bottom:0">One row for each facility this plan uses: how many of that building are working — never more than the count you entered in Stage 3 — and what it is making. How much of each product is in the Recipes to make table above.</p>';
+      var facGroups = bpFacGroups(res);
+      if(facGroups.length){
+        html += '<div class="tbl-wrap"><table><thead><tr><th>Facility</th><th class="num">Working</th><th>Making</th></tr></thead><tbody>' +
+          facGroups.map(function(g){
+            return "<tr><td><strong>" + esc(g.facility) + "</strong>" +
+              (g.out > 0 ? '<br /><span class="src">' + (g.isField ? fmt(g.out) + " plots in Stage 3" : fmt(g.out) + " out in Stage 3") + "</span>" : "") +
+              '</td><td class="num">' + fmt(g.working) + "</td><td>" +
+              g.items.map(function(n){ return esc(n) + (n === "Star" ? unverifiedFlagHtml("Star") : ""); }).join(", ") +
+              "</td></tr>";
+          }).join("") + "</tbody></table></div>";
+      } else {
+        html += '<div class="empty-plan">This plan works no facility: everything in it is grown or gathered with no station time.</div>';
+      }
 
       html += "<h3 style='margin-top:22px'>🌱 Seeds to plant</h3>";
       var seedNames = Object.keys(res.seedRows).sort(function(a, b){
@@ -5665,12 +5637,11 @@
         html += '<div class="tbl-wrap"><table><thead><tr><th>Crop</th><th>Facility</th><th class="num">Plots</th><th class="num">Seeds</th><th>Seed cost</th></tr></thead><tbody>' +
           seedNames.map(function(n){
             var it = ITEMS[n], plots = res.seedRows[n], cost;
-            if(it.seed === "Moondew Radish Seeds" || it.seed === "Waxing Moon Pepper Seeds") cost = "4 Moonray Wheat per seed, Season Exchange, not Home Coins <span class='verdict v-mix'>Event currency</span>";
-            else if(SEED_PRICE[it.seed] === undefined) cost = "No verified seed price in the filed research";
+            if(SEED_PRICE[it.seed] === undefined) cost = "No verified seed price in the filed research";
             else cost = fmt(SEED_PRICE[it.seed]) + " each, " + fmt(SEED_PRICE[it.seed] * plots) + ' total <span class="verdict v-ok">Seed table, filed research</span>';
             return "<tr><td><strong>" + esc(n) + "</strong><br /><span class='src'>" + climateHtml(n) + '</span></td><td>' + esc(it.facility) + '</td><td class="num">' + fmt(plots) + '</td><td class="num">' + fmt(plots) + "</td><td>" + cost + "</td></tr>";
           }).join("") + "</tbody></table></div>" +
-          '<p class="src" style="margin-top:8px">One seed per plot per planting. Total seed cost counted in the Home Coin rate: ' + fmt(res.seedCost) + " Home Coins.</p>";
+          '<p class="src" style="margin-top:8px">One seed per plot per planting. Seed cost counted in the Home Coin rate: ' + (bpPerHH > 0 ? fmtRate(res.seedCost * bpPerHH) + " Home Coins per hour." : "left out — this plan has no per-hour rate.</p>") + (bpPerHH > 0 ? "</p>" : "");
       } else {
         html += '<div class="empty-plan">This plan plants nothing: every recipe in it runs on gathered materials alone.</div>';
       }
