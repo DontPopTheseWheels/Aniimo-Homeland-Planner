@@ -247,6 +247,16 @@
       .goal-move{display:flex;gap:6px}
       .goal-move button{width:44px;height:44px;border-radius:12px;border:2px solid var(--card-line);background:#fff;font-size:1.1rem;font-weight:800;color:var(--ink)}
       .goal-move button:disabled{opacity:.4;cursor:default}
+      /* Strategy picker: one mode at a time */
+      .strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+      @media (max-width:640px){.strat-grid{gap:8px}.strat-btn{padding:12px}.strat-btn h4{font-size:1.05rem}.strat-btn p{font-size:.88rem}}
+      .strat-btn{text-align:left;font:inherit;color:var(--ink);background:var(--bg-soft);border:2px solid var(--card-line);border-radius:var(--radius);padding:16px;min-height:48px;width:100%}
+      .strat-btn h4{font-size:1.2rem;margin:0 0 4px}
+      .strat-btn p{margin:0;color:var(--ink-soft);font-weight:600;font-size:.94rem}
+      .strat-btn .strat-state{display:inline-block;margin-top:10px;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.85rem;border:2px solid var(--card-line);border-radius:999px;padding:3px 12px;background:#fff;color:var(--ink-faint)}
+      .strat-btn[aria-pressed="true"]{background:var(--card);border-color:var(--accent);box-shadow:var(--shadow)}
+      .strat-btn[aria-pressed="true"] .strat-state{background:var(--accent);border-color:var(--accent);color:#fff}
+      .strat-btn:hover{border-color:var(--accent)}
       .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;border-radius:999px;padding:10px 20px;font-weight:800;opacity:0;pointer-events:none;transition:all .25s ease;z-index:50;max-width:92vw;text-align:center}
       .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
       footer{margin-top:44px;border-top:2px solid var(--card-line);padding-top:18px;color:var(--ink-soft);font-weight:600;font-size:.94rem}
@@ -260,23 +270,24 @@
     <div class="wrap">
       <header class="hero">
         <h1><span class="paw">🐾</span> Aniimo Homeland Planner</h1>
-        <p class="tagline">Pick up to ten things to make. The planner works out the whole chain: what to grow, what to gather, and what to craft first. Then check what your next RV level will cost.</p>
+        <p class="tagline">Pick up to ten things to make, then pick one strategy — Level Up or Goals, never both at once. Your basket is always planned first; the strategy decides what the rest of your homeland works on.</p>
         <div class="emoji-strip" aria-hidden="true">🧺 🌱 💧 🔥 🚐</div>
         <div class="how">
-          <div class="step"><span class="n">Stage 1</span><br /><b>🧺 Recipe basket</b><p>Choose the recipes you want — no amounts to type. The planner sizes the plan to your facilities, your plots and your Aniimo limit, works out the whole chain from scratch, and tells you how much of each thing your homeland keeps making per hour.</p></div>
-          <div class="step"><span class="n">Stage 2</span><br /><b>🚐 RV level-up</b><p>Pick where you are. You get what the very next level needs, from the verified RV 1 to 20 ladder, material tiers expanded down to Wood Blocks and Mineral Sand. Turn leveling on there and that bill joins your basket plan and your team.</p></div>
-          <div class="step"><span class="n">Stage 3</span><br /><b>🏭 Facilities &amp; modules</b><p>Your facilities set themselves: counts and levels always match the most your RV level allows, so there is nothing to fill in there. Type your four module levels once. The planner works out which verified module recipes you own and uses their yields for you. Basket, plans and money crops follow <em>your</em> homeland. The Stage 4 layout helper below turns your basket and best plan choices into plot and climate-zone plans on its own.</p></div>
-          <div class="step"><span class="n">New</span><br /><b>⭐ Best Plan</b><p>Rank your goals, tap Find the best plan, and the planner picks the recipes for you, sized to the facilities your RV level allows and the module levels you entered in Stage 3. Prices come from the filed shop price research. Best Plan only: an item not verified yet but sensible is still included and flagged on its line, so your homeland misses nothing, and its money shows separately from the counted total.</p></div>
-          <div class="step"><span class="n">Home</span><br /><b>🏠 Home side &amp; Bud Tickets</b><p>Production and home share one Aniimo pool. Whatever slots your plan's crew doesn't use become Homebuilding Zone residents earning Bud Tickets — no set number to pick, the reserve is whatever the plan leaves, so it grows and shrinks as the plan changes.</p></div>
-          <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes come from the game data on Daily Aniimo and AniimoTools, and the RV ladder is the one cross-checked for the Master Guide. Anything shaky is flagged on the page, never quietly filled in.</p></div>
+          <div class="step"><span class="n">Stage 1</span><br /><b>🧺 Recipe basket</b><p>Pick recipes, no amounts. The planner works out the whole chain and sizes it to your homeland.</p></div>
+          <div class="step"><span class="n">Strategy</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
+          <div class="step"><span class="n">Stage 3</span><br /><b>🏭 Facilities &amp; modules</b><p>Facilities set themselves from your RV level. Type your four module levels once; the planner applies the module recipes you own.</p></div>
+          <div class="step"><span class="n">Plan</span><br /><b>⭐ Strategy plan</b><p>Find the plan fills what is left after your basket: the RV bill in Level Up mode, your ranked goals in Goals mode. Unverified-but-sensible items are included, flagged, and their money is shown separately.</p></div>
+          <div class="step"><span class="n">Home</span><br /><b>🏠 Home side &amp; Bud Tickets</b><p>Crew slots your plan doesn't use become home residents earning Bud Tickets. The reserve is whatever the plan leaves.</p></div>
+          <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
         </div>
       </header>
 
       <nav class="toc" aria-label="Planner sections">
         <a href="#basket">🧺 Recipe Basket</a>
         <a href="#facilities">🏭 Facilities &amp; Modules</a>
-        <a href="#rv">🚐 RV Level-Up</a>
-        <a href="#bestplan">⭐ Best Plan</a>
+        <a href="#strategy">🎯 Strategy</a>
+        <a href="#rv">🚐 Level Up Bill</a>
+        <a href="#bestplan">⭐ Strategy Plan</a>
         <a href="#crops">🌱 Money Crops</a>
         <a href="#layout">🗺️ Layout Helper</a>
         <a href="#team">👥 Team Helper</a>
@@ -287,14 +298,14 @@
       <!-- ================= STAGE 1: BASKET ================= -->
       <section id="basket">
         <div class="sec-head"><span class="sec-num">Stage 1</span><h2>🧺 Your Recipe Basket</h2></div>
-        <p class="sec-sub">Add up to <strong>ten recipes</strong>. Shared ingredients merge into one list, and crafted ingredients break down into the raw crops and gathered materials under them, so you never chase a chain by hand. Picks live on this page only and clear when you close it.</p>
+        <p class="sec-sub">Add up to <strong>ten recipes</strong>. Ingredients merge into one list, chains included. Picks clear when you close the page.</p>
 
         <div class="card">
           <div class="controls">
             <div class="field">
               <label for="rvLevel">Your RV level</label>
               <select id="rvLevel"></select>
-              <span class="hint">Sets your facilities: their counts and levels in the Stage 3 panel below always match this level, and recipes above them are greyed out.</span>
+              <span class="hint">Sets your facility counts and levels below. Recipes above them are greyed out.</span>
             </div>
             <div class="field" style="flex:1 1 240px">
               <label for="recipeSearch">Find a recipe</label>
@@ -306,38 +317,38 @@
             </div>
           </div>
           <div class="chips" id="catChips" role="group" aria-label="Recipe categories"></div>
-          <p class="src" style="margin-top:8px">Event marks: <span class="event-badge ev-season">🌕 Harvest Moon Festival</span> = season recipe: its Recipe Note comes from the Season Exchange or as a festival quest reward, and each card says which. <span class="event-badge ev-feast">🎪 Grand Feast</span> = a dish Jojo asks for at the festival feast (the three season dishes wear both badges). The 🎪 Event &amp; Feast filter above gathers them all in one place. In the recipe lists below, the same emoji sit right in the name: 🌕 for a season recipe, 🎪 for a feast dish, and ⭐ for a special recipe that takes a rare currency unlock (Rose Shortbread, Potato Kvass).</p>
+          <p class="src" style="margin-top:8px">Marks in recipe names: 🌕 season recipe (Recipe Note from the Season Exchange or a festival quest — each card says which), 🎪 a Grand Feast dish for Jojo, ⭐ a special recipe needing a rare-currency unlock. The 🎪 filter above gathers the event dishes.</p>
           <p class="src" id="pickerCount" style="margin-top:10px"></p>
           <div class="hide-row">
             <label class="hide-toggle" for="hideLockedToggle"><input type="checkbox" id="hideLockedToggle" /> <span>Only show recipes I can make</span></label>
-            <span class="hide-hint">Off: locked recipes stay in the lists with a 🔒 so you can plan ahead. On: locked recipes leave the lists. A recipe already picked stays picked, with its lock note.</span>
+            <span class="hide-hint">On: locked recipes leave the lists. Picked recipes stay picked either way.</span>
           </div>
           <p class="src" id="hideCount" style="margin-top:8px" hidden></p>
           <h3 style="margin-top:14px">🎒 Your ten recipe slots <span class="src" id="basketCount"></span></h3>
-          <p class="src" style="margin-top:4px">One slot per recipe, up to ten, matching the basket cap. Every list is alphabetical, and the search box and category chips above narrow all ten lists at once. Picked the wrong recipe? Open its slot and choose "✕ Clear this slot".</p>
-          <p class="src" style="margin-top:4px"><strong>No amounts to type, ever.</strong> The basket is just the recipes you want to make. The planner works out how much of each your homeland can keep producing — one batch per facility per cycle, on no more plots than your RV level allows, with a crew inside your Aniimo limit — and reports it below as per-cycle and per-hour rates, the Aniimax way. The basket plan, the Layout Helper and the crew all follow that same sizing.</p>
+          <p class="src" style="margin-top:4px">One slot per recipe, up to ten. Lists are alphabetical; search and chips narrow all ten at once. To undo a pick, choose "✕ Clear this slot" in its slot.</p>
+          <p class="src" style="margin-top:4px"><strong>No amounts to type.</strong> The planner sizes production to your facilities, plots and Aniimo limit, and reports per-cycle and per-hour rates below.</p>
           <div class="picker-slots" id="recipeSlots"></div>
         </div>
 
         <div class="card" id="facilities" style="margin-top:16px">
           <h3>🏭 Stage 3 · Your facilities &amp; modules</h3>
-          <p class="sec-sub" style="margin-bottom:4px">Every facility below already sits at the most your RV level allows, count and level together, and the list updates on its own whenever you change the RV picker in Stage 1. There is nothing to type here: the planner assumes you put out everything you are allowed, fully upgraded. Recipe greying follows these levels, and the Best Plan below sizes itself from these counts, one batch per processing facility per cycle and one plot per Farmland or Woodland count. Levels are what unlock recipes.</p>
+          <p class="sec-sub" style="margin-bottom:4px">Counts and levels are the most your RV level allows, updated from the RV picker above. Nothing to type: the planner assumes everything is out and upgraded. Levels unlock recipes.</p>
           <div class="fac-grid" id="facGrid"></div>
           <h4 style="margin-top:20px">🌡️ Your climate buildings</h4>
-          <p class="src" style="margin-top:4px">Counts only, no levels, and nothing to type: like the facilities above, each climate building count below is the most your RV level allows, worked out from the Aniiland RV roadmap ladder (the RV 7 unlock is also backed by GameWith), and it updates on its own whenever you change the RV picker in Stage 1. The planner assumes you put out everything you are allowed. The Layout Helper's layout works with these counts: it never lays out more zones of a building than the count shown here, and never plants more plots than your Farmland and Woodland counts above. Within that, the layout only puts out the climate buildings the plan actually needs — plots that need the same building share its zones — and the Team Helper staffs only those, so a climate building the layout leaves in storage costs no Aniimo. At RV 14 all three counts are 2, matching a real RV 14 setup. The ladder steps rest on Aniiland alone, so each count carries the count single source flag, like the other facility counts.</p>
+          <p class="src" style="margin-top:4px">Counts are the most your RV level allows (Aniiland roadmap ladder; RV 7 unlock also backed by GameWith). The layout never uses more zones or plots than these counts, only puts out climate buildings the plan needs, and plots needing the same building share its zones — the crew staffs only buildings the layout puts out. Steps rest on Aniiland alone, so each count carries the single-source flag.</p>
           <div class="fac-grid" id="climGrid"></div>
           <h4 style="margin-top:20px">🧩 Your module levels</h4>
-          <p class="src" style="margin-top:4px">Type each RV module's level, exactly as the game shows it in Component Upgrade. Every box starts at 0. No need to remember which module recipe you own: the planner checks your levels against the verified unlock table below and switches the matching harvest yields on in the Grow list, the Money Crops table and the Layout Helper plot counts. Only unlocks verified against AniimoTools, aniimoguide and the Aniiland roadmap are automatic. Anything unverified stays manual, says so, and is never guessed.</p>
+          <p class="src" style="margin-top:4px">Type each module's level as shown in Component Upgrade. The planner switches on the matching verified harvest yields. Unverified unlocks stay manual and are never guessed.</p>
           <div class="fac-grid" id="modLevelGrid"></div>
           <div id="modStatus" aria-live="polite"></div>
           <h4 style="margin-top:20px">🧩 Module harvests in your plan</h4>
-          <p class="src" style="margin-top:4px">Strawberry, Coconut and Maple Syrup are set by your Ecological level above, so their buttons are locked to match. Premium Wheat has no verified module unlock in any source checked, so it stays a manual tap, plainly flagged, never auto-applied. Without it, Premium Wheat cannot be grown at all.</p>
+          <p class="src" style="margin-top:4px">Strawberry, Coconut and Maple Syrup follow your Ecological level. Premium Wheat has no verified module unlock, so it stays a manual tap, flagged. Without it, Premium Wheat cannot be grown.</p>
           <div class="chips" id="modChips" role="group" aria-label="Module recipes you own" style="margin-top:10px"></div>
         </div>
 
         <div class="note note-teal">
           <h4>🌱 Grow times: should you worry? Not really</h4>
-          <p>Good news: almost everything grows on the same <strong>40-minute cycle</strong>, so no slow crop hides in your basket. Wheat is the fast exception at 4 minutes, and Potato and Willow Wood take 10 min 40 s. Everything else, Farmland and Woodland alike, is 40 minutes. Crops grow <strong>side by side at the same time</strong>, so times do not add up: one batch of each crop, planted together, is ready in about 40 minutes total. Time only adds up when one crop needs several batches and the same plots take turns. Check the <strong>Plots</strong> column in the Grow list: it is how many plots of that crop one cycle plants, and the cycle lasts as long as its slowest crop. Happy to plant, wander off, and come back later? Ignore grow times and just follow the amounts. The amounts are what this planner is careful about.</p>
+          <p>Almost everything grows on the same <strong>40-minute cycle</strong> (Wheat 4 min; Potato and Willow Wood 10 min 40 s). Crops grow side by side, so times don't add up — a cycle lasts as long as its slowest crop. Follow the amounts; grow times rarely matter.</p>
         </div>
 
         <div id="planArea"></div>
@@ -345,14 +356,36 @@
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
-      <!-- ================= STAGE 2: RV ================= -->
-      <section id="rv">
-        <div class="sec-head"><span class="sec-num">Stage 2</span><h2>🚐 RV Level-Up Planner</h2></div>
-        <p class="sec-sub">What your <strong>next</strong> RV level needs, from the verified ladder in the Master Guide. The planner always prices the one step from your level to the next: no target picking, and no Home Coin balance to track, because coins come and go constantly. Home Coin shows as a cost of that level instead. Headline materials expand down their crafting tiers, lower tiers processed up at the Woodworking Bench and the Chimney Kiln, exactly like Aniimax handles it. The bill always shows the full amounts: nothing you already hold is taken off it.</p>
+      <!-- ================= STRATEGY: ONE AT A TIME ================= -->
+      <section id="strategy">
+        <div class="sec-head"><span class="sec-num">Strategy</span><h2>🎯 Pick Your Strategy — One at a Time</h2></div>
+        <p class="sec-sub">Your basket is planned first in both modes. Pick <strong>one</strong> strategy for the rest — never both at once. Nothing runs until you tap one, and switching re-plans cleanly with nothing left over.</p>
+        <div class="card">
+          <div class="strat-grid" role="group" aria-label="Strategy choice">
+            <button type="button" class="strat-btn" id="stratLevelBtn" aria-pressed="false">
+              <h4>🚐 Level Up</h4>
+              <p>Gets everything your next RV level costs as soon as possible, then earns as many Home Coins as that leaves room for.</p>
+              <span class="strat-state" id="stratLevelState">Not picked</span>
+            </button>
+            <button type="button" class="strat-btn" id="stratGoalsBtn" aria-pressed="false">
+              <h4>🎯 Goals</h4>
+              <p>Works down your ranked goals in order (Aniimax's Priorities); anything left over earns Home Coins.</p>
+              <span class="strat-state" id="stratGoalsState">Not picked</span>
+            </button>
+          </div>
+          <p class="src" id="strategyStatus" style="margin-top:12px" aria-live="polite">No strategy picked yet. Tap Level Up or Goals above.</p>
+        </div>
+      </section>
 
-        <div class="hide-row" style="margin:0 0 16px">
-          <label class="hide-toggle" for="levelingToggle"><input type="checkbox" id="levelingToggle" /> <span>Include leveling resources in my plan</span></label>
-          <span class="hide-hint">Off: this section is a quiet reference. The ladder below stays for looking up, but the bill and the gates checklist tuck away, and nothing from leveling enters your Team Helper. On: the next level's bill is priced in full as a one-time package (it never becomes part of your plan's per-hour rates), its jobs join your team, and what your basket already produces (like Wood Blocks from Woodland crops) comes off the bill, shown line by line.</span>
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
+      <!-- ================= LEVEL UP: RV BILL ================= -->
+      <section id="rv">
+        <div class="sec-head"><span class="sec-num">Level Up</span><h2>🚐 Level Up — Your Next RV Bill</h2></div>
+        <p class="sec-sub">The <strong>Level Up strategy's</strong> bill: what your <strong>next</strong> RV level costs, full amounts, nothing held taken off. Headline materials expand down their tiers to the Woodworking Bench and Chimney Kiln items. The bill is a one-time target — it never joins your per-hour income rates. Its jobs join your team, and your basket's Wood Block surplus comes off it, line by line.</p>
+
+        <div id="rvInactive">
+          <div class="empty-plan">🚐 The next-level bill shows here when <strong>Level Up</strong> is your picked strategy. <a href="#strategy">Pick a strategy above</a> — in Goals mode this bill plays no part at all. The full ladder below stays as reference either way.</div>
         </div>
 
         <div id="rvActive" hidden>
@@ -361,12 +394,12 @@
             <h3>Your next level</h3>
             <p style="margin-top:12px;font-weight:700">Your current RV: <strong id="rvCurrentDisplay">RV 20</strong></p>
             <p class="hint" id="rvNextLabel" style="margin-top:4px"></p>
-            <p class="src" style="margin-top:8px">This follows the RV level you picked in Stage 1 above — you only pick your level once. Change it there and this section updates on its own.</p>
-            <p class="src" style="margin-top:12px">There is no Home Coin box on purpose: it is a cost in the bill, not a balance worth tracking. The bill below always shows the full amounts for the next level.</p>
+            <p class="src" style="margin-top:8px">Follows the one RV picker in Stage 1.</p>
+            <p class="src" style="margin-top:12px">Home Coin is a cost in the bill, not a balance to track.</p>
           </div>
           <div class="card">
             <h3>Before you start the RV upgrade timer (in game)</h3>
-            <p class="sec-sub" style="margin-bottom:0">These gates must be in place for the next level. Plots are the hidden early gate: place the next level's plots while the current upgrade timer is still running in game.</p>
+            <p class="sec-sub" style="margin-bottom:0">Must be in place for the next level. Tip: place the next level's plots while the current upgrade timer is still running.</p>
             <ul class="check-list" id="rvGates"></ul>
           </div>
         </div>
@@ -388,26 +421,32 @@
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
-      <!-- ================= BEST PLAN ================= -->
+      <!-- ================= STRATEGY PLAN ================= -->
       <section id="bestplan">
-        <div class="sec-head"><span class="sec-num">Plan</span><h2>⭐ Best Plan Finder</h2></div>
-        <p class="sec-sub">The basket above starts from recipes you pick. This panel works the other way round, like Aniimax: you rank your goals, and the planner picks the recipes. It reads your Stage 3 setup on this page: RV level, every facility count and level, and your four module levels, so the plan fits your homeland, not a default one. It also reads your basket and the leveling toggle in the RV Level-Up section above: what your basket already runs, and the next level's bill when leveling is on, claim this cycle's facility slots and plots first, the goals are filled from what is left, and the level's Home Coin cost is set against what the plan earns per cycle. One cycle is one batch per processing facility and one planting per plot, all crops growing side by side, the same way the Grow list explains grow times.</p>
+        <div class="sec-head"><span class="sec-num">Plan</span><h2>⭐ Strategy Plan Finder</h2></div>
+        <p class="sec-sub">Your basket claims facility slots and plots first. The strategy fills what is left: the next RV bill in Level Up mode, your ranked goals in Goals mode. One cycle = one batch per facility, one planting per plot, crops side by side.</p>
 
         <div class="card">
+          <div id="goalsInactive">
+            <div class="empty-plan">🎯 Your ranked goals show here when <strong>Goals</strong> is your picked strategy. <a href="#strategy">Pick a strategy above</a> — in Level Up mode the goals play no part at all, and the plan below targets the next RV bill instead.</div>
+          </div>
+          <div id="goalsPanel" hidden>
           <h3>🎯 Rank your goals</h3>
-          <p class="sec-sub" style="margin-bottom:0">Switch on what you want and rank it with the arrows. The plan fills the first goal as far as it can, then the next, and so on. Whatever is left always goes to Home Coins.</p>
+          <p class="sec-sub" style="margin-bottom:0">Turn goals on or off and rank them with the ↑ ↓ arrows. Goal 1 fills first, then the next with what is left; leftovers go to Home Coins. All off is allowed.</p>
           <div class="goal-list" id="goalList"></div>
+          </div>
           <div class="plan-actions">
-            <button class="btn btn-primary" id="findBestBtn" type="button">⭐ Find the best plan</button>
+            <button class="btn btn-primary" id="findBestBtn" type="button" disabled>⭐ Find the plan</button>
+            <span class="src" id="findBestHint" style="align-self:center">Pick a strategy above first — Level Up or Goals.</span>
           </div>
           <div id="bestPlanOut">
-            <div class="empty-plan">Your best plan appears here. Your facilities already follow your RV level on their own; set your four module levels in the Stage 3 panel above, rank your goals, then tap Find the best plan.</div>
+            <div class="empty-plan">Your strategy plan appears here. Pick a strategy above, set your four module levels in the Stage 3 panel, then tap Find the plan.</div>
           </div>
         </div>
 
         <div class="note note-info">
           <h4>🔍 How to read the prices and flags on a best plan</h4>
-          <p>Sell prices come from the filed shop price research for this planner (the Aniimo Homeland Shop Prices page, checked Oct 24, 2026). A price two sources agree on is marked <span class="verdict v-ok">Cross-checked</span>. Most mid and late game prices rest on one source only (Aniiland), so they are marked <span class="verdict v-mix">Single source, spot-check in game</span> and never presented as verified: spot-check one in game before a big spend. A recipe with no price in the research at all is marked <span class="verdict v-lock">No verified sell price</span>, and the Home Coin goal cannot use it. Your rule for this panel: an item not verified yet but sensible is still included, so nothing sensible is left out, and its line carries the flag <span class="verdict v-mix">Not verified yet, included because it makes sense</span> with the short reason. That covers Star (Aniimax uses it too, flagged unverified there) and the raw sale of Moondew Radish and Waxing Moon Pepper (sources conflict: Aniiland lists 74 Home Coins each, aniimoguide says moon crops cannot be sold raw and must be cooked first). Money stays split three ways: a counted Home Coin total, the unverified-included extra on its own, then the total if the unverified items pay off. Three goals still have no figures behind them at all, so the plan flags them instead of inventing numbers: Aniimo XP per recipe, Harvest Moon Points per dish, and the Mineral Sand amount per Mine run, which varies.</p>
+          <p>Sell prices come from the filed shop price research (checked Oct 24, 2026). <span class="verdict v-ok">Cross-checked</span> = two sources agree. <span class="verdict v-mix">Single source, spot-check in game</span> = Aniiland only — check before a big spend. <span class="verdict v-lock">No verified sell price</span> = cannot earn Home Coins. Unverified-but-sensible items (Star; raw Moondew Radish and Waxing Moon Pepper sales, which sources conflict on) are included and flagged <span class="verdict v-mix">Not verified yet, included because it makes sense</span>, with their money shown separately from the counted total. Aniimo XP, Harvest Moon Points and Mineral Sand per Mine run have no verified figures, so they are flagged, never invented.</p>
         </div>
       </section>
 
@@ -416,14 +455,14 @@
       <!-- ================= MONEY CROPS ================= -->
       <section id="crops">
         <div class="sec-head"><span class="sec-num">Bonus</span><h2>🌱 Money Crops, for while you grow</h2></div>
-        <p class="sec-sub">If your basket sends you to the Farmland or Woodland anyway, these are the harvests that earn the most Home Coin per plot per hour when sold at the Co-op Store, so spare plots can pay for your cooking. Tree figures include the Wood Blocks the tree gives on top of the harvest. <span id="cropsRv"></span></p>
+        <p class="sec-sub">Best Home Coin per plot per hour at the Co-op Store — plant spare plots with these. Tree figures include their Wood Blocks. <span id="cropsRv"></span></p>
         <div class="tbl-wrap">
           <table>
             <thead><tr><th>Crop (per plot)</th><th class="num">Cycle</th><th class="num">Home Coin</th><th class="num">Home Coin / hour</th><th>Unlocks</th><th>Notes</th></tr></thead>
             <tbody id="cropsBody"></tbody>
           </table>
         </div>
-        <p class="src" style="margin-top:10px">Crop coin figures are AniimoTools' computed values <span class="verdict v-mix">single source, computed</span> from <a href="https://aniimotools.dev/systems/homeland/crops-and-facilities/">AniimoTools, Home Crops and Facilities</a>. Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026: Level 1 is 1, Level 2 is 8, Level 3 is 21, Level 4 is 47, Level 5 is 75, Level 6 is 122, so Willow Wood (Level 1) counts +1, Coconut (Level 5) shows +75 and Cocoa and Orange Flower (Level 6) show +122. The planner's grow amounts deliberately use base yields instead (see Sources &amp; Flags), so your shopping list never comes up short.</p>
+        <p class="src" style="margin-top:10px">Coin figures: AniimoTools, computed <span class="verdict v-mix">single source, computed</span>. Wood Blocks per plot by Woodland level (your screenshots, Oct 25, 2026): Lv 1 = 1, Lv 2 = 8, Lv 3 = 21, Lv 4 = 47, Lv 5 = 75, Lv 6 = 122. Grow amounts use base yields, so lists never come up short.</p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
@@ -431,7 +470,7 @@
       <!-- ================= STAGE 4: LAYOUT ================= -->
       <section id="layout">
         <div class="sec-head"><span class="sec-num">Stage 4</span><h2>🗺️ Homeland Layout Helper</h2></div>
-        <p class="sec-sub">Just <strong>two layouts</strong>, and you toggle between them: <strong>⭐ Best</strong> plants the full field your RV level allows, and <strong>🪶 Minimum</strong> plants one plot of each crop, the smallest start that still grows everything. Both stay inside your RV level's limits — never more Farmland or Woodland plots than your level allows, and never more climate buildings than your level allows. Farmland and Woodland plots that need the same climate building <strong>share its coverage zones</strong>: the layout packs them into the fewest Heat Furnaces, Cooling Units and Sunlamps that cover the plan, says plainly which plots share each building, and your crew in the Team Helper only staffs the climate buildings the layout actually puts out — so sharing here cuts the Aniimo the plan needs. The lists under the layout are just the counts behind it, not more layouts. The − and + buttons on each crop still change its count, and adding crops by hand further down is optional extras only. Sizes in grid cells: a Farmland plot is 4 × 4, a Woodland plot 7 × 7, and one climate building covers an 18 × 18 square centered on itself.</p>
+        <p class="sec-sub">Two layouts, toggled: <strong>⭐ Best</strong> plants the full field your RV level allows; <strong>🪶 Minimum</strong> plants one plot of each crop. Plots needing the same climate building share its zones, so sharing cuts the Aniimo the crew needs. Sizes: Farmland plot 4 × 4, Woodland plot 7 × 7, one climate building covers 18 × 18.</p>
 
         <div class="team-toggle" role="group" aria-label="Layout view" style="margin-bottom:6px">
           <button type="button" class="chip" id="layoutBestBtn" aria-pressed="true">⭐ Best layout</button>
@@ -443,7 +482,7 @@
 
         <div class="card" style="margin-top:16px">
           <h3>✋ Add extra crops by hand <span class="src">(optional, never needed for layout help)</span></h3>
-          <p class="sec-sub" style="margin-bottom:0">Your layout above already comes from your basket and your best plan, so there is nothing you have to fill out here. Use this only for crops beyond those: tap a crop to add one plot of it, tap again to take it back out. Hand picks land in their own group right below this card, kept separate from the basket and best plan groups. Picks live on this page only and clear when you close it.</p>
+          <p class="sec-sub" style="margin-bottom:0">Optional extras only — your layout already comes from your basket and strategy plan. Tap a crop to add one plot, tap again to remove it. Hand picks stay in their own group.</p>
           <div id="layoutPicker"></div>
         </div>
 
@@ -451,7 +490,7 @@
 
         <div class="card" style="margin-top:16px">
           <h3>⚡ Power zones, for later</h3>
-          <p class="sec-sub" style="margin-bottom:0">Power is not needed to grow anything. It is a measuring stick for later, when work stations switch to E-mode and need to sit inside a power zone. And if a Crackle Generator ever takes an Aniimo to run it, that Aniimo stays at its post: Aniimo that run the Crackle Generator can't leave to haul, the same rule as the Cooling Unit, Heat Furnace and Sunlamp Aniimo in the Team Helper — utility posts never count toward Hauling cover.</p>
+          <p class="sec-sub" style="margin-bottom:0">Power isn't needed to grow anything — it matters later, when stations switch to E-mode and must sit in a power zone. Generator Aniimo stay at their post: utility posts never count toward Hauling cover.</p>
           <div class="zone-maps" id="powerRef"></div>
         </div>
       </section>
@@ -459,10 +498,8 @@
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
       <!-- ================= TEAM HELPER ================= -->
-      <section id="team">
-        <div class="sec-head"><span class="sec-num">Team</span><h2>👥 Team Helper</h2></div>
-        <p class="sec-sub">Who staffs everything above? This is the one crew suggestion for the whole planner, shown only after everything is picked out. Your basket and, when you have run one, your Best Plan decide which facilities run, deduped so a facility needed by both counts once, plus leveling jobs when leveling is on. Toggle between <strong>⭐ Best</strong> (a dedicated worker per facility) and <strong>🪶 Minimum</strong> (one shared Aniimo per job): only one crew shows at a time, and <strong>Best is always fitted inside your RV level's Aniimo limit</strong> — if a dedicated worker at every facility would go over the limit, a worker is shared at just the few facilities the limit forces, and the plan says which ones share; only if even Minimum cannot fit does no crew show, with what has to change. It rebuilds whenever your basket, your Best Plan or your RV level changes. Hover an assignment for its full detail, or tap it on a touch screen. <strong>Hauling is always in the total, and always more than one:</strong> it grows with the facilities your plan sets running. Aniimo can do more than one job: a worker who has Hauling as another Home Ability can carry what it made to your storage once its own batch is done, and it still counts once, in its main job. The planner checks this crew itself for that — only Aniimo confirmed to also hold Hauling in the verified per-species data (aniimoguide's launch-client table, Game8 species pages, Daily Aniimo and allthings.how, cross-checked against a Gemini research pass) are counted as covering, each named on the hauling line: a Lightning post covers through Fenmane, since Blazen does not haul, and the planting post through a Grass Lv 3 Tuckin, a step down from the Grass Lv 4 strongest. The rest are split honestly on that line: Tromber and Cornet are confirmed single-job (Wind is their only homeland job, so they cannot cover), no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier in the sources checked, and only the remainder are truly unconfirmed and not assumed to cover. Whatever hauling is left becomes dedicated haulers. <strong>Utility posts never cover:</strong> Aniimo that run the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so they never count toward Hauling cover no matter which Aniimo staffs them — a Geoclaw on a Cooling Unit does not cover, and neither does a Fennelun on a Sunlamp, even though both species hold Hauling Lv 3. Cover only comes from production posts — cooking, crafting, gathering, mining, the Well, leisure and the like — where an Aniimo finishes a job and can carry what it made to storage. The hauling count itself is your stand-in rule, not game-verified data. <strong>Climate Aniimo follow your layout:</strong> only the Heat Furnaces, Cooling Units and Sunlamps the Layout Helper actually puts out are staffed, 1 Aniimo per building out, so plots sharing a climate building in the layout directly cuts the Aniimo this plan needs. <strong>Whatever slots this crew doesn't use are not wasted:</strong> they are your home residents in the 🏠 Home &amp; Bud Tickets section below, earning Bud Tickets — so a smaller crew here means more tickets there, and the reserve moves with the plan.</p>
-        <div class="note note-info" style="margin:0 0 16px"><p><strong>Decide leveling before you use this crew.</strong> Turning on Include leveling resources in my plan in the RV Level-Up section adds leveling jobs to this crew, so the crew can grow when leveling is on.</p></div>
+      \g<1>One crew for the whole plan: your basket plus your strategy plan, deduped by facility, plus the bill's jobs in Level Up mode. <strong>⭐ Best</strong> = a dedicated worker per facility; <strong>🪶 Minimum</strong> = one shared Aniimo per job. Best is fitted inside your Aniimo limit — shared workers are named when the limit forces them. <strong>Hauling is always in the total, always more than one</strong> — the count is your stand-in rule, not game data. Cover, in one line: a worker confirmed to also hold Hauling can carry what it made to storage and counts once, in its main job; everyone else doesn't cover, and the rest becomes dedicated haulers. <strong>Utility posts never cover:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts. Climate Aniimo staff only the buildings your layout puts out. Slots the crew doesn't use become home residents (🏠 below).\g<2>
+        <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy before you use this crew.</strong> In Level Up mode the next level's bill jobs join this crew, so the crew can grow in that mode; in Goals mode the bill plays no part. Switching strategy rebuilds this crew with no leftover jobs from the other mode.</p></div>
         <div class="card">
           <div id="teamGate"></div>
           <div id="teamContent">
@@ -479,9 +516,7 @@
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
       <!-- ================= HOME SIDE & BUD TICKETS ================= -->
-      <section id="home">
-        <div class="sec-head"><span class="sec-num">Home</span><h2>🏠 Home Side &amp; Bud Tickets</h2></div>
-        <p class="sec-sub">Bud Tickets don't come from production at all. They drip from Aniimo <strong>living in the Homebuilding Zone</strong> (opens at <strong>RV 8</strong>) into a Bud Ticket Jar, and you spend them at the Furniture Store on decor. Production and home draw on <strong>one shared Aniimo pool</strong> — your RV level's cap — so every slot spent on production is a resident not earning tickets, and every slot production doesn't need is a resident who is. <strong>There is no set reserve number to pick:</strong> this section works it out from your plan as it stands — <strong>cap − your production crew = places left for home</strong> — so it fluctuates with the plan, exactly as it should. Make the plan bigger and the reserve shrinks; trim it, share workers (🪶 Minimum), or share climate buildings in the layout, and the reserve grows back. Overfilling production buys nothing extra: a facility with no post to work adds no output, so leaving the spare slots at home is the better use of them.</p>
+      \g<1>Bud Tickets come from Aniimo <strong>living in the Homebuilding Zone</strong> (opens at <strong>RV 8</strong>), spent on decor at the Furniture Store. Production and home share one Aniimo pool: <strong>places left for home = cap − your production crew</strong>. No reserve number to pick — it moves with the plan.\g<2>
 
         <div class="card">
           <div class="controls">
@@ -493,7 +528,7 @@
                 <option value="both">Sparkling + Prismana — 270 a day each</option>
                 <option value="mixed">Mixed — half regular, half Sparkling + Prismana</option>
               </select>
-              <span class="hint">No ability changes the rate — it's the Aniimo's tags. Pick the line closest to the residents you'd actually put at home; the ticket figures below follow it. The places left for home never depend on this choice, only on your plan.</span>
+              <span class="hint">Rates follow the Aniimo's tags, not abilities. Places left for home depend only on your plan.</span>
             </div>
           </div>
           <div id="homeOut" aria-live="polite"></div>
@@ -501,11 +536,11 @@
 
         <div class="note note-teal">
           <h4>🎫 How Bud Tickets work</h4>
-          <p>Each resident pays into the Jar every day: <strong>120</strong> for a regular Aniimo, <strong>180</strong> if it's Sparkling or Prismana, <strong>270</strong> if it carries both tags (Game8). At the Furniture Store, nearly every decor piece gives about <strong>1 Habitability per ticket spent</strong>, and Habitability is what gates the higher RV levels — 13,000 for RV 10, rising to 20,000 for RV 20 on the ladder above (AniimoTools) — so home residents are quietly paying for your next levels while production runs. Level-up rewards and Home Orders add tickets on top; those amounts aren't part of the daily Jar figures here. Two honest unknowns: the Jar's capacity couldn't be confirmed in any source checked, so no cap is printed and nothing here assumes one; and a claimed extra 100 tickets a day from a daily home chest rests on one source only, so it is <strong>not</strong> counted in any figure on this page.</p>
+          <p>Per resident per day: <strong>120</strong> regular, <strong>180</strong> Sparkling or Prismana, <strong>270</strong> both tags (Game8). Decor gives about <strong>1 Habitability per ticket</strong>, and Habitability gates RV 10–20 (13,000 rising to 20,000, AniimoTools). Level-up rewards and Home Orders add more, not counted here. Not verified: the Jar's capacity (no cap assumed), and a claimed +100/day from a daily home chest (single source, not counted).</p>
         </div>
         <div class="note note-info">
           <h4>🛋️ Not the same thing as the Leisure buildings</h4>
-          <p>The Leisure facilities — Nimbus Bed, Dewy House, Tidewhisper Sandcastle and Starfall Hammock — sit in the Production Zone and are already staffed in your crews above. The home side in this section is the <strong>residents</strong>: Aniimo placed in the Homebuilding Zone itself. Different ground, different job — residents need no ability at all to earn tickets.</p>
+          <p>The Leisure buildings are Production Zone facilities, already staffed in the crew. This section counts <strong>residents</strong> in the Homebuilding Zone — they need no ability to earn tickets.</p>
         </div>
       </section>
 
@@ -513,39 +548,39 @@
       <footer id="sources">
         <h3>🔍 Sources &amp; Flags: how to read this planner</h3>
         <ul>
-          <li><strong>Recipe ingredients, facility levels and craft times:</strong> <a href="https://dailyaniimo.com/homeland/recipes">Daily Aniimo, Homeland recipes</a> (game data as of Oct 9, 2026), cross-checked against <a href="https://aniimotools.dev/systems/homeland/crops-and-facilities/">AniimoTools, Home Crops and Facilities</a> (385-recipe book). Where the two use different names for the same station, the AniimoTools station name wins.</li>
-          <li><strong>RV costs, caps, prerequisites and unlocks:</strong> <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, cross-checked against MetaBot.GG's retail-file Homeland guide, same as the Master Guide ladder.</li>
-          <li><strong>Grow amounts use base yields.</strong> Most crops have a second, bigger harvest at a higher facility level or with an RV module recipe (Strawberry ×26 instead of ×8, for example). The planner counts the base yield, so with modules your plots will finish early, never late.</li>
-          <li><strong>Premium variants are not listed twice.</strong> Daily Aniimo shows Premium Bread, Premium Jello and friends using the exact same ingredients as the regular version, so one entry covers both.</li>
-          <li><strong>Special recipes:</strong> Rose Shortbread and Potato Kvass are flagged in the picker. Aniimax lists them among the special recipes that take a rare currency to unlock, so plans only make sense once you own them.</li>
-          <li><strong>Event recipes are badged, not blended in:</strong> anything wearing a <span class="event-badge ev-season">🌕 Harvest Moon Festival</span> badge is a season recipe whose Recipe Note comes from the Season Exchange for Moonray Wheat (Umbral Hot Pot, Umbral Pickle and Umbral Sweet Spicy Sauce at 80 each; Harvest Platter's price is listed as 110 by Game8 and 120 by the aniimoguide event guide, so check the shop). Anything wearing a <span class="event-badge ev-feast">🎪 Grand Feast</span> badge is one of the six dishes Jojo asks for, five of each, at the festival feast. The feast list and note prices are from <a href="https://aniimotools.dev/systems/homeland/home-season/">AniimoTools, Harvest Moon Festival</a> and <a href="https://aniimoguide.com/news/aniimo-harvest-moon-festival-guide">aniimoguide's festival guide</a>, and every dish's ingredients were checked against Daily Aniimo's recipe book above. The festival runs Sep 15 to Oct 27 and takes RV 10 to join.</li>
-          <li><strong>Crop environment data verified from your own game.</strong> The climate buildings themselves are real game facilities (Cooling Unit and Heat Furnace at RV 7, Sunlamp at RV 9, per AniimoTools). The game tags each crop on two separate axes: a temperature tag (Freeze, Cool, Warm or Scorching), shown as a Recommended Environment, meaning the crop grows best there and still grows elsewhere, and an Adequate light tag, shown as a Required Environment, meaning it is a hard requirement. Freeze and Cool are served by a Cooling Unit; Warm and Scorching by a Heat Furnace; Adequate light by a Sunlamp. Crop environment data was verified from the player's own in-game screenshots and survey (Oct 23, 2026). The 18 tagged crops carry the tags shown, printed wherever climates appear: Rose, Strawberry, Ginseng and Apple are Cool (Recommended); Cranberry and Maple Syrup are Freeze (Recommended); Cherry Blossom and Chestnut are Warm (Recommended); Sugarcane, Agave, Palm Bark, Natural Rubber, Coconut and Cocoa are Scorching (Recommended); Lavender, Grapes, Walnut and Orange Flower need Adequate light (Required). Moondew Radish and Waxing Moon Pepper carry no environment line on their in-game panels at all. All other crops were confirmed by the player to have no environment requirement: the crops she screenshotted are all the crops with special environment conditions among everything visible in her game, so every other crop, including Wheat, Rice and Premium Wheat, reads "No special environment needed, grows anywhere" everywhere climates appear.</li>
-          <li><strong>Sea Salt is the known bottleneck</strong> <span class="verdict v-mix">single community source</span>: it comes only from the Tidewhisper Sandcastle, and a long list of dishes ask for it. The planner calls it out whenever your basket needs salt. The Sandcastle's assigned Aniimo is per product, not per facility, from the player's own in-game panels (Oct 27, 2026): Sea Salt is produced by Aniimo from the <strong>Susuta family</strong>, and Pearl gathering needs the <strong>Shelly family</strong>; both notes ride on those items' own entries.</li>
-          <li><strong>Wood Blocks by Woodland level.</strong> Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026: Woodland Level 1 gives 1 per plot, Level 2 gives 8, Level 3 gives 21, Level 4 gives 47, Level 5 gives 75, and Level 6 gives 122, the same for every tree at that level, regular and Quick Formula alike, using the card level for each tree. Mineral Sand comes out of the Mine alongside Rock in amounts that vary, so the planner shows the amounts you need without inventing a fake plots figure for it.</li>
-          <li><strong>Climate coverage:</strong> Verified from the player's own in-game Edit-mode screenshot of the Heat Furnace (Oct 23, 2026): climate buildings (Cooling Unit, Heat Furnace, Sunlamp) affect a square area 9 grid cells across, centered on the building, as shown by the game's own placement highlight.</li>
-          <li><strong>Plot footprints and power zones (Layout Helper):</strong> measured from the player's own in-game screenshots (Oct 23, 2026), in the build grid's fine cells (bold lines sit every 2 fine cells). Farmland plots are 4 × 4 fine cells, Woodland plots 7 × 7, climate zones 18 × 18 fine cells (9 × 9 bold), the Crackle Generator's electric zone 22 × 22 (11 × 11 bold) and a Crackle Power Pole's zone 14 × 14 (7 × 7 bold). Packing figures assume plots sit edge to edge with no paths between them. The zone overlap blends in the Layout Helper come from the Steam RV/Homeland Guide's homeland lesson, not from measurement.</li>
-          <li><strong>RV next level, the leveling toggle, and the basket offset:</strong> the RV planner always prices the single next level from the level you pick: pick RV 6 and it bills RV 7. Home Coin is printed as that level's cost and is never an input, because a coin balance changes constantly and tracking one is not realistic. There are no stock boxes anywhere in this planner: the basket plan is sized to your homeland and shows per-cycle amounts with per-hour rates, the RV bill always shows the full one-time amounts from scratch, and lower tiers still process up. With the <strong>Include leveling resources in my plan</strong> toggle off (the default), the RV bill and gates tuck away, the full ladder stays as reference, and nothing from leveling enters the basket plan or the Team Helper. With it on, the next level's still-needed materials join the Grow, Gather and Craft lists, its facility jobs join the Team Helper (Woodworking Bench is Artisanship and Chimney Kiln is Fire, from the same recipe data as every other craft; the Mine is Earth, a verified gather pairing; Wood Block gathering sits at the Woodland, whose job is not verified, so it is flagged with the other runs whose jobs are not verified, never guessed), and the basket offsets the bill with net math shown line by line: counted Wood Block production from the basket's Woodland plots, minus the Wood Blocks the basket recipes themselves use, is the surplus taken off the bill. Counted production uses the Wood Blocks ladder by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6, the same for every tree at that level. Mineral Sand rides along with Mine runs in amounts that vary with no fixed yield, so it is not counted: it is flagged in the offset note instead of guessed.</li>
-          <li><strong>The basket takes recipes only, never amounts:</strong> you pick what to make, and the planner sizes the production itself, the Aniimax way. Each picked recipe starts at one batch per facility you have out that makes it, per cycle; the whole chain under it (crafted ingredients, crops, gathered materials) is worked out from that. Then the plan is fitted inside your limits before anything is shown: no facility runs more batches per cycle than its Stage 3 count, the Farmland and Woodland plots a cycle plants never pass your RV level's counts, and where a limit binds, production scales down to fit it and the plan names the limit that bound. Amounts are per cycle; one cycle lasts as long as the cycle's slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds, the grow times already on this page), and the per-hour rate is the per-cycle amount scaled by 60 ÷ the cycle minutes, the same grow-cycle basis the Best Plan's rates already used. Craft and gather cycle times are not in the verified data, so rates are grow-cycle rates and say so. The leveling bill is never sized this way: it stays the fixed one-time package priced in the RV section.</li>
-          <li><strong>The Layout Helper reads your basket:</strong> under <strong>From your basket</strong> it lists every crop your plan still needs to grow, grouped by the same climate rules as hand picks, with plot counts from the plan itself (the Grow list's own Plots column: the plan's per-cycle amount divided by yield per seed, module harvests included when your module levels switch them on), so helper and Grow list never disagree. The − and + buttons on each basket crop add or take away plots from that count, and the change sticks to the crop when the basket updates the count; a crop stepped down to 0 stays listed with a + button so it is never lost. Changing your basket updates the list on its own. Hand picks are optional extras only, added from the picker below the automatic groups, and stay in their own group, <strong>Your extra crops, added by hand</strong>, one plot each, and recomputing the basket list never touches them; a crop can appear in both groups, and its counts are never merged into one number. Above-level basket crops stay listed, greyed, with their unlock note, and still count toward plots and climate buildings.</li>
-          <li><strong>The Layout Helper shows two layouts, toggled, never more:</strong> ⭐ Best (the full field) and 🪶 Minimum (one plot of each crop, the fewest climate buildings), and the per-source lists under them are only the counts behind the one layout on show, not layouts of their own. The layout at the top of the helper is the one field to plant, and it is fitted to the Stage 3 counts at whatever RV is picked: it plants at most the Farmland count and the Woodland count your RV level allows (RV 14's most is 30 Farmland and 15 Woodland, from the same verified count ladder as the Best Plan), and it lays out at most the count of each climate building your RV level allows (Cooling Unit, Heat Furnace and Sunlamp, from the Aniiland RV roadmap ladder in the Stage 3 panel: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19, with the RV 7 unlock also backed by GameWith and the RV 14 values of 2, 2 and 2 matching the player's own setup; the steps rest on Aniiland alone, so they carry the count single source flag). The layout fills the available plots first, with the crops the plan needs most covered under the climate buildings; Plots that need the same climate building share its zones: the layout packs same-building plots into the fewest zones that cover them (one land type per zone, since Farmland plots are 4 × 4 and Woodland plots 7 × 7; the building and its Aniimo are what is shared), states which plots share each building in the layout, the copied plan and the crew, and the Team Helper counts an attached Aniimo only for the climate buildings the layout puts out, so sharing directly reduces the crew total — the Aniimo saved are stated in both places. when a climate group's plots would need more zones than the building count your RV level allows, only what fits under cover is planted in the layout and the plan says so. The three sources (basket, best plan, extra hand picks) stay in their own unmerged sections as the accounting; the layout combines them, because that combined planting is what actually goes in the ground. What each source wants decides what the layout plants. The whole-plan totals lead the helper: total plots per crop across the full need, total seeds (one seed per plot, the same counts the Grow list and the best plan work from), total climate buildings for the whole need, and total grow time. When the whole need is bigger than one field, the helper never draws an impossible all-at-once planting: it shows the best full-field layout and says plainly to replant that same layout as harvests complete until the totals are met. The time estimate's basis: everything in the layout grows side by side, so one planting lasts as long as its slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds, from the grow times already on this page); a crop whose total passes the plots the layout gives it is replanted into the same layout as its harvests free its plots, each replanting adding its grow time again, and the crops run side by side, so the whole plan takes as long as the longest of those chains.</li>
-          <li><strong>Overlap in the Layout Helper:</strong> the only blends applied are the Steam RV/Homeland Guide's verified two: a crop in both a Scorching zone and a Cool zone counts as Warm, and a crop in both a Freezing zone and a Warm zone counts as Cool. When one source's groups lay out both partner zones, the served group's zones are counted as overlap bands shared with those partner zones, so the layout totals count them once instead of adding separate buildings for them, in the group totals, the summary chips and the copied plan alike. No other crossing is claimed: Scorching with Freezing, and every other pairing, is not in the verified rule and is never used. The band's exact size and how many plots fit inside it are <strong>not verified</strong> in any source behind this planner, so each served group keeps its standalone zone count printed next to the overlap note, flagged, and the layout is still packed with the safe, unshared zone counts, so it never needs more buildings than you have: in the layout's per-zone blocks, a served group's plots sit in its overlap band block and its buildings are not counted a second time. Treat a band as a bonus that can save buildings, never as a promise. The layout is drawn as one small grid per zone, not one big map: each zone block shows its building's zone over the crops it covers, with short writing beside the grid, and a served group gets a band block where the two partner zones meet. Whether a Warm crop is better served by a Heat Furnace zone of its own or by a band is likewise not verified, so the planner shows both numbers and does not pick for you. Light is handled independently of temperature throughout: Adequate-light crops (Sunlamp) may sit inside temperature zones with Sunlamp coverage overlaid, so their ground is counted once, in the temperature zone, and only the Sunlamps themselves are added.</li>
-          <li><strong>The Layout Helper also reads your best plan:</strong> once you run the Best Plan Finder, the seeds to plant from that plan appear under <strong>From your best plan</strong>, in their own group, never merged with the basket group or your own picks. The counts are the plan's own seed counts (amount needed divided by yield per seed, module harvests included when your module levels switch them on, the same math as the basket group), grouped by the same climate rules and the same climate building counts (one zone per 16 Farmland plots or 4 Woodland plots), with the layout at the top of this helper drawn from those same counts, and the same − and + steppers: an adjustment sticks to its crop when the plan is run again, and a crop stepped to 0 stays listed under "Set to 0 by you". Before any best plan is run the group stays hidden; with no basket picked and no best plan run yet, the helper shows one plain line saying the layout appears once either exists, with nothing to fill out; if a plan plants nothing, the group says so plainly instead of inventing crops; and if your setup or goals change after a run, the group keeps the run's counts and says the plan is out of date until you run it again.</li>
-          <li><strong>Building footprints in the space totals:</strong> the Layout Helper's space totals count plot tiles plus building tiles. Plot tiles are measured (Farmland 4 × 4 cells = 16 tiles, Woodland 7 × 7 = 49, from the player's own screenshots, same source as the plot footprints bullet above). A climate building's coverage zone is verified at 18 × 18 cells from those same screenshots. The building footprints themselves are now measured from the player's own placement screenshots (Oct 24, 2026), replacing the earlier 4 × 4 assumption: Cooling Unit 2 × 2 cells = 4 tiles (confirmed by the white square measurement from the player's still screenshot, Oct 24, 2026: the white square is divided by one interior vertical grid line and one interior horizontal grid line into 2 columns by 2 rows, so it is 2 tiles wide by 2 tiles deep, not 3 wide); Heat Furnace 1 × 1 = 1 tile (identity confirmed by the player); Sunlamp 1 × 1 = 1 tile (identity confirmed by the player); Crackle Generator 2 × 2 = 4 tiles (the white square around the unit, confirmed by the player as the footprint); Power Pole 1 × 1 = 1 tile (identity confirmed by the player). Each building is drawn as the dark square in the middle of its zone map, scaled to its measured footprint where the map scale allows, and its true tile count is named in the caption. Zone capacity is unchanged by this: a zone still holds 16 Farmland plots or 4 Woodland plots, because the building stands in the middle of its coverage either way; the building tiles are counted so you can see what the buildings cost in space, not to shrink the verified capacity. In the power reference, the Generator zone is 484 tiles with 4 building tiles, leaving 480, and the Pole zone is 196 tiles with 1 building tile, leaving 195.</li>
-          <li><strong>Stage 3 has started:</strong> the facility &amp; module panel above the basket takes your module levels, and your facility counts and levels always sit at the most your RV level allows, worked out from the tables below with nothing to type. The recipe greying, the plans and Money Crops all follow them. Facility tier caps per RV come from AniimoTools' station tables. Facility counts sit in the same panel, each one the most you can have out at your RV (see the next bullet); they size the Best Plan (one batch per processing facility per cycle, one plot per Farmland or Woodland count) and change nothing else. Plot layouts are built (Stage 4 Layout Helper), and the Team Helper right after the basket turns your plan into a crew.</li>
-          <li><strong>Facility max counts (what your RV level allows):</strong> the most you can have out of each facility at each RV comes from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked three ways. <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms the counts against the game's data files to RV 11, and the Farmland, Woodland and Mine counts agree with the RV requirements in those files at every RV, so those three are solid at all 20 levels. <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools' max-out table</a> matches this ladder exactly for all 21 facilities at RV 12. Above RV 12, the other facilities' count steps rest on Aniiland alone (aniimoguide calls those player-reported), so the Stage 3 panel flags them <span class="verdict v-mix">count single source</span> at the RVs where they apply. Well is the exception: the Steam RV/Homeland guide confirms three Wells before RV 19 and the fourth at RV 19. One correction this research settled: an earlier note said Farmland maxes at 28 at RV 14. That 28 is the RV 13 cap. Aniiland's ladder, aniimoguide's RV 15 requirement (30 Farmland placed) and real RV 14 homelands all agree the RV 14 max is 30, so the planner uses 30. The three climate buildings now follow the same roadmap ladder, approved by the player: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19. The RV 7 unlock is also backed by GameWith, and the RV 14 values (2, 2 and 2) match the player's own setup. Those steps rest on Aniiland alone beyond that, so the Stage 3 panel flags the climate counts <span class="verdict v-mix">count single source</span> like the other facility counts, and the Layout Helper never lays out more zones of a climate building than the derived count.</li>
-          <li><strong>The Best Plan Finder</strong> picks recipes by your ranked goals, in order, leftovers to Home Coins, the Aniimax model. Home Coin math uses Co-op Store sell prices from the filed shop price research (the Aniimo Homeland Shop Prices page, checked Oct 24, 2026): each finished item is compared with the sell value of its direct ingredients, the margin caution in that research, and seed buy prices come from the same file. Prices two sources agree on (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90, Harvest Platter 5,290) are marked cross-checked; most mid and late game prices are Aniiland only, so the plan marks them single source, spot-check in game, and never calls them verified. Items with no listed sell price in the research (Wood Block, Mineral Sand, the building tiers, the growth items and the Aniipods) cannot earn Home Coins in a plan. Per hour rates use the grow cycle only: crops grow side by side, so one cycle lasts as long as its slowest crop, from the grow times already on this page. Craft and gather cycle times are not in the verified data, so rates are grow cycle rates and say so. Aniimo XP per recipe, Harvest Moon Points per dish and the Mineral Sand amount per Mine run have no verified figures in any source behind this planner, so those goals are flagged on the plan, never filled with guessed numbers. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of best plans: the planner does not know whether you own their rare currency unlocks. By the player's own rule, the Best Plan (and only the Best Plan; the basket, Team Helper and Layout Helper are unchanged in this respect) also includes items not verified yet but sensible, each flagged on its line as "Not verified yet, included because it makes sense" with the short reason. Star is one: Aniimax uses it too and flags it unverified there, so best plans gather Star at the Starfall Hammock for the Advanced Wind Chime chain instead of leaving those recipes out, and the plan states how much of the counted Home Coins rests on Star recipes. Wood Blocks from Woodland trees are counted exactly by Woodland card level (Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026): 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, and 122 at Level 6. Moondew Radish and Waxing Moon Pepper raw sales are included as plantings to gather, at the 74 Home Coins each Aniiland lists, with the conflict printed on the line: aniimoguide says moon crops cannot be sold raw and must be cooked first. That income sits only in the unverified-included total, never the counted total, and the plan prints the total if the unverified items pay off. Where no figure exists at all, none is invented: Aniimo XP per recipe and Harvest Moon Points per dish still read "Not verified yet", with no rates.</li>
-          <li><strong>The Starfall Hammock</strong> is a facility in its own right, not part of a generic leisure station: it unlocks at RV 12 at Lv 1, its only level, and the most you can put out is 1 from RV 12 and 2 at RV 20 (<a href="https://aniiland.wintira.win/guides/recipes-aniimo-materials">Aniiland's materials buildings guide</a>; AniimoTools' RV 12 table likewise shows one at Lv 1, and the RV 20 step rests on Aniiland alone, so it carries the count single source flag). Like every other facility, Stage 3 assumes you put out the max your RV level allows: 1 at RV 14, none below RV 12. Its one product is Star, gathered for the Advanced Wind Chime chain and flagged unverified wherever a plan uses it, and the Best Plan sets that chain running when the hammock is out rather than leaving Star out. The hammock is also the first facility here with an environment need: <strong>it needs a Cool temperature to work</strong>, from the player's own lookup (Oct 25, 2026), so the Layout Helper stands it inside a Cooling Unit zone whenever a plan gathers Star, and that zone counts toward Cooling Unit coverage like a Cool crop's zone. Star's assigned Aniimo follows the game's own note on the Starfall Hammock panel, from the player's own in-game screenshot (Oct 27, 2026): <strong>any Aniimo from the Celestis family can be assigned to production</strong> there, and that note rides on Star's own entry, the same way the Susuta and Shelly notes ride on Sea Salt and Pearl. The same screenshot's Star formula also shows <strong>Recommended Environment: Cool</strong> for Star — recorded here as a noted observation only; it changes no climate or layout logic in this planner.</li>
-          <li><strong>Module levels and verified unlocks (checked Oct 24, 2026):</strong> the four boxes in the Stage 3 panel are Ecological (max Lv 8), Kitchen (max Lv 7), Resource Detector (max Lv 8) and Crafting (max Lv 7), all starting at 0. The unlock map is <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels, the RV modules section</a>, cross-checked against <a href="https://aniimoguide.com/homeland">aniimoguide's Homeland guide</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">the Aniiland RV level roadmap</a>. Ecological: Lv 1 Quick Wheat (RV 3), Lv 2 Quick Bamboo (RV 7), Lv 3 Quick Potato (RV 8), Lv 4 Quick Lemon (RV 11), Lv 5 Quick Rice (RV 12), Lv 6 Quick Maple Syrup (RV 14), Lv 7 Quick Strawberry (RV 17), Lv 8 Quick Coconut (RV 18). Kitchen: Lv 1 Aniimo Feeding (RV 2), Lv 2 Premium Bread (RV 4), Lv 3 Premium Potato Soup (RV 8), Lv 4 Premium Sweet Rice Wine (RV 10), Lv 5 Premium Salted Lemon (RV 13), Lv 6 Premium Jello (RV 16), Lv 7 Premium Berry Chocolate Coconut Pudding (RV 19). Resource Detector: Lv 1 Quick Well Water (RV 5), Lv 2 Quick Sea Salt (RV 8), Lv 3 Quick Aromathyst (RV 11), Lv 4 Quick Fresh Water (RV 12), Lv 5 Quick Wool (RV 13), Lv 6 Quick Deep Rock Spring Water (RV 15), Lv 7 Quick Natural Mineral Water (RV 17), Lv 8 Quick Scales (RV 19). Crafting: Lv 1 Premium River-Washed Stones (RV 5), Lv 2 Premium Rose Freshener (RV 7), Lv 3 Advanced Lemon Incense (RV 10), Lv 4 Premium Wind Chime (RV 12), Lv 5 Premium Soap (RV 17), Lv 6 Premium Gemstone Dust (RV 18), Lv 7 Premium Mixed Perfume (RV 19). Only three of these change this planner's numbers, and they switch on by themselves from your Ecological level: Maple Syrup harvest ×30 at Lv 6, Strawberry harvest ×26 at Lv 7 and Coconut harvest ×8 at Lv 8, in the Grow list, Money Crops and Layout Helper alike. The Kitchen, Resource Detector and Crafting unlocks are Premium or Advanced variants already covered by their base entries at the same ingredients, so they are shown for ownership and change no amounts. <strong>Still unverified, never guessed:</strong> Premium Wheat appears in no module ladder in any source checked. The roadmap lists it only as a Farmland Lv 6 crop arriving at RV 12, with no module named, so it stays a manual tap in the panel, flagged as unverified, and no level ever switches it on for you.</li>
-          <li><strong>Team Helper crew counts, the single crew suggestion</strong> are worked out from your entire plan, never fixed: the basket plan plus, when you have run one, the Best Plan's facilities unioned in and deduped by facility so a facility needed by both counts once, plus leveling jobs when leveling is on. There is no crew inside the Best Plan panel anymore. Best counts one dedicated worker per busy facility, and Minimum counts one Aniimo per job, shared part time across all of that job's facilities. Somniwing is a known double act (Grass Lv 4 and Leisure Lv 4), so it covers both jobs at once and is counted as one Aniimo in Best and Minimum alike — crews count individuals with their full ability sets, never one head per job — and when a Somniwing is already on the crew, the planting Grass Aniimo is that same individual, not an extra. A planner that counts differently, one worker per crop or per station run instead of per facility or per job, will land on a bigger number for the same basket: that is the counting rule, not missing crew. Every facility this plan sets running is counted here, including Farmland and Woodland below. Best-worker names and ability levels: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 and Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3 (Dewy Lv 1 also works). Jobs follow the planner's recipe data, where every craft names its worker, plus the verified gather pairings Well = Water, Mine = Earth and Tidewhisper Sandcastle = Leisure. Which ability staffs Farmland, Woodland, the Dewy House and the leisure station is <span class="verdict v-mix">not verified yet</span>, so no worker is named for those runs in the panel; each of those stations still adds one Aniimo to the crew total, because the runs still need doing, and Ice and Light read 0 until a facility in the data asks for them — Ice's one exception is the Cooling Units the layout puts out, below. Hauling never reads 0: by the player's rule (Oct 27, 2026) every plan carries more than one Hauling Aniimo, the count growing with the facilities the plan sets running (2 while five or fewer facilities run, then one more per five more facilities, up to 6). That count is the player's stand-in rule, not game-verified data. Coverage follows the crew on show, never a set fraction (an earlier version of this planner assumed half the need was covered that way; that stand-in is gone): an Aniimo can do more than one job — a worker who also has Hauling can carry what it made to storage once its own batch is done — so the planner counts the production Aniimo on the crew (the facility workers in that crew's own Best or Minimum counting, the nine facilities' attached Aniimo, the job-unverified stations and the planting Aniimo) whose species the verified dual-ability data names as holding Hauling alongside another homeland job, and only those confirmed holders cover hauling, counted once in their main job; only the remainder becomes dedicated haulers added to the crew total. One exclusion sits on top of the species data (player's rule, Oct 27, 2026): the post matters, not just the species — Aniimo that run the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so a post at any of those four never counts toward Hauling cover no matter which Aniimo staffs it, and cover may only come from production posts (cooking, crafting, gathering, mining, the Well, leisure and similar) where an Aniimo finishes a job and can carry the goods to storage. That is why Geoclaw and Fennelun, both in the confirmed set below, do not cover in a crew where they show only on utility posts — Geoclaw's post here is the Cooling Unit and Fennelun's is the Sunlamp — even though both species hold Hauling Lv 3; in that crew the cover falls to another confirmed hauler on a production post or to dedicated haulers, and the crew total, the cap fitting and the Bud Ticket reserve all recompute from that split, in Best and Minimum alike. The Crackle Generator is not a staffed post in this planner today, but the exclusion covers it wherever generator staffing appears, power and E-mode notes included. That cover data was verified Oct 27, 2026 from aniimoguide's launch-client table and species pages (game data files, build 1.0.0.7), Game8 species pages, Daily Aniimo and allthings.how, cross-checked against a Gemini research pass — and nothing in it rests on the Gemini pass alone: every pair below stands on at least two of those sources ("Carry" in some of them is Hauling's other name). The confirmed set: Scorchhowl (Fire Lv 3 + Hauling Lv 3, this planner's Fire worker), Glacy (Water Lv 3 + Ice Lv 2 + Hauling Lv 3, the Well worker), Shrubclaw (Earth Lv 3 + Grass Lv 2 + Hauling Lv 3, the Mine worker), Geoclaw (Ice Lv 3 + Hauling Lv 3, the Cooling Unit worker), Fennelun (Light Lv 3 + Hauling Lv 3, the Sunlamp worker; Helion and Lunara hold the same pair), Tuckin (Grass Lv 3 + Hauling Lv 3), Minespine (Earth Lv 3 + Hauling Lv 3), Bouldus (Earth Lv 3 + Hauling Lv 3 — the strongest Hauling name, and it can also work a Mine post), Pranky (Water Lv 2 + Hauling Lv 2), Emberpup (Fire Lv 1 + Hauling Lv 1; its Highland form holds Earth Lv 1 + Fire Lv 1 + Hauling Lv 1, per thegameswiki regional-forms table and aniimohomeland.com), Fenmane (Lightning Lv 3 + Hauling Lv 3; Prismana form Lightning Lv 4 + Artisanship Lv 4 + Light Lv 3 + Hauling Lv 3), Leafy (Grass Lv 3 + Water Lv 2 + Hauling Lv 3), Grizbo (Earth Lv 3 + Hauling Lv 3), Magmarex (Fire Lv 3 + Earth Lv 2 + Hauling Lv 3), Glynsera (Ice Lv 3 + Hauling Lv 3), Pebbling (Earth Lv 1 + Hauling Lv 1) and Fentuft (Lightning Lv 1 + Hauling Lv 1). Two posts are credited through a named alternate, never silently: a Lightning post covers when Fenmane staffs it, because Blazen (Lightning Lv 3 + Artisanship Lv 3) does not haul, and the plan names Fenmane as the covering worker for that post; the planting post covers when Tuckin or Leafy staffs it (Grass Lv 3 + Hauling Lv 3), and the line says it is a Grass Lv 3 worker covering, a step down from Somniwing's Grass Lv 4 — Somniwing has no Hauling in any source checked. Non-coverers are worded by kind, not lumped together: Tromber and Cornet are confirmed single-job basic forms (Wind Lv 3 is their only homeland job, from their full species pages, so they cannot cover — game data, not missing data); no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier in the sources checked, so they stay non-coverers without being called single-job; and only the remaining, unnamed Aniimo at job-unverified stations are truly unconfirmed, never assumed to cover. The scaling need itself is unchanged: it is still the player's stand-in rule above, not game-verified data — what the new data verifies is who covers it. Grass never reads 0, because planting always counts at least 1 Grass Aniimo by the player's rule. By the player's own rule (Oct 25, 2026), nine facilities also carry an Aniimo each in their own right whenever they are out: Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle and Nimbus Bed whenever they are out at the picked RV level, and the three climate buildings — Sunlamp, Heat Furnace, Cooling Unit — only where the Layout Helper's layout actually puts them out (player's rule, Oct 27, 2026: Farmland and Woodland plots that need the same building share its coverage zones there, packed into the fewest buildings that cover the plan and never more than the RV count, so all the Cool plots under one Cooling Unit zone count one Ice Aniimo; the buildings out, the plots sharing them and the Aniimo saved by sharing are stated in the layout and in the crew), 1 Aniimo per building out, typed where verified (Mine Earth, Well Water, Sandcastle and Hammock Leisure, Cooling Unit Ice — cooling units need Ice Aniimo, the player's own word) and flagged type not verified yet where it is not; those Aniimo sit inside the crew total and the put-out list, and the same nine appear in the Layout Helper with their counts and Aniimo. Extra Water watering is named in the panel with its type, its count flagged not verified yet and never invented; Hauling is counted by the player's scaling rule above, stated on its put-out line with the confirmed-coverage/dedicated split; Grass planting is named too, with its floor of 1 counted in the crew and only the count beyond 1 flagged not verified yet. Grass and Ice stand in the team as named jobs, not just numbers inside the totals. The team is labelled by ability and count, the way Aniimax's team panel labels its crew — Ice Aniimo ×2 on the Cooling Units, Grass Aniimo on Planting — and no entry names a species the player must use: the strongest known Aniimo for a job (Geoclaw Lv 3 for Ice, Somniwing Lv 4 for Grass) appears only as a hint inside the entry's hover or tap note, together with the ability level, the best personality with its +20% note, and the facility with what it is making. The Ice chip counts the Cooling Units' Aniimo, the Grass chip never reads 0 while a plan is growing anything, and when a Somniwing already on the crew covers the planting, its entry and worker row read Grass + Leisure and say it also does the planting, instead of the Grass line disappearing into a footnote. Entries and rows carry the Aniimax ability markers: a circle in the ability's game colour with the Aniimo level inside, ringed in gold where the plan counts on that facility's personality bonus (+20%), the same markers on the Layout Helper's Aniimo lines, and a short How to read this note sits with the team and in the layout legend explaining the entries and the markers in plain words.</li>
-          <li><strong>Aniimo caps (how many Aniimo you can put out):</strong> the cap at each RV is the "place N Aniimo in your Home" number from <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, and it matches <a href="https://metabot.gg/en/aniimo/guides/homeland">MetaBot.GG's retail-file Homeland guide</a> at every level: RV 2 is 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44 and 45 at RV 20; RV 1 has none yet. The Team Helper checks its whole Put out total against that cap — plan crew, the nine facilities' attached Aniimo (climate buildings only where the layout puts them out), the planting Grass Aniimo and the dedicated haulers together, nothing counted outside it — and never shows a crew over the cap at all: a crew you cannot put out is not a plan. When the full Best crew is over the cap, Best is fitted down to the cap instead of switched off — workers are shared at as few facilities as the cap forces, starting where sharing crowds a job least, every facility keeps running, and the plan names the facilities that share — and only when even Minimum, one shared Aniimo per job, is over the cap does no crew show, just what each would need and what has to change. Crews are counted in individuals, not job slots: where one Aniimo's verified abilities cover more than one needed job it is counted once in both Best and Minimum (Somniwing, Grass Lv 4 and Leisure Lv 4, is the verified multi-ability case the page's best-worker data supports, the Hauling cover set in the Team Helper bullet above is a fuller verified per-species dataset, and the counting machinery groups any species the data names for two jobs the same way), multi-ability Aniimo are preferred when sharing is what makes a crew fit, and the planting Grass Aniimo adds no extra head when a crew member already holds Grass. One flag, honestly: aniimoguide prints a second, lower set of numbers read from the RV upgrade cards, from RV 13 on (40 at RV 20), and advises planning on the lower set until the live game settles it. This planner follows the AniimoTools and MetaBot "place in your Home" numbers instead, because they match the player's own game: 36 slots at her RV 14.</li>
-          <li><strong>Bud Tickets and the home side (added Oct 27, 2026, by the player's request):</strong> Bud Tickets are earned by Aniimo living in the Homebuilding Zone, which opens at RV 8 (the RV 8 ladder row above: "Homebuilding Zone opens"), not by production. Rates are Game8's: 120 a day per regular resident, 180 for Sparkling or Prismana, 270 for both tags; no ability changes the rate. Tickets are spent at the Furniture Store, where nearly every decor piece gives about 1 Habitability per ticket, and Habitability gates RV 10 to 20 on the AniimoTools ladder (13,000 at RV 10 rising to 20,000 at RV 20). Production and home share the one cap above — AniimoTools' own planner likewise counts home places as the total minus the production team — so this planner never asks for a fixed reserve number: the Home Side section derives it per plan as cap minus the production crew on show (Best as fitted, or Minimum), and it changes whenever the basket, a Best Plan, leveling, the layout's climate sharing or the RV level changes. Where the production crew would use the whole cap, the section says so and shows what Minimum would free, instead of quietly spending every slot on production. Level-up rewards and Home Orders also grant tickets, but no verified daily amount is printed for them here. The Bud Ticket Jar's capacity could not be confirmed in any source checked, so none is stated, and a single-source claim of 100 extra tickets a day from a daily home chest is not counted anywhere on this page. The Leisure buildings (Nimbus Bed, Dewy House, Tidewhisper Sandcastle, Starfall Hammock) are Production Zone facilities already staffed in the crew; they are not the home residents this section counts.</li>
-          <li><strong>Personality matches (+20% work efficiency)</strong> are the Master Guide's verified table, where GameWith, Game8, AniimoTools and Selphie1999 Gaming agree: E Energetic at the Bouncy Brew Keg and Woodworking Bench; I Instinctive at the Phonolfactory Table and Dewy House; S Practical at the Claw Game Cooker and Chimney Kiln; N Nimble at the Jukebox Dryer and Blazing Stove; T Tenacious at the Carousel Mill and Simmering Pot; F Faithful at the Joy Wheel Loom and Well; J Judicious at the Crafting Table and Tidewhisper Sandcastle; P Playful at the Mine and Pickling Jar. Farmland, Woodland, the Dance Pad Polisher, the Aniipod Maker and the leisure station have no verified match in that table, and the panel says so rather than guessing.</li>
+          <li><strong>Recipe ingredients, facility levels and craft times:</strong> <a href="https://dailyaniimo.com/homeland/recipes">Daily Aniimo</a> (game data, Oct 9, 2026), cross-checked against <a href="https://aniimotools.dev/systems/homeland/crops-and-facilities/">AniimoTools</a>. Where station names differ, AniimoTools wins.</li>
+          <li><strong>RV costs, caps, prerequisites and unlocks:</strong> <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, cross-checked against MetaBot.GG's retail-file Homeland guide.</li>
+          <li><strong>Grow amounts use base yields.</strong> Higher yields exist (facility levels, module recipes); the planner counts the base yield, so plots finish early, never late.</li>
+          <li><strong>Premium variants are not listed twice.</strong> Premium versions use the same ingredients as the regular version, so one entry covers both.</li>
+          <li><strong>Special recipes:</strong> Rose Shortbread and Potato Kvass unlock with Dream Sparks at the Dream Spark Exchange (Home Shop, BINI #2333). Their exact note prices are not verified yet. Plans only make sense once you own them.</li>
+          <li><strong>Event recipes:</strong> 🌕 = Harvest Moon Festival season recipe; its Recipe Note costs Moonray Wheat at the Season Exchange (Umbral Hot Pot, Umbral Pickle, Umbral Sweet Spicy Sauce: 80 each). <strong>Harvest Platter's price is disputed: 110 by Game8, 120 by aniimoguide and two other databases — check the shop.</strong> 🎪 = one of the six Grand Feast dishes for Jojo, five of each. Festival: Sep 15–Oct 27, needs RV 10. Sources: <a href="https://aniimotools.dev/systems/homeland/home-season/">AniimoTools, Harvest Moon Festival</a> and <a href="https://aniimoguide.com/news/aniimo-harvest-moon-festival-guide">aniimoguide's festival guide</a>; ingredients checked against Daily Aniimo.</li>
+          <li><strong>Crop environments (verified from your own game, Oct 23, 2026):</strong> two separate tags — a temperature tag (Recommended: grows best there, still grows elsewhere) and Adequate light (Required: hard requirement). Cooling Unit serves Freeze/Cool; Heat Furnace serves Warm/Scorching; Sunlamp serves Adequate light. Cool: Rose, Strawberry, Ginseng, Apple. Freeze: Cranberry, Maple Syrup. Warm: Cherry Blossom, Chestnut. Scorching: Sugarcane, Agave, Palm Bark, Natural Rubber, Coconut, Cocoa. Adequate light: Lavender, Grapes, Walnut, Orange Flower. Moondew Radish and Waxing Moon Pepper show no environment line. Every other crop: no special environment needed.</li>
+          <li><strong>Sea Salt is the known bottleneck</strong> <span class="verdict v-mix">single community source</span>: it comes only from the Tidewhisper Sandcastle. Per your in-game panels (Oct 27, 2026): Sea Salt needs the <strong>Susuta family</strong>, Pearl needs the <strong>Shelly family</strong>, Star (Starfall Hammock) takes <strong>any Aniimo from the Celestis family</strong>.</li>
+          <li><strong>Wood Blocks by Woodland level</strong> (your screenshots, Oct 25, 2026): Lv 1 = 1, Lv 2 = 8, Lv 3 = 21, Lv 4 = 47, Lv 5 = 75, Lv 6 = 122 per plot, same for every tree at that level. Mineral Sand comes from the Mine in amounts that vary, so no fake yield is shown.</li>
+          <li><strong>Climate coverage:</strong> a climate building affects an 18 × 18 square centered on itself (your Edit-mode screenshot, Oct 23, 2026).</li>
+          <li><strong>Plot footprints and power zones</strong> (your screenshots, Oct 23, 2026): Farmland 4 × 4 cells, Woodland 7 × 7, climate zone 18 × 18, Crackle Generator zone 22 × 22, Power Pole zone 14 × 14. Packing assumes plots edge to edge.</li>
+          <li><strong>Strategy, the next-level bill, and the basket offset:</strong> one strategy at a time (player's rule, Oct 27, 2026, the Aniimax model). Level Up targets the single next level's bill as a fixed one-time package, outside per-hour rates; Goals runs the ranked goals and the bill plays no part. In Level Up mode, the basket's net Wood Block surplus (counted production by Woodland level, minus what basket recipes use) comes off the bill, shown line by line. Mineral Sand is never offset: it rides along with Mine runs in amounts that vary, so it is flagged, not guessed.</li>
+          <li><strong>The basket takes recipes only, never amounts (max 10).</strong> Each picked recipe starts at one batch per facility out; the chain under it is worked out, then the plan is fitted inside your limits (facility counts, plot counts) and scaled down where a limit binds — the plan names the limit. Amounts are per cycle; per-hour = per cycle × 60 ÷ cycle minutes (grow-cycle basis; craft/gather times are not verified, and rates say so).</li>
+          <li><strong>The Layout Helper reads your basket:</strong> every crop the plan needs, grouped by climate, with the Grow list's own plot counts. The − and + buttons adjust a crop's count and the change sticks; a crop at 0 stays listed. Hand picks are optional extras in their own group, never merged. Above-level crops stay listed, greyed, and still count.</li>
+          <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, packs same-building plots into the fewest shared zones, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
+          <li><strong>Overlap (Layout Helper):</strong> only the Steam guide's two verified blends are used — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so layouts are packed with the safe unshared counts and bands are shown as a possible bonus, never a promise. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
+          <li><strong>The Layout Helper also reads your strategy plan:</strong> once run, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your setup, basket, strategy or goals change after a run, the group says the plan is out of date until you run it again.</li>
+          <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity is unchanged (16 Farmland or 4 Woodland plots per zone); building tiles are counted so you can see their space cost.</li>
+          <li><strong>Stage 3:</strong> facility counts and levels always sit at the most your RV level allows; module levels are typed by you. Recipe greying, plans and Money Crops follow them. Facility tier caps per RV come from AniimoTools' station tables.</li>
+          <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19.</li>
+          <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90, Harvest Platter 5,290); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates use the grow cycle only and say so. Aniimo XP, Harvest Moon Points and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged, income split: Star (Aniimax uses it too, flagged there), and raw Moondew Radish / Waxing Moon Pepper sales at Aniiland's 74 each — aniimoguide says moon crops cannot be sold raw, so that income sits only in the unverified-included total. Wood Blocks are counted by Woodland level (see above).</li>
+          <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
+          <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 8): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 8): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales. Crafting (max 7): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Premium Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume. Only three change numbers, auto-applied from Ecological: Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8). Premium Wheat appears in no module ladder — it stays manual, flagged, never auto-applied.</li>
+          <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = one Aniimo per job, shared. Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the recipe data; verified gather pairings: Well = Water, Mine = Earth, Tidewhisper Sandcastle = Leisure. Farmland, Woodland, Dewy House and the leisure station have no verified job <span class="verdict v-mix">not verified yet</span> — no worker is named, but each station still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. Nine facilities carry an attached Aniimo each when out: Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle, Nimbus Bed, and the three climate buildings only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
+          <li><strong>Aniimo caps:</strong> the "place N Aniimo in your Home" numbers from AniimoTools, matching MetaBot.GG at every level: RV 2 = 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44, 45 at RV 20. The crew check covers the whole put-out total — nothing counted outside it. A crew over the cap is never shown as usable: Best is fitted down to the cap by sharing workers at as few facilities as possible (named on the plan); only when even Minimum is over does no crew show. Flag: aniimoguide prints a lower second set from RV 13 on (40 at RV 20) and advises planning on it; this planner follows the AniimoTools/MetaBot numbers, which match the player's own game (36 at RV 14).</li>
+          <li><strong>Bud Tickets:</strong> earned by Homebuilding Zone residents (opens RV 8), not by production. Rates (Game8): 120/day regular, 180 Sparkling or Prismana, 270 both. Decor gives about 1 Habitability per ticket; Habitability gates RV 10–20. The reserve is derived per plan (cap − production crew on show), never a fixed number. The Jar's capacity is not verified, so none is stated; a single-source claim of +100/day from a daily home chest is not counted.</li>
+          <li><strong>Personality matches (+20% work efficiency)</strong> — Master Guide table (GameWith, Game8, AniimoTools, Selphie1999 Gaming agree): E Energetic — Bouncy Brew Keg, Woodworking Bench; I Instinctive — Phonolfactory Table, Dewy House; S Practical — Claw Game Cooker, Chimney Kiln; N Nimble — Jukebox Dryer, Blazing Stove; T Tenacious — Carousel Mill, Simmering Pot; F Faithful — Joy Wheel Loom, Well; J Judicious — Crafting Table, Tidewhisper Sandcastle; P Playful — Mine, Pickling Jar. Farmland, Woodland, Dance Pad Polisher, Aniipod Maker and the leisure station have no verified match — stated, not guessed.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
-          <li><strong>Grape Candy (added from a firsthand screenshot):</strong> reported missing from an in-game Daily Orders panel and checked against the Daily Aniimo recipe book before adding. The book confirms Grapes x9, Rock Candy x1, Claw Game Cooker Lv 5, Fire worker and workload 243. The screenshot's second ingredient icon looked like plain sugar cubes, but the book names it Rock Candy, so the planner follows the book and plans call for Rock Candy (which itself crafts from Sugarcane and Plain Fresh Water at the Simmering Pot). The screenshot panel also shows unit price 2850 Home Coins, and Claw Game Cooker Lv 5 sits at RV 12 in this planner's facility tiers.</li>
-          <li><strong>Grape Lemon Drink (added from a firsthand screenshot):</strong> reported missing from an in-game Daily Orders panel and checked against the Daily Aniimo recipe book before adding. The book confirms Grapes x9, Lemon x16, Bouncy Brew Keg Lv 3, Water worker and workload 243, and it lists the third ingredient as Deep Rock Spring Water x6, where the screenshot's water icon was first read as Plain Fresh Water. The planner follows the book, so plans call for Deep Rock Spring Water. The screenshot panel also shows unit price 2970 Home Coins, and Bouncy Brew Keg Lv 3 sits at RV 13 in this planner's facility tiers.</li>
-          <li><strong>Full recipe audit (Oct 24, 2026):</strong> the whole <a href="https://dailyaniimo.com/homeland/recipes">Daily Aniimo recipe book</a> (209 rows across its facility sections, game data as of Oct 9, 2026) was diffed row by row against this planner. Makeable recipes went from <strong>68 to 124</strong>: 56 verified recipes were added (13 Crafting Table, 3 Claw Game Cooker, 5 Jukebox Dryer, 5 Simmering Pot, 7 Bouncy Brew Keg, 9 Blazing Stove, 5 Pickling Jar, 9 Phonolfactory Table), plus one new Farmland crop, Captain Spud. Every added recipe carries its facility, recipe level and Worker from the book, its RV unlock follows the planner's verified facility tier tables exactly like the older recipes, and every ingredient chain resolves through the Grow, Gather and Craft steps already in the planner (one new middle step, Rose Incense, was added because Rose Freshener needs it). The Team Helper counts the new recipes' jobs from the same Worker data. No new category chip was needed: every addition fits Food &amp; Sweets, Drinks, Pantry &amp; Staples or Crafts &amp; Decor, and the lists stay alphabetical with search and chips narrowing them as before.</li>
-          <li><strong>Level-variant convention used in the audit:</strong> the book lists many items twice or more at different facility levels with bigger yields (Wheat x5 then x42, Potato x2 then x46, Rice x18 then x79, Bamboo x10 then x23, Lemon x8 then x42, Well Water x10 then x15, Plain Fresh Water x8 then x17, Deep Rock Spring Water x6 then x9, Natural Mineral Spring x6 then x9, Sea Salt x10 then x23 at Lv 2, Aromathyst x4 then x12, Wool x4 then x6, Scales x8 then x12). Following the planner's existing rule, there is <strong>one entry per distinct item at its base level and base yield</strong>, so a plan never comes up short; the higher-level yields are headroom you gain, not separate recipes. Named Premium duplicates in the book (Premium Bread, Premium Berry Chocolate Coconut Pudding, Premium Potato Soup, Premium Jello, Premium Soap) were already covered by their base entries, and the audit extended the same one-entry cover to Premium River-Washed Stones, Premium Rose Freshener, Premium Sweet Rice Wine, Premium Salted Lemon and Premium Mixed Perfume, each noted in its entry. Where the book names two different items with identical ingredients without the Premium pattern (Wind Chime and Advanced Wind Chime, Gemstone Dust and Advanced Gemstone Dust, Lemon Incense and Advanced Lemon Incense), both are listed as separate entries and each entry says so.</li>
-          <li><strong>Flagged in the audit, never guessed:</strong> (1) <strong>Captain Spud</strong> (Farmland Lv 1, Sweet Potato Seeds, x5 per seed, 13 min 20 s, from the book) was not part of the player's verified in-game climate survey, so no climate tag is claimed for it; everywhere else the planner prints climates only from that verified survey. (2) <strong>Umbral Sweet Spicy Sauce</strong> (Simmering Pot Lv 1: Moondew Radish x8, Waxing Moon Pepper x8, Sea Salt x23) is a Harvest Moon Festival season dish and carries the 🌕 season badge: its Recipe Note costs 80 Moonray Wheat at the Season Exchange, listed by both Aniiland and aniimoguide in the Oct 24 shop-prices research and confirmed by the player from her own game. It is not a Grand Feast dish, so it carries no 🎪 badge. The recipe book alone does not badge it, which is why it was previously shown unmarked; that earlier note is superseded. (3) <strong>Prices and flavour blurbs:</strong> the recipe book lists no unit prices and no blurbs, so none were invented for the 56 additions; their slot details show facility, level, RV, ingredients and crop climates, the same facts the book verifies. The two screenshot-sourced recipes above keep their screenshot prices in their own notes.</li>
+          <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
+          <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
+          <li><strong>Full recipe audit (Oct 24, 2026):</strong> the whole Daily Aniimo recipe book (209 rows) was diffed against this planner: 56 verified recipes added, makeable recipes 68 → 124, plus Captain Spud and one middle step (Rose Incense). Every addition carries its facility, level and Worker from the book; RV unlocks follow the verified facility tier tables.</li>
+          <li><strong>Level variants:</strong> where the book lists an item at several levels with bigger yields, there is <strong>one entry per item at its base level and base yield</strong>, so plans never come up short. Where two different items share ingredients without the Premium pattern (Wind Chime / Advanced Wind Chime, Gemstone Dust / Advanced Gemstone Dust, Lemon Incense / Advanced Lemon Incense), both are listed separately and say so.</li>
+          <li><strong>Flagged in the audit, never guessed:</strong> (1) Captain Spud has no climate tag — it wasn't in the verified in-game survey. (2) Umbral Sweet Spicy Sauce is a 🌕 season dish (Note: 80 Moonray Wheat, Aniiland + aniimoguide, confirmed in your game), not a Grand Feast dish. (3) The book lists no prices or blurbs, so none were invented for the additions.</li>
         </ul>
         <p>Companion pages: the Aniimo Master Guide and the Aniimo Quick-Reference Graphics carry the combat, traits, RV Parks and myth-busting reference that this planner builds on.</p>
       </footer>
@@ -1408,10 +1443,11 @@
       section("Craft (deepest ingredients first in the app):", "craft");
       lines.push("");
       lines.push("Set your Mines to: " + mineSetupText(mineSetup(null)));
+      lines.push("Strategy: " + (strategy === "levelup" ? "Level Up — target: the RV " + rvNext() + " bill (see below)" : strategy === "goals" ? "Goals — ranked: " + (typeof bpGoalOrder !== "undefined" ? bpGoalOrder.map(function(gid, i){ return (i + 1) + ". " + bpGoalDef(gid).name + (bpGoalOn[gid] ? "" : " (off)"); }).join(", ") : "") : "none picked yet") + ". Your basket below is planned first in both modes.");
       if(levelingOn && rvHasNext()){
         var bill = computeRvBill();
         lines.push("");
-        lines.push("Leveling is on: the RV " + rvFrom + " to RV " + bill.next + " bill is a fixed one-time package, priced in the RV Level-Up section, and is not part of the per-cycle amounts or per-hour rates above. Home Coin cost " + fmt(bill.coin) + "." +
+        lines.push("Strategy: Level Up. The RV " + rvFrom + " to RV " + bill.next + " bill is the target: a fixed one-time package, priced in the Level Up section, and is not part of the per-cycle amounts or per-hour rates above. Home Coin cost " + fmt(bill.coin) + "." +
           (bill.woodOffsetApplied > 0 ? " Basket offset: less " + fmt(bill.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops (produced " + fmt(bill.by.woodProd) + " per cycle, basket recipes use " + fmt(bill.by.woodConsumed) + " per cycle, surplus " + fmt(bill.by.woodSurplus) + ")." : ""));
       }
       return lines.join("\n");
@@ -1441,9 +1477,9 @@
         '<div class="sum-chip"><b>' + (plan.cycleMins > 0 ? fmtRate(plan.cycleMins) + " min" : "—") + '</b><span>one cycle (slowest crop)</span></div></div>';
 
       /* how the amounts were sized, stated on the plan itself */
-      html += '<div class="note note-info"><h4>🧮 Sized to your homeland, the Aniimax way</h4><p>You picked the recipes; these amounts are what your homeland can keep making, cycle after cycle. Each picked recipe runs <strong>one batch per facility you have out</strong> that makes it, the chain under it is worked out from there, and the whole plan is fitted inside your limits before it is shown: no facility runs past its count, a cycle never plants more Farmland or Woodland plots than your RV ' + userRV + ' allows (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland), and the crew below stays inside your Aniimo limit (' + aniimoCapText(userRV) + ').' +
-        (plan.limits.length ? ' Your tightest limit here is <strong>' + plan.limits.map(function(l){ return esc(l); }).join(", ") + '</strong>, so production is scaled down to fit it — every facility still runs, just at the rate your homeland can sustain.' : ' Nothing here had to be scaled down: the full one-batch-per-facility pace fits your limits as it stands.') +
-        (plan.perHour > 0 ? ' Amounts are <strong>per cycle</strong>; one cycle lasts about ' + fmtRate(plan.cycleMins) + ' minutes (the slowest crop, everything growing side by side), and the <strong>per hour</strong> column is that cycle\'s output at that pace.' : ' This plan grows no crops, so there is no grow cycle to set a pace: amounts are per cycle only.') +
+      html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>One batch per facility out, fitted inside your RV ' + userRV + ' limits (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland, crew ' + aniimoCapText(userRV) + ').' +
+        (plan.limits.length ? ' Tightest limit: <strong>' + plan.limits.map(function(l){ return esc(l); }).join(", ") + '</strong> — production is scaled down to fit it.' : ' Nothing had to be scaled down.') +
+        (plan.perHour > 0 ? ' Amounts are <strong>per cycle</strong> (about ' + fmtRate(plan.cycleMins) + ' min, slowest crop); <strong>per hour</strong> is that cycle at that pace.' : ' No crops in this plan, so amounts are per cycle only.') +
         '</p></div>';
 
       /* leveling: the bill stays a fixed one-time package in the RV
@@ -1452,7 +1488,7 @@
          still comes off the bill there. */
       if(levelingOn && rvHasNext()){
         var lb = computeRvBill();
-        html += '<div class="note note-info"><h4>🚐 Leveling is on: RV ' + rvFrom + " to RV " + lb.next + '</h4><p>The next level\'s bill is a <strong>fixed one-time package</strong>, priced in full in the RV Level-Up section below — it is not part of the per-cycle amounts or per-hour rates above. Its jobs are in your crew in the Team Helper, and Home Coin cost for RV ' + lb.next + " is <strong>" + fmt(lb.coin) + "</strong>." +
+        html += '<div class="note note-info"><h4>🚐 Strategy: Level Up — target RV ' + rvFrom + " to RV " + lb.next + '</h4><p>The RV ' + lb.next + ' bill is this plan\'s <strong>target package</strong>, priced in the Level Up section below — not part of the per-cycle or per-hour rates above. Its jobs are in your crew. Home Coin cost: <strong>' + fmt(lb.coin) + '</strong>.' +
           (lb.woodOffsetApplied > 0 ? " <strong>less " + fmt(lb.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops</strong> (counted production " + fmt(lb.by.woodProd) + " per cycle, basket recipes use " + fmt(lb.by.woodConsumed) + " per cycle, net surplus " + fmt(lb.by.woodSurplus) + ")." : "") +
           "</p></div>";
       }
@@ -1975,13 +2011,14 @@
     /* Crew gate: the crew stays hidden until every input that can change
        it has been plugged in on purpose. Load defaults never count: a plan
        must be picked, meaning the basket holds at least one recipe or a
-       Best Plan has been run, the RV picker must have been changed from
-       the load default, the leveling toggle must have been touched, on or
-       off, and all four module level boxes must have been entered.
+       strategy plan has been run, the RV picker must have been changed from
+       the load default, a strategy must have been picked (Level Up or
+       Goals, a real tap — there is no default), and all four module level
+       boxes must have been entered.
        Facility counts and levels need no step of their own: they always
        follow the RV picker. A module level typed as 0 counts as set: it
        is the untouched default that does not. */
-    var crewGate = { rv:false, leveling:false,
+    var crewGate = { rv:false, strategy:false,
       modules:{ ecological:false, kitchen:false, resource:false, crafting:false } };
     var CREW_MODULE_NAMES = { ecological:"Ecological", kitchen:"Kitchen", resource:"Resource Detector", crafting:"Crafting" };
     function crewModulesMissing(){
@@ -1992,7 +2029,7 @@
       var missing = [];
       if(!basket.length && !(typeof bpResult !== "undefined" && bpResult)) missing.push("A plan picked: basket has at least one recipe OR a Best Plan has been run");
       if(!crewGate.rv) missing.push("RV level: pick your RV level");
-      if(!crewGate.leveling) missing.push("Leveling: decide Include leveling resources in my plan, on or off");
+      if(!crewGate.strategy) missing.push("Strategy: pick Level Up or Goals in the Strategy section");
       var mods = crewModulesMissing();
       if(mods.length) missing.push("Module levels: set all four module levels, still to set: " + mods.join(", "));
       return missing;
@@ -2006,7 +2043,7 @@
       if(!t || !t.getAttribute) return;
       var touched = false;
       if(t.id === "rvLevel"){ crewGate.rv = true; touched = true; }
-      if(t.id === "levelingToggle"){ crewGate.leveling = true; touched = true; }
+      if(t.id === "stratLevelBtn" || t.id === "stratGoalsBtn"){ crewGate.strategy = true; touched = true; }
       var modId = t.getAttribute("data-modlvl");
       if(modId && crewGate.modules.hasOwnProperty(modId)){ crewGate.modules[modId] = true; touched = true; }
       if(touched && typeof renderTeam === "function") renderTeam();
@@ -2655,7 +2692,7 @@
         return;
       }
       if(s.minSize > cap){
-        out.innerHTML = '<div class="note note-warn" style="margin-top:14px"><h4>🏠 No home places in this plan — production alone is over the cap</h4><p>Even the Minimum production crew needs <strong>' + s.minSize + ' Aniimo</strong> and Best needs <strong>' + s.bestSize + '</strong>, against ' + esc(capText) + '. There is nothing left for the Homebuilding Zone, so this plan earns <strong>0 Bud Tickets a day</strong> from residents. Take recipes out of the basket so fewer facilities run at once, turn leveling off, or level the RV up first — the moment a crew fits, the slots it doesn\'t use show up here as home places.</p></div>';
+        out.innerHTML = '<div class="note note-warn" style="margin-top:14px"><h4>🏠 No home places in this plan — production alone is over the cap</h4><p>Even the Minimum production crew needs <strong>' + s.minSize + ' Aniimo</strong> and Best needs <strong>' + s.bestSize + '</strong>, against ' + esc(capText) + '. There is nothing left for the Homebuilding Zone, so this plan earns <strong>0 Bud Tickets a day</strong> from residents. Take recipes out of the basket so fewer facilities run at once, switch strategy, or level the RV up first — the moment a crew fits, the slots it doesn\'t use show up here as home places.</p></div>';
         return;
       }
       var currentSize = teamMode === "best" ? s.bestUsable : s.minSize;
@@ -2671,7 +2708,7 @@
         '<div class="sum-chip"><b>' + fmt(tickets * 7) + '</b><span>Bud Tickets a week</span></div></div>';
       if(reserve === 0){
         html += '<div class="note note-warn"><h4>🏠 This plan uses every slot — no residents, no tickets</h4><p>Your ' + (teamMode === "best" ? "Best" : "Minimum") + ' production crew takes all ' + cap + ' slots at RV ' + userRV + ', so the Homebuilding Zone stands empty and earns <strong>0 Bud Tickets a day</strong>.' +
-          (reserveMin > 0 ? ' The 🪶 Minimum crew would free <strong>' + reserveMin + (reserveMin === 1 ? ' place' : ' places') + '</strong> — ' + fmt(budTicketsFor(reserveMin, mix)) + ' Bud Tickets a day at your mix — tap 🪶 Minimum team in the Team Helper to see the reserve move.' : ' Even Minimum uses every slot here: take a recipe out of the basket, or turn leveling off, and places free up for home.') + '</p></div>';
+          (reserveMin > 0 ? ' The 🪶 Minimum crew would free <strong>' + reserveMin + (reserveMin === 1 ? ' place' : ' places') + '</strong> — ' + fmt(budTicketsFor(reserveMin, mix)) + ' Bud Tickets a day at your mix — tap 🪶 Minimum team in the Team Helper to see the reserve move.' : ' Even Minimum uses every slot here: take a recipe out of the basket, or switch strategy, and places free up for home.') + '</p></div>';
       } else {
         html += '<div class="note note-good"><h4>🎫 ' + reserve + (reserve === 1 ? ' resident' : ' residents') + ' earning at home</h4><p>Your production crew leaves <strong>' + reserve + (reserve === 1 ? ' place' : ' places') + '</strong> in the Homebuilding Zone. As ' + esc(budMixLabel(mix)) + ', that is <strong>' + fmt(tickets) + ' Bud Tickets a day</strong>, ' + fmt(tickets * 7) + ' a week. Spent at the Furniture Store at about 1 ticket to 1 Habitability, that is roughly ' + fmt(tickets) + ' Habitability a day toward the RV gates (13,000 for RV 10, rising to 20,000 for RV 20). Change the plan and this number changes with it — it is recalculated from the crew every time, never a fixed reserve.</p></div>';
       }
@@ -2697,7 +2734,7 @@
         if(gateEl){
           gateEl.hidden = false;
           gateEl.innerHTML = '<div class="empty-plan" style="text-align:left"><strong>Your crew is hidden until everything is plugged in.</strong>' +
-            '<p style="margin:8px 0 0">When the crew appears, you know every input that can change it was set on purpose, not left on a load default. Still to plug in:</p>' +
+            '<p style="margin:8px 0 0">Still to plug in:</p>' +
             '<ul class="check-list">' + missing.map(function(m){ return "<li>" + esc(m) + "</li>"; }).join("") + "</ul></div>";
         }
         if(contentEl) contentEl.hidden = true;
@@ -2712,8 +2749,8 @@
       if(bBtn) bBtn.setAttribute("aria-pressed", teamMode === "best" ? "true" : "false");
       if(mBtn) mBtn.setAttribute("aria-pressed", teamMode === "minimum" ? "true" : "false");
       if(note) note.textContent = teamMode === "best"
-        ? "Best: every busy facility gets its own dedicated worker, the strongest known Aniimo for that job, so no facility waits on a worker finishing somewhere else."
-        : "Minimum is an approximation: one Aniimo per job, shared part time across every facility that needs that job, so facilities take turns and everything runs slower than Best. The smallest crew that keeps the plan moving, not a timetable.";
+        ? "Best: a dedicated worker per facility — nothing waits on a worker elsewhere."
+        : "Minimum: one Aniimo per job, shared across its facilities. Facilities take turns; everything runs slower.";
       if(!basket.length && !levelingOn && !(typeof bpResult !== "undefined" && bpResult)){
         area.innerHTML = '<div class="empty-plan">Your crew appears here once your basket has a recipe in it or you have run a Best Plan. Pick recipes above or run the Best Plan Finder and the helper works out who needs to staff every facility your plan sets running.</div>';
         renderHome();
@@ -2795,7 +2832,7 @@
         area.innerHTML = '<div class="note note-warn"><h4>No crew fits RV ' + userRV + ' yet</h4><p>' +
           "Best would need <strong>" + bestSize + " Aniimo</strong> and even Minimum, with workers shared one per job, would need <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so both are over and neither is shown — there is no usable crew to list. " +
           "The count covers the whole crew together: the plan's workers, the Aniimo attached to the facilities out at RV " + userRV + ", the planting Grass Aniimo and the dedicated haulers, with nothing counted outside it. " +
-          "To get a crew that fits: take recipes out of the basket so fewer facilities run at once, turn leveling off, or level the RV up first.</p></div>";
+          "To get a crew that fits: take recipes out of the basket so fewer facilities run at once, switch strategy (Goals mode drops the bill jobs), or level the RV up first.</p></div>";
         renderHome();
         return;
       }
@@ -2833,7 +2870,7 @@
         capHtml = '<div class="note note-info"><h4>⭐ Best does not fit RV ' + userRV + ', so it is not shown</h4><p>' +
           "Best needs " + bestSize + " Aniimo, " + (bestSize - cap) + " over your limit of " + cap + ". The Minimum crew below is the one that fits: it puts out " + minSize + " Aniimo because its workers are shared, one Aniimo per job across every facility that needs that job. Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — facilities just take turns, so everything runs slower than Best.</p></div>";
       }
-      var howToHtml = '<div class="note note-info"><h4>📖 How to read this</h4><p>Each entry is Aniimo to put out, labelled by <strong>ability and count</strong> — <strong>Ice Aniimo ×2</strong> means two Aniimo with the Ice ability, and any Aniimo with that ability works: no entry names one you must use. The <strong>coloured circle</strong> is the ability in its game colour, with the Aniimo level inside; a <strong>gold ring</strong> around it means the plan counts on that facility\'s personality bonus (+20%). <strong>Hover or tap an entry</strong>, or its circle, for the details: the ability level, the strongest known Aniimo as a hint only, the best personality, and the facility with what it is making.</p></div>';
+      var howToHtml = '<div class="note note-info"><h4>📖 How to read this</h4><p>Entries are labelled by <strong>ability and count</strong> — <strong>Ice Aniimo ×2</strong> = any two Aniimo with Ice; none names one you must use. Circle = the ability in its game colour, level inside. Gold ring = the plan counts on that facility\'s personality bonus (+20%). Hover or tap an entry for details.</p></div>';
       var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml(team) + '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? (fittedRows ? "Best, fitted to RV " + userRV : "Best") : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
@@ -2868,11 +2905,11 @@
       if(uncountedFacs.length){
         html += '<p class="src" style="margin-top:10px">🌱 That total includes one Aniimo each for ' + uncountedFacs.map(function(f){ return esc(f); }).join(" and ") + ': those stations still need a worker each, but which job staffs them is not verified yet, so no worker is named for them below.</p>';
       }
-      if(levelingOn){
+      if(strategy === "levelup"){
         var liT = levelingItems();
         var lvlFacs = [];
         if(liT){ Object.keys(liT.craft).forEach(function(n){ var f = ITEMS[n].facility; if(lvlFacs.indexOf(f) === -1) lvlFacs.push(f); }); Object.keys(liT.gather).forEach(function(n){ var f2 = ITEMS[n].facility; if(FAC_JOB[f2] && lvlFacs.indexOf(f2) === -1) lvlFacs.push(f2); }); }
-        if(lvlFacs.length) html += '<p class="src" style="margin-top:10px">🚐 Leveling jobs for RV ' + rvNext() + " are in this crew because the leveling toggle is on in the RV section: " + lvlFacs.sort().map(function(f){ return esc(f); }).join(", ") + ".</p>";
+        if(lvlFacs.length) html += '<p class="src" style="margin-top:10px">🚐 Level Up jobs for RV ' + rvNext() + " are in this crew because Level Up is your picked strategy: " + lvlFacs.sort().map(function(f){ return esc(f); }).join(", ") + ".</p>";
       }
       if(facs.length || placedFacs.length || team.planting) html += '<div class="team-counts" aria-label="Workers needed per job">' + JOB_ORDER.map(function(j){
         var c = jobFacCount[j] ? (teamMode === "best" ? (fittedRows ? (fittedJobWorkers[j] || 0) : jobFacCount[j]) : 1) : 0;
@@ -3188,6 +3225,13 @@
     /* Single source of truth for RV level: rvFrom always mirrors userRV,
        the one picker in Stage 1. There is no second picker to keep in sync. */
     var rvFrom = userRV;
+    /* ONE strategy at a time (player's rule, Oct 27, 2026, the Aniimax
+       model): strategy is null until the player taps one — there is no
+       silently-running default — then exactly "levelup" or "goals".
+       levelingOn is DERIVED from it (true only in Level Up mode) and is
+       never set anywhere else, so the bill and the ranked goals can
+       never be active in the same plan. */
+    var strategy = null;
     var levelingOn = false;
     function rvHasNext(){ return rvFrom < 20; }
     function rvNext(){ return Math.min(20, rvFrom + 1); }
@@ -3304,7 +3348,7 @@
       basketMine.forEach(function(n){ add(n, "basket", "your basket needs it"); });
       if(levelingOn && rvHasNext()){
         var bill = computeRvBill();
-        if(bill.oreStill > 0) add("Mineral Sand", "leveling", "the bill for your next RV level needs it");
+        if(bill.oreStill > 0) add("Mineral Sand", "leveling", "the Level Up bill for your next RV level needs it");
       }
       (goalClaims || []).forEach(function(c){ add(c.name, "goal", c.why); });
       var pick = null;
@@ -3340,7 +3384,7 @@
         }
       }
       if(ms.sandClaimed) s += ' Mineral Sand per Mine run is <span class="verdict v-mix">Not verified yet</span>: it rides along in amounts that vary, so no sand amount or rate is counted.';
-      if(ms.goalsShutOut) s += ' Your basket and the leveling bill already claim everything the Mines are set to in this plan, so the goals do not change the Mines this cycle.';
+      if(ms.goalsShutOut) s += ' Your basket' + (levelingOn ? ' and the Level Up bill' : '') + ' already claim everything the Mines are set to in this plan, so the goals do not change the Mines this cycle.';
       return s + '</p></div>';
     }
     function mineSetupText(ms){
@@ -3359,7 +3403,7 @@
         if(others.length) s += " Also needed from the Mine in this plan, in the same order: " + others.map(function(c){ return c.name + (ITEMS[c.name].lvl > ms.lvl ? " (needs Mine Lv " + ITEMS[c.name].lvl + ", above yours, so it waits)" : ""); }).join(", ") + "." + (ms.count > 1 ? " With " + ms.count + " Mines out, you can run more than one material at once." : "");
       }
       if(ms.sandClaimed) s += " Mineral Sand per Mine run is Not verified yet: it rides along in amounts that vary, so no sand amount or rate is counted.";
-      if(ms.goalsShutOut) s += " Your basket and the leveling bill already claim everything the Mines are set to in this plan, so the goals do not change the Mines this cycle.";
+      if(ms.goalsShutOut) s += " Your basket" + (levelingOn ? " and the Level Up bill" : "") + " already claim everything the Mines are set to in this plan, so the goals do not change the Mines this cycle.";
       return s;
     }
 
@@ -3470,6 +3514,7 @@
     function renderRvPlan(){
       syncRvFrom();
       renderGates();
+      if(typeof renderStrategy === "function") renderStrategy();
       var curDisplay = document.getElementById("rvCurrentDisplay");
       if(curDisplay) curDisplay.textContent = "RV " + rvFrom;
       var nextLabel = document.getElementById("rvNextLabel");
@@ -4972,7 +5017,7 @@
          player has while earning the level. */
       var lvlBill = null, levelingClaim = {};
       if(levelingOn && !rvHasNext()){
-        goalNotes.push("Leveling is on, but you are at RV 20, the top level, so there is no next-level bill to make first.");
+        goalNotes.push("Strategy: Level Up, but you are at RV 20, the top level, so there is no next-level bill to target. Everything beyond your basket goes to Home Coins.");
       }
       if(levelingOn && rvHasNext()){
         lvlBill = computeRvBill();
@@ -4987,7 +5032,7 @@
           var f = ITEMS[n].facility;
           if(BP_PROC.indexOf(f) > -1 && (lvlExp.batches[n] || 0) > 0) levelingClaim[f] = (levelingClaim[f] || 0) + lvlExp.batches[n];
         });
-        goalNotes.push("Leveling is on, so the RV " + rvFrom + " to RV " + lvlBill.next + " bill is made first, before your ranked goals: " + Object.keys(lvlBill.needs).map(function(n){ return n + " x" + fmt(lvlBill.needs[n]); }).join(", ") + ", expanded down to the base materials under them. The level itself costs " + fmt(lvlBill.coin) + " Home Coins, set against this plan's earnings in the note above the rates.");
+        goalNotes.push("Strategy: Level Up. Your basket is produced first, then the RV " + rvFrom + " to RV " + lvlBill.next + " bill — this mode's one target: " + Object.keys(lvlBill.needs).map(function(n){ return n + " x" + fmt(lvlBill.needs[n]); }).join(", ") + ", expanded down to the base materials under them. The level itself costs " + fmt(lvlBill.coin) + " Home Coins, set against this plan's earnings in the note above the rates.");
         var lvlLocked = Object.keys(lvlBill.needs).filter(function(n){ return lockInfo(ITEMS[n]); });
         if(lvlLocked.length) goalNotes.push("Heads up: " + lvlLocked.join(", ") + " cannot be made at your RV " + userRV + " setup yet, so that part of the bill is planned ahead, the same way the basket plans locked recipes.");
       }
@@ -4996,7 +5041,11 @@
         var c = (basketClaim[f] || 0) + (levelingClaim[f] || 0);
         if(c > 0) free[f] = Math.max(0, (free[f] || 0) - c);
       });
-      bpGoalOrder.forEach(function(gid){
+      /* The ranked cascade runs ONLY in Goals mode. In Level Up mode the
+         bill above is the whole job: no goal is filled, and the single
+         coinPass() after this block sends everything beyond the basket
+         and the bill to Home Coins. The two modes can never stack. */
+      if(strategy === "goals") bpGoalOrder.forEach(function(gid){
         if(!bpGoalOn[gid]) return;
         if(gid === "coins"){ coinPass(); }
         else if(gid === "mega"){
@@ -5108,7 +5157,7 @@
         rawPicks.push({ name:"Waxing Moon Pepper", plots:1, goal:"unverified", unverified:true });
         farmLeft -= 1;
       }
-      bpGoalOrder.forEach(function(gid){ if(bpGoalOn[gid]) plotPass(gid); });
+      if(strategy === "goals") bpGoalOrder.forEach(function(gid){ if(bpGoalOn[gid]) plotPass(gid); });
       plotPass("coins");
 
       var finalSell = 0;
@@ -5157,8 +5206,18 @@
         if(gid === "sand") return { rank:0, name:g.name, cycle:"Not verified yet: the amount per Mine run varies", min:"Not verified yet" };
         return { rank:0, name:g.name, cycle:fmt(hmpDishes) + " festival dish batches, points per dish not verified", min:"Not verified yet" };
       }
-      bpGoalOrder.forEach(function(gid, i){ if(bpGoalOn[gid]){ var r = rateRow(gid); r.rank = i + 1; rates.push(r); } });
-      if(!bpGoalOn.coins){ var rc = rateRow("coins"); rc.rank = "Leftovers"; rates.push(rc); }
+      if(strategy === "levelup"){
+        if(lvlBill){
+          rates.push({ rank:"Target", name:"Level Up — RV " + lvlBill.next + " bill",
+            cycle: fmt(lvlBill.coin) + " Home Coins + " + Object.keys(lvlBill.needs).map(function(n){ return n + " x" + fmt(lvlBill.needs[n]); }).join(", ") + " (one-time target package, not a per-cycle rate)",
+            min: coinsCycle > 0 ? "Coin part alone: about " + fmtRate(Math.ceil(lvlBill.coin / coinsCycle * 10) / 10) + " cycles at this plan's counted Home Coin rate" : "This plan earns no counted Home Coins per cycle, so the coin part has to come from somewhere else" });
+        }
+        var rl = rateRow("coins"); rl.name = "Home Coins (production beyond the bill)"; rl.rank = "Leftovers"; rates.push(rl);
+        var rw = rateRow("wood"); rw.rank = "—"; rates.push(rw);
+      } else {
+        bpGoalOrder.forEach(function(gid, i){ if(bpGoalOn[gid]){ var r = rateRow(gid); r.rank = i + 1; rates.push(r); } });
+        if(!bpGoalOn.coins){ var rc = rateRow("coins"); rc.rank = "Leftovers"; rates.push(rc); }
+      }
 
       var flags = goalNotes.slice();
       flags.push("Special unlock recipes are left out of best plans: Rose Shortbread and Potato Kvass take a rare currency unlock, and the planner does not know whether you own them.");
@@ -5195,7 +5254,7 @@
         });
         bpMineEntries.push({ name:n, rank:best === 99 ? 50 : best, gross:exp.gross[n], sandGoal:false });
       });
-      if(bpGoalOn.sand) bpMineEntries.push({ name:"Mineral Sand", rank:bpGoalOrder.indexOf("sand"), gross:0, sandGoal:true });
+      if(strategy === "goals" && bpGoalOn.sand) bpMineEntries.push({ name:"Mineral Sand", rank:bpGoalOrder.indexOf("sand"), gross:0, sandGoal:true });
       bpMineEntries.sort(function(a, b){ var d = a.rank - b.rank; return d !== 0 ? d : (b.gross - a.gross); });
       var bpMineClaims = [];
       bpMineEntries.forEach(function(e){
@@ -5212,6 +5271,9 @@
         starSell:starSell, starRecipes:starRecipes,
         megaCycle:megaCycle, hmpDishes:hmpDishes, rates:rates, flags:flags, farmUsed:farmUsed, woodUsed:woodUsed,
         farmCount:facCount("Farmland"), woodCount:facCount("Woodland"),
+        strategy: strategy,
+        goalOrderSnap: bpGoalOrder.slice(),
+        goalOnSnap: (function(){ var o = {}; Object.keys(bpGoalOn).forEach(function(k){ o[k] = bpGoalOn[k]; }); return o; })(),
         leveling: lvlBill ? { from:rvFrom, next:lvlBill.next, coin:lvlBill.coin, needs:lvlBill.needs } : null,
         claims: (basket.length || lvlBill) ? {
           basketItems: basket.map(function(b){ return b.name; }),
@@ -5220,7 +5282,7 @@
           basketFarmUsed: basketFarmUsed, basketWoodUsed: basketWoodUsed,
           levelingFacs: Object.keys(levelingClaim).sort()
         } : null,
-        noRoomForGoals: !goalMade && (basket.length > 0 || !!lvlBill) };
+        noRoomForGoals: strategy === "goals" && !goalMade && (basket.length > 0 || !!lvlBill) };
       bpStale = false;
       return bpResult;
     }
@@ -5228,7 +5290,7 @@
     function bpWhy(name, res){
       var exp = res.exp;
       if(res.chosen[name]){
-        if(res.assignedGoal[name] === "leveling") return "Made first for your RV " + (res.leveling ? res.leveling.next : "") + " level-up, before the ranked goals";
+        if(res.assignedGoal[name] === "leveling") return "Made for your Level Up target, the RV " + (res.leveling ? res.leveling.next : "") + " bill, after your basket";
         if(res.assignedGoal[name] === "mega") return "Made for your Aniipod Mega goal";
         if(res.assignedGoal[name] === "hmp") return "Picked for your Harvest Moon Points goal, and it sells directly";
         return "Sells directly";
@@ -5325,14 +5387,16 @@
 
     function bpPlanText(res){
       var lines = [];
-      lines.push("Aniimo best plan");
+      var snapOrder = res.goalOrderSnap || bpGoalOrder, snapOn = res.goalOnSnap || bpGoalOn;
+      lines.push(res.strategy === "levelup" ? "Aniimo strategy plan — Strategy: Level Up" : "Aniimo strategy plan — Strategy: Goals");
       lines.push("Setup used: RV " + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", with your Stage 3 facility counts and levels.");
-      lines.push("Goals in ranked order: " + bpGoalOrder.map(function(gid, i){ return (i + 1) + ". " + bpGoalDef(gid).name + (bpGoalOn[gid] ? "" : " (off)"); }).join(", ") + ". Whatever is left goes to Home Coins.");
-      if(res.claims && res.claims.basketItems.length){
-        lines.push("Already planned: your basket (" + res.claims.basketItems.join(", ") + ") claims " + fmtRate(res.claims.basketBatches) + " batches per cycle at " + res.claims.basketFacs.join(", ") + " and plants " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots. Goal recipes below are picked from the remaining capacity only.");
+      if(res.strategy === "levelup" && res.leveling){
+        lines.push("Target: the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill — " + fmt(res.leveling.coin) + " Home Coins + " + Object.keys(res.leveling.needs).map(function(n){ return n + " x" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them. Your basket is produced first, then the bill; production beyond the bill goes to Home Coins. The bill is a one-time target package and stays outside the per-hour income rates below" + (res.coinsCycle > 0 ? "; the coin part alone is about " + (Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10) + " cycles at this plan's counted rate." : "."));
+      } else {
+        lines.push("Goals in your ranked order: " + snapOrder.map(function(gid, i){ return (i + 1) + ". " + bpGoalDef(gid).name + (snapOn[gid] ? "" : " (off)"); }).join(", ") + ". The plan fills goal 1 as far as it can, then the next with what is left; whatever is left at the end goes to Home Coins. The leveling bill plays no part in this mode.");
       }
-      if(res.leveling){
-        lines.push("Leveling first: the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill is made before the ranked goals: " + Object.keys(res.leveling.needs).map(function(n){ return n + " x" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them. The level costs " + fmt(res.leveling.coin) + " Home Coins" + (res.coinsCycle > 0 ? ", about " + (Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10) + " cycles at this plan's counted rate." : "."));
+      if(res.claims && res.claims.basketItems.length){
+        lines.push("Planned first: your basket (" + res.claims.basketItems.join(", ") + ") claims " + fmtRate(res.claims.basketBatches) + " batches per cycle at " + res.claims.basketFacs.join(", ") + " and plants " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots. " + (res.strategy === "levelup" ? "The bill and the Home Coin leftovers below are produced from the remaining capacity only." : "Goal recipes below are picked from the remaining capacity only."));
       }
       if(res.noRoomForGoals){
         lines.push("The already-planned work claims every facility slot and spare plot this cycle, so no goal recipes could be added.");
@@ -5377,6 +5441,10 @@
     function renderBestPlan(){
       var out = document.getElementById("bestPlanOut");
       if(!out) return;
+      if(!strategy){
+        out.innerHTML = '<div class="empty-plan">Pick a strategy first — <a href="#strategy">Level Up or Goals above</a>. One at a time: the plan never runs both.</div>';
+        return;
+      }
       var res = findBestPlan();
       var facRows = bpFacRows(res);
       var busyCount = {};
@@ -5394,7 +5462,21 @@
         '<div class="sum-chip"><b>' + fmt(res.unverifiedRawSell) + '</b><span>unverified-included extra per cycle, Moondew raw sales only, not in the counted total</span></div>' +
         '<div class="sum-chip"><b>' + fmt(res.coinsCycle + res.unverifiedRawSell) + '</b><span>Home Coins per cycle if the unverified items pay off</span></div>' +
         '<div class="sum-chip"><b>' + (res.cycleMins > 0 ? fmtRate(res.cycleMins) + " min" : "No crops") + '</b><span>grow cycle, crops side by side</span></div></div>';
-      html += '<p class="src" style="margin-top:10px">Setup used: RV ' + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", and your Stage 3 facility counts and levels. Goals in ranked order: " + bpGoalOrder.map(function(gid, i){ return (i + 1) + ". " + esc(bpGoalDef(gid).name) + (bpGoalOn[gid] ? "" : " (off)"); }).join(", ") + ".</p>";
+      var snapOrderR = res.goalOrderSnap || bpGoalOrder, snapOnR = res.goalOnSnap || bpGoalOn;
+      html += '<p class="src" style="margin-top:10px">Setup used: RV ' + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", and your Stage 3 facility counts and levels. " +
+        (res.strategy === "levelup" && res.leveling
+          ? "Strategy: <strong>Level Up</strong> — target: the RV " + res.leveling.next + " bill (" + fmt(res.leveling.coin) + " Home Coins + " + Object.keys(res.leveling.needs).map(function(n){ return esc(n) + " ×" + fmt(res.leveling.needs[n]); }).join(", ") + "). Your basket is planned first; production beyond the bill goes to Home Coins."
+          : "Strategy: <strong>Goals</strong> — in your ranked order: " + snapOrderR.map(function(gid, i){ return (i + 1) + ". " + esc(bpGoalDef(gid).name) + (snapOnR[gid] ? "" : " (off)"); }).join(", ") + ". The leveling bill plays no part in this mode.") + "</p>";
+      if(res.strategy === "levelup" && res.leveling){
+        var tb = computeRvBill();
+        var perH = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
+        html += '<div class="note note-teal"><h4>🎯 Level Up target: the RV ' + res.leveling.next + ' bill</h4><p>Target package: <strong>' + fmt(res.leveling.coin) + ' Home Coins</strong> + ' + Object.keys(res.leveling.needs).map(function(n){ return "<strong>" + esc(n) + " ×" + fmt(res.leveling.needs[n]) + "</strong>"; }).join(" + ") + " — the Woodworking Bench item and the Chimney Kiln item for RV " + res.leveling.next + ", expanded in full in the Level Up section above" +
+          (tb.woodOffsetApplied > 0 ? ", with <strong>less " + fmt(tb.woodOffsetApplied) + " Wood Blocks from your basket's Woodland surplus</strong> taken off the bill there (" + fmt(tb.woodStill) + " Wood Blocks still needed)" : "") +
+          ". This plan works toward it at: " + Object.keys(res.leveling.needs).map(function(n){ var g = res.exp.gross[n] || 0; return "<strong>" + esc(n) + " " + fmtRate(g) + " per cycle</strong>" + (perH > 0 ? " (" + fmtRate(g * perH) + " per hour)" : ""); }).join(", ") +
+          ", plus <strong>" + fmt(res.coinsCycle) + " counted Home Coins per cycle</strong>" + (perH > 0 ? " (" + fmtRate(res.coinsCycle * perH) + " per hour)" : "") + " toward the coin part" +
+          (res.coinsCycle > 0 ? " — about <strong>" + fmtRate(Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10) + " cycles</strong> for the coin part alone" : "") +
+          ". The bill itself stays a one-time target package, outside the per-hour income rates.</p></div>";
+      }
       if(res.claims){
         var cyc = res.leveling && res.coinsCycle > 0 ? Math.ceil(res.leveling.coin / res.coinsCycle * 10) / 10 : null;
         var cp = [];
@@ -5402,11 +5484,13 @@
           cp.push("Your basket (" + res.claims.basketItems.map(function(n){ return esc(n); }).join(", ") + ") already runs <strong>" + fmtRate(res.claims.basketBatches) + " batches per cycle</strong> at " + res.claims.basketFacs.map(function(f){ return esc(f); }).join(", ") + (res.claims.basketFarmUsed + res.claims.basketWoodUsed > 0 ? ", and plants <strong>" + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots</strong>" : "") + ".");
         }
         if(res.leveling){
-          cp.push("Leveling is on, so the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill (" + Object.keys(res.leveling.needs).map(function(n){ return esc(n) + " ×" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them) is produced too, on the setup you have now" + (res.claims.levelingFacs.length ? ", running at " + res.claims.levelingFacs.map(function(f){ return esc(f); }).join(", ") : "") + ".");
+          cp.push("Level Up is your strategy, so the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill (" + Object.keys(res.leveling.needs).map(function(n){ return esc(n) + " ×" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them) is the target produced next, on the setup you have now" + (res.claims.levelingFacs.length ? ", running at " + res.claims.levelingFacs.map(function(f){ return esc(f); }).join(", ") : "") + ".");
         }
-        cp.push("Those batches and plots come off this cycle's capacity first, and the goal recipes below are picked only from what is left, so nothing already planned is assigned twice.");
+        cp.push(res.strategy === "levelup"
+          ? "Your basket's batches and plots come off this cycle's capacity first, then the bill is produced from what is left, and anything beyond the bill goes to Home Coins — so nothing is assigned twice, and no goal claims a slot in this mode."
+          : "Those batches and plots come off this cycle's capacity first, and the goal recipes below are picked only from what is left, so nothing already planned is assigned twice.");
         if(res.noRoomForGoals) cp.push("<strong>That already-planned work claims every facility slot and spare plot this cycle, so no goal recipes could be added: what follows is your already-planned production and the rates it earns.</strong>");
-        html += '<div class="note note-info"><h4>🧺 Already planned, before your goals</h4><p>' + cp.join(" ") + "</p>" +
+        html += '<div class="note note-info"><h4>🧺 ' + (res.strategy === "levelup" ? "Planned first: your basket, then the bill" : "Already planned, before your goals") + '</h4><p>' + cp.join(" ") + "</p>" +
           (res.leveling ? '<p style="margin-top:8px">The level itself costs <strong>' + fmt(res.leveling.coin) + ' Home Coins</strong>' + (cyc !== null ? ": at this plan's counted <strong>" + fmt(res.coinsCycle) + " Home Coins per cycle</strong>, the coin cost alone is about <strong>" + cyc + (cyc === 1 ? " cycle" : " cycles") + "</strong> of running this plan." : ": this plan earns no counted Home Coins per cycle, so those coins have to come from somewhere else.") + "</p>" : "") + "</div>";
       }
       html += mineSetupHtml(res.mine);
@@ -5496,6 +5580,63 @@
       if(typeof renderTeam === "function") renderTeam();
     }
 
+    /* ============ Strategy: one at a time ============
+       renderStrategy paints every strategy-gated surface from the one
+       strategy variable: the picker itself, the Level Up bill display,
+       the ranked goals panel, and the Find-the-plan button. setStrategy
+       is the only way the mode changes: it flips the derived levelingOn,
+       satisfies the crew gate, and drops the previous mode's plan
+       (bpResult) outright so no claim — bill or goal — can leak across
+       a switch. Basket, RV level and module levels are untouched: the
+       basket is planned first in both modes. */
+    function renderStrategy(){
+      var lb = document.getElementById("stratLevelBtn"), gb = document.getElementById("stratGoalsBtn");
+      if(lb) lb.setAttribute("aria-pressed", strategy === "levelup" ? "true" : "false");
+      if(gb) gb.setAttribute("aria-pressed", strategy === "goals" ? "true" : "false");
+      var ls = document.getElementById("stratLevelState"), gs = document.getElementById("stratGoalsState");
+      if(ls) ls.textContent = strategy === "levelup" ? "✓ Your strategy" : "Not picked";
+      if(gs) gs.textContent = strategy === "goals" ? "✓ Your strategy" : "Not picked";
+      var st = document.getElementById("strategyStatus");
+      if(st){
+        st.textContent = !strategy
+          ? "No strategy picked yet. Tap Level Up or Goals above."
+          : strategy === "levelup"
+            ? "✓ Strategy: Level Up. Your basket is planned first, then everything works on the RV " + rvNext() + " bill in the Level Up section; production beyond the bill goes to Home Coins. Goals are off in this mode — the two never run together."
+            : "✓ Strategy: Goals. Your basket is planned first, then your ranked goals in the Strategy Plan section cascade in your order; anything left goes to Home Coins. The leveling bill is off in this mode — the two never run together.";
+      }
+      var rvA = document.getElementById("rvActive"), rvI = document.getElementById("rvInactive");
+      if(rvA) rvA.hidden = strategy !== "levelup";
+      if(rvI) rvI.hidden = strategy === "levelup";
+      var gp = document.getElementById("goalsPanel"), gi = document.getElementById("goalsInactive");
+      if(gp) gp.hidden = strategy !== "goals";
+      if(gi) gi.hidden = strategy === "goals";
+      var fb = document.getElementById("findBestBtn"), fh = document.getElementById("findBestHint");
+      if(fb){
+        fb.disabled = !strategy;
+        fb.textContent = strategy === "levelup" ? "🚐 Find the plan — target RV " + rvNext() : strategy === "goals" ? "⭐ Find the plan — my ranked goals" : "⭐ Find the plan";
+      }
+      if(fh) fh.textContent = !strategy ? "Pick a strategy above first — Level Up or Goals." : strategy === "levelup" ? "Basket first, then the RV " + rvNext() + " bill, then Home Coins." : "Basket first, then your goals in your ranked order, then Home Coins.";
+    }
+    function setStrategy(mode){
+      if(strategy === mode){ renderStrategy(); return; }
+      strategy = mode;
+      levelingOn = mode === "levelup";
+      crewGate.strategy = true;
+      bpResult = null; bpStale = false;
+      var out = document.getElementById("bestPlanOut");
+      if(out) out.innerHTML = '<div class="empty-plan">' + (mode === "levelup"
+        ? "🚐 Level Up picked. Tap Find the plan and the planner targets the RV " + rvNext() + " bill after your basket, with production beyond the bill going to Home Coins. Any Goals plan from before is gone — nothing carries over."
+        : "🎯 Goals picked. Rank your goals above, then tap Find the plan: your basket runs first, then the goals cascade in your order. Any Level Up plan from before is gone — the bill plays no part here.") + "</div>";
+      renderStrategy();
+      renderRvPlan();
+      renderPlan();
+      renderLayout();
+      if(typeof renderTeam === "function") renderTeam();
+      toast(mode === "levelup"
+        ? "Strategy: Level Up. The RV " + rvNext() + " bill is the target now — goals are off, nothing stacks."
+        : "Strategy: Goals. Your ranked goals run now — the leveling bill is off, nothing stacks.");
+    }
+
     /* ============ init ============ */
     (function init(){
       var rvSel = document.getElementById("rvLevel");
@@ -5514,19 +5655,10 @@
         renderFacilities(); renderPicker(); renderRvPlan(); renderPlan(); renderCrops(); renderLayout();
         markBpStale();
       });
-      var levelingToggle = document.getElementById("levelingToggle");
-      if(levelingToggle){
-        levelingToggle.addEventListener("change", function(){
-          crewGate.leveling = true;
-          levelingOn = !!levelingToggle.checked;
-          var wrap = document.getElementById("rvActive");
-          if(wrap) wrap.hidden = !levelingOn;
-          renderRvPlan();
-          renderPlan();
-          markBpStale();
-          toast(levelingOn ? "Leveling is in your plan now: the next level's bill joins your lists and your team." : "Leveling tucked away: the RV section is reference only, and your plan and team are recipes only.");
-        });
-      }
+      var stratLevelBtn = document.getElementById("stratLevelBtn");
+      if(stratLevelBtn) stratLevelBtn.addEventListener("click", function(){ setStrategy("levelup"); });
+      var stratGoalsBtn = document.getElementById("stratGoalsBtn");
+      if(stratGoalsBtn) stratGoalsBtn.addEventListener("click", function(){ setStrategy("goals"); });
 
       document.getElementById("recipeSearch").addEventListener("input", renderPicker);
       var hideToggle = document.getElementById("hideLockedToggle");
@@ -5549,13 +5681,15 @@
       });
       var findBestBtn = document.getElementById("findBestBtn");
       if(findBestBtn) findBestBtn.addEventListener("click", function(){
+        if(!strategy){ toast("Pick a strategy first — Level Up or Goals, one at a time."); return; }
         renderBestPlan();
-        toast("Best plan ready, sized to your Stage 3 setup.");
+        toast(strategy === "levelup" ? "Level Up plan ready: basket first, then the RV " + rvNext() + " bill." : "Goals plan ready, in your ranked order.");
         document.getElementById("bestPlanOut").scrollIntoView({ behavior:"smooth", block:"start" });
       });
       var budMixSel = document.getElementById("budMix");
       if(budMixSel) budMixSel.addEventListener("change", function(){ renderHome(); renderTeam(); });
       renderGoals();
+      renderStrategy();
       renderFacilities();
       renderChips();
       renderAll();
