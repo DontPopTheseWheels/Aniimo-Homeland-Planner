@@ -147,12 +147,17 @@
       .stock-item input{width:74px;min-height:44px;text-align:center}
       /* Stage 3: facility & module inputs */
       .fac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-top:10px}
-      .fac-item{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:2px solid var(--card-line);border-radius:12px;padding:8px 10px}
+      .fac-item{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;background:#fff;border:2px solid var(--card-line);border-radius:12px;padding:8px 10px}
+      .fac-item>span:first-child{flex:1 1 140px;min-width:0}
       .fac-item .nm{font-weight:800;font-size:.94rem}
       .fac-item .kd{font-size:.76rem;color:var(--ink-faint);font-weight:700;display:block}
       .fac-item input{width:74px;min-height:44px;text-align:center}
       .fac-item input:disabled{background:var(--bg-soft);color:var(--ink-faint)}
-      .fac-ctl{display:flex;align-items:center;gap:6px;flex:none}
+      .fac-ctl{display:flex;align-items:center;gap:6px;flex:none;flex-wrap:wrap;justify-content:flex-end;max-width:100%}
+      .fac-item input.fac-num{width:64px;padding:8px 6px}
+      .above-flag{white-space:nowrap}
+      .above-flag[hidden]{display:none}
+      .fill-row{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin:12px 0 2px}
       /* module levels */
       .mod-status{display:flex;flex-direction:column;gap:10px;margin-top:12px}
       .mod-group{background:#fff;border:2px solid var(--card-line);border-radius:12px;padding:10px 12px}
@@ -275,7 +280,7 @@
         <div class="how">
           <div class="step"><span class="n">Stage 1</span><br /><b>🧺 Recipe basket</b><p>Pick recipes, no amounts. The planner works out the whole chain and sizes it to your homeland.</p></div>
           <div class="step"><span class="n">Strategy</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
-          <div class="step"><span class="n">Stage 3</span><br /><b>🏭 Facilities &amp; modules</b><p>Facilities set themselves from your RV level. Type your four module levels once; the planner applies the module recipes you own.</p></div>
+          <div class="step"><span class="n">Stage 3</span><br /><b>🏭 Facilities &amp; modules</b><p>Tap Fill from RV level for max facility counts, levels and module levels, or type your own numbers.</p></div>
           <div class="step"><span class="n">Plan</span><br /><b>⭐ Strategy plan</b><p>Find the plan fills what is left after your basket: the RV bill in Level Up mode, your ranked goals in Goals mode. Unverified-but-sensible items are included, flagged, and their money is shown separately.</p></div>
           <div class="step"><span class="n">Home</span><br /><b>🏠 Home side &amp; Bud Tickets</b><p>Crew slots your plan doesn't use become home residents earning Bud Tickets. The reserve is whatever the plan leaves.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
@@ -305,7 +310,7 @@
             <div class="field">
               <label for="rvLevel">Your RV level</label>
               <select id="rvLevel"></select>
-              <span class="hint">Sets your facility counts and levels below. Recipes above them are greyed out.</span>
+              <span class="hint">Fill below uses this level; changing it does not change your boxes. Recipes above your facility levels are greyed out.</span>
             </div>
             <div class="field" style="flex:1 1 240px">
               <label for="recipeSearch">Find a recipe</label>
@@ -332,13 +337,17 @@
 
         <div class="card" id="facilities" style="margin-top:16px">
           <h3>🏭 Stage 3 · Your facilities &amp; modules</h3>
-          <p class="sec-sub" style="margin-bottom:4px">Counts and levels are the most your RV level allows, updated from the RV picker above. Nothing to type: the planner assumes everything is out and upgraded. Levels unlock recipes.</p>
+          <p class="sec-sub" style="margin-bottom:4px">Tap Fill to set every count and level to the most your RV level allows, or type your own numbers in any box. Levels unlock recipes.</p>
+          <div class="fill-row">
+            <button class="btn btn-primary" id="fillFromRvBtn" type="button">🏭 Fill from RV level</button>
+            <span class="src" id="facSourceLine" aria-live="polite">Not filled yet — facilities start at RV 20 max</span>
+          </div>
           <div class="fac-grid" id="facGrid"></div>
           <h4 style="margin-top:20px">🌡️ Your climate buildings</h4>
-          <p class="src" style="margin-top:4px">Counts are the most your RV level allows (Aniiland roadmap ladder; RV 7 unlock also backed by GameWith). The layout never uses more zones or plots than these counts, only puts out climate buildings the plan needs, and plots needing the same building share its zones — the crew staffs only buildings the layout puts out. Steps rest on Aniiland alone, so each count carries the single-source flag.</p>
+          <p class="src" style="margin-top:4px">Counts fill from your RV level too, or type your own (Aniiland roadmap ladder; RV 7 unlock also backed by GameWith). The layout never uses more zones or plots than these counts, only puts out climate buildings the plan needs, and plots needing the same building share its zones — the crew staffs only buildings the layout puts out. Steps rest on Aniiland alone, so each count carries the single-source flag.</p>
           <div class="fac-grid" id="climGrid"></div>
           <h4 style="margin-top:20px">🧩 Your module levels</h4>
-          <p class="src" style="margin-top:4px">Type each module's level as shown in Component Upgrade. The planner switches on the matching verified harvest yields. Unverified unlocks stay manual and are never guessed.</p>
+          <p class="src" style="margin-top:4px">Fill sets these too, or type each module's level as shown in Component Upgrade. The planner switches on the matching verified harvest yields. Unverified unlocks stay manual and are never guessed.</p>
           <div class="fac-grid" id="modLevelGrid"></div>
           <div id="modStatus" aria-live="polite"></div>
           <h4 style="margin-top:20px">🧩 Module harvests in your plan</h4>
@@ -566,7 +575,7 @@
           <li><strong>Overlap (Layout Helper):</strong> only the Steam guide's two verified blends are used — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so layouts are packed with the safe unshared counts and bands are shown as a possible bonus, never a promise. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
           <li><strong>The Layout Helper also reads your strategy plan:</strong> once run, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your setup, basket, strategy or goals change after a run, the group says the plan is out of date until you run it again.</li>
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity is unchanged (16 Farmland or 4 Woodland plots per zone); building tiles are counted so you can see their space cost.</li>
-          <li><strong>Stage 3:</strong> facility counts and levels always sit at the most your RV level allows; module levels are typed by you. Recipe greying, plans and Money Crops follow them. Facility tier caps per RV come from AniimoTools' station tables.</li>
+          <li><strong>Stage 3:</strong> Fill from RV level sets facility counts, facility levels, climate counts and module levels to the most your RV level allows; any box can then be typed over, and changing the RV picker never overwrites the boxes. A value typed above the RV maximum is used as typed and flagged "above RV max". Recipe greying, plans and Money Crops follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
           <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19.</li>
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90, Harvest Platter 5,290); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates use the grow cycle only and say so. Aniimo XP, Harvest Moon Points and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged, income split: Star (Aniimax uses it too, flagged there), and raw Moondew Radish / Waxing Moon Pepper sales at Aniiland's 74 each — aniimoguide says moon crops cannot be sold raw, so that income sits only in the unverified-included total. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
@@ -650,9 +659,10 @@
     /* Climate building max counts per RV, approved by the player from the
        Aniiland RV roadmap (the RV 7 unlock is also backed by GameWith, and
        the RV 14 values, 2, 2 and 2, match the player's own setup). Like
-       every other facility count, these derive from the RV picker with
-       nothing to type, and the steps rest on Aniiland alone, so the panel
-       flags them "count single source" like the other facility counts. */
+       every other facility count, these are what Fill from RV level sets
+       (and what the boxes start with); they can be typed over, and the
+       steps rest on Aniiland alone, so the panel flags them
+       "count single source" like the other facility counts. */
     var CLIM_COUNT = {
       "Heat Furnace":[[7,1],[12,2],[17,3]],
       "Cooling Unit":[[7,1],[13,2],[17,3]],
@@ -1102,11 +1112,15 @@
     var activeCat = "all";
     var hideLocked = false;
     var userRV = 20;
-    /* Stage 3: facility counts and levels are never typed. They always
-       equal the most the picked RV level allows, from the verified tables
-       above (FAC_RV for levels, FAC_COUNT for counts), on the assumption
-       the player puts out everything she is allowed. The climate building
-       counts derive from the RV level too, from CLIM_COUNT above. */
+    /* Stage 3: facility counts, facility levels, climate counts and module
+       levels all live in editable boxes. They start filled at the most the
+       load RV level allows (the verified tables above: FAC_RV for levels,
+       FAC_COUNT for counts, CLIM_COUNT for climate buildings), and the
+       Fill from RV level button refills them for the currently picked RV.
+       The player can type over any box afterwards, and changing the RV
+       picker never overwrites what is in the boxes. Planning reads the
+       entered values exactly as it read the derived ones; a value above
+       the RV maximum is used as typed and flagged "above RV max". */
     var modulesOwned = { premiumWheat:false, strawberry:false, coconut:false, maple:false };
     /* Module levels typed by the player, all starting at 0 like every other box.
        The three verified Ecological harvests are derived from the Ecological
@@ -1127,15 +1141,38 @@
       for(var i = 0; i < tiers.length; i++){ if(tiers[i] <= rv) m = i + 1; }
       return m;
     }
+    /* The RV maxima Fill uses, all from the same verified tables. */
+    function rvMaxFacCount(facility, rv){
+      var m = maxFacLevel(facility, rv);
+      return m > 0 ? (maxFacCount(facility, rv) || 1) : 0;
+    }
+    function rvMaxModuleLevel(def, rv){
+      var m = 0;
+      (MODULE_UNLOCKS[def.id] || []).forEach(function(u){ if(u.rv <= rv && u.lvl > m) m = u.lvl; });
+      return Math.min(def.max, m);
+    }
+    /* Entered Stage 3 values: what every plan actually reads. */
+    var facLevels = {}, facCounts = {}, climCounts = {};
+    var facProvenance = "Not filled yet — facilities start at RV 20 max";
+    function fillFacilitiesOnly(rv){
+      Object.keys(FAC_RV).forEach(function(f){
+        facLevels[f] = maxFacLevel(f, rv) || 0;
+        facCounts[f] = rvMaxFacCount(f, rv);
+      });
+      Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = climCountFor(b, rv) || 0; });
+    }
+    fillFacilitiesOnly(userRV);
+    function setFacProvenance(text){
+      facProvenance = text;
+      var el = document.getElementById("facSourceLine");
+      if(el) el.textContent = text;
+    }
     function facLevel(facility){
-      return maxFacLevel(facility, userRV) || 0;
+      return facLevels.hasOwnProperty(facility) ? facLevels[facility] : 0;
     }
     function facCount(facility){
-      if(CLIM_COUNT[facility]) return climCountFor(facility, userRV);
-      if(FAC_RV[facility]){
-        var m = maxFacLevel(facility, userRV);
-        return m > 0 ? (maxFacCount(facility, userRV) || 1) : 0;
-      }
+      if(CLIM_COUNT[facility]) return climCounts.hasOwnProperty(facility) ? climCounts[facility] : 0;
+      if(FAC_RV[facility]) return facCounts.hasOwnProperty(facility) ? facCounts[facility] : 0;
       return 0;
     }
     /* A recipe or step is locked when your facility level sits below its recipe level.
@@ -1146,15 +1183,13 @@
       if(have >= it.lvl) return null;
       return { facility:it.facility, need:it.lvl, have:have, rv:rvNeedFor(it.facility, it.lvl) };
     }
-    /* Makeable test for the hide toggle: the same test the greying uses, stated
-       in full. A recipe is locked when either the RV picker level is below the
-       RV its facility level needs, or the entered facility level is below the
-       recipe level. Facilities with no verified tier table never lock. */
+    /* Makeable test for the hide toggle: the same test the greying and the
+       plans use. A recipe is locked when the entered facility level is
+       below the recipe level, so a hand-typed level counts exactly as a
+       filled one. Facilities with no verified tier table never lock. */
     function isRecipeLocked(name){
       var it = ITEMS[name];
       if(!it || !FAC_RV[it.facility]) return false;
-      var rvNeed = rvNeedFor(it.facility, it.lvl);
-      if(rvNeed !== null && rvNeed !== undefined && userRV < rvNeed) return true;
       return !!lockInfo(it);
     }
     /* Effective yield: the module harvest, but only when you told the planner you own it. */
@@ -2015,9 +2050,11 @@
        the load default, a strategy must have been picked (Level Up or
        Goals, a real tap — there is no default), and all four module level
        boxes must have been entered.
-       Facility counts and levels need no step of their own: they always
-       follow the RV picker. A module level typed as 0 counts as set: it
-       is the untouched default that does not. */
+       Facility and climate counts and levels need no step of their own:
+       they start filled from the RV level and can be typed over. A module
+       level typed as 0 counts as set, and clicking Fill from RV level
+       counts as entering all four: it is the untouched default that does
+       not. */
     var crewGate = { rv:false, strategy:false,
       modules:{ ecological:false, kitchen:false, resource:false, crafting:false } };
     var CREW_MODULE_NAMES = { ecological:"Ecological", kitchen:"Kitchen", resource:"Resource Detector", crafting:"Crafting" };
@@ -3047,7 +3084,44 @@
     if(layoutMinBtn) layoutMinBtn.addEventListener("click", function(){ layoutMode = "minimum"; renderLayout(); renderTeam(); });
 
     /* ============ Stage 3: facility & module inputs ============ */
+    /* "above RV max" flag: one small span per box, toggled in place so a
+       hand edit never rebuilds the box being typed in. */
+    function aboveFlagHtml(key, isAbove){
+      return '<span class="verdict v-mix above-flag" data-above-flag="' + escA(key) + '"' + (isAbove ? "" : " hidden") + '>above RV max</span>';
+    }
+    function updateAboveFlag(key, isAbove){
+      var el = document.querySelector('[data-above-flag="' + key + '"]');
+      if(el) el.hidden = !isAbove;
+    }
+    /* Every downstream view that reads Stage 3 values, refreshed after any
+       Stage 3 edit or fill. Deliberately never renderFacilities itself:
+       rebuilding the input boxes mid-edit would lose the box being typed
+       in, exactly the bug renderModulePanels was split out to avoid. */
+    function refreshAfterStage3(){
+      renderModulePanels();
+      renderAll(); renderCrops(); renderLayoutPicker(); renderLayout(); renderRvPlan();
+      if(typeof renderTeam === "function") renderTeam();
+      markBpStale();
+    }
+    /* Fill from RV level: every facility count and level, every climate
+       count and all four module levels go to the most the planner's data
+       allows at the currently picked RV. Filling counts as entering the
+       module levels, so it satisfies the crew gate like typing them does. */
+    function fillFromRv(){
+      fillFacilitiesOnly(userRV);
+      MODULE_DEFS.forEach(function(d){
+        moduleLevels[d.id] = rvMaxModuleLevel(d, userRV);
+        if(crewGate.modules.hasOwnProperty(d.id)) crewGate.modules[d.id] = true;
+      });
+      syncModulesFromLevels();
+      setFacProvenance("Filled for RV " + userRV);
+      renderFacilities();
+      refreshAfterStage3();
+      toast("Filled for RV " + userRV + ": max facilities, climates and modules set.");
+    }
     function renderFacilities(){
+      var srcLine = document.getElementById("facSourceLine");
+      if(srcLine) srcLine.textContent = facProvenance;
       var grid = document.getElementById("facGrid");
       if(!grid) return;
       grid.innerHTML = Object.keys(FAC_RV).map(function(f){
@@ -3063,36 +3137,73 @@
         }
         if(f === "Starfall Hammock") sub += " · <strong>Needs a Cool environment to work</strong> (your lookup, Oct 25, 2026): it stands inside a Cooling Unit zone, and that zone counts toward Cooling Unit coverage in the Layout Helper";
         return '<div class="fac-item"><span><span class="nm">' + esc(f) + '</span><span class="kd">' + sub + '</span></span>' +
-          '<span class="fac-ctl"><span class="src">Count</span> <strong>' + facCount(f) + '</strong> <span class="src">Lv</span> <strong>' + maxL + '</strong></span></div>';
+          '<span class="fac-ctl"><span class="src">Count</span> <input type="number" class="fac-num" min="0" value="' + facCount(f) + '" data-fac-count="' + escA(f) + '" aria-label="' + escA(f) + ' count" />' + aboveFlagHtml("fac-count:" + f, facCount(f) > rvMaxFacCount(f, userRV)) +
+          ' <span class="src">Lv</span> <input type="number" class="fac-num" min="0" max="' + tiers.length + '" value="' + facLevel(f) + '" data-fac-lvl="' + escA(f) + '" aria-label="' + escA(f) + ' level" />' + aboveFlagHtml("fac-lvl:" + f, facLevel(f) > maxL) + '</span></div>';
       }).join("");
+      grid.querySelectorAll("[data-fac-count]").forEach(function(inp){
+        inp.addEventListener("change", function(){
+          var f = inp.getAttribute("data-fac-count");
+          var v = parseInt(inp.value, 10);
+          facCounts[f] = isNaN(v) ? 0 : Math.max(0, v);
+          inp.value = facCounts[f];
+          updateAboveFlag("fac-count:" + f, facCounts[f] > rvMaxFacCount(f, userRV));
+          setFacProvenance("Changed by hand");
+          refreshAfterStage3();
+        });
+      });
+      grid.querySelectorAll("[data-fac-lvl]").forEach(function(inp){
+        inp.addEventListener("change", function(){
+          var f = inp.getAttribute("data-fac-lvl");
+          var v = parseInt(inp.value, 10);
+          facLevels[f] = isNaN(v) ? 0 : Math.max(0, v);
+          inp.value = facLevels[f];
+          updateAboveFlag("fac-lvl:" + f, facLevels[f] > (maxFacLevel(f, userRV) || 0));
+          setFacProvenance("Changed by hand");
+          refreshAfterStage3();
+        });
+      });
       /* Climate building counts: counts only, no levels. Like the
-         facilities above, they derive from the RV level (CLIM_COUNT, from
-         the Aniiland RV roadmap) and are shown read only, never typed.
-         The Layout Helper's layout reads them through facCount like
-         any other count, so the layout never exceeds them. */
+         facilities above they are editable boxes filled from the RV
+         level (CLIM_COUNT, from the Aniiland RV roadmap). The Layout
+         Helper reads them through facCount like any other count, so
+         the layout never exceeds the entered count. */
       var cg = document.getElementById("climGrid");
       if(cg){
         var climHints = { "Cooling Unit":"Covers Freeze and Cool crops", "Heat Furnace":"Covers Warm and Scorching crops", "Sunlamp":"Covers crops that need Adequate light" };
         cg.innerHTML = ["Cooling Unit", "Heat Furnace", "Sunlamp"].map(function(b){
-          var c = facCount(b);
+          var maxC = climCountFor(b, userRV) || 0;
           var sub;
-          if(c === 0){ sub = climHints[b] + " · not open yet: first one unlocks at RV " + CLIMATE_RV[b]; }
+          if(maxC === 0){ sub = climHints[b] + " · not open yet: first one unlocks at RV " + CLIMATE_RV[b]; }
           else {
             var nxt = climNextStep(b, userRV);
-            sub = climHints[b] + " · max " + c + " out at RV " + userRV + (nxt ? " · next at RV " + nxt[0] : " · top count at your RV") +
+            sub = climHints[b] + " · max " + maxC + " out at RV " + userRV + (nxt ? " · next at RV " + nxt[0] : " · top count at your RV") +
               ' <span class="verdict v-mix">count single source</span>';
           }
           return '<div class="fac-item"><span><span class="nm">' + esc(b) + '</span><span class="kd">' + sub + '</span></span>' +
-            '<span class="fac-ctl"><span class="src">Count</span> <strong>' + c + '</strong></span></div>';
+            '<span class="fac-ctl"><span class="src">Count</span> <input type="number" class="fac-num" min="0" value="' + facCount(b) + '" data-clim-count="' + escA(b) + '" aria-label="' + escA(b) + ' count" />' + aboveFlagHtml("clim-count:" + b, facCount(b) > maxC) + '</span></div>';
         }).join("");
+        cg.querySelectorAll("[data-clim-count]").forEach(function(inp){
+          inp.addEventListener("change", function(){
+            var b = inp.getAttribute("data-clim-count");
+            var v = parseInt(inp.value, 10);
+            climCounts[b] = isNaN(v) ? 0 : Math.max(0, v);
+            inp.value = climCounts[b];
+            updateAboveFlag("clim-count:" + b, climCounts[b] > (climCountFor(b, userRV) || 0));
+            setFacProvenance("Changed by hand");
+            refreshAfterStage3();
+          });
+        });
       }
-      /* Module levels: four boxes, all starting at 0. Changing one re-derives
-         the verified harvests and rebuilds every plan that uses their yields. */
+      /* Module levels: four editable boxes. A hand-typed level is capped
+         only by the module's own maximum, never by the RV maximum: above
+         the RV maximum is allowed, flagged, and used as typed. Changing
+         one re-derives the verified harvests and rebuilds every plan
+         that uses their yields. */
       var mlg = document.getElementById("modLevelGrid");
       if(mlg){
         mlg.innerHTML = MODULE_DEFS.map(function(d){
           return '<div class="fac-item"><span><span class="nm">' + esc(d.name) + '</span><span class="kd">' + esc(d.hint) + ' · max Lv ' + d.max + '</span></span>' +
-            '<span class="fac-ctl"><span class="src">Lv</span> <input type="number" min="0" max="' + d.max + '" value="' + (moduleLevels[d.id] || 0) + '" data-modlvl="' + d.id + '" aria-label="Your ' + esc(d.name) + ' level" /></span></div>';
+            '<span class="fac-ctl"><span class="src">Lv</span> <input type="number" min="0" max="' + d.max + '" value="' + (moduleLevels[d.id] || 0) + '" data-modlvl="' + d.id + '" aria-label="Your ' + esc(d.name) + ' level" />' + aboveFlagHtml("modlvl:" + d.id, (moduleLevels[d.id] || 0) > rvMaxModuleLevel(d, userRV)) + '</span></div>';
         }).join("");
         mlg.querySelectorAll("[data-modlvl]").forEach(function(inp){
           inp.addEventListener("change", function(){
@@ -3102,6 +3213,8 @@
             var v = parseInt(inp.value, 10);
             moduleLevels[id] = isNaN(v) ? 0 : Math.min(def.max, Math.max(0, v));
             inp.value = moduleLevels[id];
+            updateAboveFlag("modlvl:" + id, moduleLevels[id] > rvMaxModuleLevel(def, userRV));
+            setFacProvenance("Changed by hand");
             syncModulesFromLevels();
             renderModulePanels(); renderAll(); renderCrops(); renderLayoutPicker(); renderLayout();
             toast(def.name + " set to Lv " + moduleLevels[id] + ". Verified unlocks updated.");
@@ -3366,7 +3479,7 @@
         return '<div class="note note-teal"><h4>⛏️ Set your Mines to</h4><p>Mines are not open at RV ' + userRV + ' yet: the first Mines unlock at RV 3, so there is nothing to set today.' +
           (names.length ? ' This plan needs <strong>' + esc(listAnd(names)) + '</strong> from the Mine once they open.' : '') + '</p></div>';
       }
-      var s = '<div class="note note-teal"><h4>⛏️ Set your Mines to</h4><p>Put out <strong>' + ms.count + (ms.count === 1 ? ' Mine' : ' Mines') + ' at Mine Lv ' + ms.lvl + '</strong>, the most RV ' + userRV + ' allows. ';
+      var s = '<div class="note note-teal"><h4>⛏️ Set your Mines to</h4><p>Put out <strong>' + ms.count + (ms.count === 1 ? ' Mine' : ' Mines') + ' at Mine Lv ' + ms.lvl + '</strong>, your entered Stage 3 setup. ';
       if(ms.pick){
         s += 'Set ' + (ms.count === 1 ? 'it' : 'them') + ' to <strong>' + esc(ms.pick.name) + '</strong> first: ' + esc(ms.pick.why) + '. ';
       } else if(ms.claims.length){
@@ -3393,7 +3506,7 @@
         return "Mines are not open at RV " + userRV + " yet (the first Mines unlock at RV 3), so there is nothing to set today." +
           (names.length ? " This plan needs " + listAnd(names) + " from the Mine once they open." : "");
       }
-      var s = "put out " + ms.count + (ms.count === 1 ? " Mine" : " Mines") + " at Mine Lv " + ms.lvl + ", the most RV " + userRV + " allows. ";
+      var s = "put out " + ms.count + (ms.count === 1 ? " Mine" : " Mines") + " at Mine Lv " + ms.lvl + ", your entered Stage 3 setup. ";
       if(ms.pick) s += "Set " + (ms.count === 1 ? "it" : "them") + " to " + ms.pick.name + " first: " + ms.pick.why + ". ";
       else if(ms.claims.length) s += "This plan needs " + listAnd(names) + " from the Mine, above Mine Lv " + ms.lvl + ", so your Mines cannot run " + (names.length === 1 ? "it" : "them") + " yet; any material at Mine Lv " + ms.lvl + " or below works in the meantime. ";
       else s += "This plan needs nothing from the Mine, so any material at Mine Lv " + ms.lvl + " or below works. ";
@@ -4859,7 +4972,7 @@
     document.addEventListener("change", function(e){
       var t = e.target;
       if(!t || !t.getAttribute) return;
-      if(t.getAttribute("data-modlvl") || t.id === "rvLevel") markBpStale();
+      if(t.getAttribute("data-modlvl") || t.getAttribute("data-fac-count") || t.getAttribute("data-fac-lvl") || t.getAttribute("data-clim-count") || t.id === "rvLevel") markBpStale();
     });
 
     function renderGoals(){
@@ -5647,14 +5760,18 @@
         crewGate.rv = true;
         userRV = parseInt(rvSel.value, 10) || 20;
         syncRvFrom();
-        /* Facility counts and levels always equal the most this RV allows,
-           so they re-derive from the picker by themselves; everything
-           downstream (greying, plans, layout, crew, money crops, and the
-           RV level-up bill, which follows this same one picker)
-           just re-renders with the new numbers. */
+        /* Changing the picker never overwrites the Stage 3 boxes: the
+           entered facility, climate and module values stay exactly as
+           they are, and renderFacilities only re-flags any that now sit
+           above the new RV maximum. Everything downstream (greying,
+           plans, layout, crew, money crops, and the RV level-up bill,
+           which follows this same one picker) re-renders against the
+           entered values and the new caps. */
         renderFacilities(); renderPicker(); renderRvPlan(); renderPlan(); renderCrops(); renderLayout();
         markBpStale();
       });
+      var fillBtn = document.getElementById("fillFromRvBtn");
+      if(fillBtn) fillBtn.addEventListener("click", fillFromRv);
       var stratLevelBtn = document.getElementById("stratLevelBtn");
       if(stratLevelBtn) stratLevelBtn.addEventListener("click", function(){ setStrategy("levelup"); });
       var stratGoalsBtn = document.getElementById("stratGoalsBtn");
