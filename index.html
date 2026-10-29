@@ -328,7 +328,7 @@
           <p class="src" id="pickerCount" style="margin-top:10px"></p>
           <div class="hide-row">
             <label class="hide-toggle" for="hideLockedToggle"><input type="checkbox" id="hideLockedToggle" /> <span>Only show recipes I can make</span></label>
-            <span class="hide-hint">On: locked recipes leave the lists. Picked recipes stay picked either way.</span>
+            <span class="hide-hint">On: locked recipes leave the lists. Locked means the recipe itself, or anything it needs, is above your facility levels — or it needs Premium Wheat you haven't marked as owned. Picked recipes stay picked either way.</span>
           </div>
           <p class="src" id="hideCount" style="margin-top:8px" hidden></p>
           <h3 style="margin-top:14px">🎒 Your ten recipe slots <span class="src" id="basketCount"></span></h3>
@@ -1320,14 +1320,51 @@
       if(have >= it.lvl) return null;
       return { facility:it.facility, need:it.lvl, have:have, rv:rvNeedFor(it.facility, it.lvl) };
     }
-    /* Makeable test for the hide toggle: the same test the greying and the
-       plans use. A recipe is locked when the entered facility level is
-       below the recipe level, so a hand-typed level counts exactly as a
-       filled one. Facilities with no verified tier table never lock. */
+    /* Full-chain lock check for a recipe: every step it needs, walked
+       recursively — the recipe itself, each craft it calls for, and every
+       crop and gathered material under those. A step is locked when the
+       entered facility level sits below its recipe level (lockInfo
+       above), and Premium Wheat also counts as a locked step while its
+       recipe is not marked as owned, because it cannot be grown without
+       it. This is the same test bpChainOk applies in the Strategy Plan
+       finder; the basket picker used to test only the recipe's own
+       station, so a recipe whose own station was open but whose chain
+       ran through a locked step (Berry Chocolate Coconut Pudding via
+       Cocoa Spread, Cocoa Powder, Malt Sugar and Coconut Milk, say)
+       passed the "only recipes I can make" filter and then showed its
+       locked steps in the plan. Hand-typed levels count exactly as
+       filled ones. Facilities with no verified tier table never lock. */
+    function chainLockSteps(name){
+      var out = [], seen = {}, added = {};
+      (function walk(n){
+        if(seen[n]) return;
+        seen[n] = true;
+        var it = ITEMS[n];
+        if(!it) return;
+        var lk = lockInfo(it);
+        if(lk && !added[n]){
+          added[n] = true;
+          out.push({ name:n, facility:lk.facility, need:lk.need, have:lk.have, rv:lk.rv, premium:false });
+        }
+        if(n === "Premium Wheat" && !modulesOwned.premiumWheat && !added[n]){
+          added[n] = true;
+          out.push({ name:n, premium:true });
+        }
+        if(it.kind === "craft"){ for(var k in it.needs) walk(k); }
+      })(name);
+      return out;
+    }
+    /* Makeable test for the hide toggle: a recipe counts as locked when
+       ANY step in its full ingredient chain is locked, not just its own
+       station — if you cannot make something it needs, you cannot make
+       the recipe. */
     function isRecipeLocked(name){
-      var it = ITEMS[name];
-      if(!it || !FAC_RV[it.facility]) return false;
-      return !!lockInfo(it);
+      if(!ITEMS[name]) return false;
+      return chainLockSteps(name).length > 0;
+    }
+    function chainStepText(s){
+      if(s.premium) return s.name + " (its recipe is not marked as owned in the Stage 3 panel, so it cannot be grown)";
+      return s.name + " (" + s.facility + " Lv " + s.need + " needed, yours " + (s.have === 0 ? "not built" : "Lv " + s.have) + ")";
     }
     /* Effective yield: the module harvest, but only when you told the planner you own it. */
     function effYld(it){
@@ -1506,7 +1543,7 @@
       });
       var options = '<option value="">' + (entry ? "✕ Clear this slot" : "Choose a recipe…") + "</option>" +
         opts.map(function(n){
-          var lk = lockInfo(ITEMS[n]);
+          var lk = isRecipeLocked(n);
           return '<option value="' + esc(n) + '"' + (entry && entry.name === n ? " selected" : "") + ">" + esc(n) + optionMarks(ITEMS[n]) + (lk ? " 🔒" : "") + "</option>";
         }).join("");
       var html = '<div class="pslot' + (entry ? " filled" : "") + '"><div class="pslot-head">' +
@@ -1516,10 +1553,12 @@
         var it = ITEMS[entry.name];
         var rv = rvNeedFor(it.facility, it.lvl);
         var lock = lockInfo(it);
+        var chainSteps = chainLockSteps(entry.name).filter(function(s){ return s.name !== entry.name; });
         var cropIngs = Object.keys(it.needs).filter(function(k){ return ITEMS[k] && ITEMS[k].kind === "grow"; });
         html += '<div class="pslot-details">' +
           '<div class="meta">' + esc(it.facility) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + "</div>" +
-          (lock ? '<div class="lock-note">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + ". Yours is " + (lock.have === 0 ? "not built yet" : "Lv " + lock.have) + ". That facility level unlocks at RV " + rv + ", and you can still plan with the recipe. Facility levels follow your RV picker and are listed in the Stage 3 panel below.</div>" : "") +
+          (lock ? '<div class="lock-note">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + ". Yours is " + (lock.have === 0 ? "not built yet" : "Lv " + lock.have) + ". That facility level unlocks at RV " + rv + ", and you can still plan with the recipe. Facility levels are the ones listed in the Stage 3 panel below.</div>" : "") +
+          (!lock && chainSteps.length ? '<div class="lock-note">🔒 Locked right now: this recipe\'s own station is open, but a step it needs is not: ' + chainSteps.map(function(s){ return esc(chainStepText(s)); }).join("; ") + ". You can still plan with the recipe. Facility levels are the ones listed in the Stage 3 panel below.</div>" : "") +
           '<div class="ing">Needs: ' + esc(needsText(it)) + "</div>" +
           (cropIngs.length ? '<div class="ing">🌡️ Crops in this recipe: ' + cropIngs.map(function(k){ return esc(k) + ": Climate: " + climateLabel(k); }).join(" · ") + "</div>" : "") +
           (it.blurb ? '<div class="ing">' + esc(it.blurb) + "</div>" : "") +
@@ -1538,7 +1577,7 @@
       if(hideEl){
         if(hideLocked){
           hideEl.hidden = false;
-          hideEl.textContent = "Showing " + makeableCount + " of " + names.length + " recipes (" + lockedCount + " hidden at your level)";
+          hideEl.textContent = "Showing " + makeableCount + " of " + names.length + " recipes (" + lockedCount + " hidden at your levels)";
         } else {
           hideEl.hidden = true;
           hideEl.textContent = "";
@@ -1550,9 +1589,9 @@
         else if(lockedCount > 1) lockSentence = " " + lockedCount + " locked recipes are hidden from the lists while the toggle is on. A recipe already picked stays in its slot with its lock note.";
         else lockSentence = " Nothing is hidden: every recipe is makeable at your levels.";
       }
-      else if(lockedCount === 1) lockSentence = " 1 is above your facility levels right now: it carries a 🔒 in the lists, explains itself once picked, and you can still pick it to plan ahead.";
-      else if(lockedCount > 1) lockSentence = " " + lockedCount + " are above your facility levels right now: they carry a 🔒 in the lists, explain themselves once picked, and you can still pick them to plan ahead.";
-      document.getElementById("pickerCount").textContent = (hideLocked ? makeableCount : names.length) + " makeable recipes, alphabetical in every list." + lockSentence +
+      else if(lockedCount === 1) lockSentence = " 1 cannot be made right now — its own station, or a step it needs, is above your facility levels: it carries a 🔒 in the lists, explains itself once picked, and you can still pick it to plan ahead.";
+      else if(lockedCount > 1) lockSentence = " " + lockedCount + " cannot be made right now — their own station, or a step they need, is above your facility levels: they carry a 🔒 in the lists, explain themselves once picked, and you can still pick them to plan ahead.";
+      document.getElementById("pickerCount").textContent = makeableCount + " makeable recipes, alphabetical in every list." + lockSentence +
         " Raw crops and gathered materials are not listed here: the planner adds them to your lists automatically.";
       document.getElementById("basketCount").textContent = "(" + basket.length + " of 10 picked)";
       var el = document.getElementById("recipeSlots");
