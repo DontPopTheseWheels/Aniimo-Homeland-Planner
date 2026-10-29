@@ -388,11 +388,11 @@
             </div>
           </div>
           <div class="chips" id="catChips" role="group" aria-label="Recipe categories"></div>
-          <p class="src" style="margin-top:8px">Marks in recipe names: ⭐ a special recipe needing a rare-currency unlock. 🎃 a Magical Wonder Night event recipe.</p>
+          <p class="src" style="margin-top:8px">Marks in recipe names: ⭐ a special recipe needing a rare-currency unlock. 🎃 a Magical Wonder Night event recipe. Premium versions are covered by their base recipe, never listed twice — each list entry names the Premium version it covers (Salted Lemon, covers Premium Salted Lemon), and typing the Premium name into Find a recipe brings that same entry up.</p>
           <p class="src" id="pickerCount" style="margin-top:10px"></p>
           <div class="hide-row">
             <label class="hide-toggle" for="hideLockedToggle"><input type="checkbox" id="hideLockedToggle" /> <span>Only show recipes I can make</span></label>
-            <span class="hide-hint">On: locked recipes leave the lists. Locked means the recipe itself, or anything it needs, is above your facility levels — or it needs Premium Wheat you haven't marked as owned. Picked recipes stay picked either way.</span>
+            <span class="hide-hint">On: locked recipes leave the lists. Locked means the recipe itself, or anything it needs, is above your facility levels — or it needs Premium Wheat you haven't marked as owned. Picked recipes stay picked either way, and searching for a recipe by name still shows it, lock mark and all.</span>
           </div>
           <p class="src" id="hideCount" style="margin-top:8px" hidden></p>
           <h3 style="margin-top:14px">🎒 Your ten recipe slots <span class="src" id="basketCount"></span></h3>
@@ -655,7 +655,7 @@
           <li><strong>Recipe ingredients, facility levels and craft times:</strong> <a href="https://dailyaniimo.com/homeland/recipes">Daily Aniimo</a> (game data, Oct 9, 2026), cross-checked against <a href="https://aniimotools.dev/systems/homeland/crops-and-facilities/">AniimoTools</a>. Where station names differ, AniimoTools wins.</li>
           <li><strong>RV costs, caps, prerequisites and unlocks:</strong> <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, cross-checked against MetaBot.GG's retail-file Homeland guide.</li>
           <li><strong>Grow amounts use base yields.</strong> Higher yields exist (facility levels, module recipes); the planner counts the base yield, so plots finish early, never late.</li>
-          <li><strong>Premium variants are not listed twice.</strong> Premium versions use the same ingredients as the regular version, so one entry covers both.</li>
+          <li><strong>Premium variants are not listed twice.</strong> Premium versions use the same ingredients as the regular version, so one entry covers both. The recipe search still knows the Premium names: searching Premium Salted Lemon finds the Salted Lemon entry that covers it.</li>
           <li><strong>Special recipes:</strong> Rose Shortbread and Potato Kvass unlock with Dream Sparks at the Dream Spark Exchange (Home Shop, BINI #2333). Their exact note prices are not verified yet. Plans only make sense once you own them.</li>
           <li><strong>Harvest Moon Festival recipes were removed when the festival ended</strong> (Oct 27, 2026): the moon crops and every dish whose Recipe Note cost Moonray Wheat are gone from the planner.</li>
           <li><strong>Magical Wonder Night (season Oct 29 to Dec 10, 2026), from your own in-game screenshots, Oct 29, 2026:</strong> the event is named by its official name everywhere on this page. Magic Pumpkin and Memory Lanternfruit: Farmland Lv 5, 1 seed grows 8, 40 minutes, Adequate light (Required, the lighting axis, so Sunlamp plots), sell 61 Home Coins, Energy 1350, Whimsy Point +1 raw; their seeds cost 4 Weird Jelly Beans each at the Seed Shop, event currency, so no Home Coin seed cost is ever counted for them. The nine 🎃 recipes carry their facilities, levels, ingredients, sell prices and Whimsy Points exactly as your cards showed (Golden Lantern Pumpkin Soup +20 is the biggest; the two end products, Honey-Glazed Pumpkin Cup and Glowfruit Lantern Set, are +4 each and read as sell pieces). Cooked dishes are offered to the Pumpkin God for Whimsy Points; plans show Whimsy Points per hour only, and Whimsy Points is a rankable goal in Goals mode. Event prices carry the flag "From your screenshots, Oct 29, 2026" rather than a shop research flag, because your cards are the source.</li>
@@ -834,7 +834,7 @@
       opts = opts || {};
       ITEMS[name] = { name:name, kind:"craft", facility:facility, lvl:lvl, worker:worker, needs:needs,
         yld: opts.yld || 1, cat: opts.cat || null, blurb: opts.blurb || "", special: !!opts.special,
-        event: opts.event || null, whimsy: opts.whimsy || 0 };
+        alias: opts.alias || "", covers: opts.covers || "", event: opts.event || null, whimsy: opts.whimsy || 0 };
     }
     /* Farmland, base yields */
     G("Wheat","Farmland",1,5,"4 min","Wheat Seed");
@@ -917,8 +917,8 @@
     /* Crafting Table additions, full recipe audit (Daily Aniimo book) */
     C("Wood Sculpture","Crafting Table",1,"Artisanship",{ "Willow Wood":19 }, { cat:"craft" });
     C("Bamboo Ware","Crafting Table",2,"Artisanship",{ "Bamboo":10 }, { cat:"craft" });
-    C("River-Washed Stones","Crafting Table",2,"Artisanship",{ "Rock":18, "Well Water":5 }, { cat:"craft", blurb:"Premium River-Washed Stones uses the same ingredients, so one entry covers both." });
-    C("Rose Freshener","Crafting Table",3,"Artisanship",{ "Rose Incense":1, "Bamboo":13 }, { cat:"craft", blurb:"Premium Rose Freshener uses the same ingredients, so one entry covers both." });
+    C("River-Washed Stones","Crafting Table",2,"Artisanship",{ "Rock":18, "Well Water":5 }, { cat:"craft", alias:"Premium River-Washed Stones", covers:"Premium River-Washed Stones (Crafting Module Lv 1)", blurb:"Premium River-Washed Stones uses the same ingredients, so one entry covers both." });
+    C("Rose Freshener","Crafting Table",3,"Artisanship",{ "Rose Incense":1, "Bamboo":13 }, { cat:"craft", alias:"Premium Rose Freshener", covers:"Premium Rose Freshener (Crafting Module Lv 2)", blurb:"Premium Rose Freshener uses the same ingredients, so one entry covers both." });
     C("Shell Ornament","Crafting Table",4,"Artisanship",{ "Shell":6, "Cotton Thread":1 }, { cat:"craft" });
     C("Advanced Wind Chime","Crafting Table",5,"Artisanship",{ "Copper Ore":5, "Woolen Yarn":1, "Star":2 }, { cat:"craft", blurb:"The book lists Advanced Wind Chime and Wind Chime with the same ingredients; both are separate entries here because the book names them as different items." });
     C("Star Wish Lantern","Crafting Table",5,"Artisanship",{ "Copper Ore":5, "Star":2 }, { cat:"craft" });
@@ -929,7 +929,7 @@
     C("Flowers in a Bottle","Crafting Table",7,"Artisanship",{ "Dried Flowers":1, "Porcelain":1 }, { cat:"craft" });
     C("Gemstone Dust","Crafting Table",7,"Artisanship",{ "Gem":2, "Scales":8 }, { cat:"craft", blurb:"The book lists Gemstone Dust and Advanced Gemstone Dust with the same ingredients; both are separate entries here because the book names them as different items." });
     /* Claw Game Cooker */
-    C("Bread","Claw Game Cooker",1,"Fire",{ "Wheatmeal":2, "Well Water":5 }, { cat:"food", blurb:"The homeland staple. Premium Bread uses the same ingredients." });
+    C("Bread","Claw Game Cooker",1,"Fire",{ "Wheatmeal":2, "Well Water":5 }, { cat:"food", alias:"Premium Bread", covers:"Premium Bread (Kitchen Module Lv 2)", blurb:"The homeland staple. Premium Bread uses the same ingredients." });
     C("Roasted Soybeans","Claw Game Cooker",2,"Fire",{ "Soybean":16, "Sea Salt":10 }, { cat:"food", blurb:"Salty, simple, and a fast way to spend a soybean harvest." });
     C("Apple Tart","Claw Game Cooker",3,"Fire",{ "Wheatmeal":1, "Apple":8 }, { cat:"food", blurb:"One apple harvest in a wheatmeal crust." });
     C("Maple Candy Roasted Potatoes","Claw Game Cooker",3,"Fire",{ "Potato":8, "Maple Syrup":9, "Sea Salt":10 }, { cat:"food", blurb:"Sweet, salty, and very maple." });
@@ -937,7 +937,7 @@
     C("Lavender Cookies","Claw Game Cooker",4,"Fire",{ "Lavender Powder":1, "Wheatmeal":1 }, { cat:"food", blurb:"One lavender harvest, milled, per batch of cookies." });
     C("Grape Candy","Claw Game Cooker",5,"Fire",{ "Grapes":9, "Rock Candy":1 }, { cat:"food", blurb:"Extracted natural grape sugars concentrated into tiny candies that capture the fruit's sweet, fragrant essence." });
     C("Coconut Cookie","Claw Game Cooker",6,"Fire",{ "Shredded Coconut":1, "Refined Flour":1 }, { cat:"food", blurb:"Dryer plus mill, then the cooker." });
-    C("Berry Chocolate Coconut Pudding","Claw Game Cooker",7,"Fire",{ "Cocoa Spread":1, "Strawberry":16, "Coconut Milk":1 }, { cat:"food", blurb:"The deepest dessert chain in the book: cocoa, malt sugar, strawberries and coconut milk." });
+    C("Berry Chocolate Coconut Pudding","Claw Game Cooker",7,"Fire",{ "Cocoa Spread":1, "Strawberry":16, "Coconut Milk":1 }, { cat:"food", alias:"Premium Berry Chocolate Coconut Pudding", covers:"Premium Berry Chocolate Coconut Pudding (Kitchen Module Lv 7)", blurb:"The deepest dessert chain in the book: cocoa, malt sugar, strawberries and coconut milk. Premium Berry Chocolate Coconut Pudding uses the same ingredients, so one entry covers both." });
     C("Flower Bread","Claw Game Cooker",7,"Fire",{ "Refined Flour":1, "Dried Flowers":1 }, { cat:"food", blurb:"Refined flour topped with dried flowers." });
     /* Claw Game Cooker additions, full recipe audit (Daily Aniimo book) */
     C("Apple Candy","Claw Game Cooker",4,"Fire",{ "Apple":8, "Rock Candy":1 }, { cat:"food" });
@@ -992,9 +992,9 @@
     C("Coconut Cocoa","Bouncy Brew Keg",5,"Water",{ "Coconut":5, "Cocoa Powder":1 }, { cat:"drink" });
     /* Blazing Stove */
     C("Cherry Blossom Rice Ball","Blazing Stove",1,"Fire",{ "Salted Cherry Blossom":1, "Milled Rice":1 }, { cat:"food", blurb:"Pickling jar meets mill, on the stove." });
-    C("Creamy Potato Soup","Blazing Stove",1,"Fire",{ "Potato":15, "Plain Fresh Water":8 }, { cat:"food", blurb:"Premium Potato Soup uses the same ingredients." });
+    C("Creamy Potato Soup","Blazing Stove",1,"Fire",{ "Potato":15, "Plain Fresh Water":8 }, { cat:"food", alias:"Premium Potato Soup", covers:"Premium Potato Soup (Kitchen Module Lv 3)", blurb:"Premium Potato Soup uses the same ingredients." });
     C("Tanghulu","Blazing Stove",2,"Fire",{ "Strawberry":8, "Rock Candy":1 }, { cat:"food", blurb:"Strawberries on a stick, candied." });
-    C("Jello","Blazing Stove",4,"Fire",{ "Petals":6, "Maple Sugar Chunk":1, "Deep Rock Spring Water":6 }, { cat:"food", blurb:"Petals and a lot of maple. Premium Jello uses the same ingredients." });
+    C("Jello","Blazing Stove",4,"Fire",{ "Petals":6, "Maple Sugar Chunk":1, "Deep Rock Spring Water":6 }, { cat:"food", alias:"Premium Jello", covers:"Premium Jello (Kitchen Module Lv 6)", blurb:"Petals and a lot of maple. Premium Jello uses the same ingredients." });
     C("Strawberry Cream Puff","Blazing Stove",5,"Fire",{ "Refined Flour":1, "Strawberry":16, "Coconut Oil":1 }, { cat:"food", blurb:"Two strawberry harvests plus mill work." });
     /* Blazing Stove additions, full recipe audit (Daily Aniimo book) */
     C("Soy Sauce Fried Rice","Blazing Stove",1,"Fire",{ "Milled Rice":1, "Soy Sauce":1 }, { cat:"food" });
@@ -1011,13 +1011,13 @@
     C("Soy Sauce","Pickling Jar",1,"Dark",{ "Soybean":16, "Sea Salt":13 }, { cat:"pantry", blurb:"One soybean harvest and a lot of salt." });
     C("Cider Vinegar","Pickling Jar",2,"Dark",{ "Apple":8 });
     /* Pickling Jar additions, full recipe audit (Daily Aniimo book) */
-    C("Sweet Rice Drink","Pickling Jar",2,"Dark",{ "Milled Rice":1, "Plain Fresh Water":8, "Rock Candy":1 }, { cat:"drink", blurb:"Premium Sweet Rice Wine uses the same ingredients, so one entry covers both." });
+    C("Sweet Rice Drink","Pickling Jar",2,"Dark",{ "Milled Rice":1, "Plain Fresh Water":8, "Rock Candy":1 }, { cat:"drink", alias:"Premium Sweet Rice Wine", covers:"Premium Sweet Rice Wine (Kitchen Module Lv 4)", blurb:"Premium Sweet Rice Wine uses the same ingredients, so one entry covers both." });
     C("Rice Vinegar","Pickling Jar",3,"Dark",{ "Rice Drink":1 }, { cat:"pantry" });
-    C("Salted Lemon","Pickling Jar",3,"Dark",{ "Lemon":16, "Sea Salt":13 }, { cat:"pantry", blurb:"Premium Salted Lemon uses the same ingredients, so one entry covers both." });
+    C("Salted Lemon","Pickling Jar",3,"Dark",{ "Lemon":16, "Sea Salt":13 }, { cat:"pantry", alias:"Premium Salted Lemon", covers:"Premium Salted Lemon (Kitchen Module Lv 5)", blurb:"Premium Salted Lemon uses the same ingredients, so one entry covers both." });
     C("Candied Strawberries","Pickling Jar",4,"Dark",{ "Maple Syrup":18, "Strawberry":8 }, { cat:"food" });
     C("Candied Orange Flower","Pickling Jar",5,"Dark",{ "Agave Syrup":1, "Orange Flower":8 }, { cat:"food" });
     /* Phonolfactory Table */
-    C("Soap","Phonolfactory Table",5,"Perfumery",{ "Coconut Oil":1, "Petals":6, "Deep Rock Spring Water":6 }, { cat:"craft", blurb:"Premium Soap uses the same ingredients." });
+    C("Soap","Phonolfactory Table",5,"Perfumery",{ "Coconut Oil":1, "Petals":6, "Deep Rock Spring Water":6 }, { cat:"craft", alias:"Premium Soap", covers:"Premium Soap (Crafting Module Lv 5)", blurb:"Premium Soap uses the same ingredients." });
     C("Lotion","Phonolfactory Table",6,"Perfumery",{ "Orange Flower":8, "Coconut Oil":2 }, { cat:"craft", blurb:"Two batches of coconut oil and a flower harvest." });
     /* Phonolfactory Table additions, full recipe audit (Daily Aniimo book) */
     C("Bamboo Joss Stick","Phonolfactory Table",1,"Perfumery",{ "Bamboo":15, "Aromathyst":2 }, { cat:"craft" });
@@ -1027,7 +1027,7 @@
     C("Lavender Incense","Phonolfactory Table",3,"Perfumery",{ "Lavender":11, "Aromathyst":2 }, { cat:"craft" });
     C("Lemon Incense","Phonolfactory Table",3,"Perfumery",{ "Lemon":12, "Aromathyst":2 }, { cat:"craft", blurb:"The book lists Lemon Incense and Advanced Lemon Incense with the same ingredients; both are separate entries here because the book names them as different items." });
     C("Herbal Ginseng Aroma","Phonolfactory Table",4,"Perfumery",{ "Ginseng Powder":1, "Aromathyst":8 }, { cat:"craft" });
-    C("Mixed Perfume","Phonolfactory Table",6,"Perfumery",{ "Dried Flowers":1, "Natural Mineral Spring":6 }, { cat:"craft", blurb:"Premium Mixed Perfume uses the same ingredients, so one entry covers both." });
+    C("Mixed Perfume","Phonolfactory Table",6,"Perfumery",{ "Dried Flowers":1, "Natural Mineral Spring":6 }, { cat:"craft", alias:"Premium Mixed Perfume", covers:"Premium Mixed Perfume (Crafting Module Lv 7)", blurb:"Premium Mixed Perfume uses the same ingredients, so one entry covers both." });
     C("Orange Flower Incense","Phonolfactory Table",6,"Perfumery",{ "Orange Flower":8, "Aromathyst":8 }, { cat:"craft" });
     /* Joy Wheel Loom */
     C("Cotton Thread","Joy Wheel Loom",1,"Wind",{ "Cotton":7 });
@@ -1683,7 +1683,11 @@
       var it = ITEMS[n];
       if(activeCat === "event"){ if(!it.event) return false; }
       else if(activeCat !== "all" && it.cat !== activeCat) return false;
-      if(q && (n + " " + it.facility + " " + needsText(it)).toLowerCase().indexOf(q) === -1) return false;
+      /* Search covers the name, any covered Premium name (alias: Premium
+         variants are never separate entries, so the Premium name points at
+         the one base entry that covers it), the facility, the ingredients
+         and the entry's own note. */
+      if(q && (n + " " + (it.alias || "") + " " + it.facility + " " + needsText(it) + " " + (it.blurb || "")).toLowerCase().indexOf(q) === -1) return false;
       return true;
     }
 
@@ -1698,13 +1702,20 @@
            filtering never clear a pick. Its lock note still shows below. */
         if(entry && entry.name === n) return true;
         if(!recipeMatches(n, q)) return false;
-        if(hideLocked && isRecipeLocked(n)) return false;
+        if(hideLocked && isRecipeLocked(n)){
+          /* The toggle tidies browsing; it must not make a recipe the player
+             is actively searching for by name impossible to find. Malt Sugar,
+             say, is locked only through the Premium Wheat step in its chain,
+             so a name search still shows it, lock mark and all. */
+          var searchedByName = !!q && (n.toLowerCase().indexOf(q) !== -1 || (ITEMS[n].alias || "").toLowerCase().indexOf(q) !== -1);
+          if(!searchedByName) return false;
+        }
         return true;
       });
       var options = '<option value="">' + (entry ? "✕ Clear this slot" : "Choose a recipe…") + "</option>" +
         opts.map(function(n){
           var lk = isRecipeLocked(n);
-          return '<option value="' + esc(n) + '"' + (entry && entry.name === n ? " selected" : "") + ">" + esc(n) + optionMarks(ITEMS[n]) + (lk ? " 🔒" : "") + "</option>";
+          return '<option value="' + esc(n) + '"' + (entry && entry.name === n ? " selected" : "") + ">" + esc(n) + (ITEMS[n].covers ? ", covers " + esc(ITEMS[n].covers) : "") + optionMarks(ITEMS[n]) + (lk ? " 🔒" : "") + "</option>";
         }).join("");
       var html = '<div class="pslot' + (entry ? " filled" : "") + '"><div class="pslot-head">' +
         '<span class="slot-label">Recipe ' + (i + 1) + '</span>' +
@@ -1717,6 +1728,7 @@
         var cropIngs = Object.keys(it.needs).filter(function(k){ return ITEMS[k] && ITEMS[k].kind === "grow"; });
         html += '<div class="pslot-details">' +
           '<div class="meta">' + esc(it.facility) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + (it.event ? ' · ' + eventBadge(it) : "") + (it.whimsy ? ' · <strong>Whimsy Point +' + it.whimsy + '</strong>' : "") + "</div>" +
+          (it.covers ? '<div class="ing">✨ This one recipe also covers <strong>' + esc(it.covers) + '</strong> — same ingredients, so there is no separate entry to pick and nothing is counted twice.</div>' : "") +
           (lock ? '<div class="lock-note">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + ". Yours is " + (lock.have === 0 ? "not built yet" : "Lv " + lock.have) + ". That facility level unlocks at RV " + rv + ", and you can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           (!lock && chainSteps.length ? '<div class="lock-note">🔒 Locked right now: this recipe\'s own station is open, but a step it needs is not: ' + chainSteps.map(function(s){ return esc(chainStepText(s)); }).join("; ") + ". You can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           '<div class="ing">Needs: ' + esc(needsText(it)) + "</div>" +
