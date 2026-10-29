@@ -244,6 +244,9 @@
       .adj-btn{width:34px;height:34px;border-radius:10px;border:2px solid var(--card-line);background:#fff;font-size:1.1rem;font-weight:800;color:var(--ink);line-height:1;padding:0}
       .adj-btn:hover{border-color:var(--accent);color:var(--accent)}
       .adj-count{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.95rem;white-space:nowrap}
+      .adj-btn[disabled]{opacity:.35;cursor:default}
+      .adj-btn[disabled]:hover{border-color:var(--card-line);color:var(--ink)}
+      .mine-line{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;margin-top:6px}
       .adj-zero{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card);border:2px dashed var(--card-line);border-radius:14px;padding:10px 14px;margin-top:10px;font-weight:700}
       /* RV planner */
       .rv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -648,8 +651,8 @@
           <li><strong>Strategy, the next-level bill, and the basket offset:</strong> one strategy at a time (player's rule, Oct 27, 2026, the Aniimax model). Level Up targets the single next level's bill as a fixed one-time package, outside per-hour rates; Goals runs the ranked goals and the bill plays no part. In Level Up mode, the basket's net Wood Block surplus (counted production by Woodland level, minus what basket recipes use) comes off the bill, shown line by line. Mineral Sand is never offset: it rides along with Mine runs in amounts that vary, so it is flagged, not guessed.</li>
           <li><strong>The basket takes recipes only, never amounts (max 10).</strong> The planner sizes each picked recipe to the facilities you have out; the chain under it is worked out, then the plan is fitted inside your limits (facility counts, plot counts) and scaled down where a limit binds — the plan names the limit. What the plan makes and earns is shown per hour, worked out at the slowest crop's pace (craft and gather times are not verified, and rates say so).</li>
           <li><strong>The Layout Helper reads your basket:</strong> every crop the plan needs, grouped by climate, with the Grow list's own plot counts. The − and + buttons adjust a crop's count and the change sticks; a crop at 0 stays listed. Hand picks are optional extras in their own group, never merged. Above-level crops stay listed, greyed, and still count.</li>
-          <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, packs same-building plots into the fewest shared zones, Farmland and Woodland plots sharing one 18 × 18 zone where their plots fit inside it, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
-          <li><strong>Overlap (Layout Helper):</strong> only the Steam guide's two verified blends are used — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so layouts are packed with the safe unshared counts and bands are shown as a possible bonus, never a promise. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
+          <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, gives each climate its own zones first (Farmland and Woodland plots of one climate sharing one 18 × 18 zone where their plots fit inside it), shares a zone between two climates only when the building count cannot cover them separately, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
+          <li><strong>Overlap (Layout Helper):</strong> only the Steam guide's two verified blends are noted — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so a band never places or covers a crop: every crop keeps its own climate zone and building count (Cool crops always keep their own Cooling Unit zones, Warm crops their own Heat Furnace zones), nothing is deducted for a band anywhere, and a band appears only as an uncounted note naming the crops whose zones could cross to make it. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
           <li><strong>The Layout Helper also reads your strategy plan:</strong> once run, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your setup, basket, strategy or goals change after a run, the group says the plan is out of date until you run it again.</li>
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity is unchanged (16 Farmland or 4 Woodland plots per zone); building tiles are counted so you can see their space cost.</li>
           <li><strong>Step 1 (setup):</strong> Fill from RV level sets facility counts, facility levels, climate counts and module levels to the most your RV level allows; any box can then be typed over, and the boxes start at 0 on a fresh load, and picking an RV level (or tapping Fill) fills them to that RV's most; a value typed above the RV maximum is used as typed and flagged "above RV max". Recipe greying, plans and Money Crops follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
@@ -658,12 +661,14 @@
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
           <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 8): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 8): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales. Crafting (max 7): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Premium Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume. Only three change numbers, auto-applied from Ecological: Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8). Premium Wheat appears in no module ladder — it stays manual, flagged, never auto-applied.</li>
           <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the recipe data; verified gather pairings: Well = Water, Mine = Earth, Tidewhisper Sandcastle = Leisure. Farmland, Woodland, Dewy House and the leisure station have no verified job <span class="verdict v-mix">not verified yet</span> — no worker is named, but each station still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is used by no recipe in the data so it is never deployed, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
+          <li><strong>Adding facilities by hand (Layout Helper, player's ask, Oct 29, 2026):</strong> every facility block in the layout, and every material line in the Set your Mines note, carries minus and plus steppers in the same style as the plot steppers. Plus puts out extra copies she owns, never above the Step 1 count; minus takes back only copies she added, because the plan's own count is the floor. Added copies are marked "added by you", are staffed in the crew like any copy out, draw power in the power lines, and count in the strategy plan's Working column. Production amounts stay plan driven: added copies are placed and staffed spares, except Mines, where each added Mine digs the material on its line and brings that material's per run yield again (gather run times are not verified, so Mine takes are counted per run, never per hour). Added copies live in memory only and reset to the plan's counts whenever the basket or the strategy changes.</li>
           <li><strong>Aniimo caps:</strong> the "place N Aniimo in your Home" numbers from AniimoTools, matching MetaBot.GG at every level: RV 2 = 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44, 45 at RV 20. The crew check covers the whole put-out total — nothing counted outside it. A crew over the cap is never shown as usable: Best is fitted down to the cap by sharing workers at as few facilities as possible (named on the plan); only when even Minimum is over does no crew show. Flag: aniimoguide prints a lower second set from RV 13 on (40 at RV 20) and advises planning on it; this planner follows the AniimoTools/MetaBot numbers, which match the player's own game (36 at RV 14).</li>
           <li><strong>Bud Tickets:</strong> earned by Homebuilding Zone residents (opens RV 8), not by production. Rates (Game8): 120/day regular, 180 Sparkling or Prismana, 270 both. Decor gives about 1 Habitability per ticket; Habitability gates RV 10–20. The reserve is derived per plan (cap − production crew on show), never a fixed number. The Jar's capacity is not verified, so none is stated; a single-source claim of +100/day from a daily home chest is not counted.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> — Master Guide table (GameWith, Game8, AniimoTools, Selphie1999 Gaming agree): E Energetic — Bouncy Brew Keg, Woodworking Bench; I Instinctive — Phonolfactory Table, Dewy House; S Practical — Claw Game Cooker, Chimney Kiln; N Nimble — Jukebox Dryer, Blazing Stove; T Tenacious — Carousel Mill, Simmering Pot; F Faithful — Joy Wheel Loom, Well; J Judicious — Crafting Table, Tidewhisper Sandcastle; P Playful — Mine, Pickling Jar. Farmland, Woodland, Dance Pad Polisher, Aniipod Maker and the leisure station have no verified match — stated, not guessed.</li>
           <li><strong>Fields get NO personality bonus (checked Oct 28, 2026):</strong> Farmland and Woodland appear in <strong>no</strong> personality row in allthings.how, Game8 or AniimoTools — confirmed, not just unverified. Planting (Grass) work scales with the worker's Home Ability level only; a trait match does not speed it up. Every other facility keeps its verified pairing in the line above — the Mine keeps Playful +20%.</li>
           <li><strong>Crew is shared per ability, not per building (checked Oct 28, 2026):</strong> AniimoTools, Aniiland and Aniimax all model staffing per ability — one Aniimo with the right ability covers every facility that needs that ability at the same time, workload allowing (one Wind Aniimo covers both Carousel Mills and the Joy Wheel Loom). This planner's Best and Minimum crews are speed choices on top of that rule, not a one-Aniimo-per-building rule.</li>
           <li><strong>Climate efficiency gradient — now used in the Layout Helper (checked Oct 28, 2026):</strong> Aniimax's own published model rates climate efficiency at 100% in the right temperature, 80% one step off, 50% two steps off and 20% further off <span class="verdict v-mix">single source: Aniimax</span>. Temperatures are steps: Freeze −2, Cool −1, plain 0, Warm +1, Scorching +2. Layouts still give every crop its own temperature first; where crops share a zone set to another temperature, that crop's line in the zone shows its rate in plain words ("grows at 80% here") and the zone says why. No other planning number uses the gradient.</li>
+          <li><strong>Separate climate zones first (player's fix, Oct 29, 2026):</strong> when her Step 1 count of a climate building covers it, each temperature group on that building gets its own zones set to its own temperature, so every crop grows at 100 percent: Freeze and Cool never share a Cooling Unit zone while a second Cooling Unit stands unused. Two temperature groups share a zone only when the building count cannot cover the groups separately; then the shared zone is set to the climate with more plots in it, the off climate crops keep their "grows at 80% here" labels, and the zone card says the zone is shared because she has N of that building for M zones needed. Farmland and Woodland plots of the same climate still pack into one zone together.</li>
           <li><strong>Minimum crew, the 80% rule (Aniiland):</strong> a shared worker gets a second pair of hands for a job only when the first worker's combined workload passes 80%. This planner counts each facility a worker covers as 20% of a full load, so a job covering five or more facilities gets a second worker, and workers split the facilities so none passes 80%. Best mode is unchanged.</li>
           <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
           <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
@@ -1203,21 +1208,36 @@
     function falloffRate(stepsAway){
       return stepsAway <= 0 ? 100 : stepsAway === 1 ? 80 : stepsAway === 2 ? 50 : 20;
     }
+    /* Which climate a packed zone is set to: the climate with
+       MORE plots in the zone (player's fix, Oct 29, 2026). Zones that
+       hold one climate only are simply set to that climate. Ties go
+       to the first climate packed, as before. */
+    function zoneTempKey(zone){
+      if(!zone || !zone.keys.length) return null;
+      var counts = {}, best = zone.keys[0], bestN = -1;
+      zone.keys.forEach(function(k){ counts[k] = 0; });
+      Object.keys(zone.crops || {}).forEach(function(n){
+        var k = layoutGroupOf(n).key;
+        if(counts[k] !== undefined) counts[k] += zone.crops[n];
+      });
+      zone.keys.forEach(function(k){ if(counts[k] > bestN){ bestN = counts[k]; best = k; } });
+      return best;
+    }
     /* The rate a crop grows at in one packed zone, or null when no
        falloff applies: the zone's temperature is the temperature of
-       the first climate group packed into it (groups pack coldest
-       first for a Cooling Unit, Warm before Scorching for a Heat
-       Furnace), and a crop of another temperature group sharing the
-       zone grows at the falloff rate for the distance. Sunlamp zones
-       are light, not temperature, so they never apply a rate. */
+       the climate with more plots in it (zoneTempKey), and a crop of
+       another temperature group sharing the zone grows at the falloff
+       rate for the distance. Sunlamp zones are light, not
+       temperature, so they never apply a rate. */
     function zoneCropRate(name, zone){
       if(!zone || zone.building === "Sunlamp") return null;
       var cs = cropTempStep(name);
       if(cs === null) return null;
-      var zTag = zone.keys[0];
+      var zTag = zoneTempKey(zone);
       if(TEMP_STEP[zTag] === undefined) return null;
       return falloffRate(Math.abs(cs - TEMP_STEP[zTag]));
     }
+
     /* Aniipod Maker rate: about 4 pods per hour at the base maker,
        1 pod per about 15 minutes (single source: aniimoguide.com,
        read off the in-game bar). Higher maker levels are NOT scaled
@@ -1569,6 +1589,36 @@
         Object.keys(seed).forEach(function(k){ seed[k] *= f; });
         gross = expandAmounts(seed);
       }
+      /* One type of thing at a time per facility copy: work out, per
+         processing or gathering facility, its distinct products and
+         how they sit on the copies owned. Copies needed are the
+         larger of the volume load and the distinct product count,
+         capped at the Step 1 count; products past the copies queue
+         and take turns, and their rates above are the shared rates
+         the aggregate scaling already gives them, never full speed
+         on a copy of their own. Mines keep their one-per-material
+         model and fields their plots, so both are left out here. */
+      var facAssign = {};
+      (function(){
+        var prods = {}, loads2 = {};
+        Object.keys(gross).forEach(function(n){
+          var it = ITEMS[n];
+          if(!it || !(gross[n] > 0) || it.kind === "grow") return;
+          var f = it.facility;
+          if(f === "Mine" || f === "Farmland" || f === "Woodland") return;
+          var w = it.kind === "craft" ? (gross[n] / it.yld) : (effYld(it) ? Math.ceil(gross[n] / effYld(it) - 1e-9) : 1);
+          (prods[f] = prods[f] || []).push({ name:n, w:w });
+          loads2[f] = (loads2[f] || 0) + w;
+        });
+        Object.keys(prods).forEach(function(f){
+          var list = prods[f].sort(function(a, b){ return b.w - a.w || (a.name < b.name ? -1 : 1); }).map(function(x){ return x.name; });
+          var need = Math.max(Math.ceil(loads2[f] - 1e-9), list.length);
+          var cap = facCount(f);
+          var copies = cap > 0 ? Math.min(need, cap) : need;
+          var a = assignProducts(list, copies);
+          facAssign[f] = { products:list, copies:copies, perCopy:a.perCopy, queued:a.queued };
+        });
+      })();
       var pfFinal = plotsFor(gross);
       var batches = {}, runs = {}, net = {}, cycleMins = 0;
       Object.keys(gross).forEach(function(name){
@@ -1586,7 +1636,7 @@
           runs[name] = (n > 0 && ey2) ? Math.ceil(n / ey2 - 1e-9) : (n > 0 ? null : 0);
         }
       });
-      return { gross:gross, net:net, batches:batches, runs:runs, cycleMins:cycleMins, scale:scale, limits:limits, perHour:(cycleMins > 0 ? 60 / cycleMins : 0) };
+      return { gross:gross, net:net, batches:batches, runs:runs, cycleMins:cycleMins, scale:scale, limits:limits, perHour:(cycleMins > 0 ? 60 / cycleMins : 0), facAssign:facAssign };
     }
 
     function treeItems(){
@@ -1730,7 +1780,7 @@
           var extra = "";
           if(kind === "craft"){ extra = " (at " + it.facility + ")"; }
           else if(it.kind === "grow"){ extra = " (" + plan.runs[n] + " plots at " + it.facility + ", " + effYld(it) + " per plot" + (it.facility === "Woodland" ? ", " + woodPlotText(n) : "") + ")" + climateText(n); }
-          else if(it.yld){ extra = plan.perHour > 0 ? " (about " + fmtRate(plan.runs[n] * plan.perHour) + " runs per hour at " + it.facility + ", " + it.yld + " each time)" : " (at " + it.facility + ", " + it.yld + " each time)"; }
+          else if(it.yld){ var leftT = plan.runs[n] * effYld(it) - plan.net[n]; extra = plan.perHour > 0 ? " (about " + fmtRate(plan.runs[n] * plan.perHour) + " runs per hour at " + it.facility + ", " + effYld(it) + " each time" + (leftT > 0.05 ? "; the runs bring " + fmtRate(plan.runs[n] * effYld(it) * plan.perHour) + " per hour in all, " + fmtRate(plan.net[n] * plan.perHour) + " used and " + fmtRate(leftT * plan.perHour) + " spare" : "") + ")" : " (at " + it.facility + ", " + effYld(it) + " each time)"; }
           else if(n === "Wood Block"){
             var wf = woodFromPlan(plan);
             extra = " (tree byproduct at the Woodland: never planted, no seed and no plot of their own; they ride along with every tree harvest at a fixed rate per plot" +
@@ -1743,8 +1793,12 @@
       section("Grow:", "grow");
       section("Gather:", "gather");
       section("Craft (deepest ingredients first in the app):", "craft");
+      Object.keys(plan.facAssign || {}).sort().forEach(function(f){
+        var a = plan.facAssign[f];
+        lines.push("- " + f + ", one type of thing at a time: " + a.perCopy.map(function(n, i){ return "Copy " + (i + 1) + ": " + n; }).join("; ") + (a.queued.length ? ". Takes turns on those copies: " + a.queued.join(", ") + " (their per-hour rates above are the shared, taking-turns rates)" : ""));
+      });
       lines.push("");
-      lines.push("Set your Mines to: " + mineSetupText(mineSetup(null)));
+      lines.push("Set your Mines to: " + mineSetupText(mineSetup((typeof bpResult !== "undefined" && bpResult && bpResult.mine) ? bpResult.mine.claims.filter(function(c){ return c.src === "goal"; }) : null)));
       lines.push("Strategy: " + (strategy === "levelup" ? "Level Up — target: the RV " + rvNext() + " bill (see below)" : strategy === "goals" ? "Goals — ranked: " + (typeof bpGoalOrder !== "undefined" ? bpGoalOrder.map(function(gid, i){ return (i + 1) + ". " + bpGoalDef(gid).name + (bpGoalOn[gid] ? "" : " (off)"); }).join(", ") : "") : "none picked yet") + ". Your basket below is planned first in both modes.");
       if(levelingOn && rvHasNext()){
         var bill = computeRvBill();
@@ -1756,6 +1810,7 @@
     }
 
     function renderPlan(){
+      syncFacExtras();
       renderTeam();
       renderLayout();
       if(levelingOn) renderRvPlan();
@@ -1796,6 +1851,20 @@
         (plan.perHour > 0 ? ' Rates are <strong>per hour</strong>, at the pace of the slowest crop (about ' + fmtRate(plan.cycleMins) + ' min; crops grow side by side).' : ' This plan grows no crops, and craft and gather times are not verified, so there is <strong>no per-hour rate</strong> for it: the lists below name what to gather and make, in order, without amounts.') +
         '</p></div>';
 
+      /* One type of thing at a time: any facility whose distinct
+         products outnumber its working copies queues the rest. The
+         queued products take turns on the copies there, and the
+         per-hour rates in the lists below are their shared rates. */
+      (function(){
+        var q = [];
+        Object.keys(plan.facAssign || {}).sort().forEach(function(f){
+          var a = plan.facAssign[f];
+          if(a.queued.length) q.push("<strong>" + esc(f) + "</strong>: " + a.products.length + " products, " + a.copies + (a.copies === 1 ? " copy" : " copies") + " working, so " + a.queued.map(function(n){ return esc(n); }).join(", ") + (a.queued.length === 1 ? " takes turns" : " take turns") + " on " + (a.copies === 1 ? "it" : "them"));
+        });
+        if(q.length){
+          html += '<div class="note note-warn"><h4>⏳ One thing at a time</h4><p>A facility can only cook, craft or collect one type of thing at a time, so where a plan has more products than copies, the extras queue instead of running side by side: ' + q.join("; ") + '. Their per-hour rates below are the shared, taking-turns rates. Put out another copy with the facility steppers in the Layout Helper and the next queued product runs side by side instead.</p></div>';
+        }
+      })();
       /* leveling: the bill stays a fixed one-time package in the RV
          section; it never enters these lists or the rates.
          Its jobs still join the Team Helper, and the basket offset
@@ -1810,7 +1879,7 @@
          the same way as the strategy plan below (see powerHeadroomHtml).
          Working counts come from the plan's own batches and runs per
          facility, capped at the count entered in Step 1. */
-      var facWorkBP = {};
+      var facWorkBP = {}, facProdsBP = {};
       Object.keys(plan.gross).forEach(function(n){
         var it = ITEMS[n];
         if(!it || (plan.net[n] || 0) <= 0) return;
@@ -1821,19 +1890,31 @@
         if(it.kind === "craft") load = plan.batches[n] || 0;
         else if(it.kind === "gather") load = plan.runs[n] || 0;
         facWorkBP[f] = (facWorkBP[f] || 0) + load;
+        if(load > 0) (facProdsBP[f] = facProdsBP[f] || {})[n] = true;
       });
       var facWorkingBP = {};
       Object.keys(facWorkBP).forEach(function(f){
         if(!FAC_RV[f] && !CLIM_COUNT[f]){ facWorkingBP[f] = 1; return; }
-        var w = Math.ceil(facWorkBP[f] - 1e-9);
+        /* One type at a time per copy: working copies never read
+           lower than the distinct products at the facility. */
+        var w = Math.max(Math.ceil(facWorkBP[f] - 1e-9), facProdsBP[f] ? Object.keys(facProdsBP[f]).length : 0);
         if(!(w > 0)) w = 1;
         var capN = facCount(f);
         facWorkingBP[f] = capN > 0 ? Math.min(w, capN) : w;
       });
+      /* Copies added by hand in the Layout Helper draw power too:
+         they are buildings out on E-mode like any other copy. */
+      Object.keys(facWorkingBP).forEach(function(f){
+        var ex = facExtraFor(f);
+        if(ex > 0){
+          var capN2 = facCount(f);
+          facWorkingBP[f] = capN2 > 0 ? Math.min(facWorkingBP[f] + ex, capN2) : facWorkingBP[f] + ex;
+        }
+      });
       html += '<p class="src" style="margin-top:10px">' + powerHeadroomHtml(facWorkingBP) + '</p>';
       /* Mines setup instruction: max Mines for this RV, and the material
          the basket (then the leveling bill) claims first. */
-      html += mineSetupHtml(mineSetup(null));
+      html += mineSetupHtml(mineSetup((typeof bpResult !== "undefined" && bpResult && bpResult.mine) ? bpResult.mine.claims.filter(function(c){ return c.src === "goal"; }) : null));
       /* locked warnings: steps above the facility levels set in the Step 1 panel */
       var locked = Object.keys(plan.gross).filter(function(n){ return lockInfo(ITEMS[n]) && plan.net[n] > 0; });
       if(locked.length){
@@ -1853,7 +1934,7 @@
       var moneyHits = growNames.filter(function(n){ return MONEY[n] && plan.net[n] > 0; });
       if(moneyHits.length){
         html += '<div class="note note-good"><h4>💰 Nice side effect</h4><p>Your grow list includes top money crops: ' +
-          moneyHits.map(function(n){ return "<strong>" + esc(n) + "</strong> (" + fmt(MONEY[n]) + " Home Coin per plot per hour)"; }).join(", ") +
+          moneyHits.map(function(n){ var it2 = ITEMS[n]; var mv = (it2 && it2.modYld && it2.mod && !modulesOwned[it2.mod]) ? Math.round(MONEY[n] * it2.yld / it2.modYld) : MONEY[n]; return "<strong>" + esc(n) + "</strong> (" + fmt(mv) + " Home Coin per plot per hour" + (mv !== MONEY[n] ? " at its base yield, its module harvest is not active at your Ecological level" : "") + ")"; }).join(", ") +
           ". Any spare plots planted with these pay for the rest of the basket at the Co-op Store.</p></div>";
       }
 
@@ -1863,7 +1944,7 @@
           var it = ITEMS[n];
           var g = plan.gross[n], still = plan.net[n];
           var runsCell;
-          if(it.yld){ var left = plan.runs[n] * effYld(it) - still; runsCell = it.kind === "grow" ? "<strong>" + fmt(plan.runs[n]) + "</strong>" + (left > 0.05 && plan.perHour > 0 ? ' <span class="src">(+' + fmtRate(left * plan.perHour) + " spare per hour)</span>" : "") : "<strong>" + (plan.perHour > 0 ? fmtRate(plan.runs[n] * plan.perHour) : "—") + "</strong>"; }
+          if(it.yld){ var left = plan.runs[n] * effYld(it) - still; runsCell = it.kind === "grow" ? "<strong>" + fmt(plan.runs[n]) + "</strong>" + (left > 0.05 && plan.perHour > 0 ? ' <span class="src">(+' + fmtRate(left * plan.perHour) + " spare per hour)</span>" : "") : "<strong>" + (plan.perHour > 0 ? fmtRate(plan.runs[n] * plan.perHour) : "—") + "</strong>" + (left > 0.05 && plan.perHour > 0 ? ' <span class="src">(runs bring ' + fmtRate(plan.runs[n] * effYld(it) * plan.perHour) + " per hour in all at " + effYld(it) + " each time: " + fmtRate(still * plan.perHour) + " used, " + fmtRate(left * plan.perHour) + " spare)</span>" : ""); }
           else if(n === "Wood Block"){
             var wf2 = woodFromPlan(plan);
             runsCell = wf2.prod > 0
@@ -1879,7 +1960,8 @@
         }).join("");
         return "<h3 style='margin-top:22px'>" + emoji + " " + title + '</h3><div class="tbl-wrap"><table><thead><tr><th>Item</th><th class="num">Per hour</th><th class="num">' + runLabel + "</th></tr></thead><tbody>" + rows + "</tbody></table></div>";
       }
-      html += rawTable("Grow these", "🌱", growNames, "Plots");
+      html += '<p class="sec-sub" style="margin:16px 0 0">Three different plot counts appear in this plan, and they are not interchangeable. <strong>Plant this:</strong> the Grow list\'s Plots column, the plots that keep up this plan\'s per-hour pace, replanted as harvests come in. The Layout Helper further down shows how many of those plots fit in your field <strong>at once</strong>, and its whole-plan totals are the <strong>whole need</strong> across your basket, best plan and extra crops added together.</p>';
+      html += rawTable("Grow these", "🌱", growNames, "Plots (plant this, per planting at this pace)");
       html += rawTable("Gather these", "💧", gatherNames, "Runs per hour");
 
       /* craft steps, shallowest depth last: craft lowest depth first */
@@ -2418,18 +2500,19 @@
        the plan never uses needs zero, however many are owned — the
        Nimbus Bed is used by no recipe in the data, so it is never
        deployed. Capped at the count entered in Step 1. */
-    function facilityNeedCounts(){
-      var load = {}, variesItems = {};
+    function planFacilityLoad(){
+      var load = {}, variesItems = {}, products = {};
+      function addProduct(f, n){ (products[f] = products[f] || {})[n] = true; }
       function addGross(gross, batches, runs){
         Object.keys(gross || {}).forEach(function(n){
           var it = ITEMS[n];
           if(!it || !(gross[n] > 0)) return;
           var f = it.facility;
-          if(it.kind === "craft"){ var b = (batches && batches[n]) || 0; if(b > 0) load[f] = (load[f] || 0) + b; }
+          if(it.kind === "craft"){ var b = (batches && batches[n]) || 0; if(b > 0){ load[f] = (load[f] || 0) + b; addProduct(f, n); } }
           else if(it.kind === "gather"){
             var r = runs ? runs[n] : null;
-            if(r === null || r === undefined){ (variesItems[f] = variesItems[f] || {})[n] = true; }
-            else if(r > 0) load[f] = (load[f] || 0) + r;
+            if(r === null || r === undefined){ (variesItems[f] = variesItems[f] || {})[n] = true; addProduct(f, n); }
+            else if(r > 0){ load[f] = (load[f] || 0) + r; addProduct(f, n); }
           }
         });
       }
@@ -2438,25 +2521,82 @@
       if(typeof bpResult !== "undefined" && bpResult) addGross(bpResult.exp.gross, bpResult.exp.batches, bpResult.exp.runs);
       var li0 = (typeof levelingItems === "function") ? levelingItems() : null;
       if(li0){
-        Object.keys(li0.craft).forEach(function(n){ var it = ITEMS[n]; if(it) load[it.facility] = (load[it.facility] || 0) + li0.craft[n] / it.yld; });
+        Object.keys(li0.craft).forEach(function(n){ var it = ITEMS[n]; if(it){ load[it.facility] = (load[it.facility] || 0) + li0.craft[n] / it.yld; addProduct(it.facility, n); } });
         Object.keys(li0.gather).forEach(function(n){
           var it = ITEMS[n]; if(!it) return;
           var ey = effYld(it);
-          if(ey) load[it.facility] = (load[it.facility] || 0) + Math.ceil(li0.gather[n] / ey - 1e-9);
-          else (variesItems[it.facility] = variesItems[it.facility] || {})[n] = true;
+          if(ey){ load[it.facility] = (load[it.facility] || 0) + Math.ceil(li0.gather[n] / ey - 1e-9); addProduct(it.facility, n); }
+          else { (variesItems[it.facility] = variesItems[it.facility] || {})[n] = true; addProduct(it.facility, n); }
         });
       }
+      /* Mines claimed by a run strategy plan (a Mineral Sand goal claims
+         a Mine even when no recipe in the expansion gathers it) count
+         here too, so the crew, layout and power counts agree with the
+         Mines box and the strategy facility table on one number. */
+      if(typeof bpResult !== "undefined" && bpResult && bpResult.mine && bpResult.mine.need > 0){
+        addProduct("Mine", "Mineral Sand");
+        var mp = products["Mine"] ? Object.keys(products["Mine"]).length : 0;
+        if(mp < bpResult.mine.need){ /* the box's count is the floor, applied in facilityNeedFromLoad via mineFloor */ }
+      }
+      return { load:load, variesItems:variesItems, products:products,
+        mineFloor:(typeof bpResult !== "undefined" && bpResult && bpResult.mine) ? bpResult.mine.need : 0 };
+    }
+    function facilityNeedFromLoad(L, f){
+      var owned = facCount(f);
+      var vc = L.variesItems[f] ? Object.keys(L.variesItems[f]).length : 0;
+      /* One facility makes, crafts or collects ONE type of thing at a
+         time (player's rule, Oct 29, 2026): the copies a plan needs are
+         at least its distinct product count at that facility, never
+         just its total workload, so three products on two copies can
+         never read as fully covered by two working copies. Products
+         beyond the copies owned queue and take turns (shown on the
+         plan), they are never run in parallel on one copy. */
+      var distinct = L.products && L.products[f] ? Object.keys(L.products[f]).length : 0;
+      var n = Math.max(((L.load[f] || 0) > 0 ? Math.ceil(L.load[f] - 1e-9) : 0) + vc, distinct);
+      if(f === "Mine" && L.mineFloor) n = Math.max(n, L.mineFloor);
+      return owned > 0 ? Math.min(n, owned) : n;
+    }
+    /* Per-copy assignment for one facility: the first copies each take
+       one distinct product, any further copies help the first product,
+       and any product left over queues and takes turns. Returns the
+       per-copy product list and the queued products. */
+    function assignProducts(products, copies){
+      var perCopy = [], queued = [];
+      if(!products.length || copies <= 0) return { perCopy:perCopy, queued:products.slice() };
+      for(var i = 0; i < copies; i++) perCopy.push(products[Math.min(i, products.length - 1)]);
+      for(var j = copies; j < products.length; j++) queued.push(products[j]);
+      return { perCopy:perCopy, queued:queued };
+    }
+    function assignText(products, copies){
+      var a = assignProducts(products, copies);
+      if(!a.perCopy.length) return "";
+      var s = a.perCopy.map(function(n, i){ return "Copy " + (i + 1) + ": " + n; }).join(" · ");
+      if(a.queued.length) s += ". Takes turns, one at a time on the copies above: " + a.queued.join(", ") + " (a facility makes one thing at a time, so these wait for a copy to finish; put out another copy with the stepper and the next one runs side by side)";
+      return s;
+    }
+    function facilityNeedCounts(){
+      var L = planFacilityLoad();
       var need = {};
       FAC_ANIIMO.forEach(function(fa){
         var f = fa.facility;
         if(CLIM_BUILDINGS.indexOf(f) > -1) return;
-        var owned = facCount(f);
-        var vc = variesItems[f] ? Object.keys(variesItems[f]).length : 0;
-        var n = ((load[f] || 0) > 0 ? Math.ceil(load[f] - 1e-9) : 0) + vc;
-        need[f] = owned > 0 ? Math.min(n, owned) : n;
+        need[f] = facilityNeedFromLoad(L, f);
       });
       return need;
     }
+    /* The same plan counts for every facility the combined plans work,
+       not just the nine named ones: the crafting and cooking facilities
+       show layout blocks with steppers too, and they read these. */
+    function allFacilityNeedCounts(){
+      var L = planFacilityLoad();
+      var need = {};
+      Object.keys(L.load).concat(Object.keys(L.variesItems)).forEach(function(f){
+        if(f === "Farmland" || f === "Woodland") return;
+        if(need[f] === undefined) need[f] = facilityNeedFromLoad(L, f);
+      });
+      return need;
+    }
+
     function computeTeam(){
       var plan = computePlan();
       var byFac = {}, uncounted = {};
@@ -2532,9 +2672,9 @@
          the player's rule (Oct 29, 2026): only as many as accomplish
          the plan — never every copy owned. Climate buildings are out
          only where the Layout Helper's layout actually puts them out
-         (plots that need the same building share its zones there,
-         Farmland and Woodland together where they fit, packed into
-         the fewest buildings), so only the layout's used count of
+         (each climate in its own zones there where the building count
+         covers it, Farmland and Woodland of one climate together
+         where they fit), so only the layout's used count of
          each is staffed here. The other named facilities count the
          copies the plan's own batches and runs need
          (facilityNeedCounts): if all the Cool plots fit under one
@@ -2547,7 +2687,7 @@
       FAC_ANIIMO.forEach(function(fa){
         var c;
         if(CLIM_BUILDINGS.indexOf(fa.facility) > -1) c = climInfo ? (climInfo.used[fa.facility] || 0) : 0;
-        else c = needCounts[fa.facility] || 0;
+        else c = deployedCount(fa.facility, needCounts[fa.facility] || 0);
         if(c > 0) placed[fa.facility] = { facility:fa.facility, count:c, job:fa.job };
       });
       /* Hauling (player's rule, Oct 27, 2026): the need is always
@@ -3142,6 +3282,7 @@
 
     function renderTeam(){
       hideTip();
+      syncFacExtras();
       var area = document.getElementById("teamArea");
       if(!area) return;
       var gateEl = document.getElementById("teamGate");
@@ -3682,9 +3823,21 @@
         var rv = rvNeedFor(it.facility, it.lvl);
         var lock = lockInfo(it);
         var locked = !!lock;
-        return '<tr' + (locked ? ' class="locked-row"' : "") + '><td><strong>' + esc(c.name) + "</strong> " + esc(c.per) +
-          (c.mod && modulesOwned[c.mod] ? ' <span class="verdict v-ok">module recipe owned ✓</span>' : "") + '</td>' +
-          '<td class="num">40 min</td><td class="num">' + fmt(c.coin) + '</td><td class="num"><strong>' + fmt(c.hr) + "</strong></td>" +
+        /* Module harvests count only while their Ecological level is
+           actually entered: Coconut x8 needs Ecological Lv 8 and
+           Strawberry x26 needs Lv 7, so below those levels this table
+           shows the base yields (Coconut x5, Strawberry x8) and the
+           earnings they really give, never the module figures. */
+        var per = c.per, coin = c.coin, hr = c.hr, modOff = !!(c.mod && !modulesOwned[c.mod] && it.modYld);
+        if(modOff){
+          var f2 = it.yld / it.modYld;
+          coin = Math.round(c.coin * f2); hr = Math.round(c.hr * f2);
+          per = per.replace(/×\d+/, "×" + it.yld);
+        }
+        return '<tr' + (locked ? ' class="locked-row"' : "") + '><td><strong>' + esc(c.name) + "</strong> " + esc(per) +
+          (c.mod && modulesOwned[c.mod] ? ' <span class="verdict v-ok">module recipe owned ✓</span>' : "") +
+          (modOff ? ' <span class="verdict v-mix">module recipe not active at your Ecological Lv ' + (moduleLevels.ecological || 0) + ": base yield counted</span>" : "") + '</td>' +
+          '<td class="num">40 min</td><td class="num">' + fmt(coin) + '</td><td class="num"><strong>' + fmt(hr) + "</strong></td>" +
           "<td>" + esc(it.facility) + " Lv " + it.lvl + " · RV " + rv + "+" +
           (locked ? '<br /><span class="verdict v-lock">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + " (yours " + (lock.have === 0 ? "not built" : "Lv " + lock.have) + ") · unlocks at RV " + rv + "</span>" : "") + "</td>" +
           "<td>" + esc(c.note) + "<br />" + "Climate: <strong>" + climateLabel(c.name) + "</strong>." + "</td></tr>";
@@ -3868,7 +4021,12 @@
       }
       var goalsShutOut = !!(goalClaims && goalClaims.length && pick && pick.src !== "goal" &&
         !claims.some(function(c){ return c.src === "goal"; }));
-      need = pick ? Math.min(count, claims.length) : 0;
+      /* One Mine per material it can actually run at its level:
+         claims above the Mine's level wait and deploy nothing, so
+         this count, the facility table's Mine working count and the
+         crew count are the same number on every surface. */
+      var runnable = claims.filter(function(c){ return ITEMS[c.name].lvl <= lvl; }).length;
+      need = pick ? Math.min(count, runnable) : 0;
       return { lvl:lvl, count:count, need:need, claims:claims, pick:pick, goalsShutOut:goalsShutOut,
         sandClaimed: claims.some(function(c){ return c.name === "Mineral Sand"; }) };
     }
@@ -3898,6 +4056,21 @@
       }
       if(ms.sandClaimed) s += ' Mineral Sand per Mine run is <span class="verdict v-mix">Not verified yet</span>: it rides along in amounts that vary, so no sand amount or rate is counted.';
       if(ms.goalsShutOut) s += ' Your basket' + (levelingOn ? ' and the Level Up bill' : '') + ' already claim everything the Mines are set to in this plan, so the goals do not change the Mines in this plan.';
+      if(ms.pick){
+        var runnable = ms.claims.filter(function(c){ return ITEMS[c.name].lvl <= ms.lvl; }).length;
+        var totalOut = Math.min(ms.count, runnable + mineExtraTotal());
+        s += '</p><div class="mine-lines">' + ms.claims.map(function(c){
+          var it = ITEMS[c.name];
+          if(it.lvl > ms.lvl) return '<div class="mine-line"><span><strong>' + esc(c.name) + '</strong>: no Mine set to it yet, it waits for Mine Lv ' + it.lvl + '.</span></div>';
+          var ex = mineExtra[c.name] || 0;
+          var mines = 1 + ex;
+          return '<div class="mine-line"><span><strong>' + esc(c.name) + '</strong>: ' + mines + (mines === 1 ? ' Mine' : ' Mines') + ' set to it (' + (ex > 0 ? '1 for the plan + ' + ex + ' added by you' : 'for the plan') + ')' +
+            (it.yld ? ', bringing <strong>' + (it.yld * mines) + ' ' + esc(c.name) + ' per run round</strong> (' + it.yld + ' per Mine per run)' : ', yield varies per run, so no amount is counted') + '</span>' +
+            '<span class="adj-wrap"><button type="button" class="adj-btn" data-mine-dec="' + escA(c.name) + '" aria-label="Take back one added Mine on ' + escA(c.name) + '"' + (ex <= 0 ? ' disabled' : '') + '>\u2212</button>' +
+            '<span class="adj-count">' + mines + (mines === 1 ? ' Mine' : ' Mines') + '</span>' +
+            '<button type="button" class="adj-btn" data-mine-inc="' + escA(c.name) + '" aria-label="Add one more Mine digging ' + escA(c.name) + '"' + (totalOut >= ms.count ? ' disabled' : '') + '>+</button></span></div>';
+        }).join("") + '</div><p style="margin-top:8px">Mines out in all: <strong>' + totalOut + ' of ' + ms.count + ' owned</strong>. The steppers add or take back Mines on each material: the plan\'s one Mine per material is the floor, and changing your basket or strategy resets added Mines back to the plan\'s counts. Added Mines are staffed in your crew and draw power like any Mine out. Gather run times are not verified, so an added Mine\'s take is counted per run, not per hour.</p><p>';
+      }
       return s + '</p></div>';
     }
     function mineSetupText(ms){
@@ -3918,6 +4091,8 @@
       }
       if(ms.sandClaimed) s += " Mineral Sand per Mine run is Not verified yet: it rides along in amounts that vary, so no sand amount or rate is counted.";
       if(ms.goalsShutOut) s += " Your basket" + (levelingOn ? " and the Level Up bill" : "") + " already claim everything the Mines are set to in this plan, so the goals do not change the Mines in this plan.";
+      var mxNames = Object.keys(mineExtra).filter(function(n){ return mineExtra[n] > 0; });
+      if(mxNames.length) s += " Mines added by you: " + mxNames.map(function(n){ return n + " +" + mineExtra[n] + " (" + (1 + mineExtra[n]) + " Mines on " + n + " in all, bringing " + (ITEMS[n].yld ? (ITEMS[n].yld * (1 + mineExtra[n])) + " " + n + " per run round" : "a varying yield per run") + ")"; }).join(", ") + ".";
       return s;
     }
 
@@ -4164,6 +4339,93 @@
     var layoutPicks = {};   /* crop name -> 1 when picked (one plot each) */
     var layoutAutoAdj = {}; /* crop name -> plots added to or taken off the basket's own count */
     var layoutBpAdj = {};   /* crop name -> plots added to or taken off the best plan's own count */
+    /* Facilities added by hand (player's ask, Oct 29, 2026): copies of a
+       facility put out beyond what the plan needs, from the steppers in
+       the Layout Helper's facility blocks and on the Set your Mines
+       material lines. facExtra counts extra copies per facility;
+       mineExtra counts extra Mines per material they are set to. Both
+       live in memory only, while the page stays open, and both reset
+       whenever the basket or the strategy changes (syncFacExtras), so
+       an added copy can never ride along silently into a different
+       plan. The plan's own count is always the floor: the steppers can
+       only add on top of it, and the Step 1 owned count is the ceiling. */
+    var facExtra = {};
+    var mineExtra = {};
+    var facExtraSig = null;
+    function mineExtraTotal(){
+      return Object.keys(mineExtra).reduce(function(a, n){ return a + (mineExtra[n] || 0); }, 0);
+    }
+    function facExtraFor(f){
+      return (facExtra[f] || 0) + (f === "Mine" ? mineExtraTotal() : 0);
+    }
+    /* Working copies of a facility with hand-added copies folded in:
+       the plan's count plus the extras, capped at the Step 1 count. */
+    function deployedCount(f, planCount){
+      var owned = facCount(f);
+      var w = (planCount || 0) + facExtraFor(f);
+      return owned > 0 ? Math.min(w, owned) : w;
+    }
+    function planSignature(){
+      return JSON.stringify({
+        b: basket.map(function(x){ return x.name; }),
+        s: strategy || "",
+        lv: levelingOn,
+        g: bpGoalOrder.join(","),
+        on: bpGoalOrder.map(function(g){ return bpGoalOn[g] ? 1 : 0; }).join("")
+      });
+    }
+    function syncFacExtras(){
+      var sig = planSignature();
+      if(facExtraSig === null){ facExtraSig = sig; return; }
+      if(sig !== facExtraSig){ facExtra = {}; mineExtra = {}; facExtraSig = sig; }
+    }
+    /* One facility stepper, in the same dress as the plot steppers:
+       minus takes back only copies added by hand (the plan's count is
+       the floor), plus adds copies she owns (the Step 1 count is the
+       ceiling). Copies beyond the plan are marked added by you. */
+    function facStepperHtml(f, working, planCount, owned){
+      var extra = working - planCount;
+      return '<span class="adj-wrap"><button type="button" class="adj-btn" data-fac-dec="' + escA(f) + '" aria-label="Take back one added ' + escA(f) + '"' + (extra <= 0 ? " disabled" : "") + '>\u2212</button>' +
+        '<span class="adj-count">' + working + (working === 1 ? " copy" : " copies") + ' working</span>' +
+        '<button type="button" class="adj-btn" data-fac-inc="' + escA(f) + '" aria-label="Put out one more ' + escA(f) + '"' + (working >= owned ? " disabled" : "") + '>+</button></span>' +
+        (extra > 0 ? ' <span class="verdict v-mix">' + extra + (extra === 1 ? " copy" : " copies") + ' added by you</span>' : "");
+    }
+    /* What the combined plans make or gather at one facility, and the
+       worker its recipes name: used by the layout's facility blocks
+       for the crafting and cooking facilities. */
+    function facilityPlanItems(f){
+      var names = {};
+      function scan(gross){ Object.keys(gross || {}).forEach(function(n){ var it = ITEMS[n]; if(it && it.facility === f && (gross[n] || 0) > 0) names[n] = true; }); }
+      scan(computePlan().gross);
+      if(typeof bpResult !== "undefined" && bpResult) scan(bpResult.exp.gross);
+      return Object.keys(names).sort();
+    }
+    function facilityWorkerName(f){
+      var w = null;
+      Object.keys(ITEMS).forEach(function(n){ var it = ITEMS[n]; if(!w && it.facility === f && it.kind === "craft" && it.worker) w = it.worker; });
+      if(!w && typeof FAC_JOB !== "undefined" && FAC_JOB[f]) w = FAC_JOB[f];
+      return w;
+    }
+    /* The steppers' one delegated click handler: update the hand-added
+       counts, then re-render every section that reads them (the basket
+       plan with its power line and Mines note, the layout, the crew,
+       the strategy plan with its Working column, and the home split). */
+    document.addEventListener("click", function(ev){
+      var t = ev.target;
+      if(!t || !t.getAttribute) return;
+      var facInc = t.getAttribute("data-fac-inc"), facDec = t.getAttribute("data-fac-dec");
+      var mineInc = t.getAttribute("data-mine-inc"), mineDec = t.getAttribute("data-mine-dec");
+      if(!facInc && !facDec && !mineInc && !mineDec) return;
+      syncFacExtras();
+      if(facInc) facExtra[facInc] = (facExtra[facInc] || 0) + 1;
+      if(facDec){ facExtra[facDec] = Math.max(0, (facExtra[facDec] || 0) - 1); if(!facExtra[facDec]) delete facExtra[facDec]; }
+      if(mineInc) mineExtra[mineInc] = (mineExtra[mineInc] || 0) + 1;
+      if(mineDec){ mineExtra[mineDec] = Math.max(0, (mineExtra[mineDec] || 0) - 1); if(!mineExtra[mineDec]) delete mineExtra[mineDec]; }
+      renderAll();
+      if(document.getElementById("bestPlanOut")) renderBestPlan();
+      if(document.getElementById("homeOut")) renderHome();
+    });
+
 
     function plotsPerZone(facility, zoneCells){
       var per = Math.floor((zoneCells || ZONE_CELLS) / PLOT_SIZE[facility]);
@@ -4199,58 +4461,67 @@
         grp.plotTiles = plotTilesFor(grp.farm, grp.wood);
         grp.buildingTiles = grp.buildings * buildingTiles(grp.info.building);
         grp.totalTiles = grp.plotTiles + grp.buildingTiles;
-        grp.overlapShared = 0;
+        grp.overlapNote = null;
         return grp;
       });
-      applyOverlap(out);
+      noteOverlaps(out);
       return out;
     }
-    /* Overlap, from the Steam RV/Homeland Guide's verified blends: a crop
-       in both a Scorching zone and a Cool zone counts as Warm, and a crop
-       in both a Freezing zone and a Warm zone counts as Cool. So when a
-       set of groups already lays out both partner zones, the Warm group's
-       zones (and the Cool group's, with its partners) can be overlap
-       bands shared with those zones instead of separate zones of their
-       own, and the layout totals count the shared zones once. Only those
-       two blends are applied: no other crossing is verified, and the
-       band's exact size is not verified either, so a served group keeps
-       its standalone zone count printed alongside, flagged. */
-    function applyOverlap(groups){
-      function zonesFor(key){
-        var z = 0;
-        groups.forEach(function(g){ if(g.info.key === key) z += g.buildings; });
-        return z;
+    /* Overlap blends are a note only, never a placement (player's fix,
+       Oct 29, 2026). The Steam RV/Homeland Guide verifies two blends --
+       a crop in both a Scorching zone and a Cool zone counts as Warm,
+       and a crop in both a Freezing zone and a Warm zone counts as
+       Cool -- but a band's exact size is not verified, so no layout may
+       rest a crop on one. Every group keeps its own climate zones and
+       building counts in full: Cool crops always get their own Cooling
+       Unit zones, Warm crops their own Heat Furnace zones, and nothing
+       anywhere is deducted for a band. All this pass does is record,
+       on the group a band could serve, a note naming the partner crops
+       whose zones crossing would make the band -- a possible bonus to
+       notice in game, never a promise and never counted. */
+    function noteOverlaps(groups){
+      function cropsFor(key){
+        var names = [];
+        groups.forEach(function(g){ if(g.info.key === key) g.crops.forEach(function(n){ if(names.indexOf(n) === -1) names.push(n); }); });
+        return names.sort();
       }
-      var scorch = zonesFor("Scorching"), cool = zonesFor("Cool"), freeze = zonesFor("Freeze"), warm = zonesFor("Warm");
+      function hasPlots(key){
+        return groups.some(function(g){ return g.info.key === key && (g.farm + g.wood) > 0; });
+      }
       groups.forEach(function(g){
-        if(g.info.key === "Warm" && scorch > 0 && cool > 0){
-          g.overlapShared = g.buildings;
-          g.overlapBand = "Scorching + Cool";
+        g.overlapNote = null;
+        if(g.info.key === "Warm" && hasPlots("Scorching") && hasPlots("Cool")){
+          g.overlapNote = { band:"Scorching + Cool", result:"Warm",
+            aTag:"Scorching", aCrops:cropsFor("Scorching"), bTag:"Cool", bCrops:cropsFor("Cool") };
         }
-        if(g.info.key === "Cool" && freeze > 0 && warm > 0){
-          g.overlapShared = g.buildings;
-          g.overlapBand = "Freezing + Warm";
+        if(g.info.key === "Cool" && hasPlots("Freeze") && hasPlots("Warm")){
+          g.overlapNote = { band:"Freezing + Warm", result:"Cool",
+            aTag:"Freeze", aCrops:cropsFor("Freeze"), bTag:"Warm", bCrops:cropsFor("Warm") };
         }
       });
     }
-    /* Two 18 x 18 zones crossing, with the overlap band shaded between
-       them: the band is where the blend climate counts. Drawn at zone
-       scale, offset by half a zone, purely as a diagram of the crossing:
-       the exact band width in game is not verified. */
-    function overlapBandSvg(grp){
-      var bandStyle = GROUP_STYLE[grp.info.key];
-      var aStyle = grp.info.key === "Warm" ? GROUP_STYLE["Scorching"] : GROUP_STYLE["Freeze"];
-      var bStyle = grp.info.key === "Warm" ? GROUP_STYLE["Cool"] : GROUP_STYLE["Warm"];
-      var label = "Overlap band: a " + aStyle.emoji + " zone and a " + bStyle.emoji + " zone crossing; the shaded band between them counts as " + grp.info.tag;
-      var aTag = grp.info.key === "Warm" ? "Scorching" : "Freeze";
-      var bTag = grp.info.key === "Warm" ? "Cool" : "Warm";
-      return '<svg viewBox="0 0 27 18" width="222" height="148" role="img" aria-label="' + esc(label) + '">' +
-        '<rect x="0.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + aStyle.tint + '" stroke="' + aStyle.plot + '" stroke-width="0.3" tabindex="0" data-tip="' + escA(aTag + " zone: one of the two zones that cross to make the band") + '"/>' +
-        '<rect x="9.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + bStyle.tint + '" fill-opacity="0.75" stroke="' + bStyle.plot + '" stroke-width="0.3" tabindex="0" data-tip="' + escA(bTag + " zone: one of the two zones that cross to make the band") + '"/>' +
-        '<rect x="9.3" y="0.3" width="8.4" height="17.4" fill="' + bandStyle.plot + '" fill-opacity="0.45" tabindex="0" data-tip="' + escA("Overlap band: where the " + aTag + " and " + bTag + " zones cross, the ground counts as " + grp.info.tag + " (verified blend)") + '"/>' +
-        '<rect x="8" y="8" width="2" height="2" fill="#3d2a47" tabindex="0" data-tip="Climate building: the dark square is the building itself, in the middle of its zone"/>' +
-        '<rect x="17" y="8" width="2" height="2" fill="#3d2a47" tabindex="0" data-tip="Climate building: the dark square is the building itself, in the middle of its zone"/>' +
-        "</svg>";
+    /* The note's wording, shared by the HTML and copied-text layouts:
+       it names the crops whose zones could cross, states the blend,
+       and says plainly that nothing was counted from it. */
+    function overlapNoteText(note){
+      return "Possible overlap, not counted: where your " + note.aTag + " crops (" + note.aCrops.join(", ") + ") and " + note.bTag + " crops (" + note.bCrops.join(", ") + ") zones cross, the crossing counts as " + note.result + " (" + note.band + " = " + note.result + ", verified blend, Steam RV/Homeland Guide). Band size is not verified, so this plan gives the " + note.result + " crops their own climate zones in full and counts nothing from the band.";
+    }
+    /* The same note for a planted field layout, worked out from the
+       crops the layout actually plants (an entry planting no plots
+       triggers nothing). Returns one note per blend that applies. */
+    function fieldOverlapNotes(f){
+      var planted = {};
+      f.entries.forEach(function(e){
+        if(!(e.farm + e.wood > 0)) return;
+        var names = Object.keys(e.farmCrops).concat(Object.keys(e.woodCrops));
+        var arr = planted[e.grp.info.key] || (planted[e.grp.info.key] = []);
+        names.forEach(function(n){ if(arr.indexOf(n) === -1) arr.push(n); });
+      });
+      Object.keys(planted).forEach(function(k){ planted[k].sort(); });
+      var notes = [];
+      if(planted["Warm"] && planted["Scorching"] && planted["Cool"]) notes.push({ band:"Scorching + Cool", result:"Warm", aTag:"Scorching", aCrops:planted["Scorching"], bTag:"Cool", bCrops:planted["Cool"] });
+      if(planted["Cool"] && planted["Freeze"] && planted["Warm"]) notes.push({ band:"Freezing + Warm", result:"Cool", aTag:"Freeze", aCrops:planted["Freeze"], bTag:"Warm", bCrops:planted["Warm"] });
+      return notes;
     }
     function computeLayout(){
       var counts = {};
@@ -4417,7 +4688,7 @@
       var owned = {};
       CLIM_BUILDINGS.forEach(function(b){ owned[b] = Math.max(0, facCount(b)); });
       var groups = buildLayoutGroups(counts);
-      var field = { entries:[], byKey:{}, farmUsed:0, woodUsed:0, mins:0, slowest:"", zoneList:[], buildingZones:{} };
+      var field = { entries:[], byKey:{}, farmUsed:0, woodUsed:0, mins:0, slowest:"", zoneList:[], buildingZones:{}, shareForced:{} };
       var unplaced = [], notes = [];
       function entryFor(grp){
         var e = field.byKey[grp.info.key];
@@ -4427,24 +4698,49 @@
         }
         return e;
       }
-      /* Climate sharing (player's rule, Oct 27, 2026, extended
-         Oct 29, 2026): plots that need the same climate building SHARE
-         its coverage zones — every crop a building serves, whatever
-         its climate tag and whatever land it sits on, fills the open
-         zones for that building before a new one is opened, and all
-         zones count against the one building pool — so the layout
-         puts out the fewest furnaces, cooling units and sunlamps that
-         cover the plan, and never more than the count entered in
-         Step 1. Owning two of a building never puts both out: a zone
-         holds Farmland and Woodland plots together wherever their
-         4 × 4 and 7 × 7 plots fit inside its 18 × 18. A zone's
+      /* Climate zones (player's fix, Oct 29, 2026): separate zones
+         first. Each temperature group a building serves gets its OWN
+         zones, set to its own temperature, whenever the Step 1 count
+         of that building covers the groups separately, so every crop
+         grows at 100 percent: Freeze and Cool never share a Cooling
+         Unit zone while a second Cooling Unit stands unused. Two
+         temperature groups share zones only when the building count
+         cannot cover them separately (the trial pack below decides);
+         a shared zone is then set to the climate with more plots in
+         it (zoneTempKey), and the off climate crops keep their
+         falloff labels. Farmland and Woodland plots of the SAME
+         climate still pack into one zone together wherever their
+         4 x 4 and 7 x 7 plots fit inside its 18 x 18. A zone's
          contents live in field.zoneList, so what shares a building
          is stated, not hidden. */
       var packers = {}, buildingCut = {};
-      function packerFor(B){
-        if(!packers[B]) packers[B] = newPacker(B);
-        return packers[B];
+      function packerFor(B, key, shared){
+        var pk = shared ? B : B + "|" + key;
+        if(!packers[pk]) packers[pk] = newPacker(B);
+        return packers[pk];
       }
+      /* Trial pack: how many zones each group needs on its own, and
+         whether each building's groups are forced to share. A
+         building with none owned never forces sharing: its zones are
+         hypothetical and each group keeps its own. */
+      var shareMode = {};
+      (function(){
+        var sepTotal = {};
+        groups.forEach(function(grp){
+          var B = grp.info.building;
+          if(!B) return;
+          var pk = newPacker(B);
+          grp.crops.forEach(function(n){ for(var i = 0; i < grp.counts[n]; i++) packerAddPlot(pk, n, Infinity, null); });
+          grp.sepZones = pk.zones.length;
+          sepTotal[B] = (sepTotal[B] || 0) + grp.sepZones;
+        });
+        Object.keys(sepTotal).forEach(function(B){
+          if(owned[B] > 0 && sepTotal[B] > owned[B]){
+            shareMode[B] = true;
+            field.shareForced[B] = { owned:owned[B], needed:sepTotal[B] };
+          }
+        });
+      })();
       function onNewZone(zone){
         field.zoneList.push(zone);
         field.buildingZones[zone.building] = (field.buildingZones[zone.building] || 0) + 1;
@@ -4467,13 +4763,18 @@
           var want = Math.min(total, landRoom);
           var take = 0;
           if(B){
-            /* Pack plot by plot into this building's open zones —
-               Farmland and Woodland share a zone wherever they fit —
-               opening a new zone only while the Step 1 count allows.
-               With none owned, zones are hypothetical (noted above)
-               and never cap the planting. */
-            var cap = owned[B] > 0 ? owned[B] : Infinity;
-            while(take < want && packerAddPlot(packerFor(B), n, cap, onNewZone)) take++;
+            /* Pack plot by plot into this group's own zones for the
+               building (Farmland and Woodland of this climate share a
+               zone wherever they fit). When the building's groups are
+               forced to share, they pack into one pool capped at the
+               Step 1 count; otherwise this group's zones are capped
+               at the count its own trial pack needed, which keeps the
+               building's total inside the Step 1 count. With none
+               owned, zones are hypothetical (noted above) and never
+               cap the planting. */
+            var shared = !!shareMode[B];
+            var cap = shared ? (owned[B] > 0 ? owned[B] : Infinity) : grp.sepZones;
+            while(take < want && packerAddPlot(packerFor(B, grp.info.key, shared), n, cap, onNewZone)) take++;
             if(take < want) buildingCut[B] = true;
           } else {
             take = want;
@@ -4489,6 +4790,11 @@
       Object.keys(buildingCut).forEach(function(B){
         if(!(owned[B] > 0)) return;
         notes.push("The crops that need a " + B + " are capped by the " + B + " count you entered (" + owned[B] + "): this layout plants the plots that fit under " + (owned[B] === 1 ? "its zone" : "their zones") + ", and the rest are replanted into the same layout as harvests complete.");
+      });
+      Object.keys(field.shareForced).forEach(function(B){
+        var sf = field.shareForced[B];
+        var tags = groups.filter(function(g){ return g.info.building === B; }).map(function(g){ return g.info.tag; });
+        notes.push("The " + B + " zones are shared in this layout because you have " + sf.owned + " " + B + (sf.owned === 1 ? "" : "s") + " for " + sf.needed + " zones needed when each climate has its own zone (" + tags.join(" and ") + "). Each shared zone is set to the climate with more plots in it, and the other climate's crops grow at their falloff rate there, marked on their lines.");
       });
       /* Per-entry zone touches, read off the shared zone list: a zone
          shared by two climate groups — or by Farmland and Woodland
@@ -4540,8 +4846,7 @@
          Cooling Unit zone of its own, which then counts toward the
          layout's Cooling Unit coverage like a Cool crop's zone. */
       if(hammock){
-        var servedF = fieldServedKeys(field);
-        var hasCU = field.zoneList.some(function(z){ return z.building === "Cooling Unit" && !z.keys.every(function(k){ return servedF[k]; }); });
+        var hasCU = field.zoneList.some(function(z){ return z.building === "Cooling Unit"; });
         /* Its own zone only when one is spare: the layout never lays out
            more Cooling Units than the RV level allows, hammock included. */
         var cuUsed = fieldBuildings(field)["Cooling Unit"] || 0;
@@ -4553,69 +4858,78 @@
         totalMins:totalMins, bottleneck:bottleneck, overField:remainder.length > 0
       };
     }
-    /* Which climate groups in the layout are served by a verified
-       overlap band instead of buildings of their own: Warm, when the
-       layout also plants Scorching and Cool crops (Scorching + Cool =
-       Warm), and Cool, when it also plants Freezing and Warm crops
-       (Freezing + Warm = Cool). Only entries actually planting plots
-       count as partners. */
-    function fieldServedKeys(f){
-      var keys = f.entries.filter(function(e){ return e.farm + e.wood > 0; }).map(function(x){ return x.grp.info.key; });
-      var served = {};
-      if(keys.indexOf("Warm") > -1 && keys.indexOf("Scorching") > -1 && keys.indexOf("Cool") > -1) served["Warm"] = "Scorching + Cool";
-      if(keys.indexOf("Cool") > -1 && keys.indexOf("Freeze") > -1 && keys.indexOf("Warm") > -1) served["Cool"] = "Freezing + Warm";
-      return served;
-    }
+    /* No climate group in a field layout is ever "served" by an
+       overlap band: bands are uncounted notes only (see
+       fieldOverlapNotes), so every group planted keeps its own zones
+       in fieldBuildings, in the crew counts and in every total. */
     function fieldBuildings(f){
-      var served = fieldServedKeys(f);
       var used = {};
       if(f.zoneList){
         /* Distinct zones the layout actually puts out, shared zones
-           counted once: a zone is out unless every climate in it is
-           served by an overlap band instead. */
+           counted once: every zone out counts -- an overlap band
+           never removes one (bands are notes only, never placements). */
         f.zoneList.forEach(function(z){
-          if(z.keys.length && z.keys.every(function(k){ return served[k]; })) return;
           used[z.building] = (used[z.building] || 0) + 1;
         });
       } else {
         f.entries.forEach(function(e){
           var b = e.grp.info.building;
-          if(b && !served[e.grp.info.key]) used[b] = (used[b] || 0) + e.zonesFarm + e.zonesWood;
+          if(b) used[b] = (used[b] || 0) + e.zonesFarm + e.zonesWood;
         });
       }
       if(f.hammock && f.hammock.own) used["Cooling Unit"] = (used["Cooling Unit"] || 0) + 1;
       return used;
     }
     /* Climate buildings a set of plot counts would need if it were all
-       planted at once, packed the sharing way: same-building plots
-       share zones, Farmland and Woodland together wherever they fit
-       in the 18 × 18 (the same packer the field layout uses), and a
-       group served by a verified overlap band needs no building of
-       its own. Largest plots pack first so Woodland claims its space
-       before Farmland fills the gaps. Returns zones per building
-       plus the total. */
+       planted at once, packed the field layout's way: each climate
+       group on its own zones first, Farmland and Woodland of one
+       climate together wherever they fit in the 18 x 18, and groups
+       packed together only when the Step 1 count of the building
+       cannot cover them separately. Every group counts in full: an
+       overlap band never takes a building away. Returns zones per
+       building plus the total. */
     function sharedBuildingNeed(counts){
       var groups = buildLayoutGroups(counts);
       var perB = {}, order = [];
       groups.forEach(function(g){
         var b = g.info.building;
-        if(!b || (g.overlapShared || 0) > 0) return;
+        if(!b) return;
         if(!perB[b]){ perB[b] = []; order.push(b); }
-        g.crops.forEach(function(n){ perB[b].push({ name:n, count:g.counts[n] }); });
+        perB[b].push(g);
       });
       var zones = {}, total = 0;
       order.forEach(function(b){
-        var list = perB[b].slice().sort(function(a, c){
-          var d = PLOT_SIZE[ITEMS[c.name].facility] - PLOT_SIZE[ITEMS[a.name].facility];
-          return d !== 0 ? d : (a.name < c.name ? -1 : 1);
-        });
-        var pk = newPacker(b);
-        list.forEach(function(e){ for(var i = 0; i < e.count; i++) packerAddPlot(pk, e.name, Infinity, null); });
-        zones[b] = pk.zones.length;
-        total += zones[b];
+        var gs = perB[b];
+        function packList(list){
+          var pk = newPacker(b);
+          list.forEach(function(e){ for(var i = 0; i < e.count; i++) packerAddPlot(pk, e.name, Infinity, null); });
+          return pk.zones.length;
+        }
+        function groupList(g){ return g.crops.map(function(n){ return { name:n, count:g.counts[n] }; }); }
+        /* Separate zones first, the field layout's own rule: each
+           group packed on its own, and only when the Step 1 count of
+           the building cannot cover the groups separately are they
+           packed together, largest plots first so Woodland claims
+           its space before Farmland fills the gaps. */
+        var sep = 0;
+        gs.forEach(function(g){ sep += packList(groupList(g)); });
+        var ownedB = facCount(b);
+        var z;
+        if(ownedB > 0 && sep > ownedB){
+          var all = [];
+          gs.forEach(function(g){ groupList(g).forEach(function(e){ all.push(e); }); });
+          all.sort(function(a, c){
+            var d = PLOT_SIZE[ITEMS[c.name].facility] - PLOT_SIZE[ITEMS[a.name].facility];
+            return d !== 0 ? d : (a.name < c.name ? -1 : 1);
+          });
+          z = packList(all);
+        } else z = sep;
+        zones[b] = z;
+        total += z;
       });
       return { zones:zones, total:total };
     }
+
     /* Plain sharing facts for one field layout: which buildings are
        out, which zones are shared and by what, and the savings —
        buildings saved by sharing zones against every climate group
@@ -4633,10 +4947,9 @@
         used[b] = Math.min(usedRaw[b] || 0, o);
         usedTotal += used[b];
       });
-      var served = fieldServedKeys(f);
       var standalone = 0;
       f.entries.forEach(function(e){
-        if(!e.grp.info.building || served[e.grp.info.key]) return;
+        if(!e.grp.info.building) return;
         standalone += (e.farm ? Math.ceil(e.farm / plotsPerZone("Farmland")) : 0) + (e.wood ? Math.ceil(e.wood / plotsPerZone("Woodland")) : 0);
       });
       var usedRawTotal = Object.keys(usedRaw).reduce(function(a, b){ return a + usedRaw[b]; }, 0);
@@ -4667,6 +4980,15 @@
       if(typeof bpResult !== "undefined" && bpResult && (bpResult.exp.gross["Star"] || 0) > 0) starNeeded = true;
       var plan = computeFieldLayout(fieldCounts, starNeeded && facCount("Starfall Hammock") > 0);
       var sharing = climateSharingInfo(plan);
+      /* Climate copies added by hand stand alongside the layout's
+         zones: staffed in the crew and counted like any building out. */
+      CLIM_BUILDINGS.forEach(function(b){
+        var ex = facExtra[b] || 0;
+        if(ex > 0){
+          sharing.usedRaw[b] = (sharing.usedRaw[b] || 0) + ex;
+          sharing.used[b] = Math.min(sharing.usedRaw[b], Math.max(0, plan.owned[b] || 0));
+        }
+      });
       return { plan:plan, used:sharing.used, usedRaw:sharing.usedRaw, owned:plan.owned,
         savedAniimo:sharing.savedAniimo, savedZones:sharing.savedZones, sharedZones:sharing.sharedZones };
     }
@@ -4684,8 +5006,9 @@
        grid on the left, short writing beside it (facility, count,
        producing, Aniimo, why). One block per zone the layout lays out,
        chunked exactly the way the field packs them, so every plot in
-       the layout appears in a block. A group served by a verified
-       overlap band gets one band block instead of zone blocks. */
+       the layout appears in a block. Every group gets its own zone
+       blocks; a possible overlap band is added afterwards as an
+       uncounted note block, never instead of zones. */
     /* One packed zone drawn as it was packed: every plot at its real
        size (Farmland 4 × 4, Woodland 7 × 7) in its packed spot, so a
        zone holding both lands shows both, and the building itself
@@ -4709,7 +5032,6 @@
     }
     function layoutZoneBlocksHtml(plan){
       var f = plan.field;
-      var served = fieldServedKeys(f);
       var blocks = [];
       function rowsHtml(rows){
         return '<div class="zb-rows">' + rows.map(function(r){
@@ -4739,34 +5061,15 @@
           return line;
         }).join(" · ");
       }
-      f.entries.forEach(function(e){
-        var info = e.grp.info, style = GROUP_STYLE[info.key];
-        if(!info.building || (!e.farm && !e.wood)) return;
-        if(served[info.key]){
-          var both = {};
-          Object.keys(e.farmCrops).forEach(function(n){ both[n] = e.farmCrops[n]; });
-          Object.keys(e.woodCrops).forEach(function(n){ both[n] = (both[n] || 0) + e.woodCrops[n]; });
-          blocks.push('<div class="zone-block"><div class="zb-grid">' + overlapBandSvg(e.grp) + '</div><div class="zb-side"><h3>' + style.emoji + " " + esc(info.tag) + ' · overlap band</h3>' +
-            rowsHtml([
-              ["Facility", "Where a " + esc(served[info.key]) + " crossing meets"],
-              ["Count", "No building of its own in this layout"],
-              ["Producing", prodLine(both)],
-              ["Why", esc(served[info.key]) + " = " + esc(info.tag) + ' (verified blend, Steam RV/Homeland Guide). Band size <span class="verdict v-mix">not verified</span>: standalone need is ' + e.grp.buildings + " " + esc(info.building) + (e.grp.buildings === 1 ? " zone" : " zones") + " if the band is too small"]
-            ]) + "</div></div>");
-          return;
-        }
-      });
       /* One block per zone the layout actually puts out, read off the
          shared packing: a zone shared by two climates (or by Farmland
          and Woodland crops of one building) is drawn once, with
          everything it covers, and says it is shared. */
       var zoneNums = {}, zoneTotals = {};
       (f.zoneList || []).forEach(function(z){
-        if(z.keys.length && z.keys.every(function(k){ return served[k]; })) return;
         zoneTotals[z.building] = (zoneTotals[z.building] || 0) + 1;
       });
       (f.zoneList || []).forEach(function(z){
-        if(z.keys.length && z.keys.every(function(k){ return served[k]; })) return;
         zoneNums[z.building] = (zoneNums[z.building] || 0) + 1;
         var zTotal = zoneTotals[z.building] || 1;
         var tags = z.keys.map(function(k){ var g0 = f.byKey[k]; return g0 ? g0.grp.info.tag : k; });
@@ -4774,18 +5077,24 @@
         var farmIn = 0, woodIn = 0;
         Object.keys(z.crops).forEach(function(n){ if(ITEMS[n].facility === "Farmland") farmIn += z.crops[n]; else woodIn += z.crops[n]; });
         var mixedLand = farmIn > 0 && woodIn > 0;
+        var tempKey = zoneTempKey(z);
+        var tempTag = tempKey && f.byKey[tempKey] ? f.byKey[tempKey].grp.info.tag : tags[0];
+        var forced = f.shareForced && f.shareForced[z.building];
         var why = shared
-          ? "Shared zone: " + tags.join(" and ") + " plots share this one " + z.building + " — one building covers them all, counted once, and only this one building's Aniimo is counted for it"
+          ? (forced
+            ? "Shared zone: " + tags.join(" and ") + " plots share this one " + z.building + " because you have " + forced.owned + " " + z.building + (forced.owned === 1 ? "" : "s") + " for " + forced.needed + " zones needed when each climate has its own zone. The zone is set to " + tempTag + ", the climate with more plots in it. One building covers them all, counted once, and only this one building's Aniimo is counted for it"
+            : "Shared zone: " + tags.join(" and ") + " plots share this one " + z.building + " — one building covers them all, counted once, and only this one building's Aniimo is counted for it")
           : mixedLand
             ? "Farmland and Woodland plots share this one " + z.building + ": a single building's 18 × 18 zone covers both lands wherever the plots fit, so no second building is put out for the other land"
             : "Covers the " + tags.join(", ") + " crops in this zone";
         if(z.building === "Sunlamp" && !shared && !mixedLand) why = "Sunlamp overlays temperature zones: ground counted once, one Sunlamp per light zone";
         /* Falloff in this zone, in plain words: the zone is set to
-           its first group's temperature, so crops of another
-           temperature group sharing it grow at their falloff rate. */
+           the temperature of the climate with more plots in it, so
+           crops of another temperature group sharing it grow at
+           their falloff rate. */
         var offCrops = Object.keys(z.crops).filter(function(n){ var r = zoneCropRate(n, z); return r !== null && r < 100; });
         var growRow = offCrops.length
-          ? [["Growing", "This zone is set to <strong>" + esc(tags[0]) + "</strong>, so " + offCrops.map(function(n){ return "<strong>" + esc(n) + "</strong> grows at " + zoneCropRate(n, z) + "% here"; }).join(" · ") + ' <span class="verdict v-mix">single source: Aniimax</span>']]
+          ? [["Growing", "This zone is set to <strong>" + esc(tempTag) + "</strong> (the climate with more plots in it), so " + offCrops.map(function(n){ return "<strong>" + esc(n) + "</strong> grows at " + zoneCropRate(n, z) + "% here"; }).join(" · ") + ' <span class="verdict v-mix">single source: Aniimax</span>']]
           : [];
         blocks.push('<div class="zone-block"><div class="zb-grid">' +
           mixedZoneSvg(z, z.building + " zone " + zoneNums[z.building] + " of " + zTotal + ": " + z.plots + " plots (" + tags.join(" + ") + "), with the " + z.building + " itself in the middle on " + buildingLabel(z.building) + " of its own ground") +
@@ -4822,6 +5131,16 @@
             ["Why", "Needs a Cool environment to work (your lookup, Oct 25, 2026)"]
           ]) + "</div></div>");
       }
+      /* Possible overlap bands ride at the very end as uncounted
+         notes: they name the crops whose zones could cross, and they
+         change no zone, building or crew count above. */
+      fieldOverlapNotes(f).forEach(function(note){
+        blocks.push('<div class="zone-block"><div class="zb-side"><h3>🌡️ Possible overlap · not counted</h3>' +
+          rowsHtml([
+            ["Note", esc(overlapNoteText(note))],
+            ["Counted", "Nothing: the " + esc(note.result) + " crops keep the " + (note.result === "Cool" ? "Cooling Unit" : "Heat Furnace") + " zones shown above, in full"]
+          ]) + "</div></div>");
+      });
       return blocks.length ? '<div class="zone-blocks">' + blocks.join("") + "</div>" : "";
     }
     /* The legend that sits with the grids: the old wordy space note,
@@ -4858,30 +5177,72 @@
         "Well":"Its Water Aniimo also water the crops"
       };
       var blocks = [];
+      /* The Count line for a block: the plan's count on its own, or the
+         working split once copies have been added by hand, in the
+         player's own format: "3 working (2 for the plan + 1 added by
+         you) of 5 owned". */
+      function countLine(f, planC, ownedC){
+        var working = deployedCount(f, planC);
+        var extra = working - planC;
+        if(extra > 0) return working + " working (" + planC + " for the plan + " + extra + " added by you) of " + ownedC + " owned";
+        return planC + " needed for this plan, of " + ownedC + " you have (Step 1)";
+      }
       FAC_ANIIMO.forEach(function(fa){
         var ownedC = facCount(fa.facility);
-        var c = ownedC;
+        var planC = ownedC;
         /* Only as many as the plan needs (player's rule, Oct 29, 2026):
            climate buildings count the zones the layout puts out, the
            other named facilities count the copies the plan's own work
-           needs (facilityNeedCounts) — a facility the plan never uses
-           shows no block and staffs no Aniimo in the crew, however
-           many you own. */
-        if(climateUsed && CLIM_BUILDINGS.indexOf(fa.facility) > -1) c = Math.min(climateUsed[fa.facility] || 0, c);
-        else if(usedCounts) c = Math.min(usedCounts[fa.facility] || 0, c);
-        if(c <= 0) return;
+           needs (facilityNeedCounts), and copies added by hand with the
+           steppers stand on top of that count, never above what she
+           owns. A facility the plan never uses and she has not added
+           to shows no block and staffs no Aniimo in the crew. */
+        if(climateUsed && CLIM_BUILDINGS.indexOf(fa.facility) > -1) planC = Math.min(climateUsed[fa.facility] || 0, ownedC);
+        else if(usedCounts) planC = Math.min(usedCounts[fa.facility] || 0, ownedC);
+        var working = deployedCount(fa.facility, planC);
+        if(working <= 0) return;
         if(onlyFacs && !onlyFacs[fa.facility]) return;
-        blocks.push('<div class="fac-block"><h4>' + esc(fa.facility) + '</h4><div class="zb-rows">' +
-          '<div class="zb-row"><span class="zb-k">Count</span><span>' + c + " needed for this plan, of " + ownedC + " you have (Step 1)" + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(prod[fa.facility]) + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + c + " needed for this plan)") + '"' : "") + '>' + (fa.job ? abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + c + " in all" : "1 Aniimo each, " + c + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(why[fa.facility] || "This plan uses it, so it is out — only as many copies as the plan needs") + '</span></div>' +
+        var extra = working - planC;
+        var namedItems = fa.facility === "Mine" ? [] : facilityPlanItems(fa.facility);
+        var namedProd = namedItems.length > 1 ? assignText(namedItems, working) : (namedItems.length === 1 ? namedItems[0] : prod[fa.facility]);
+        blocks.push('<div class="fac-block"><h4>' + esc(fa.facility) + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
+          '<div class="zb-row"><span class="zb-k">Count</span><span>' + countLine(fa.facility, planC, ownedC) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(fa.facility, working, planC, ownedC) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(namedProd) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + working + " working for this plan)") + '"' : "") + '>' + (fa.job ? abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + working + " in all" : "1 Aniimo each, " + working + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(why[fa.facility] || "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add") + '</span></div>' +
+          "</div></div>");
+      });
+      /* The crafting and cooking facilities the combined plans work get
+         blocks in the same dress, with the same steppers: their plan
+         count comes from the same loads (allFacilityNeedCounts). Added
+         copies are placed and staffed spares at the facility's crew
+         post: the plan's amounts do not change, because production
+         stays plan driven. */
+      var allNeed = allFacilityNeedCounts();
+      Object.keys(allNeed).sort().forEach(function(f){
+        if(FAC_ANIIMO.some(function(fa){ return fa.facility === f; })) return;
+        var ownedC = facCount(f);
+        var planC = allNeed[f] || 0;
+        var working = deployedCount(f, planC);
+        if(working <= 0) return;
+        if(onlyFacs && !onlyFacs[f]) return;
+        var extra = working - planC;
+        var itemsHere = facilityPlanItems(f);
+        var worker = facilityWorkerName(f);
+        blocks.push('<div class="fac-block"><h4>' + esc(f) + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
+          '<div class="zb-row"><span class="zb-k">Count</span><span>' + countLine(f, planC, ownedC) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(f, working, planC, ownedC) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Producing</span><span>' + (itemsHere.length ? esc(itemsHere.length > 1 ? assignText(itemsHere, working) : itemsHere[0]) : "This plan's work there") + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Aniimo</span><span>' + (worker ? "1 " + esc(worker) + " Aniimo post for this facility in your crew below" + (extra > 0 ? "; added copies are spares at the same post" : "") : 'Worker <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Why</span><span>This plan uses it, so it is out: only as many copies as the plan needs, plus any you add</span></div>' +
           "</div></div>");
       });
       if(!blocks.length) return "";
       return '<h3 class="layout-sec-head">🏭 Facilities out in this layout</h3><p class="sec-sub" style="margin:8px 0 0">' +
-        "Only the facilities this plan actually uses are out — and only as many copies of each as the plan needs, never every copy you own. Each one used carries 1 Aniimo in your crew below." +
+        "Only the facilities this plan actually uses are out, and only as many copies of each as the plan needs, never every copy you own. Each one used carries 1 Aniimo in your crew below." +
         ' The coloured circle on an Aniimo row is that ability in its game colour, with the Aniimo level inside; a gold ring means the plan counts on that facility\'s personality bonus (+20%). Hover or tap the row for the details, including the strongest known Aniimo as a hint.' +
+        " The minus and plus steppers on each block put out extra copies you own, or take back copies you added: the plan's count is the floor, your Step 1 count is the ceiling, and copies you add are marked added by you, staffed in your crew and counted in your power. Changing your basket or strategy resets added copies back to the plan's counts." +
         '</p><div class="fac-blocks">' + blocks.join("") + "</div>";
     }
 
@@ -4891,10 +5252,10 @@
       var minMode = layoutMode === "minimum";
       var s = '<h3 class="layout-sec-head">🗺️ Your ' + (minMode ? "🪶 Minimum" : "⭐ Best") + ' layout</h3>';
       s += '<p class="sec-sub" style="margin:8px 0 0">' +
-        (minMode ? "Minimum plants <strong>one plot of each crop</strong> — the smallest planting that still grows everything in the plan — with the fewest climate buildings. Replant each plot as its harvest comes in until the whole-plan totals below are met. " : "Best plants <strong>as much of the plan as one full field holds</strong>. ") +
+        (minMode ? "Minimum plants <strong>one plot of each crop</strong>, the smallest planting that still grows everything in the plan, each climate in its own zone where your buildings cover it. Replant each plot as its harvest comes in until the whole-plan totals below are met. " : "Best plants <strong>as much of the plan as one full field holds</strong>. ") +
         'Whole-plan totals first, then the layout as one grid per zone with short notes beside each grid. The totals are the <strong>whole need, not one planting</strong>: this note sits here once, at the top, and holds for everything below. Your RV level allows <strong>' + plan.farmAvail + " Farmland</strong> and <strong>" + plan.woodAvail + " Woodland</strong> plots at once; climate buildings your RV level allows: " + ownedText + " — the layout below puts out only the ones the plan needs, sharing zones between plots that need the same building. This layout never uses more than that.</p>";
       s += '<div class="layout-group" style="margin-top:14px"><h3>📋 Your whole plan, in all</h3>';
-      s += '<p class="totals" style="margin-top:8px"><strong>In all: ' + fmt(totalFarm) + " Farmland plots and " + fmt(totalWood) + " Woodland plots to grow</strong>, " + fmt(totalFarm + totalWood) + " seeds in all (one seed per plot), and " + fmt(totalB) + " climate buildings if it were all planted at once (plots that need the same building share its zones in that figure, and overlap bands are counted once, not added on top).</p>";
+      s += '<p class="totals" style="margin-top:8px"><strong>In all: ' + fmt(totalFarm) + " Farmland plots and " + fmt(totalWood) + " Woodland plots to grow</strong>, " + fmt(totalFarm + totalWood) + " seeds in all (one seed per plot), and " + fmt(totalB) + " climate buildings if it were all planted at once (plots that need the same building share its zones in that figure).</p>";
       s += '<p class="totals">Per crop, in all: ' + Object.keys(counts).sort().map(function(n){ return esc(n) + " ×" + counts[n] + ' <span class="src">(' + ITEMS[n].facility + ")</span>"; }).join(" · ") + "</p>";
       s += '<p class="totals">Estimated growing time in all: <strong>about ' + fmtDur(plan.totalMins) + '</strong>. Basis: everything in the layout grows side by side, so one planting takes as long as its slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds); a crop whose total passes the plots the layout gives it is replanted into the same layout as its harvests come in, each replanting adding its grow time again, and the crops run side by side, so the whole plan takes as long as the longest of those chains' + (plan.bottleneck ? " (here, " + esc(plan.bottleneck) + ")" : "") + ".</p>";
       s += "</div>";
@@ -4908,9 +5269,11 @@
       if(hasPlots || f.hammock){
         s += layoutZoneBlocksHtml(plan);
         s += layoutLegendHtml();
-        var used = fieldBuildings(f);
+        var usedFB = fieldBuildings(f);
+        var used = {};
+        Object.keys(usedFB).forEach(function(b){ used[b] = deployedCount(b, usedFB[b]); });
         var bNames = Object.keys(used);
-        s += '<p class="totals" style="margin-top:12px"><strong>This layout plants ' + f.farmUsed + " of your " + plan.farmAvail + " Farmland plots and " + f.woodUsed + " of your " + plan.woodAvail + " Woodland plots.</strong>" +
+        s += '<p class="totals" style="margin-top:12px"><strong>Plant this: the zone grids above are the plots set out at once. This layout plants ' + f.farmUsed + " of your " + plan.farmAvail + " Farmland plots and " + f.woodUsed + " of your " + plan.woodAvail + " Woodland plots at once.</strong>" +
           (f.mins > 0 ? " This planting grows for about " + fmtDur(f.mins) + " (its slowest crop: " + esc(f.slowest) + ")." : "") + "</p>";
         if(bNames.length){
           s += '<p class="totals">Climate buildings in this layout: ' + bNames.map(function(b){
@@ -4919,9 +5282,13 @@
           }).join(" · ") + "</p>";
         }
         var share = climateSharingInfo(plan);
+        CLIM_BUILDINGS.forEach(function(b){
+          var ex = facExtra[b] || 0;
+          if(ex > 0){ var before = share.used[b] || 0; share.used[b] = Math.min(before + ex, plan.owned[b]); share.usedTotal += share.used[b] - before; }
+        });
         var hasClimate = f.entries.some(function(e){ return e.grp.info.building && (e.farm + e.wood) > 0; });
         if(hasClimate){
-          s += '<p class="totals">🌡️ <strong>Sharing climate buildings:</strong> Farmland and Woodland plots that need the same building share its zones — both lands together in one zone where the plots fit — packed into the fewest buildings that cover them. This layout puts out <strong>' +
+          s += '<p class="totals">🌡️ <strong>Climate zones:</strong> each climate gets its own zones, set to its own temperature, whenever your Step 1 counts cover them, so every crop grows at 100%. Farmland and Woodland plots of the same climate share its zones, both lands together in one zone where the plots fit. Two climates on one building share a zone only when your count of that building cannot cover them separately, and that zone says so. This layout puts out <strong>' +
             CLIM_BUILDINGS.filter(function(b){ return share.used[b] > 0; }).map(function(b){ return esc(b) + " × " + share.used[b]; }).join(" · ") +
             '</strong> of the ' + share.ownedTotal + " climate buildings your RV level allows (" + CLIM_BUILDINGS.map(function(b){ return esc(b) + " × " + plan.owned[b]; }).join(" · ") + ")." +
             (share.sharedZones.length ? " Zones shared in this layout: " + share.sharedZones.map(function(z){
@@ -4954,7 +5321,7 @@
     function layoutText(plan, counts, totalFarm, totalWood, totalB){
       var f = plan.field;
       var lines = [(layoutMode === "minimum" ? "Minimum" : "Best") + " layout (one field, fitted to the counts your RV level allows, never over them: " + plan.farmAvail + " Farmland plots and " + plan.woodAvail + " Woodland plots planted at once; " + CLIM_BUILDINGS.map(function(b){ return b + " x " + plan.owned[b]; }).join(", ") + ")" + (layoutMode === "minimum" ? ". Minimum plants one plot of each crop; replant as harvests come in until the whole-plan totals are met." : ".")];
-      lines.push("Whole plan in all: " + totalFarm + " Farmland plots and " + totalWood + " Woodland plots to grow, " + (totalFarm + totalWood) + " seeds in all (one seed per plot), " + totalB + " climate buildings if it were all planted at once (overlap bands counted once in that figure).");
+      lines.push("Whole plan in all: " + totalFarm + " Farmland plots and " + totalWood + " Woodland plots to grow, " + (totalFarm + totalWood) + " seeds in all (one seed per plot), " + totalB + " climate buildings if it were all planted at once.");
       lines.push("Per crop, in all: " + Object.keys(counts).sort().map(function(n){ return n + " x" + counts[n] + " (" + ITEMS[n].facility + ")"; }).join("; ") + ".");
       lines.push("Estimated growing time in all: about " + fmtDur(plan.totalMins) + ". Basis: everything in the layout grows side by side, so one planting takes as long as its slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds); a crop whose total passes the plots the layout gives it is replanted into the same layout as its harvests come in, each replanting adding its grow time again, and the crops run side by side, so the whole plan takes as long as the longest of those chains" + (plan.bottleneck ? " (here, " + plan.bottleneck + ")" : "") + ".");
       plan.notes.forEach(function(n){ lines.push(n); });
@@ -4964,22 +5331,21 @@
       if(hasPlots || f.hammock){
         lines.push("");
         lines.push("The layout to plant (plants " + f.farmUsed + " of " + plan.farmAvail + " Farmland plots, " + f.woodUsed + " of " + plan.woodAvail + " Woodland plots; one planting grows about " + fmtDur(f.mins) + ", slowest crop " + f.slowest + "):");
-        var servedF = fieldServedKeys(f);
         f.entries.forEach(function(e){
           if(!e.farm && !e.wood) return;
           var info = e.grp.info;
           if(!info.building) lines.push("No special environment needed, grows anywhere");
-          else if(servedF[info.key]) lines.push(info.tag + " (" + info.strength + "), covered by the " + servedF[info.key] + " overlap band in this layout, no separate " + info.building + " (band size not verified)");
           else lines.push(info.tag + " (" + info.strength + "), covered by " + info.building);
           Object.keys(e.farmCrops).sort().forEach(function(n){ lines.push("- " + n + ": " + e.farmCrops[n] + (e.farmCrops[n] === 1 ? " plot" : " plots") + " (Farmland)"); });
           Object.keys(e.woodCrops).sort().forEach(function(n){ lines.push("- " + n + ": " + e.woodCrops[n] + (e.woodCrops[n] === 1 ? " plot" : " plots") + " (Woodland)"); });
-          if(info.building && !servedF[info.key]) lines.push(info.building + " zones this group touches in this layout: " + (e.zonesTouch != null ? e.zonesTouch : e.zonesFarm + e.zonesWood) + " (zones shared with another climate, or with the other land, are counted once in the layout's building total below; your RV level allows " + plan.owned[info.building] + ")");
+          if(info.building) lines.push(info.building + " zones this group touches in this layout: " + (e.zonesTouch != null ? e.zonesTouch : e.zonesFarm + e.zonesWood) + " (zones shared with another climate, or with the other land, are counted once in the layout's building total below; your RV level allows " + plan.owned[info.building] + ")");
         });
+        fieldOverlapNotes(f).forEach(function(note){ lines.push(overlapNoteText(note)); });
         if(f.hammock) lines.push("Starfall Hammock: needs a Cool environment to work (player's lookup, Oct 25, 2026), so it stands inside a Cooling Unit zone" + (f.hammock.own ? ", its own zone in this layout because the layout plants no Cool or Freezing crops, counted in this layout's Cooling Units" : ", sharing the zone that covers this layout's cold crops, counted once") + ".");
         var shareT = climateSharingInfo(plan);
         var usedT = fieldBuildings(f);
         lines.push("Climate buildings in this layout, counted once each: " + Object.keys(usedT).map(function(b){ return b + " x " + usedT[b]; }).join("; ") + ".");
-        lines.push("Sharing: Farmland and Woodland plots that need the same building share its zones — both lands together in one zone where the plots fit — packed into the fewest buildings that cover them. This layout puts out " + shareT.usedTotal + " of the " + shareT.ownedTotal + " climate buildings your RV level allows." +
+        lines.push("Sharing: each climate has its own zones, set to its own temperature, whenever your Step 1 counts cover them. Farmland and Woodland plots of the same climate share its zones, both lands together in one zone where the plots fit. Two climates on one building share a zone only when your count of that building cannot cover them separately. This layout puts out " + shareT.usedTotal + " of the " + shareT.ownedTotal + " climate buildings your RV level allows." +
           (shareT.sharedZones.length ? " Zones shared: " + shareT.sharedZones.map(function(z){ return z.keys.map(function(k){ return f.byKey[k] ? f.byKey[k].grp.info.tag : k; }).join(" + ") + " " + zoneLandsText(z) + " plots share one " + z.building + " (" + Object.keys(z.crops).sort().map(function(n){ return n + " x" + z.crops[n]; }).join(", ") + ")"; }).join("; ") + "." : "") +
           (shareT.savedZones > 0 ? " Sharing zones saves " + shareT.savedZones + (shareT.savedZones === 1 ? " building" : " buildings") + " against giving every climate its own zones." : "") +
           " Only the buildings out here are staffed in the crew, saving " + shareT.savedAniimo + " Aniimo against staffing every climate building your RV level allows (1 Aniimo per building out).");
@@ -5095,15 +5461,14 @@
         var tB = sharedBuildingNeed(combinedLayoutCounts(autoGroups, bpGroups, groups)).total;
         layoutText(plan, combinedLayoutCounts(autoGroups, bpGroups, groups), tFarm, tWood, tB).forEach(function(l){ lines.push(l); });
       }
-      var totalFarm = 0, totalWood = 0, totalB = 0, totalPlotTiles = 0, totalBuildingTiles = 0, totalShared = 0;
+      var totalFarm = 0, totalWood = 0, totalB = 0, totalPlotTiles = 0, totalBuildingTiles = 0;
       function section(title, gs){
         if(!gs.length) return;
         lines.push("");
         lines.push(title);
         gs.forEach(function(grp){
-          totalFarm += grp.farm; totalWood += grp.wood; totalB += grp.buildings - (grp.overlapShared || 0);
-          totalPlotTiles += grp.plotTiles; totalBuildingTiles += grp.buildingTiles - (grp.overlapShared || 0) * buildingTiles(grp.info.building);
-          totalShared += grp.overlapShared || 0;
+          totalFarm += grp.farm; totalWood += grp.wood; totalB += grp.buildings;
+          totalPlotTiles += grp.plotTiles; totalBuildingTiles += grp.buildingTiles;
           var info = grp.info;
           lines.push(info.building ? (info.tag + " (" + info.strength + "), covered by " + info.building) : "No special environment needed, grows anywhere");
           grp.crops.forEach(function(n){ lines.push("- " + n + ": " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + " (" + ITEMS[n].facility + ")"); });
@@ -5113,6 +5478,7 @@
             if(need && userRV < need) line += " · Note: " + info.building + " unlocks at RV " + need + ", your RV picker is set to RV " + userRV;
           }
           lines.push(line);
+          if(grp.overlapNote) lines.push(overlapNoteText(grp.overlapNote));
         });
       }
       section("From your basket (plot counts worked out from your plan):", autoGroups);
@@ -5122,17 +5488,18 @@
       totalB = sharedTxt.total;
       totalBuildingTiles = Object.keys(sharedTxt.zones).reduce(function(a, b){ return a + sharedTxt.zones[b] * buildingTiles(b); }, 0);
       lines.push("");
-      lines.push("Totals (the whole need from every source; the layout above plants the best full field, and the rest is replanted into that same layout as harvests complete, until these totals are met): " + totalFarm + " Farmland plots, " + totalWood + " Woodland plots, " + totalB + " climate building zones if it were all planted at once" + (totalShared > 0 ? " (" + totalShared + " more zones are overlap bands shared with their partner zones, counted once in that figure, not added on top)" : "") + " (plots that need the same building share its zones in that figure)");
+      lines.push("Totals (the whole need from every source; the layout above plants the best full field, and the rest is replanted into that same layout as harvests complete, until these totals are met): " + totalFarm + " Farmland plots, " + totalWood + " Woodland plots, " + totalB + " climate building zones if it were all planted at once (plots that need the same building share its zones in that figure)");
       lines.push("Space in all: " + (totalPlotTiles + totalBuildingTiles) + " grid tiles, plots " + totalPlotTiles + " tiles plus the buildings themselves " + totalBuildingTiles + " tiles. Building tiles use the measured footprints from your placement screenshots (Oct 24, 2026): Cooling Unit 2 x 2 = 4 tiles, Heat Furnace 1 x 1 = 1 tile, Sunlamp 1 x 1 = 1 tile.");
       lines.push("Packing assumes plots edge to edge with no paths. Power zones (Crackle Generator 22 x 22 cells, Power Pole 14 x 14) are reference only, for E-mode facilities later, not needed for growing.");
       var facLines = [];
       var planClim = plan ? fieldBuildings(plan.field) : null;
       var planNeed = facilityNeedCounts();
       FAC_ANIIMO.forEach(function(fa){
-        var c = facCount(fa.facility);
-        if(planClim && CLIM_BUILDINGS.indexOf(fa.facility) > -1) c = Math.min(planClim[fa.facility] || 0, c);
-        else c = Math.min(planNeed[fa.facility] || 0, c);
-        if(c > 0) facLines.push("- " + fa.facility + " x" + c + " needed for this plan: " + (fa.job ? "1 " + fa.job + " Aniimo each" : "1 Aniimo each, type not verified yet"));
+        var base = facCount(fa.facility);
+        if(planClim && CLIM_BUILDINGS.indexOf(fa.facility) > -1) base = Math.min(planClim[fa.facility] || 0, base);
+        else base = Math.min(planNeed[fa.facility] || 0, base);
+        var c = deployedCount(fa.facility, base);
+        if(c > 0) facLines.push("- " + fa.facility + " x" + c + (c - base > 0 ? " working (" + base + " for the plan + " + (c - base) + " added by you)" : " needed for this plan") + ": " + (fa.job ? "1 " + fa.job + " Aniimo each" : "1 Aniimo each, type not verified yet"));
       });
       if(facLines.length){
         lines.push("");
@@ -5176,19 +5543,17 @@
       var line = "Plots: " + grp.farm + " Farmland · " + grp.wood + " Woodland · Space: " + fmt(grp.totalTiles) + " grid tiles (plots " + fmt(grp.plotTiles) + (grp.buildings ? " + buildings " + fmt(grp.buildingTiles) : "") + ")";
       if(info.building){
         line += " · " + esc(info.building) + " zones: " + grp.buildings;
-        if(grp.overlapShared > 0) line += " · Overlap: " + esc(grp.overlapBand) + " = " + esc(info.tag) + ', shared and counted once. Band size <span class="verdict v-mix">not verified</span>';
+        if(grp.overlapNote) line += " · " + esc(overlapNoteText(grp.overlapNote));
         if(info.building === "Sunlamp") line += " · Sunlamp overlays temperature zones: ground counted once, one Sunlamp per light zone";
       } else {
         line += " · No climate building needed";
       }
       s += '<p class="totals">' + line + "</p>";
       /* A small grid with the accounting: one zone grid per land type
-         this group plants, or the band diagram when the group rides a
-         verified overlap band. */
+         this group plants. A possible overlap band is words only, in
+         the line above -- it never replaces a grid. */
       var maps = "";
-      if(info.building && grp.overlapShared > 0){
-        maps += '<div class="zone-map">' + overlapBandSvg(grp) + '<div class="cap">Overlap band: ' + esc(grp.overlapBand) + " = " + esc(info.tag) + "</div></div>";
-      } else if(info.building){
+      if(info.building){
         if(grp.farm) maps += zoneMapsHtml(grp, "Farmland", grp.farm, grp.zonesFarm);
         if(grp.wood) maps += zoneMapsHtml(grp, "Woodland", grp.wood, grp.zonesWood);
       } else {
@@ -5255,6 +5620,7 @@
     }
 
     function renderLayout(){
+      syncFacExtras();
       var out = document.getElementById("layoutOut");
       if(!out) return;
       var mOut = document.getElementById("layoutManualOut");
@@ -5273,11 +5639,10 @@
         autoNote = '<p class="sec-sub" style="margin:8px 0 0">Your basket is set, but its plan needs no crops grown right now: everything in it runs on gathered or crafted materials alone. Plot counts here follow the plan\'s Grow list, so the two always agree.</p>';
       }
       var anyGroups = !!(autoGroups.length || bpGroups.length || groups.length);
-      var totalFarm = 0, totalWood = 0, totalB = 0, totalPlotTiles = 0, totalBuildingTiles = 0, totalShared = 0, distinct = {};
+      var totalFarm = 0, totalWood = 0, totalB = 0, totalPlotTiles = 0, totalBuildingTiles = 0, distinct = {};
       autoGroups.concat(bpGroups, groups).forEach(function(g){
-        totalFarm += g.farm; totalWood += g.wood; totalB += g.buildings - (g.overlapShared || 0);
-        totalPlotTiles += g.plotTiles; totalBuildingTiles += g.buildingTiles - (g.overlapShared || 0) * buildingTiles(g.info.building);
-        totalShared += g.overlapShared || 0;
+        totalFarm += g.farm; totalWood += g.wood; totalB += g.buildings;
+        totalPlotTiles += g.plotTiles; totalBuildingTiles += g.buildingTiles;
         g.crops.forEach(function(n){ distinct[n] = true; });
       });
       /* The Starfall Hammock joins the layout whenever a plan gathers
@@ -5288,10 +5653,10 @@
       if(basket.length && (computePlan().gross["Star"] || 0) > 0) starNeeded = true;
       if(bpResult && (bpResult.exp.gross["Star"] || 0) > 0) starNeeded = true;
       var combined = combinedLayoutCounts(autoGroups, bpGroups, groups);
-      /* Whole-need climate buildings, packed the sharing way: plots
-         that need the same building share its zones across every
-         source and climate, so this figure is the fewest buildings
-         that cover the whole need, not a per-group sum. */
+      /* Whole-need climate buildings, packed the field layout's way:
+         each climate group on its own zones first across every
+         source, groups packed together only when the Step 1 count of
+         the building cannot cover them separately. */
       var sharedNeed = sharedBuildingNeed(combined);
       totalB = sharedNeed.total;
       totalBuildingTiles = Object.keys(sharedNeed.zones).reduce(function(a, b){ return a + sharedNeed.zones[b] * buildingTiles(b); }, 0);
@@ -5306,7 +5671,14 @@
         Object.keys(combined).forEach(function(n){ fieldCounts[n] = 1; });
       }
       var plan = anyGroups ? computeFieldLayout(fieldCounts, starNeeded && facCount("Starfall Hammock") > 0) : null;
+      /* The Away box counts per planting round from the plots planted
+         AT ONCE in this field layout (plan.planted, read off the
+         layout's own entries), never from the whole-need totals in
+         combined: a crop needing 9 plots in all that fits 8 at once
+         costs 8 x 4 beans per round, and the whole need is named
+         separately where the two differ. */
       lastAwayPlanted = plan ? plan.planted : null;
+      lastAwayWhole = plan ? combined : null;
       if(plan && layoutMode === "minimum"){
         var wholePlan = computeFieldLayout(combined, false);
         plan.totalMins = wholePlan.totalMins;
@@ -5322,7 +5694,7 @@
       var lNote = document.getElementById("layoutModeNote");
       if(lNote) lNote.textContent = (layoutMode === "best"
         ? "⭐ Best layout: the full field — as many of the plan's plots as your RV level allows at once, every crop under its climate building."
-        : "🪶 Minimum layout: one plot of each crop and the fewest climate buildings — the smallest start that still grows everything, replanted as harvests come in.") +
+        : "🪶 Minimum layout: one plot of each crop, each climate in its own zone where your buildings cover it: the smallest start that still grows everything, replanted as harvests come in.") +
         " Both stay within your RV " + userRV + " limits: at most " + facCount("Farmland") + " Farmland plots, " + facCount("Woodland") + " Woodland plots, and " + CLIM_BUILDINGS.map(function(b){ return facCount(b) + " " + b; }).join(", ") + ".";
       var html = "";
       if(anyGroups){
@@ -5334,7 +5706,6 @@
           '<div class="sum-chip"><b>' + fmt(totalFarm + totalWood) + '</b><span>seeds in all (one per plot)</span></div>' +
           '<div class="sum-chip"><b>' + fmt(totalB) + '</b><span>climate buildings for the whole need, if planted at once</span></div>' +
           '<div class="sum-chip"><b>' + fmtDur(plan.totalMins) + '</b><span>estimated growing time in all</span></div>' +
-          (totalShared > 0 ? '<div class="sum-chip"><b>' + fmt(totalShared) + '</b><span>zones shared as overlap bands, counted once</span></div>' : "") +
           '<div class="sum-chip"><b>' + fmt(totalPlotTiles) + '</b><span>grid tiles of plots in all</span></div>' +
           '<div class="sum-chip"><b>' + fmt(totalBuildingTiles) + '</b><span>grid tiles the buildings stand on (measured, see the space note)</span></div>' +
           '<div class="sum-chip"><b>' + fmt(totalPlotTiles + totalBuildingTiles) + '</b><span>grid tiles in all</span></div></div>';
@@ -5410,6 +5781,7 @@
        no verified grow time is listed as not verified, never counted
        with an invented time. Derived output only: no stock boxes. */
     var lastAwayPlanted = null;
+    var lastAwayWhole = null;
     function renderAway(){
       var out = document.getElementById("awayOut");
       if(!out) return;
@@ -5430,7 +5802,8 @@
         evPlanted.forEach(function(n){
           var plots = plantedMap[n], beans = plots * 4;
           roundBeans += beans;
-          roundLines.push("<li><strong>" + esc(n) + " 🎃</strong>: " + fmt(plots) + (plots === 1 ? " plot" : " plots") + " × 4 beans = <strong>" + fmt(beans) + " Weird Jelly Beans</strong> per planting round</li>");
+          var whole = lastAwayWhole ? (lastAwayWhole[n] || 0) : plots;
+          roundLines.push("<li><strong>" + esc(n) + " 🎃</strong>: " + fmt(plots) + (plots === 1 ? " plot" : " plots") + " planted at once × 4 beans = <strong>" + fmt(beans) + " Weird Jelly Beans</strong> per planting round" + (whole > plots ? " <span class=\"src\">(whole need is " + fmt(whole) + " plots in all: the rest are replanted into the same plots as harvests come in, so they cost their beans in later rounds, not this one)</span>" : "") + "</li>");
         });
         out.innerHTML = '<h4 style="margin-top:14px">🎃 Event seeds, per planting round</h4>' +
           '<ul class="check-list">' + roundLines.join("") + "</ul>" +
@@ -6170,7 +6543,24 @@
            claiming two Mine materials works two Mines, never every
            copy owned and never fewer than its materials need. */
         var w = g.totalWork + Object.keys(g.variesItems).length;
+        /* One type of thing at a time per copy (player's rule,
+           Oct 29, 2026): working copies never read lower than the
+           distinct products at the facility, so a table can never
+           show two copies running three products at once. Fields
+           are plots, not copies, so they keep the plot count. The
+           Mine reads the same count the Mines box gives, so the
+           two surfaces always agree. */
+        if(!g.isField) w = Math.max(w, g.items.length);
+        if(g.facility === "Mine" && res.mine) w = Math.max(w, res.mine.need);
         g.working = w > 0 ? (g.out > 0 ? Math.min(w, g.out) : w) : 1;
+        g.queued = (!g.isField && g.items.length > g.working) ? g.items.slice(g.working) : [];
+      });
+      /* Copies added by hand in the Layout Helper count as working
+         here too, capped at the Step 1 count: the Working column and
+         the power line built from it both read this figure. */
+      groups.forEach(function(g){
+        var ex = facExtraFor(g.facility);
+        if(ex > 0) g.working = g.out > 0 ? Math.min(g.working + ex, g.out) : g.working + ex;
       });
       /* A basic material with no verified source (Twine) deploys no
          building, so its group never shows as a working facility. */
@@ -6231,7 +6621,8 @@
       var facGroupsTxt = bpFacGroups(res);
       if(!facGroupsTxt.length) lines.push("- None: this plan works no facility.");
       facGroupsTxt.forEach(function(g){
-        lines.push("- " + g.facility + ": " + fmt(g.working) + " working" + (g.out > 0 ? " of your " + g.out + (g.isField ? " plots" : " out") + " (Step 1)" : "") + " — making " + g.items.join(", ") + ".");
+        lines.push("- " + g.facility + ": " + fmt(g.working) + " working" + (g.out > 0 ? " of your " + g.out + (g.isField ? " plots" : " out") + " (Step 1)" : "") + " — making " + g.items.join(", ") + "." +
+          (!g.isField && g.items.length > 1 ? " One type at a time per copy: " + assignText(g.items, g.working) + "." : ""));
       });
       lines.push("");
       lines.push("Seeds to plant:");
@@ -6243,6 +6634,7 @@
     }
 
     function renderBestPlan(){
+      syncFacExtras();
       var out = document.getElementById("bestPlanOut");
       if(!out) return;
       if(!strategy){
@@ -6349,6 +6741,7 @@
               (g.out > 0 ? '<br /><span class="src">' + (g.isField ? fmt(g.out) + " plots in Step 1" : fmt(g.out) + " out in Step 1") + "</span>" : "") +
               '</td><td class="num">' + fmt(g.working) + "</td><td>" +
               g.items.map(function(n){ return esc(n) + (n === "Star" ? unverifiedFlagHtml("Star") : ""); }).join(", ") +
+              (!g.isField && g.items.length > 1 ? '<br /><span class="src">One type at a time per copy: ' + esc(assignText(g.items, g.working)) + "</span>" : "") +
               "</td></tr>";
           }).join("") + "</tbody></table></div>";
       } else {
