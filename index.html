@@ -111,6 +111,7 @@
       .ab-mark{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.92rem;line-height:1;vertical-align:-7px;margin-right:7px;flex:none}
       .ab-mark.ring{box-shadow:0 0 0 2px #fff,0 0 0 4.5px #e9a13b}
       span[data-tip]{cursor:help}
+      svg rect[data-tip]{cursor:help}
       .team-counts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
       .job-chip{background:var(--bg-soft);border:2px solid var(--card-line);border-radius:999px;padding:5px 13px;font-weight:800;font-size:.92rem}
       .job-chip b{font-family:"Baloo 2",sans-serif;font-size:1.05rem}
@@ -297,6 +298,7 @@
         <a href="#layout">🗺️ Layout Helper</a>
         <a href="#team">👥 Team Helper</a>
         <a href="#home">🏠 Home &amp; Bud Tickets</a>
+        <a href="#trips">🚐 Trips</a>
         <a href="#sources">🔍 Sources &amp; Flags</a>
       </nav>
 
@@ -491,9 +493,22 @@
           <button type="button" class="chip" id="layoutMinBtn" aria-pressed="false">🪶 Minimum layout</button>
         </div>
         <p class="src" id="layoutModeNote" style="margin-top:6px"></p>
-        <p class="src" style="margin-top:6px">🌡️ Climate note, flagged not used: Aniimax's own published model rates a crop at <strong>100%</strong> in its right temperature, <strong>80%</strong> one step off, <strong>50%</strong> two steps off and <strong>20%</strong> further off <span class="verdict v-mix">single source: Aniimax</span>. This planner still plans for exact climate matches only — the gradient is a possible future improvement, not how layouts are worked out today.</p>
+        <p class="src" style="margin-top:6px">🌡️ Climate rates, now used in the layout: temperatures are steps (Freeze, Cool, plain, Warm, Scorching). A crop grows at <strong>100%</strong> at its own step, <strong>80%</strong> one step off, <strong>50%</strong> two steps off and <strong>20%</strong> further off <span class="verdict v-mix">single source: Aniimax</span>. The layout still gives every crop its own temperature first; only where crops share a zone set to another temperature does the lower rate show, in plain words beside the crop.</p>
 
         <div id="layoutOut"></div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>⏰ While you're away</h3>
+          <p class="sec-sub" style="margin-bottom:0">Crops keep going on their own as long as seeds last. Type how many hours you'll be away, and this lists the seeds to have ready for the layout above. Nothing to work out by hand.</p>
+          <div class="controls" style="margin-top:12px">
+            <div class="field">
+              <label for="awayHours">Hours away</label>
+              <input type="number" id="awayHours" min="0" step="any" placeholder="e.g. 8" />
+              <span class="hint">Leave it blank and no list shows.</span>
+            </div>
+          </div>
+          <div id="awayOut" aria-live="polite"></div>
+        </div>
 
         <div class="card" style="margin-top:16px">
           <h3>✋ Add extra crops by hand <span class="src">(optional, never needed for layout help)</span></h3>
@@ -515,7 +530,7 @@
       <!-- ================= TEAM HELPER ================= -->
       <section id="team">
         <div class="sec-head"><h2>👥 Team Helper</h2></div>
-        <p class="sec-sub">One crew for the whole plan: your basket plus your strategy plan, deduped by facility, plus the bill's jobs in Level Up mode. <strong>⭐ Best</strong> = a dedicated worker per facility; <strong>🪶 Minimum</strong> = one shared Aniimo per job. Best is fitted inside your Aniimo limit — shared workers are named when the limit forces them. <strong>Hauling is always in the total, always more than one</strong> — the count is your stand-in rule, not game data. Cover, in one line: a worker confirmed to also hold Hauling can carry what it made to storage and counts once, in its main job; everyone else doesn't cover, and the rest becomes dedicated haulers. <strong>Utility posts never cover:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts. Climate Aniimo staff only the buildings your layout puts out. Slots the crew doesn't use become home residents (🏠 below). <strong>Crew is shared by ability, not tied to one building:</strong> one Aniimo with the right ability can cover every facility that needs that ability at the same time, as long as its workload allows — one Wind Aniimo can cover both Carousel Mills and the Joy Wheel Loom. Minimum shows that sharing in full; Best only adds dedicated workers where speed is worth it. <strong>Fields get no personality bonus:</strong> Farmland and Woodland planting (Grass) speeds up with the worker's Grass Home Ability level only — no personality match helps it. Other facilities keep their verified matches (the Mine keeps Playful +20%).</p>
+        <p class="sec-sub">One crew for the whole plan: your basket plus your strategy plan, deduped by facility, plus the bill's jobs in Level Up mode. <strong>⭐ Best</strong> = a dedicated worker per facility; <strong>🪶 Minimum</strong> = one shared Aniimo per job, with a second worker only when the first worker's combined workload passes 80%. Best is fitted inside your Aniimo limit — shared workers are named when the limit forces them. <strong>Hauling is always in the total, always more than one</strong> — the count is your stand-in rule, not game data. Cover, in one line: a worker confirmed to also hold Hauling can carry what it made to storage and counts once, in its main job; everyone else doesn't cover, and the rest becomes dedicated haulers. <strong>Utility posts never cover:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts. Climate Aniimo staff only the buildings your layout puts out. Slots the crew doesn't use become home residents (🏠 below). <strong>Crew is shared by ability, not tied to one building:</strong> one Aniimo with the right ability can cover every facility that needs that ability at the same time, as long as its workload allows — one Wind Aniimo can cover both Carousel Mills and the Joy Wheel Loom. Minimum shows that sharing in full; Best only adds dedicated workers where speed is worth it. <strong>Fields get no personality bonus:</strong> Farmland and Woodland planting (Grass) speeds up with the worker's Grass Home Ability level only — no personality match helps it. Other facilities keep their verified matches (the Mine keeps Playful +20%).</p>
         <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy before you use this crew.</strong> In Level Up mode the next level's bill jobs join this crew, so the crew can grow in that mode; in Goals mode the bill plays no part. Switching strategy rebuilds this crew with no leftover jobs from the other mode.</p></div>
         <div class="card">
           <div id="teamGate"></div>
@@ -563,6 +578,25 @@
         </div>
       </section>
 
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
+      <!-- ================= TRIPS ================= -->
+      <section id="trips">
+        <div class="sec-head"><h2>🚐 Trips</h2></div>
+        <p class="sec-sub">Send Aniimo out from a park, get rewards when the trip ends. Just for reading — nothing to fill in.</p>
+        <div class="how">
+          <div class="step"><b>🌸 Sea of Flowers</b><p>Park manager: Ben</p></div>
+          <div class="step"><b>☁️ Nimbus Fields</b><p>Park manager: Umi</p></div>
+          <div class="step"><b>🌊 Echoback Landing</b><p>Park manager: Sesa</p></div>
+          <div class="step"><b>🌾 Driftwise Meadow</b><p>Park manager: Yu</p></div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <p style="margin:0"><strong>How many can go:</strong> your Signal Transmitter sets it. Lv 1 (RV 6) sends <strong>1</strong> Aniimo, Lv 2 (RV 11) sends <strong>2</strong>, Lv 3 (RV 16) sends <strong>3</strong>.</p>
+          <p style="margin:10px 0 0"><strong>Come back early?</strong> Recalling a trip early loses <strong>all</strong> of that trip's rewards. Let trips finish.</p>
+          <p style="margin:10px 0 0"><strong>Park buffs:</strong> put Element Essence at a park and that element gets <strong>+2%</strong> attack and resistance there. Pure essence gives <strong>+5%</strong>. Element Gems from Home Orders swap <strong>10 for 1 essence</strong>.</p>
+        </div>
+      </section>
+
       <!-- ================= SOURCES ================= -->
       <footer id="sources">
         <h3>🔍 Sources &amp; Flags: how to read this planner</h3>
@@ -590,13 +624,18 @@
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
           <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 8): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 8): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales. Crafting (max 7): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Premium Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume. Only three change numbers, auto-applied from Ecological: Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8). Premium Wheat appears in no module ladder — it stays manual, flagged, never auto-applied.</li>
-          <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = one Aniimo per job, shared. Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the recipe data; verified gather pairings: Well = Water, Mine = Earth, Tidewhisper Sandcastle = Leisure. Farmland, Woodland, Dewy House and the leisure station have no verified job <span class="verdict v-mix">not verified yet</span> — no worker is named, but each station still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. Nine facilities carry an attached Aniimo each when out: Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle, Nimbus Bed, and the three climate buildings only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
+          <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the recipe data; verified gather pairings: Well = Water, Mine = Earth, Tidewhisper Sandcastle = Leisure. Farmland, Woodland, Dewy House and the leisure station have no verified job <span class="verdict v-mix">not verified yet</span> — no worker is named, but each station still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. Nine facilities carry an attached Aniimo each when out: Starfall Hammock, Mine, Well, Dewy House, Tidewhisper Sandcastle, Nimbus Bed, and the three climate buildings only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
           <li><strong>Aniimo caps:</strong> the "place N Aniimo in your Home" numbers from AniimoTools, matching MetaBot.GG at every level: RV 2 = 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44, 45 at RV 20. The crew check covers the whole put-out total — nothing counted outside it. A crew over the cap is never shown as usable: Best is fitted down to the cap by sharing workers at as few facilities as possible (named on the plan); only when even Minimum is over does no crew show. Flag: aniimoguide prints a lower second set from RV 13 on (40 at RV 20) and advises planning on it; this planner follows the AniimoTools/MetaBot numbers, which match the player's own game (36 at RV 14).</li>
           <li><strong>Bud Tickets:</strong> earned by Homebuilding Zone residents (opens RV 8), not by production. Rates (Game8): 120/day regular, 180 Sparkling or Prismana, 270 both. Decor gives about 1 Habitability per ticket; Habitability gates RV 10–20. The reserve is derived per plan (cap − production crew on show), never a fixed number. The Jar's capacity is not verified, so none is stated; a single-source claim of +100/day from a daily home chest is not counted.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> — Master Guide table (GameWith, Game8, AniimoTools, Selphie1999 Gaming agree): E Energetic — Bouncy Brew Keg, Woodworking Bench; I Instinctive — Phonolfactory Table, Dewy House; S Practical — Claw Game Cooker, Chimney Kiln; N Nimble — Jukebox Dryer, Blazing Stove; T Tenacious — Carousel Mill, Simmering Pot; F Faithful — Joy Wheel Loom, Well; J Judicious — Crafting Table, Tidewhisper Sandcastle; P Playful — Mine, Pickling Jar. Farmland, Woodland, Dance Pad Polisher, Aniipod Maker and the leisure station have no verified match — stated, not guessed.</li>
           <li><strong>Fields get NO personality bonus (checked Oct 28, 2026):</strong> Farmland and Woodland appear in <strong>no</strong> personality row in allthings.how, Game8 or AniimoTools — confirmed, not just unverified. Planting (Grass) work scales with the worker's Home Ability level only; a trait match does not speed it up. Every other facility keeps its verified pairing in the line above — the Mine keeps Playful +20%.</li>
           <li><strong>Crew is shared per ability, not per building (checked Oct 28, 2026):</strong> AniimoTools, Aniiland and Aniimax all model staffing per ability — one Aniimo with the right ability covers every facility that needs that ability at the same time, workload allowing (one Wind Aniimo covers both Carousel Mills and the Joy Wheel Loom). This planner's Best and Minimum crews are speed choices on top of that rule, not a one-Aniimo-per-building rule.</li>
-          <li><strong>Climate efficiency gradient — noted, not used (checked Oct 28, 2026):</strong> Aniimax's own published model rates climate efficiency at 100% in the right temperature, 80% one step off, 50% two steps off and 20% further off <span class="verdict v-mix">single source: Aniimax</span>. The planner still plans for exact climate matches; the gradient is flagged as a possible future improvement, not current behaviour, and no planning number uses it.</li>
+          <li><strong>Climate efficiency gradient — now used in the Layout Helper (checked Oct 28, 2026):</strong> Aniimax's own published model rates climate efficiency at 100% in the right temperature, 80% one step off, 50% two steps off and 20% further off <span class="verdict v-mix">single source: Aniimax</span>. Temperatures are steps: Freeze −2, Cool −1, plain 0, Warm +1, Scorching +2. Layouts still give every crop its own temperature first; where crops share a zone set to another temperature, that crop's line in the zone shows its rate in plain words ("grows at 80% here") and the zone says why. No other planning number uses the gradient.</li>
+          <li><strong>Minimum crew, the 80% rule (Aniiland):</strong> a shared worker gets a second pair of hands for a job only when the first worker's combined workload passes 80%. This planner counts each facility a worker covers as 20% of a full load, so a job covering five or more facilities gets a second worker, and workers split the facilities so none passes 80%. Best mode is unchanged.</li>
+          <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
+          <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted.</li>
+          <li><strong>Trips:</strong> the 4 public RV Parks and managers (Sea of Flowers / Ben, Nimbus Fields / Umi, Echoback Landing / Sesa, Driftwise Meadow / Yu); trip slots from the Signal Transmitter (Lv 1 at RV 6 holds 1, Lv 2 at RV 11 holds 2, Lv 3 at RV 16 holds 3, matching the RV ladder above); recalling early loses all the trip's rewards; park buffs from Element Essence placed at the park, +2% attack and resistance for one element, +5% for Pure; Element Gems from Home Orders exchange 10 for 1 essence.</li>
+          <li><strong>Power headroom (checked Oct 28, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Stage 3; Farmland and Woodland plots draw nothing. Cap: the <strong>Lv 1 generator cap is 600</strong> (Steam guide; wikily's Crackle Generator page lists base power 600, made by a Lightning Lv 1 worker). No source states a cap for Lv 2 to 5 — the Steam guide says only that the cap goes up with each upgrade — so at those levels the line shows used power and says the cap is not verified yet, never a guessed cap. Spare power raises grid speed up to <strong>120%</strong>; over the cap, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator 22 × 22, Power Pole 14 × 14.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
@@ -807,9 +846,9 @@
     C("Growth Flower","Dance Pad Polisher",2,"Lightning",{ "Soybean":16 }, { yld:2, cat:"growth", blurb:"The next growth tier. Makes 2 per batch." });
     C("Growth Fruit","Dance Pad Polisher",3,"Lightning",{ "Rose":8 }, { cat:"growth", blurb:"Top growth item, from a full rose harvest." });
     /* Aniipod Maker */
-    C("Aniipod","Aniipod Maker",1,"Lightning",{ "Rock":12 }, { cat:"growth", blurb:"The standard pod, from mined rock." });
-    C("Aniipod Pro","Aniipod Maker",2,"Lightning",{ "Clay":10 }, { cat:"growth", blurb:"A better pod, from clay." });
-    C("Aniipod Mega","Aniipod Maker",3,"Lightning",{ "Shell":6 }, { cat:"growth", blurb:"The best pod this station makes, from shells." });
+    C("Aniipod","Aniipod Maker",1,"Lightning",{ "Rock":12 }, { cat:"growth", blurb:"The standard pod, from mined rock. The base maker makes about 4 per hour (1 pod per about 15 minutes)." });
+    C("Aniipod Pro","Aniipod Maker",2,"Lightning",{ "Clay":10 }, { cat:"growth", blurb:"A better pod, from clay. The base maker makes about 4 per hour (1 pod per about 15 minutes)." });
+    C("Aniipod Mega","Aniipod Maker",3,"Lightning",{ "Shell":6 }, { cat:"growth", blurb:"The best pod this station makes, from shells. The base maker makes about 4 per hour (1 pod per about 15 minutes)." });
     /* Crafting Table */
     C("Pottery","Crafting Table",3,"Artisanship",{ "Clay":15, "Well Water":8 }, { cat:"craft", blurb:"Clay and well water, shaped and fired." });
     C("Bouquet","Crafting Table",4,"Artisanship",{ "Rose":8, "Lavender":7 }, { cat:"craft", blurb:"A full rose harvest plus a lavender harvest." });
@@ -1074,6 +1113,106 @@
     }
     function climateText(name){
       return " [climate: " + climateLabel(name) + "]";
+    }
+    /* Climate falloff, Aniimax's published model (single source:
+       Aniimax): temperatures are steps, Freeze -2, Cool -1, plain 0,
+       Warm +1, Scorching +2. A crop grows at 100% at its own step,
+       80% one step away, 50% two steps away, 20% further away. Used
+       in the Layout Helper only: where crops share a zone set to
+       another temperature, the crop's line shows its rate in plain
+       words. Adequate light is a light tag, not a temperature, so
+       light crops and grows-anywhere crops have no step here. */
+    var TEMP_STEP = { "Freeze":-2, "Cool":-1, "Warm":1, "Scorching":2 };
+    function cropTempStep(name){
+      var c = CLIMATE[name];
+      if(!c || c.none) return null;
+      return TEMP_STEP[c.tag] !== undefined ? TEMP_STEP[c.tag] : null;
+    }
+    function falloffRate(stepsAway){
+      return stepsAway <= 0 ? 100 : stepsAway === 1 ? 80 : stepsAway === 2 ? 50 : 20;
+    }
+    /* The rate a crop grows at in one packed zone, or null when no
+       falloff applies: the zone's temperature is the temperature of
+       the first climate group packed into it (groups pack coldest
+       first for a Cooling Unit, Warm before Scorching for a Heat
+       Furnace), and a crop of another temperature group sharing the
+       zone grows at the falloff rate for the distance. Sunlamp zones
+       are light, not temperature, so they never apply a rate. */
+    function zoneCropRate(name, zone){
+      if(!zone || zone.building === "Sunlamp") return null;
+      var cs = cropTempStep(name);
+      if(cs === null) return null;
+      var zTag = zone.keys[0];
+      if(TEMP_STEP[zTag] === undefined) return null;
+      return falloffRate(Math.abs(cs - TEMP_STEP[zTag]));
+    }
+    /* Aniipod Maker rate: about 4 pods per hour at the base maker,
+       1 pod per about 15 minutes (single source: aniimoguide.com,
+       read off the in-game bar). Higher maker levels are NOT scaled
+       up: no faster rate is verified, so the base figure is shown
+       with its flag wherever the maker works. */
+    var ANIIPOD_MAKER_FLAG = 'single source: aniimoguide.com, read off the in-game bar';
+    function aniipodMakerLine(product){
+      return "🥚 The Aniipod Maker makes <strong>about 4 " + esc(product || "Aniipods") + " per hour</strong> at its base level (1 pod per about 15 minutes) — higher maker levels keep this same base figure here, because no faster rate is verified. <span class=\"verdict v-mix\">" + ANIIPOD_MAKER_FLAG + "</span>";
+    }
+    /* ============ Power headroom (checked Oct 28, 2026) ============
+       Draw, from the Steam Community RV/Homeland Guide: a building on
+       E-mode costs 15 x its level; Mine, Well, Aniipod Maker and Dance
+       Pad Polisher cost 30 x their level. Power unlocks at RV 12 with
+       Power Module Lv 1 (AniimoTools, RV Levels; Aniiland's RV roadmap
+       agrees), and generator levels follow the module: Lv 1 at RV 12,
+       Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20.
+       Cap: only the Lv 1 cap is stated by a source — 600 (the Steam
+       guide; wikily's Crackle Generator page lists base power 600,
+       made by a Lightning Lv 1 worker). The Steam guide says the cap
+       goes up with each upgrade but gives no higher number, and the
+       Aniiland roadmap and AniimoTools list levels only, no caps, so
+       caps for Lv 2 to 5 are NOT verified and never guessed: those
+       setups show used power and say so plainly. Spare power raises
+       grid speed up to 120%; over the cap, everything on the grid
+       slows below 100%. Farmland and Woodland plots draw nothing. */
+    var POWER_HIGH_DRAW = { "Mine":true, "Well":true, "Aniipod Maker":true, "Dance Pad Polisher":true };
+    var POWER_GEN_CAPS = { 1:600 };
+    function powerGenLevel(rv){
+      if(rv < 12) return 0;
+      if(rv < 14) return 1;
+      if(rv < 16) return 2;
+      if(rv < 18) return 3;
+      if(rv < 20) return 4;
+      return 5;
+    }
+    function powerUsed(facWorking){
+      var used = 0;
+      Object.keys(facWorking).forEach(function(f){
+        if(f === "Farmland" || f === "Woodland") return;
+        var w = facWorking[f] || 0;
+        if(!(w > 0)) return;
+        var lvl = facLevel(f);
+        /* A running station with no Stage 3 level of its own (the
+           Homeland leisure station) counts at Lv 1, the lowest level
+           any running building can have. */
+        if(!(lvl > 0)) lvl = 1;
+        used += w * (POWER_HIGH_DRAW[f] ? 30 : 15) * lvl;
+      });
+      return used;
+    }
+    /* facWorking: { facility: how many of that building the plan runs }.
+       One plain line: used, cap where verified, spare, and a clear
+       warning when the plan goes over a verified cap. */
+    function powerHeadroomHtml(facWorking){
+      var genLvl = powerGenLevel(userRV);
+      if(genLvl === 0){
+        return "⚡ Power: power unlocks at <strong>RV 12</strong> (Power Module Lv 1), so a plan at RV " + userRV + " has no power grid yet. From RV 12, buildings on E-mode draw power and this line counts it.";
+      }
+      var used = powerUsed(facWorking);
+      var base = "⚡ Power: this plan's buildings would use <strong>" + fmt(used) + " power</strong> on E-mode (15 × level each; 30 × level for the Mine, Well, Aniipod Maker and Dance Pad Polisher), with a <strong>Crackle Generator Lv " + genLvl + "</strong> (the level RV " + userRV + " unlocks). ";
+      var cap = POWER_GEN_CAPS[genLvl];
+      if(cap){
+        var spare = cap - used;
+        if(spare >= 0) return base + "Cap <strong>" + fmt(cap) + "</strong>, so <strong>" + fmt(spare) + " power spare</strong>. Spare power speeds the grid up, to 120% at most.";
+        return base + "Cap <strong>" + fmt(cap) + "</strong> — <strong>⚠️ over the cap by " + fmt(-spare) + ": everything on the grid slows below 100%.</strong> Take a building off E-mode to get back under.";
+      }
+      return base + "The cap for a Lv " + genLvl + " generator is <strong>not verified yet</strong>, so no spare figure is shown rather than a guessed one. In game: over the cap, everything on the grid slows below 100%; spare power speeds it up, to 120% at most.";
     }
     function eventBadge(it){ return ""; }
     function eventText(it){ return ""; }
@@ -1522,6 +1661,30 @@
           (lb.woodOffsetApplied > 0 ? " <strong>less " + fmt(lb.woodOffsetApplied) + " Wood Blocks from your basket's Woodland crops</strong> (counted production " + fmt(lb.by.woodProd) + ", basket recipes use " + fmt(lb.by.woodConsumed) + ", net surplus " + fmt(lb.by.woodSurplus) + ")." : "") +
           "</p></div>";
       }
+      /* Power headroom: the buildings this basket plan runs, counted
+         the same way as the strategy plan below (see powerHeadroomHtml).
+         Working counts come from the plan's own batches and runs per
+         facility, capped at the count entered in Stage 3. */
+      var facWorkBP = {};
+      Object.keys(plan.gross).forEach(function(n){
+        var it = ITEMS[n];
+        if(!it || (plan.net[n] || 0) <= 0) return;
+        var f = it.facility;
+        if(f === "Farmland" || f === "Woodland") return;
+        var load = 0;
+        if(it.kind === "craft") load = plan.batches[n] || 0;
+        else if(it.kind === "gather") load = plan.runs[n] || 0;
+        facWorkBP[f] = (facWorkBP[f] || 0) + load;
+      });
+      var facWorkingBP = {};
+      Object.keys(facWorkBP).forEach(function(f){
+        if(!FAC_RV[f] && !CLIM_COUNT[f]){ facWorkingBP[f] = 1; return; }
+        var w = Math.ceil(facWorkBP[f] - 1e-9);
+        if(!(w > 0)) w = 1;
+        var capN = facCount(f);
+        facWorkingBP[f] = capN > 0 ? Math.min(w, capN) : w;
+      });
+      html += '<p class="src" style="margin-top:10px">' + powerHeadroomHtml(facWorkingBP) + '</p>';
       /* Mines setup instruction: max Mines for this RV, and the material
          the basket (then the leveling bill) claims first. */
       html += mineSetupHtml(mineSetup(null));
@@ -1585,7 +1748,8 @@
           return '<div class="craft-step"><span class="step-n">' + (i + 1) + '</span><div><h4>' + esc(n) + (plan.perHour > 0 ? " ×" + fmtRate(perCycle * plan.perHour) + " per hour" : "") +
             ' <span class="src">(at ' + esc(it.facility) + ", recipe Lv " + it.lvl + ", " + esc(it.worker) + " Aniimo" + (target ? " · your recipe" : " · ingredient") + ")</span></h4>" +
             "<p>Each one takes: " + esc(needsText(it)) + (plan.perHour > 0 ? ". Per hour that uses: " +
-            Object.keys(it.needs).map(function(k){ return k + " ×" + fmtRate(it.needs[k] * plan.batches[n] * plan.perHour); }).join(" · ") + "." : ".") + "</p></div></div>";
+            Object.keys(it.needs).map(function(k){ return k + " ×" + fmtRate(it.needs[k] * plan.batches[n] * plan.perHour); }).join(" · ") + "." : ".") + "</p>" +
+            (it.facility === "Aniipod Maker" ? "<p>" + aniipodMakerLine(n + "s") + "</p>" : "") + "</div></div>";
         }).join("") + "</div>";
       } else {
         html += '<div class="note note-good"><h4>🎉 Nothing to craft</h4><p>This plan needs no crafted steps at all: just grow and gather what is listed above.</p></div>';
@@ -1884,11 +2048,20 @@
     function productionIndividuals(byFac, placed, uncountedCount, planting, mode){
       var inds = [];
       if(mode === "minimum"){
-        var seen = {};
+        var seenM = {};
         Object.keys(byFac).forEach(function(f){
-          var sp = BEST_WORKERS[byFac[f].job] ? BEST_WORKERS[byFac[f].job].name : null;
-          var key = sp || byFac[f].job;
-          if(!seen[key]){ seen[key] = true; inds.push({ sp:sp, jobs:[byFac[f].job], role:"facility", facility:f, facilities:[f] }); }
+          var job = byFac[f].job;
+          var sp = BEST_WORKERS[job] ? BEST_WORKERS[job].name : null;
+          var key = sp || job;
+          if(!seenM[key]) seenM[key] = { sp:sp, perJob:{}, facs:[] };
+          seenM[key].perJob[job] = (seenM[key].perJob[job] || 0) + 1;
+          seenM[key].facs.push(f);
+        });
+        Object.keys(seenM).forEach(function(key){
+          var g = seenM[key];
+          var n = 1;
+          Object.keys(g.perJob).forEach(function(j){ n = Math.max(n, minJobWorkers(g.perJob[j])); });
+          for(var i = 0; i < n; i++) inds.push({ sp:g.sp, jobs:Object.keys(g.perJob), role:"facility", facility:g.facs[0], facilities:g.facs.slice() });
         });
       } else {
         var perSpecies = {};
@@ -2015,16 +2188,26 @@
       });
       return total - saved;
     }
-    /* Minimum, in individuals: one Aniimo per job, with jobs that one
-       species covers counted once — the distinct species among the
-       jobs present. */
+    /* Minimum, Aniiland's shared-worker rule: a job gets a second
+       worker only when the first shared worker's combined workload
+       passes 80%. Workload here counts each facility the worker
+       covers as 20% of a full load, so one worker carries up to
+       four facilities (80%); the fifth facility passes 80%, a
+       second worker joins, and the facilities split so no worker
+       passes 80% again. Minimum individuals: per species, the
+       largest worker count among its jobs (a multi-ability species
+       covers its jobs together, counted once at that count). */
+    function minJobWorkers(facCount){
+      return Math.max(1, Math.ceil((facCount || 0) / 4));
+    }
     function minIndividualCount(jobFacCount){
-      var seen = {};
+      var perSpecies = {};
       Object.keys(jobFacCount).forEach(function(j){
         var sp = BEST_WORKERS[j] ? BEST_WORKERS[j].name : j;
-        seen[sp] = true;
+        var w = minJobWorkers(jobFacCount[j]);
+        if(!perSpecies[sp] || w > perSpecies[sp]) perSpecies[sp] = w;
       });
-      return Object.keys(seen).length;
+      return Object.keys(perSpecies).reduce(function(a, sp){ return a + perSpecies[sp]; }, 0);
     }
     var teamMode = "best";
     /* Crew gate: the crew stays hidden until every input that can change
@@ -2265,6 +2448,10 @@
       speciesOrder.forEach(function(sp){
         var r = bySpecies[sp];
         r.assigns.sort(function(x, y){ return x.facility.localeCompare(y.facility); });
+        /* The 80% rule, per row: workers for this Aniimo are the
+           largest per-job count among its jobs. */
+        r.count = 1;
+        r.jobs.forEach(function(j){ r.count = Math.max(r.count, minJobWorkers((jobs[j] || []).length)); });
         rows.push(r);
       });
       return rows;
@@ -2552,7 +2739,7 @@
           var tip = "Strongest known: " + r.worker + " · " + facsSorted.map(function(bf){ return tipText(bf.job, BEST_WORKERS[bf.job].lvl, bf.facility, bf.items); }).join(" · ") +
             (r.planting ? " · This Aniimo also does the planting: Grass Lv." + BEST_WORKERS.Grass.lvl : "");
           var minMarks = r.jobs.map(function(j){ return abilityMarker(j, false); }).join("");
-          lines.push('<li tabindex="0" data-tip="' + escA(tip) + '">' + minMarks + "<strong>" + esc(r.jobs.join(" + ")) + " Aniimo</strong> · " + esc(facNames) +
+          lines.push('<li tabindex="0" data-tip="' + escA(tip) + '">' + minMarks + "<strong>" + esc(r.jobs.join(" + ")) + " Aniimo</strong>" + (r.count > 1 ? " ×" + r.count : "") + " · " + esc(facNames) +
             (r.planting ? " · also does the planting" : "") + "</li>");
         });
       }
@@ -2771,7 +2958,7 @@
       if(mBtn) mBtn.setAttribute("aria-pressed", teamMode === "minimum" ? "true" : "false");
       if(note) note.textContent = teamMode === "best"
         ? "Best: a dedicated worker per facility — nothing waits on a worker elsewhere."
-        : "Minimum: one Aniimo per job, shared across its facilities. Facilities take turns; everything runs slower.";
+        : "Minimum: one shared Aniimo per job, and a second only when the first worker's combined workload passes 80%. Facilities take turns; everything runs slower.";
       if(!basket.length && !levelingOn && !(typeof bpResult !== "undefined" && bpResult)){
         area.innerHTML = '<div class="empty-plan">Your crew appears here once your basket has a recipe in it or you have run a Best Plan. Pick recipes above or run the Best Plan Finder and the helper works out who needs to staff every facility your plan sets running.</div>';
         renderHome();
@@ -2794,7 +2981,7 @@
          worker's identity is left unnamed, never the headcount. */
       /* The planting floor rides inside the crew total too: at least
          1 Grass Aniimo for planting, on top of every facility count. */
-      var teamSize = (teamMode === "best" ? facs.length : (Object.keys(jobFacCount).length - (merged ? 1 : 0))) + uncountedFacs.length + placedTotal + (team.planting || 0);
+      var teamSize = (teamMode === "best" ? facs.length : minIndividualCount(jobFacCount)) + uncountedFacs.length + placedTotal + (team.planting || 0);
       /* Aniimo cap check. The cap covers the WHOLE Put out total: the
          plan crew, the nine facilities' attached Aniimo (placedTotal)
          and the planting Grass Aniimo are all inside teamSize and its
@@ -2869,7 +3056,7 @@
         ? (fittedRows
           ? "Best, fitted to RV " + userRV + ": the full Best crew needs " + bestSize + " Aniimo, over your limit of " + cap + ", so this crew shares a worker at just the facilities the cap forces and fits at " + fittedSize + ". Every facility still runs and every job is still covered; the shared facilities take turns. Aniimo are counted as individuals, not job slots: where one Aniimo's abilities cover two needed jobs (Somniwing: Grass Lv 4 and Leisure Lv 4), it is counted once."
           : "Best: every busy facility gets its own dedicated worker, the strongest known Aniimo for that job, so no facility waits on a worker finishing somewhere else. Aniimo are counted as individuals, not job slots: where one Aniimo's abilities cover two needed jobs (Somniwing: Grass Lv 4 and Leisure Lv 4), it is counted once, in Best too.")
-        : "Minimum is an approximation: one Aniimo per job, shared part time across every facility that needs that job, so facilities take turns and everything runs slower than Best. Multi-ability Aniimo are preferred here: one Aniimo whose abilities cover two jobs (Somniwing: Grass and Leisure) does both and counts once — that sharing is what makes Minimum fit when Best cannot. The smallest crew that keeps the plan moving, not a timetable.") +
+        : "Minimum follows Aniiland's shared-worker rule: one Aniimo per job, shared part time across every facility that needs that job, and a job gets a second worker only when the first worker's combined workload passes 80% (each facility counts as 20% of a full load here, so that is the fifth facility on one job). Facilities take turns, so everything runs slower than Best. Multi-ability Aniimo are preferred here: one Aniimo whose abilities cover two jobs (Somniwing: Grass and Leisure) does both and counts once — that sharing is what makes Minimum fit when Best cannot. The smallest crew that keeps the plan moving, not a timetable.") +
         (bestHidden ? " ⭐ Best is not shown: it needs " + bestSize + " Aniimo and " + aniimoCapText(userRV) + ", so only the Minimum that fits is offered." : "") +
         (fittedRows && teamMode === "minimum" ? " ⭐ Best fits your RV " + userRV + " limit too, fitted to " + fittedSize + " Aniimo — tap ⭐ Best team above to see it." : "");
       var capHtml = "";
@@ -2933,7 +3120,7 @@
         if(lvlFacs.length) html += '<p class="src" style="margin-top:10px">🚐 Level Up jobs for RV ' + rvNext() + " are in this crew because Level Up is your picked strategy: " + lvlFacs.sort().map(function(f){ return esc(f); }).join(", ") + ".</p>";
       }
       if(facs.length || placedFacs.length || team.planting) html += '<div class="team-counts" aria-label="Workers needed per job">' + JOB_ORDER.map(function(j){
-        var c = jobFacCount[j] ? (teamMode === "best" ? (fittedRows ? (fittedJobWorkers[j] || 0) : jobFacCount[j]) : 1) : 0;
+        var c = jobFacCount[j] ? (teamMode === "best" ? (fittedRows ? (fittedJobWorkers[j] || 0) : jobFacCount[j]) : minJobWorkers(jobFacCount[j])) : 0;
         /* Grass carries the planting floor as well, so it never reads
            0 while the plan is growing anything: the planting Aniimo is
            a real Grass job on the team. When a multi-ability Aniimo
@@ -2998,8 +3185,9 @@
             workerCell = abilityMarker(r.jobs[0], false, r.jobs[0] + " Lv." + r.lvl + " · strongest known: " + r.worker + " Lv." + r.lvl + " · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities")) +
               "<strong>Any " + r.jobs[0] + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + " · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities") + "</span>";
           }
+          if(r.count > 1) workerCell += '<br /><span class="src"><strong>' + r.count + ' workers on this job</strong>: one shared worker\'s combined workload passes 80% here, so a second pair of hands joins (Aniiland\'s rule).</span>';
           var traitCell = '<span class="src">One worker carries one personality, so it can only match one of these facilities at a time. Each assignment below lists its own match.</span>';
-          return "<tr><td>" + workerCell + '</td><td class="num"><strong>1</strong></td><td>' + traitCell + "</td><td>" +
+          return "<tr><td>" + workerCell + '</td><td class="num"><strong>' + (r.count || 1) + '</strong></td><td>' + traitCell + "</td><td>" +
             r.assigns.map(function(bf){ return assignHtml(bf, bf.job, null); }).join("") + "</td></tr>";
         }).join(""));
       }
@@ -3826,12 +4014,14 @@
       var aStyle = grp.info.key === "Warm" ? GROUP_STYLE["Scorching"] : GROUP_STYLE["Freeze"];
       var bStyle = grp.info.key === "Warm" ? GROUP_STYLE["Cool"] : GROUP_STYLE["Warm"];
       var label = "Overlap band: a " + aStyle.emoji + " zone and a " + bStyle.emoji + " zone crossing; the shaded band between them counts as " + grp.info.tag;
+      var aTag = grp.info.key === "Warm" ? "Scorching" : "Freeze";
+      var bTag = grp.info.key === "Warm" ? "Cool" : "Warm";
       return '<svg viewBox="0 0 27 18" width="222" height="148" role="img" aria-label="' + esc(label) + '">' +
-        '<rect x="0.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + aStyle.tint + '" stroke="' + aStyle.plot + '" stroke-width="0.3"/>' +
-        '<rect x="9.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + bStyle.tint + '" fill-opacity="0.75" stroke="' + bStyle.plot + '" stroke-width="0.3"/>' +
-        '<rect x="9.3" y="0.3" width="8.4" height="17.4" fill="' + bandStyle.plot + '" fill-opacity="0.45"/>' +
-        '<rect x="8" y="8" width="2" height="2" fill="#3d2a47"/>' +
-        '<rect x="17" y="8" width="2" height="2" fill="#3d2a47"/>' +
+        '<rect x="0.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + aStyle.tint + '" stroke="' + aStyle.plot + '" stroke-width="0.3" tabindex="0" data-tip="' + escA(aTag + " zone: one of the two zones that cross to make the band") + '"/>' +
+        '<rect x="9.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + bStyle.tint + '" fill-opacity="0.75" stroke="' + bStyle.plot + '" stroke-width="0.3" tabindex="0" data-tip="' + escA(bTag + " zone: one of the two zones that cross to make the band") + '"/>' +
+        '<rect x="9.3" y="0.3" width="8.4" height="17.4" fill="' + bandStyle.plot + '" fill-opacity="0.45" tabindex="0" data-tip="' + escA("Overlap band: where the " + aTag + " and " + bTag + " zones cross, the ground counts as " + grp.info.tag + " (verified blend)") + '"/>' +
+        '<rect x="8" y="8" width="2" height="2" fill="#3d2a47" tabindex="0" data-tip="Climate building: the dark square is the building itself, in the middle of its zone"/>' +
+        '<rect x="17" y="8" width="2" height="2" fill="#3d2a47" tabindex="0" data-tip="Climate building: the dark square is the building itself, in the middle of its zone"/>' +
         "</svg>";
     }
     function computeLayout(){
@@ -4196,9 +4386,9 @@
     function hammockSvg(){
       var cs = GROUP_STYLE["Cool"];
       return '<svg viewBox="0 0 18 18" width="148" height="148" role="img" aria-label="Cooling Unit zone with the Starfall Hammock standing inside it, marked with a gold star">' +
-        '<rect x="0.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + cs.tint + '"><title>Cooling Unit zone: the Cool ground the hammock needs to work</title></rect>' +
-        '<rect x="8" y="8" width="2" height="2" rx="0.4" fill="#3d2a47" fill-opacity="0.92" stroke="#fff" stroke-width="0.3"><title>Cooling Unit: the building itself, in the middle of its zone on 2 x 2 cells, 4 tiles of its own ground</title></rect>' +
-        '<rect x="2.2" y="2.2" width="3.4" height="3.4" rx="0.5" fill="#3d2a47" stroke="#ffd94d" stroke-width="0.35"><title>Starfall Hammock: needs a Cool environment, so it stands inside this Cooling Unit zone</title></rect>' +
+        '<rect x="0.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + cs.tint + '" tabindex="0" data-tip="Cooling Unit zone: the Cool ground the hammock needs to work"><title>Cooling Unit zone: the Cool ground the hammock needs to work</title></rect>' +
+        '<rect x="8" y="8" width="2" height="2" rx="0.4" fill="#3d2a47" fill-opacity="0.92" stroke="#fff" stroke-width="0.3" tabindex="0" data-tip="Cooling Unit: the building itself, 1 building in the middle of its zone, footprint 2 × 2 cells, 4 tiles"><title>Cooling Unit: the building itself, in the middle of its zone on 2 x 2 cells, 4 tiles of its own ground</title></rect>' +
+        '<rect x="2.2" y="2.2" width="3.4" height="3.4" rx="0.5" fill="#3d2a47" stroke="#ffd94d" stroke-width="0.35" tabindex="0" data-tip="Starfall Hammock: needs a Cool environment, so it stands inside this Cooling Unit zone"><title>Starfall Hammock: needs a Cool environment, so it stands inside this Cooling Unit zone</title></rect>' +
         '<text x="3.9" y="4.85" font-size="2.6" text-anchor="middle" fill="#ffd94d">★</text></svg>';
     }
     /* The layout as per-zone visual blocks, the Aniimax pattern: a small
@@ -4216,8 +4406,28 @@
           return '<div class="zb-row"><span class="zb-k">' + r[0] + '</span><span>' + r[1] + '</span></div>';
         }).join("") + "</div>";
       }
-      function prodLine(src){
-        return Object.keys(src).sort().map(function(n){ return esc(n) + " ×" + src[n] + (src[n] === 1 ? " plot" : " plots"); }).join(" · ");
+      /* One square's plain name in a zone grid: crop, how many plots
+         it stands for, its climate, and its grow rate here when the
+         falloff applies. Matches the Producing line beside the grid:
+         same crops, same counts, same rates. */
+      function zoneSquareTip(n, z){
+        var c = CLIMATE[n];
+        var cnt = z.crops[n];
+        var base = n + ", " + cnt + (cnt === 1 ? " plot" : " plots");
+        if(z.building === "Sunlamp") return base + ", " + (c ? c.tag : "Adequate light") + ", under this Sunlamp (light, not temperature)";
+        if(!c) return base + ", grows anywhere, sharing this " + z.building + " zone";
+        var r = zoneCropRate(n, z);
+        return base + ", " + c.tag + " zone, in this " + z.building + " zone" + (r !== null ? ", grows at " + r + "% here" : "");
+      }
+      function prodLine(src, zone){
+        return Object.keys(src).sort().map(function(n){
+          var line = esc(n) + " ×" + src[n] + (src[n] === 1 ? " plot" : " plots");
+          if(zone){
+            var rate = zoneCropRate(n, zone);
+            if(rate !== null && rate < 100) line += " · <strong>grows at " + rate + "% here</strong>";
+          }
+          return line;
+        }).join(" · ");
       }
       f.entries.forEach(function(e){
         var info = e.grp.info, style = GROUP_STYLE[info.key];
@@ -4254,16 +4464,32 @@
           ? "Shared zone: " + tags.join(" and ") + " plots share this one " + z.building + " — one building covers them all, counted once, and only this one building's Aniimo is counted for it"
           : "Covers the " + tags.join(", ") + " crops in this zone";
         if(z.building === "Sunlamp" && !shared) why = "Sunlamp overlays temperature zones: ground counted once, one Sunlamp per light zone";
+        /* Falloff in this zone, in plain words: the zone is set to
+           its first group's temperature, so crops of another
+           temperature group sharing it grow at their falloff rate. */
+        var offCrops = Object.keys(z.crops).filter(function(n){ var r = zoneCropRate(n, z); return r !== null && r < 100; });
+        var growRow = offCrops.length
+          ? [["Growing", "This zone is set to <strong>" + esc(tags[0]) + "</strong>, so " + offCrops.map(function(n){ return "<strong>" + esc(n) + "</strong> grows at " + zoneCropRate(n, z) + "% here"; }).join(" · ") + ' <span class="verdict v-mix">single source: Aniimax</span>']]
+          : [];
         blocks.push('<div class="zone-block"><div class="zb-grid">' +
-          zoneSvg(ZONE_CELLS, PLOT_SIZE[z.facility], z.plots, style0, z.building + " zone " + zoneNums[zkey] + " of " + zTotal + ": " + z.plots + " of " + per + " " + z.facility + " plots filled (" + tags.join(" + ") + "), with the " + z.building + " itself in the middle on " + buildingLabel(z.building) + " of its own ground", true, buildingSide(z.building)) +
+          zoneSvg(ZONE_CELLS, PLOT_SIZE[z.facility], z.plots, style0, z.building + " zone " + zoneNums[zkey] + " of " + zTotal + ": " + z.plots + " of " + per + " " + z.facility + " plots filled (" + tags.join(" + ") + "), with the " + z.building + " itself in the middle on " + buildingLabel(z.building) + " of its own ground", true, buildingSide(z.building), {
+            /* Segments in the order the squares were packed: the
+               zone's own group order (z.keys), then crop name, so a
+               square's tip names the crop actually packed there. */
+            segments: Object.keys(z.crops).sort(function(a, b){
+              var ka = z.keys.indexOf(layoutGroupOf(a).key), kb = z.keys.indexOf(layoutGroupOf(b).key);
+              return ka !== kb ? ka - kb : (a < b ? -1 : 1);
+            }).map(function(n){ return { count:z.crops[n], tip:zoneSquareTip(n, z) }; }),
+            emptyTip: "Empty plot: room left in this " + z.building + " zone",
+            buildingTip: z.building + ": the building itself, 1 building in the middle of its zone, footprint " + buildingLabel(z.building) + ", covers this whole 18 × 18 zone"
+          }) +
           '</div><div class="zb-side"><h3>' + z.keys.map(function(k){ return (GROUP_STYLE[k] || GROUP_STYLE["none"]).emoji; }).join(" ") + " " + esc(tags.join(" + ")) + " · " + esc(z.building) + (shared ? " · shared zone" : "") + "</h3>" +
           rowsHtml([
             ["Facility", esc(z.building) + " · footprint " + buildingLabel(z.building)],
             ["Count", z.plots + " of " + per + " " + z.facility + " plots in this zone · zone " + zoneNums[zkey] + " of " + zTotal + " for this building and land"],
-            ["Producing", prodLine(z.crops)],
-            ["Aniimo", z.building === "Cooling Unit" ? abilityMarker("Ice", false, "Ice Lv.3 · strongest known: Geoclaw · cooling units need Ice Aniimo") + "1 Ice Aniimo · strongest known: Geoclaw Lv 3 (cooling units need Ice Aniimo)" : "1 " + esc(z.building) + ' Aniimo · type <span class="verdict v-mix">not verified yet</span>'],
-            ["Why", esc(why)]
-          ]) + "</div></div>");
+            ["Producing", prodLine(z.crops, z)],
+            ["Aniimo", z.building === "Cooling Unit" ? abilityMarker("Ice", false, "Ice Lv.3 · strongest known: Geoclaw · cooling units need Ice Aniimo") + "1 Ice Aniimo · strongest known: Geoclaw Lv 3 (cooling units need Ice Aniimo)" : "1 " + esc(z.building) + ' Aniimo · type <span class="verdict v-mix">not verified yet</span>']
+          ].concat(growRow, [["Why", esc(why)]])) + "</div></div>");
       });
       f.entries.forEach(function(e){
         if(e.grp.info.building) return;
@@ -4271,7 +4497,7 @@
           var src = fac === "Farmland" ? e.farmCrops : e.woodCrops;
           var total = Object.keys(src).reduce(function(a, n){ return a + src[n]; }, 0);
           if(!total) return;
-          blocks.push('<div class="zone-block"><div class="zb-grid">' + patchSvg(fac, total, GROUP_STYLE["none"]) + '</div><div class="zb-side"><h3>🌱 Grows anywhere</h3>' +
+          blocks.push('<div class="zone-block"><div class="zb-grid">' + patchSvg(fac, total, GROUP_STYLE["none"], Object.keys(src).sort().map(function(n){ return { count:src[n], tip:n + ", " + src[n] + (src[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '</div><div class="zb-side"><h3>🌱 Grows anywhere</h3>' +
             rowsHtml([
               ["Facility", "None needed"],
               ["Count", total + " " + fac + (total === 1 ? " plot" : " plots")],
@@ -4298,7 +4524,8 @@
       return '<div class="layout-legend"><h3>How to read the grids</h3><div class="map-legend">' +
         '<p class="lg-row"><span class="lg-sw" style="background:#3d2a47"></span>Dark square in the middle of a zone: the building itself, standing on its own tiles. Its footprint is named beside the grid.</p>' +
         '<p class="lg-row"><span class="lg-sw" style="background:#f2f4f2"></span>Pale ground: the zone one building covers, 18 × 18 cells. Filled squares are plots in this layout; pale dashed squares are room left in the zone.</p>' +
-        '<p class="lg-row"><span class="lg-sw" style="background:#fff"></span>Hover any square or shape and it names itself.</p>' +
+        '<p class="lg-row">Zone colours: <span class="lg-sw" style="background:#dcecfb"></span>Freeze and <span class="lg-sw" style="background:#e7f0fb"></span>Cool (Cooling Unit) · <span class="lg-sw" style="background:#fdeeda"></span>Warm and <span class="lg-sw" style="background:#fbe7e1"></span>Scorching (Heat Furnace) · <span class="lg-sw" style="background:#fdf3da"></span>Adequate light (Sunlamp) · <span class="lg-sw" style="background:#e0f2ec"></span>grows anywhere, no building needed.</p>' +
+        '<p class="lg-row"><span class="lg-sw" style="background:#fff"></span>Hover or tap any square or shape and it names itself: the crop or building, how many plots it stands for, its climate, and how fast it grows there.</p>' +
         '<p class="lg-row"><span class="lg-sw" style="background:#e9a13b"></span>Space counts the buildings too: every space total adds the tiles the buildings stand on to the tiles the plots take.</p>' +
         '<p class="lg-row">' + abilityMarker("Ice", false, "Ice Lv.3 · strongest known: Geoclaw · cooling units need Ice Aniimo") + abilityMarker("Earth", true, "Earth Lv.3 · strongest known: Shrubclaw · Mine · Playful (P) (+20% work efficiency) · a gold ring means the plan counts on that facility's personality bonus (+20%)") + 'Coloured circles on the Aniimo lines: the ability in its game colour, with the Aniimo level inside. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Hover or tap a circle for its details.</p>' +
         '</div><p class="src" style="margin-top:8px">Footprints measured from your placement screenshots, Oct 24, 2026: Cooling Unit 2 × 2 (4 tiles), Heat Furnace 1 × 1 (1 tile), Sunlamp 1 × 1 (1 tile), Crackle Generator 2 × 2 (4 tiles), Power Pole 1 × 1 (1 tile).</p></div>';
@@ -4451,7 +4678,26 @@
       return lines;
     }
 
-    function zoneSvg(zoneCells, plotCells, filled, style, label, withBuilding, bSide){
+    /* Square tips: every square in a layout grid names itself on
+       hover or tap, in plain words, through the page's data-tip
+       system (hover on desktop, tap toggles on touch, focus works
+       too). opts.segments lists the filled squares in order as
+       {count, tip} runs, one run per crop, so a square says its
+       crop, how many plots it stands for, its climate, and its
+       grow rate here when the falloff applies. opts.emptyTip names
+       the room-left squares; opts.buildingTip names the building
+       square in the middle. */
+    function segTipAt(segments, idx){
+      if(!segments) return null;
+      var acc = 0;
+      for(var s = 0; s < segments.length; s++){
+        acc += segments[s].count;
+        if(idx < acc) return segments[s].tip;
+      }
+      return null;
+    }
+    function zoneSvg(zoneCells, plotCells, filled, style, label, withBuilding, bSide, opts){
+      opts = opts || {};
       var perRow = Math.floor(zoneCells / plotCells);
       var perZone = perRow * perRow;
       var off = (zoneCells - perRow * plotCells) / 2;
@@ -4460,7 +4706,8 @@
         var x = (off + (i % perRow) * plotCells).toFixed(2);
         var y = (off + Math.floor(i / perRow) * plotCells).toFixed(2);
         var used = i < filled;
-        rects += '<rect x="' + x + '" y="' + y + '" width="' + (plotCells - 0.35) + '" height="' + (plotCells - 0.35) + '" rx="0.6" fill="' + style.plot + '" fill-opacity="' + (used ? "0.85" : "0.06") + '" stroke="' + style.plot + '" stroke-width="0.3"' + (used ? "" : ' stroke-dasharray="1.1 0.9" opacity="0.5"') + "/>";
+        var tip = used ? segTipAt(opts.segments, i) : opts.emptyTip;
+        rects += '<rect x="' + x + '" y="' + y + '" width="' + (plotCells - 0.35) + '" height="' + (plotCells - 0.35) + '" rx="0.6" fill="' + style.plot + '" fill-opacity="' + (used ? "0.85" : "0.06") + '" stroke="' + style.plot + '" stroke-width="0.3"' + (used ? "" : ' stroke-dasharray="1.1 0.9" opacity="0.5"') + (tip ? ' tabindex="0" data-tip="' + escA(tip) + '"' : "") + "/>";
       }
       /* The building itself stands in the middle of its zone and takes its
          measured footprint of ground there; drawn last so it sits on top
@@ -4468,16 +4715,17 @@
       if(withBuilding){
         var side = bSide || 1;
         var bOff = ((zoneCells - side) / 2).toFixed(2);
-        rects += '<rect x="' + bOff + '" y="' + bOff + '" width="' + side + '" height="' + side + '" rx="0.6" fill="#3d2a47" fill-opacity="0.92" stroke="#fff" stroke-width="0.35"/>';
+        rects += '<rect x="' + bOff + '" y="' + bOff + '" width="' + side + '" height="' + side + '" rx="0.6" fill="#3d2a47" fill-opacity="0.92" stroke="#fff" stroke-width="0.35"' + (opts.buildingTip ? ' tabindex="0" data-tip="' + escA(opts.buildingTip) + '"' : "") + "/>";
       }
       return '<svg viewBox="0 0 ' + zoneCells + " " + zoneCells + '" width="148" height="148" role="img" aria-label="' + esc(label) + '"><rect x="0.15" y="0.15" width="' + (zoneCells - 0.3) + '" height="' + (zoneCells - 0.3) + '" rx="1" fill="' + style.tint + '"/>' + rects + "</svg>";
     }
-    function patchSvg(facility, count, style){
+    function patchSvg(facility, count, style, segments){
       var plotCells = PLOT_SIZE[facility];
       var cols = Math.min(count, 4), rows = Math.ceil(count / cols);
       var w = cols * plotCells, h = rows * plotCells, rects = "";
       for(var i = 0; i < count; i++){
-        rects += '<rect x="' + ((i % cols) * plotCells + 0.18).toFixed(2) + '" y="' + (Math.floor(i / cols) * plotCells + 0.18).toFixed(2) + '" width="' + (plotCells - 0.35) + '" height="' + (plotCells - 0.35) + '" rx="0.6" fill="' + style.plot + '" fill-opacity="0.85"/>';
+        var tip = segTipAt(segments, i);
+        rects += '<rect x="' + ((i % cols) * plotCells + 0.18).toFixed(2) + '" y="' + (Math.floor(i / cols) * plotCells + 0.18).toFixed(2) + '" width="' + (plotCells - 0.35) + '" height="' + (plotCells - 0.35) + '" rx="0.6" fill="' + style.plot + '" fill-opacity="0.85"' + (tip ? ' tabindex="0" data-tip="' + escA(tip) + '"' : "") + "/>";
       }
       var sc = 148 / Math.max(w, h);
       return '<svg viewBox="0 0 ' + w + " " + h + '" width="' + Math.max(40, Math.round(w * sc)) + '" height="' + Math.max(40, Math.round(h * sc)) + '" role="img" aria-label="' + count + " " + facility + ' plots"><rect x="0.15" y="0.15" width="' + (w - 0.3) + '" height="' + (h - 0.3) + '" rx="1" fill="' + style.tint + '"/>' + rects + "</svg>";
@@ -4491,7 +4739,12 @@
       for(var z = 0; z < shown; z++){
         var filled = Math.min(remaining, perZone); remaining -= filled;
         var label = grp.info.building + " zone " + (z + 1) + " of " + zones + ", " + fac + " plots: " + filled + " of " + perZone + " filled, with the " + grp.info.building + " itself standing in the middle on " + bTiles + (bTiles === 1 ? " tile" : " tiles") + " of its own";
-        html += '<div class="zone-map">' + zoneSvg(ZONE_CELLS, PLOT_SIZE[fac], filled, style, label, true, bSide) +
+        var grpTip = grp.crops.join(", ") + " · " + (grp.info.tag || "grows anywhere") + " · " + filled + " " + fac + (filled === 1 ? " plot" : " plots") + " in this zone";
+        html += '<div class="zone-map">' + zoneSvg(ZONE_CELLS, PLOT_SIZE[fac], filled, style, label, true, bSide, {
+            segments: [{ count:filled, tip:grpTip }],
+            emptyTip: "Empty plot: room left in this " + grp.info.building + " zone",
+            buildingTip: grp.info.building + ": the building itself, 1 building in the middle of its zone, footprint " + bSide + " × " + bSide + ", " + bTiles + (bTiles === 1 ? " tile" : " tiles") + ", covers this whole zone"
+          }) +
           '<div class="cap">' + esc(grp.info.building) + " zone " + (z + 1) + " of " + zones + " · " + fac + ": " + filled + " of " + perZone + " plots · building " + bSide + " × " + bSide + ", " + bTiles + (bTiles === 1 ? " tile" : " tiles") + "</div></div>";
       }
       if(zones > shown) html += '<div class="zone-map"><div class="cap" style="max-width:120px;padding-top:56px">+ ' + (zones - shown) + " more " + (zones - shown === 1 ? "zone" : "zones") + ", tiled the same way</div></div>";
@@ -4627,8 +4880,8 @@
         if(grp.farm) maps += zoneMapsHtml(grp, "Farmland", grp.farm, grp.zonesFarm);
         if(grp.wood) maps += zoneMapsHtml(grp, "Woodland", grp.wood, grp.zonesWood);
       } else {
-        if(grp.farm) maps += '<div class="zone-map">' + patchSvg("Farmland", grp.farm, style) + '<div class="cap">Farmland: ' + grp.farm + (grp.farm === 1 ? " plot" : " plots") + "</div></div>";
-        if(grp.wood) maps += '<div class="zone-map">' + patchSvg("Woodland", grp.wood, style) + '<div class="cap">Woodland: ' + grp.wood + (grp.wood === 1 ? " plot" : " plots") + "</div></div>";
+        if(grp.farm) maps += '<div class="zone-map">' + patchSvg("Farmland", grp.farm, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:n + ", " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '<div class="cap">Farmland: ' + grp.farm + (grp.farm === 1 ? " plot" : " plots") + "</div></div>";
+        if(grp.wood) maps += '<div class="zone-map">' + patchSvg("Woodland", grp.wood, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:n + ", " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '<div class="cap">Woodland: ' + grp.wood + (grp.wood === 1 ? " plot" : " plots") + "</div></div>";
       }
       if(maps) s += '<div class="zone-maps">' + maps + "</div>";
       return s + "</div>";
@@ -4741,6 +4994,7 @@
         Object.keys(combined).forEach(function(n){ fieldCounts[n] = 1; });
       }
       var plan = anyGroups ? computeFieldLayout(fieldCounts, starNeeded && facCount("Starfall Hammock") > 0) : null;
+      lastAwayPlanted = plan ? plan.planted : null;
       if(plan && layoutMode === "minimum"){
         var wholePlan = computeFieldLayout(combined, false);
         plan.totalMins = wholePlan.totalMins;
@@ -4832,7 +5086,50 @@
       if(clearBtn) clearBtn.addEventListener("click", function(){
         layoutPicks = {}; renderLayoutPicker(); renderLayout(); renderTeam(); toast("Your extra crops cleared. The automatic groups above are untouched.");
       });
+      renderAway();
     }
+
+    /* While you're away: seeds to have ready. Crops keep replanting
+       on their own as long as seeds last (player-confirmed), so the
+       seeds a crop needs for an away window are its planted plots in
+       the layout on show times the grow rounds that fit in the
+       window, rounds rounded up (a part round still needs its seed
+       planted). Grow times are the planner's own data; a crop with
+       no verified grow time is listed as not verified, never counted
+       with an invented time. Derived output only: no stock boxes. */
+    var lastAwayPlanted = null;
+    function renderAway(){
+      var out = document.getElementById("awayOut");
+      if(!out) return;
+      var inp = document.getElementById("awayHours");
+      var hrs = inp ? parseFloat(inp.value) : NaN;
+      if(!hrs || hrs <= 0){ out.innerHTML = ""; return; }
+      var hrsText = String(Math.round(hrs * 100) / 100);
+      if(!lastAwayPlanted || !Object.keys(lastAwayPlanted).length){
+        out.innerHTML = '<p class="src" style="margin-top:12px">No crops are planted in the layout yet, so there are no seeds to count. Pick basket recipes or run a plan first, and the list appears here.</p>';
+        return;
+      }
+      var awayMins = hrs * 60, total = 0, lines = [];
+      Object.keys(lastAwayPlanted).sort().forEach(function(n){
+        var plots = lastAwayPlanted[n];
+        if(!plots || !ITEMS[n]) return;
+        var gm = parseTimeMin(ITEMS[n].time);
+        if(!gm){
+          lines.push("<li><strong>" + esc(n) + "</strong>: grow time not verified, so no seed count is shown for it</li>");
+          return;
+        }
+        var rounds = Math.ceil(awayMins / gm);
+        var seeds = plots * rounds;
+        total += seeds;
+        lines.push("<li><strong>" + esc(n) + "</strong>: " + fmt(seeds) + " seeds (" + fmt(plots) + (plots === 1 ? " plot" : " plots") + " × " + rounds + (rounds === 1 ? " round" : " rounds") + ")</li>");
+      });
+      out.innerHTML = '<h4 style="margin-top:14px">🌰 Seeds to have ready for ' + hrsText + (hrs === 1 ? " hour" : " hours") + ' away</h4>' +
+        '<ul class="check-list">' + lines.join("") + "</ul>" +
+        '<p class="putout-total" style="margin-top:10px">In all: ' + fmt(total) + " seeds</p>" +
+        '<p class="src">Crops replant on their own as each harvest comes in, as long as seeds last. One seed per plot per round; a part round still needs its seed planted, so rounds round up.</p>';
+    }
+    var awayInpEl = document.getElementById("awayHours");
+    if(awayInpEl) awayInpEl.addEventListener("input", renderAway);
 
     function renderPowerRef(){
       var el = document.getElementById("powerRef");
@@ -4841,10 +5138,10 @@
       var genSide = buildingSide("Crackle Generator"), genTiles = buildingTiles("Crackle Generator");
       var poleSide = buildingSide("Crackle Power Pole"), poleTiles = buildingTiles("Crackle Power Pole");
       el.innerHTML =
-        '<div class="zone-map">' + zoneSvg(22, 4, 25, gen, "Crackle Generator zone filled with 25 Farmland plots, with the Generator itself standing in the middle on " + genTiles + " tiles of its own", true, genSide) + '<div class="cap">Crackle Generator · 22 × 22 cells<br />25 Farmland plots · Generator ' + genSide + ' × ' + genSide + ', ' + genTiles + ' tiles</div></div>' +
-        '<div class="zone-map">' + zoneSvg(22, 7, 9, gen, "Crackle Generator zone filled with 9 Woodland plots, with the Generator itself standing in the middle on " + genTiles + " tiles of its own", true, genSide) + '<div class="cap">Crackle Generator<br />9 Woodland plots</div></div>' +
-        '<div class="zone-map">' + zoneSvg(14, 4, 9, pole, "Crackle Power Pole zone filled with 9 Farmland plots, with the Power Pole itself standing in the middle on " + poleTiles + " tile of its own", true, poleSide) + '<div class="cap">Power Pole · 14 × 14 cells<br />9 Farmland plots · Pole ' + poleSide + ' × ' + poleSide + ', ' + poleTiles + ' tile</div></div>' +
-        '<div class="zone-map">' + zoneSvg(14, 7, 4, pole, "Crackle Power Pole zone filled with 4 Woodland plots, with the Power Pole itself standing in the middle on " + poleTiles + " tile of its own", true, poleSide) + '<div class="cap">Power Pole<br />4 Woodland plots</div></div>';
+        '<div class="zone-map">' + zoneSvg(22, 4, 25, gen, "Crackle Generator zone filled with 25 Farmland plots, with the Generator itself standing in the middle on " + genTiles + " tiles of its own", true, genSide, { segments:[{ count:25, tip:"Farmland plot, 25 in this picture: a power zone reference for E-mode later, not needed for growing" }], emptyTip:"Empty square in this power zone picture", buildingTip:"Crackle Generator: the building itself, footprint " + genSide + " × " + genSide + ", " + genTiles + " tiles, its power zone covers 22 × 22 cells" }) + '<div class="cap">Crackle Generator · 22 × 22 cells<br />25 Farmland plots · Generator ' + genSide + ' × ' + genSide + ', ' + genTiles + ' tiles</div></div>' +
+        '<div class="zone-map">' + zoneSvg(22, 7, 9, gen, "Crackle Generator zone filled with 9 Woodland plots, with the Generator itself standing in the middle on " + genTiles + " tiles of its own", true, genSide, { segments:[{ count:9, tip:"Woodland plot, 9 in this picture: a power zone reference for E-mode later, not needed for growing" }], emptyTip:"Empty square in this power zone picture", buildingTip:"Crackle Generator: the building itself, footprint " + genSide + " × " + genSide + ", " + genTiles + " tiles, its power zone covers 22 × 22 cells" }) + '<div class="cap">Crackle Generator<br />9 Woodland plots</div></div>' +
+        '<div class="zone-map">' + zoneSvg(14, 4, 9, pole, "Crackle Power Pole zone filled with 9 Farmland plots, with the Power Pole itself standing in the middle on " + poleTiles + " tile of its own", true, poleSide, { segments:[{ count:9, tip:"Farmland plot, 9 in this picture: a power zone reference for E-mode later, not needed for growing" }], emptyTip:"Empty square in this power zone picture", buildingTip:"Power Pole: the building itself, footprint " + poleSide + " × " + poleSide + ", " + poleTiles + " tile, its power zone covers 14 × 14 cells" }) + '<div class="cap">Power Pole · 14 × 14 cells<br />9 Farmland plots · Pole ' + poleSide + ' × ' + poleSide + ', ' + poleTiles + ' tile</div></div>' +
+        '<div class="zone-map">' + zoneSvg(14, 7, 4, pole, "Crackle Power Pole zone filled with 4 Woodland plots, with the Power Pole itself standing in the middle on " + poleTiles + " tile of its own", true, poleSide, { segments:[{ count:4, tip:"Woodland plot, 4 in this picture: a power zone reference for E-mode later, not needed for growing" }], emptyTip:"Empty square in this power zone picture", buildingTip:"Power Pole: the building itself, footprint " + poleSide + " × " + poleSide + ", " + poleTiles + " tile, its power zone covers 14 × 14 cells" }) + '<div class="cap">Power Pole<br />4 Woodland plots</div></div>';
     }
 
 
@@ -5261,7 +5558,7 @@
         var g = bpGoalDef(gid);
         if(gid === "coins") return { rank:0, name:g.name, min:cycleMins > 0 ? fmtRate(coinsCycle / cycleMins * 60) + " Home Coins per hour" : "No per-hour rate — this plan grows no crops, and craft and gather times are not verified" };
         if(gid === "xp") return { rank:0, name:g.name, min:"Not verified yet" };
-        if(gid === "mega") return { rank:0, name:g.name, min:cycleMins > 0 ? fmtRate(megaCycle / cycleMins * 60) + " Aniipod Mega per hour" : "Not verified yet: how long the Aniipod Maker takes is not in the verified data" };
+        if(gid === "mega") return { rank:0, name:g.name, min:"about 4 Aniipod Mega per hour at the base Aniipod Maker (1 pod per about 15 minutes; higher maker levels keep this base figure, no faster rate verified) — " + ANIIPOD_MAKER_FLAG };
         if(gid === "wood") return { rank:0, name:g.name, min:cycleMins > 0 ? fmtRate(woodCycle / cycleMins * 60) + " Wood Blocks counted per hour" : "No per-hour rate — this plan grows no crops, and craft and gather times are not verified" };
         if(gid === "sand") return { rank:0, name:g.name, min:"Not verified yet" };
         return { rank:0, name:g.name, min:"Not verified yet" };
@@ -5602,6 +5899,12 @@
       html += "<h3 style='margin-top:22px'>📈 Your rates</h3><p class='sec-sub' style='margin-bottom:0'>Per hour throughout: crops grow side by side and the slowest crop sets the pace, so the per-hour figures run at that pace. Craft and gather times are not in the verified data, so a goal with no verified rate says so instead of guessing.</p>";
       html += '<div class="tbl-wrap"><table><thead><tr><th class="num">Rank</th><th>Goal</th><th>Per hour</th></tr></thead><tbody>' +
         res.rates.map(function(r){ return '<tr><td class="num">' + r.rank + "</td><td><strong>" + esc(r.name) + "</strong></td><td>" + esc(r.min) + "</td></tr>"; }).join("") + "</tbody></table></div>";
+      if(busyCount["Aniipod Maker"]) html += '<p class="src" style="margin-top:10px">' + aniipodMakerLine("Aniipods") + '</p>';
+      /* Power headroom: working counts are the same per-facility
+         building counts the facility table below shows. */
+      var facWorkingSP = {};
+      bpFacGroups(res).forEach(function(g){ facWorkingSP[g.facility] = g.working; });
+      html += '<p class="src" style="margin-top:10px">' + powerHeadroomHtml(facWorkingSP) + '</p>';
       html += '<div class="note note-info"><h4>💰 What this plan earns</h4><p>' + (bpPerHH > 0
         ? 'Counted: <strong>' + fmtRate(res.coinsCycle * bpPerHH) + ' Home Coins per hour</strong> after seed costs.' +
           (res.starSell > 0 ? ' Of that counted rate, <strong>' + fmtRate(res.starSell * bpPerHH) + ' Home Coins per hour</strong> rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "") +
