@@ -135,6 +135,8 @@
       .event-badge{display:inline-block;border-radius:999px;padding:2px 11px;font-size:.78rem;font-weight:800;font-family:"Baloo 2",sans-serif;vertical-align:middle;border:2px solid}
       .ev-season{background:#6d3fa0;border-color:#552d82;color:#fff}
       .ev-feast{background:var(--gold-bg);border-color:var(--gold);color:#7a4d08}
+      .ev-wonder{background:#e07b24;border-color:#b25f10;color:#fff}
+      .note-event{background:#fdf0da;border:2px solid #e07b24}
       .recipe.event-season{border-color:#8a5fc0;background:#f8f3ff}
       .recipe.event-feast{border-color:var(--gold)}
       .recipe.locked.event-season,.recipe.locked.event-feast{background:#e9e2f4;border-color:#c6b8de}
@@ -353,6 +355,11 @@
         <div class="sec-head"><span class="sec-num">Step 2</span><h2>🧺 Your Recipe Basket</h2></div>
         <p class="sec-sub">Add up to <strong>ten recipes</strong>. Ingredients merge into one list, chains included. The lists read your Step 1 numbers above, so what you can make is already settled before you pick. Picks clear when you close the page.</p>
 
+        <div class="note note-event">
+          <h4>🎃 Magical Wonder Night</h4>
+          <p>The season runs <strong>Oct 29 to Dec 10</strong>. Two event crops, <strong>Magic Pumpkin</strong> and <strong>Memory Lanternfruit</strong>, grow on Sunlamp plots (Adequate light), and their seeds cost <strong>4 Weird Jelly Beans</strong> each at the Seed Shop: event currency, not Home Coins. The nine event recipes are marked 🎃 wherever their names appear: cook them and offer the dishes to the <strong>Pumpkin God</strong> for <strong>Whimsy Points</strong>. Each dish's points show in its recipe slot, and any plan that includes event recipes shows its Whimsy Points per hour. Use the 🎃 Magical Wonder Night chip in the card below to list only the event recipes.</p>
+        </div>
+
         <div class="card">
           <p class="fac-state" id="facStateLine" aria-live="polite">🏭 Facilities not set yet — every box is 0, so nothing counts as makeable yet</p>
           <div class="controls">
@@ -366,7 +373,7 @@
             </div>
           </div>
           <div class="chips" id="catChips" role="group" aria-label="Recipe categories"></div>
-          <p class="src" style="margin-top:8px">Marks in recipe names: ⭐ a special recipe needing a rare-currency unlock.</p>
+          <p class="src" style="margin-top:8px">Marks in recipe names: ⭐ a special recipe needing a rare-currency unlock. 🎃 a Magical Wonder Night event recipe.</p>
           <p class="src" id="pickerCount" style="margin-top:10px"></p>
           <div class="hide-row">
             <label class="hide-toggle" for="hideLockedToggle"><input type="checkbox" id="hideLockedToggle" /> <span>Only show recipes I can make</span></label>
@@ -513,7 +520,7 @@
             <div class="field">
               <label for="awayHours">Hours away</label>
               <input type="number" id="awayHours" min="0" step="any" placeholder="e.g. 8" />
-              <span class="hint">Leave it blank and no list shows.</span>
+              <span class="hint">Leave it blank and no list shows, unless the layout plants 🎃 event crops: their Weird Jelly Bean cost per planting round still shows.</span>
             </div>
           </div>
           <div id="awayOut" aria-live="polite"></div>
@@ -631,6 +638,8 @@
           <li><strong>Premium variants are not listed twice.</strong> Premium versions use the same ingredients as the regular version, so one entry covers both.</li>
           <li><strong>Special recipes:</strong> Rose Shortbread and Potato Kvass unlock with Dream Sparks at the Dream Spark Exchange (Home Shop, BINI #2333). Their exact note prices are not verified yet. Plans only make sense once you own them.</li>
           <li><strong>Harvest Moon Festival recipes were removed when the festival ended</strong> (Oct 27, 2026): the moon crops and every dish whose Recipe Note cost Moonray Wheat are gone from the planner.</li>
+          <li><strong>Magical Wonder Night (season Oct 29 to Dec 10, 2026), from your own in-game screenshots, Oct 29, 2026:</strong> the event is named by its official name everywhere on this page. Magic Pumpkin and Memory Lanternfruit: Farmland Lv 5, 1 seed grows 8, 40 minutes, Adequate light (Required, the lighting axis, so Sunlamp plots), sell 61 Home Coins, Energy 1350, Whimsy Point +1 raw; their seeds cost 4 Weird Jelly Beans each at the Seed Shop, event currency, so no Home Coin seed cost is ever counted for them. The nine 🎃 recipes carry their facilities, levels, ingredients, sell prices and Whimsy Points exactly as your cards showed (Golden Lantern Pumpkin Soup +20 is the biggest; the two end products, Honey-Glazed Pumpkin Cup and Glowfruit Lantern Set, are +4 each and read as sell pieces). Cooked dishes are offered to the Pumpkin God for Whimsy Points; plans show Whimsy Points per hour only, and Whimsy Points is a rankable goal in Goals mode. Event prices carry the flag "From your screenshots, Oct 29, 2026" rather than a shop research flag, because your cards are the source.</li>
+          <li><strong>Twine is not verified:</strong> Memory Lantern needs 1 Twine (your screenshot, Oct 29, 2026), but no source for Twine could be found: it does not appear in Daily Aniimo's recipe book and no aniimo.guide item page for it turned up (checked Oct 29, 2026). It is included as a basic material with no claimed source, yield or sell price, and plans count only the amount needed. Because Twine has no verified sell price, Memory Lantern's own margin cannot be worked out, so strategy plans never pick Memory Lantern itself for Home Coins; it is still made wherever a plan needs it as an ingredient, and it counts fully for Whimsy Points.</li>
           <li><strong>Crop environments (verified from your own game, Oct 23, 2026):</strong> two separate tags — a temperature tag (Recommended: grows best there, still grows elsewhere) and Adequate light (Required: hard requirement). Cooling Unit serves Freeze/Cool; Heat Furnace serves Warm/Scorching; Sunlamp serves Adequate light. Cool: Rose, Strawberry, Ginseng, Apple. Freeze: Cranberry, Maple Syrup. Warm: Cherry Blossom, Chestnut. Scorching: Sugarcane, Agave, Palm Bark, Natural Rubber, Coconut, Cocoa. Adequate light: Lavender, Grapes, Walnut, Orange Flower. Every other crop: no special environment needed.</li>
           <li><strong>Sea Salt is the known bottleneck</strong> <span class="verdict v-mix">single community source</span>: it comes only from the Tidewhisper Sandcastle. Per your in-game panels (Oct 27, 2026): Sea Salt needs the <strong>Susuta family</strong>, Pearl needs the <strong>Shelly family</strong>, Star (Starfall Hammock) takes <strong>any Aniimo from the Celestis family</strong>.</li>
           <li><strong>Wood Blocks by Woodland level</strong> (your screenshots, Oct 25, 2026): Lv 1 = 1, Lv 2 = 8, Lv 3 = 21, Lv 4 = 47, Lv 5 = 75, Lv 6 = 122 per plot, same for every tree at that level. Mineral Sand comes from the Mine in amounts that vary, so no fake yield is shown.</li>
@@ -657,7 +666,7 @@
           <li><strong>Climate efficiency gradient — now used in the Layout Helper (checked Oct 28, 2026):</strong> Aniimax's own published model rates climate efficiency at 100% in the right temperature, 80% one step off, 50% two steps off and 20% further off <span class="verdict v-mix">single source: Aniimax</span>. Temperatures are steps: Freeze −2, Cool −1, plain 0, Warm +1, Scorching +2. Layouts still give every crop its own temperature first; where crops share a zone set to another temperature, that crop's line in the zone shows its rate in plain words ("grows at 80% here") and the zone says why. No other planning number uses the gradient.</li>
           <li><strong>Minimum crew, the 80% rule (Aniiland):</strong> a shared worker gets a second pair of hands for a job only when the first worker's combined workload passes 80%. This planner counts each facility a worker covers as 20% of a full load, so a job covering five or more facilities gets a second worker, and workers split the facilities so none passes 80%. Best mode is unchanged.</li>
           <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
-          <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted.</li>
+          <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
           <li><strong>Trips:</strong> the 4 public RV Parks and managers (Sea of Flowers / Ben, Nimbus Fields / Umi, Echoback Landing / Sesa, Driftwise Meadow / Yu); trip slots from the Signal Transmitter (Lv 1 at RV 6 holds 1, Lv 2 at RV 11 holds 2, Lv 3 at RV 16 holds 3, matching the RV ladder above); recalling early loses all the trip's rewards; park buffs from Element Essence placed at the park, +2% attack and resistance for one element, +5% for Pure; Element Gems from Home Orders exchange 10 for 1 essence.</li>
           <li><strong>Power headroom (checked Oct 28, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Cap: the <strong>Lv 1 generator cap is 600</strong> (Steam guide; wikily's Crackle Generator page lists base power 600, made by a Lightning Lv 1 worker). No source states a cap for Lv 2 to 5 — the Steam guide says only that the cap goes up with each upgrade — so at those levels the line shows used power and says the cap is not verified yet, never a guessed cap. Spare power raises grid speed up to <strong>120%</strong>; over the cap, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator 22 × 22, Power Pole 14 × 14.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
@@ -802,7 +811,8 @@
     function C(name, facility, lvl, worker, needs, opts){
       opts = opts || {};
       ITEMS[name] = { name:name, kind:"craft", facility:facility, lvl:lvl, worker:worker, needs:needs,
-        yld: opts.yld || 1, cat: opts.cat || null, blurb: opts.blurb || "", special: !!opts.special };
+        yld: opts.yld || 1, cat: opts.cat || null, blurb: opts.blurb || "", special: !!opts.special,
+        event: opts.event || null, whimsy: opts.whimsy || 0 };
     }
     /* Farmland, base yields */
     G("Wheat","Farmland",1,5,"4 min","Wheat Seed");
@@ -1013,6 +1023,40 @@
     C("Sintered Ore Brick","Chimney Kiln",2,"Fire",{ "Coarse-Sifted Ore":8 }, { cat:"build", blurb:"Tier 2 ore for RV 11 to 14." });
     C("Refined Ore","Chimney Kiln",3,"Fire",{ "Sintered Ore Brick":8 }, { cat:"build", blurb:"Tier 3 ore for RV 15 to 18." });
     C("Microcrystalline Ore Plate","Chimney Kiln",4,"Fire",{ "Refined Ore":4 }, { cat:"build", blurb:"Top tier ore for RV 19 and 20. 4 Refined Ore each." });
+    /* Magical Wonder Night event set (the player's own in-game screenshots,
+       Oct 29, 2026; season Oct 29 to Dec 10). The two crops are identical:
+       Farmland Lv 5, 1 seed grows 8, 40 minutes, Adequate light (Required,
+       the lighting axis, so Sunlamp plots like Lavender and Grapes), sell
+       61 Home Coins, Energy 1350, Whimsy Point +1 raw. Their seeds cost
+       4 Weird Jelly Beans each at the Seed Shop, event currency, so no
+       Home Coin seed price exists for them. Every recipe below carries
+       its facility, level, ingredients, sell price and Whimsy Points
+       exactly as her cards showed; workload and energy are not figures
+       this planner's model uses, so energy is kept in the blurbs and
+       notes where her cards showed it. */
+    G("Magic Pumpkin","Farmland",5,8,"40 min","Magic Pumpkin Seed","Magical Wonder Night event crop, from your screenshots (Oct 29, 2026). Seed costs 4 Weird Jelly Beans at the Seed Shop. Sells for 61 Home Coins, Energy 1350, Whimsy Point +1 raw. Needs Adequate light, so it grows on Sunlamp plots like Lavender and Grapes.");
+    G("Memory Lanternfruit","Farmland",5,8,"40 min","Memory Lanternfruit Seed","Magical Wonder Night event crop, from your screenshots (Oct 29, 2026). Seed costs 4 Weird Jelly Beans at the Seed Shop. Sells for 61 Home Coins, Energy 1350, Whimsy Point +1 raw. Needs Adequate light, so it grows on Sunlamp plots like Lavender and Grapes.");
+    ITEMS["Magic Pumpkin"].event = "wonder";       ITEMS["Magic Pumpkin"].whimsy = 1;
+    ITEMS["Memory Lanternfruit"].event = "wonder"; ITEMS["Memory Lanternfruit"].whimsy = 1;
+    /* Twine: Memory Lantern needs 1 (her screenshot). Its source could not
+       be verified: it is not in Daily Aniimo's recipe book and no
+       aniimo.guide item page for it turned up (checked Oct 29, 2026), so it
+       is included as a basic material with no claimed source, yield or
+       sell price, flagged here and in Sources & Flags. */
+    GA("Twine","Basic material",1,null,"Basic material. Memory Lantern needs 1 Twine (your screenshot, Oct 29, 2026), but where Twine comes from could not be verified: it is not in Daily Aniimo's recipe book and no aniimo.guide item page for it turned up (checked Oct 29, 2026). The planner counts the amount needed and claims no source, yield or sell price for it.");
+    /* No verified source means no station and no worker: the crew, the
+       deployed-building counts and the power count all skip Twine
+       (noCrew), instead of inventing a building for it to come from. */
+    ITEMS["Twine"].noCrew = true;
+    C("Sea Salt Roasted Pumpkin","Claw Game Cooker",4,"Fire",{ "Magic Pumpkin":8, "Sea Salt":23 }, { cat:"food", event:"wonder", whimsy:8, blurb:"Magical Wonder Night dish, offered to the Pumpkin God. Energy 25920." });
+    C("Magic Pumpkin Lantern","Crafting Table",4,"Artisanship",{ "Magic Pumpkin":8 }, { cat:"craft", event:"wonder", whimsy:8, blurb:"Magical Wonder Night craft, offered to the Pumpkin God. Pairs with a Memory Lantern in the Glowfruit Lantern Set." });
+    C("Magic Pumpkin Cake","Blazing Stove",2,"Fire",{ "Magic Pumpkin":8, "Milled Rice":1 }, { cat:"food", event:"wonder", whimsy:10, blurb:"Magical Wonder Night dish, offered to the Pumpkin God. Energy 30190." });
+    C("Golden Lantern Pumpkin Soup","Simmering Pot",3,"Fire",{ "Magic Pumpkin":8, "Memory Lanternfruit":8, "Plain Fresh Water":8 }, { cat:"food", event:"wonder", whimsy:20, blurb:"Magical Wonder Night dish, offered to the Pumpkin God. The biggest Whimsy Point dish in the set at +20, and the one that uses both event crops together." });
+    C("Candied Lanternfruit","Pickling Jar",2,"Dark",{ "Memory Lanternfruit":8, "Rock Candy":1 }, { cat:"food", event:"wonder", whimsy:8, blurb:"Magical Wonder Night dish, offered to the Pumpkin God. Energy 86250." });
+    C("Memory Lantern","Crafting Table",4,"Artisanship",{ "Memory Lanternfruit":8, "Twine":1 }, { cat:"craft", event:"wonder", whimsy:8, blurb:"Magical Wonder Night craft, offered to the Pumpkin God. Pairs with a Magic Pumpkin Lantern in the Glowfruit Lantern Set." });
+    C("Gleam Fruit Nectar","Bouncy Brew Keg",2,"Water",{ "Memory Lanternfruit":8, "Plain Fresh Water":8 }, { cat:"drink", event:"wonder", whimsy:10, blurb:"Magical Wonder Night drink, offered to the Pumpkin God." });
+    C("Honey-Glazed Pumpkin Cup","Blazing Stove",2,"Fire",{ "Sea Salt Roasted Pumpkin":1, "Candied Lanternfruit":1 }, { cat:"food", event:"wonder", whimsy:4, blurb:"Magical Wonder Night dish: one roasted pumpkin and one candied lanternfruit glazed together. The priciest dish in the set, and a sell piece: at +4 it gives fewer Whimsy Points than its two ingredients give separately." });
+    C("Glowfruit Lantern Set","Crafting Table",5,"Artisanship",{ "Memory Lantern":1, "Magic Pumpkin Lantern":1 }, { cat:"craft", event:"wonder", whimsy:4, blurb:"Magical Wonder Night craft: one Memory Lantern plus one Magic Pumpkin Lantern, hung together." });
 
     /* Step 1 module recipes: the ones this planner's data actually references.
        modYld is the harvest with the module recipe; the base yield stays the default. */
@@ -1084,6 +1128,7 @@
 
     var CATS = [
       { id:"all", label:"All recipes" },
+      { id:"event", label:"🎃 Magical Wonder Night" },
       { id:"food", label:"🍽️ Food & Sweets" },
       { id:"drink", label:"🥤 Drinks" },
       { id:"pantry", label:"🫙 Pantry & Staples" },
@@ -1105,7 +1150,8 @@
        conditions among everything visible in her game, so every other crop,
        including Wheat, Rice and Premium Wheat, has no climate requirement
        at all and renders as "No special environment needed, grows
-       anywhere". */
+       anywhere". The two Magical Wonder Night event crops (the player's
+       screenshots, Oct 29, 2026) carry the Adequate light tag too. */
     var CLIMATE = {
       "Rose":           { tag:"Cool", strength:"Recommended", building:"Cooling Unit" },
       "Strawberry":     { tag:"Cool", strength:"Recommended", building:"Cooling Unit" },
@@ -1124,7 +1170,9 @@
       "Natural Rubber": { tag:"Scorching", strength:"Recommended", building:"Heat Furnace" },
       "Coconut":        { tag:"Scorching", strength:"Recommended", building:"Heat Furnace" },
       "Cocoa":          { tag:"Scorching", strength:"Recommended", building:"Heat Furnace" },
-      "Orange Flower":  { tag:"Adequate light", strength:"Required", building:"Sunlamp" }
+      "Orange Flower":  { tag:"Adequate light", strength:"Required", building:"Sunlamp" },
+      "Magic Pumpkin":       { tag:"Adequate light", strength:"Required", building:"Sunlamp" },
+      "Memory Lanternfruit": { tag:"Adequate light", strength:"Required", building:"Sunlamp" }
     };
     function climateLabel(name){
       var c = CLIMATE[name];
@@ -1238,12 +1286,19 @@
       }
       return base + "The cap for a Lv " + genLvl + " generator is <strong>not verified yet</strong>, so no spare figure is shown rather than a guessed one. In game: over the cap, everything on the grid slows below 100%; spare power speeds it up, to 120% at most.";
     }
-    function eventBadge(it){ return ""; }
-    function eventText(it){ return ""; }
+    function eventBadge(it){
+      if(!it || !it.event) return "";
+      return '<span class="event-badge ev-wonder">🎃 Magical Wonder Night</span>';
+    }
+    function eventText(it){
+      if(!it || !it.event) return "";
+      return "🎃 Magical Wonder Night event";
+    }
     /* Plain-text marks for <option> labels, where HTML badges cannot render. */
     function optionMarks(it){
       if(!it) return "";
       var m = "";
+      if(it.event) m += " 🎃";
       if(it.special) m += " ⭐";
       return m;
     }
@@ -1263,7 +1318,7 @@
     }
     function needsText(it){
       var parts = [];
-      for(var k in it.needs){ parts.push(k + " ×" + it.needs[k]); }
+      for(var k in it.needs){ parts.push(k + (ITEMS[k] && ITEMS[k].event ? " 🎃" : "") + " ×" + it.needs[k]); }
       return parts.join(" · ");
     }
     function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
@@ -1556,7 +1611,8 @@
     }
     function recipeMatches(n, q){
       var it = ITEMS[n];
-      if(activeCat !== "all" && it.cat !== activeCat) return false;
+      if(activeCat === "event"){ if(!it.event) return false; }
+      else if(activeCat !== "all" && it.cat !== activeCat) return false;
       if(q && (n + " " + it.facility + " " + needsText(it)).toLowerCase().indexOf(q) === -1) return false;
       return true;
     }
@@ -1590,7 +1646,7 @@
         var chainSteps = chainLockSteps(entry.name).filter(function(s){ return s.name !== entry.name; });
         var cropIngs = Object.keys(it.needs).filter(function(k){ return ITEMS[k] && ITEMS[k].kind === "grow"; });
         html += '<div class="pslot-details">' +
-          '<div class="meta">' + esc(it.facility) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + "</div>" +
+          '<div class="meta">' + esc(it.facility) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + (it.event ? ' · ' + eventBadge(it) : "") + (it.whimsy ? ' · <strong>Whimsy Point +' + it.whimsy + '</strong>' : "") + "</div>" +
           (lock ? '<div class="lock-note">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + ". Yours is " + (lock.have === 0 ? "not built yet" : "Lv " + lock.have) + ". That facility level unlocks at RV " + rv + ", and you can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           (!lock && chainSteps.length ? '<div class="lock-note">🔒 Locked right now: this recipe\'s own station is open, but a step it needs is not: ' + chainSteps.map(function(s){ return esc(chainStepText(s)); }).join("; ") + ". You can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           '<div class="ing">Needs: ' + esc(needsText(it)) + "</div>" +
@@ -1652,11 +1708,14 @@
     function planText(plan){
       var lines = [];
       lines.push("Aniimo basket plan — recipes picked by you, amounts sized by the planner to your homeland (RV " + userRV + ")");
-      lines.push("Recipes: " + basket.map(function(b){ return b.name; }).join(", "));
+      lines.push("Recipes: " + basket.map(function(b){ return b.name + (ITEMS[b.name] && ITEMS[b.name].event ? " 🎃" : ""); }).join(", "));
       lines.push("Sizing: production is fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
       if(plan.perHour > 0){
         lines.push("The slowest crop takes about " + fmtRate(plan.cycleMins) + " minutes to grow (crops grow side by side), and the per-hour rates run at that pace. Per hour, your picked recipes make:");
         basket.forEach(function(b){ lines.push("- " + b.name + ": " + fmtRate((plan.gross[b.name] || 0) * plan.perHour) + " per hour"); });
+        var wtot = 0;
+        basket.forEach(function(b){ var bit = ITEMS[b.name]; if(bit && bit.whimsy) wtot += (plan.gross[b.name] || 0) * plan.perHour * bit.whimsy; });
+        if(wtot > 0) lines.push("🎃 Whimsy Points (Magical Wonder Night): about " + fmtRate(wtot) + " per hour from the event dishes above, to offer the Pumpkin God.");
       } else {
         lines.push("This plan grows no crops, and craft and gather times are not verified, so there is no per-hour rate for it: the lists below name what to gather and make, in order, without amounts.");
       }
@@ -1678,7 +1737,7 @@
               (wf.prod > 0 ? "; this plan's trees bring in about " + fmtRate(wf.prod * plan.perHour) + " per hour (" + wf.details.map(function(d){ return d.name + " " + fmtRate(d.total * plan.perHour) + " per hour"; }).join(", ") + ")" : "; this plan grows no trees, so harvest any Woodland trees to bring them in") + ")";
           }
           else { extra = " (at " + it.facility + ", yield varies)"; }
-          lines.push("- " + n + (plan.perHour > 0 ? ": " + fmtRate(plan.net[n] * plan.perHour) + " per hour" : "") + extra);
+          lines.push("- " + n + (it.event ? " 🎃" : "") + (plan.perHour > 0 ? ": " + fmtRate(plan.net[n] * plan.perHour) + " per hour" : "") + extra);
         });
       }
       section("Grow:", "grow");
@@ -1711,12 +1770,25 @@
       var craftNames = Object.keys(plan.gross).filter(function(n){ return ITEMS[n].kind === "craft"; });
       var facsRunning = {};
       Object.keys(plan.gross).forEach(function(n){ if((plan.net[n] || 0) > 0) facsRunning[ITEMS[n].facility] = true; });
+      /* Whimsy Points per hour: the picked Magical Wonder Night recipes
+         only, at the plan's own per-hour pace, counted from what the
+         picks themselves produce (the same convention planText uses for
+         its per-recipe lines). Intermediate event dishes eaten by a
+         tier-2 recipe are not counted: they are never offered. */
+      var whimsyPerHour = 0;
+      if(plan.perHour > 0){
+        basket.forEach(function(b){
+          var bit = ITEMS[b.name];
+          if(bit && bit.whimsy) whimsyPerHour += (plan.gross[b.name] || 0) * plan.perHour * bit.whimsy;
+        });
+      }
 
       var html = '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + basket.length + '</b><span>recipes picked</span></div>' +
         '<div class="sum-chip"><b>' + growNames.length + '</b><span>crops to grow</span></div>' +
         '<div class="sum-chip"><b>' + gatherNames.length + '</b><span>materials to gather</span></div>' +
-        '<div class="sum-chip"><b>' + Object.keys(facsRunning).length + '</b><span>facilities running</span></div></div>';
+        '<div class="sum-chip"><b>' + Object.keys(facsRunning).length + '</b><span>facilities running</span></div>' +
+        (whimsyPerHour > 0 ? '<div class="sum-chip"><b>🎃 ' + fmtRate(whimsyPerHour) + '</b><span>Whimsy Points per hour</span></div>' : '') + '</div>';
 
       /* how the amounts were sized, stated on the plan itself */
       html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>Production fitted inside your RV ' + userRV + ' limits (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland, crew ' + aniimoCapText(userRV) + ').' +
@@ -1742,6 +1814,7 @@
       Object.keys(plan.gross).forEach(function(n){
         var it = ITEMS[n];
         if(!it || (plan.net[n] || 0) <= 0) return;
+        if(it.noCrew) return;
         var f = it.facility;
         if(f === "Farmland" || f === "Woodland") return;
         var load = 0;
@@ -1800,7 +1873,7 @@
           else { runsCell = '<span class="src">yield varies, see note</span>'; }
           var where = it.kind === "grow" ? esc(it.facility) + " · " + esc(it.time) + " · seed: " + esc(it.seed) + (it.yld ? " · " + effYld(it) + " per seed" + (it.modYld && it.mod && modulesOwned[it.mod] ? " (module recipe)" : "") : "") + (it.facility === "Woodland" ? " · " + woodPlotText(n) : "") + " · " + climateHtml(n)
                                         : esc(it.facility) + (it.yld ? " · yields " + it.yld + " each time" : "");
-          return "<tr><td><strong>" + esc(n) + '</strong><br /><span class="src">' + where + (it.note ? "<br />" + esc(it.note) : "") + '</span></td>' +
+          return "<tr><td><strong>" + esc(n) + (it.event ? " 🎃" : "") + '</strong><br /><span class="src">' + where + (it.note ? "<br />" + esc(it.note) : "") + '</span></td>' +
             '<td class="num"><strong>' + (plan.perHour > 0 ? fmtRate(g * plan.perHour) : "—") + "</strong></td>" +
             '<td class="num">' + runsCell + "</td></tr>";
         }).join("");
@@ -1818,8 +1891,8 @@
           var it = ITEMS[n];
           var target = inBasket(n);
           var perCycle = plan.batches[n] * it.yld;
-          return '<div class="craft-step"><span class="step-n">' + (i + 1) + '</span><div><h4>' + esc(n) + (plan.perHour > 0 ? " ×" + fmtRate(perCycle * plan.perHour) + " per hour" : "") +
-            ' <span class="src">(at ' + esc(it.facility) + ", recipe Lv " + it.lvl + ", " + esc(it.worker) + " Aniimo" + (target ? " · your recipe" : " · ingredient") + ")</span></h4>" +
+          return '<div class="craft-step"><span class="step-n">' + (i + 1) + '</span><div><h4>' + esc(n) + (it.event ? " 🎃" : "") + (plan.perHour > 0 ? " ×" + fmtRate(perCycle * plan.perHour) + " per hour" : "") +
+            ' <span class="src">(at ' + esc(it.facility) + ", recipe Lv " + it.lvl + ", " + esc(it.worker) + " Aniimo" + (target ? " · your recipe" : " · ingredient") + (it.whimsy ? " · Whimsy Point +" + it.whimsy + " each" : "") + ")</span></h4>" +
             "<p>Each one takes: " + esc(needsText(it)) + (plan.perHour > 0 ? ". Per hour that uses: " +
             Object.keys(it.needs).map(function(k){ return k + " ×" + fmtRate(it.needs[k] * plan.batches[n] * plan.perHour); }).join(" · ") + "." : ".") + "</p>" +
             (it.facility === "Aniipod Maker" ? "<p>" + aniipodMakerLine(n + "s") + "</p>" : "") + "</div></div>";
@@ -2394,6 +2467,7 @@
       Object.keys(plan.gross).forEach(function(n){
         var it = ITEMS[n];
         if(!it) return;
+        if(it.noCrew) return;
         var active = it.kind === "craft" ? (plan.batches[n] || 0) > 0 : (plan.net[n] || 0) > 0;
         if(!active) return;
         var job = it.kind === "craft" ? it.worker : (FAC_JOB[it.facility] || null);
@@ -5341,13 +5415,35 @@
       if(!out) return;
       var inp = document.getElementById("awayHours");
       var hrs = inp ? parseFloat(inp.value) : NaN;
-      if(!hrs || hrs <= 0){ out.innerHTML = ""; return; }
+      var plantedMap = lastAwayPlanted || {};
+      /* Magical Wonder Night crops planted in the layout on show. Their
+         seeds are bought with Weird Jelly Beans, 4 per seed, never Home
+         Coins, so their cost rides beside the seed counts here and
+         touches no Home Coin figure anywhere. */
+      var evPlanted = Object.keys(plantedMap).filter(function(n){ return ITEMS[n] && ITEMS[n].event && (plantedMap[n] || 0) > 0; }).sort();
+      if(!hrs || hrs <= 0){
+        /* No away window typed: the seed list stays hidden as before,
+           except the event crops' one-round bean cost, which shows
+           whenever the layout plants them. */
+        if(!evPlanted.length){ out.innerHTML = ""; return; }
+        var roundLines = [], roundBeans = 0;
+        evPlanted.forEach(function(n){
+          var plots = plantedMap[n], beans = plots * 4;
+          roundBeans += beans;
+          roundLines.push("<li><strong>" + esc(n) + " 🎃</strong>: " + fmt(plots) + (plots === 1 ? " plot" : " plots") + " × 4 beans = <strong>" + fmt(beans) + " Weird Jelly Beans</strong> per planting round</li>");
+        });
+        out.innerHTML = '<h4 style="margin-top:14px">🎃 Event seeds, per planting round</h4>' +
+          '<ul class="check-list">' + roundLines.join("") + "</ul>" +
+          (evPlanted.length > 1 ? '<p class="putout-total" style="margin-top:10px">In all: ' + fmt(roundBeans) + " Weird Jelly Beans per planting round</p>" : "") +
+          '<p class="src">Magic Pumpkin and Memory Lanternfruit seeds cost 4 Weird Jelly Beans each at the Seed Shop: event currency, not Home Coins, and no Home Coin figure counts them. Type the hours you will be away above and this becomes the full seed count for the whole window, beans included.</p>';
+        return;
+      }
       var hrsText = String(Math.round(hrs * 100) / 100);
       if(!lastAwayPlanted || !Object.keys(lastAwayPlanted).length){
         out.innerHTML = '<p class="src" style="margin-top:12px">No crops are planted in the layout yet, so there are no seeds to count. Pick basket recipes or run a plan first, and the list appears here.</p>';
         return;
       }
-      var awayMins = hrs * 60, total = 0, lines = [];
+      var awayMins = hrs * 60, total = 0, beanTotal = 0, lines = [];
       Object.keys(lastAwayPlanted).sort().forEach(function(n){
         var plots = lastAwayPlanted[n];
         if(!plots || !ITEMS[n]) return;
@@ -5359,11 +5455,18 @@
         var rounds = Math.ceil(awayMins / gm);
         var seeds = plots * rounds;
         total += seeds;
-        lines.push("<li><strong>" + esc(n) + "</strong>: " + fmt(seeds) + " seeds (" + fmt(plots) + (plots === 1 ? " plot" : " plots") + " × " + rounds + (rounds === 1 ? " round" : " rounds") + ")</li>");
+        var beanPart = "";
+        if(ITEMS[n].event){
+          var beans = seeds * 4;
+          beanTotal += beans;
+          beanPart = " · <strong>" + fmt(beans) + " Weird Jelly Beans</strong>";
+        }
+        lines.push("<li><strong>" + esc(n) + (ITEMS[n].event ? " 🎃" : "") + "</strong>: " + fmt(seeds) + " seeds (" + fmt(plots) + (plots === 1 ? " plot" : " plots") + " × " + rounds + (rounds === 1 ? " round" : " rounds") + ")" + beanPart + "</li>");
       });
       out.innerHTML = '<h4 style="margin-top:14px">🌰 Seeds to have ready for ' + hrsText + (hrs === 1 ? " hour" : " hours") + ' away</h4>' +
         '<ul class="check-list">' + lines.join("") + "</ul>" +
         '<p class="putout-total" style="margin-top:10px">In all: ' + fmt(total) + " seeds</p>" +
+        (beanTotal > 0 ? '<p class="putout-total" style="margin-top:6px">🎃 Of those, the event seeds cost ' + fmt(beanTotal) + " Weird Jelly Beans in all (4 per seed at the Seed Shop, event currency, not Home Coins)</p>" : "") +
         '<p class="src">Crops replant on their own as each harvest comes in, as long as seeds last. One seed per plot per round; a part round still needs its seed planted, so rounds round up.</p>';
     }
     var awayInpEl = document.getElementById("awayHours");
@@ -5408,9 +5511,14 @@
       "Potato Chips":110, "Dried Lemon Slices":190, "Dried Bean Curd":330, "Dried Cherry Blossom":410, "Dried Apple Slices":510, "Dried Strawberries":690, "Dried Ginseng":1120, "Dried Grapes":1210, "Shredded Coconut":1470, "Nuts":1980, "Dried Flowers":1990, "Dried Cranberries":2080,
       "Wood Sculpture":90, "Bamboo Ware":190, "River-Washed Stones":300, "Pottery":630, "Bouquet":1120, "Shell Ornament":1190, "Rose Freshener":1270, "Lavender Sachet":1580, "Dream Catcher":1730, "Star Wish Lantern":2140, "Rubber Duck":1540, "Woven Toy":1580, "Porcelain":2960, "Pearl Necklace":3210, "Wind Chime":3180, "Advanced Wind Chime":3600, "Dye":4280, "Gemstone Dust":4600, "Advanced Gemstone Dust":5210, "Flowers in a Bottle":7700, "Doll":11110,
       "Bamboo Joss Stick":470, "Lemon Incense":700, "Rose Incense":790, "Cherry Incense":840, "Advanced Lemon Incense":900, "Lavender Incense":1270, "Herbal Ginseng Aroma":2360, "Orange Flower Incense":3640, "Mixed Perfume":4850, "Soap":5500, "Lotion":7030,
-      "Cotton Thread":410, "Cotton Fabric":610, "Woolen Yarn":760, "Palm Rope":1150, "Wool Fabric":1190, "Dyed Cotton Fabric":6920
+      "Cotton Thread":410, "Cotton Fabric":610, "Woolen Yarn":760, "Palm Rope":1150, "Wool Fabric":1190, "Dyed Cotton Fabric":6920,
+      "Magic Pumpkin":61, "Memory Lanternfruit":61, "Sea Salt Roasted Pumpkin":1180, "Magic Pumpkin Lantern":650, "Magic Pumpkin Cake":1120, "Golden Lantern Pumpkin Soup":1830, "Candied Lanternfruit":2260, "Memory Lantern":1220, "Gleam Fruit Nectar":1180, "Honey-Glazed Pumpkin Cup":4430, "Glowfruit Lantern Set":2710
     };
     var CROSS_PRICE = { "Wheatmeal":1, "Bamboo":1, "Rock":1, "Wood Sculpture":1 };
+    /* Magical Wonder Night prices come from the player's own screenshots
+       (Oct 29, 2026), so they carry their own flag instead of the
+       Aniiland single-source one. */
+    var EVENT_PRICE = { "Magic Pumpkin":1, "Memory Lanternfruit":1, "Sea Salt Roasted Pumpkin":1, "Magic Pumpkin Lantern":1, "Magic Pumpkin Cake":1, "Golden Lantern Pumpkin Soup":1, "Candied Lanternfruit":1, "Memory Lantern":1, "Gleam Fruit Nectar":1, "Honey-Glazed Pumpkin Cup":1, "Glowfruit Lantern Set":1 };
     /* Unverified but sensible, included in Best Plans only, by the player's
        own rule: she does not want to miss gathering something just because
        it is not verified. Star needs no price here: its sell price is in SELL
@@ -5441,10 +5549,11 @@
       { id:"xp", name:"Aniimo XP", desc:"No verified XP per recipe figures yet, so this goal is flagged, never guessed" },
       { id:"mega", name:"Aniipod Mega", desc:"Made at the Aniipod Maker from Shells gathered at the Mine" },
       { id:"wood", name:"Wood Blocks", desc:"Counted exactly by Woodland level: 1 per plot at Level 1, 8 at Level 2, 21 at Level 3, 47 at Level 4, 75 at Level 5, 122 at Level 6. Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026" },
-      { id:"sand", name:"Mineral Sand", desc:"Rides along with Mine runs, amount varies, no verified fixed yield" }
+      { id:"sand", name:"Mineral Sand", desc:"Rides along with Mine runs, amount varies, no verified fixed yield" },
+      { id:"whimsy", name:"Whimsy Points", desc:"🎃 Magical Wonder Night (Oct 29 to Dec 10): dishes offered to the Pumpkin God. Facilities fill with the event recipes worth the most Whimsy Points each, Golden Lantern Pumpkin Soup +20 first, and spare Farmland plots grow the event crops, worth +1 each raw. Values from your screenshots, Oct 29, 2026" }
     ];
-    var bpGoalOrder = ["coins", "xp", "mega", "wood", "sand"];
-    var bpGoalOn = { coins:true, xp:true, mega:true, wood:true, sand:true };
+    var bpGoalOrder = ["coins", "xp", "mega", "wood", "sand", "whimsy"];
+    var bpGoalOn = { coins:true, xp:true, mega:true, wood:true, sand:true, whimsy:true };
     var bpResult = null, bpStale = false;
     var BP_PROC = ["Carousel Mill", "Dance Pad Polisher", "Aniipod Maker", "Crafting Table", "Claw Game Cooker", "Jukebox Dryer", "Simmering Pot", "Bouncy Brew Keg", "Chimney Kiln", "Woodworking Bench", "Phonolfactory Table", "Joy Wheel Loom", "Blazing Stove", "Pickling Jar"];
     var BP_FAC_ORDER = Object.keys(FAC_RV).concat(["Homeland leisure station"]);
@@ -5454,11 +5563,13 @@
     function bpGoalDef(id){ return BP_GOALS.filter(function(g){ return g.id === id; })[0]; }
     function priceFlagHtml(name){
       if(SELL[name] === undefined) return '<span class="verdict v-lock">No verified sell price</span>';
+      if(EVENT_PRICE[name]) return '<span class="verdict v-ok">From your screenshots, Oct 29, 2026</span>';
       if(CROSS_PRICE[name]) return '<span class="verdict v-ok">Cross-checked</span>';
       return '<span class="verdict v-mix">Single source, spot-check in game</span>';
     }
     function priceFlagText(name){
       if(SELL[name] === undefined) return "no verified sell price";
+      if(EVENT_PRICE[name]) return "price from your screenshots, Oct 29, 2026";
       if(CROSS_PRICE[name]) return "cross-checked price";
       return "single source price, spot-check in game";
     }
@@ -5606,6 +5717,28 @@
           if(best) assign(best, "coins", free[f]);
         });
       }
+      /* Whimsy Points goal, the Magical Wonder Night mirror of coinPass:
+         final event recipes only (the tier-2 dishes are the offerable
+         end products; tier-1 dishes eaten by them are never offered),
+         ranked by Whimsy Points each, one batch apiece first, then each
+         facility's leftover slots filled with its best event recipe. */
+      function whimsyCandidates(){
+        return Object.keys(ITEMS).filter(function(n){
+          var it = ITEMS[n];
+          return it.kind === "craft" && it.event && it.whimsy > 0 &&
+            BP_PROC.indexOf(it.facility) > -1 && bpIsFinal(n) && bpChainOk(n);
+        }).sort(function(a, b){ var d = (ITEMS[b].whimsy || 0) - (ITEMS[a].whimsy || 0); return d !== 0 ? d : a.localeCompare(b); });
+      }
+      function whimsyPass(){
+        var cands = whimsyCandidates();
+        cands.forEach(function(n){ if(!chosen[n]) assign(n, "whimsy", 1); });
+        BP_PROC.forEach(function(f){
+          if(!(free[f] > 0)) return;
+          var best = null;
+          cands.forEach(function(n){ if(ITEMS[n].facility === f && (!best || (ITEMS[n].whimsy || 0) > (ITEMS[best].whimsy || 0))) best = n; });
+          if(best) assign(best, "whimsy", free[f]);
+        });
+      }
       var goalNotes = [];
       /* Prior claims, counted before any goal is filled. Everything the
          player has already planned claims this cycle's capacity first:
@@ -5678,6 +5811,10 @@
         }
         else if(gid === "sand"){
           goalNotes.push("Mineral Sand is switched on: the Mine runs in this plan also bring Mineral Sand, but the amount per run varies and no fixed yield is verified, so no sand amount and no sand rate is counted.");
+        }
+        else if(gid === "whimsy"){
+          if(whimsyCandidates().length) whimsyPass();
+          else goalNotes.push("Whimsy Points is switched on, but no Magical Wonder Night recipe can be made at your setup yet: the dishes need the event crops at Farmland Lv 5, then Claw Game Cooker Lv 4, Crafting Table Lv 4 or 5, Blazing Stove Lv 2, Simmering Pot Lv 3, Pickling Jar Lv 2 or Bouncy Brew Keg Lv 2. Check your Step 1 levels.");
         }
       });
       coinPass(); /* whatever is left always goes to Home Coins */
@@ -5753,6 +5890,10 @@
           var t = woodTreePick();
           if(t){ rawPicks.push({ name:t, plots:woodLeft, goal:"wood" }); woodLeft = 0; }
         }
+        if(gid === "whimsy" && farmLeft > 0){
+          var wpick = ["Magic Pumpkin", "Memory Lanternfruit"].filter(function(n){ return ITEMS[n] && !lockInfo(ITEMS[n]); })[0];
+          if(wpick){ rawPicks.push({ name:wpick, plots:farmLeft, goal:"whimsy" }); farmLeft = 0; }
+        }
         if(gid === "coins"){
           if(farmLeft > 0){ var bf = bestRaw("Farmland"); if(bf){ rawPicks.push({ name:bf, plots:farmLeft, goal:"coins" }); farmLeft = 0; } }
           if(woodLeft > 0){ var bw = bestRaw("Woodland"); if(bw){ rawPicks.push({ name:bw, plots:woodLeft, goal:"coins" }); woodLeft = 0; } }
@@ -5768,10 +5909,13 @@
       var seedRows = {};
       Object.keys(exp.gross).forEach(function(n){ if(ITEMS[n].kind === "grow" && (exp.runs[n] || 0) > 0) seedRows[n] = (seedRows[n] || 0) + exp.runs[n]; });
       rawPicks.forEach(function(p){ seedRows[p.name] = (seedRows[p.name] || 0) + p.plots; });
-      var seedCost = 0, seedUnknown = [];
+      var seedCost = 0, seedUnknown = [], eventSeedNames = [];
       Object.keys(seedRows).forEach(function(n){
         var it = ITEMS[n];
-        if(SEED_PRICE[it.seed] === undefined){ if(seedUnknown.indexOf(n) === -1) seedUnknown.push(n); }
+        if(SEED_PRICE[it.seed] === undefined){
+          if(it.event){ if(eventSeedNames.indexOf(n) === -1) eventSeedNames.push(n); }
+          else if(seedUnknown.indexOf(n) === -1) seedUnknown.push(n);
+        }
         else seedCost += SEED_PRICE[it.seed] * seedRows[n];
       });
       var coinsCycle = finalSell + rawSell - seedCost;
@@ -5789,6 +5933,14 @@
       Object.keys(chosen).forEach(function(n){
         if(usesStar(n) && SELL[n] !== undefined){ starSell += SELL[n] * chosen[n]; starRecipes.push(n); }
       });
+      /* Whimsy Points per cycle: the event dishes this plan ends up
+         holding (its chosen final recipes), plus any event crops the
+         Whimsy plot pass planted raw at +1 each. Tier-1 dishes eaten by
+         a tier-2 recipe are inside the expansion, not in chosen, so
+         they are never counted: they are never offered. */
+      var whimsyCycle = 0;
+      Object.keys(chosen).forEach(function(n){ var wit = ITEMS[n]; if(wit && wit.whimsy) whimsyCycle += wit.whimsy * chosen[n]; });
+      rawPicks.forEach(function(p){ var pit = ITEMS[p.name]; if(pit && pit.whimsy) whimsyCycle += pit.whimsy * effYld(pit) * p.plots; });
       var megaCycle = chosen["Aniipod Mega"] || 0;
 
       var rates = [];
@@ -5799,6 +5951,7 @@
         if(gid === "mega") return { rank:0, name:g.name, min:"about 4 Aniipod Mega per hour at the base Aniipod Maker (1 pod per about 15 minutes; higher maker levels keep this base figure, no faster rate verified) — " + ANIIPOD_MAKER_FLAG };
         if(gid === "wood") return { rank:0, name:g.name, min:cycleMins > 0 ? fmtRate(woodCycle / cycleMins * 60) + " Wood Blocks counted per hour" : "No per-hour rate — this plan grows no crops, and craft and gather times are not verified" };
         if(gid === "sand") return { rank:0, name:g.name, min:"Not verified yet" };
+        if(gid === "whimsy") return { rank:0, name:g.name, min:cycleMins > 0 ? fmtRate(whimsyCycle / cycleMins * 60) + " Whimsy Points per hour" : "No per-hour rate — this plan grows no crops, and craft and gather times are not verified" };
         return { rank:0, name:g.name, min:"Not verified yet" };
       }
       if(strategy === "levelup"){
@@ -5819,8 +5972,11 @@
       flags.push("Special unlock recipes are left out of best plans: Rose Shortbread and Potato Kvass take a rare currency unlock, and the planner does not know whether you own them.");
       if(exp.gross["Star"] > 0) flags.push("Star: " + UNVERIFIED_FLAG + ". Aniimax uses Star too and flags it unverified there, and it is the Starfall Hammock product the Advanced Wind Chime chain needs, so this plan gathers Star at the Starfall Hammock instead of leaving those recipes out." + (starRecipes.length ? " Recipes in this plan that use Star: " + starRecipes.join(", ") + ". " + (cycleMins > 0 ? "They account for " + fmtRate(starSell / cycleMins * 60) + " Home Coins per hour of the counted rate, so that much of the counted rate rests on Star." : "Part of the counted earnings rests on them.") : ""));
       if(seedUnknown.length) flags.push("No seed buy price could be verified for: " + seedUnknown.join(", ") + ". Their seed cost is left out of the Home Coin total rather than guessed.");
+      if(eventSeedNames.length) flags.push("Magical Wonder Night seeds cost Weird Jelly Beans, not Home Coins: " + eventSeedNames.join(", ") + " seeds cost 4 Weird Jelly Beans each at the Seed Shop, so no Home Coin seed cost is counted for them.");
+      var eventChosen = Object.keys(chosen).filter(function(n){ return ITEMS[n].event; });
+      if(eventChosen.length) flags.push("🎃 Magical Wonder Night recipes in this plan (" + eventChosen.join(", ") + "): their sell prices and Whimsy Points come from your own screenshots, Oct 29, 2026.");
       var singleCount = 0;
-      Object.keys(chosen).forEach(function(n){ if(SELL[n] !== undefined && !CROSS_PRICE[n]) singleCount++; });
+      Object.keys(chosen).forEach(function(n){ if(SELL[n] !== undefined && !CROSS_PRICE[n] && !EVENT_PRICE[n]) singleCount++; });
       if(singleCount > 0) flags.push(singleCount + (singleCount === 1 ? " recipe price" : " recipe prices") + " in this plan rest on a single source (Aniiland) and are flagged in the recipe table. Spot-check one in game before a big spend.");
 
       var goalMade = assignedOrder.some(function(n){ return assignedGoal[n] !== "leveling"; }) || rawPicks.length > 0;
@@ -5859,7 +6015,7 @@
       var bpMine = mineSetup(bpMineClaims);
 
       bpResult = { mine:bpMine, chosen:chosen, assignedGoal:assignedGoal, assignedOrder:assignedOrder, exp:exp, rawPicks:rawPicks,
-        seedRows:seedRows, seedCost:seedCost, coinsCycle:coinsCycle, cycleMins:cycleMins, woodCycle:woodCycle,
+        seedRows:seedRows, seedCost:seedCost, coinsCycle:coinsCycle, cycleMins:cycleMins, woodCycle:woodCycle, whimsyCycle:whimsyCycle,
         starSell:starSell, starRecipes:starRecipes,
         megaCycle:megaCycle, rates:rates, flags:flags, farmUsed:farmUsed, woodUsed:woodUsed,
         farmCount:facCount("Farmland"), woodCount:facCount("Woodland"),
@@ -5884,6 +6040,7 @@
       if(res.chosen[name]){
         if(res.assignedGoal[name] === "leveling") return "Made for your Level Up target, the RV " + (res.leveling ? res.leveling.next : "") + " bill, after your basket";
         if(res.assignedGoal[name] === "mega") return "Made for your Aniipod Mega goal";
+        if(res.assignedGoal[name] === "whimsy") return "Made for your Whimsy Points goal";
         return "Sells directly";
       }
       var ps = exp.parents[name] || [];
@@ -5894,6 +6051,7 @@
       function addItem(n, active){
         if(!active) return;
         var it = ITEMS[n];
+        if(it.noCrew) return;
         var job = it.kind === "craft" ? it.worker : (FAC_JOB[it.facility] || null);
         var map = job ? byFac : uncounted;
         if(!map[it.facility]) map[it.facility] = { facility:it.facility, job:job, items:[] };
@@ -5949,7 +6107,7 @@
       });
       res.rawPicks.forEach(function(p){
         var it = ITEMS[p.name];
-        add(it.facility, p.name, p.plots, p.plots === 1 ? "plot" : "plots", p.goal === "wood" ? "Planted for your Wood Blocks goal, and the harvest sells directly" : "Sells directly");
+        add(it.facility, p.name, p.plots, p.plots === 1 ? "plot" : "plots", p.goal === "wood" ? "Planted for your Wood Blocks goal, and the harvest sells directly" : p.goal === "whimsy" ? "Planted for your Whimsy Points goal: the raw crop is worth Whimsy Point +1 each, and the harvest sells directly" : "Sells directly");
       });
       var list = Object.keys(rows).map(function(k){ return rows[k]; });
       var busyFacs = {};
@@ -6014,6 +6172,9 @@
         var w = g.totalWork + Object.keys(g.variesItems).length;
         g.working = w > 0 ? (g.out > 0 ? Math.min(w, g.out) : w) : 1;
       });
+      /* A basic material with no verified source (Twine) deploys no
+         building, so its group never shows as a working facility. */
+      groups = groups.filter(function(g){ return !g.items.every(function(n){ return ITEMS[n] && ITEMS[n].noCrew; }); });
       return groups;
     }
 
@@ -6040,6 +6201,7 @@
       res.rates.forEach(function(r){ lines.push("- " + r.name + ": " + r.min); });
       if(bpPerH > 0){
         lines.push("- Counted Home Coins per hour, after seed costs: " + fmtRate(res.coinsCycle * bpPerH) + ".");
+        if(res.whimsyCycle > 0) lines.push("- 🎃 Whimsy Points: " + fmtRate(res.whimsyCycle * bpPerH) + " per hour from the Magical Wonder Night dishes in this plan, to offer the Pumpkin God.");
         if(res.starSell > 0) lines.push("- Of that counted rate, " + fmtRate(res.starSell * bpPerH) + " Home Coins per hour rests on recipes that use Star (" + res.starRecipes.join(", ") + "). Star: " + UNVERIFIED_FLAG + ", Aniimax uses it too, flagged unverified there.");
       } else {
         lines.push("- No per-hour rate for this plan: it grows no crops, and craft and gather times are not verified, so earnings are not shown as totals here.");
@@ -6059,7 +6221,7 @@
       lines.push(bpPerH > 0 ? "Recipes to make (per hour):" : "Recipes to make:");
       Object.keys(res.exp.batches).filter(function(n){ return (res.exp.batches[n] || 0) > 0; }).sort().forEach(function(n){
         var it = ITEMS[n];
-        lines.push("- " + n + ": " + (bpPerH > 0 ? fmtRate(res.exp.batches[n] * it.yld * bpPerH) + " per hour" : "no per-hour rate for this plan") + " at " + it.facility + ". " + bpWhy(n, res) + ". Sell price: " + (SELL[n] !== undefined ? fmt(SELL[n]) + " Home Coins each (" + priceFlagText(n) + ")" : "none verified") + "." + unverifiedFlagText(n));
+        lines.push("- " + n + (it.event ? " 🎃" : "") + ": " + (bpPerH > 0 ? fmtRate(res.exp.batches[n] * it.yld * bpPerH) + " per hour" : "no per-hour rate for this plan") + " at " + it.facility + ". " + bpWhy(n, res) + ". Sell price: " + (SELL[n] !== undefined ? fmt(SELL[n]) + " Home Coins each (" + priceFlagText(n) + ")" : "none verified") + "." + (it.whimsy ? " Whimsy Point +" + it.whimsy + " each." : "") + unverifiedFlagText(n));
       });
       res.rawPicks.forEach(function(p){
         lines.push("- Plant and sell: " + p.name + ", " + p.plots + (p.plots === 1 ? " plot" : " plots") + " at " + ITEMS[p.name].facility + ", sells at " + fmt(SELL[p.name]) + " Home Coins each (" + priceFlagText(p.name) + ").");
@@ -6102,7 +6264,7 @@
         '<div class="sum-chip"><b>' + (res.assignedOrder.length + res.rawPicks.length) + '</b><span>recipes and plantings picked for you</span></div>' +
         '<div class="sum-chip"><b>' + Object.keys(busyCount).length + '</b><span>facilities running</span></div>' +
         (bpPerHH > 0
-          ? '<div class="sum-chip"><b>' + fmtRate(res.coinsCycle * bpPerHH) + '</b><span>counted Home Coins per hour, after seed costs</span></div></div>'
+          ? '<div class="sum-chip"><b>' + fmtRate(res.coinsCycle * bpPerHH) + '</b><span>counted Home Coins per hour, after seed costs</span></div>' + (res.whimsyCycle > 0 ? '<div class="sum-chip"><b>🎃 ' + fmtRate(res.whimsyCycle * bpPerHH) + '</b><span>Whimsy Points per hour</span></div>' : '') + '</div>'
           : '<div class="sum-chip"><b>—</b><span>no per-hour rate for this plan — it grows no crops, and craft and gather times are not verified</span></div></div>');
       var snapOrderR = res.goalOrderSnap || bpGoalOrder, snapOnR = res.goalOnSnap || bpGoalOn;
       html += '<p class="src" style="margin-top:10px">Setup used: RV ' + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", and your Step 1 facility counts and levels. " +
@@ -6154,7 +6316,8 @@
       html += '<div class="note note-info"><h4>💰 What this plan earns</h4><p>' + (bpPerHH > 0
         ? 'Counted: <strong>' + fmtRate(res.coinsCycle * bpPerHH) + ' Home Coins per hour</strong> after seed costs.' +
           (res.starSell > 0 ? ' Of that counted rate, <strong>' + fmtRate(res.starSell * bpPerHH) + ' Home Coins per hour</strong> rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "") +
-          (res.woodCycle > 0 ? ' Wood Blocks: <strong>' + fmtRate(res.woodCycle * bpPerHH) + ' counted per hour</strong>, a tree byproduct that rides along with this plan\'s tree harvests, never planted. ' + WOOD_SOURCE + '.' : "")
+          (res.woodCycle > 0 ? ' Wood Blocks: <strong>' + fmtRate(res.woodCycle * bpPerHH) + ' counted per hour</strong>, a tree byproduct that rides along with this plan\'s tree harvests, never planted. ' + WOOD_SOURCE + '.' : "") +
+          (res.whimsyCycle > 0 ? ' 🎃 Whimsy Points: <strong>' + fmtRate(res.whimsyCycle * bpPerHH) + ' per hour</strong> from the Magical Wonder Night dishes in this plan, to offer the Pumpkin God.' : "")
         : 'This plan grows no crops, and craft and gather times are not verified, so it has <strong>no per-hour rate</strong>: earnings are not shown as totals here.' +
           (res.starSell > 0 ? ' Part of what it would earn rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "")) +
         "</p></div>";
@@ -6165,14 +6328,14 @@
         '<div class="tbl-wrap"><table><thead><tr><th>Recipe</th><th>Facility</th><th class="num">Makes per hour</th><th class="num">Sell price each</th><th>Price check</th><th>Why</th></tr></thead><tbody>' +
           craftNames.map(function(n){
             var it = ITEMS[n];
-            return "<tr><td><strong>" + esc(n) + "</strong>" + unverifiedFlagHtml(n) + "</td><td>" + esc(it.facility) + '</td><td class="num">' + (bpPerHH > 0 ? fmtRate(res.exp.batches[n] * it.yld * bpPerHH) : "—") + '</td><td class="num">' + (SELL[n] !== undefined ? fmt(SELL[n]) : "None") + "</td><td>" + priceFlagHtml(n) + "</td><td>" + esc(bpWhy(n, res)) + "</td></tr>";
+            return "<tr><td><strong>" + esc(n) + "</strong>" + (it.whimsy ? '<br /><span class="src">🎃 Magical Wonder Night · Whimsy Point +' + it.whimsy + ' each</span>' : "") + unverifiedFlagHtml(n) + "</td><td>" + esc(it.facility) + '</td><td class="num">' + (bpPerHH > 0 ? fmtRate(res.exp.batches[n] * it.yld * bpPerHH) : "—") + '</td><td class="num">' + (SELL[n] !== undefined ? fmt(SELL[n]) : "None") + "</td><td>" + priceFlagHtml(n) + "</td><td>" + esc(bpWhy(n, res)) + "</td></tr>";
           }).join("") + "</tbody></table></div>";
       } else {
         html += '<div class="empty-plan">No crafted recipe fits your setup and goals in this plan. The plantings below still earn, and a higher RV level opens more recipes.</div>';
       }
       if(res.rawPicks.length){
         html += '<p class="sec-sub" style="margin:12px 0 0">Planted to sell, on plots the recipes did not need: ' + res.rawPicks.map(function(p){
-          return "<strong>" + esc(p.name) + "</strong> ×" + p.plots + " plots at " + esc(ITEMS[p.name].facility) + " (" + fmt(SELL[p.name]) + " Home Coins each, " + priceFlagText(p.name) + ")";
+          return "<strong>" + esc(p.name) + (ITEMS[p.name].event ? " 🎃" : "") + "</strong> ×" + p.plots + " plots at " + esc(ITEMS[p.name].facility) + " (" + fmt(SELL[p.name]) + " Home Coins each, " + priceFlagText(p.name) + (p.goal === "whimsy" ? "; planted for your Whimsy Points goal, worth Whimsy Point +1 each raw" : "") + ")";
         }).join(", ") + ".</p>";
       }
 
@@ -6201,9 +6364,10 @@
         html += '<div class="tbl-wrap"><table><thead><tr><th>Crop</th><th>Facility</th><th class="num">Plots</th><th class="num">Seeds</th><th>Seed cost</th></tr></thead><tbody>' +
           seedNames.map(function(n){
             var it = ITEMS[n], plots = res.seedRows[n], cost;
-            if(SEED_PRICE[it.seed] === undefined) cost = "No verified seed price in the filed research";
+            if(it.event) cost = "4 Weird Jelly Beans each at the Seed Shop (event currency, not Home Coins)";
+            else if(SEED_PRICE[it.seed] === undefined) cost = "No verified seed price in the filed research";
             else cost = fmt(SEED_PRICE[it.seed]) + " each, " + fmt(SEED_PRICE[it.seed] * plots) + ' total <span class="verdict v-ok">Seed table, filed research</span>';
-            return "<tr><td><strong>" + esc(n) + "</strong><br /><span class='src'>" + climateHtml(n) + '</span></td><td>' + esc(it.facility) + '</td><td class="num">' + fmt(plots) + '</td><td class="num">' + fmt(plots) + "</td><td>" + cost + "</td></tr>";
+            return "<tr><td><strong>" + esc(n) + (it.event ? " 🎃" : "") + "</strong><br /><span class='src'>" + climateHtml(n) + '</span></td><td>' + esc(it.facility) + '</td><td class="num">' + fmt(plots) + '</td><td class="num">' + fmt(plots) + "</td><td>" + cost + "</td></tr>";
           }).join("") + "</tbody></table></div>" +
           '<p class="src" style="margin-top:8px">One seed per plot per planting. Seed cost counted in the Home Coin rate: ' + (bpPerHH > 0 ? fmtRate(res.seedCost * bpPerHH) + " Home Coins per hour." : "left out — this plan has no per-hour rate.</p>") + (bpPerHH > 0 ? "</p>" : "");
       } else {
