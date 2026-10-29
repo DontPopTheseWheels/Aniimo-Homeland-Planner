@@ -259,6 +259,15 @@
       .adj-btn[disabled]{opacity:.35;cursor:default}
       .adj-btn[disabled]:hover{border-color:var(--card-line);color:var(--ink)}
       .mine-line{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;margin-top:6px}
+      /* Per-Mine material picker (Set your Mines note) */
+      .mine-picks{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+      .mine-pick{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap;background:#fff;border:2px solid var(--card-line);border-radius:12px;padding:9px 11px}
+      .mine-pick .mine-n{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1rem;flex:none}
+      .mine-pick select{flex:1 1 190px;min-width:0;min-height:48px}
+      .mine-pick .mine-yield{flex:1 1 100%;font-size:.88rem;color:var(--ink-soft);font-weight:700}
+      .mine-pick .mine-tag{flex:none}
+      .mine-add-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+      .mine-warn{background:var(--warn-bg);border:2px solid var(--gold);border-radius:10px;padding:8px 11px;font-weight:700;font-size:.92rem;margin-top:10px}
       .adj-zero{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card);border:2px dashed var(--card-line);border-radius:14px;padding:10px 14px;margin-top:10px;font-weight:700}
       /* RV planner */
       .rv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -678,7 +687,10 @@
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
           <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 8): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 8): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales. Crafting (max 7): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Premium Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume. Only three change numbers, auto-applied from Ecological: Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8). Premium Wheat appears in no module ladder — it stays manual, flagged, never auto-applied.</li>
           <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the recipe data; verified gather pairings: Well = Water, Mine = Earth, Tidewhisper Sandcastle = Leisure. Farmland, Woodland, Dewy House and the leisure station have no verified job <span class="verdict v-mix">not verified yet</span> — no worker is named, but each station still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is used by no recipe in the data so it is never deployed, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
-          <li><strong>Adding facilities by hand (Layout Helper, player's ask, Oct 29, 2026):</strong> every facility block in the layout, and every material line in the Set your Mines note, carries minus and plus steppers in the same style as the plot steppers. Plus puts out extra copies she owns, never above the Step 1 count; minus takes back only copies she added, because the plan's own count is the floor. Added copies are marked "added by you", are staffed in the crew like any copy out, draw power in the power lines, and count in the strategy plan's Working column. Production amounts stay plan driven: added copies are placed and staffed spares, except Mines, where each added Mine digs the material on its line and brings that material's per run yield again (gather run times are not verified, so Mine takes are counted per run, never per hour). Added copies live in memory only and reset to the plan's counts whenever the basket or the strategy changes. <strong>Facilities the plan does not use at all</strong> (same ask, later Oct 29, 2026): the layout ends its facility blocks with an "Add a facility this plan isn't using" list — every facility she owns that the plan leaves out, each with the same plus stepper — so spare Mines or anything else can be put out even when no recipe touches them; a crafting or cooking facility added this way is a spare copy (staffed by hand in game, not counted in the plan's crew or rates), while the named facilities join the crew like any copy out.</li>
+          <li><strong>Adding facilities by hand (Layout Helper, player's ask, Oct 29, 2026):</strong> every facility block in the layout carries minus and plus steppers in the same style as the plot steppers, and the Set your Mines note carries its own per-Mine picker (see the next entry). Plus puts out extra copies she owns, never above the Step 1 count; minus takes back only copies she added, because the plan's own count is the floor. Added copies are marked "added by you", are staffed in the crew like any copy out, draw power in the power lines, and count in the strategy plan's Working column. Production amounts stay plan driven: added copies are placed and staffed spares, except Mines, where each added Mine digs the material on its line and brings that material's per run yield again (gather run times are not verified, so Mine takes are counted per run, never per hour). Added copies live in memory only and reset to the plan's counts whenever the basket or the strategy changes. <strong>Facilities the plan does not use at all</strong> (same ask, later Oct 29, 2026): the layout ends its facility blocks with an "Add a facility this plan isn't using" list — every facility she owns that the plan leaves out, each with the same plus stepper — so spare Mines or anything else can be put out even when no recipe touches them; a crafting or cooking facility added this way gets a job pick on its block and, once it has a job, counts in the crew and power like any copy out (see the job-picks entry below), while the named facilities join the crew like any copy out.</li>
+          <li><strong>Per-Mine material picks (player's ask, Oct 29, 2026):</strong> the Set your Mines note in the basket plan and the strategy plan is a picker, one row per Mine out. Plan-claimed Mines arrive with the plan's suggested material already picked; she can change any Mine's pick, claimed or added, and every surface (crew, power, deployed totals, the strategy table's Working column) follows her picks. Mines she owns beyond the plan's claims can be added into the plan from the same controls — adding stops at her Step 1 Mine count, an added Mine can be taken back from the same row, and once added a Mine counts exactly like a plan-claimed one: Earth crew, power draw, deployed totals, and its picked material's per-run yield (Mine takes are counted per run, never per hour, because gather run times are not verified). <strong>All mining gives Mineral Sand (player's rule, Oct 29, 2026):</strong> every mining run brings Mineral Sand alongside the Mine's picked material, in amounts that vary, so no Mine needs to be set to Mineral Sand just to earn it, a Mineral Sand need (a goal, or the Level Up bill's ore chain) is covered by any Mine out, and no sand amount or rate is counted anywhere. Picks and added Mines live in memory only and reset to the plan's suggestions whenever the basket or the strategy changes.</li>
+          <li><strong>Per-copy gather picks (player's extension of the Mine picker, Oct 29, 2026):</strong> the other gather facilities get the same treatment on their Layout Helper blocks. Every copy out of the Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock carries one product pick — a facility the plan uses starts on the plan's own assignment, copies she adds (from the add-a-facility list or the block stepper, up to her Step 1 count, and takeable-back the same way) start on the facility's first product — and she can change any copy's pick. An added copy counts exactly like a plan copy: its crew post, its power draw, the deployed totals, and its picked product's per-run yield from the recipe data (Sea Salt 10, Pearl 2 — with their Susuta and Shelly family notes — Aromathyst 4, Star 2 flagged unverified like everywhere else, and the Well's waters at the Well's level). Gather run times are not verified, so takes are counted per run, never per hour. <strong>The Nimbus Bed gets no pick:</strong> no verified gather product for it exists in the data (the module ladder links Wool's Quick Recipe to it, but the recipe data gathers Wool at the leisure station), so its block states that instead of guessing; an added Nimbus Bed still counts as a staffed copy out.</li>
+          <li><strong>Job picks for added copies of ANY facility (player's generalisation, Oct 29, 2026):</strong> the what-is-it-doing pick is not Mine-and-gather only. Every copy she adds by hand, of any facility kind — a spare Claw Game Cooker, Crafting Table, Chimney Kiln, any of them — gets one product pick on its layout block, defaults to the plan's first product at that facility (else the facility's first product at her levels), and counts in full once it has a job: its facility's worker post joins the crew (a facility the plan never ran gets its post from the picked product), the copy draws power at its deployed total on both plans' power lines, it stands in the deployed totals, and its product's take is counted from the same recipe data (per batch for crafts, per run for gathers — craft and gather times are not verified, so never per hour). <strong>Every pick list is filtered by her current state:</strong> a product appears only when its level fits the facility level she entered in Step 1 AND the RV level its facility tier unlocks at is at or below her current RV — the same gating the recipe lists use — for the Mine and gather pickers too. A facility that can make nothing at her current level and RV offers no list: its add row and its block say so in words (climate buildings instead name their real job — the layout sets their zones; the Nimbus Bed names its missing verified product).</li>
           <li><strong>Aniimo caps:</strong> the "place N Aniimo in your Home" numbers from AniimoTools, matching MetaBot.GG at every level: RV 2 = 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44, 45 at RV 20. The crew check covers the whole put-out total — nothing counted outside it. A crew over the cap is never shown as usable: Best is fitted down to the cap by sharing workers at as few facilities as possible (named on the plan); only when even Minimum is over does no crew show. Flag: aniimoguide prints a lower second set from RV 13 on (40 at RV 20) and advises planning on it; this planner follows the AniimoTools/MetaBot numbers, which match the player's own game (36 at RV 14).</li>
           <li><strong>Bud Tickets:</strong> earned by Homebuilding Zone residents (opens RV 8), not by production. Rates (Game8): 120/day regular, 180 Sparkling or Prismana, 270 both. Decor gives about 1 Habitability per ticket; Habitability gates RV 10–20. The reserve is derived per plan (cap − production crew on show), never a fixed number. The Jar's capacity is not verified, so none is stated; a single-source claim of +100/day from a daily home chest is not counted.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> — Master Guide table (GameWith, Game8, AniimoTools, Selphie1999 Gaming agree): E Energetic — Bouncy Brew Keg, Woodworking Bench; I Instinctive — Phonolfactory Table, Dewy House; S Practical — Claw Game Cooker, Chimney Kiln; N Nimble — Jukebox Dryer, Blazing Stove; T Tenacious — Carousel Mill, Simmering Pot; F Faithful — Joy Wheel Loom, Well; J Judicious — Crafting Table, Tidewhisper Sandcastle; P Playful — Mine, Pickling Jar. Farmland, Woodland, Dance Pad Polisher, Aniipod Maker and the leisure station have no verified match — stated, not guessed.</li>
@@ -877,7 +889,7 @@
     GA("Copper Ore","Mine",4,5,"Mined, no ingredients.");
     GA("Quartz Ore","Mine",5,4,"Mined, no ingredients.");
     GA("Gem","Mine",6,2,"Mined, no ingredients.");
-    GA("Mineral Sand","Mine",1,null,"Comes out of the Mine alongside Rock, so the amount per run varies. No fixed yield is printed on purpose.");
+    GA("Mineral Sand","Mine",1,null,"Every mining run brings Mineral Sand alongside whatever material that Mine is set to gather (player's rule, Oct 29, 2026), so any Mine out earns some; the amount per run varies. No fixed yield is printed on purpose.");
     GA("Wood Block","Woodland",1,null,"Tree byproduct, never planted: Wood Blocks ride along with every Woodland tree harvest at a fixed rate per plot, so they have no seed and no plot of their own. Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026: Level 1 gives 1 per plot, Level 2 gives 8, Level 3 gives 21, Level 4 gives 47, Level 5 gives 75, Level 6 gives 122.");
     GA("Sea Salt","Tidewhisper Sandcastle",1,10,"Made only at the Tidewhisper Sandcastle. The known bottleneck: stock up early. The Aniimo assigned to make it must be from the Susuta family (the game's own note on the Sandcastle panel, from your screenshot, Oct 27, 2026).");
     GA("Pearl","Tidewhisper Sandcastle",3,2,"Gathered at the Tidewhisper Sandcastle, no ingredients. The Aniimo assigned to gather it must be from the Shelly family (the game's own note on the Sandcastle panel, from your screenshot, Oct 27, 2026).");
@@ -1943,6 +1955,28 @@
           facWorkingBP[f] = capN2 > 0 ? Math.min(facWorkingBP[f] + ex, capN2) : facWorkingBP[f] + ex;
         }
       });
+      /* Mines draw power for every Mine out in the Mine picker's
+         list — plan-claimed and added alike — the same total the
+         Mines note below shows. */
+      (function(){
+        var msP = mineSetup((typeof bpResult !== "undefined" && bpResult && bpResult.mine) ? bpResult.mine.claims.filter(function(c){ return c.src === "goal"; }) : null);
+        if(msP.totalOut > 0) facWorkingBP["Mine"] = msP.totalOut;
+      })();
+      /* Gather facilities draw power for every copy out too —
+         plan copies and copies she added alike, even when this
+         basket never gathers there — the same deployed counts the
+         layout blocks and crew read. */
+      (function(){
+        var ncP = facilityNeedCounts();
+        ["Well", "Dewy House", "Tidewhisper Sandcastle", "Starfall Hammock"].forEach(function(f){
+          if(!isGatherPickFac(f)) return;
+          var wP = deployedCount(f, Math.min(ncP[f] || 0, facCount(f)));
+          if(wP > 0) facWorkingBP[f] = wP;
+        });
+      })();
+      /* And any other facility with hand-added copies draws power
+         for its deployed total, job pick or not. */
+      applyAddedPower(facWorkingBP);
       html += '<p class="src" style="margin-top:10px">' + powerHeadroomHtml(facWorkingBP) + '</p>';
       /* Mines setup instruction: max Mines for this RV, and the material
          the basket (then the leveling bill) claims first. */
@@ -2584,6 +2618,17 @@
          beyond the copies owned queue and take turns (shown on the
          plan), they are never run in parallel on one copy. */
       var distinct = L.products && L.products[f] ? Object.keys(L.products[f]).length : 0;
+      /* Mineral Sand never needs a Mine of its own when any other
+         Mine material is in the plan (player's rule, Oct 29, 2026):
+         every mining run brings sand alongside its material, so sand
+         adds no distinct product and no varies copy to the Mine's
+         count — the Mines box, crew and layout stay on one number. */
+      if(f === "Mine"){
+        var mProds = L.products && L.products[f] ? Object.keys(L.products[f]).filter(function(n){ return n !== "Mineral Sand"; }) : [];
+        if(mProds.length) distinct = mProds.length;
+        var mVar = L.variesItems[f] ? Object.keys(L.variesItems[f]).filter(function(n){ return n !== "Mineral Sand"; }) : [];
+        if(mVar.length || mProds.length) vc = mVar.length;
+      }
       var n = Math.max(((L.load[f] || 0) > 0 ? Math.ceil(L.load[f] - 1e-9) : 0) + vc, distinct);
       if(f === "Mine" && L.mineFloor) n = Math.max(n, L.mineFloor);
       return owned > 0 ? Math.min(n, owned) : n;
@@ -2713,6 +2758,33 @@
          Cooling Unit's zone, one Cooling Unit is out and one Ice
          Aniimo is counted, however many you own; a Well the plan
          never draws from staffs nobody. */
+      /* Added copies with a job pick join this crew (player's
+         generalisation, Oct 29, 2026): a crafting or cooking facility
+         the plan never runs still gets its worker post here once she
+         has put a copy out and it has a job — the picked products
+         join the facility's item list, and the post itself follows
+         the same per-facility crew model as plan work. The named
+         facilities' added copies are already counted through
+         placed, below, so they are not doubled here. */
+      (function(){
+        var ncT = allFacilityNeedCounts();
+        Object.keys(FAC_RV).forEach(function(f){
+          if(f === "Farmland" || f === "Woodland") return;
+          if(FAC_ANIIMO.some(function(fa){ return fa.facility === f; })) return;
+          if(!(facExtraFor(f) > 0)) return;
+          var planCT = Math.min(ncT[f] || 0, facCount(f));
+          var exT = deployedCount(f, planCT) - planCT;
+          if(exT <= 0) return;
+          var jobs = extraAssignments(f, exT);
+          if(!jobs.length) return;
+          var jobT = null;
+          jobs.forEach(function(n){ if(!jobT){ var itT = ITEMS[n]; jobT = itT.kind === "craft" ? itT.worker : (typeof FAC_JOB !== "undefined" ? FAC_JOB[f] : null); } });
+          var mapT = jobT ? byFac : uncounted;
+          if(!mapT[f]) mapT[f] = { facility:f, job:jobT, items:[] };
+          jobs.forEach(function(n){ if(mapT[f].items.indexOf(n) === -1) mapT[f].items.push(n); });
+          mapT[f].items.sort();
+        });
+      })();
       var climInfo = (typeof climateLayoutInfo === "function") ? climateLayoutInfo() : null;
       var needCounts = facilityNeedCounts();
       var placed = {};
@@ -4054,10 +4126,32 @@
        flagged everywhere else on this page. Her screenshot (Oct 25, 2026)
        shows a Mine Lv 4 panel set to Copper Ore; the material names used
        here are the ones already in this planner's recipe data. */
+    /* Can this item be picked as a copy's job right now? Every
+       what-is-it-doing list on the page is filtered by her CURRENT
+       state (player's rule, Oct 29, 2026): the product's level must
+       fit the facility level she entered in Step 1, and the RV level
+       that product's facility tier unlocks at must be at or below
+       her current RV — the same gating the recipe lists use, so
+       nothing above her facility level or her RV is ever offered. */
+    function pickAvailable(it){
+      if(!it) return false;
+      if(it.lvl > facLevel(it.facility)) return false;
+      var rv = rvNeedFor(it.facility, it.lvl);
+      if(rv !== null && rv !== undefined && rv > userRV) return false;
+      return true;
+    }
+    /* Every product a facility can make at her current levels —
+       crafts and gathers alike — for the added-copy job picks. */
+    function pickProductsFor(f){
+      return Object.keys(ITEMS).filter(function(n){
+        var it = ITEMS[n];
+        return it && it.facility === f && (it.kind === "craft" || it.kind === "gather") && pickAvailable(it);
+      }).sort(function(a, b){ var d = ITEMS[a].lvl - ITEMS[b].lvl; return d !== 0 ? d : a.localeCompare(b); });
+    }
     function mineMaterialsUpTo(lvl){
       return Object.keys(ITEMS).filter(function(n){
         var it = ITEMS[n];
-        return it && it.kind === "gather" && it.facility === "Mine" && it.lvl <= lvl;
+        return it && it.kind === "gather" && it.facility === "Mine" && it.lvl <= lvl && pickAvailable(it);
       }).sort(function(a, b){ var d = ITEMS[a].lvl - ITEMS[b].lvl; return d !== 0 ? d : a.localeCompare(b); });
     }
     function listAnd(names){
@@ -4066,11 +4160,6 @@
     }
     function mineSetup(goalClaims){
       var lvl = facLevel("Mine"), count = facCount("Mine");
-      /* Only as many Mines as the plan needs (player's rule,
-         Oct 29, 2026): one per material the plan claims, capped at
-         the Step 1 count — owning more never deploys more. Filled in
-         once the claims are known, below. */
-      var need = 0;
       var claims = [];
       function add(name, src, why){
         if(!ITEMS[name]) return;
@@ -4094,57 +4183,292 @@
       }
       var goalsShutOut = !!(goalClaims && goalClaims.length && pick && pick.src !== "goal" &&
         !claims.some(function(c){ return c.src === "goal"; }));
-      /* One Mine per material it can actually run at its level:
-         claims above the Mine's level wait and deploy nothing, so
-         this count, the facility table's Mine working count and the
-         crew count are the same number on every surface. */
-      var runnable = claims.filter(function(c){ return ITEMS[c.name].lvl <= lvl; }).length;
-      need = pick ? Math.min(count, runnable) : 0;
-      return { lvl:lvl, count:count, need:need, claims:claims, pick:pick, goalsShutOut:goalsShutOut,
-        sandClaimed: claims.some(function(c){ return c.name === "Mineral Sand"; }) };
+      var sandClaimed = claims.some(function(c){ return c.name === "Mineral Sand"; });
+      /* The plan's suggested picks, one Mine per material it claims
+         at or below the Mine's level. Mineral Sand is the exception
+         (player's rule, Oct 29, 2026): every mining run brings
+         Mineral Sand alongside its material, so when any other
+         material is claimed, sand needs no Mine of its own — any
+         Mine out covers it. Sand only takes a suggested Mine when
+         it is the plan's only runnable claim. Claims above the
+         Mine's level wait and deploy nothing. */
+      var runnableNames = claims.filter(function(c){ return ITEMS[c.name].lvl <= lvl; }).map(function(c){ return c.name; });
+      var defaultAssign = runnableNames.slice();
+      if(sandClaimed && defaultAssign.length > 1) defaultAssign = defaultAssign.filter(function(n){ return n !== "Mineral Sand"; });
+      var planNeed = Math.min(count, defaultAssign.length);
+      defaultAssign = defaultAssign.slice(0, planNeed);
+      /* Her picks, when she has made any, are the list of Mines out:
+         plan-claimed Mines first (their picks start as the plan's
+         suggestions, and she can change every one), then the extra
+         Mines she added into the plan from these same controls.
+         With no picks made, the list is the plan's suggestions plus
+         any Mines added from the Layout Helper's Mine stepper. */
+      var mats = mineMaterialsUpTo(lvl);
+      var genericFac = (typeof facExtra !== "undefined" && facExtra && facExtra["Mine"]) || 0;
+      var assignments;
+      if(Array.isArray(minePick)){
+        assignments = minePick.filter(function(n){ return mats.indexOf(n) > -1; }).slice(0, count);
+        while(assignments.length < planNeed) assignments.push(defaultAssign[assignments.length] || mats[0]);
+        /* Mines added from the Layout Helper's Mine stepper arrive
+           as a generic facExtra count: absorb them into the pick
+           list (default material, hers to change) and clear the
+           generic count so nothing is ever counted twice. */
+        for(var g3 = 0; g3 < genericFac; g3++) assignments.push(defaultAssign[0] || mats[0] || "Rock");
+        assignments = assignments.slice(0, count);
+        if(genericFac && typeof facExtra !== "undefined" && facExtra){ minePick = assignments.slice(); delete facExtra["Mine"]; }
+      } else {
+        assignments = defaultAssign.slice();
+        var extraByMat = (typeof mineExtra !== "undefined" && mineExtra) ? mineExtra : {};
+        Object.keys(extraByMat).forEach(function(n){ for(var k = 0; k < (extraByMat[n] || 0); k++) assignments.push(n); });
+        for(var g2 = 0; g2 < genericFac; g2++) assignments.push(defaultAssign[0] || mats[0] || "Rock");
+        assignments = assignments.slice(0, count);
+        if(genericFac && typeof facExtra !== "undefined" && facExtra) delete facExtra["Mine"];
+      }
+      var totalOut = assignments.length;
+      /* Added Mines are the tail past the plan's own count; feeding
+         them through mineExtra makes deployedCount, the crew, the
+         power lines and the strategy table's Working column count
+         them exactly like plan-claimed Mines. */
+      if(typeof mineExtra !== "undefined"){
+        var derived = {};
+        assignments.slice(planNeed).forEach(function(n){ derived[n] = (derived[n] || 0) + 1; });
+        mineExtra = derived;
+      }
+      /* Plan materials (sand aside, since any Mine covers it) that
+         her current picks leave with no Mine on them. */
+      var tally = {};
+      assignments.forEach(function(n){ tally[n] = (tally[n] || 0) + 1; });
+      var uncovered = defaultAssign.filter(function(n){ return !tally[n]; });
+      var waiting = claims.filter(function(c){ return ITEMS[c.name].lvl > lvl; }).map(function(c){ return c.name; });
+      return { lvl:lvl, count:count, need:planNeed, planNeed:planNeed, totalOut:totalOut, claims:claims, pick:pick,
+        goalsShutOut:goalsShutOut, sandClaimed:sandClaimed, assignments:assignments, defaultAssign:defaultAssign,
+        uncovered:uncovered, waiting:waiting, tally:tally };
+    }
+    /* ============ Per-copy gather picks (Well, Dewy House,
+       Tidewhisper Sandcastle, Starfall Hammock) ============
+       The Mine picker's treatment, generalised (player's ask,
+       Oct 29, 2026): every gather facility's copies each gather ONE
+       product at a time, she picks which product per copy on the
+       facility's layout block, and copies she adds beyond the plan
+       (from the layout's add-a-facility list or the block stepper)
+       get a pick too and count in full — crew post, power, deployed
+       totals, and the picked product's per-run yield from the same
+       recipe data everything else uses. A facility the plan already
+       uses starts on the plan's own assignment. The Nimbus Bed has
+       no verified gather product in the data, so it gets no pick —
+       stated on its block, never guessed. */
+    function gatherProductsFor(f){
+      return Object.keys(ITEMS).filter(function(n){
+        var it = ITEMS[n];
+        return it && it.kind === "gather" && it.facility === f && pickAvailable(it);
+      }).sort(function(a, b){ var d = ITEMS[a].lvl - ITEMS[b].lvl; return d !== 0 ? d : a.localeCompare(b); });
+    }
+    /* Why a facility offers no job pick, in one line for its add row
+       and its block: either it has no products at all in the data
+       (climate buildings work by zones, the Nimbus Bed has no
+       verified product), or none of its products fit her current
+       facility level and RV. Null when picks ARE offered. */
+    function noPickNote(f){
+      if(pickProductsFor(f).length) return null;
+      if(CLIM_BUILDINGS.indexOf(f) > -1) return "No product pick: the layout sets this building's zones from the plan's crops — that is its job.";
+      if(f === "Nimbus Bed") return "No product pick: no verified gather product for the Nimbus Bed exists in the planner's data, so none is guessed.";
+      var anyProd = Object.keys(ITEMS).some(function(n){ return ITEMS[n].facility === f; });
+      if(!anyProd) return "No product pick: this facility makes nothing in the planner's data.";
+      return "No product pick right now: nothing it can make fits your " + f + " Lv " + facLevel(f) + " within RV " + userRV + " — raise its level in Step 1 and the picks appear.";
+    }
+    function isGatherPickFac(f){
+      return f !== "Mine" && gatherProductsFor(f).length > 0;
+    }
+    /* The resolved pick list for one gather facility: planC copies
+       the plan needs, working copies out in all. Defaults are the
+       plan's own assignment (its products spread one per copy, then
+       the first product repeated), with added copies on the first
+       available product; her saved picks replace them position by
+       position. */
+    function gatherAssignments(f, planC, working){
+      var avail = gatherProductsFor(f);
+      if(!avail.length || working <= 0) return [];
+      var planProds = facilityPlanItems(f).filter(function(n){ var it = ITEMS[n]; return it && it.kind === "gather" && avail.indexOf(n) > -1; });
+      if(!planProds.length) planProds = avail.slice(0, 1);
+      var defs = [];
+      for(var i = 0; i < working; i++) defs.push(planProds[Math.min(i, planProds.length - 1)]);
+      var saved = (typeof gatherPick !== "undefined" && gatherPick && gatherPick[f]) ? gatherPick[f].filter(function(n){ return avail.indexOf(n) > -1; }) : null;
+      var list = [];
+      for(var j = 0; j < working; j++) list.push(saved && saved[j] ? saved[j] : defs[j]);
+      return list;
+    }
+    function gatherYieldText(name){
+      var it = ITEMS[name];
+      var fam = { "Sea Salt":" · the Aniimo on it must be from the Susuta family", "Pearl":" · the Aniimo on it must be from the Shelly family", "Star":" · the Aniimo on it can be any from the Celestis family" };
+      return "brings " + (it && it.yld ? it.yld + " " + name + " per run" : name + " per run, yield varies") + (fam[name] || "");
+    }
+    /* The Gathering rows for one gather facility's layout block: one
+       pick per copy out, plus the per-run-round tally across picks. */
+    function gatherPickHtml(f, planC, working){
+      var avail = gatherProductsFor(f);
+      var list = gatherAssignments(f, planC, working);
+      if(!list.length) return "";
+      var fid = f.replace(/[^a-z0-9]+/gi, "-");
+      var rows = list.map(function(prod, i){
+        var added = i >= planC;
+        var opts = avail.map(function(m){
+          var it = ITEMS[m];
+          return '<option value="' + escA(m) + '"' + (m === prod ? ' selected' : '') + '>' + esc(m) + (it.yld ? ' — ' + it.yld + ' per run' : ' — yield varies') + '</option>';
+        }).join("");
+        return '<div class="mine-pick"><span class="mine-n">Copy ' + (i + 1) + '</span>' +
+          '<span class="mine-tag verdict ' + (added ? 'v-mix' : 'v-ok') + '">' + (added ? 'added by you' : 'for the plan') + '</span>' +
+          '<label class="src" for="gatherPick-' + fid + '-' + i + '" style="flex:none">is gathering</label>' +
+          '<select id="gatherPick-' + fid + '-' + i + '" data-gather-assign="' + escA(f) + '" data-gather-idx="' + i + '" aria-label="' + escA(f) + ' copy ' + (i + 1) + ' gathering product">' + opts + '</select>' +
+          '<span class="mine-yield">' + esc(gatherYieldText(prod)) + '.</span></div>';
+      }).join("");
+      var tally = {};
+      list.forEach(function(n){ tally[n] = (tally[n] || 0) + 1; });
+      var tallyNames = Object.keys(tally).sort();
+      return '<div class="mine-picks">' + rows + '</div>' +
+        '<p class="src" style="margin-top:8px">In all, these copies bring per run round: ' + tallyNames.map(function(n){
+          var it = ITEMS[n];
+          return '<strong>' + esc(n) + '</strong> ×' + (it.yld ? (it.yld * tally[n]) : "varies") + ' (' + tally[n] + (tally[n] === 1 ? ' copy' : ' copies') + ')' + unverifiedFlagHtml(n);
+        }).join(", ") + '. One copy gathers one product at a time; changing a pick, or adding a copy with the stepper above, is read by the crew and power lines like any plan copy. Gather run times are not verified, so takes are counted per run, never per hour.</p>';
+    }
+
+    /* The resolved job list for a facility's ADDED copies: one
+       product per added copy. Defaults: the plan's first product at
+       that facility, else the facility's first product at her
+       current levels; her saved picks replace them position by
+       position. Only pickAvailable products can appear. */
+    function extraAssignments(f, extraCount){
+      var avail = pickProductsFor(f);
+      if(!avail.length || extraCount <= 0) return [];
+      var planProds = facilityPlanItems(f).filter(function(n){ return avail.indexOf(n) > -1; });
+      var defProd = planProds[0] || avail[0];
+      var saved = (typeof extraPick !== "undefined" && extraPick && extraPick[f]) ? extraPick[f].filter(function(n){ return avail.indexOf(n) > -1; }) : null;
+      var list = [];
+      for(var i = 0; i < extraCount; i++) list.push(saved && saved[i] ? saved[i] : defProd);
+      return list;
+    }
+    function extraYieldText(name){
+      var it = ITEMS[name];
+      if(it.kind === "gather") return gatherYieldText(name);
+      return "makes " + (it.yld || 1) + " " + name + " per batch";
+    }
+    /* The job rows for a facility block's added copies: one pick per
+       added copy, plus what those copies bring. When the facility
+       can make nothing at her current level and RV, the note says
+       so instead of offering an empty or wrong list. */
+    function extraPickHtml(f, planC, working){
+      var extra = working - planC;
+      if(extra <= 0) return "";
+      var avail = pickProductsFor(f);
+      if(!avail.length){
+        return '<p class="src" style="margin-top:10px">' + esc(noPickNote(f) || "") + ' The added ' + (extra === 1 ? 'copy is' : 'copies are') + ' still out and staffed, with nothing to make yet.</p>';
+      }
+      var list = extraAssignments(f, extra);
+      var fid = f.replace(/[^a-z0-9]+/gi, "-");
+      var rows = list.map(function(prod, i){
+        var opts = avail.map(function(m){
+          var it = ITEMS[m];
+          return '<option value="' + escA(m) + '"' + (m === prod ? ' selected' : '') + '>' + esc(m) + ' (Lv ' + it.lvl + (it.kind === "craft" ? ', ' + (it.yld || 1) + ' per batch' : (it.yld ? ', ' + it.yld + ' per run' : ', yield varies')) + ')</option>';
+        }).join("");
+        return '<div class="mine-pick"><span class="mine-n">Added copy ' + (i + 1) + '</span>' +
+          '<span class="mine-tag verdict v-mix">added by you</span>' +
+          '<label class="src" for="extraPick-' + fid + '-' + i + '" style="flex:none">is making</label>' +
+          '<select id="extraPick-' + fid + '-' + i + '" data-extra-assign="' + escA(f) + '" data-extra-idx="' + i + '" aria-label="' + escA(f) + ' added copy ' + (i + 1) + ' job">' + opts + '</select>' +
+          '<span class="mine-yield">' + esc(extraYieldText(prod)) + '.</span></div>';
+      }).join("");
+      var tally = {};
+      list.forEach(function(n){ tally[n] = (tally[n] || 0) + 1; });
+      return '<div class="mine-picks">' + rows + '</div>' +
+        '<p class="src" style="margin-top:8px">Your added ' + (extra === 1 ? 'copy brings' : 'copies bring') + ': ' + Object.keys(tally).sort().map(function(n){
+          var it = ITEMS[n];
+          return '<strong>' + esc(n) + '</strong> ×' + tally[n] + (it.kind === "craft" ? ' cop' + (tally[n] === 1 ? 'y' : 'ies') + ' (' + ((it.yld || 1) * tally[n]) + ' per batch round)' : ' cop' + (tally[n] === 1 ? 'y' : 'ies') + ' (' + (it.yld ? (it.yld * tally[n]) + ' per run round' : 'yield varies') + ')') + unverifiedFlagHtml(n);
+        }).join(", ") + '. Once an added copy has a job it counts in full — crew post, power and deployed totals included. Only products your ' + esc(f) + ' can make at Lv ' + facLevel(f) + ' within RV ' + userRV + ' are listed. ' + (ITEMS[list[0]] && ITEMS[list[0]].kind === "craft" ? 'Craft times are not verified, so takes are counted per batch, never per hour.' : 'Gather run times are not verified, so takes are counted per run, never per hour.') + '</p>';
+    }
+    /* Added copies count for power on every power line: for any
+       facility with copies added by hand, the map's count becomes
+       the deployed total (plan copies + added), even when the plan
+       itself never runs that facility. */
+    function applyAddedPower(map){
+      var ncA = facilityNeedCounts(), ncB = allFacilityNeedCounts();
+      Object.keys(FAC_RV).forEach(function(f){
+        if(f === "Farmland" || f === "Woodland") return;
+        if(!(facExtraFor(f) > 0)) return;
+        var planC = Math.min((ncB[f] !== undefined ? ncB[f] : (ncA[f] || 0)), facCount(f));
+        var w = deployedCount(f, planC);
+        if(w > 0) map[f] = Math.max(map[f] || 0, w);
+      });
+    }
+
+    /* One Mine's take line: its picked material per run, plus the
+       Mineral Sand every mining run brings alongside. */
+    function mineYieldText(name){
+      var it = ITEMS[name];
+      if(name === "Mineral Sand") return "brings Mineral Sand per run (amount varies, so no number is counted)";
+      return "brings " + (it && it.yld ? it.yld + " " + name + " per run" : name + " per run, yield varies") + ", plus Mineral Sand (amount varies)";
     }
     function mineSetupHtml(ms){
       var names = ms.claims.map(function(c){ return c.name; });
       if(ms.lvl <= 0){
-        return '<div class="note note-teal"><h4>⛏️ Set your Mines to</h4><p>Mines are not open at RV ' + userRV + ' yet: the first Mines unlock at RV 3, so there is nothing to set today.' +
+        return '<div class="note note-teal"><h4>⛏️ Set your Mines — pick each Mine\'s material</h4><p>Mines are not open at RV ' + userRV + ' yet: the first Mines unlock at RV 3, so there is nothing to set today.' +
           (names.length ? ' This plan needs <strong>' + esc(listAnd(names)) + '</strong> from the Mine once they open.' : '') + '</p></div>';
       }
-      var s = '<div class="note note-teal"><h4>⛏️ Set your Mines to</h4><p>';
-      if(ms.pick){
-        s += 'Put out <strong>' + ms.need + (ms.need === 1 ? ' Mine' : ' Mines') + ' at Mine Lv ' + ms.lvl + '</strong> — only as many as this plan needs, one per material it mines. You have ' + ms.count + ' in Step 1; the rest are not put out for this plan. ';
-        s += 'Set ' + (ms.need === 1 ? 'it' : 'them') + ' to <strong>' + esc(ms.pick.name) + '</strong> first: ' + esc(ms.pick.why) + '. ';
-      } else if(ms.claims.length){
-        s += 'This plan needs ' + esc(listAnd(names)) + ' from the Mine, and ' + (names.length === 1 ? 'it sits' : 'they sit') + ' above Mine Lv ' + ms.lvl + ', so no Mines need to be put out for this plan yet — your Mines cannot run ' + (names.length === 1 ? 'it' : 'them') + ' until the Mine level rises. ';
+      if(ms.count <= 0){
+        return '<div class="note note-teal"><h4>⛏️ Set your Mines — pick each Mine\'s material</h4><p>Your Step 1 count says you have no Mines, so there is no Mine to set. Raise the Mine count in Step 1 and a picker for each Mine appears here.</p></div>';
+      }
+      var mats = mineMaterialsUpTo(ms.lvl);
+      var s = '<div class="note note-teal"><h4>⛏️ Set your Mines — pick each Mine\'s material</h4>';
+      s += '<p><strong>Every mining run brings Mineral Sand too</strong> — whatever a Mine is set to gather, Mineral Sand rides along on every run (the amount varies, <span class="verdict v-mix">Not verified yet</span>, so no sand number is counted). You never need a Mine set to Mineral Sand just to get sand; pick it below only if you want a Mine on sand itself.</p>';
+      s += '<p style="margin-top:8px">';
+      if(ms.planNeed > 0){
+        s += 'This plan puts out <strong>' + ms.planNeed + (ms.planNeed === 1 ? ' Mine' : ' Mines') + ' at Mine Lv ' + ms.lvl + '</strong>, one per material it mines, and their picks below start on the plan\'s suggested materials (' +
+          ms.claims.filter(function(c){ return ITEMS[c.name].lvl <= ms.lvl; }).map(function(c){ return '<strong>' + esc(c.name) + '</strong> — ' + esc(c.why); }).join("; ") + '). ';
+      } else if(ms.waiting.length){
+        s += 'This plan needs ' + esc(listAnd(ms.waiting)) + ' from the Mine, above Mine Lv ' + ms.lvl + ', so the plan itself puts out no Mines yet — your Mines cannot run ' + (ms.waiting.length === 1 ? 'it' : 'them') + ' until the Mine level rises. You can still add Mines of your own below. ';
       } else {
-        s += 'This plan needs nothing from the Mine, so no Mines need to be put out for it. ';
+        s += 'This plan needs nothing from the Mine, so it puts out no Mines on its own — but you can add your own Mines into the plan below, each with your pick of material. ';
       }
-      s += 'A Mine can mine the material for its own level and the resources below it, so at Mine Lv ' + ms.lvl + ' your Mines can run ' + esc(listAnd(mineMaterialsUpTo(ms.lvl))) + '.';
-      if(ms.pick){
-        var others = ms.claims.filter(function(c){ return c !== ms.pick; });
-        if(others.length){
-          s += ' Also needed from the Mine in this plan, in the same order: ' + others.map(function(c){
-            return '<strong>' + esc(c.name) + '</strong>' + (ITEMS[c.name].lvl > ms.lvl ? ' (needs Mine Lv ' + ITEMS[c.name].lvl + ', above yours, so it waits)' : '');
-          }).join(", ") + '.' + (ms.need > 1 ? ' With ' + ms.need + ' Mines out, each can run a different material at once.' : '');
-        }
+      s += 'One Mine gathers <strong>one material at a time</strong>, and a Mine can run any material for its own level or below: at Mine Lv ' + ms.lvl + ' that is ' + esc(listAnd(mats)) + '. <strong>Change any Mine\'s pick</strong> — claimed or added — and the crew, power and totals follow your picks.</p>';
+      if(ms.sandClaimed && ms.totalOut > 0 && !(ms.assignments.indexOf("Mineral Sand") > -1 && ms.planNeed === 1 && ms.defaultAssign[0] === "Mineral Sand")){
+        s += '<p style="margin-top:8px">This plan needs <strong>Mineral Sand</strong>' + (ms.claims.filter(function(c){ return c.name === "Mineral Sand"; }).length ? ' (' + esc(ms.claims.filter(function(c){ return c.name === "Mineral Sand"; })[0].why) + ')' : '') + ' — and every Mine out below brings it on every run, so no Mine has to be set to sand for it.</p>';
       }
-      if(ms.sandClaimed) s += ' Mineral Sand per Mine run is <span class="verdict v-mix">Not verified yet</span>: it rides along in amounts that vary, so no sand amount or rate is counted.';
-      if(ms.goalsShutOut) s += ' Your basket' + (levelingOn ? ' and the Level Up bill' : '') + ' already claim everything the Mines are set to in this plan, so the goals do not change the Mines in this plan.';
-      if(ms.pick){
-        var runnable = ms.claims.filter(function(c){ return ITEMS[c.name].lvl <= ms.lvl; }).length;
-        var totalOut = Math.min(ms.count, runnable + mineExtraTotal());
-        s += '</p><div class="mine-lines">' + ms.claims.map(function(c){
-          var it = ITEMS[c.name];
-          if(it.lvl > ms.lvl) return '<div class="mine-line"><span><strong>' + esc(c.name) + '</strong>: no Mine set to it yet, it waits for Mine Lv ' + it.lvl + '.</span></div>';
-          var ex = mineExtra[c.name] || 0;
-          var mines = 1 + ex;
-          return '<div class="mine-line"><span><strong>' + esc(c.name) + '</strong>: ' + mines + (mines === 1 ? ' Mine' : ' Mines') + ' set to it (' + (ex > 0 ? '1 for the plan + ' + ex + ' added by you' : 'for the plan') + ')' +
-            (it.yld ? ', bringing <strong>' + (it.yld * mines) + ' ' + esc(c.name) + ' per run round</strong> (' + it.yld + ' per Mine per run)' : ', yield varies per run, so no amount is counted') + '</span>' +
-            '<span class="adj-wrap"><button type="button" class="adj-btn" data-mine-dec="' + escA(c.name) + '" aria-label="Take back one added Mine on ' + escA(c.name) + '"' + (ex <= 0 ? ' disabled' : '') + '>\u2212</button>' +
-            '<span class="adj-count">' + mines + (mines === 1 ? ' Mine' : ' Mines') + '</span>' +
-            '<button type="button" class="adj-btn" data-mine-inc="' + escA(c.name) + '" aria-label="Add one more Mine digging ' + escA(c.name) + '"' + (totalOut >= ms.count ? ' disabled' : '') + '>+</button></span></div>';
-        }).join("") + '</div><p style="margin-top:8px">Mines out in all: <strong>' + totalOut + ' of ' + ms.count + ' owned</strong>. The steppers add or take back Mines on each material: the plan\'s one Mine per material is the floor, and changing your basket or strategy resets added Mines back to the plan\'s counts. Added Mines are staffed in your crew and draw power like any Mine out. Gather run times are not verified, so an added Mine\'s take is counted per run, not per hour.</p><p>';
+      if(ms.goalsShutOut) s += '<p style="margin-top:8px">Your basket' + (levelingOn ? ' and the Level Up bill' : '') + ' already claim the plan\'s Mines in this plan, so the goals do not change them.</p>';
+      /* The picker itself: one row per Mine out. */
+      s += '<div class="mine-picks">';
+      if(!ms.assignments.length){
+        s += '<p style="margin:0"><strong>No Mines out in this plan.</strong> Add one below and pick what it gathers.</p>';
       }
-      return s + '</p></div>';
+      s += ms.assignments.map(function(mat, i){
+        var added = i >= ms.planNeed;
+        var opts = mats.map(function(m){
+          var it = ITEMS[m];
+          return '<option value="' + escA(m) + '"' + (m === mat ? ' selected' : '') + '>' + esc(m) + (m === "Mineral Sand" ? ' — yield varies' : (it.yld ? ' — ' + it.yld + ' per run' : ' — yield varies')) + '</option>';
+        }).join("");
+        return '<div class="mine-pick"><span class="mine-n">Mine ' + (i + 1) + '</span>' +
+          '<span class="mine-tag verdict ' + (added ? 'v-mix' : 'v-ok') + '">' + (added ? 'added by you' : 'for the plan') + '</span>' +
+          '<label class="src" for="minePick' + i + '" style="flex:none">is gathering</label>' +
+          '<select id="minePick' + i + '" data-mine-assign="' + i + '" aria-label="Mine ' + (i + 1) + ' gathering material">' + opts + '</select>' +
+          (added ? '<button type="button" class="adj-btn" data-mine-remove="' + i + '" aria-label="Take Mine ' + (i + 1) + ' back out of this plan">\u2212</button>' : '') +
+          '<span class="mine-yield">' + esc(mineYieldText(mat)) + '.</span></div>';
+      }).join("");
+      s += '</div>';
+      s += '<div class="mine-add-row"><button type="button" class="btn btn-small" data-mine-add="1"' + (ms.totalOut >= ms.count ? ' disabled' : '') + '>+ Add a Mine into this plan</button>' +
+        '<span class="src">Mines out in all: <strong>' + ms.totalOut + ' of ' + ms.count + ' owned</strong> (Step 1). ' +
+        (ms.totalOut >= ms.count ? 'All your Mines are out, so adding stops here. ' : 'Each Mine you add joins the plan in full: its own Earth Aniimo in your crew, its power draw, the deployed totals, and its picked material\'s take per run — plus Mineral Sand like every working Mine. ') +
+        'Added Mines can be taken back with their − button; the plan\'s own ' + ms.planNeed + (ms.planNeed === 1 ? ' Mine is' : ' Mines are') + ' the floor. Changing your basket or strategy resets your picks and added Mines back to the plan\'s suggestions.</span></div>';
+      /* Totals across her picks. */
+      if(ms.assignments.length){
+        var tallyNames = Object.keys(ms.tally).sort(function(a, b){ return ms.tally[b] - ms.tally[a] || a.localeCompare(b); });
+        s += '<p style="margin-top:10px">In all, your Mines bring per run round: ' + tallyNames.map(function(n){
+          var it = ITEMS[n];
+          return '<strong>' + ms.tally[n] + (ms.tally[n] === 1 ? ' Mine' : ' Mines') + ' on ' + esc(n) + '</strong>' + (it.yld ? ' (' + (it.yld * ms.tally[n]) + ' ' + esc(n) + ')' : ' (yield varies)');
+        }).join(", ") + ' — and <strong>every one of the ' + ms.totalOut + (ms.totalOut === 1 ? ' Mine' : ' Mines') + ' also brings Mineral Sand</strong> on each run. Gather run times are not verified, so Mine takes are counted per run, never per hour.</p>';
+      }
+      if(ms.uncovered.length){
+        s += '<div class="mine-warn">Heads up: this plan needs <strong>' + esc(listAnd(ms.uncovered)) + '</strong> from the Mine, but no Mine above is set to ' + (ms.uncovered.length === 1 ? 'it' : 'them') + ' right now. Change a pick or add a Mine to cover ' + (ms.uncovered.length === 1 ? 'it' : 'them') + '.</div>';
+      }
+      if(ms.waiting.length && ms.planNeed > 0){
+        s += '<p style="margin-top:8px">Still waiting: ' + ms.waiting.map(function(n){ return '<strong>' + esc(n) + '</strong> needs Mine Lv ' + ITEMS[n].lvl + ', above yours, so no Mine can be set to it yet'; }).join("; ") + '.</p>';
+      }
+      return s + '</div>';
     }
     function mineSetupText(ms){
       var names = ms.claims.map(function(c){ return c.name; });
@@ -4152,20 +4476,20 @@
         return "Mines are not open at RV " + userRV + " yet (the first Mines unlock at RV 3), so there is nothing to set today." +
           (names.length ? " This plan needs " + listAnd(names) + " from the Mine once they open." : "");
       }
+      if(ms.count <= 0) return "your Step 1 count says you have no Mines, so there is no Mine to set.";
       var s = "";
-      if(ms.pick) s += "put out " + ms.need + (ms.need === 1 ? " Mine" : " Mines") + " at Mine Lv " + ms.lvl + " — only as many as this plan needs, one per material it mines; you have " + ms.count + " in Step 1 and the rest are not put out for this plan. ";
-      if(ms.pick) s += "Set " + (ms.need === 1 ? "it" : "them") + " to " + ms.pick.name + " first: " + ms.pick.why + ". ";
-      else if(ms.claims.length) s += "This plan needs " + listAnd(names) + " from the Mine, above Mine Lv " + ms.lvl + ", so no Mines need to be put out for this plan yet; your Mines cannot run " + (names.length === 1 ? "it" : "them") + " until the Mine level rises. ";
-      else s += "This plan needs nothing from the Mine, so no Mines need to be put out for it. ";
-      s += "A Mine can mine the material for its own level and the resources below it, so at Mine Lv " + ms.lvl + " your Mines can run " + listAnd(mineMaterialsUpTo(ms.lvl)) + ".";
-      if(ms.pick){
-        var others = ms.claims.filter(function(c){ return c !== ms.pick; });
-        if(others.length) s += " Also needed from the Mine in this plan, in the same order: " + others.map(function(c){ return c.name + (ITEMS[c.name].lvl > ms.lvl ? " (needs Mine Lv " + ITEMS[c.name].lvl + ", above yours, so it waits)" : ""); }).join(", ") + "." + (ms.need > 1 ? " With " + ms.need + " Mines out, each can run a different material at once." : "");
+      if(ms.assignments.length){
+        s += "put out " + ms.totalOut + (ms.totalOut === 1 ? " Mine" : " Mines") + " at Mine Lv " + ms.lvl + " (" + ms.planNeed + " for the plan" + (ms.totalOut > ms.planNeed ? " + " + (ms.totalOut - ms.planNeed) + " added by you" : "") + ", of " + ms.count + " owned). ";
+        s += "Each Mine's pick: " + ms.assignments.map(function(m, i){ return "Mine " + (i + 1) + ": " + m + (i >= ms.planNeed ? " (added by you)" : ""); }).join(", ") + ". ";
+      } else {
+        s += "no Mines are out in this plan (the plan claims none, and none have been added). ";
       }
-      if(ms.sandClaimed) s += " Mineral Sand per Mine run is Not verified yet: it rides along in amounts that vary, so no sand amount or rate is counted.";
-      if(ms.goalsShutOut) s += " Your basket" + (levelingOn ? " and the Level Up bill" : "") + " already claim everything the Mines are set to in this plan, so the goals do not change the Mines in this plan.";
-      var mxNames = Object.keys(mineExtra).filter(function(n){ return mineExtra[n] > 0; });
-      if(mxNames.length) s += " Mines added by you: " + mxNames.map(function(n){ return n + " +" + mineExtra[n] + " (" + (1 + mineExtra[n]) + " Mines on " + n + " in all, bringing " + (ITEMS[n].yld ? (ITEMS[n].yld * (1 + mineExtra[n])) + " " + n + " per run round" : "a varying yield per run") + ")"; }).join(", ") + ".";
+      s += "Every mining run also brings Mineral Sand alongside its material (amount varies, Not verified yet, so no sand amount or rate is counted), so any Mine out covers a Mineral Sand need — no Mine has to be set to sand just for sand. ";
+      s += "A Mine gathers one material at a time and can run any material for its own level or below: at Mine Lv " + ms.lvl + " that is " + listAnd(mineMaterialsUpTo(ms.lvl)) + ".";
+      if(ms.sandClaimed) s += " This plan needs Mineral Sand (" + (ms.claims.filter(function(c){ return c.name === "Mineral Sand"; })[0] || {}).why + ").";
+      if(ms.uncovered.length) s += " Heads up: this plan needs " + listAnd(ms.uncovered) + " from the Mine, but no Mine is set to " + (ms.uncovered.length === 1 ? "it" : "them") + " right now.";
+      if(ms.waiting.length) s += " Waiting for a higher Mine level: " + ms.waiting.map(function(n){ return n + " (needs Mine Lv " + ITEMS[n].lvl + ")"; }).join(", ") + ".";
+      if(ms.goalsShutOut) s += " Your basket" + (levelingOn ? " and the Level Up bill" : "") + " already claim the plan's Mines in this plan, so the goals do not change them.";
       return s;
     }
 
@@ -4424,6 +4748,35 @@
        only add on top of it, and the Step 1 owned count is the ceiling. */
     var facExtra = {};
     var mineExtra = {};
+    /* Per-Mine material picks (player's ask, Oct 29, 2026): one entry
+       per Mine out, in order — Mine 1's material, Mine 2's, and so on.
+       Null while she has not touched the picker: the plan's suggested
+       materials fill the picks in. Setting it (changing a pick, adding
+       a Mine, taking an added Mine back) makes her list the one every
+       surface reads. Extra Mines beyond the plan's own count sit at
+       the end of the list and are the only ones that can be taken
+       back; mineExtra is re-derived from the list's tail by mineSetup
+       so crew, power and deployed totals count added Mines exactly
+       like plan-claimed ones. Resets with the basket or strategy,
+       like every hand-added copy. */
+    var minePick = null;
+    /* Per-copy gather picks for the other gather facilities (player's
+       extension of the Mine picker, Oct 29, 2026): facility name ->
+       one product name per copy out, in order. An absent entry means
+       the plan's own assignment fills the picks in. Setting an entry
+       (changing a pick on a facility's layout block) makes her list
+       the one the block, crew and power lines read. Resets with the
+       basket or strategy, like minePick. */
+    var gatherPick = {};
+    /* Job picks for hand-added copies of ANY other facility kind
+       (player's generalisation, Oct 29, 2026): facility name -> one
+       product name per added copy, in order. An absent entry means
+       the defaults fill in (the plan's first product there, else the
+       facility's first product at her current levels). Every choice
+       list behind these picks is filtered by pickAvailable, so only
+       products that fit her entered facility level and her current
+       RV are ever offered. Resets with the basket or strategy. */
+    var extraPick = {};
     var facExtraSig = null;
     function mineExtraTotal(){
       return Object.keys(mineExtra).reduce(function(a, n){ return a + (mineExtra[n] || 0); }, 0);
@@ -4450,7 +4803,7 @@
     function syncFacExtras(){
       var sig = planSignature();
       if(facExtraSig === null){ facExtraSig = sig; return; }
-      if(sig !== facExtraSig){ facExtra = {}; mineExtra = {}; facExtraSig = sig; }
+      if(sig !== facExtraSig){ facExtra = {}; mineExtra = {}; minePick = null; gatherPick = {}; extraPick = {}; facExtraSig = sig; }
     }
     /* One facility stepper, in the same dress as the plot steppers:
        minus takes back only copies added by hand (the plan's count is
@@ -4483,17 +4836,96 @@
        counts, then re-render every section that reads them (the basket
        plan with its power line and Mines note, the layout, the crew,
        the strategy plan with its Working column, and the home split). */
+    /* The current Mine pick list, from the same mineSetup the notes
+       render: the basket plan's goal claims (held in bpResult) ride
+       along so the list matches the note she is looking at. */
+    function currentMinePicks(){
+      var gc = (typeof bpResult !== "undefined" && bpResult && bpResult.mine) ? bpResult.mine.claims.filter(function(c){ return c.src === "goal"; }) : null;
+      return mineSetup(gc);
+    }
     document.addEventListener("click", function(ev){
       var t = ev.target;
       if(!t || !t.getAttribute) return;
       var facInc = t.getAttribute("data-fac-inc"), facDec = t.getAttribute("data-fac-dec");
       var mineInc = t.getAttribute("data-mine-inc"), mineDec = t.getAttribute("data-mine-dec");
-      if(!facInc && !facDec && !mineInc && !mineDec) return;
+      var mineAdd = t.getAttribute("data-mine-add"), mineRemove = t.getAttribute("data-mine-remove");
+      if(!facInc && !facDec && !mineInc && !mineDec && !mineAdd && mineRemove === null) return;
       syncFacExtras();
       if(facInc) facExtra[facInc] = (facExtra[facInc] || 0) + 1;
       if(facDec){ facExtra[facDec] = Math.max(0, (facExtra[facDec] || 0) - 1); if(!facExtra[facDec]) delete facExtra[facDec]; }
       if(mineInc) mineExtra[mineInc] = (mineExtra[mineInc] || 0) + 1;
       if(mineDec){ mineExtra[mineDec] = Math.max(0, (mineExtra[mineDec] || 0) - 1); if(!mineExtra[mineDec]) delete mineExtra[mineDec]; }
+      if(mineAdd){
+        var msA = currentMinePicks();
+        if(msA.totalOut < msA.count){
+          var picksA = msA.assignments.slice();
+          picksA.push(msA.defaultAssign[0] || mineMaterialsUpTo(msA.lvl)[0] || "Rock");
+          minePick = picksA;
+          if(facExtra["Mine"]) delete facExtra["Mine"];
+        }
+      }
+      if(mineRemove !== null){
+        var idxR = parseInt(mineRemove, 10);
+        var msR = currentMinePicks();
+        if(idxR >= msR.planNeed && idxR < msR.assignments.length){
+          var picksR = msR.assignments.slice();
+          picksR.splice(idxR, 1);
+          minePick = picksR;
+          if(facExtra["Mine"]) delete facExtra["Mine"];
+        }
+      }
+      renderAll();
+      if(document.getElementById("bestPlanOut")) renderBestPlan();
+      if(document.getElementById("homeOut")) renderHome();
+    });
+    /* Changing one Mine's material: her pick list becomes the list
+       every surface reads, and the re-render follows it. */
+    document.addEventListener("change", function(ev){
+      var t = ev.target;
+      if(!t || !t.getAttribute) return;
+      var idx = t.getAttribute("data-mine-assign");
+      var gFac = t.getAttribute("data-gather-assign"), gIdx = t.getAttribute("data-gather-idx");
+      var xFac = t.getAttribute("data-extra-assign"), xIdx = t.getAttribute("data-extra-idx");
+      if(idx === null && !gFac && !xFac) return;
+      syncFacExtras();
+      if(idx !== null){
+        var ms = currentMinePicks();
+        var picks = ms.assignments.slice();
+        var i = parseInt(idx, 10);
+        if(i >= 0 && i < picks.length && ITEMS[t.value] && ITEMS[t.value].facility === "Mine"){
+          picks[i] = t.value;
+          minePick = picks;
+          if(facExtra["Mine"]) delete facExtra["Mine"];
+        }
+      }
+      if(xFac && ITEMS[t.value] && ITEMS[t.value].facility === xFac && pickAvailable(ITEMS[t.value])){
+        /* One added copy's new job, at any facility kind: resolve
+           the added copies' current job list, swap this copy's
+           product, and save the list as hers. */
+        var ncX = allFacilityNeedCounts();
+        var planCX = Math.min(ncX[xFac] || 0, facCount(xFac));
+        var extraX = Math.max(0, deployedCount(xFac, planCX) - planCX);
+        var listX = extraAssignments(xFac, extraX);
+        var xi = parseInt(xIdx, 10);
+        if(xi >= 0 && xi < listX.length){
+          listX[xi] = t.value;
+          extraPick[xFac] = listX;
+        }
+      }
+      if(gFac && ITEMS[t.value] && ITEMS[t.value].facility === gFac && ITEMS[t.value].kind === "gather"){
+        /* One gather copy's new product: resolve the facility's
+           current pick list at its working count, swap this copy's
+           product, and save the list as hers. */
+        var nc = facilityNeedCounts();
+        var planC = Math.min(nc[gFac] || 0, facCount(gFac));
+        var working = deployedCount(gFac, planC);
+        var list = gatherAssignments(gFac, planC, working);
+        var gi = parseInt(gIdx, 10);
+        if(gi >= 0 && gi < list.length){
+          list[gi] = t.value;
+          gatherPick[gFac] = list;
+        }
+      }
       renderAll();
       if(document.getElementById("bestPlanOut")) renderBestPlan();
       if(document.getElementById("homeOut")) renderHome();
@@ -5246,7 +5678,7 @@
       var why = {
         "Sunlamp":"Overlays temperature zones: ground counted once, one Sunlamp per light zone",
         "Starfall Hammock":"Needs a Cool environment: stands inside a Cooling Unit zone",
-        "Mine":"Set your Mines from the note in your plan",
+        "Mine":"Pick each Mine's material in the Set your Mines note in your plan — extra Mines you add there join this plan in full, and every Mine also brings Mineral Sand",
         "Well":"Its Water Aniimo also water the crops"
       };
       var blocks = [];
@@ -5278,13 +5710,33 @@
         var extra = working - planC;
         var namedItems = fa.facility === "Mine" ? [] : facilityPlanItems(fa.facility);
         var namedProd = namedItems.length > 1 ? assignText(namedItems, working) : (namedItems.length === 1 ? namedItems[0] : prod[fa.facility]);
+        /* The Mine block names her actual picks, Mine by Mine, from
+           the same pick list the Mines note edits — and every Mine
+           on it also brings Mineral Sand. */
+        if(fa.facility === "Mine"){
+          var msLay = currentMinePicks();
+          if(msLay.assignments.length) namedProd = msLay.assignments.map(function(m, i){ return "Mine " + (i + 1) + ": " + m; }).join(" · ") + " — every Mine also brings Mineral Sand";
+        }
+        /* Gather facilities name their per-copy picks the same way,
+           and the block carries the picker itself underneath: one
+           product per copy, hers to change, plan assignment first.
+           The Nimbus Bed has no verified gather product in the data,
+           so its block says so instead of offering a guessed pick. */
+        var gatherHtml = "";
+        if(isGatherPickFac(fa.facility)){
+          var gList = gatherAssignments(fa.facility, planC, working);
+          if(gList.length) namedProd = gList.map(function(m, i){ return "Copy " + (i + 1) + ": " + m; }).join(" · ");
+          gatherHtml = gatherPickHtml(fa.facility, planC, working);
+        } else if(fa.facility === "Nimbus Bed"){
+          gatherHtml = '<p class="src" style="margin-top:10px">Gathering: no product pick is offered for the Nimbus Bed — no verified gather product for it exists in the planner\'s data (the module ladder links Wool\'s Quick Recipe to it, but the recipe data gathers Wool at the leisure station, so no pick is guessed). An added Nimbus Bed still counts as a staffed copy out, in the crew and the deployed totals.</p>';
+        }
         blocks.push('<div class="fac-block"><h4>' + esc(fa.facility) + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
           '<div class="zb-row"><span class="zb-k">Count</span><span>' + countLine(fa.facility, planC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(fa.facility, working, planC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(namedProd) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + working + " working for this plan)") + '"' : "") + '>' + (fa.job ? abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + working + " in all" : "1 Aniimo each, " + working + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(planC > 0 ? (why[fa.facility] || "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add") : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
-          "</div></div>");
+          "</div>" + gatherHtml + "</div>");
       });
       /* The crafting and cooking facilities the combined plans work get
          blocks in the same dress, with the same steppers: their plan
@@ -5313,10 +5765,10 @@
         blocks.push('<div class="fac-block"><h4>' + esc(f) + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
           '<div class="zb-row"><span class="zb-k">Count</span><span>' + countLine(f, planC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(f, working, planC, ownedC) + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Producing</span><span>' + (itemsHere.length ? esc(itemsHere.length > 1 ? assignText(itemsHere, working) : itemsHere[0]) : (planC > 0 ? "This plan's work there" : "Added by you: a spare copy out — it runs one thing at a time, like every copy")) + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Aniimo</span><span>' + (worker ? (planC > 0 ? "1 " + esc(worker) + " Aniimo post for this facility in your crew below" + (extra > 0 ? "; added copies are spares at the same post" : "") : "Staff it with a " + esc(worker) + " Aniimo in game; a spare copy is not counted in the plan's crew or rates") : 'Worker <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Producing</span><span>' + (itemsHere.length ? esc(itemsHere.length > 1 ? assignText(itemsHere, working) : itemsHere[0]) : (planC > 0 ? "This plan's work there" : "Added by you: pick its job below — it runs one thing at a time, like every copy")) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Aniimo</span><span>' + (worker ? (planC > 0 ? "1 " + esc(worker) + " Aniimo post for this facility in your crew below" + (extra > 0 ? "; added copies with a job pick share that post and count in your crew and power" : "") : "Its job pick below puts a " + esc(worker) + " Aniimo post for this facility in your crew, and the copy counts in your power and totals") : 'Worker <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Why</span><span>' + (planC > 0 ? "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add" : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
-          "</div></div>");
+          "</div>" + extraPickHtml(f, planC, working) + "</div>");
       });
       var addPanel = addFacilityPanelHtml(climateUsed, usedCounts, allNeed);
       if(!blocks.length) return addPanel;
@@ -5356,11 +5808,12 @@
       rows.sort();
       var html = rows.map(function(f){
         var owned = facCount(f);
-        return '<div class="addfac-row"><span><span class="nm">' + esc(f) + '</span><span class="kd">Not out in this plan · you own ' + owned + (owned === 1 ? " copy" : " copies") + ' (Step 1)</span></span>' +
+        var npNote = noPickNote(f);
+        return '<div class="addfac-row"><span><span class="nm">' + esc(f) + '</span><span class="kd">Not out in this plan · you own ' + owned + (owned === 1 ? " copy" : " copies") + ' (Step 1)</span>' + (npNote ? '<span class="kd">' + esc(npNote) + '</span>' : '<span class="kd">Added copies get a job pick on their block above — what that copy makes is your choice, at your current levels.</span>') + '</span>' +
           '<span>' + facStepperHtml(f, 0, 0, owned) + '</span></div>';
       }).join("");
       return '<h3 class="layout-sec-head">➕ Add a facility this plan isn\'t using</h3><p class="sec-sub" style="margin:8px 0 0">' +
-        "Everything you own that this plan leaves out, in one list. Tap <strong>+</strong> to put copies out anyway — up to the count you own in Step 1 — and they get their own block above, marked added by you: the named facilities (Mine, Well and friends, climate buildings) are staffed in your crew like the plan's own copies, and a crafting or cooking copy is a spare that runs one thing at a time. Extra Mines set to a material are added from the Set your Mines note in your basket plan, as before. Added copies stay until your basket or strategy changes." +
+        "Everything you own that this plan leaves out, in one list. Tap <strong>+</strong> to put copies out anyway — up to the count you own in Step 1 — and they get their own block above, marked added by you: the named facilities (Mine, Well and friends, climate buildings) are staffed in your crew like the plan's own copies, and every added copy of any facility gets a job pick on its block — what that copy is making is your choice, one product per copy, and once it has a job it counts in full (crew post, power, totals, and that product's take). Extra Mines are added from the Set your Mines note in your basket plan, where each one gets its own material pick. Gather facilities you add here — the Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock — get a product pick for every copy on their block above, plan copies included. Added copies stay until your basket or strategy changes." +
         '</p><div class="addfac-rows">' + html + "</div>";
     }
 
@@ -6501,7 +6954,7 @@
         var ex = null;
         bpMineClaims.forEach(function(c){ if(c.name === e.name) ex = c; });
         if(ex){ if(e.sandGoal) ex.why = "your Mineral Sand goal asks for it, and the goal recipes in this plan need it too"; return; }
-        bpMineClaims.push({ name:e.name, src:"goal", why: e.sandGoal ? "your Mineral Sand goal asks for it" : "the goal recipes in this plan need it" });
+        bpMineClaims.push({ name:e.name, src:"goal", why: e.sandGoal ? "your Mineral Sand goal asks for it — and every Mine out brings sand, so any of them covers it" : "the goal recipes in this plan need it" });
       });
       var bpMine = mineSetup(bpMineClaims);
 
@@ -6669,14 +7122,23 @@
            Mine reads the same count the Mines box gives, so the
            two surfaces always agree. */
         if(!g.isField) w = Math.max(w, g.items.length);
-        if(g.facility === "Mine" && res.mine) w = Math.max(w, res.mine.need);
+        /* The Mine's working count is the Mines box's own total:
+           plan-claimed Mines plus every Mine she added into the plan
+           from the Mine picker, each on her picked material — so the
+           table, the Mines box, the crew and the power line all read
+           one number. */
+        if(g.facility === "Mine" && res.mine && res.mine.totalOut > 0) w = res.mine.totalOut;
+        else if(g.facility === "Mine" && res.mine) w = Math.max(w, res.mine.need);
         g.working = w > 0 ? (g.out > 0 ? Math.min(w, g.out) : w) : 1;
         g.queued = (!g.isField && g.items.length > g.working) ? g.items.slice(g.working) : [];
       });
       /* Copies added by hand in the Layout Helper count as working
          here too, capped at the Step 1 count: the Working column and
-         the power line built from it both read this figure. */
+         the power line built from it both read this figure. The Mine
+         is skipped: its added copies already ride in res.mine's
+         total above, through the Mine picker. */
       groups.forEach(function(g){
+        if(g.facility === "Mine" && res.mine) return;
         var ex = facExtraFor(g.facility);
         if(ex > 0) g.working = g.out > 0 ? Math.min(g.working + ex, g.out) : g.working + ex;
       });
@@ -6822,6 +7284,20 @@
          building counts the facility table below shows. */
       var facWorkingSP = {};
       bpFacGroups(res).forEach(function(g){ facWorkingSP[g.facility] = g.working; });
+      /* Gather facilities count every copy out for power here too —
+         plan copies plus copies she added with their own product
+         picks, even when this strategy plan never gathers there. */
+      (function(){
+        var ncS = facilityNeedCounts();
+        ["Well", "Dewy House", "Tidewhisper Sandcastle", "Starfall Hammock"].forEach(function(f){
+          if(!isGatherPickFac(f)) return;
+          var wS = deployedCount(f, Math.min(ncS[f] || 0, facCount(f)));
+          if(wS > 0) facWorkingSP[f] = wS;
+        });
+      })();
+      /* And any other facility with hand-added copies draws power
+         for its deployed total, job pick or not. */
+      applyAddedPower(facWorkingSP);
       html += '<p class="src" style="margin-top:10px">' + powerHeadroomHtml(facWorkingSP) + '</p>';
       html += '<div class="note note-info"><h4>💰 What this plan earns</h4><p>' + (bpPerHH > 0
         ? 'Counted: <strong>' + fmtRate(res.coinsCycle * bpPerHH) + ' Home Coins per hour</strong> after seed costs.' +
