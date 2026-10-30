@@ -210,7 +210,7 @@
       .craft-step p{margin:2px 0 0;color:var(--ink-soft);font-weight:600;font-size:.93rem}
       .plan-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
       .empty-plan{border:2px dashed var(--card-line);border-radius:var(--radius);padding:22px;text-align:center;color:var(--ink-faint);font-weight:700;margin-top:14px}
-      /* Step 5: layout helper */
+      /* Step 6: layout helper */
       .pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-top:10px}
       .pick-toggle{width:100%;text-align:left;font:inherit;color:var(--ink)}
       .pick-toggle:hover{border-color:var(--accent)}
@@ -236,7 +236,7 @@
       .layout-group h4{font-size:1.05rem}
       .layout-warn{color:var(--bad,#b3372a);font-weight:800}
       .layout-group .crop-locked{color:#857099}
-      /* Step 5: per-zone visual blocks, grid beside short writing */
+      /* Step 6: per-zone visual blocks, grid beside short writing */
       .zone-blocks{display:flex;flex-direction:column;gap:14px;margin-top:14px}
       .zone-block{display:flex;gap:16px;flex-wrap:wrap;background:var(--card);border:2px solid var(--card-line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px}
       .zone-block .zb-grid{flex:none}
@@ -312,14 +312,15 @@
     <div class="wrap">
       <header class="hero">
         <h1><span class="paw">🐾</span> Aniimo Homeland Planner</h1>
-        <p class="tagline">Work top to bottom. Step 1: set your RV. Step 2: pick up to ten recipes. Step 3: pick one strategy, Level Up or Goals. Your basket is planned first. The strategy uses what is left.</p>
+        <p class="tagline">Work top to bottom: RV, basket, one strategy, its plan, then your Mines. Your basket is planned first; the strategy uses what's left.</p>
         <div class="emoji-strip" aria-hidden="true">🧺 🌱 💧 🔥 🚐</div>
         <div class="how">
-          <div class="step"><span class="n">Step 1</span><br /><b>🏭 Set up first</b><p>These boxes fill for your RV. Change any number with − and +. Everything below uses these numbers.</p></div>
-          <div class="step"><span class="n">Step 2</span><br /><b>🧺 Recipe basket</b><p>Pick recipes, no amounts. The planner works out the whole chain and sizes it to your homeland.</p></div>
+          <div class="step"><span class="n">Step 1</span><br /><b>🏭 Set up first</b><p>Boxes fill for your RV. Change any number with − and +.</p></div>
+          <div class="step"><span class="n">Step 2</span><br /><b>🧺 Recipe basket</b><p>Pick recipes, no amounts. The planner sizes the whole chain for you.</p></div>
           <div class="step"><span class="n">Step 3</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
-          <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank your goals if you picked Goals. Tap Find the plan. In Level Up mode, the bill is just below. Flagged items show their money on its own.</p></div>
-          <div class="step"><span class="n">Steps 5–7</span><br /><b>🗺️ Layout, crew &amp; home</b><p>The Layout Helper plants your plan, the Team Helper staffs it, and crew slots left over become home residents earning Bud Tickets.</p></div>
+          <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Tap Find the plan.</p></div>
+          <div class="step"><span class="n">Step 5</span><br /><b>⛏️ Set your Mines</b><p>Only now — after your strategy. The plan's Mines are marked used; you pick only for extra Mines you add.</p></div>
+          <div class="step"><span class="n">Steps 6–8</span><br /><b>🗺️ Layout, crew &amp; home</b><p>Layout plants it, Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
         </div>
       </header>
@@ -329,8 +330,9 @@
         <a href="#basket">🧺 Step 2 · Recipe Basket</a>
         <a href="#strategy">🎯 Step 3 · Strategy</a>
         <a href="#bestplan">⭐ Step 4 · Strategy Plan</a>
+        <a href="#mines">⛏️ Step 5 · Mines</a>
         <a href="#rv" id="rvNavLink" hidden>🚐 Level Up Bill</a>
-        <a href="#layout">🗺️ Step 5 · Layout</a>
+        <a href="#layout">🗺️ Step 6 · Layout</a>
         <a href="#jobs">🎛️ Job Picks</a>
         <a href="#team">👥 Team Helper</a>
         <a href="#home">🏠 Home &amp; Bud Tickets</a>
@@ -342,7 +344,7 @@
       <!-- ================= STEP 1: SET UP FIRST ================= -->
       <section id="facilities">
         <div class="sec-head"><span class="sec-num">Step 1</span><h2>🏭 Set Up First — RV, Facilities &amp; Modules</h2></div>
-        <p class="sec-sub">Do this step first. <strong>The boxes are already filled for your RV.</strong> Pick a new RV and they refill. Change any number with − and +, or by typing. Your numbers stay until you pick a new RV or tap Fill again.</p>
+        <p class="sec-sub"><strong>Boxes are filled for your RV.</strong> Change any number with − and +, or by typing. Picking a new RV refills them. Your real counts always win — type over any box that doesn't match your game.</p>
 
         <div class="card">
           <h3>🏭 Your facilities &amp; modules</h3>
@@ -359,15 +361,16 @@
             <span class="src" id="facSourceLine" aria-live="polite">Facilities auto-fill for your RV level when the page opens</span>
           </div>
           <div class="fac-grid" id="facGrid"></div>
+          <p class="src" style="margin-top:8px">⛏️ The Mine count and level here are just how many Mines you own and how deep they go — what each Mine digs is <strong>not</strong> picked here. That comes later, in Step 5, after your strategy, because your strategy can claim Mines of its own.</p>
           <h4 style="margin-top:20px">🌡️ Your climate buildings</h4>
-          <p class="src" style="margin-top:4px">Counts fill from your RV too, or type your own. Source: Aniiland roadmap ladder. The RV 7 unlock is also backed by GameWith. Steps rest on Aniiland alone, so each count has the single-source flag.<br />The layout puts out only the buildings the plan needs. It never uses more zones or plots than these counts. Plots that need the same building share its zones. Farmland and Woodland can share one 18 × 18 zone. Owning two of a building does not put both out. The crew staffs only the buildings the layout puts out.</p>
+          <p class="src" style="margin-top:4px">Counts fill from your RV too, or type your own. Source: Aniiland roadmap ladder (RV 7 unlock also backed by GameWith); the steps rest on Aniiland alone, so each count carries the single-source flag.<br />The layout puts out only the buildings the plan needs — never more than these counts.</p>
           <div class="fac-grid" id="climGrid"></div>
           <h4 style="margin-top:20px">🧩 Your module levels</h4>
-          <p class="src" style="margin-top:4px">Fill sets these too. Or type each level as shown in Component Upgrade. Only checked yields are used. Unchecked unlocks stay manual.</p>
+          <p class="src" style="margin-top:4px">Fill sets these too, or type each level. Only checked yields are used.</p>
           <div class="fac-grid" id="modLevelGrid"></div>
           <div id="modStatus" aria-live="polite"></div>
           <h4 style="margin-top:20px">🧩 Module harvests in your plan</h4>
-          <p class="src" style="margin-top:4px">Strawberry, Coconut and Maple Syrup follow your Ecological level. Premium Wheat has no checked module unlock. It stays a manual tap, flagged. Without it, Premium Wheat cannot be grown.</p>
+          <p class="src" style="margin-top:4px">Strawberry, Coconut and Maple Syrup follow your Ecological level. Premium Wheat has no checked unlock: manual tap only, and without it Premium Wheat can't be grown.</p>
           <div class="chips" id="modChips" role="group" aria-label="Module recipes you own" style="margin-top:10px"></div>
           <p class="src" style="margin-top:16px">Set? <a href="#basket">Next: Step 2 — pick your recipes ↓</a></p>
         </div>
@@ -378,11 +381,11 @@
       <!-- ================= STEP 2: BASKET ================= -->
       <section id="basket">
         <div class="sec-head"><span class="sec-num">Step 2</span><h2>🧺 Your Recipe Basket</h2></div>
-        <p class="sec-sub">Add up to <strong>ten recipes</strong>. All the parts merge into one list, chains too. The lists use your Step 1 numbers. Picks clear when you close the page.</p>
+        <p class="sec-sub">Add up to <strong>ten recipes</strong>. Chains merge into one list, sized by your Step 1 numbers.</p>
 
         <div class="note note-event">
           <h4>🎃 Magical Wonder Night</h4>
-          <p>The season runs <strong>Oct 29 to Dec 10</strong>.<br /><strong>Magic Pumpkin</strong> and <strong>Memory Lanternfruit</strong> grow on Sunlamp plots (Adequate light). Seeds cost <strong>4 Weird Jelly Beans</strong> each at the Seed Shop. That is event money, not Home Coins.<br />The nine event recipes are marked 🎃. Cook them and offer the dishes to the <strong>Pumpkin God</strong> for <strong>Whimsy Points</strong>. Points show in each recipe slot. Plans with event recipes show Whimsy Points per hour.<br />Tap the 🎃 chip below to see only event recipes.</p>
+          <p>The season runs <strong>Oct 29 to Dec 10</strong>. <strong>Magic Pumpkin</strong> and <strong>Memory Lanternfruit</strong> grow on Sunlamp plots; seeds cost <strong>4 Weird Jelly Beans</strong> each. The nine 🎃 recipes earn <strong>Whimsy Points</strong> when offered to the Pumpkin God. Tap the 🎃 chip to see only event recipes.</p>
         </div>
 
         <div class="card">
@@ -398,23 +401,23 @@
             </div>
           </div>
           <div class="chips" id="catChips" role="group" aria-label="Recipe categories"></div>
-          <p class="src" style="margin-top:8px">Marks: ⭐ needs a rare-currency unlock. 🎃 is a Magical Wonder Night recipe.<br />Premium recipes are not listed twice. The base recipe covers them. Each entry names the Premium one it covers. Example: Salted Lemon covers Premium Salted Lemon. Type the Premium name in Find a recipe and that entry comes up.</p>
+          <p class="src" style="margin-top:8px">Marks: ⭐ needs a rare-currency unlock. 🎃 is an event recipe. Premium recipes aren't listed twice — the base entry covers them (Salted Lemon covers Premium Salted Lemon). Type a Premium name in Find a recipe to find its entry.</p>
           <p class="src" id="pickerCount" style="margin-top:10px"></p>
           <div class="hide-row">
             <label class="hide-toggle" for="hideLockedToggle"><input type="checkbox" id="hideLockedToggle" /> <span>Only show recipes I can make</span></label>
-            <span class="hide-hint">On: locked recipes leave the lists. Locked means the recipe, or something it needs, is above your levels. It can also mean it needs Premium Wheat you have not marked as owned. Picks stay picked. Search by name still finds a locked recipe.</span>
+            <span class="hide-hint">On: locked recipes leave the lists — their station, or a step they need, is above your levels, or they need Premium Wheat you haven't marked. Picks stay picked. Name search still finds them.</span>
           </div>
           <p class="src" id="hideCount" style="margin-top:8px" hidden></p>
           <h3 style="margin-top:14px">🎒 Your ten recipe slots <span class="src" id="basketCount"></span></h3>
-          <p class="src" style="margin-top:4px">One slot per recipe, up to ten. Lists are alphabetical; search and chips narrow all ten at once. To undo a pick, choose "✕ Clear this slot" in its slot.</p>
-          <p class="src" style="margin-top:4px"><strong>No amounts to type.</strong> The planner sizes production to your facilities, plots and Aniimo limit, and reports per-hour rates below.</p>
+          <p class="src" style="margin-top:4px">One slot per recipe. Search and chips narrow all ten lists at once. Undo a pick with "✕ Clear this slot".</p>
+          <p class="src" style="margin-top:4px"><strong>No amounts to type</strong> — the planner sizes everything and reports per-hour rates.</p>
           <div class="picker-slots" id="recipeSlots"></div>
         </div>
 
 
         <div class="note note-teal">
           <h4>🌱 Grow times: should you worry? Not really</h4>
-          <p>Almost everything is ready within about <strong>40 minutes</strong> (Wheat 4 min; Potato and Willow Wood 10 min 40 s). Crops grow side by side, so times don't add up — the slowest crop sets the pace. Follow the amounts; grow times rarely matter.</p>
+          <p>Almost everything is ready within about <strong>40 minutes</strong>. Crops grow side by side, so the slowest crop sets the pace — grow times rarely matter.</p>
         </div>
 
         <div id="planArea"></div>
@@ -426,7 +429,7 @@
       <!-- ================= STRATEGY: ONE AT A TIME ================= -->
       <section id="strategy">
         <div class="sec-head"><span class="sec-num">Step 3</span><h2>🎯 Pick Your Strategy — One at a Time</h2></div>
-        <p class="sec-sub">Your basket is planned first in both modes. Pick <strong>one</strong> strategy for the rest. Never both. Nothing runs until you tap one. Switching starts clean, with nothing left over.</p>
+        <p class="sec-sub">Your basket is planned first in both modes. Pick <strong>one</strong> strategy — never both. Switching starts clean.</p>
         <div class="card">
           <div class="strat-grid" role="group" aria-label="Strategy choice">
             <button type="button" class="strat-btn" id="stratLevelBtn" aria-pressed="false">
@@ -441,7 +444,7 @@
             </button>
           </div>
           <p class="src" id="strategyStatus" style="margin-top:12px" aria-live="polite">No strategy picked yet. Tap Level Up or Goals above.</p>
-          <p class="src" style="margin-top:8px">Picked? <a href="#bestplan">Next: Step 4 — rank goals (Goals mode) and find your plan, right below ↓</a> The Level Up bill follows the plan.</p>
+          <p class="src" style="margin-top:8px">Picked? <a href="#bestplan">Next: Step 4 — rank goals (Goals mode) and find your plan, right below ↓</a> Then Step 5 sets your Mines from that plan. The Level Up bill follows in Level Up mode.</p>
         </div>
       </section>
 
@@ -472,9 +475,19 @@
 
         <div class="note note-info">
           <h4>🔍 How to read the prices and flags on a best plan</h4>
-          <p>Sell prices come from shop price research (checked Oct 24, 2026).<br /><span class="verdict v-ok">Cross-checked</span> = two sources agree.<br /><span class="verdict v-mix">Single source, spot-check in game</span> = Aniiland only. Check before a big spend.<br /><span class="verdict v-lock">No verified sell price</span> = cannot earn Home Coins.<br />Items that make sense but are not checked yet (Star) are in, flagged <span class="verdict v-mix">Not verified yet, included because it makes sense</span>, and counted. The plan says how much of the rate rests on them.<br />Aniimo XP and Mineral Sand per Mine run have no checked figures. They are flagged, never made up.</p>
+          <p>Sell prices: shop price research (checked Oct 24, 2026).<br /><span class="verdict v-ok">Cross-checked</span> = two sources agree. <span class="verdict v-mix">Single source, spot-check in game</span> = Aniiland only. <span class="verdict v-lock">No verified sell price</span> = can't earn Home Coins.<br />Star items are in but flagged <span class="verdict v-mix">Not verified yet, included because it makes sense</span>; the plan says how much of the rate rests on them. Aniimo XP and Mineral Sand per run have no checked figures — flagged, never made up.</p>
         </div>
-        <p class="src" style="margin-top:16px">Plan found? <a href="#layout">Next: Step 5 — lay it out, below ↓</a> (In Level Up mode, your next RV bill sits between here and the layout.)</p>
+        <p class="src" style="margin-top:16px">Plan found? <a href="#mines">Next: Step 5 — set your Mines, right below ↓</a> Your Mines are set from this plan, never before it.</p>
+      </section>
+
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
+      <!-- ================= STEP 5: MINES, AFTER THE STRATEGY ================= -->
+      <section id="mines">
+        <div class="sec-head"><span class="sec-num">Step 5</span><h2>⛏️ Set Your Mines — After Your Strategy</h2></div>
+        <p class="sec-sub">Mines wait for your strategy: some of them come from it. Once the Step 4 plan is found, the Mines it uses are listed here, marked <strong>used by this plan</strong> and locked in — counted once, never pickable again. Add spare Mines you own, up to your Step 1 count, and pick what each added Mine digs.</p>
+        <div id="minesOut"></div>
+        <p class="src" style="margin-top:16px">Mines set? <a href="#layout">Next: Step 6 — lay it out, below ↓</a> (In Level Up mode, your next RV bill sits between here and the layout.)</p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
@@ -482,7 +495,7 @@
       <!-- ================= LEVEL UP: RV BILL ================= -->
       <section id="rv" hidden>
         <div class="sec-head"><span class="sec-num">Level Up</span><h2>🚐 Level Up — Your Next RV Bill</h2></div>
-        <p class="sec-sub">What your <strong>next</strong> RV level costs. Full amounts. Nothing held is taken off.<br />The main materials break down into their Woodworking Bench and Chimney Kiln parts.<br />This bill is a one-time target. It never joins your per-hour rates. Its jobs join your team. Your basket's spare Wood Blocks come off it, line by line.</p>
+        <p class="sec-sub">What your <strong>next</strong> RV level costs, in full. A one-time target — never part of per-hour rates. Its jobs join your team, and your basket's spare Wood Blocks come off it, line by line.</p>
 
         <div id="rvInactive">
           <div class="empty-plan">🚐 The bill shows here when <strong>Level Up</strong> is picked. <a href="#strategy">Pick a strategy above</a>. In Goals mode, this bill plays no part. The full ladder below stays for reference.</div>
@@ -506,7 +519,7 @@
 
         <div class="note note-info" style="margin-top:16px">
           <h4>🪓 Fresh plots pay you back, once</h4>
-          <p>Open a new Farmland or Woodland plot (plots 2 to 16) and clear it. You get <strong>one-time Wood Blocks and Mineral Sand</strong>. AniimoTools and Game8 agree. Confirmed, checked Oct 28, 2026.<br />That payout helps this bill once. The per-plot amounts are not checked. So this is a note only. No number comes off the bill for it.</p>
+          <p>Clearing a new Farmland or Woodland plot (plots 2 to 16) pays <strong>one-time Wood Blocks and Mineral Sand</strong> (AniimoTools and Game8 agree, checked Oct 28, 2026). Per-plot amounts aren't checked, so no number comes off the bill for it.</p>
         </div>
 
         <div id="rvPlanArea"></div>
@@ -528,16 +541,16 @@
 
       <!-- ================= STAGE 4: LAYOUT ================= -->
       <section id="layout">
-        <div class="sec-head"><span class="sec-num">Step 5</span><h2>🗺️ Homeland Layout Helper</h2></div>
-        <p class="sec-sub"><strong>⭐ Best</strong> plants the full field your RV allows. <strong>🪶 Minimum</strong> plants one plot of each crop.<br />Plots that need the same climate building share its zones. Farmland and Woodland can share one zone. So the plan puts out only the buildings its plots fill. Sharing also cuts the crew you need.<br />Sizes: Farmland plot 4 × 4. Woodland plot 7 × 7. One climate building covers 18 × 18.</p>
+        <div class="sec-head"><span class="sec-num">Step 6</span><h2>🗺️ Homeland Layout Helper</h2></div>
+        <p class="sec-sub"><strong>⭐ Best</strong> plants the full field your RV allows. <strong>🪶 Minimum</strong> plants one plot of each crop.<br />Plots needing the same climate building share its zones, so only the buildings the plots fill go out — never more than your Step 1 counts. Sizes: Farmland plot 4 × 4, Woodland plot 7 × 7, one climate building covers 18 × 18.<br /><strong>Touch rule: a plot counts if any part of it touches the zone.</strong> Edge plots count in full, so the last row and column can hang over the edge — one zone holds up to 25 Farmland or 9 Woodland plots, and fewer buildings cover a plan. Keep edge plots clear of other climate buildings, so nothing blends by accident.</p>
 
         <div class="card" id="jobs" style="margin-bottom:14px">
           <h3>🎛️ Where to find each job pick</h3>
-          <p class="sec-sub" style="margin-bottom:0">Each pick sits with the facility it belongs to. This list tells you where each one is.<br />
-          ⛏️ <strong>Mines:</strong> one pick per Mine, in the <strong>Set your Mines</strong> note in your plan above. Add spare Mines there too.<br />
-          💧 <strong>Wells, Dewy Houses, Sandcastles and Hammocks:</strong> one pick per copy, on that facility's block in <strong>Facilities out</strong>, just below.<br />
-          ➕ <strong>Any spare facility:</strong> add it in <strong>Add a facility this plan isn't using</strong>, at the end of this step. Its job pick is on its new block.<br />
-          Picks only list what that facility can make at your RV and your level for it.</p>
+          <p class="sec-sub" style="margin-bottom:0">Each pick sits with its facility.<br />
+          ⛏️ <strong>Mines:</strong> extra Mines in <strong>Step 5</strong> (the plan's own Mines are already set there).<br />
+          💧 <strong>Wells, Dewy Houses, Sandcastles, Hammocks:</strong> one pick per copy, on the facility's block in <strong>Facilities out</strong> below.<br />
+          ➕ <strong>Any spare facility:</strong> add it in <strong>Add a facility this plan isn't using</strong>; its pick is on its new block.<br />
+          Picks list only what the facility can make at your RV and level.</p>
         </div>
 
         <div class="team-toggle" role="group" aria-label="Layout view" style="margin-bottom:6px">
@@ -545,13 +558,13 @@
           <button type="button" class="chip" id="layoutMinBtn" aria-pressed="false">🪶 Minimum layout</button>
         </div>
         <p class="src" id="layoutModeNote" style="margin-top:6px"></p>
-        <p class="src" style="margin-top:6px">🌡️ Climate rates, used in this layout. Temperatures are steps: Freeze, Cool, plain, Warm, Scorching.<br />A crop grows at <strong>100%</strong> at its own step. <strong>80%</strong> one step off. <strong>50%</strong> two steps off. <strong>20%</strong> further off <span class="verdict v-mix">single source: Aniimax</span>.<br />Each crop gets its own temperature first. A lower rate shows only when crops share a zone set to a different temperature. It is written beside the crop.</p>
+        <p class="src" style="margin-top:6px">🌡️ Climate rates: <strong>100%</strong> at a crop's own temperature step, <strong>80%</strong> one step off, <strong>50%</strong> two off, <strong>20%</strong> further <span class="verdict v-mix">single source: Aniimax</span>. A lower rate shows only when crops share a zone set to a different temperature.</p>
 
         <div id="layoutOut"></div>
 
         <div class="card" style="margin-top:16px">
           <h3>⏰ While you're away</h3>
-          <p class="sec-sub" style="margin-bottom:0">Crops keep going while seeds last. Type your hours away. This lists the seeds to have ready.</p>
+          <p class="sec-sub" style="margin-bottom:0">Crops keep going while seeds last. Type your hours away to list the seeds to have ready.</p>
           <div class="controls" style="margin-top:12px">
             <div class="field">
               <label for="awayHours">Hours away</label>
@@ -564,7 +577,7 @@
 
         <div class="card" style="margin-top:16px">
           <h3>✋ Add extra crops by hand <span class="src">(optional, never needed for layout help)</span></h3>
-          <p class="sec-sub" style="margin-bottom:0">Extras only. Your layout already comes from your basket and plan. Tap a crop to add one plot. Tap again to take it off. Hand picks stay in their own group.</p>
+          <p class="sec-sub" style="margin-bottom:0">Extras only — your layout already comes from your basket and plan. Tap a crop to add one plot, tap again to remove it.</p>
           <div id="layoutPicker"></div>
         </div>
 
@@ -572,30 +585,24 @@
 
         <div class="card" style="margin-top:16px">
           <h3>⚡ Power zones, for later</h3>
-          <p class="sec-sub" style="margin-bottom:0">Power is not needed to grow anything. It matters later, when stations use E-mode and must sit in a power zone. Generator Aniimo stay at their post. Utility posts never count as Hauling cover.</p>
+          <p class="sec-sub" style="margin-bottom:0">Power isn't needed to grow anything — it matters later, for E-mode stations. Utility posts never count as Hauling cover.</p>
           <div class="zone-maps" id="powerRef"></div>
         </div>
 
-        <p class="src" style="margin-top:16px">Laid out? <a href="#team">Next: Step 6 — your crew, right below ↓</a></p>
+        <p class="src" style="margin-top:16px">Laid out? <a href="#team">Next: Step 7 — your crew, right below ↓</a></p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
       <!-- ================= TEAM HELPER ================= -->
       <section id="team">
-        <div class="sec-head"><span class="sec-num">Step 6</span><h2>👥 Team Helper</h2></div>
-        <p class="sec-sub">One crew for the whole plan. It covers your basket and your strategy plan, counted once per facility. In Level Up mode, the bill's jobs join too.<br />
-        <strong>⭐ Best:</strong> one worker per facility.<br />
-        <strong>🪶 Minimum:</strong> one shared Aniimo per job. A second worker joins only when the first one's load passes 80%.<br />
-        Best is fitted inside your Aniimo limit. If the limit forces sharing, the shared workers are named.<br />
-        <strong>Hauling is always in the total, and always more than one.</strong> That count is your stand-in rule, not game data.<br />
-        Cover works like this: a worker checked to also hold Hauling can carry what it made to storage. It counts once, in its main job. Everyone else does not cover. The rest become haulers of their own.<br />
-        <strong>Utility posts never cover.</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps cannot leave their posts.<br />
-        The crew staffs only the buildings the plan uses. Climate buildings count only where the layout puts them out. Other facilities count only the copies the plan needs, never every copy you own.<br />
-        Slots the crew does not use become home residents (🏠 below).<br />
-        <strong>Crew is shared by skill, not tied to one building.</strong> One Aniimo with the right skill can cover every facility that needs it at the same time, if its load allows. One Wind Aniimo can cover both Carousel Mills and the Joy Wheel Loom. Minimum shows that sharing in full. Best adds its own workers only where speed is worth it.<br />
-        <strong>Fields get no personality bonus.</strong> Farmland and Woodland planting (Grass) speeds up with the worker's Grass Home Ability level only. No personality match helps it. Other facilities keep their checked matches. The Mine keeps Playful +20%.</p>
-        <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy before you use this crew.</strong> In Level Up mode, the bill's jobs join this crew, so it can grow. In Goals mode, the bill plays no part. Switching rebuilds the crew. No jobs are left over from the other mode.</p></div>
+        <div class="sec-head"><span class="sec-num">Step 7</span><h2>👥 Team Helper</h2></div>
+        <p class="sec-sub">One crew for the whole plan — basket plus strategy, once per facility. In Level Up mode the bill's jobs join too.<br />
+        <strong>⭐ Best:</strong> one worker per facility. <strong>🪶 Minimum:</strong> one shared Aniimo per job; a second joins only when the first passes 80% load. Best is fitted inside your Aniimo limit; forced sharing is named.<br />
+        <strong>Hauling is always in the total, always more than one</strong> (your stand-in rule, not game data). A worker verified to also hold Hauling carries its own output to storage and counts once, in its main job; everyone else doesn't cover. <strong>Utility posts never cover</strong> — Generator, Cooling Unit, Heat Furnace and Sunlamp Aniimo stay at their posts.<br />
+        The crew staffs only the buildings the plan uses, at the copies it needs. Unused slots become home residents (🏠 below). Crew is shared by skill, not tied to one building.<br />
+        <strong>Fields get no personality bonus:</strong> planting speeds up with Grass Home Ability level only. The Mine keeps Playful +20%.</p>
+        <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy first</strong> — in Level Up mode the bill's jobs join this crew. Switching rebuilds it clean.</p></div>
         <div class="card">
           <div id="teamGate"></div>
           <div id="teamContent">
@@ -607,15 +614,15 @@
           <div id="teamArea"></div>
           </div>
         </div>
-        <p class="src" style="margin-top:16px">Crewed? <a href="#home">Next: Step 7 — home &amp; Bud Tickets, right below ↓</a></p>
+        <p class="src" style="margin-top:16px">Crewed? <a href="#home">Next: Step 8 — home &amp; Bud Tickets, right below ↓</a></p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
       <!-- ================= HOME SIDE & BUD TICKETS ================= -->
       <section id="home">
-        <div class="sec-head"><span class="sec-num">Step 7</span><h2>🏠 Home &amp; Bud Tickets</h2></div>
-        <p class="sec-sub">Bud Tickets come from Aniimo <strong>living in the Homebuilding Zone</strong>. It opens at <strong>RV 8</strong>. Tickets are spent on decor at the Furniture Store.<br />Work and home share one pool of Aniimo. <strong>Places left for home = cap − your production crew.</strong> There is no number to pick. It moves with the plan.</p>
+        <div class="sec-head"><span class="sec-num">Step 8</span><h2>🏠 Home &amp; Bud Tickets</h2></div>
+        <p class="sec-sub">Bud Tickets come from Aniimo <strong>living in the Homebuilding Zone</strong> (opens <strong>RV 8</strong>), spent on decor at the Furniture Store. Work and home share one Aniimo pool: <strong>places left for home = cap − your production crew</strong>.</p>
 
         <div class="card">
           <div class="controls">
@@ -693,25 +700,26 @@
           <li><strong>Crop environments (verified from your own game, Oct 23, 2026):</strong> two separate tags — a temperature tag (Recommended: grows best there, still grows elsewhere) and Adequate light (Required: hard requirement). Cooling Unit serves Freeze/Cool; Heat Furnace serves Warm/Scorching; Sunlamp serves Adequate light. Cool: Rose, Strawberry, Ginseng, Apple. Freeze: Cranberry, Maple Syrup. Warm: Cherry Blossom, Chestnut. Scorching: Sugarcane, Agave, Palm Bark, Natural Rubber, Coconut, Cocoa. Adequate light: Lavender, Grapes, Walnut, Orange Flower. Every other crop: no special environment needed.</li>
           <li><strong>Sea Salt is the known bottleneck</strong> <span class="verdict v-mix">single community source</span>: it comes only from the Tidewhisper Sandcastle. Per your in-game panels (Oct 27, 2026): Sea Salt needs the <strong>Susuta family</strong>, Pearl needs the <strong>Shelly family</strong>, Star (Starfall Hammock) takes <strong>any Aniimo from the Celestis family</strong>.</li>
           <li><strong>Wood Blocks by Woodland level</strong> (your screenshots, Oct 25, 2026): Lv 1 = 1, Lv 2 = 8, Lv 3 = 21, Lv 4 = 47, Lv 5 = 75, Lv 6 = 122 per plot, same for every tree at that level. Mineral Sand comes from the Mine in amounts that vary, so no fake yield is shown.</li>
-          <li><strong>Climate coverage:</strong> a climate building affects an 18 × 18 square centered on itself (your Edit-mode screenshot, Oct 23, 2026).</li>
+          <li><strong>Climate coverage:</strong> a climate building affects an 18 × 18 square centered on itself (your Edit-mode screenshot, Oct 23, 2026). <strong>Touch rule (checked Oct 29, 2026):</strong> Game8, the aniimoguide FAQ and Aniimax all say a plot counts as covered when <strong>any part of it touches</strong> that area — it does not have to fit fully inside. This planner lays plots on the zone's own edge-to-edge grid and lets the last row and column hang over the edge, so one zone covers up to 25 Farmland or 9 Woodland plots; where that covers a plan with fewer buildings, the layout deploys the fewer number and says so. A plot is never left touching a second climate building that would blend it — zones are kept apart, and the only blends are the plan's own shared zones, said out loud.</li>
           <li><strong>Plot footprints and power zones</strong> (your screenshots, Oct 23, 2026): Farmland 4 × 4 cells, Woodland 7 × 7, climate zone 18 × 18, Crackle Generator zone 22 × 22, Power Pole zone 14 × 14. Packing assumes plots edge to edge.</li>
           <li><strong>Strategy, the next-level bill, and the basket offset:</strong> one strategy at a time (player's rule, Oct 27, 2026, the Aniimax model). Level Up targets the single next level's bill as a fixed one-time package, outside per-hour rates; Goals runs the ranked goals and the bill plays no part. In Level Up mode, the basket's net Wood Block surplus (counted production by Woodland level, minus what basket recipes use) comes off the bill, shown line by line. Mineral Sand is never offset: it rides along with Mine runs in amounts that vary, so it is flagged, not guessed.</li>
           <li><strong>The basket takes recipes only, never amounts (max 10).</strong> The planner sizes each picked recipe to the facilities you have out; the chain under it is worked out, then the plan is fitted inside your limits (facility counts, plot counts) and scaled down where a limit binds — the plan names the limit. What the plan makes and earns is shown per hour, worked out at the slowest crop's pace (craft and gather times are not verified, and rates say so).</li>
           <li><strong>The Layout Helper reads your basket:</strong> every crop the plan needs, grouped by climate, with the Grow list's own plot counts. The − and + buttons adjust a crop's count and the change sticks; a crop at 0 stays listed. Hand picks are optional extras in their own group, never merged. Above-level crops stay listed, greyed, and still count.</li>
-          <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, gives each climate its own zones first (Farmland and Woodland plots of one climate sharing one 18 × 18 zone where their plots fit inside it), shares a zone between two climates only when the building count cannot cover them separately, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
+          <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, gives each climate its own zones first (Farmland and Woodland plots of one climate sharing one 18 × 18 zone where their plots touch it), shares a zone between two climates only when the building count cannot cover them separately, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
           <li><strong>Overlap (Layout Helper):</strong> only the Steam guide's two verified blends are noted — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so a band never places or covers a crop: every crop keeps its own climate zone and building count (Cool crops always keep their own Cooling Unit zones, Warm crops their own Heat Furnace zones), nothing is deducted for a band anywhere, and a band appears only as an uncounted note naming the crops whose zones could cross to make it. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
           <li><strong>The Layout Helper also reads your strategy plan:</strong> once run, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your setup, basket, strategy or goals change after a run, the group says the plan is out of date until you run it again.</li>
-          <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity is unchanged (16 Farmland or 4 Woodland plots per zone); building tiles are counted so you can see their space cost.</li>
+          <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the touch rule above (up to 25 Farmland or 9 Woodland plots touching one zone; it was 16 or 4 when every plot had to fit fully inside); building tiles are counted so you can see their space cost.</li>
           <li><strong>Step 1 (setup):</strong> the boxes auto-fill on a fresh load to the most the RV level standing in the picker allows — facility counts, facility levels, climate counts and module levels — the same fill that picking an RV level or tapping Fill from RV level runs. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying, plans and Money Crops follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
-          <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17; Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19.</li>
+          <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13 — and 2 is the cap here (player-verified, Oct 29, 2026: she has 2, her count wins over the guide ladder's third at RV 17, so Fill stops at 2 and no plan uses or shows a third); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19.</li>
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
           <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 8): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 8): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales. Crafting (max 7): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Premium Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume. Only three change numbers, auto-applied from Ecological: Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8). Premium Wheat appears in no module ladder — it stays manual, flagged, never auto-applied.</li>
-          <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the recipe data; verified gather pairings: Well = Water, Mine = Earth, Tidewhisper Sandcastle = Leisure. Farmland, Woodland, Dewy House and the leisure station have no verified job <span class="verdict v-mix">not verified yet</span> — no worker is named, but each station still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is used by no recipe in the data so it is never deployed, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
-          <li><strong>Adding facilities by hand (Layout Helper, player's ask, Oct 29, 2026):</strong> each facility block has − and + steppers, like the plot steppers. The Set your Mines note has its own pick per Mine (next entry).<br />+ puts out extra copies she owns. It never goes above the Step 1 count. − takes back only copies she added. The plan's own count is the floor.<br />Added copies are marked "added by you". They are staffed in the crew, draw power, and count in the strategy plan's Working column.<br />Amounts stay plan driven. Added copies are placed, staffed spares. Mines are the one exception: each added Mine digs the material on its line, and brings that material's per run yield again. Gather run times are not checked, so Mine takes count per run, never per hour.<br />Added copies live in memory only. They reset to the plan's counts when the basket or strategy changes.<br /><strong>Facilities the plan does not use at all</strong> (same ask, later Oct 29, 2026): the layout ends with an "Add a facility this plan isn't using" list. It shows every facility she owns that the plan leaves out, each with the same + stepper. So a spare Mine, or anything else, can go out even when no recipe needs it. A craft or cook facility added this way gets a job pick on its block. Once it has a job, it counts in crew and power like any copy out. The named facilities join the crew like any copy out.</li>
-          <li><strong>Per-Mine material picks (player's ask, Oct 29, 2026):</strong> the Set your Mines note, in the basket plan and the strategy plan, has one row per Mine out.<br />Mines the plan claims start on the plan's own material. She can change any pick, claimed or added. Crew, power, totals out, and the strategy table's Working column all follow her picks.<br />Mines she owns past the plan's claims can be added from the same place. Adding stops at her Step 1 Mine count. An added Mine can be taken back from the same row. Once added, it counts just like a claimed one: Earth crew, power, totals, and its material's per run yield. Mine takes count per run, never per hour. Gather run times are not checked.<br /><strong>All mining gives Mineral Sand (player's rule, Oct 29, 2026):</strong> every run brings Mineral Sand with the Mine's picked material. The amount varies. So no Mine needs to sit on Mineral Sand just to earn it. A Mineral Sand need (a goal, or the Level Up bill's ore chain) is covered by any Mine out. No sand amount or rate is counted anywhere.<br />Picks and added Mines live in memory only. They reset to the plan's picks when the basket or strategy changes.</li>
-          <li><strong>Per-copy gather picks (player's extension of the Mine picker, Oct 29, 2026):</strong> the other gather facilities get the same picks, on their Layout Helper blocks.<br />Each copy out of the Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock has one product pick. A facility the plan uses starts on the plan's own pick. A copy she adds (from the add list or the block stepper, up to her Step 1 count, and taken back the same way) starts on the facility's first product. She can change any pick.<br />An added copy counts just like a plan copy: crew post, power, totals out, and its product's per run yield from the recipe data. Sea Salt 10. Pearl 2, with their Susuta and Shelly family notes. Aromathyst 4. Star 2, flagged not checked, like everywhere else. The Well's waters use the Well's level.<br />Gather run times are not checked, so takes count per run, never per hour.<br /><strong>The Nimbus Bed gets no pick.</strong> No checked gather product for it is in the data. The module ladder links Wool's Quick Recipe to it, but the recipe data gathers Wool at the leisure station. So its block says that, and does not guess. An added Nimbus Bed still counts as a staffed copy out.</li>
-          <li><strong>Job picks for added copies of ANY facility (player's generalisation, Oct 29, 2026):</strong> the job pick is not just for Mines and gather facilities.<br />Each copy she adds by hand, of any kind, gets one product pick on its layout block. A spare Claw Game Cooker, Crafting Table, Chimney Kiln, any of them. It starts on the plan's first product at that facility. If there is none, it starts on the facility's first product at her levels.<br />Once it has a job, it counts in full. Its worker post joins the crew. A facility the plan never ran gets its post from the picked product. The copy draws power at its total out, on both plans' power lines. It stands in the totals out. Its product's take counts from the same recipe data: per batch for crafts, per run for gathers. Craft and gather times are not checked, so never per hour.<br /><strong>Each pick list is filtered by her current state.</strong> A product shows only when its level fits the facility level she put in Step 1, and the RV its facility tier opens at is at or below her current RV. The recipe lists use the same rule. So do the Mine and gather picks.<br />A facility that can make nothing at her level and RV offers no list. Its add row and its block say so in words. Climate buildings name their real job instead: the layout sets their zones. The Nimbus Bed names its missing checked product.</li>
+          <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the recipe data; verified gather pairings: Well = Water, Mine = Earth, Tidewhisper Sandcastle = Leisure. Farmland, Woodland, Dewy House and the leisure station have no verified job <span class="verdict v-mix">not verified yet</span> — no worker is named, but each station still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is the Homeland leisure station (the player's word, Oct 29, 2026), so it counts the copies the plan's leisure gathers need, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
+          <li><strong>Adding facilities by hand (player's ask, Oct 29, 2026):</strong> each facility block in the Layout Helper has − and + steppers. + puts out extra copies she owns, never above her Step 1 count; − takes back only copies she added; the plan's own count is the floor. Added copies are marked "added by you" and count in full: crew, power, totals, and the strategy plan's Working column. Amounts stay plan-driven — added copies are staffed spares, except Mines: each added Mine digs the material on its line, at that material's per run yield. Added copies live in memory only and reset when the basket or strategy changes. The layout also ends with an "Add a facility this plan isn't using" list, so any owned facility can go out even when no recipe needs it.</li>
+          <li><strong>Mines come after the strategy (player's workflow fix, Oct 29, 2026):</strong> the one Mine picker lives in Step 5, after the strategy plan — the strategy itself can claim Mines (the Level Up bill's ore chain, a goal's materials), so Mines are never picked before it. Mines the plan claims are marked "used by this plan": locked, never offered again, so nothing is double-picked. She picks only for Mines she adds past the plan's, up to her Step 1 count (her example: 7 owned, 1 used by the plan, 6 left to add). Added Mines count like claimed ones — Earth crew, power, totals, per run yield; Mine takes count per run, never per hour (run times not checked). <strong>All mining gives Mineral Sand</strong> (player's rule): every run brings sand with the picked material, amount varies, so no Mine needs to sit on sand to earn it and no sand amount is counted. Picks and added Mines live in memory only and reset when the basket or strategy changes.</li>
+          <li><strong>Per-copy gather picks (player's extension of the Mine picker, Oct 29, 2026):</strong> each copy out of the Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock has one product pick on its Layout Helper block. Plan copies start on the plan's pick; added copies start on the facility's first product; any pick can change. An added copy counts like a plan copy: crew post, power, totals, per run yield (Sea Salt 10, Pearl 2 — Susuta and Shelly family notes — Aromathyst 4, Star 2 flagged not checked; the Well's waters use the Well's level). Takes count per run, never per hour. <strong>The Nimbus Bed gets no pick:</strong> it is the Homeland leisure station, and the plan sets what it gathers (Wool, Petals, Scales), so there is no pick to change; an added Nimbus Bed still counts as a staffed copy out.</li>
+          <li><strong>Job picks for added copies of ANY facility (player's generalisation, Oct 29, 2026):</strong> every copy she adds by hand gets one product pick on its layout block, starting on the plan's first product there (or the facility's first product at her levels). With a job picked it counts in full: crew post, power, totals, and its product's take (per batch for crafts, per run for gathers; times not checked, so never per hour). Pick lists show only products that fit her Step 1 facility level and her RV — the same rule as the recipe, Mine and gather lists. A facility that can make nothing at her level and RV offers no list and says so; climate buildings name their real job instead (the layout sets their zones); the Nimbus Bed names why it has no pick (the plan sets its gathers).</li>
+          <li><strong>One Put out list (player's fix, Oct 29, 2026):</strong> the Team Helper used to show Aniimo counts four ways — the Put out list, "that total includes" paragraphs, a per-job chip row, and a How many column in the worker table. Now the Put out list is the only place Aniimo counts live. The other parts point to it or say who works where, with no counts of their own. Wording across the planner is kept short and plain on purpose: it is written for every player, not just its maker.</li>
           <li><strong>Aniimo caps:</strong> the "place N Aniimo in your Home" numbers from AniimoTools, matching MetaBot.GG at every level: RV 2 = 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44, 45 at RV 20. The crew check covers the whole put-out total — nothing counted outside it. A crew over the cap is never shown as usable: Best is fitted down to the cap by sharing workers at as few facilities as possible (named on the plan); only when even Minimum is over does no crew show. Flag: aniimoguide prints a lower second set from RV 13 on (40 at RV 20) and advises planning on it; this planner follows the AniimoTools/MetaBot numbers, which match the player's own game (36 at RV 14).</li>
           <li><strong>Bud Tickets:</strong> earned by Homebuilding Zone residents (opens RV 8), not by production. Rates (Game8): 120/day regular, 180 Sparkling or Prismana, 270 both. Decor gives about 1 Habitability per ticket; Habitability gates RV 10–20. The reserve is derived per plan (cap − production crew on show), never a fixed number. The Jar's capacity is not verified, so none is stated; a single-source claim of +100/day from a daily home chest is not counted.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> — Master Guide table (GameWith, Game8, AniimoTools, Selphie1999 Gaming agree): E Energetic — Bouncy Brew Keg, Woodworking Bench; I Instinctive — Phonolfactory Table, Dewy House; S Practical — Claw Game Cooker, Chimney Kiln; N Nimble — Jukebox Dryer, Blazing Stove; T Tenacious — Carousel Mill, Simmering Pot; F Faithful — Joy Wheel Loom, Well; J Judicious — Crafting Table, Tidewhisper Sandcastle; P Playful — Mine, Pickling Jar. Farmland, Woodland, Dance Pad Polisher, Aniipod Maker and the leisure station have no verified match — stated, not guessed.</li>
@@ -815,10 +823,14 @@
        every other facility count, these are what Fill from RV level sets
        (and what the boxes start with); they can be typed over, and the
        steps rest on Aniiland alone, so the panel flags them
-       "count single source" like the other facility counts. */
+       "count single source" like the other facility counts.
+       Cooling Unit stops at 2 (player-verified, Oct 29, 2026): she has
+       2, and her real count wins over the guide ladder's third unit at
+       RV 17 — Fill never sets 3, and since every layout, crew and
+       total reads the entered count, no plan can use or show a third. */
     var CLIM_COUNT = {
       "Heat Furnace":[[7,1],[12,2],[17,3]],
-      "Cooling Unit":[[7,1],[13,2],[17,3]],
+      "Cooling Unit":[[7,1],[13,2]],
       "Sunlamp":[[9,1],[13,2],[19,3]]
     };
     function climCountFor(building, rv){
@@ -1120,10 +1132,10 @@
     ITEMS["Coconut"].mod = "coconut";         ITEMS["Coconut"].modYld = 8;
     ITEMS["Maple Syrup"].mod = "maple";       ITEMS["Maple Syrup"].modYld = 30;
     var MODULES = [
-      { id:"premiumWheat", name:"Premium Wheat recipe", desc:"Manual only, unverified: no module unlock for Premium Wheat appears in the AniimoTools module ladders, the aniimoguide homeland guide or the Aniiland RV roadmap. It appears as a Farmland Lv 6 crop at RV 12 in the roadmap, with no module named, so no level is guessed for it here. Tap to mark it owned only if your game shows you have it. Without it, Premium Wheat cannot be grown." },
-      { id:"strawberry", name:"Strawberry harvest ×26", desc:"Verified auto: Ecological Module Lv 7 (needs RV 17) unlocks Quick Recipe: Strawberry. Strawberry yields 26 per seed instead of the base 8 while your Ecological level is 7 or higher." },
-      { id:"coconut", name:"Coconut harvest ×8", desc:"Verified auto: Ecological Module Lv 8 (needs RV 18) unlocks Quick Recipe: Coconut. Coconut yields 8 per seed instead of the base 5 while your Ecological level is 8." },
-      { id:"maple", name:"Maple Syrup harvest ×30", desc:"Verified auto: Ecological Module Lv 6 (needs RV 14) unlocks Quick Recipe: Maple Syrup. Maple Syrup yields 30 per seed instead of the base 9 while your Ecological level is 6 or higher." }
+      { id:"premiumWheat", name:"Premium Wheat recipe", desc:"Tap this only if your game shows you have it. No guide lists a module unlock for it, so nothing turns it on by itself. Without it, Premium Wheat can't be grown." },
+      { id:"strawberry", name:"Strawberry harvest ×26", desc:"On by itself at Ecological Lv 7 or more: Strawberry gives 26 per seed instead of 8." },
+      { id:"coconut", name:"Coconut harvest ×8", desc:"On by itself at Ecological Lv 8: Coconut gives 8 per seed instead of 5." },
+      { id:"maple", name:"Maple Syrup harvest ×30", desc:"On by itself at Ecological Lv 6 or more: Maple Syrup gives 30 per seed instead of 9." }
     ];
     /* Verified module unlock map. Source: AniimoTools, RV Levels, the RV modules
        section (checked Oct 24, 2026), cross-checked against aniimoguide's
@@ -1330,9 +1342,8 @@
         var w = facWorking[f] || 0;
         if(!(w > 0)) return;
         var lvl = facLevel(f);
-        /* A running station with no Step 1 level of its own (the
-           Homeland leisure station) counts at Lv 1, the lowest level
-           any running building can have. */
+        /* A running station with no Step 1 level of its own counts
+           at Lv 1, the lowest level any running building can have. */
         if(!(lvl > 0)) lvl = 1;
         used += w * (POWER_HIGH_DRAW[f] ? 30 : 15) * lvl;
       });
@@ -1466,10 +1477,24 @@
       var near = document.getElementById("facStateLine");
       if(near) near.textContent = "🏭 " + text;
     }
+    /* The one name mismatch in the data (player's word, Oct 29, 2026):
+       the recipe data gathers Wool, Petals and Scales at a station it
+       calls the "Homeland leisure station", but that station IS the
+       Nimbus Bed — the facility Step 1, FAC_RV, FAC_COUNT and
+       FAC_ANIIMO all key by that name. Every other station's recipes
+       already use its Step 1 name (Well, Mine, Dewy House,
+       Tidewhisper Sandcastle, Starfall Hammock all match), so this is
+       the only alias. Count, need, plan and layout lookups resolve
+       through facCanon so all four read the one Nimbus Bed count;
+       recipe levels and locking keep the station's own rule (the
+       leisure station never locks), untouched. */
+    var FAC_ALIAS = { "Homeland leisure station": "Nimbus Bed" };
+    function facCanon(f){ return FAC_ALIAS[f] || f; }
     function facLevel(facility){
       return facLevels.hasOwnProperty(facility) ? facLevels[facility] : 0;
     }
     function facCount(facility){
+      facility = facCanon(facility);
       if(CLIM_COUNT[facility]) return climCounts.hasOwnProperty(facility) ? climCounts[facility] : 0;
       if(FAC_RV[facility]) return facCounts.hasOwnProperty(facility) ? facCounts[facility] : 0;
       return 0;
@@ -1863,7 +1888,22 @@
         lines.push("- " + f + ", one type of thing at a time: " + a.perCopy.map(function(n, i){ return "Copy " + (i + 1) + ": " + n; }).join("; ") + (a.queued.length ? ". Takes turns on those copies: " + a.queued.join(", ") + " (their per-hour rates above are the shared, taking-turns rates)" : ""));
       });
       lines.push("");
-      lines.push("Set your Mines to: " + mineSetupText(mineSetup((typeof bpResult !== "undefined" && bpResult && bpResult.mine) ? bpResult.mine.claims.filter(function(c){ return c.src === "goal"; }) : null)));
+      /* Mines wait for the strategy (player's workflow fix, Oct 29,
+         2026): a basket plan copied before a strategy is picked says
+         so instead of setting Mines the strategy might change. Once
+         a strategy plan has been found, its combined Mines — basket
+         plus strategy — are the ones named here. */
+      var basketMineNames = Object.keys(plan.net).filter(function(n){
+        var it = ITEMS[n];
+        return it && it.kind === "gather" && it.facility === "Mine" && (plan.net[n] || 0) > 0;
+      }).sort();
+      if(!strategy){
+        lines.push("Mines: not set yet. Mines are set after your strategy, in Step 5 of the planner, from your basket and your strategy plan together — some of them can come from the strategy you pick." + (basketMineNames.length ? " This basket alone needs " + basketMineNames.join(", ") + " from the Mine." : " This basket alone needs nothing from the Mine."));
+      } else if(typeof bpResult !== "undefined" && bpResult){
+        lines.push("Set your Mines to: " + mineSetupText(bpResult.mine));
+      } else {
+        lines.push("Mines: set them in Step 5 of the planner, after you tap Find the plan in Step 4 — they come from your basket and your strategy plan together." + (basketMineNames.length ? " This basket alone needs " + basketMineNames.join(", ") + " from the Mine." : ""));
+      }
       lines.push("Strategy: " + (strategy === "levelup" ? "Level Up — target: the RV " + rvNext() + " bill (see below)" : strategy === "goals" ? "Goals — ranked: " + (typeof bpGoalOrder !== "undefined" ? bpGoalOrder.map(function(gid, i){ return (i + 1) + ". " + bpGoalDef(gid).name + (bpGoalOn[gid] ? "" : " (off)"); }).join(", ") : "") : "none picked yet") + ". Your basket below is planned first in both modes.");
       if(levelingOn && rvHasNext()){
         var bill = computeRvBill();
@@ -1911,9 +1951,9 @@
         (whimsyPerHour > 0 ? '<div class="sum-chip"><b>🎃 ' + fmtRate(whimsyPerHour) + '</b><span>Whimsy Points per hour</span></div>' : '') + '</div>';
 
       /* how the amounts were sized, stated on the plan itself */
-      html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>Production fitted inside your RV ' + userRV + ' limits (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland, crew ' + aniimoCapText(userRV) + ').' +
-        (plan.limits.length ? ' Tightest limit: <strong>' + plan.limits.map(function(l){ return esc(l); }).join(", ") + '</strong> — production is scaled down to fit it.' : ' Nothing had to be scaled down.') +
-        (plan.perHour > 0 ? ' Rates are <strong>per hour</strong>, at the pace of the slowest crop (about ' + fmtRate(plan.cycleMins) + ' min; crops grow side by side).' : ' This plan grows no crops, and craft and gather times are not verified, so there is <strong>no per-hour rate</strong> for it: the lists below name what to gather and make, in order, without amounts.') +
+      html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>Fitted inside your RV ' + userRV + ' limits (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland, crew ' + aniimoCapText(userRV) + ').' +
+        (plan.limits.length ? ' Tightest limit: <strong>' + plan.limits.map(function(l){ return esc(l); }).join(", ") + '</strong> — scaled down to fit.' : '') +
+        (plan.perHour > 0 ? ' Rates are <strong>per hour</strong>, at the slowest crop\'s pace (about ' + fmtRate(plan.cycleMins) + ' min).' : ' <strong>No per-hour rate</strong> for this plan: it grows no crops, and craft/gather times aren\'t verified — the lists name what to gather and make, without amounts.') +
         '</p></div>';
 
       /* One type of thing at a time: any facility whose distinct
@@ -1927,7 +1967,7 @@
           if(a.queued.length) q.push("<strong>" + esc(f) + "</strong>: " + a.products.length + " products, " + a.copies + (a.copies === 1 ? " copy" : " copies") + " working, so " + a.queued.map(function(n){ return esc(n); }).join(", ") + (a.queued.length === 1 ? " takes turns" : " take turns") + " on " + (a.copies === 1 ? "it" : "them"));
         });
         if(q.length){
-          html += '<div class="note note-warn"><h4>⏳ One thing at a time</h4><p>One copy makes one thing at a time. If a plan has more products than copies, the extras take turns. They do not run side by side: ' + q.join("; ") + '.<br />The per-hour rates below are the shared, taking-turns rates.<br />Want one to run side by side? Put out one more copy. Use the − and + steppers on its block in Step 5, Layout.</p></div>';
+          html += '<div class="note note-warn"><h4>⏳ One thing at a time</h4><p>One copy makes one thing at a time, so extra products take turns: ' + q.join("; ") + '.<br />The per-hour rates are the shared rates. Want one side by side? Add a copy on its block in Step 6, Layout.</p></div>';
         }
       })();
       /* leveling: the bill stays a fixed one-time package in the RV
@@ -1949,7 +1989,7 @@
         var it = ITEMS[n];
         if(!it || (plan.net[n] || 0) <= 0) return;
         if(it.noCrew) return;
-        var f = it.facility;
+        var f = facCanon(it.facility);
         if(f === "Farmland" || f === "Woodland") return;
         var load = 0;
         if(it.kind === "craft") load = plan.batches[n] || 0;
@@ -1978,7 +2018,7 @@
       });
       /* Mines draw power for every Mine out in the Mine picker's
          list — plan-claimed and added alike — the same total the
-         Mines note below shows. */
+         Step 5 Mines step shows. */
       (function(){
         var msP = mineSetup((typeof bpResult !== "undefined" && bpResult && bpResult.mine) ? bpResult.mine.claims.filter(function(c){ return c.src === "goal"; }) : null);
         if(msP.totalOut > 0) facWorkingBP["Mine"] = msP.totalOut;
@@ -1999,9 +2039,12 @@
          for its deployed total, job pick or not. */
       applyAddedPower(facWorkingBP);
       html += '<p class="src" style="margin-top:10px">' + powerHeadroomHtml(facWorkingBP) + '</p>';
-      /* Mines setup instruction: max Mines for this RV, and the material
-         the basket (then the leveling bill) claims first. */
-      html += mineSetupHtml(mineSetup((typeof bpResult !== "undefined" && bpResult && bpResult.mine) ? bpResult.mine.claims.filter(function(c){ return c.src === "goal"; }) : null));
+      /* Mines are NOT set here any more (player's workflow fix,
+         Oct 29, 2026): this basket plan sits above the strategy
+         picker, and the strategy itself can claim Mines, so the
+         picker lives in Step 5, after the strategy plan. All this
+         plan says is what the basket alone needs, and where to go. */
+      html += basketMinesNoteHtml(plan);
       /* locked warnings: steps above the facility levels set in the Step 1 panel */
       var locked = Object.keys(plan.gross).filter(function(n){ return lockInfo(ITEMS[n]) && plan.net[n] > 0; });
       if(locked.length){
@@ -2011,11 +2054,11 @@
       }
       /* module gate: Premium Wheat cannot be grown without its module recipe */
       if((plan.gross["Premium Wheat"] || 0) > 0 && plan.net["Premium Wheat"] > 0 && !modulesOwned.premiumWheat){
-        html += '<div class="note note-info"><h4>🌾 Premium Wheat needs its recipe, marked by hand</h4><p>This plan grows <strong>Premium Wheat</strong>. One Wheat Seed grows Premium Wheat, not regular Wheat.<br />No module unlock for it was found in the sources checked. So the planner never turns it on from a level. It stays manual, on purpose.<br />It is not marked as owned in Step 1. So the plan takes it that you will get it. Or that you will swap the dishes that need Refined Flour and Malt Sugar.<br />Already own it in game? Tap <strong>Premium Wheat recipe (manual, unverified)</strong> in Step 1. This flag clears.</p></div>';
+        html += '<div class="note note-info"><h4>🌾 Premium Wheat needs its recipe, marked by hand</h4><p>This plan grows <strong>Premium Wheat</strong> (one Wheat Seed grows it, not regular Wheat). No module unlock was found for it, so it stays manual — and it is not marked as owned in Step 1 yet.<br />Already own it? Tap <strong>Premium Wheat recipe (manual, unverified)</strong> in Step 1 and this flag clears.</p></div>';
       }
       /* salt callout */
       if(plan.net["Sea Salt"] > 0){
-        html += '<div class="note note-warn"><h4>🧂 Salt check' + (plan.perHour > 0 ? ": ≈" + fmtRate(plan.net["Sea Salt"] * plan.perHour) + ' Sea Salt per hour' : '') + '</h4><p>Sea Salt comes only from the <strong>Tidewhisper Sandcastle</strong>. Recipe Lv 1 makes 10 each time. Lv 2 makes 23. A long list of dishes ask for it.<br />Guides call it the bottleneck. Start the Sandcastle on salt first. Let it run while you grow the rest.<br />The Aniimo on salt must be from the Susuta family. That is the game note on the Sandcastle panel, from your screenshot. Pearl at the same Sandcastle needs the Shelly family.</p></div>';
+        html += '<div class="note note-warn"><h4>🧂 Salt check' + (plan.perHour > 0 ? ": ≈" + fmtRate(plan.net["Sea Salt"] * plan.perHour) + ' Sea Salt per hour' : '') + '</h4><p>Sea Salt comes only from the <strong>Tidewhisper Sandcastle</strong> (Lv 1 makes 10, Lv 2 makes 23) and lots of dishes need it — guides call it the bottleneck. Start the Sandcastle on salt first.<br />The Aniimo on salt must be from the Susuta family; Pearl there needs the Shelly family (game notes, your screenshots).</p></div>';
       }
       /* money crop bonus */
       var moneyHits = growNames.filter(function(n){ return MONEY[n] && plan.net[n] > 0; });
@@ -2584,9 +2627,10 @@
        so no larger number can be counted honestly, and one building
        runs one such item at a time — the same one-per-material rule
        the Mines instruction uses, so the counts agree. A facility
-       the plan never uses needs zero, however many are owned — the
-       Nimbus Bed is used by no recipe in the data, so it is never
-       deployed. Capped at the count entered in Step 1. */
+       the plan never uses needs zero, however many are owned. Loads
+       are keyed by the Step 1 facility name (facCanon), so the
+       leisure station's gathers land on the Nimbus Bed. Capped at
+       the count entered in Step 1. */
     function planFacilityLoad(){
       var load = {}, variesItems = {}, products = {};
       function addProduct(f, n){ (products[f] = products[f] || {})[n] = true; }
@@ -2594,7 +2638,7 @@
         Object.keys(gross || {}).forEach(function(n){
           var it = ITEMS[n];
           if(!it || !(gross[n] > 0)) return;
-          var f = it.facility;
+          var f = facCanon(it.facility);
           if(it.kind === "craft"){ var b = (batches && batches[n]) || 0; if(b > 0){ load[f] = (load[f] || 0) + b; addProduct(f, n); } }
           else if(it.kind === "gather"){
             var r = runs ? runs[n] : null;
@@ -2608,12 +2652,13 @@
       if(typeof bpResult !== "undefined" && bpResult) addGross(bpResult.exp.gross, bpResult.exp.batches, bpResult.exp.runs);
       var li0 = (typeof levelingItems === "function") ? levelingItems() : null;
       if(li0){
-        Object.keys(li0.craft).forEach(function(n){ var it = ITEMS[n]; if(it){ load[it.facility] = (load[it.facility] || 0) + li0.craft[n] / it.yld; addProduct(it.facility, n); } });
+        Object.keys(li0.craft).forEach(function(n){ var it = ITEMS[n]; if(it){ var cf = facCanon(it.facility); load[cf] = (load[cf] || 0) + li0.craft[n] / it.yld; addProduct(cf, n); } });
         Object.keys(li0.gather).forEach(function(n){
           var it = ITEMS[n]; if(!it) return;
+          var cf = facCanon(it.facility);
           var ey = effYld(it);
-          if(ey){ load[it.facility] = (load[it.facility] || 0) + Math.ceil(li0.gather[n] / ey - 1e-9); addProduct(it.facility, n); }
-          else { (variesItems[it.facility] = variesItems[it.facility] || {})[n] = true; addProduct(it.facility, n); }
+          if(ey){ load[cf] = (load[cf] || 0) + Math.ceil(li0.gather[n] / ey - 1e-9); addProduct(cf, n); }
+          else { (variesItems[cf] = variesItems[cf] || {})[n] = true; addProduct(cf, n); }
         });
       }
       /* Mines claimed by a run strategy plan (a Mineral Sand goal claims
@@ -3023,11 +3068,11 @@
       var lines = [];
       var order = includeAll ? ["Farmland", "Woodland", "Dewy House", "Homeland leisure station"] : ["Farmland", "Woodland"];
       order.forEach(function(f){
-        if(uncounted[f]) lines.push("<li><strong>1 Aniimo</strong> · " + esc(f) + " · Job not verified yet, so no worker is named</li>");
+        if(uncounted[f]) lines.push("<li><strong>1 Aniimo</strong> · " + esc(f) + " · job not checked yet</li>");
       });
       if(includeAll){
         Object.keys(uncounted).sort().forEach(function(f){
-          if(order.indexOf(f) === -1) lines.push("<li><strong>1 Aniimo</strong> · " + esc(f) + " · Job not verified yet, so no worker is named</li>");
+          if(order.indexOf(f) === -1) lines.push("<li><strong>1 Aniimo</strong> · " + esc(f) + " · job not checked yet</li>");
         });
       }
       return lines;
@@ -3056,14 +3101,14 @@
         var label = fa.job ? esc(fa.job) + " Aniimo" : (p.count > 1 ? "Aniimo" : "1 Aniimo");
         if(p.count > 1) label += " ×" + p.count;
         if(!bw){
-          lines.push('<li data-heads="' + p.count + '"><strong>' + label + "</strong> · " + esc(fa.facility) + " · Type not verified yet · 1 per building this plan uses (" + p.count + " needed for this plan)</li>");
+          lines.push('<li data-heads="' + p.count + '"><strong>' + label + "</strong> · " + esc(fa.facility) + " · job not checked yet</li>");
           return;
         }
         var t = FAC_TRAIT[fa.facility];
         var tip = fa.job + " Lv." + bw.lvl + " · strongest known: " + bw.name + " Lv." + bw.lvl +
           (t ? " · Best personality: " + t.name + " (" + t.letter + ") (+20% work efficiency)" : " · no verified personality match in the guide data") +
           " · " + fa.facility + " · 1 Aniimo per building this plan uses (" + p.count + " needed for this plan)";
-        lines.push('<li data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(tip) + '">' + abilityMarker(fa.job, !!t) + "<strong>" + label + "</strong> · " + esc(fa.facility) + " · 1 per building this plan uses (" + p.count + " needed for this plan)</li>");
+        lines.push('<li data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(tip) + '">' + abilityMarker(fa.job, !!t) + "<strong>" + label + "</strong> · " + esc(fa.facility) + "</li>");
       });
       return lines;
     }
@@ -3071,18 +3116,14 @@
        Water for the wells and watering. Named with their types; the
        counts are flagged not verified yet, never invented. */
     function crewExtraHtml(team){
-      return '<div class="note note-info"><h4>🐾 More crew this plan needs</h4><p>' +
-        CREW_EXTRA.map(function(x){
-          if(x.label === "Hauling" && team && team.hauling){
-            var hs = haulingFor(team, teamMode);
-            var coverTxt = hs.covered > 0
-              ? hs.covered + (hs.covered === 1 ? " is" : " are") + " covered by Aniimo already on this crew whose Hauling the game data behind this planner confirms" + (hs.names.length ? " (" + hs.names.join(", ") + ")" : "") + ", counted once in their main job"
-              : "none of it is covered by this crew — no Aniimo on it is confirmed in the game data behind this planner to also hold Hauling";
-            var restTxt = haulingRestText(hs);
-            return "<strong>Hauling (Hauling):</strong> Workers who finish making something can carry it to storage if they have Hauling too. This plan carries <strong>" + hs.need + " Hauling Aniimo</strong> for the " + hs.facilities + (hs.facilities === 1 ? " facility" : " facilities") + " it sets running (your stand-in count, not game-verified data): " + coverTxt + ", and " + hs.dedicated + " dedicated " + (hs.dedicated === 1 ? "hauler is" : "haulers are") + " added to the crew total." + (restTxt ? " The rest of this crew: " + restTxt + "." : "") + " Bigger plans carry more: the count grows with the facilities running.";
-          }
-          return "<strong>" + esc(x.label) + " (" + esc(x.type) + "):</strong> " + x.html;
-        }).join("<br />") +
+      /* Hauling, planting and watering Aniimo are already lines in
+         the one Put out list above (player's fix, Oct 29, 2026: one
+         list, no second count list) — this note only explains them,
+         in plain words, and adds no numbers of its own. */
+      return '<div class="note note-info"><h4>🐾 Three jobs in that list, in plain words</h4><p>' +
+        "<strong>Hauling:</strong> carries finished things to storage. Some Aniimo in the list do it alongside their main job — they are counted once, there.<br />" +
+        "<strong>Planting:</strong> a Grass Aniimo plants your crops. It is in the list.<br />" +
+        "<strong>Watering:</strong> Water Aniimo run the Wells and water crops. They are in the list too." +
         "</p></div>";
     }
     /* Aniimo cap: how many Aniimo can be put out (placed) in your Home
@@ -3231,7 +3272,7 @@
       if(team.planting && !plantCover){
         var gw = BEST_WORKERS.Grass;
         var pTip = "Grass Lv." + gw.lvl + " · strongest known: " + gw.name + " Lv." + gw.lvl + (gw.alt ? " (or " + gw.alt.name + " Lv." + gw.alt.lvl + ")" : "") + " · Planting · at least " + team.planting + " for planting; exact count beyond " + team.planting + " not verified yet · Hauling cover: staff this post with Tuckin (Grass Lv 3 + Hauling Lv 3; Leafy works too) and it also covers 1 of the plan's Hauling — a Grass Lv 3 worker covering, a step down from the Grass Lv 4 strongest, because Somniwing has no Hauling in any source checked";
-        lines.push('<li tabindex="0" data-tip="' + escA(pTip) + '">' + abilityMarker("Grass", false) + "<strong>Grass Aniimo</strong> · Planting · at least " + team.planting + " for planting; exact count beyond " + team.planting + " not verified yet · staff it with <strong>Tuckin (Grass Lv 3 + Hauling Lv 3)</strong> and it also covers 1 Hauling — a Grass Lv 3 worker covering, a step down from the Grass Lv 4 strongest</li>");
+        lines.push('<li tabindex="0" data-tip="' + escA(pTip) + '">' + abilityMarker("Grass", false) + "<strong>Grass Aniimo</strong> · Planting · at least " + team.planting + " for planting</li>");
       }
       /* Hauling, in the put-out list like every other job: the line
          stands for the plan's whole hauling count, and its data-heads
@@ -3249,7 +3290,7 @@
           : "0 covered by this crew — no Aniimo on it confirmed to also hold Hauling";
         var hRest = haulingRestText(hs2);
         var hTip = "Hauling Lv." + hw.lvl + " · strongest known: " + hw.name + " Lv." + hw.lvl + " · Hauling · " + hs2.need + " Hauling Aniimo in all for the " + hs2.facilities + (hs2.facilities === 1 ? " facility" : " facilities") + " this plan sets running (your stand-in count, not game-verified data). Workers who finish making something can carry it to storage if they have Hauling too: " + hs2.covered + " covered by Aniimo already on this crew whose Hauling the verified per-species data confirms (counted once, in their main job" + (hs2.names.length ? ": " + hs2.names.join(", ") : "") + "), " + hs2.dedicated + " dedicated hauler" + (hs2.dedicated === 1 ? "" : "s") + " added to the total." + (hRest ? " The rest of this crew: " + hRest : "");
-        lines.push('<li data-heads="' + hs2.dedicated + '" tabindex="0" data-tip="' + escA(hTip) + '">' + abilityMarker("Hauling", false) + "<strong>Hauling Aniimo ×" + hs2.need + "</strong> · Hauling · carries finished goods to storage · " + hCoverTxt + " · " + hs2.dedicated + " dedicated " + (hs2.dedicated === 1 ? "hauler" : "haulers") + " added" + (hRest ? " · the rest: " + esc(hRest) : "") + "</li>");
+        lines.push('<li data-heads="' + hs2.dedicated + '" tabindex="0" data-tip="' + escA(hTip) + '">' + abilityMarker("Hauling", false) + "<strong>Hauling Aniimo ×" + hs2.need + "</strong> · Hauling · carries finished things to storage · " + hCoverTxt + " · " + hs2.dedicated + " extra to put out</li>");
       }
       if(!lines.length) return "";
       /* The total counts individuals, not entries: an aggregated
@@ -3262,9 +3303,10 @@
       if(capNow !== null && capNow > 0 && totalHeads > capNow){
         capLine += ' · <span class="over">' + (totalHeads - capNow) + " over the RV " + userRV + " limit</span>";
       }
-      return '<div class="putout"><h3>' + esc(opts.title || "🐾 Put out") + '</h3>' +
+      return '<div class="putout"><h3>' + esc(opts.title || "🐾 Put out — the one list") + '</h3>' +
         '<p class="putout-total">Put out ' + totalHeads + " Aniimo</p>" +
         (capLine ? '<p class="putout-cap">' + capLine + "</p>" : "") +
+        '<p class="src" style="margin:0 0 10px">Every Aniimo for this plan is in this one list, counted once. Nothing else on this page adds more.</p>' +
         '<ul class="putout-list">' + lines.join("") + "</ul></div>";
     }
 
@@ -3280,14 +3322,17 @@
         (t ? ' · <span class="trait">' + t.letter + " " + esc(t.name) + "</span>" : "") + "</button>";
     }
     function teamTable(rowsHtml){
-      return '<div class="tbl-wrap"><table><thead><tr><th>Worker</th><th class="num">How many</th><th>Personality match</th><th>Working where (hover or tap for detail)</th></tr></thead><tbody>' + rowsHtml + "</tbody></table></div>";
+      /* No "how many" column (player's fix, Oct 29, 2026): counts
+         live only in the one Put out list above. This table says
+         WHO works where, never how many to put out. */
+      return '<div class="tbl-wrap"><table><thead><tr><th>Worker</th><th>Personality match</th><th>Working where (hover or tap for detail)</th></tr></thead><tbody>' + rowsHtml + "</tbody></table></div>";
     }
     function uncountedHtml(uncounted){
       var facs = Object.keys(uncounted);
       if(!facs.length) return "";
-      return '<div class="note note-info"><h4>🌱 Counted in the crew total, job not verified yet</h4><p>' +
+      return '<div class="note note-info"><h4>🌱 In the list, job not checked yet</h4><p>' +
         facs.sort().map(function(f){ return "<strong>" + esc(f) + "</strong> (" + uncounted[f].items.map(function(x){ return esc(x); }).join(", ") + ")"; }).join(" · ") +
-        '. One Aniimo for each of these stations is already inside the crew total above: these runs still need doing. Which ability staffs these stations is not in the verified data behind this planner yet, so no worker is invented for them.</p></div>';
+        '. Each of these stations has its Aniimo in the Put out list above. Which ability staffs them is not checked yet, so no worker is named.</p></div>';
     }
 
     /* ============ Home side & Bud Tickets ============
@@ -3355,7 +3400,7 @@
       var cap = aniimoCapFor(userRV);
       var capText = cap === null ? "" : (cap === 0 ? "RV " + userRV + " allows no Aniimo yet" : "RV " + userRV + " allows " + cap + " Aniimo, production and home together");
       if(userRV < 8){
-        out.innerHTML = '<div class="note note-warn" style="margin-top:14px"><h4>🔒 The home side opens at RV 8</h4><p>The Homebuilding Zone unlocks at <strong>RV 8</strong> (quest: Dream Cottage, Part 1), so at RV ' + userRV + ' there are no home residents and no Bud Tickets yet — every slot is production-side for now. ' + esc(capText) + '. From RV 8 on, this section works out your home places from each plan automatically: at RV 8 the cap is 24, so a plan whose crew is 18 leaves <strong>6 residents</strong>, earning <strong>' + fmt(budTicketsFor(6, mix)) + ' Bud Tickets a day</strong> at your mix above. The rates to plan ahead with: 120 a day per regular resident, 180 Sparkling or Prismana, 270 with both tags.</p></div>';
+        out.innerHTML = '<div class="note note-warn" style="margin-top:14px"><h4>🔒 The home side opens at RV 8</h4><p>The Homebuilding Zone opens at <strong>RV 8</strong>. Until then there are no residents and no Bud Tickets — every slot is for your crew. ' + esc(capText) + '. From RV 8, the places your crew leaves become residents here, all by itself.</p></div>';
         return;
       }
       var missing = crewMissing();
@@ -3392,7 +3437,7 @@
         html += '<div class="note note-warn"><h4>🏠 This plan uses every slot — no residents, no tickets</h4><p>Your ' + (teamMode === "best" ? "Best" : "Minimum") + ' production crew takes all ' + cap + ' slots at RV ' + userRV + ', so the Homebuilding Zone stands empty and earns <strong>0 Bud Tickets a day</strong>.' +
           (reserveMin > 0 ? ' The 🪶 Minimum crew would free <strong>' + reserveMin + (reserveMin === 1 ? ' place' : ' places') + '</strong> — ' + fmt(budTicketsFor(reserveMin, mix)) + ' Bud Tickets a day at your mix — tap 🪶 Minimum team in the Team Helper to see the reserve move.' : ' Even Minimum uses every slot here: take a recipe out of the basket, or switch strategy, and places free up for home.') + '</p></div>';
       } else {
-        html += '<div class="note note-good"><h4>🎫 ' + reserve + (reserve === 1 ? ' resident' : ' residents') + ' earning at home</h4><p>Your production crew leaves <strong>' + reserve + (reserve === 1 ? ' place' : ' places') + '</strong> in the Homebuilding Zone. As ' + esc(budMixLabel(mix)) + ', that is <strong>' + fmt(tickets) + ' Bud Tickets a day</strong>, ' + fmt(tickets * 7) + ' a week. Spent at the Furniture Store at about 1 ticket to 1 Habitability, that is roughly ' + fmt(tickets) + ' Habitability a day toward the RV gates (13,000 for RV 10, rising to 20,000 for RV 20). Change the plan and this number changes with it — it is recalculated from the crew every time, never a fixed reserve.</p></div>';
+        html += '<div class="note note-good"><h4>🎫 ' + reserve + (reserve === 1 ? ' resident' : ' residents') + ' earning at home</h4><p>Your crew leaves <strong>' + reserve + (reserve === 1 ? ' place' : ' places') + '</strong> for residents. As ' + esc(budMixLabel(mix)) + ', that is <strong>' + fmt(tickets) + ' Bud Tickets a day</strong>, ' + fmt(tickets * 7) + ' a week. Change the plan and this changes with it.</p></div>';
       }
       if(s.fittedSize !== null && teamMode === "best"){
         html += '<p class="src" style="margin-top:10px">⭐ The full Best crew would need ' + s.bestSize + ' Aniimo, over your cap, so the Best on show is fitted to ' + s.fittedSize + ' — the fitting already spends the whole cap, which is why Best leaves ' + reserveBest + ' home places here even though a smaller plan would leave more.</p>';
@@ -3401,7 +3446,7 @@
         '<tr><td><strong>⭐ Best</strong>' + (s.fittedSize !== null ? ' (fitted to RV ' + userRV + ')' : '') + '</td><td class="num">' + s.bestUsable + '</td><td class="num"><strong>' + reserveBest + '</strong></td><td class="num">' + fmt(budTicketsFor(reserveBest, mix)) + '</td><td class="num">' + fmt(budTicketsFor(reserveBest, mix) * 7) + '</td></tr>' +
         '<tr><td><strong>🪶 Minimum</strong></td><td class="num">' + s.minSize + '</td><td class="num"><strong>' + reserveMin + '</strong></td><td class="num">' + fmt(budTicketsFor(reserveMin, mix)) + '</td><td class="num">' + fmt(budTicketsFor(reserveMin, mix) * 7) + '</td></tr>' +
         '</tbody></table></div>' +
-        '<p class="src" style="margin-top:10px">Ticket figures use your mix above (' + esc(budMixLabel(mix)) + ') for both rows. Flip between ⭐ Best and 🪶 Minimum in the Team Helper and the headline above follows the crew on show. The Leisure buildings are production, already counted in the crew — the residents here are separate Aniimo placed in the Homebuilding Zone, and they need no ability to earn.</p>';
+        '<p class="src" style="margin-top:10px">Both rows use your mix above. Residents are separate Aniimo in the Homebuilding Zone — they need no ability to earn.</p>';
       out.innerHTML = html;
     }
 
@@ -3432,10 +3477,10 @@
       if(bBtn) bBtn.setAttribute("aria-pressed", teamMode === "best" ? "true" : "false");
       if(mBtn) mBtn.setAttribute("aria-pressed", teamMode === "minimum" ? "true" : "false");
       if(note) note.textContent = teamMode === "best"
-        ? "Best: a dedicated worker per facility — nothing waits on a worker elsewhere."
-        : "Minimum: one shared Aniimo per job, and a second only when the first worker's combined workload passes 80%. Facilities take turns; everything runs slower.";
+        ? "Best: one worker per facility — nothing waits."
+        : "Minimum: one shared Aniimo per job. Facilities take turns; everything runs slower.";
       if(!basket.length && !levelingOn && !(typeof bpResult !== "undefined" && bpResult)){
-        area.innerHTML = '<div class="empty-plan">Your crew appears here once your basket has a recipe in it or you have run a Best Plan. Pick recipes above or run the Best Plan Finder and the helper works out who needs to staff every facility your plan sets running.</div>';
+        area.innerHTML = '<div class="empty-plan">Your crew appears here once your basket has a recipe in it, or after you find your plan in Step 4.</div>';
         renderHome();
         return;
       }
@@ -3513,9 +3558,8 @@
       if(overBest && overMin){
         if(note) note.textContent = "Neither crew fits RV " + userRV + ", so no crew is shown: a crew you cannot put out is not a plan.";
         area.innerHTML = '<div class="note note-warn"><h4>No crew fits RV ' + userRV + ' yet</h4><p>' +
-          "Best would need <strong>" + bestSize + " Aniimo</strong> and even Minimum, with workers shared one per job, would need <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so both are over and neither is shown — there is no usable crew to list. " +
-          "The count covers the whole crew together: the plan's workers, the Aniimo attached to the facilities this plan uses, the planting Grass Aniimo and the dedicated haulers, with nothing counted outside it. " +
-          "To get a crew that fits: take recipes out of the basket so fewer facilities run at once, switch strategy (Goals mode drops the bill jobs), or level the RV up first.</p></div>";
+          "Best needs <strong>" + bestSize + " Aniimo</strong> and Minimum needs <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so neither fits and no crew is shown. " +
+          "To fix it: take recipes out of the basket, switch strategy, or level the RV up first.</p></div>";
         renderHome();
         return;
       }
@@ -3529,17 +3573,17 @@
       if(fittedRows) fittedRows.forEach(function(r){ (r.jobs || [r.job]).forEach(function(j){ fittedJobWorkers[j] = (fittedJobWorkers[j] || 0) + r.count; }); });
       if(note) note.textContent = (teamMode === "best"
         ? (fittedRows
-          ? "Best, fitted to RV " + userRV + ": the full Best crew needs " + bestSize + " Aniimo, over your limit of " + cap + ", so this crew shares a worker at just the facilities the cap forces and fits at " + fittedSize + ". Every facility still runs and every job is still covered; the shared facilities take turns. Aniimo are counted as individuals, not job slots: where one Aniimo's abilities cover two needed jobs (Somniwing: Grass Lv 4 and Leisure Lv 4), it is counted once."
-          : "Best: every busy facility gets its own dedicated worker, the strongest known Aniimo for that job, so no facility waits on a worker finishing somewhere else. Aniimo are counted as individuals, not job slots: where one Aniimo's abilities cover two needed jobs (Somniwing: Grass Lv 4 and Leisure Lv 4), it is counted once, in Best too.")
-        : "Minimum follows Aniiland's shared-worker rule: one Aniimo per job, shared part time across every facility that needs that job, and a job gets a second worker only when the first worker's combined workload passes 80% (each facility counts as 20% of a full load here, so that is the fifth facility on one job). Facilities take turns, so everything runs slower than Best. Multi-ability Aniimo are preferred here: one Aniimo whose abilities cover two jobs (Somniwing: Grass and Leisure) does both and counts once — that sharing is what makes Minimum fit when Best cannot. The smallest crew that keeps the plan moving, not a timetable.") +
-        (bestHidden ? " ⭐ Best is not shown: it needs " + bestSize + " Aniimo and " + aniimoCapText(userRV) + ", so only the Minimum that fits is offered." : "") +
-        (fittedRows && teamMode === "minimum" ? " ⭐ Best fits your RV " + userRV + " limit too, fitted to " + fittedSize + " Aniimo — tap ⭐ Best team above to see it." : "");
+          ? "Best, fitted to your RV " + userRV + " limit: a few workers are shared so the crew fits. Shared places take turns, so they run slower."
+          : "Best: one worker per facility, so nothing waits. One Aniimo can cover two jobs — it counts once.")
+        : "Minimum: one Aniimo per job, shared across its facilities. Places take turns, so things run slower. The smallest crew that keeps the plan moving.") +
+        (bestHidden ? " ⭐ Best is not shown: it goes over your RV " + userRV + " Aniimo limit." : "") +
+        (fittedRows && teamMode === "minimum" ? " ⭐ Best fits your limit too — tap ⭐ Best team above." : "");
       var capHtml = "";
       if(fittedRows && cap !== null){
         if(teamMode === "best"){
           var sharedBits = fittedRows.filter(function(r){ return r.shared; }).map(function(r){
             var jobs = (r.jobs || [r.job]).join(" + ");
-            return "<strong>" + esc(jobs) + " Aniimo</strong>: " + r.count + (r.count === 1 ? " worker covers " : " workers cover ") + r.assigns.length + " facilities (" + r.assigns.map(function(bf){ return esc(bf.facility); }).join(", ") + ")";
+            return "<strong>" + esc(jobs) + " Aniimo</strong>: shared across " + r.assigns.map(function(bf){ return esc(bf.facility); }).join(", ");
           });
           capHtml = '<div class="note note-info"><h4>⭐ Best, fitted inside RV ' + userRV + '</h4><p>' +
             "The full Best crew, a dedicated worker at every busy facility, needs " + bestSize + " Aniimo — " + (bestSize - cap) + " over your RV " + userRV + " limit of " + cap + ". So this Best crew shares a worker at just the facilities the cap forces and fits: it puts out " + fittedSize + " Aniimo, inside your limit." +
@@ -3553,7 +3597,7 @@
         capHtml = '<div class="note note-info"><h4>⭐ Best does not fit RV ' + userRV + ', so it is not shown</h4><p>' +
           "Best needs " + bestSize + " Aniimo, " + (bestSize - cap) + " over your limit of " + cap + ". The Minimum crew below is the one that fits: it puts out " + minSize + " Aniimo because its workers are shared, one Aniimo per job across every facility that needs that job. Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — facilities just take turns, so everything runs slower than Best.</p></div>";
       }
-      var howToHtml = '<div class="note note-info"><h4>📖 How to read this</h4><p>Entries are labelled by <strong>ability and count</strong> — <strong>Ice Aniimo ×2</strong> = any two Aniimo with Ice; none names one you must use. Circle = the ability in its game colour, level inside. Gold ring = the plan counts on that facility\'s personality bonus (+20%). Hover or tap an entry for details.</p></div>';
+      var howToHtml = '<div class="note note-info"><h4>📖 How to read the list</h4><p>Each line names an <strong>ability</strong>, not one Aniimo you must use — <strong>Ice Aniimo ×2</strong> means any two Aniimo with Ice. Tap a line for more detail.</p></div>';
       var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml(team) + '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? (fittedRows ? "Best, fitted to RV " + userRV : "Best") : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
@@ -3564,29 +3608,14 @@
             '<div class="sum-chip"><b>' + fmt(budTicketsFor(Math.max(0, cap - teamSize), budMix())) + '</b><span>Bud Tickets a day from those residents</span></div>'
           : '<div class="sum-chip"><b>RV 8</b><span>Homebuilding Zone opens — no Bud Tickets yet</span></div>') : "") +
         '</div>';
-      if(cap !== null && cap > 0 && userRV >= 8){
-        html += '<p class="src" style="margin-top:10px">🏠 Home split: this crew uses ' + teamSize + ' of your ' + cap + ' slots, leaving <strong>' + Math.max(0, cap - teamSize) + ' places for Homebuilding Zone residents</strong> — ' + fmt(budTicketsFor(Math.max(0, cap - teamSize), budMix())) + ' Bud Tickets a day at the mix picked in the 🏠 Home &amp; Bud Tickets section below. The reserve is whatever this plan leaves, so it moves when the plan does.</p>';
-      }
-      if(placedFacs.length){
-        html += '<p class="src" style="margin-top:10px">🏭 That total includes ' + placedTotal + ' Aniimo attached to the facilities this plan uses, 1 per building used: ' + FAC_ANIIMO.filter(function(fa){ return team.placed[fa.facility]; }).map(function(fa){
-          return esc(fa.facility) + " ×" + team.placed[fa.facility].count + (fa.job ? " (" + fa.job + ")" : " (type not verified yet)");
-        }).join(" · ") + ".</p>";
-      }
-      if(team.climate){
-        var climOut = CLIM_BUILDINGS.filter(function(b){ return (team.climate.used[b] || 0) > 0; });
-        html += '<p class="src" style="margin-top:10px">🌡️ Climate buildings out in your layout: ' +
-          (climOut.length ? climOut.map(function(b){ return "<strong>" + esc(b) + " ×" + team.climate.used[b] + "</strong> (" + (FAC_ANIIMO.filter(function(fa){ return fa.facility === b; })[0].job || "type not verified yet") + " Aniimo ×" + team.climate.used[b] + ")"; }).join(" · ") : "none — this plan's layout puts no climate building out") +
-          ". Only the climate buildings your layout puts out are staffed: Farmland and Woodland plots that need the same building share its zones there, so sharing cuts the Aniimo this plan needs — <strong>" + team.climate.savedAniimo + " Aniimo saved</strong> against staffing all " + CLIM_BUILDINGS.reduce(function(a, b){ return a + (team.climate.owned[b] || 0); }, 0) + " climate buildings your RV level allows" +
-          (team.climate.savedZones > 0 ? ", and sharing zones saved " + team.climate.savedZones + (team.climate.savedZones === 1 ? " building" : " buildings") + " against giving every climate its own zones" : "") +
-          (team.climate.sharedZones && team.climate.sharedZones.length ? ". Shared zones: " + team.climate.sharedZones.map(function(z){ return esc(z.keys.join(" + ")) + " " + esc(zoneLandsText(z)) + " plots share one " + esc(z.building); }).join(" · ") : "") + ".</p>";
-      }
-      if(team.hauling){
-        var hShow = haulingFor(team, teamMode);
-        var hShowRest = haulingRestText(hShow);
-        html += '<p class="src" style="margin-top:10px">🚚 That total includes <strong>' + hShow.dedicated + ' dedicated Hauling Aniimo</strong>: the plan carries ' + hShow.need + ' Hauling Aniimo in all (your stand-in count, not game-verified data). Workers who finish making something can carry it to storage if they have Hauling too: ' + hShow.covered + ' of them ' + (hShow.covered === 1 ? "is an Aniimo" : "are Aniimo") + ' already counted above for another job whose Hauling the verified per-species data confirms' + (hShow.names.length ? ' (' + hShow.names.map(function(n){ return esc(n); }).join(", ") + ')' : '') + ' — counted once, never twice.' + (hShowRest ? ' The rest of this crew: ' + esc(hShowRest) + '.' : '') + '</p>';
-      }
-      if(uncountedFacs.length){
-        html += '<p class="src" style="margin-top:10px">🌱 That total includes one Aniimo each for ' + uncountedFacs.map(function(f){ return esc(f); }).join(" and ") + ': those stations still need a worker each, but which job staffs them is not verified yet, so no worker is named for them below.</p>';
+      /* One list rule (player's fix, Oct 29, 2026): the paragraphs
+         that used to restate the Put out list's counts here — the
+         attached-facility Aniimo, the dedicated haulers, the
+         uncounted stations, the home split — are gone. The list
+         above is the only place Aniimo counts live; what remains
+         below points at it or adds facts it does not carry. */
+      if(team.climate && team.climate.savedAniimo > 0){
+        html += '<p class="src" style="margin-top:10px">🌡️ Shared climate zones in your layout save <strong>' + team.climate.savedAniimo + ' Aniimo</strong> on this plan. The climate Aniimo themselves are in the Put out list above.</p>';
       }
       if(strategy === "levelup"){
         var liT = levelingItems();
@@ -3594,38 +3623,11 @@
         if(liT){ Object.keys(liT.craft).forEach(function(n){ var f = ITEMS[n].facility; if(lvlFacs.indexOf(f) === -1) lvlFacs.push(f); }); Object.keys(liT.gather).forEach(function(n){ var f2 = ITEMS[n].facility; if(FAC_JOB[f2] && lvlFacs.indexOf(f2) === -1) lvlFacs.push(f2); }); }
         if(lvlFacs.length) html += '<p class="src" style="margin-top:10px">🚐 Level Up jobs for RV ' + rvNext() + " are in this crew because Level Up is your picked strategy: " + lvlFacs.sort().map(function(f){ return esc(f); }).join(", ") + ".</p>";
       }
-      if(facs.length || placedFacs.length || team.planting) html += '<div class="team-counts" aria-label="Workers needed per job">' + JOB_ORDER.map(function(j){
-        var c = jobFacCount[j] ? (teamMode === "best" ? (fittedRows ? (fittedJobWorkers[j] || 0) : jobFacCount[j]) : minJobWorkers(jobFacCount[j])) : 0;
-        /* Grass carries the planting floor as well, so it never reads
-           0 while the plan is growing anything: the planting Aniimo is
-           a real Grass job on the team. When a multi-ability Aniimo
-           already on the crew holds Grass, that same individual is
-           the planting Aniimo and adds no head — the chip still reads
-           1, that individual, never 0. */
-        if(j === "Grass") c += plantingAdd;
-        if(j === "Grass" && team.planting && c === 0) c = 1;
-        /* Ice is a real job on the team too: no recipe calls for it,
-           but every Cooling Unit out carries its own Ice Aniimo, so
-           the chip counts those Aniimo like the put-out list does. */
-        if(j === "Ice" && team.placed && team.placed["Cooling Unit"]) c += team.placed["Cooling Unit"].count;
-        /* Hauling reads its whole count, dedicated plus crew-covered:
-           the chip shows every Hauling Aniimo the plan carries,
-           while the crew total only adds the dedicated ones. */
-        if(j === "Hauling" && team.hauling) c = team.hauling.need;
-        var mark = (merged && (j === "Grass" || j === "Leisure")) || (plantingBy && (j === "Grass" || j === "Leisure") && !jobFacCount["Grass"]) ? " ‡" : "";
-        if(j === "Hauling" && team.hauling) mark += " §";
-        return '<span class="job-chip' + (c ? "" : " zero") + '">' + j + " <b>" + c + "</b>" + mark + "</span>";
-      }).join("") + "</div>";
-      if(team.hauling){
-        var hChip = haulingFor(team, teamMode);
-        var hChipRest = haulingRestText(hChip);
-        html += '<p class="src" style="margin-top:8px">§ Hauling: coverage follows this crew, never a set fraction. ' + (hChip.covered > 0
-          ? hChip.covered + ' of the ' + hChip.need + ' Hauling Aniimo ' + (hChip.covered === 1 ? "is" : "are") + ' already on this crew for another job and confirmed in the verified per-species data to also hold Hauling' + (hChip.names.length ? ' (' + hChip.names.map(function(n){ return esc(n); }).join(", ") + ')' : '') + ' — after finishing making something, ' + (hChip.covered === 1 ? "it carries" : "they carry") + ' it to storage, and the crew total counts ' + (hChip.covered === 1 ? "it" : "them") + ' once, in their main job. '
-          : 'No Aniimo on this crew is confirmed in the verified per-species data to also hold Hauling, so none of the ' + hChip.need + ' Hauling Aniimo is covered by the crew. ') +
-          (hChipRest ? 'The rest of this crew: ' + esc(hChipRest) + '. ' : '') + 'Only the ' + hChip.dedicated + ' dedicated haulers add to the total. The hauling count itself is your stand-in rule, not game-verified data.</p>';
-      }
-      if(merged) html += '<p class="src" style="margin-top:8px">‡ One Aniimo covers both: Somniwing holds Grass Lv 4 and Leisure Lv 4, so the crew total counts it once, not once per job.</p>';
-      if(plantingBy && !merged) html += '<p class="src" style="margin-top:8px">‡ Planting is covered by ' + esc(plantingBy) + ', already on this crew: it holds Grass Lv 4 alongside its other ability, so the planting Aniimo is that same individual — counted once in the total, not added again.</p>';
+      /* The per-job chip row that used to sit here was a second
+         count list under the Put out list (player's fix, Oct 29,
+         2026) — it and its §/‡ footnote paragraphs are gone. One
+         short line covers the one idea they explained. */
+      if(merged || plantingBy) html += '<p class="src" style="margin-top:8px">One Aniimo can cover two jobs. It is counted once, in the Put out list above.</p>';
       if(facs.length && teamMode === "best"){
         html += teamTable((fittedRows || teamBestRows(team.byFac)).map(function(r){
           var traitCell;
@@ -3643,10 +3645,10 @@
                 var ring = r.assigns.some(function(bf){ return bf.job === j && FAC_TRAIT[bf.facility]; });
                 return abilityMarker(j, ring, j + " Lv." + BEST_WORKERS[j].lvl + " · strongest known: " + r.worker + " · one Aniimo covers all these jobs");
               }).join("") +
-              "<strong>" + esc(r.job) + ' Aniimo</strong><br /><span class="src">one Aniimo covers all these jobs (' + r.jobs.map(function(j){ return j + " Lv." + BEST_WORKERS[j].lvl; }).join(", ") + ") · strongest known: " + esc(r.worker) + " · counted once per pair, not once per job" + (r.shared ? " · fitted to your RV limit: " + r.count + (r.count === 1 ? " Aniimo covers" : " Aniimo cover") + " these " + r.assigns.length + " facilities between them" : "") + "</span>"
+              "<strong>" + esc(r.job) + ' Aniimo</strong><br /><span class="src">one Aniimo covers all these jobs (' + r.jobs.map(function(j){ return j + " Lv." + BEST_WORKERS[j].lvl; }).join(", ") + ") · strongest known: " + esc(r.worker) + " · counted once, in the Put out list" + (r.shared ? " · fitted to your RV limit: shared across these facilities" : "") + "</span>"
             : abilityMarker(r.job, !!r.trait, r.job + " Lv." + r.lvl + " · strongest known: " + r.worker + " Lv." + r.lvl + (r.trait ? " · Best personality: " + r.trait.name + " (" + r.trait.letter + ") (+20% work efficiency)" : " · no verified personality match in the guide data")) +
-              "<strong>" + r.job + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + (r.alt ? " · or " + esc(r.alt.name) + " Lv." + r.alt.lvl : "") + (plantingBy && r.worker === plantingBy && r.job !== "Grass" && !jobFacCount["Grass"] ? " · also covers Planting (Grass Lv." + BEST_WORKERS.Grass.lvl + ")" : "") + (r.shared ? " · fitted to your RV limit: " + r.count + (r.count === 1 ? " worker" : " workers") + " shared across these " + r.assigns.length + " facilities" : "") + "</span>";
-          return "<tr><td>" + workerCell + '</td><td class="num"><strong>' + (r.count || r.assigns.length) + "</strong></td>" +
+              "<strong>" + r.job + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + (r.alt ? " · or " + esc(r.alt.name) + " Lv." + r.alt.lvl : "") + (plantingBy && r.worker === plantingBy && r.job !== "Grass" && !jobFacCount["Grass"] ? " · also covers Planting (Grass Lv." + BEST_WORKERS.Grass.lvl + ")" : "") + (r.shared ? " · fitted to your RV limit: shared across these facilities" : "") + "</span>";
+          return "<tr><td>" + workerCell + "</td>" +
             "<td>" + traitCell + "</td>" +
             "<td>" + r.assigns.map(function(bf){ return assignHtml(bf, bf.job, r.lvl); }).join("") + "</td></tr>";
         }).join(""));
@@ -3660,9 +3662,9 @@
             workerCell = abilityMarker(r.jobs[0], false, r.jobs[0] + " Lv." + r.lvl + " · strongest known: " + r.worker + " Lv." + r.lvl + " · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities")) +
               "<strong>Any " + r.jobs[0] + ' Aniimo</strong><br /><span class="src">strongest known: ' + esc(r.worker) + " Lv." + r.lvl + " · shared across " + r.assigns.length + (r.assigns.length === 1 ? " facility" : " facilities") + "</span>";
           }
-          if(r.count > 1) workerCell += '<br /><span class="src"><strong>' + r.count + ' workers on this job</strong>: one shared worker\'s combined workload passes 80% here, so a second pair of hands joins (Aniiland\'s rule).</span>';
+          if(r.count > 1) workerCell += '<br /><span class="src"><strong>Extra workers on this job</strong>: one worker\'s load passes 80% here, so more hands join (Aniiland\'s rule). How many is in the Put out list.</span>';
           var traitCell = '<span class="src">One worker carries one personality, so it can only match one of these facilities at a time. Each assignment below lists its own match.</span>';
-          return "<tr><td>" + workerCell + '</td><td class="num"><strong>' + (r.count || 1) + '</strong></td><td>' + traitCell + "</td><td>" +
+          return "<tr><td>" + workerCell + "</td><td>" + traitCell + "</td><td>" +
             r.assigns.map(function(bf){ return assignHtml(bf, bf.job, null); }).join("") + "</td></tr>";
         }).join(""));
       }
@@ -3749,6 +3751,7 @@
       renderAll(); renderCrops(); renderLayoutPicker(); renderLayout(); renderRvPlan();
       if(typeof renderTeam === "function") renderTeam();
       markBpStale();
+      renderMines();
     }
     /* Fill from RV level: every facility count and level, every climate
        count and all four module levels go to the most the planner's data
@@ -3944,7 +3947,7 @@
             }).join("");
             return '<div class="mod-group"><h5>' + esc(d.name) + ": Lv " + lvl + " of " + d.max + '</h5><ul>' + rows + "</ul></div>";
           }).join("") + "</div>" +
-          '<p class="src" style="margin-top:8px">Kitchen, Resource Detector and Crafting unlocks are Premium or Advanced variants. The planner already covers each with its base entry at the same ingredients, so owning them changes no amounts here: they are listed so you can see what you own, nothing more. The Ecological harvests are the ones that change your numbers, already live in the Grow list, Money Crops and Layout Helper.</p>';
+          '<p class="src" style="margin-top:8px">The Kitchen, Resource Detector and Crafting lists just show what you own — the base recipe covers each one, so they change no amounts. Only the Ecological harvests above change your numbers.</p>';
         }
         ms.innerHTML = statusHtml;
       }
@@ -4275,9 +4278,9 @@
        get a pick too and count in full — crew post, power, deployed
        totals, and the picked product's per-run yield from the same
        recipe data everything else uses. A facility the plan already
-       uses starts on the plan's own assignment. The Nimbus Bed has
-       no verified gather product in the data, so it gets no pick —
-       stated on its block, never guessed. */
+       uses starts on the plan's own assignment. The Nimbus Bed is
+       the Homeland leisure station: the plan sets what it gathers,
+       so it gets no per-copy pick — stated on its block. */
     function gatherProductsFor(f){
       return Object.keys(ITEMS).filter(function(n){
         var it = ITEMS[n];
@@ -4292,7 +4295,7 @@
     function noPickNote(f){
       if(pickProductsFor(f).length) return null;
       if(CLIM_BUILDINGS.indexOf(f) > -1) return "No product pick: the layout sets this building's zones from the plan's crops — that is its job.";
-      if(f === "Nimbus Bed") return "No product pick: no verified gather product for the Nimbus Bed exists in the planner's data, so none is guessed.";
+      if(f === "Nimbus Bed") return "No product pick: the Nimbus Bed is the Homeland leisure station — the plan sets what it gathers, so there is no pick to change.";
       var anyProd = Object.keys(ITEMS).some(function(n){ return ITEMS[n].facility === f; });
       if(!anyProd) return "No product pick: this facility makes nothing in the planner's data.";
       return "No product pick right now: nothing it can make fits your " + f + " Lv " + facLevel(f) + " within RV " + userRV + " — raise its level in Step 1 and the picks appear.";
@@ -4349,7 +4352,7 @@
         '<p class="src" style="margin-top:8px">In all, per run round: ' + tallyNames.map(function(n){
           var it = ITEMS[n];
           return '<strong>' + esc(n) + '</strong> ×' + (it.yld ? (it.yld * tally[n]) : "varies") + ' (' + tally[n] + (tally[n] === 1 ? ' copy' : ' copies') + ')' + unverifiedFlagHtml(n);
-        }).join(", ") + '.<br />One copy gathers one product at a time. Crew and power read your picks, and any copy you add, like any plan copy.<br />Gather run times are not checked. So takes count per run, never per hour.</p>';
+        }).join(", ") + '.<br />One copy gathers one thing at a time. Takes count per run, never per hour (run times are not checked).</p>';
     }
 
     /* The resolved job list for a facility's ADDED copies: one
@@ -4402,7 +4405,7 @@
         '<p class="src" style="margin-top:8px">Your added ' + (extra === 1 ? 'copy brings' : 'copies bring') + ': ' + Object.keys(tally).sort().map(function(n){
           var it = ITEMS[n];
           return '<strong>' + esc(n) + '</strong> ×' + tally[n] + (it.kind === "craft" ? ' cop' + (tally[n] === 1 ? 'y' : 'ies') + ' (' + ((it.yld || 1) * tally[n]) + ' per batch round)' : ' cop' + (tally[n] === 1 ? 'y' : 'ies') + ' (' + (it.yld ? (it.yld * tally[n]) + ' per run round' : 'yield varies') + ')') + unverifiedFlagHtml(n);
-        }).join(", ") + '.<br />With a job picked, an added copy counts in full. Crew post, power and totals out are all in.<br />Only products your ' + esc(f) + ' can make at Lv ' + facLevel(f) + ' within RV ' + userRV + ' are listed. ' + (ITEMS[list[0]] && ITEMS[list[0]].kind === "craft" ? 'Craft times are not checked. So takes count per batch, never per hour.' : 'Gather run times are not checked. So takes count per run, never per hour.') + '</p>';
+        }).join(", ") + '.<br />With a job picked, an added copy counts in full: crew, power, totals. Only things your ' + esc(f) + ' can make at Lv ' + facLevel(f) + ' at RV ' + userRV + ' are listed. ' + (ITEMS[list[0]] && ITEMS[list[0]].kind === "craft" ? 'Takes count per batch, never per hour.' : 'Takes count per run, never per hour.') + '</p>';
     }
     /* Added copies count for power on every power line: for any
        facility with copies added by hand, the map's count becomes
@@ -4437,17 +4440,17 @@
       }
       var mats = mineMaterialsUpTo(ms.lvl);
       var s = '<div class="note note-teal"><h4>⛏️ Set your Mines — pick each Mine\'s material</h4>';
-      s += '<p><strong>Every mining run brings Mineral Sand too.</strong> It rides along, whatever the Mine is set to. The amount varies <span class="verdict v-mix">Not verified yet</span>, so no sand number is counted.<br />You never need a Mine on Mineral Sand just to get sand. Pick it below only if you want a Mine on sand itself.</p>';
+      s += '<p><strong>Every mining run brings Mineral Sand too</strong>, whatever the Mine is set to. The amount varies <span class="verdict v-mix">Not verified yet</span>, so no sand number is counted — you never need a Mine on sand just to get sand.</p>';
       s += '<p style="margin-top:8px">';
       if(ms.planNeed > 0){
-        s += 'This plan puts out <strong>' + ms.planNeed + (ms.planNeed === 1 ? ' Mine' : ' Mines') + ' at Mine Lv ' + ms.lvl + '</strong>, one per material it mines, and their picks below start on the plan\'s suggested materials (' +
-          ms.claims.filter(function(c){ return ITEMS[c.name].lvl <= ms.lvl; }).map(function(c){ return '<strong>' + esc(c.name) + '</strong> — ' + esc(c.why); }).join("; ") + '). ';
+        s += 'This plan puts out <strong>' + ms.planNeed + (ms.planNeed === 1 ? ' Mine' : ' Mines') + ' at Mine Lv ' + ms.lvl + '</strong>, set to ' +
+          ms.claims.filter(function(c){ return ITEMS[c.name].lvl <= ms.lvl; }).map(function(c){ return '<strong>' + esc(c.name) + '</strong> (' + esc(c.why) + ')'; }).join(", ") + '. ';
       } else if(ms.waiting.length){
         s += 'This plan needs ' + esc(listAnd(ms.waiting)) + ' from the Mine, above Mine Lv ' + ms.lvl + ', so the plan itself puts out no Mines yet — your Mines cannot run ' + (ms.waiting.length === 1 ? 'it' : 'them') + ' until the Mine level rises. You can still add Mines of your own below. ';
       } else {
         s += 'This plan needs nothing from the Mine, so it puts out no Mines on its own — but you can add your own Mines into the plan below, each with your pick of material. ';
       }
-      s += 'One Mine gathers <strong>one material at a time</strong>. A Mine can run any material at its own level or below. At Mine Lv ' + ms.lvl + ' that is ' + esc(listAnd(mats)) + '.<br /><strong>Change any pick.</strong> Claimed or added, the crew, power and totals follow it.</p>';
+      s += 'One Mine gathers <strong>one material at a time</strong>, at its own level or below.<br /><strong>Mines marked “used by this plan” are already picked — they can\'t be picked again.</strong> You pick only for extra Mines you add.</p>';
       if(ms.sandClaimed && ms.totalOut > 0 && !(ms.assignments.indexOf("Mineral Sand") > -1 && ms.planNeed === 1 && ms.defaultAssign[0] === "Mineral Sand")){
         s += '<p style="margin-top:8px">This plan needs <strong>Mineral Sand</strong>' + (ms.claims.filter(function(c){ return c.name === "Mineral Sand"; }).length ? ' (' + esc(ms.claims.filter(function(c){ return c.name === "Mineral Sand"; })[0].why) + ')' : '') + ' — and every Mine out below brings it on every run, so no Mine has to be set to sand for it.</p>';
       }
@@ -4459,32 +4462,46 @@
       }
       s += ms.assignments.map(function(mat, i){
         var added = i >= ms.planNeed;
+        /* Plan-claimed Mines are shown, never offered again (player's
+           fix, Oct 29, 2026): the plan already picked these Mines and
+           what they dig, so they render as fixed rows — marked used,
+           no select, nothing to double-pick. Only Mines she adds past
+           the plan's own get a picker, and adding stops at her Step 1
+           count, so plan Mines + added Mines can never pass what she
+           owns (7 owned, 1 used by the plan: 6 left to add). */
+        if(!added){
+          return '<div class="mine-pick"><span class="mine-n">Mine ' + (i + 1) + '</span>' +
+            '<span class="mine-tag verdict v-ok">used by this plan</span>' +
+            '<span class="src" style="flex:none">is gathering</span>' +
+            '<strong>' + esc(mat) + '</strong>' +
+            '<span class="mine-yield">' + esc(mineYieldText(mat)) + '. Set by the plan — counted once, not pickable again.</span></div>';
+        }
         var opts = mats.map(function(m){
           var it = ITEMS[m];
           return '<option value="' + escA(m) + '"' + (m === mat ? ' selected' : '') + '>' + esc(m) + (m === "Mineral Sand" ? ' — yield varies' : (it.yld ? ' — ' + it.yld + ' per run' : ' — yield varies')) + '</option>';
         }).join("");
         return '<div class="mine-pick"><span class="mine-n">Mine ' + (i + 1) + '</span>' +
-          '<span class="mine-tag verdict ' + (added ? 'v-mix' : 'v-ok') + '">' + (added ? 'added by you' : 'for the plan') + '</span>' +
+          '<span class="mine-tag verdict v-mix">added by you</span>' +
           '<label class="src" for="minePick' + i + '" style="flex:none">is gathering</label>' +
           '<select id="minePick' + i + '" data-mine-assign="' + i + '" aria-label="Mine ' + (i + 1) + ' gathering material">' + opts + '</select>' +
-          (added ? '<button type="button" class="adj-btn" data-mine-remove="' + i + '" aria-label="Take Mine ' + (i + 1) + ' back out of this plan">\u2212</button>' : '') +
+          '<button type="button" class="adj-btn" data-mine-remove="' + i + '" aria-label="Take Mine ' + (i + 1) + ' back out of this plan">\u2212</button>' +
           '<span class="mine-yield">' + esc(mineYieldText(mat)) + '.</span></div>';
       }).join("");
       s += '</div>';
-      s += '<div class="mine-add-row"><button type="button" class="btn btn-small" data-mine-add="1"' + (ms.totalOut >= ms.count ? ' disabled' : '') + '>+ Add a Mine into this plan</button>' +
-        '<span class="src">Mines out: <strong>' + ms.totalOut + ' of ' + ms.count + ' owned</strong> (Step 1). ' +
-        (ms.totalOut >= ms.count ? 'All your Mines are out. Adding stops here. ' : 'A Mine you add counts in full. Its own Earth Aniimo in your crew. Its power. The totals out. Its material\'s take per run. Plus Mineral Sand, like every working Mine. ') +
-        'Take an added Mine back with its − button. The plan\'s own ' + ms.planNeed + (ms.planNeed === 1 ? ' Mine is' : ' Mines are') + ' the floor. Change your basket or strategy and your picks and added Mines reset to the plan\'s picks.</span></div>';
+      s += '<div class="mine-add-row"><button type="button" class="btn btn-small" data-mine-add="1"' + (ms.totalOut >= ms.count ? ' disabled' : '') + '>' + (ms.totalOut >= ms.count ? '+ Add a Mine into this plan' : '+ Add a Mine (' + (ms.count - ms.totalOut) + ' left)') + '</button>' +
+        '<span class="src">Mines out: <strong>' + ms.totalOut + ' of ' + ms.count + ' owned</strong> (Step 1): ' + ms.planNeed + ' used by this plan' + (ms.totalOut > ms.planNeed ? ', ' + (ms.totalOut - ms.planNeed) + ' added by you' : '') + '. ' +
+        (ms.totalOut >= ms.count ? 'All your Mines are out — no more to add.' : 'An added Mine counts in full: crew, power, totals, take per run.') +
+        '</span></div>';
       /* Totals across her picks. */
       if(ms.assignments.length){
         var tallyNames = Object.keys(ms.tally).sort(function(a, b){ return ms.tally[b] - ms.tally[a] || a.localeCompare(b); });
         s += '<p style="margin-top:10px">In all, per run round: ' + tallyNames.map(function(n){
           var it = ITEMS[n];
           return '<strong>' + ms.tally[n] + (ms.tally[n] === 1 ? ' Mine' : ' Mines') + ' on ' + esc(n) + '</strong>' + (it.yld ? ' (' + (it.yld * ms.tally[n]) + ' ' + esc(n) + ')' : ' (yield varies)');
-        }).join(", ") + '.<br /><strong>Every one of the ' + ms.totalOut + (ms.totalOut === 1 ? ' Mine' : ' Mines') + ' also brings Mineral Sand</strong> on each run.<br />Gather run times are not checked. So Mine takes count per run, never per hour.</p>';
+        }).join(", ") + '.<br /><strong>Every one of the ' + ms.totalOut + (ms.totalOut === 1 ? ' Mine' : ' Mines') + ' also brings Mineral Sand</strong> each run. Mine takes count per run, never per hour (run times aren\'t checked).</p>';
       }
       if(ms.uncovered.length){
-        s += '<div class="mine-warn">Heads up: this plan needs <strong>' + esc(listAnd(ms.uncovered)) + '</strong> from the Mine, but no Mine above is set to ' + (ms.uncovered.length === 1 ? 'it' : 'them') + ' right now. Change a pick or add a Mine to cover ' + (ms.uncovered.length === 1 ? 'it' : 'them') + '.</div>';
+        s += '<div class="mine-warn">Heads up: this plan needs <strong>' + esc(listAnd(ms.uncovered)) + '</strong> from the Mine, but no Mine above is set to ' + (ms.uncovered.length === 1 ? 'it' : 'them') + ' right now. Add a Mine below and set it to ' + (ms.uncovered.length === 1 ? 'it' : 'them') + '.</div>';
       }
       if(ms.waiting.length && ms.planNeed > 0){
         s += '<p style="margin-top:8px">Still waiting: ' + ms.waiting.map(function(n){ return '<strong>' + esc(n) + '</strong> needs Mine Lv ' + ITEMS[n].lvl + ', above yours, so no Mine can be set to it yet'; }).join("; ") + '.</p>';
@@ -4501,7 +4518,7 @@
       var s = "";
       if(ms.assignments.length){
         s += "put out " + ms.totalOut + (ms.totalOut === 1 ? " Mine" : " Mines") + " at Mine Lv " + ms.lvl + " (" + ms.planNeed + " for the plan" + (ms.totalOut > ms.planNeed ? " + " + (ms.totalOut - ms.planNeed) + " added by you" : "") + ", of " + ms.count + " owned). ";
-        s += "Each Mine's pick: " + ms.assignments.map(function(m, i){ return "Mine " + (i + 1) + ": " + m + (i >= ms.planNeed ? " (added by you)" : ""); }).join(", ") + ". ";
+        s += "Each Mine's pick: " + ms.assignments.map(function(m, i){ return "Mine " + (i + 1) + ": " + m + (i >= ms.planNeed ? " (added by you, your pick)" : " (set by the plan, not picked again)"); }).join(", ") + ". ";
       } else {
         s += "no Mines are out in this plan (the plan claims none, and none have been added). ";
       }
@@ -4512,6 +4529,54 @@
       if(ms.waiting.length) s += " Waiting for a higher Mine level: " + ms.waiting.map(function(n){ return n + " (needs Mine Lv " + ITEMS[n].lvl + ")"; }).join(", ") + ".";
       if(ms.goalsShutOut) s += " Your basket" + (levelingOn ? " and the Level Up bill" : "") + " already claim the plan's Mines in this plan, so the goals do not change them.";
       return s;
+    }
+
+    /* Step 5 owns the Mine picker now (player's workflow fix, Oct 29,
+       2026): the basket plan never asks her to set Mines before she
+       has picked a strategy, because the strategy itself can claim
+       Mines. This note is all the basket plan says about Mines: what
+       the basket alone needs, and where Mines are actually set. */
+    function basketMinesNoteHtml(plan){
+      var needs = Object.keys(plan.net).filter(function(n){
+        var it = ITEMS[n];
+        return it && it.kind === "gather" && it.facility === "Mine" && (plan.net[n] || 0) > 0;
+      }).sort();
+      var needTxt = needs.length
+        ? ' This basket alone needs <strong>' + needs.map(function(n){ return esc(n); }).join(", ") + '</strong> from the Mine.'
+        : ' This basket alone needs nothing from the Mine — but your strategy might, which is exactly why the Mines wait.';
+      if(!strategy){
+        return '<div class="note note-teal"><h4>⛏️ Mines come after your strategy — nothing to set yet</h4><p>' + needTxt +
+          ' Don\'t set your Mines here: <a href="#strategy">pick your strategy in Step 3</a> first, tap Find the plan in Step 4, and your Mines are set once, in <a href="#mines">Step 5 — Set your Mines</a>, from your basket and your strategy together. Some of them can come from the strategy you pick, so setting them now would mean setting them twice.</p></div>';
+      }
+      if(!bpResult){
+        return '<div class="note note-teal"><h4>⛏️ Mines come after your strategy plan</h4><p>' + needTxt +
+          ' Strategy picked: <strong>' + (strategy === "levelup" ? "Level Up" : "Goals") + '</strong>. Tap <strong>Find the plan</strong> in <a href="#bestplan">Step 4</a>, and your Mines are set in <a href="#mines">Step 5 — Set your Mines</a>, from your basket and that plan together.</p></div>';
+      }
+      var ms = bpResult.mine;
+      return '<div class="note note-teal"><h4>⛏️ Your Mines are set in Step 5</h4><p>' + needTxt +
+        ' Your Mines — basket and strategy together — are set in <a href="#mines">Step 5 — Set your Mines</a>, below your strategy plan: <strong>' + ms.totalOut + (ms.totalOut === 1 ? ' Mine' : ' Mines') + ' out</strong>' +
+        (ms.assignments.length ? ' (' + ms.assignments.map(function(m, i){ return 'Mine ' + (i + 1) + ': ' + esc(m); }).join(", ") + ')' : '') +
+        '. The plan\'s own Mines are already set there; add extra Mines there if you want more.</p></div>';
+    }
+    /* Step 5: the one place Mines are set. It renders only from a
+       found strategy plan (bpResult), whose mineSetup already merged
+       basket claims, the Level Up bill and goal claims in that order,
+       so the picks it offers are the combined plan's needs, with her
+       own picks still editable on top. Before a strategy is picked —
+       or before Find the plan is tapped — it says so and offers
+       nothing to set. */
+    function renderMines(){
+      var out = document.getElementById("minesOut");
+      if(!out) return;
+      if(!strategy){
+        out.innerHTML = '<div class="empty-plan">⛏️ Nothing to set yet — and that is on purpose. <a href="#strategy">Pick your strategy in Step 3</a> first, then tap Find the plan in Step 4. Some of your Mines come from that strategy, so they are set after it, in this step, from your basket and your strategy plan together.</div>';
+        return;
+      }
+      if(!bpResult){
+        out.innerHTML = '<div class="empty-plan">⛏️ Strategy picked: <strong>' + (strategy === "levelup" ? "🚐 Level Up" : "🎯 Goals") + '</strong>. Now tap <strong>Find the plan</strong> in <a href="#bestplan">Step 4 — Strategy Plan</a>: your Mines are set from that plan, so they appear here as soon as it is found.</div>';
+        return;
+      }
+      out.innerHTML = (bpStale ? '<p class="src" style="margin-bottom:8px">Your setup changed since this plan was made. Tap Find the plan in Step 4 to refresh these Mines.</p>' : '') + mineSetupHtml(bpResult.mine);
     }
 
     /* The next level's bill: headline needs expanded down both chains,
@@ -4701,14 +4766,31 @@
       }).join("");
     }
 
-    /* ============ Step 5: Homeland Layout Helper ============
+    /* ============ Step 6: Homeland Layout Helper ============
        Sizes measured from the player's own in-game screenshots (Oct 23, 2026),
        in the build grid's fine cells (bold lines sit every 2 fine cells):
        Farmland plots 4 x 4, Woodland plots 7 x 7, climate zones 18 x 18
        centered on the building, Crackle Generator zone 22 x 22, Crackle
-       Power Pole zone 14 x 14. Packing is edge to edge, no paths. */
+       Power Pole zone 14 x 14. Packing is edge to edge, no paths.
+       Coverage follows the verified touch rule (Game8, aniimoguide FAQ
+       and Aniimax, checked Oct 29, 2026): a plot counts as covered when
+       ANY part of it touches the zone, so plots are laid on the zone's
+       own grid and the last row and column may hang over the far edges
+       -- a zone then holds up to 25 Farmland or 9 Woodland plots, and
+       fewer buildings can cover a plan. TOUCH_PARTIAL switches the
+       rule on and off so the layout can state the saving against the
+       old fully-inside packing. Plots only ever overhang their own
+       zone's far edges in these grids, never into a second climate
+       building's area, so nothing blends by accident; the only blends
+       are the packer's own shared zones, which are labelled. */
     var PLOT_SIZE = { "Farmland":4, "Woodland":7 };
     var ZONE_CELLS = 18;
+    var TOUCH_PARTIAL = true;
+    /* Occupancy canvas for one zone's packing: the zone itself plus
+       room for plots hanging over its far edges (a plot's start must
+       sit inside the zone; it may then extend up to one plot past the
+       edge). */
+    var GRID_CELLS = ZONE_CELLS + 7;
     /* Building footprints, measured from the player's own placement
        screenshots (Oct 24, 2026): Cooling Unit 2 x 2 = 4 tiles (confirmed
        by the white square measurement from the player's still screenshot:
@@ -4842,7 +4924,7 @@
        for the crafting and cooking facilities. */
     function facilityPlanItems(f){
       var names = {};
-      function scan(gross){ Object.keys(gross || {}).forEach(function(n){ var it = ITEMS[n]; if(it && it.facility === f && (gross[n] || 0) > 0) names[n] = true; }); }
+      function scan(gross){ Object.keys(gross || {}).forEach(function(n){ var it = ITEMS[n]; if(it && facCanon(it.facility) === facCanon(f) && (gross[n] || 0) > 0) names[n] = true; }); }
       scan(computePlan().gross);
       if(typeof bpResult !== "undefined" && bpResult) scan(bpResult.exp.gross);
       return Object.keys(names).sort();
@@ -4954,7 +5036,13 @@
 
 
     function plotsPerZone(facility, zoneCells){
-      var per = Math.floor((zoneCells || ZONE_CELLS) / PLOT_SIZE[facility]);
+      var zc = zoneCells || ZONE_CELLS;
+      /* Touch rule: plots sit on the zone's grid from its corner, and
+         a plot whose start is inside the zone counts in full even
+         when it hangs over the far edge -- ceil per row and column
+         (25 Farmland, 9 Woodland). Fully-inside packing (the old
+         rule, kept for the saving comparison) is floor (16, 4). */
+      var per = TOUCH_PARTIAL ? Math.ceil(zc / PLOT_SIZE[facility]) : Math.floor(zc / PLOT_SIZE[facility]);
       return per * per;
     }
     function layoutGroupOf(name){
@@ -5153,25 +5241,31 @@
        building covers one 18 × 18 square of ground, whatever land the
        plots inside it sit on — so Farmland (4 × 4) and Woodland (7 × 7)
        plots that need the same building are packed into the SAME zone
-       wherever they fit, and a new building is opened only when no open
-       zone can fit the next plot. Owning two of a building never puts
+       wherever they touch it, and a new building is opened only when no open
+       zone can touch the next plot. Owning two of a building never puts
        both out: only the zones the plan's plots actually fill are
        deployed, capped at the count entered in Step 1. The packer works
        on the real 18 × 18 cell grid, first-fit, so a zone's placements
        are drawable exactly as packed. */
-    function zoneGridNew(){ var g = []; for(var i = 0; i < ZONE_CELLS * ZONE_CELLS; i++) g.push(false); return g; }
+    function zoneGridNew(){ var g = []; for(var i = 0; i < GRID_CELLS * GRID_CELLS; i++) g.push(false); return g; }
     function gridFit(grid, size){
-      for(var y = 0; y + size <= ZONE_CELLS; y++){
-        for(var x = 0; x + size <= ZONE_CELLS; x++){
+      /* A plot fits when it overlaps no plot already placed and it
+         touches the zone: under the touch rule its start sits inside
+         the 18 x 18 (any part inside counts, the rest may hang over
+         the far edge); under the old fully-inside rule the whole plot
+         must sit inside. */
+      var lim = TOUCH_PARTIAL ? ZONE_CELLS : ZONE_CELLS - size + 1;
+      for(var y = 0; y < lim; y++){
+        for(var x = 0; x < lim; x++){
           var ok = true;
-          for(var dy = 0; dy < size && ok; dy++) for(var dx = 0; dx < size; dx++){ if(grid[(y + dy) * ZONE_CELLS + (x + dx)]){ ok = false; break; } }
+          for(var dy = 0; dy < size && ok; dy++) for(var dx = 0; dx < size; dx++){ if(grid[(y + dy) * GRID_CELLS + (x + dx)]){ ok = false; break; } }
           if(ok) return { x:x, y:y };
         }
       }
       return null;
     }
     function placeIntoZone(zone, name, size, pos){
-      for(var dy = 0; dy < size; dy++) for(var dx = 0; dx < size; dx++) zone.grid[(pos.y + dy) * ZONE_CELLS + (pos.x + dx)] = true;
+      for(var dy = 0; dy < size; dy++) for(var dx = 0; dx < size; dx++) zone.grid[(pos.y + dy) * GRID_CELLS + (pos.x + dx)] = true;
       zone.crops[name] = (zone.crops[name] || 0) + 1;
       var key = layoutGroupOf(name).key;
       if(zone.keys.indexOf(key) === -1) zone.keys.push(key);
@@ -5236,7 +5330,8 @@
          it (zoneTempKey), and the off climate crops keep their
          falloff labels. Farmland and Woodland plots of the SAME
          climate still pack into one zone together wherever their
-         4 x 4 and 7 x 7 plots fit inside its 18 x 18. A zone's
+         4 x 4 and 7 x 7 plots touch its 18 x 18 (touch rule: edge
+         plots may hang over the far edge and still count). A zone's
          contents live in field.zoneList, so what shares a building
          is stated, not hidden. */
       var packers = {}, buildingCut = {};
@@ -5409,7 +5504,7 @@
     /* Climate buildings a set of plot counts would need if it were all
        planted at once, packed the field layout's way: each climate
        group on its own zones first, Farmland and Woodland of one
-       climate together wherever they fit in the 18 x 18, and groups
+       climate together wherever they touch the 18 x 18, and groups
        packed together only when the Step 1 count of the building
        cannot cover them separately. Every group counts in full: an
        overlap band never takes a building away. Returns zones per
@@ -5454,6 +5549,17 @@
         total += z;
       });
       return { zones:zones, total:total };
+    }
+    /* The same whole-need building count under the old fully-inside
+       packing (every plot wholly within its zone), so the layout can
+       state in one line what the touch rule saves. The rule flag is
+       restored before returning; nothing renders in between. */
+    function buildingsNeedFullInside(counts){
+      var saved = TOUCH_PARTIAL;
+      TOUCH_PARTIAL = false;
+      var r = sharedBuildingNeed(counts);
+      TOUCH_PARTIAL = saved;
+      return r;
     }
 
     /* Plain sharing facts for one field layout: which buildings are
@@ -5554,7 +5660,13 @@
       var side = buildingSide(z.building);
       var bOff = ((ZONE_CELLS - side) / 2).toFixed(2);
       rects += '<rect x="' + bOff + '" y="' + bOff + '" width="' + side + '" height="' + side + '" rx="0.6" fill="#3d2a47" fill-opacity="0.92" stroke="#fff" stroke-width="0.35" tabindex="0" data-tip="' + escA(z.building + ": the building itself, 1 building in the middle of its zone, footprint " + buildingLabel(z.building) + ", covers this whole 18 × 18 zone") + '"/>';
-      return '<svg viewBox="0 0 ' + ZONE_CELLS + " " + ZONE_CELLS + '" width="148" height="148" role="img" aria-label="' + esc(label) + '"><rect x="0.15" y="0.15" width="' + (ZONE_CELLS - 0.3) + '" height="' + (ZONE_CELLS - 0.3) + '" rx="1" fill="' + style0.tint + '"/>' + rects + "</svg>";
+      /* The zone's own edge, dashed: plots past it hang over the edge
+         and still count in full (touch rule), so the picture runs
+         wider than the zone where edge plots spill out. */
+      var ext = ZONE_CELLS;
+      (z.placements || []).forEach(function(p){ ext = Math.max(ext, p.x + p.size, p.y + p.size); });
+      rects += '<rect x="0.15" y="0.15" width="' + (ZONE_CELLS - 0.3) + '" height="' + (ZONE_CELLS - 0.3) + '" rx="1" fill="none" stroke="#3d2a47" stroke-opacity="0.5" stroke-width="0.35" stroke-dasharray="1.4 1"/>';
+      return '<svg viewBox="0 0 ' + ext + " " + ext + '" width="148" height="148" role="img" aria-label="' + esc(label) + '"><rect x="0.15" y="0.15" width="' + (ZONE_CELLS - 0.3) + '" height="' + (ZONE_CELLS - 0.3) + '" rx="1" fill="' + style0.tint + '"/>' + rects + "</svg>";
     }
     function layoutZoneBlocksHtml(plan){
       var f = plan.field;
@@ -5611,7 +5723,7 @@
             ? "Shared zone: " + tags.join(" and ") + " plots share this one " + z.building + " because you have " + forced.owned + " " + z.building + (forced.owned === 1 ? "" : "s") + " for " + forced.needed + " zones needed when each climate has its own zone. The zone is set to " + tempTag + ", the climate with more plots in it. One building covers them all, counted once, and only this one building's Aniimo is counted for it"
             : "Shared zone: " + tags.join(" and ") + " plots share this one " + z.building + " — one building covers them all, counted once, and only this one building's Aniimo is counted for it")
           : mixedLand
-            ? "Farmland and Woodland plots share this one " + z.building + ": a single building's 18 × 18 zone covers both lands wherever the plots fit, so no second building is put out for the other land"
+            ? "Farmland and Woodland plots share this one " + z.building + ": a single building's 18 × 18 zone covers both lands wherever the plots touch it, so no second building is put out for the other land"
             : "Covers the " + tags.join(", ") + " crops in this zone";
         if(z.building === "Sunlamp" && !shared && !mixedLand) why = "Sunlamp overlays temperature zones: ground counted once, one Sunlamp per light zone";
         /* Falloff in this zone, in plain words: the zone is set to
@@ -5674,7 +5786,7 @@
     function layoutLegendHtml(){
       return '<div class="layout-legend"><h3>How to read the grids</h3><div class="map-legend">' +
         '<p class="lg-row"><span class="lg-sw" style="background:#3d2a47"></span>Dark square in the middle of a zone: the building itself, standing on its own tiles. Its footprint is named beside the grid.</p>' +
-        '<p class="lg-row"><span class="lg-sw" style="background:#f2f4f2"></span>Pale ground: the zone one building covers, 18 × 18 cells. Filled squares are plots in this layout; pale dashed squares are room left in the zone.</p>' +
+        '<p class="lg-row"><span class="lg-sw" style="background:#f2f4f2"></span>Pale ground: the zone one building covers, 18 × 18 cells, edged with a dashed line. Filled squares are plots in this layout; pale dashed squares are room left in the zone. Plots hanging past the dashed edge still count in full — any touch covers.</p>' +
         '<p class="lg-row">Zone colours: <span class="lg-sw" style="background:#dcecfb"></span>Freeze and <span class="lg-sw" style="background:#e7f0fb"></span>Cool (Cooling Unit) · <span class="lg-sw" style="background:#fdeeda"></span>Warm and <span class="lg-sw" style="background:#fbe7e1"></span>Scorching (Heat Furnace) · <span class="lg-sw" style="background:#fdf3da"></span>Adequate light (Sunlamp) · <span class="lg-sw" style="background:#e0f2ec"></span>grows anywhere, no building needed.</p>' +
         '<p class="lg-row"><span class="lg-sw" style="background:#fff"></span>Hover or tap any square or shape and it names itself: the crop or building, how many plots it stands for, its climate, and how fast it grows there.</p>' +
         '<p class="lg-row"><span class="lg-sw" style="background:#e9a13b"></span>Space counts the buildings too: every space total adds the tiles the buildings stand on to the tiles the plots take.</p>' +
@@ -5699,7 +5811,7 @@
       var why = {
         "Sunlamp":"Overlays temperature zones: ground counted once, one Sunlamp per light zone",
         "Starfall Hammock":"Needs a Cool environment: stands inside a Cooling Unit zone",
-        "Mine":"Pick each Mine's material in the Set your Mines note in your plan — extra Mines you add there join this plan in full, and every Mine also brings Mineral Sand",
+        "Mine":"Pick each Mine's material in Step 5 — Set your Mines, below your strategy plan — extra Mines you add there join this plan in full, and every Mine also brings Mineral Sand",
         "Well":"Its Water Aniimo also water the crops"
       };
       var blocks = [];
@@ -5741,15 +5853,15 @@
         /* Gather facilities name their per-copy picks the same way,
            and the block carries the picker itself underneath: one
            product per copy, hers to change, plan assignment first.
-           The Nimbus Bed has no verified gather product in the data,
-           so its block says so instead of offering a guessed pick. */
+           The Nimbus Bed is the Homeland leisure station: the plan
+           sets what it gathers, so its block offers no pick to change. */
         var gatherHtml = "";
         if(isGatherPickFac(fa.facility)){
           var gList = gatherAssignments(fa.facility, planC, working);
           if(gList.length) namedProd = gList.map(function(m, i){ return "Copy " + (i + 1) + ": " + m; }).join(" · ");
           gatherHtml = gatherPickHtml(fa.facility, planC, working);
         } else if(fa.facility === "Nimbus Bed"){
-          gatherHtml = '<p class="src" style="margin-top:10px">Gathering: no pick for the Nimbus Bed. No checked gather product for it is in the data. The module ladder links Wool\'s Quick Recipe to it, but the recipe data gathers Wool at the leisure station. So no pick is guessed.<br />An added Nimbus Bed still counts as a staffed copy out, in the crew and the totals.</p>';
+          gatherHtml = '<p class="src" style="margin-top:10px">Gathering: no pick to change. The Nimbus Bed is the Homeland leisure station, so the plan sets what it gathers.<br />An added Nimbus Bed still counts as a staffed copy out, in the crew and the totals.</p>';
         }
         blocks.push('<div class="fac-block"><h4>' + esc(fa.facility) + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
           '<div class="zb-row"><span class="zb-k">Count</span><span>' + countLine(fa.facility, planC, ownedC) + '</span></div>' +
@@ -5834,7 +5946,7 @@
           '<span>' + facStepperHtml(f, 0, 0, owned) + '</span></div>';
       }).join("");
       return '<h3 class="layout-sec-head">➕ Add a facility this plan isn\'t using</h3><p class="sec-sub" style="margin:8px 0 0">' +
-        "Everything you own that this plan leaves out, in one list.<br />Tap <strong>+</strong> to put copies out. Up to the count you own in Step 1. Each one gets its own block above, marked added by you.<br />The named facilities (Mine, Well and friends, climate buildings) are staffed in your crew, like the plan's own copies.<br />Each added copy of any facility gets a job pick on its block. One product per copy. Your choice. With a job picked, it counts in full: crew post, power, totals, and that product's take.<br />Extra Mines are added in the Set your Mines note in your plan. Each one gets its own material pick there.<br />Gather facilities you add here (Well, Dewy House, Tidewhisper Sandcastle, Starfall Hammock) get a pick for each copy on their block above. Plan copies too.<br />Added copies stay until your basket or strategy changes." +
+        "Everything you own that this plan leaves out.<br />Tap <strong>+</strong> to put copies out, up to what you own in Step 1. Each one gets a block above, marked added by you, with its own job pick.<br />Added copies count in full: crew, power, totals. Extra Mines are added in Step 5 instead.<br />Added copies stay until your basket or strategy changes." +
         '</p><div class="addfac-rows">' + html + "</div>";
     }
 
@@ -5851,6 +5963,8 @@
       s += '<p class="totals">Per crop, in all: ' + Object.keys(counts).sort().map(function(n){ return esc(n) + " ×" + counts[n] + ' <span class="src">(' + ITEMS[n].facility + ")</span>"; }).join(" · ") + "</p>";
       s += '<p class="totals">Growing time in all: <strong>about ' + fmtDur(plan.totalMins) + '</strong>.<br />How it is worked out: all crops grow side by side. So one planting takes as long as its slowest crop. Most crops take 40 minutes. Wheat takes 4 minutes. Potato and Willow Wood take 10 minutes 40 seconds.<br />A crop that needs more than its plots hold is replanted in the same layout as each pick comes in. Each replant adds its grow time again. The crops still run side by side. So the whole plan takes as long as the longest of those chains' + (plan.bottleneck ? " (here, " + esc(plan.bottleneck) + ")" : "") + ".</p>";
       s += "</div>";
+      var oldNeedHtml = buildingsNeedFullInside(counts).total;
+      if(oldNeedHtml > totalB) s += '<p class="totals" style="margin-top:10px">🌡️ <strong>Touch rule:</strong> ' + fmt(totalB) + ' climate buildings cover the whole plan now, instead of ' + fmt(oldNeedHtml) + ' if every plot had to fit fully inside a zone.</p>';
       plan.notes.forEach(function(n){ s += '<p class="totals" style="margin-top:10px">' + esc(n) + "</p>"; });
       if(plan.overField){
         s += '<p class="totals" style="margin-top:10px"><strong>Your whole plan needs more plots than one field holds, so plant it like this:</strong> set out the layout below, leave it running, and as each harvest comes in, replant the same layout until the whole-plan totals above are met. Still to grow after the first planting: ' + plan.remainder.map(function(x){ return esc(x.name) + " ×" + fmt(x.left) + ' <span class="src">(' + x.facility + ")</span>"; }).join(" · ") + ".</p>";
@@ -5880,7 +5994,7 @@
         });
         var hasClimate = f.entries.some(function(e){ return e.grp.info.building && (e.farm + e.wood) > 0; });
         if(hasClimate){
-          s += '<p class="totals">🌡️ <strong>Climate zones:</strong> each climate gets its own zones, set to its own temperature, whenever your Step 1 counts cover them, so every crop grows at 100%. Farmland and Woodland plots of the same climate share its zones, both lands together in one zone where the plots fit. Two climates on one building share a zone only when your count of that building cannot cover them separately, and that zone says so. This layout puts out <strong>' +
+          s += '<p class="totals">🌡️ <strong>Climate zones:</strong> each climate gets its own zones, set to its own temperature, whenever your Step 1 counts cover them, so every crop grows at 100%. Farmland and Woodland plots of the same climate share its zones, both lands together in one zone where they touch it. Two climates on one building share a zone only when your count of that building cannot cover them separately, and that zone says so. This layout puts out <strong>' +
             CLIM_BUILDINGS.filter(function(b){ return share.used[b] > 0; }).map(function(b){ return esc(b) + " × " + share.used[b]; }).join(" · ") +
             '</strong> of the ' + share.ownedTotal + " climate buildings your RV level allows (" + CLIM_BUILDINGS.map(function(b){ return esc(b) + " × " + plan.owned[b]; }).join(" · ") + ")." +
             (share.sharedZones.length ? " Zones shared in this layout: " + share.sharedZones.map(function(z){
@@ -5914,6 +6028,8 @@
       var f = plan.field;
       var lines = [(layoutMode === "minimum" ? "Minimum" : "Best") + " layout (one field, fitted to the counts your RV level allows, never over them: " + plan.farmAvail + " Farmland plots and " + plan.woodAvail + " Woodland plots planted at once; " + CLIM_BUILDINGS.map(function(b){ return b + " x " + plan.owned[b]; }).join(", ") + ")" + (layoutMode === "minimum" ? ". Minimum plants one plot of each crop; replant as harvests come in until the whole-plan totals are met." : ".")];
       lines.push("Whole plan in all: " + totalFarm + " Farmland plots and " + totalWood + " Woodland plots to grow, " + (totalFarm + totalWood) + " seeds in all (one seed per plot), " + totalB + " climate buildings if it were all planted at once.");
+      var oldNeedTxt = buildingsNeedFullInside(counts).total;
+      if(oldNeedTxt > totalB) lines.push("Touch rule: " + totalB + " climate buildings cover the whole plan now, instead of " + oldNeedTxt + " if every plot had to fit fully inside a zone. A plot counts when any part of it touches the zone; edge plots count in full.");
       lines.push("Per crop, in all: " + Object.keys(counts).sort().map(function(n){ return n + " x" + counts[n] + " (" + ITEMS[n].facility + ")"; }).join("; ") + ".");
       lines.push("Estimated growing time in all: about " + fmtDur(plan.totalMins) + ". Basis: everything in the layout grows side by side, so one planting takes as long as its slowest crop (most crops 40 minutes, Wheat 4 minutes, Potato and Willow Wood 10 minutes 40 seconds); a crop whose total passes the plots the layout gives it is replanted into the same layout as its harvests come in, each replanting adding its grow time again, and the crops run side by side, so the whole plan takes as long as the longest of those chains" + (plan.bottleneck ? " (here, " + plan.bottleneck + ")" : "") + ".");
       plan.notes.forEach(function(n){ lines.push(n); });
@@ -5937,7 +6053,7 @@
         var shareT = climateSharingInfo(plan);
         var usedT = fieldBuildings(f);
         lines.push("Climate buildings in this layout, counted once each: " + Object.keys(usedT).map(function(b){ return b + " x " + usedT[b]; }).join("; ") + ".");
-        lines.push("Sharing: each climate has its own zones, set to its own temperature, whenever your Step 1 counts cover them. Farmland and Woodland plots of the same climate share its zones, both lands together in one zone where the plots fit. Two climates on one building share a zone only when your count of that building cannot cover them separately. This layout puts out " + shareT.usedTotal + " of the " + shareT.ownedTotal + " climate buildings your RV level allows." +
+        lines.push("Sharing: each climate has its own zones, set to its own temperature, whenever your Step 1 counts cover them. Farmland and Woodland plots of the same climate share its zones, both lands together in one zone where they touch it. Two climates on one building share a zone only when your count of that building cannot cover them separately. This layout puts out " + shareT.usedTotal + " of the " + shareT.ownedTotal + " climate buildings your RV level allows." +
           (shareT.sharedZones.length ? " Zones shared: " + shareT.sharedZones.map(function(z){ return z.keys.map(function(k){ return f.byKey[k] ? f.byKey[k].grp.info.tag : k; }).join(" + ") + " " + zoneLandsText(z) + " plots share one " + z.building + " (" + Object.keys(z.crops).sort().map(function(n){ return n + " x" + z.crops[n]; }).join(", ") + ")"; }).join("; ") + "." : "") +
           (shareT.savedZones > 0 ? " Sharing zones saves " + shareT.savedZones + (shareT.savedZones === 1 ? " building" : " buildings") + " against giving every climate its own zones." : "") +
           " Only the buildings out here are staffed in the crew, saving " + shareT.savedAniimo + " Aniimo against staffing every climate building your RV level allows (1 Aniimo per building out).");
@@ -5966,9 +6082,15 @@
     }
     function zoneSvg(zoneCells, plotCells, filled, style, label, withBuilding, bSide, opts){
       opts = opts || {};
-      var perRow = Math.floor(zoneCells / plotCells);
+      /* Climate maps pass opts.partial: the touch rule's grid, plots
+         anchored at the zone's corner with the last row and column
+         hanging over the far edge (ceil per row). Other maps (the
+         power reference) keep the fully-inside grid. */
+      var partial = !!opts.partial;
+      var perRow = partial ? Math.ceil(zoneCells / plotCells) : Math.floor(zoneCells / plotCells);
       var perZone = perRow * perRow;
-      var off = (zoneCells - perRow * plotCells) / 2;
+      var off = partial ? 0 : (zoneCells - perRow * plotCells) / 2;
+      var extent = partial ? perRow * plotCells : zoneCells;
       var rects = "";
       for(var i = 0; i < perZone; i++){
         var x = (off + (i % perRow) * plotCells).toFixed(2);
@@ -5977,6 +6099,7 @@
         var tip = used ? segTipAt(opts.segments, i) : opts.emptyTip;
         rects += '<rect x="' + x + '" y="' + y + '" width="' + (plotCells - 0.35) + '" height="' + (plotCells - 0.35) + '" rx="0.6" fill="' + style.plot + '" fill-opacity="' + (used ? "0.85" : "0.06") + '" stroke="' + style.plot + '" stroke-width="0.3"' + (used ? "" : ' stroke-dasharray="1.1 0.9" opacity="0.5"') + (tip ? ' tabindex="0" data-tip="' + escA(tip) + '"' : "") + "/>";
       }
+      if(partial) rects += '<rect x="0.15" y="0.15" width="' + (zoneCells - 0.3) + '" height="' + (zoneCells - 0.3) + '" rx="1" fill="none" stroke="#3d2a47" stroke-opacity="0.5" stroke-width="0.35" stroke-dasharray="1.4 1"/>';
       /* The building itself stands in the middle of its zone and takes its
          measured footprint of ground there; drawn last so it sits on top
          of the plot grid. bSide is that building's side in cells. */
@@ -5985,7 +6108,7 @@
         var bOff = ((zoneCells - side) / 2).toFixed(2);
         rects += '<rect x="' + bOff + '" y="' + bOff + '" width="' + side + '" height="' + side + '" rx="0.6" fill="#3d2a47" fill-opacity="0.92" stroke="#fff" stroke-width="0.35"' + (opts.buildingTip ? ' tabindex="0" data-tip="' + escA(opts.buildingTip) + '"' : "") + "/>";
       }
-      return '<svg viewBox="0 0 ' + zoneCells + " " + zoneCells + '" width="148" height="148" role="img" aria-label="' + esc(label) + '"><rect x="0.15" y="0.15" width="' + (zoneCells - 0.3) + '" height="' + (zoneCells - 0.3) + '" rx="1" fill="' + style.tint + '"/>' + rects + "</svg>";
+      return '<svg viewBox="0 0 ' + extent + " " + extent + '" width="148" height="148" role="img" aria-label="' + esc(label) + '"><rect x="0.15" y="0.15" width="' + (zoneCells - 0.3) + '" height="' + (zoneCells - 0.3) + '" rx="1" fill="' + style.tint + '"/>' + rects + "</svg>";
     }
     function patchSvg(facility, count, style, segments){
       var plotCells = PLOT_SIZE[facility];
@@ -6009,11 +6132,12 @@
         var label = grp.info.building + " zone " + (z + 1) + " of " + zones + ", " + fac + " plots: " + filled + " of " + perZone + " filled, with the " + grp.info.building + " itself standing in the middle on " + bTiles + (bTiles === 1 ? " tile" : " tiles") + " of its own";
         var grpTip = grp.crops.join(", ") + " · " + (grp.info.tag || "grows anywhere") + " · " + filled + " " + fac + (filled === 1 ? " plot" : " plots") + " in this zone";
         html += '<div class="zone-map">' + zoneSvg(ZONE_CELLS, PLOT_SIZE[fac], filled, style, label, true, bSide, {
+            partial: true,
             segments: [{ count:filled, tip:grpTip }],
             emptyTip: "Empty plot: room left in this " + grp.info.building + " zone",
             buildingTip: grp.info.building + ": the building itself, 1 building in the middle of its zone, footprint " + bSide + " × " + bSide + ", " + bTiles + (bTiles === 1 ? " tile" : " tiles") + ", covers this whole zone"
           }) +
-          '<div class="cap">' + esc(grp.info.building) + " zone " + (z + 1) + " of " + zones + " · " + fac + ": " + filled + " of " + perZone + " plots · building " + bSide + " × " + bSide + ", " + bTiles + (bTiles === 1 ? " tile" : " tiles") + "</div></div>";
+          '<div class="cap">' + esc(grp.info.building) + " zone " + (z + 1) + " of " + zones + " · " + fac + ": " + filled + " of " + perZone + " plots · building " + bSide + " × " + bSide + ", " + bTiles + (bTiles === 1 ? " tile" : " tiles") + " · edge plots count — any touch covers</div></div>";
       }
       if(zones > shown) html += '<div class="zone-map"><div class="cap" style="max-width:120px;padding-top:56px">+ ' + (zones - shown) + " more " + (zones - shown === 1 ? "zone" : "zones") + ", tiled the same way</div></div>";
       return html;
@@ -6521,7 +6645,10 @@
     var bpGoalOn = { coins:true, xp:true, mega:true, wood:true, sand:true, whimsy:true };
     var bpResult = null, bpStale = false;
     var BP_PROC = ["Carousel Mill", "Dance Pad Polisher", "Aniipod Maker", "Crafting Table", "Claw Game Cooker", "Jukebox Dryer", "Simmering Pot", "Bouncy Brew Keg", "Chimney Kiln", "Woodworking Bench", "Phonolfactory Table", "Joy Wheel Loom", "Blazing Stove", "Pickling Jar"];
-    var BP_FAC_ORDER = Object.keys(FAC_RV).concat(["Homeland leisure station"]);
+    /* Facility order for the strategy tables: the Step 1 facilities.
+       The leisure station needs no entry of its own — its rows are
+       keyed Nimbus Bed through facCanon, and Nimbus Bed is in FAC_RV. */
+    var BP_FAC_ORDER = Object.keys(FAC_RV);
     var BP_USED = {};
     Object.keys(ITEMS).forEach(function(n){ var it = ITEMS[n]; if(it.kind === "craft"){ for(var k in it.needs){ BP_USED[k] = true; } } });
 
@@ -7033,6 +7160,7 @@
     function bpFacRows(res){
       var rows = {};
       function add(facility, item, count, unit, why){
+        facility = facCanon(facility);
         var key = facility + "|" + item;
         if(rows[key]) rows[key].count += count;
         else rows[key] = { facility:facility, item:item, count:count, unit:unit, why:why };
@@ -7122,8 +7250,8 @@
       groups.forEach(function(g){
         g.out = facCount(g.facility);
         g.isField = g.facility === "Farmland" || g.facility === "Woodland";
-        /* A facility with no Step 1 count of its own (the Homeland
-           leisure station) is a single station: it is working, count
+        /* A facility with no Step 1 count of its own (Twine's
+           Basic material) is a single station: it is working, count
            1 — never its runs total, which is exactly the kind of
            number this table must not show. */
         if(!FAC_RV[g.facility] && !CLIM_COUNT[g.facility]){ g.working = 1; return; }
@@ -7185,7 +7313,7 @@
       if(res.noRoomForGoals){
         lines.push("The already-planned work claims every facility slot and spare plot in this plan, so no goal recipes could be added.");
       }
-      lines.push("Set your Mines to: " + mineSetupText(res.mine));
+      lines.push("Set your Mines to (Step 5 in the planner, after this strategy plan): " + mineSetupText(res.mine));
       lines.push("");
       lines.push("Rates (per hour):");
       var bpPerH = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
@@ -7240,6 +7368,7 @@
       if(!out) return;
       if(!strategy){
         out.innerHTML = '<div class="empty-plan">Pick a strategy first — <a href="#strategy">Level Up or Goals above</a>. One at a time: the plan never runs both.</div>';
+        renderMines();
         return;
       }
       var res = findBestPlan();
@@ -7247,7 +7376,7 @@
       var busyCount = {};
       facRows.forEach(function(r){ if(!r.idle) busyCount[r.facility] = true; });
       var craftNames = Object.keys(res.exp.batches).filter(function(n){ return (res.exp.batches[n] || 0) > 0; }).sort(function(a, b){
-        var d = BP_FAC_ORDER.indexOf(ITEMS[a].facility) - BP_FAC_ORDER.indexOf(ITEMS[b].facility);
+        var d = BP_FAC_ORDER.indexOf(facCanon(ITEMS[a].facility)) - BP_FAC_ORDER.indexOf(facCanon(ITEMS[b].facility));
         return d !== 0 ? d : a.localeCompare(b);
       });
 
@@ -7293,7 +7422,11 @@
         html += '<div class="note note-info"><h4>🧺 ' + (res.strategy === "levelup" ? "Planned first: your basket, then the bill" : "Already planned, before your goals") + '</h4><p>' + cp.join(" ") + "</p>" +
           (res.leveling ? '<p style="margin-top:8px">The level itself costs <strong>' + fmt(res.leveling.coin) + ' Home Coins</strong>' + (cycH !== null ? ": at this plan's counted <strong>" + fmtRate(res.coinsCycle * perHCl) + " Home Coins per hour</strong>, the coin cost alone is about <strong>" + cycH + (cycH === 1 ? " hour" : " hours") + "</strong> of running this plan." : res.coinsCycle > 0 ? ": this plan has no per-hour rate, so no time estimate for the coin part is shown." : ": this plan earns no counted Home Coins, so those coins have to come from somewhere else.") + "</p>" : "") + "</div>";
       }
-      html += mineSetupHtml(res.mine);
+      /* The Mine picker itself lives in Step 5 now (player's
+         workflow fix, Oct 29, 2026), right below this plan: this
+         line is the summary and the way there, so the Mines are set
+         once, after the strategy, never inside two plans at once. */
+      html += '<div class="note note-teal"><h4>⛏️ Next: set your Mines — Step 5, just below</h4><p>Set your Mines to: ' + esc(mineSetupText(res.mine)) + '<br /><a href="#mines">Go to Step 5 — Set your Mines ↓</a> The plan\'s Mines are marked used there; you pick only for extra Mines you add.</p></div>';
       if(res.farmUsed > res.farmCount || res.woodUsed > res.woodCount){
         html += '<div class="note note-warn"><h4>🌱 More plots than your counts</h4><p>This plan needs ' + res.farmUsed + " Farmland plots and " + res.woodUsed + " Woodland plots, and your counts say " + res.farmCount + " Farmland and " + res.woodCount + " Woodland" + (res.claims && (res.claims.basketFarmUsed + res.claims.basketWoodUsed) > 0 ? ", before your basket's " + res.claims.basketFarmUsed + " Farmland and " + res.claims.basketWoodUsed + " Woodland plots on top" : "") + ". The plan still stands: plant what fits and replant the same plots as harvests finish. Your plot counts follow your RV level, so a higher RV allows more.</p></div>";
       }
@@ -7365,7 +7498,7 @@
 
       html += "<h3 style='margin-top:22px'>🌱 Seeds to plant</h3>";
       var seedNames = Object.keys(res.seedRows).sort(function(a, b){
-        var d = BP_FAC_ORDER.indexOf(ITEMS[a].facility) - BP_FAC_ORDER.indexOf(ITEMS[b].facility);
+        var d = BP_FAC_ORDER.indexOf(facCanon(ITEMS[a].facility)) - BP_FAC_ORDER.indexOf(facCanon(ITEMS[b].facility));
         return d !== 0 ? d : a.localeCompare(b);
       });
       if(seedNames.length){
@@ -7410,6 +7543,7 @@
          that one crew at once. There is no crew inside this panel. */
       renderLayout();
       if(typeof renderTeam === "function") renderTeam();
+      renderMines();
     }
 
     /* ============ Strategy: one at a time ============
@@ -7464,9 +7598,10 @@
       bpResult = null; bpStale = false;
       var out = document.getElementById("bestPlanOut");
       if(out) out.innerHTML = '<div class="empty-plan">' + (mode === "levelup"
-        ? "🚐 Level Up picked. Tap Find the plan and the planner targets the RV " + rvNext() + " bill after your basket, with production beyond the bill going to Home Coins. Any Goals plan from before is gone — nothing carries over."
-        : "🎯 Goals picked. Rank your goals above, then tap Find the plan: your basket runs first, then the goals cascade in your order. Any Level Up plan from before is gone — the bill plays no part here.") + "</div>";
+        ? "🚐 Level Up picked. Tap Find the plan and the planner targets the RV " + rvNext() + " bill after your basket, with production beyond the bill going to Home Coins. Any Goals plan from before is gone — nothing carries over. Then Step 5 sets your Mines from that plan."
+        : "🎯 Goals picked. Rank your goals above, then tap Find the plan: your basket runs first, then the goals cascade in your order. Any Level Up plan from before is gone — the bill plays no part here. Then Step 5 sets your Mines from that plan.") + "</div>";
       renderStrategy();
+      renderMines();
       renderRvPlan();
       renderPlan();
       renderLayout();
@@ -7554,6 +7689,7 @@
       renderFacilities();
       renderChips();
       renderAll();
+      renderMines();
       renderCrops();
       renderLayoutPicker();
       renderLayout();
