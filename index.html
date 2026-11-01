@@ -601,6 +601,7 @@
         <strong>⭐ Best:</strong> one worker per facility. <strong>🪶 Minimum:</strong> one shared Aniimo per job; a second joins only when the first passes 80% load. Best is fitted inside your Aniimo limit; forced sharing is named.<br />
         <strong>Hauling is always in the total, always more than one</strong> (your stand-in rule, not game data). A worker verified to also hold Hauling carries its own output to storage and counts once, in its main job; everyone else doesn't cover. <strong>Utility posts never cover</strong> — Generator, Cooling Unit, Heat Furnace and Sunlamp Aniimo stay at their posts.<br />
         The crew staffs only the buildings the plan uses, at the copies it needs. Unused slots become home residents (🏠 below). Crew is shared by skill, not tied to one building.<br />
+        <strong>Climate machines:</strong> the level of the Aniimo running a Cooling Unit, Heat Furnace or Sunlamp does not matter — any Aniimo with its ability runs it, so those posts read "any level" and never name a strongest Aniimo or a Lv.<br />
         <strong>Fields get no personality bonus:</strong> planting speeds up with Grass Home Ability level only. The Mine keeps Playful +20%.</p>
         <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy first</strong> — in Level Up mode the bill's jobs join this crew. Switching rebuilds it clean.</p></div>
         <div class="card">
@@ -720,6 +721,7 @@
           <li><strong>Per-copy gather picks (player's extension of the Mine picker, Oct 29, 2026):</strong> each copy out of the Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock has one product pick on its Layout Helper block. Plan copies start on the plan's pick; added copies start on the facility's first product; any pick can change. An added copy counts like a plan copy: crew post, power, totals, per run yield (Sea Salt 10, Pearl 2 — Susuta and Shelly family notes — Aromathyst 4, Star 2 flagged not checked; the Well's waters use the Well's level). Takes count per run, never per hour. <strong>The Nimbus Bed gets no pick:</strong> it is the Homeland leisure station, and the plan sets what it gathers (Wool, Petals, Scales), so there is no pick to change; an added Nimbus Bed still counts as a staffed copy out.</li>
           <li><strong>Job picks for added copies of ANY facility (player's generalisation, Oct 29, 2026):</strong> every copy she adds by hand gets one product pick on its layout block, starting on the plan's first product there (or the facility's first product at her levels). With a job picked it counts in full: crew post, power, totals, and its product's take (per batch for crafts, per run for gathers; times not checked, so never per hour). Pick lists show only products that fit her Step 1 facility level and her RV — the same rule as the recipe, Mine and gather lists. A facility that can make nothing at her level and RV offers no list and says so; climate buildings name their real job instead (the layout sets their zones); the Nimbus Bed names why it has no pick (the plan sets its gathers).</li>
           <li><strong>One Put out list (player's fix, Oct 29, 2026):</strong> the Team Helper used to show Aniimo counts four ways — the Put out list, "that total includes" paragraphs, a per-job chip row, and a How many column in the worker table. Now the Put out list is the only place Aniimo counts live. The other parts point to it or say who works where, with no counts of their own. Wording across the planner is kept short and plain on purpose: it is written for every player, not just its maker.</li>
+          <li><strong>Climate machine runners — level does not matter (player's rule, Oct 31, 2026):</strong> an Aniimo running a Cooling Unit, Heat Furnace or Sunlamp works the same at any ability level, so those posts no longer name a strongest Aniimo or a Lv anywhere: the Layout zone cards, the facility blocks and the Team Helper's Put out list all show "any level" for them, with an "any" marker in the ability's colour instead of a level number. Counts do not change — still 1 Aniimo per climate building out. Every other post keeps its level and strongest-known hint as before.</li>
           <li><strong>Aniimo caps:</strong> the "place N Aniimo in your Home" numbers from AniimoTools, matching MetaBot.GG at every level: RV 2 = 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44, 45 at RV 20. The crew check covers the whole put-out total — nothing counted outside it. A crew over the cap is never shown as usable: Best is fitted down to the cap by sharing workers at as few facilities as possible (named on the plan); only when even Minimum is over does no crew show. Flag: aniimoguide prints a lower second set from RV 13 on (40 at RV 20) and advises planning on it; this planner follows the AniimoTools/MetaBot numbers, which match the player's own game (36 at RV 14).</li>
           <li><strong>Bud Tickets:</strong> earned by Homebuilding Zone residents (opens RV 8), not by production. Rates (Game8): 120/day regular, 180 Sparkling or Prismana, 270 both. Decor gives about 1 Habitability per ticket; Habitability gates RV 10–20. The reserve is derived per plan (cap − production crew on show), never a fixed number. The Jar's capacity is not verified, so none is stated; a single-source claim of +100/day from a daily home chest is not counted.</li>
           <li><strong>Personality matches (+20% work efficiency)</strong> — Master Guide table (GameWith, Game8, AniimoTools, Selphie1999 Gaming agree): E Energetic — Bouncy Brew Keg, Woodworking Bench; I Instinctive — Phonolfactory Table, Dewy House; S Practical — Claw Game Cooker, Chimney Kiln; N Nimble — Jukebox Dryer, Blazing Stove; T Tenacious — Carousel Mill, Simmering Pot; F Faithful — Joy Wheel Loom, Well; J Judicious — Crafting Table, Tidewhisper Sandcastle; P Playful — Mine, Pickling Jar. Farmland, Woodland, Dance Pad Polisher, Aniipod Maker and the leisure station have no verified match — stated, not guessed.</li>
@@ -2331,6 +2333,22 @@
         (tip ? ' tabindex="0" data-tip="' + escA(tip) + '"' : "") +
         ' role="img" aria-label="' + escA(job + " ability, Lv." + bw.lvl) + '">' + bw.lvl + "</span>";
     }
+    /* Climate machines (player's rule, Oct 31, 2026): the level of
+       the Aniimo running a Cooling Unit, Heat Furnace or Sunlamp
+       does not matter — any Aniimo with that machine's ability runs
+       it just the same. So climate posts never name a strongest
+       Aniimo or a Lv: they show an "any" marker and read "any
+       level". Counts do not change: still 1 Aniimo per climate
+       building out. Every other post keeps its level and its
+       strongest-known hint, exactly as before. */
+    var CLIMATE_MACHINE_FACS = ["Cooling Unit", "Heat Furnace", "Sunlamp"];
+    function isClimateMachine(f){ return CLIMATE_MACHINE_FACS.indexOf(f) > -1; }
+    function anyLevelMarker(job, tip){
+      var c = JOB_COLORS[job] || { bg:"#888888", fg:"#ffffff" };
+      return '<span class="ab-mark" style="background:' + c.bg + ";color:" + c.fg + ';width:auto;min-width:26px;padding:0 7px;border-radius:999px;font-size:.72rem"' +
+        (tip ? ' tabindex="0" data-tip="' + escA(tip) + '"' : "") +
+        ' role="img" aria-label="' + escA(job + " ability, any level") + '">any</span>';
+    }
     /* The planting Grass Aniimo is covered — adds no extra head — when
        an Aniimo already on the crew holds Grass among its abilities:
        a Grass job's worker, or a Leisure job's Somniwing (Grass Lv 4
@@ -3113,6 +3131,11 @@
         var bw = fa.job ? BEST_WORKERS[fa.job] : null;
         var label = fa.job ? esc(fa.job) + " Aniimo" : (p.count > 1 ? "Aniimo" : "1 Aniimo");
         if(p.count > 1) label += " ×" + p.count;
+        if(fa.job && isClimateMachine(fa.facility)){
+          var cTip = fa.job + " · any level · " + fa.facility + " · 1 Aniimo per building this plan uses (" + p.count + " needed for this plan) · the level of the Aniimo running a climate machine does not matter — any " + fa.job + " Aniimo runs it";
+          lines.push('<li data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(cTip) + '">' + anyLevelMarker(fa.job, null) + "<strong>" + label + "</strong> · " + esc(fa.facility) + " · any level</li>");
+          return;
+        }
         if(!bw){
           lines.push('<li data-heads="' + p.count + '"><strong>' + label + "</strong> · " + esc(fa.facility) + " · job not checked yet</li>");
           return;
@@ -3610,7 +3633,7 @@
         capHtml = '<div class="note note-info"><h4>⭐ Best does not fit RV ' + userRV + ', so it is not shown</h4><p>' +
           "Best needs " + bestSize + " Aniimo, " + (bestSize - cap) + " over your limit of " + cap + ". The Minimum crew below is the one that fits: it puts out " + minSize + " Aniimo because its workers are shared, one Aniimo per job across every facility that needs that job. Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — facilities just take turns, so everything runs slower than Best.</p></div>";
       }
-      var howToHtml = '<div class="note note-info"><h4>📖 How to read the list</h4><p>Each line names an <strong>ability</strong>, not one Aniimo you must use — <strong>Ice Aniimo ×2</strong> means any two Aniimo with Ice. Tap a line for more detail.</p></div>';
+      var howToHtml = '<div class="note note-info"><h4>📖 How to read the list</h4><p>Each line names an <strong>ability</strong>, not one Aniimo you must use — <strong>Ice Aniimo ×2</strong> means any two Aniimo with Ice. Climate machine posts (Cooling Unit, Heat Furnace, Sunlamp) read <strong>any level</strong>: the level of the Aniimo running one does not matter. Tap a line for more detail.</p></div>';
       var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml(team) + '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? (fittedRows ? "Best, fitted to RV " + userRV : "Best") : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
@@ -5818,7 +5841,7 @@
             ["Facility", esc(z.building) + " · footprint " + buildingLabel(z.building)],
             ["Count", z.plots + (z.plots === 1 ? " plot" : " plots") + " in this zone (" + farmIn + " Farmland · " + woodIn + " Woodland) · zone " + zoneNums[z.building] + " of " + zTotal + " for this building"],
             ["Producing", prodLine(z.crops, z)],
-            ["Aniimo", (function(){ var zj = FAC_JOB[z.building]; if(!zj) return "1 " + esc(z.building) + ' Aniimo · type <span class="verdict v-mix">not verified yet</span>'; var zbw = BEST_WORKERS[zj]; return abilityMarker(zj, false, zj + " Lv." + zbw.lvl + " · strongest known: " + zbw.name + " · " + z.building + " needs " + zj + " Aniimo") + "1 " + zj + " Aniimo · strongest known: " + zbw.name + " Lv " + zbw.lvl + (z.building === "Cooling Unit" ? " (cooling units need Ice Aniimo)" : ""); })()]
+            ["Aniimo", (function(){ var zj = FAC_JOB[z.building]; if(!zj) return "1 " + esc(z.building) + ' Aniimo · type <span class="verdict v-mix">not verified yet</span>'; var zTip = zj + " · any level · " + z.building + " needs " + zj + " Aniimo · the level of the Aniimo running a climate machine does not matter"; return anyLevelMarker(zj, zTip) + "1 " + zj + " Aniimo · any level" + (z.building === "Cooling Unit" ? " (cooling units need Ice Aniimo)" : ""); })()]
           ].concat(growRow, [["Why", esc(why)]])) + "</div></div>");
       });
       f.entries.forEach(function(e){
@@ -5867,7 +5890,7 @@
         '<p class="lg-row">Zone colours: <span class="lg-sw" style="background:#dcecfb"></span>Freeze and <span class="lg-sw" style="background:#e7f0fb"></span>Cool (Cooling Unit) · <span class="lg-sw" style="background:#fdeeda"></span>Warm and <span class="lg-sw" style="background:#fbe7e1"></span>Scorching (Heat Furnace) · <span class="lg-sw" style="background:#fdf3da"></span>Adequate light (Sunlamp) · <span class="lg-sw" style="background:#e0f2ec"></span>grows anywhere, no building needed.</p>' +
         '<p class="lg-row"><span class="lg-sw" style="background:#fff"></span>Hover or tap any square or shape and it names itself: the crop or building, how many plots it stands for, its climate, and how fast it grows there.</p>' +
         '<p class="lg-row"><span class="lg-sw" style="background:#e9a13b"></span>Space counts the buildings too: every space total adds the tiles the buildings stand on to the tiles the plots take.</p>' +
-        '<p class="lg-row">' + abilityMarker("Ice", false, "Ice Lv.3 · strongest known: Geoclaw · cooling units need Ice Aniimo") + abilityMarker("Earth", true, "Earth Lv.3 · strongest known: Shrubclaw · Mine · Playful (P) (+20% work efficiency) · a gold ring means the plan counts on that facility's personality bonus (+20%)") + 'Coloured circles on the Aniimo lines: the ability in its game colour, with the Aniimo level inside. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Hover or tap a circle for its details.</p>' +
+        '<p class="lg-row">' + anyLevelMarker("Ice", "Ice · any level · cooling units need Ice Aniimo · the level of the Aniimo running a climate machine does not matter") + abilityMarker("Earth", true, "Earth Lv.3 · strongest known: Shrubclaw · Mine · Playful (P) (+20% work efficiency) · a gold ring means the plan counts on that facility's personality bonus (+20%)") + 'Coloured circles on the Aniimo lines: the ability in its game colour, with the Aniimo level inside. Climate machines show "any" instead: the level of the Aniimo running one does not matter. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Hover or tap a circle for its details.</p>' +
         '</div><p class="src" style="margin-top:8px">Footprints measured from your placement screenshots, Oct 24, 2026: Cooling Unit 2 × 2 (4 tiles), Heat Furnace 1 × 1 (1 tile), Sunlamp 1 × 1 (1 tile), Crackle Generator 2 × 2 (4 tiles), Power Pole 1 × 1 (1 tile).</p></div>';
     }
     /* The nine named facilities, in the layout as in the crew: available
@@ -5944,7 +5967,7 @@
           '<div class="zb-row"><span class="zb-k">Count</span><span>' + countLine(fa.facility, planC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(fa.facility, working, planC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(namedProd) + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + working + " working for this plan)") + '"' : "") + '>' + (fa.job ? abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + working + " in all" : "1 Aniimo each, " + working + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(isClimateMachine(fa.facility) ? (fa.job + " · any level · 1 Aniimo per building this plan uses (" + working + " working for this plan) · the level of the Aniimo running a climate machine does not matter — any " + fa.job + " Aniimo runs it") : (fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + working + " working for this plan)")) + '"' : "") + '>' + (fa.job ? (isClimateMachine(fa.facility) ? anyLevelMarker(fa.job, null) + "1 " + fa.job + " Aniimo each, " + working + " in all · any level" : abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + working + " in all") : "1 Aniimo each, " + working + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(planC > 0 ? (why[fa.facility] || "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add") : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
           "</div>" + gatherHtml + "</div>");
       });
@@ -5984,7 +6007,7 @@
       if(!blocks.length) return addPanel;
       return '<h3 class="layout-sec-head">🏭 Facilities out in this layout</h3><p class="sec-sub" style="margin:8px 0 0">' +
         "Only the facilities this plan uses are out. Only as many copies as the plan needs. Never every copy you own. Each one used has 1 Aniimo in your crew below." +
-        '<br />The coloured circle on an Aniimo row is that skill, in its game colour. The number inside is the Aniimo level. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Tap or hover the row for more, with the strongest known Aniimo as a hint.' +
+        '<br />The coloured circle on an Aniimo row is that skill, in its game colour. The number inside is the Aniimo level. Climate machines show "any" instead of a number: the level of the Aniimo running one does not matter. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Tap or hover the row for more, with the strongest known Aniimo as a hint.' +
         "<br />Use − and + on a block to add copies you own, or take back copies you added. The plan's count is the floor. Your Step 1 count is the top. Added copies are marked added by you. They are staffed in your crew and counted in your power.<br />Change your basket or strategy and added copies reset to the plan's counts." +
         '</p><div class="fac-blocks">' + blocks.join("") + "</div>" + addPanel;
     }
