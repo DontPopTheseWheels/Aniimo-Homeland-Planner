@@ -39,8 +39,67 @@
       .wrap {
         max-width: 960px;
         margin: 0 auto;
-        padding: 20px 16px 48px;
+        padding: 84px 16px 48px;
       }
+
+      /* Float on top toggle */
+      .float-control {
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: min(440px, calc(100vw - 24px));
+        pointer-events: none;
+      }
+      button.float-btn {
+        pointer-events: auto;
+        appearance: none;
+        -webkit-appearance: none;
+        font-family: inherit;
+        min-height: 54px;
+        padding: 12px 28px;
+        font-size: 19px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        color: #ffffff;
+        background: #7c5cd6;
+        border: 2px solid #6a4bc4;
+        border-radius: 999px;
+        box-shadow: 0 6px 20px rgba(90, 70, 160, 0.30);
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+      }
+      button.float-btn:hover { filter: brightness(1.05); }
+      button.float-btn:active { transform: scale(0.97); }
+      button.float-btn:focus-visible {
+        outline: 3px solid #33284d;
+        outline-offset: 2px;
+      }
+      button.float-btn.is-floating {
+        background: #33284d;
+        border-color: #33284d;
+      }
+      .float-note {
+        pointer-events: auto;
+        margin: 0;
+        background: #ffffff;
+        color: var(--ink);
+        border: 2px solid #bda9ef;
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 10px 14px;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.45;
+        text-align: center;
+      }
+      .float-note[hidden] { display: none; }
 
       /* Top note */
       .top {
@@ -156,7 +215,9 @@
       }
 
       @media (max-width: 560px) {
-        .wrap { padding: 14px 12px 40px; }
+        .wrap { padding: 80px 12px 40px; }
+        .float-control { top: 10px; }
+        button.float-btn { min-height: 52px; font-size: 18px; padding: 11px 24px; }
         .top { padding: 14px 16px; gap: 12px; }
         .pip { width: 60px; height: 60px; }
         .top-text h1 { font-size: 21px; }
@@ -176,6 +237,11 @@
     </style>
   </head>
   <body>
+    <div class="float-control">
+      <button type="button" class="float-btn" id="floatBtn" aria-pressed="false">Float on top</button>
+      <p class="float-note" id="floatNote" hidden>Floating needs Chrome or Edge. Tip: in the installed app, Microsoft PowerToys can pin any window on top with Win + Ctrl + T.</p>
+    </div>
+
     <div class="wrap">
 
       <div class="top">
@@ -264,24 +330,34 @@
       var board = document.getElementById("board");
       var live = document.getElementById("live");
 
-      function copyText(text) {
+      function copyText(text, doc) {
+        var targetDoc = doc || document;
+        var targetNav = navigator;
+        try {
+          if (targetDoc.defaultView && targetDoc.defaultView.navigator) {
+            targetNav = targetDoc.defaultView.navigator;
+          }
+        } catch (e) { /* keep main navigator */ }
+        if (targetNav.clipboard && targetNav.clipboard.writeText) {
+          return targetNav.clipboard.writeText(text);
+        }
         if (navigator.clipboard && navigator.clipboard.writeText) {
           return navigator.clipboard.writeText(text);
         }
         return new Promise(function (resolve, reject) {
-          var ta = document.createElement("textarea");
+          var ta = targetDoc.createElement("textarea");
           ta.value = text;
           ta.setAttribute("readonly", "");
           ta.style.position = "fixed";
           ta.style.opacity = "0";
-          document.body.appendChild(ta);
+          targetDoc.body.appendChild(ta);
           ta.select();
           try {
-            var ok = document.execCommand("copy");
-            document.body.removeChild(ta);
+            var ok = targetDoc.execCommand("copy");
+            targetDoc.body.removeChild(ta);
             if (ok) { resolve(); } else { reject(new Error("copy failed")); }
           } catch (e) {
-            document.body.removeChild(ta);
+            if (ta.parentNode) { targetDoc.body.removeChild(ta); }
             reject(e);
           }
         });
@@ -335,19 +411,159 @@
         board.appendChild(section);
       });
 
-      function showCopied(btn, name) {
+      function showCopied(btn, name, liveEl) {
         if (btn.dataset.busy === "1") { return; }
         btn.dataset.busy = "1";
         var original = btn.textContent;
         btn.textContent = "Copied!";
         btn.classList.add("copied");
-        live.textContent = name + " copied";
+        (liveEl || live).textContent = name + " copied";
         setTimeout(function () {
           btn.textContent = original;
           btn.classList.remove("copied");
           btn.dataset.busy = "";
         }, 1200);
       }
+
+      /* Float on top, using Document Picture in Picture where available */
+      var floatBtn = document.getElementById("floatBtn");
+      var floatNote = document.getElementById("floatNote");
+      var pipWindow = null;
+      var pipOpening = false;
+
+      var PIP_CSS = [
+        "* { box-sizing: border-box; }",
+        "html { -webkit-text-size-adjust: 100%; }",
+        "body { margin: 0; background: #ece7ff; color: #33284d; font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif; line-height: 1.4; }",
+        ".pip-wrap { padding: 12px 10px 24px; }",
+        ".pip-head { background: #ffffff; border-radius: 14px; box-shadow: 0 4px 18px rgba(90, 70, 160, 0.12); padding: 12px 14px; margin-bottom: 12px; }",
+        ".pip-head h1 { font-size: 19px; font-weight: 900; margin: 0 0 2px; }",
+        ".pip-head p { font-size: 14px; font-weight: 700; color: #5c517a; margin: 0; }",
+        "section { background: #ffffff; border-radius: 14px; box-shadow: 0 4px 18px rgba(90, 70, 160, 0.12); padding: 12px 10px 14px; margin-bottom: 12px; }",
+        ".sec-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }",
+        ".dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; background: var(--accent); }",
+        "h2 { font-size: 15px; font-weight: 900; margin: 0; letter-spacing: 0.02em; text-transform: uppercase; }",
+        ".count { font-size: 12px; font-weight: 800; color: #5c517a; background: #f3f0ff; border-radius: 999px; padding: 2px 9px; }",
+        ".grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }",
+        "button.name-btn { appearance: none; -webkit-appearance: none; font-family: inherit; min-height: 48px; padding: 8px 6px; font-size: 16px; font-weight: 800; color: #33284d; background: var(--btn-bg); border: 2px solid var(--btn-border); border-radius: 12px; cursor: pointer; touch-action: manipulation; word-break: break-word; }",
+        "button.name-btn:active { transform: scale(0.97); }",
+        "button.name-btn:focus-visible { outline: 3px solid #7c5cd6; outline-offset: 2px; }",
+        "button.name-btn.copied { background: #b9ecc9; border-color: #4cb96e; color: #14532d; }",
+        ".sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }"
+      ].join("\n");
+
+      function setFloatState(active) {
+        floatBtn.setAttribute("aria-pressed", active ? "true" : "false");
+        floatBtn.textContent = active ? "Stop floating" : "Float on top";
+        floatBtn.classList.toggle("is-floating", active);
+      }
+
+      function buildPipBoard(win) {
+        var doc = win.document;
+        doc.title = "Aniimo Copy Board";
+
+        var style = doc.createElement("style");
+        style.textContent = PIP_CSS;
+        doc.head.appendChild(style);
+
+        var wrap = doc.createElement("div");
+        wrap.className = "pip-wrap";
+
+        var headCard = doc.createElement("div");
+        headCard.className = "pip-head";
+        var pipH1 = doc.createElement("h1");
+        pipH1.textContent = "Aniimo Copy Board";
+        var pipSub = doc.createElement("p");
+        pipSub.textContent = "Tap a name to copy it.";
+        headCard.appendChild(pipH1);
+        headCard.appendChild(pipSub);
+        wrap.appendChild(headCard);
+
+        var pipLive = doc.createElement("div");
+        pipLive.className = "sr-only";
+        pipLive.setAttribute("role", "status");
+        pipLive.setAttribute("aria-live", "polite");
+        wrap.appendChild(pipLive);
+
+        SECTIONS.forEach(function (sec) {
+          var section = doc.createElement("section");
+          section.style.setProperty("--accent", sec.accent);
+          section.style.setProperty("--btn-bg", sec.btnBg);
+          section.style.setProperty("--btn-border", sec.btnBorder);
+
+          var head = doc.createElement("div");
+          head.className = "sec-head";
+
+          var dot = doc.createElement("span");
+          dot.className = "dot";
+          dot.setAttribute("aria-hidden", "true");
+
+          var h2 = doc.createElement("h2");
+          h2.textContent = sec.title;
+
+          var count = doc.createElement("span");
+          count.className = "count";
+          count.textContent = sec.names.length + (sec.names.length === 1 ? " name" : " names");
+
+          head.appendChild(dot);
+          head.appendChild(h2);
+          head.appendChild(count);
+          section.appendChild(head);
+
+          var grid = doc.createElement("div");
+          grid.className = "grid";
+
+          sec.names.forEach(function (name) {
+            var btn = doc.createElement("button");
+            btn.type = "button";
+            btn.className = "name-btn";
+            btn.textContent = name;
+            btn.setAttribute("aria-label", "Copy " + name);
+            btn.addEventListener("click", function () {
+              copyText(name, doc).then(function () {
+                showCopied(btn, name, pipLive);
+              }).catch(function () {
+                showCopied(btn, name, pipLive);
+              });
+            });
+            grid.appendChild(btn);
+          });
+
+          section.appendChild(grid);
+          wrap.appendChild(section);
+        });
+
+        doc.body.appendChild(wrap);
+      }
+
+      floatBtn.addEventListener("click", function () {
+        if (pipWindow) {
+          pipWindow.close();
+          return;
+        }
+        if (!("documentPictureInPicture" in window) || !window.documentPictureInPicture || typeof window.documentPictureInPicture.requestWindow !== "function") {
+          floatNote.hidden = false;
+          return;
+        }
+        if (pipOpening) { return; }
+        pipOpening = true;
+        floatNote.hidden = true;
+        window.documentPictureInPicture.requestWindow({ width: 360, height: 520 }).then(function (win) {
+          pipOpening = false;
+          pipWindow = win;
+          setFloatState(true);
+          buildPipBoard(win);
+          win.addEventListener("pagehide", function () {
+            pipWindow = null;
+            setFloatState(false);
+          });
+        }).catch(function () {
+          pipOpening = false;
+          pipWindow = null;
+          setFloatState(false);
+          floatNote.hidden = false;
+        });
+      });
     </script>
   </body>
 </html>
