@@ -64,6 +64,7 @@
       .v-ok{background:var(--good-bg);color:var(--good)}
       .v-mix{background:var(--warn-bg);color:var(--warn)}
       .v-lock{background:var(--bad-bg);color:var(--bad)}
+      .always-badge{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;padding:1px 10px;font-size:.78rem;font-weight:800;font-family:"Baloo 2",sans-serif;vertical-align:middle;white-space:nowrap}
       /* controls */
       .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
       .field{display:flex;flex-direction:column;gap:5px}
@@ -327,6 +328,7 @@
 
       <nav class="toc" aria-label="Planner sections">
         <a href="#facilities">🏭 Step 1 · Setup</a>
+        <a href="#alwaysCard">📌 Always Staffed</a>
         <a href="#basket">🧺 Step 2 · Recipe Basket</a>
         <a href="#strategy">🎯 Step 3 · Strategy</a>
         <a href="#bestplan">⭐ Step 4 · Strategy Plan</a>
@@ -375,6 +377,25 @@
           <p class="src" style="margin-top:4px">Strawberry, Coconut and Maple Syrup follow your Ecological level. Premium Wheat has no checked unlock: manual tap only, and without it Premium Wheat can't be grown.</p>
           <div class="chips" id="modChips" role="group" aria-label="Module recipes you own" style="margin-top:10px"></div>
           <p class="src" style="margin-top:16px">Set? <a href="#basket">Next: Step 2 — pick your recipes ↓</a></p>
+        </div>
+
+        <div class="card" id="alwaysCard" style="margin-top:16px">
+          <h3>📌 Always staffed</h3>
+          <p class="sec-sub" style="margin:6px 0 0">Pin facilities that must always have a worker, even when no recipe uses them. They are staffed <strong>first</strong>, before your basket, with the best worker for each facility's job. They count toward your Aniimo limit, and the Always list is <strong>never trimmed</strong>: if the total goes over your limit, the plan side is trimmed instead.</p>
+          <p class="fac-state" id="alwaysTotalsLine" aria-live="polite">Always crew: 20 · Plan crew: not set yet · Total: 20</p>
+          <div class="fac-grid" id="alwaysGrid"></div>
+          <div class="controls" style="margin-top:14px">
+            <div class="field" style="flex:1 1 240px">
+              <label for="alwaysAddSelect">Add another facility</label>
+              <select id="alwaysAddSelect"></select>
+              <span class="hint">Any staffable facility you own can be pinned. Storage Units take no worker, so they cannot be pinned.</span>
+            </div>
+            <div class="field">
+              <label aria-hidden="true">&nbsp;</label>
+              <button class="btn" id="alwaysAddBtn" type="button">📌 Pin it</button>
+            </div>
+          </div>
+          <p class="src" style="margin-top:10px">Use − and + to change a pin, down to 0 and up to the copies you own above. A pin at 0 staffs nobody but stays on your list. If a recipe is picked for a pinned copy, that copy follows the recipe's family rules, like any other copy. A pinned copy with no recipe just needs a worker with the right job.</p>
         </div>
       </section>
 
@@ -627,7 +648,8 @@
         <strong>Climate machines:</strong> the level of the Aniimo running a Cooling Unit, Heat Furnace or Sunlamp does not matter — any Aniimo with its ability runs it, so those posts read "any level" and never name a strongest Aniimo or a Lv.<br />
         <strong>Fields get no personality bonus:</strong> planting speeds up with Grass Home Ability level only. The Mine keeps Playful +20%.<br />
         <strong>Family-only slots:</strong> a gated recipe's crew slot names its family, like "Leisure worker, Susuta family ONLY", never a generic worker.<br />
-        <strong>Storage Units take no worker:</strong> they are passive, with no crew slot, no crew count and no worker-based power math.</p>
+        <strong>Storage Units take no worker:</strong> they are passive, with no crew slot, no crew count and no worker-based power math.<br />
+        <strong>📌 Always staffed:</strong> your Step 1 pins are staffed first, stand first in the list below marked Always, and count toward your limit. If the total goes over, the plan side is trimmed; the Always list never is.</p>
         <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy first</strong> — in Level Up mode the bill's jobs join this crew. Switching rebuilds it clean.</p></div>
         <div class="card">
           <div id="teamGate"></div>
@@ -762,6 +784,7 @@
           <li><strong>Family gates are hard requirements (deep-dive audit, Nov 7, 2026):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
           <li><strong>Climate and light gates on recipes (audit, Nov 7, 2026):</strong> Scales and Quick Scales are hard-gated on Light: the plan must include a Sunlamp covering the Floral Windmill in the Layout step, and the plan warns if it is missing. Pearl and Quick Pearl want Warmth +1: without Heat Furnace coverage of the Sandcastle they run at 80%, and the adjusted per-hour figure is shown, labelled. Star wants Cool -1: 80% without Cooling Unit coverage. Sweet Cone wants Cold -2: 50% without. Gold-Speck Cap wants Warmth +1: 80% without.</li>
           <li><strong>Storage Units take no worker (audit, Nov 7, 2026):</strong> Storage Units are passive. They have no crew slot, no crew count and no worker-based power math, and they never appear in the crew.</li>
+          <li><strong>Always staffed (player's rule, Nov 8, 2026):</strong> facilities pinned in Step 1 (defaults: Mine 8, Dewy House 1, Nimbus Bed 2, Tidewhisper Sandcastle 2, Starfall Hammock 1, Heat Furnace 2, Cooling Unit 2, Sunlamp 2; any other staffable facility can be added, up to the copies owned) are staffed first, before the recipe basket, with the best worker for each facility's job; climate posts stay level free. Their workers cover the plan's posts at the same facility, so no worker is counted twice, and the Always crew counts inside the Aniimo limit everywhere the limit is shown. When Always plus plan goes over the limit, only the plan side is fitted or trimmed; the Always list is never trimmed. A pinned copy with a recipe picked for it follows that recipe's family rules; a pinned copy with no recipe needs only a worker with the right job. Storage Units cannot be pinned.</li>
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
@@ -2051,6 +2074,13 @@
       lines.push("Aniimo basket plan — recipes picked by you, amounts sized by the planner to your homeland (RV " + userRV + ")");
       lines.push("Recipes: " + basket.map(function(b){ return b.name + (ITEMS[b.name] && ITEMS[b.name].event ? " 🎃" : ""); }).join(", "));
       lines.push("Sizing: production is fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
+      var aLinesP = alwaysTextLines();
+      if(aLinesP.length){
+        lines.push("");
+        lines.push("Always staffed (staffed first, before the basket, counted in your Aniimo limit, and never trimmed):");
+        aLinesP.forEach(function(l){ lines.push(l); });
+        lines.push("Always crew: " + alwaysCrewTotal() + " Aniimo.");
+      }
       var gatedTxt = gatedInGross(plan.gross);
       if(gatedTxt.length){
         lines.push("");
@@ -3015,6 +3045,132 @@
       return need;
     }
 
+    /* ============ Always staffed pins (player's idea, Nov 8, 2026) ============
+       Facilities the player pins must always have a worker, whether or
+       not any recipe uses them. The defaults are her Always Running
+       list. A pin is a count of copies, edited with steppers from 0 up
+       to the copies owned in Step 1 (facCount, the entered count, so a
+       lower RV or a hand-typed count caps the pin in force). Staffing
+       order: the Always crew is staffed FIRST, with the best worker for
+       each pinned facility's job (BEST_WORKERS, the Team Helper's own
+       rule; climate machines stay level free). The plan crew is then
+       worked out from what is left: a pinned copy that the plan also
+       uses is covered by its Always worker, so that worker is never
+       counted twice, once in each list. The Always total rides inside
+       every Aniimo limit total on the page, and it is never trimmed:
+       when Always plus plan goes over the cap, only the plan side is
+       fitted or trimmed, the way the planner already trims. Family
+       gates still apply to a pinned copy with a recipe picked for it;
+       a pinned copy with no recipe needs only the right job. Storage
+       Units are passive and have no job in FAC_JOB, so they can never
+       be pinned. */
+    var ALWAYS_DEFAULTS = [
+      ["Mine", 8], ["Dewy House", 1], ["Nimbus Bed", 2], ["Tidewhisper Sandcastle", 2],
+      ["Starfall Hammock", 1], ["Heat Furnace", 2], ["Cooling Unit", 2], ["Sunlamp", 2]
+    ];
+    var alwaysPins = {};
+    var alwaysList = [];
+    ALWAYS_DEFAULTS.forEach(function(d){ alwaysPins[d[0]] = d[1]; alwaysList.push(d[0]); });
+    var alwaysPlanCrew = null;
+    function alwaysJob(f){ return (typeof FAC_JOB !== "undefined" && FAC_JOB[facCanon(f)]) || null; }
+    function alwaysStaffable(){
+      return Object.keys(FAC_JOB).filter(function(f){ return f !== "Homeland leisure station" && f !== "Farmland" && f !== "Woodland"; });
+    }
+    /* The pin in force: the stored pin, capped at the copies owned in
+       Step 1 right now. The stored pin itself is left alone, so raising
+       the owned count again brings the pin back. */
+    function alwaysCount(f){
+      var p = alwaysPins[f] || 0;
+      var o = facCount(f);
+      return Math.max(0, Math.min(p, o));
+    }
+    function alwaysCrewMap(){
+      var m = {};
+      alwaysList.forEach(function(f){ var c = alwaysCount(f); if(c > 0) m[f] = c; });
+      return m;
+    }
+    function alwaysCrewTotal(){
+      var m = alwaysCrewMap();
+      return Object.keys(m).reduce(function(a, f){ return a + m[f]; }, 0);
+    }
+    function alwaysTextLines(){
+      var map = alwaysCrewMap();
+      var out = [];
+      alwaysList.forEach(function(f){
+        var c = map[f];
+        if(!c) return;
+        var job = alwaysJob(f);
+        var fam = facilityPlanItems(f).filter(function(n){ return familyGate(n); });
+        out.push("- " + f + " x" + c + ": " + (job ? job + " Aniimo" : "Aniimo") + (isClimateMachine(f) ? ", any level" : "") + " · Always" +
+          (fam.length ? " · " + fam.map(function(n){ return n + ": " + familyOnlyText(n); }).join(" · ") : ""));
+      });
+      return out;
+    }
+    function writeAlwaysTotals(){
+      var el = document.getElementById("alwaysTotalsLine");
+      if(!el) return;
+      var a = alwaysCrewTotal();
+      var cap = aniimoCapFor(userRV);
+      var capTxt = cap !== null ? " of " + cap : "";
+      if(alwaysPlanCrew === null){
+        el.textContent = "Always crew: " + a + " · Plan crew: not set yet · Total: " + a + capTxt;
+        return;
+      }
+      var tot = a + alwaysPlanCrew;
+      el.textContent = "Always crew: " + a + " · Plan crew: " + alwaysPlanCrew + " · Total: " + tot + capTxt +
+        (cap !== null && tot > cap ? " · " + (tot - cap) + " over the limit: the plan side is trimmed to fit, the Always list is never trimmed" : "");
+    }
+    function setAlwaysPlanCrew(n){
+      alwaysPlanCrew = (n === null || n === undefined) ? null : Math.max(0, n);
+      writeAlwaysTotals();
+    }
+    function renderAlways(){
+      var grid = document.getElementById("alwaysGrid");
+      if(!grid) return;
+      grid.innerHTML = alwaysList.map(function(f){
+        var owned = facCount(f);
+        var c = alwaysCount(f);
+        var job = alwaysJob(f);
+        return '<div class="fac-item"><span><span class="nm">' + esc(f) + '</span><span class="kd">' +
+          (job ? esc(job) + " Aniimo" : "job not checked yet") + (isClimateMachine(f) ? " · any level" : "") + " · you own " + owned + (owned === 1 ? " copy" : " copies") + " (Step 1)" +
+          '</span></span>' +
+          '<span class="fac-ctl"><span class="src">Pinned</span> <span class="count-step">' +
+          '<button type="button" class="cnt-btn" data-always-dec="' + escA(f) + '" aria-label="One fewer pinned ' + escA(f) + '"' + (c <= 0 ? " disabled" : "") + '>−</button>' +
+          '<span class="adj-count" style="min-width:30px;text-align:center">' + c + '</span>' +
+          '<button type="button" class="cnt-btn" data-always-inc="' + escA(f) + '" aria-label="One more pinned ' + escA(f) + '"' + (c >= owned ? " disabled" : "") + '>+</button>' +
+          '</span></span></div>';
+      }).join("");
+      grid.querySelectorAll("[data-always-inc]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var f = btn.getAttribute("data-always-inc");
+          alwaysPins[f] = alwaysCount(f) + 1;
+          renderAlways();
+          refreshAfterStage3();
+          toast(f + " pinned at " + alwaysCount(f) + ". Always staffed, counted first.");
+        });
+      });
+      grid.querySelectorAll("[data-always-dec]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var f = btn.getAttribute("data-always-dec");
+          alwaysPins[f] = Math.max(0, alwaysCount(f) - 1);
+          renderAlways();
+          refreshAfterStage3();
+          toast(f + " pin now " + alwaysCount(f) + ".");
+        });
+      });
+      var sel = document.getElementById("alwaysAddSelect");
+      if(sel){
+        var opts = alwaysStaffable().filter(function(f){ return alwaysList.indexOf(f) === -1 && facCount(f) > 0; }).sort();
+        sel.innerHTML = opts.length
+          ? opts.map(function(f){ return '<option value="' + escA(f) + '">' + esc(f) + "</option>"; }).join("")
+          : '<option value="">No more facilities to add</option>';
+        sel.disabled = !opts.length;
+      }
+      var addBtn = document.getElementById("alwaysAddBtn");
+      if(addBtn) addBtn.disabled = !sel || sel.disabled;
+      writeAlwaysTotals();
+    }
+
     function computeTeam(){
       var plan = computePlan();
       var byFac = {}, uncounted = {};
@@ -3143,6 +3299,29 @@
         else c = deployedCount(fa.facility, needCounts[fa.facility] || 0);
         if(c > 0) placed[fa.facility] = { facility:fa.facility, count:c, job:fa.job };
       });
+      /* Always staffed, FIRST (player's rule, Nov 8, 2026): the pinned
+         copies are staffed before the plan crew is counted, and their
+         workers cover the plan's own staffing at the same facility, so
+         nobody is counted twice. Coverage order at one facility: the
+         per-copy posts (placed) first, then the facility's plan worker
+         (byFac). What is left of the pin after covering is Always-only
+         crew: copies no recipe uses, still staffed, still counted in
+         the limit. The Always list itself is never reduced here: the
+         crew entry keeps the full pin, and only the plan side shrinks. */
+      var alwaysCrew = [];
+      alwaysList.forEach(function(f){
+        var c = alwaysCount(f);
+        if(c <= 0) return;
+        var rest = c;
+        if(placed[f]){
+          var covP = Math.min(placed[f].count, rest);
+          placed[f].count -= covP;
+          rest -= covP;
+          if(placed[f].count <= 0) delete placed[f];
+        }
+        if(rest > 0 && byFac[f]){ delete byFac[f]; rest--; }
+        alwaysCrew.push({ facility:f, job:alwaysJob(f), count:c });
+      });
       /* Hauling (player's rule, Oct 27, 2026): the need is always
          more than one in the total, and more as the plan gets
          bigger — 2 while five or fewer facilities run, then one
@@ -3164,7 +3343,7 @@
           minimum:haulingSplit(byFac, placed, Object.keys(uncounted).length, PLANTING_MIN, hNeed, "minimum")
         } };
       }
-      return { byFac:byFac, uncounted:uncounted, placed:placed, planting:PLANTING_MIN, hauling:hauling, climate:climInfo };
+      return { byFac:byFac, uncounted:uncounted, placed:placed, planting:PLANTING_MIN, hauling:hauling, climate:climInfo, always:alwaysCrew };
     }
 
     function teamBestRows(byFac){
@@ -3440,10 +3619,47 @@
       if(cap === 0) return "RV " + rv + " allows no Aniimo yet";
       return "RV " + rv + " allows " + cap + " Aniimo";
     }
+    /* The Always crew's put-out lines: they stand FIRST in the list,
+       one line per pinned facility, each marked Always, each carrying
+       data-heads with its full pin count, so the put-out total counts
+       the Always crew before the plan crew and never twice (the plan
+       side of computeTeam already gave up the posts these workers
+       cover). Climate machines read any level, like every other
+       climate post. A pinned facility whose plan work is a gated
+       product names its family-only slots, the same rule as the
+       placed lines: a recipe picked for a pinned copy follows the
+       recipe's family rules. */
+    function putOutAlwaysLines(team){
+      var lines = [];
+      var list = (team && team.always) ? team.always : [];
+      list.forEach(function(a){
+        if(!a.count) return;
+        var f = a.facility, job = a.job;
+        var badge = ' <span class="always-badge">Always</span>';
+        var famItems = facilityPlanItems(f).filter(function(n){ return familyGate(n); });
+        var famSuffix = famItems.length ? " · " + famItems.map(function(n){ return esc(n) + ": " + esc(familyOnlyText(n)); }).join(" · ") : "";
+        if(job && isClimateMachine(f)){
+          var cTip = job + " · any level · " + f + " · Always staffed first: " + a.count + (a.count === 1 ? " pinned copy" : " pinned copies") + ", staffed whether or not a recipe uses them · the level of the Aniimo running a climate machine does not matter, any " + job + " Aniimo runs it";
+          lines.push('<li data-heads="' + a.count + '" tabindex="0" data-tip="' + escA(cTip) + '">' + anyLevelMarker(job, null) + "<strong>" + esc(job) + " Aniimo" + (a.count > 1 ? " ×" + a.count : "") + "</strong> · " + esc(f) + badge + " · any level</li>");
+          return;
+        }
+        if(!job){
+          lines.push('<li data-heads="' + a.count + '"><strong>Aniimo' + (a.count > 1 ? " ×" + a.count : "") + "</strong> · " + esc(f) + badge + " · job not checked yet</li>");
+          return;
+        }
+        var bw = BEST_WORKERS[job];
+        var tip = job + " Lv." + bw.lvl + " · strongest known: " + bw.name + " Lv." + bw.lvl +
+          " · " + f + " · Always staffed first: " + a.count + (a.count === 1 ? " pinned copy" : " pinned copies") + ", staffed whether or not a recipe uses them" +
+          (famItems.length ? " · Family-only slots at this facility: " + famItems.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ") : "");
+        lines.push('<li data-heads="' + a.count + '" tabindex="0" data-tip="' + escA(tip) + '">' + abilityMarker(job, !!FAC_TRAIT[f]) + "<strong>" + esc(job) + " Aniimo" + (a.count > 1 ? " ×" + a.count : "") + "</strong> · " + esc(f) + badge + famSuffix + "</li>");
+      });
+      return lines;
+    }
     function putOutHtml(team, includeAllUncounted, opts){
       opts = opts || {};
       var mode = opts.mode || teamMode;
-      var lines = [];
+      /* The Always crew stands first in the one list, marked Always. */
+      var lines = putOutAlwaysLines(team);
       /* The Aniimo covering planting, when one already on the crew
          holds Grass (a Leisure Somniwing, Grass Lv 4 alongside): its
          own line below names Grass alongside its other job, so the
@@ -3603,6 +3819,7 @@
       return '<div class="putout"><h3>' + esc(opts.title || "🐾 Put out — the one list") + '</h3>' +
         '<p class="putout-total">Put out ' + totalHeads + " Aniimo</p>" +
         (capLine ? '<p class="putout-cap">' + capLine + "</p>" : "") +
+        '<p class="putout-cap">Always crew: ' + alwaysCrewTotal() + " · Plan crew: " + Math.max(0, totalHeads - alwaysCrewTotal()) + " · Total: " + totalHeads + (capNow !== null ? " of " + capNow : "") + "</p>" +
         '<p class="src" style="margin:0 0 10px">Every Aniimo for this plan is in this one list, counted once. Nothing else on this page adds more.</p>' +
         '<ul class="putout-list">' + lines.join("") + "</ul></div>";
     }
@@ -3680,8 +3897,11 @@
       var plantingBy = plantingCoveredBy(team);
       var plantingAdd = plantingBy ? 0 : (team.planting || 0);
       var hBest = haulingFor(team, "best"), hMin = haulingFor(team, "minimum");
-      var extraBest = uncountedCount + placedTotal + plantingAdd + (hBest ? hBest.dedicated : 0);
-      var extraMin = uncountedCount + placedTotal + plantingAdd + (hMin ? hMin.dedicated : 0);
+      /* The Always crew is inside these sizes too: it is staffed first
+         and counts toward the same cap, so home places are what is
+         left after Always plus plan, never after the plan alone. */
+      var extraBest = uncountedCount + placedTotal + plantingAdd + (hBest ? hBest.dedicated : 0) + alwaysCrewTotal();
+      var extraMin = uncountedCount + placedTotal + plantingAdd + (hMin ? hMin.dedicated : 0) + alwaysCrewTotal();
       var bestSize = bestIndividualCount(team.byFac) + extraBest;
       var minSize = minIndividualCount(jobFacCount) + extraMin;
       var cap = aniimoCapFor(userRV);
@@ -3786,6 +4006,7 @@
         }
         if(contentEl) contentEl.hidden = true;
         area.innerHTML = "";
+        setAlwaysPlanCrew(null);
         renderHome();
         return;
       }
@@ -3800,6 +4021,7 @@
         : "Minimum: one shared Aniimo per job. Facilities take turns; everything runs slower.";
       if(!basket.length && !levelingOn && !(typeof bpResult !== "undefined" && bpResult)){
         area.innerHTML = '<div class="empty-plan">Your crew appears here once your basket has a recipe in it, or after you find your plan in Step 4.</div>';
+        setAlwaysPlanCrew(0);
         renderHome();
         return;
       }
@@ -3808,8 +4030,9 @@
       var uncountedFacs = Object.keys(team.uncounted).sort();
       var placedFacs = team.placed ? Object.keys(team.placed) : [];
       var placedTotal = placedFacs.reduce(function(a, f){ return a + team.placed[f].count; }, 0);
-      if(!facs.length && !uncountedFacs.length && !placedFacs.length){
+      if(!facs.length && !uncountedFacs.length && !placedFacs.length && !alwaysCrewTotal()){
         area.innerHTML = '<div class="note note-good" style="margin-top:14px"><h4>🎉 No crew needed</h4><p>No facility has to run for this plan, so nobody needs to staff anything: everything in it is grown or gathered, with no station time at all.</p></div>';
+        setAlwaysPlanCrew(0);
         return;
       }
       var jobFacCount = {};
@@ -3847,8 +4070,12 @@
       var hSplitBest = haulingFor(team, "best"), hSplitMin = haulingFor(team, "minimum");
       var haulingAddBest = hSplitBest ? hSplitBest.dedicated : 0;
       var haulingAddMin = hSplitMin ? hSplitMin.dedicated : 0;
-      var bestSize = bestIndividualCount(team.byFac) + uncountedFacs.length + placedTotal + plantingAdd + haulingAddBest;
-      var minSize = minIndividualCount(jobFacCount) + uncountedFacs.length + placedTotal + plantingAdd + haulingAddMin;
+      /* The Always crew counts inside both sizes: staffed first, part
+         of the same Aniimo limit, and never trimmed. Only the plan
+         side (everything else in these sums) is fitted or trimmed. */
+      var alwaysTotal = alwaysCrewTotal();
+      var bestSize = bestIndividualCount(team.byFac) + uncountedFacs.length + placedTotal + plantingAdd + haulingAddBest + alwaysTotal;
+      var minSize = minIndividualCount(jobFacCount) + uncountedFacs.length + placedTotal + plantingAdd + haulingAddMin + alwaysTotal;
       var cap = aniimoCapFor(userRV);
       var overBest = cap !== null && bestSize > cap;
       var overMin = cap !== null && minSize > cap;
@@ -3863,8 +4090,8 @@
          change. */
       var fittedRows = null, fittedSize = 0;
       if(overBest && !overMin){
-        fittedRows = fitBestRows(team.byFac, cap - uncountedFacs.length - placedTotal - plantingAdd - haulingAddBest);
-        if(fittedRows) fittedSize = fittedRows.reduce(function(a, r){ return a + r.count; }, 0) + uncountedFacs.length + placedTotal + plantingAdd + haulingAddBest;
+        fittedRows = fitBestRows(team.byFac, cap - uncountedFacs.length - placedTotal - plantingAdd - haulingAddBest - alwaysTotal);
+        if(fittedRows) fittedSize = fittedRows.reduce(function(a, r){ return a + r.count; }, 0) + uncountedFacs.length + placedTotal + plantingAdd + haulingAddBest + alwaysTotal;
       }
       var bestHidden = overBest && !fittedRows;
       if(bBtn){
@@ -3875,10 +4102,12 @@
       }
       if(mBtn){ mBtn.disabled = overMin; mBtn.title = overMin ? "Minimum needs " + minSize + " Aniimo, over your RV " + userRV + " limit of " + cap : ""; }
       if(overBest && overMin){
-        if(note) note.textContent = "Neither crew fits RV " + userRV + ", so no crew is shown: a crew you cannot put out is not a plan.";
-        area.innerHTML = '<div class="note note-warn"><h4>No crew fits RV ' + userRV + ' yet</h4><p>' +
-          "Best needs <strong>" + bestSize + " Aniimo</strong> and Minimum needs <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so neither fits and no crew is shown. " +
-          "To fix it: take recipes out of the basket, switch strategy, or level the RV up first.</p></div>";
+        if(note) note.textContent = "Neither crew fits RV " + userRV + ", so no plan crew is shown: a crew you cannot put out is not a plan. The Always crew below is never trimmed.";
+        setAlwaysPlanCrew(minSize - alwaysTotal);
+        area.innerHTML = '<div class="note note-warn"><h4>No plan crew fits RV ' + userRV + ' yet</h4><p>' +
+          "Always crew: <strong>" + alwaysTotal + "</strong> · Plan crew: <strong>" + (minSize - alwaysTotal) + "</strong> at Minimum (Best plan crew: " + (bestSize - alwaysTotal) + ") · Total: <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so the plan side does not fit in the " + Math.max(0, cap - alwaysTotal) + " places the Always crew leaves, and no plan crew is shown. " +
+          "The Always list is never trimmed: only the plan side is cut. To fix it: take recipes out of the basket, switch strategy, or level the RV up first.</p></div>" +
+          (alwaysTotal > 0 ? '<div class="putout"><h3>📌 Always crew · never trimmed</h3><ul class="putout-list">' + putOutAlwaysLines(team).join("") + "</ul></div>" : "");
         renderHome();
         return;
       }
@@ -3888,6 +4117,7 @@
       if(bBtn) bBtn.setAttribute("aria-pressed", teamMode === "best" ? "true" : "false");
       if(mBtn) mBtn.setAttribute("aria-pressed", teamMode === "minimum" ? "true" : "false");
       teamSize = teamMode === "best" ? (fittedRows ? fittedSize : bestSize) : minSize;
+      setAlwaysPlanCrew(teamSize - alwaysTotal);
       var fittedJobWorkers = {};
       if(fittedRows) fittedRows.forEach(function(r){ (r.jobs || [r.job]).forEach(function(j){ fittedJobWorkers[j] = (fittedJobWorkers[j] || 0) + r.count; }); });
       /* The products this crew actually works, for the family note:
@@ -4072,6 +4302,7 @@
        in, exactly the bug renderModulePanels was split out to avoid. */
     function refreshAfterStage3(){
       renderModulePanels();
+      if(typeof renderAlways === "function") renderAlways();
       renderAll(); renderCrops(); renderLayoutPicker(); renderLayout(); renderRvPlan();
       if(typeof renderTeam === "function") renderTeam();
       markBpStale();
@@ -6266,7 +6497,7 @@
         if(extra > 0) return working + " working (" + planC + " for the plan + " + extra + " added by you) of " + ownedC + " owned";
         return planC + " needed for this plan, of " + ownedC + " you have (Step 1)";
       }
-      FAC_ANIIMO.forEach(function(fa){
+      function namedBlock(fa){
         var ownedC = facCount(fa.facility);
         var planC = ownedC;
         /* Only as many as the plan needs (player's rule, Oct 29, 2026):
@@ -6278,10 +6509,18 @@
            to shows no block and staffs no Aniimo in the crew. */
         if(climateUsed && CLIM_BUILDINGS.indexOf(fa.facility) > -1) planC = Math.min(climateUsed[fa.facility] || 0, ownedC);
         else if(usedCounts) planC = Math.min(usedCounts[fa.facility] || 0, ownedC);
-        var working = deployedCount(fa.facility, planC);
-        if(working <= 0) return;
-        if(onlyFacs && !onlyFacs[fa.facility] && !(facExtraFor(fa.facility) > 0)) return;
-        var extra = working - planC;
+        /* Always pins (Nov 8, 2026): a pinned facility is out and
+           staffed even when the plan never uses it, so its working
+           count never drops below its pin, its block is marked
+           Always, and the deploy stepper's floor is the pin: the
+           pinned copies cannot be taken back from here, only from
+           the Always list in Step 1. */
+        var pinC = alwaysCount(fa.facility);
+        var working = Math.max(deployedCount(fa.facility, planC), pinC);
+        if(working <= 0) return "";
+        if(onlyFacs && !onlyFacs[fa.facility] && !(facExtraFor(fa.facility) > 0) && pinC <= 0) return "";
+        var floorC = Math.max(planC, pinC);
+        var extra = working - floorC;
         var namedItems = fa.facility === "Mine" ? [] : facilityPlanItems(fa.facility);
         var namedProd = namedItems.length > 1 ? assignText(namedItems, working) : (namedItems.length === 1 ? namedItems[0] : prod[fa.facility]);
         /* The Mine block names her actual picks, Mine by Mine, from
@@ -6304,14 +6543,22 @@
         } else if(fa.facility === "Nimbus Bed"){
           gatherHtml = '<p class="src" style="margin-top:10px">Gathering: no pick to change. The Nimbus Bed is the Homeland leisure station, so the plan sets what it gathers.<br />An added Nimbus Bed still counts as a staffed copy out, in the crew and the totals.</p>';
         }
-        blocks.push('<div class="fac-block"><h4>' + esc(fa.facility) + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
-          '<div class="zb-row"><span class="zb-k">Count</span><span>' + countLine(fa.facility, planC, ownedC) + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(fa.facility, working, planC, ownedC) + '</span></div>' +
+        return '<div class="fac-block"><h4>' + esc(fa.facility) + (pinC > 0 ? ' <span class="always-badge">Always</span>' : "") + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
+          '<div class="zb-row"><span class="zb-k">Count</span><span>' + (pinC > 0 ? working + " working · " + pinC + " Always pinned · plan uses " + planC + " · of " + ownedC + " owned" : countLine(fa.facility, planC, ownedC)) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(fa.facility, working, floorC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(namedProd) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(isClimateMachine(fa.facility) ? (fa.job + " · any level · 1 Aniimo per building this plan uses (" + working + " working for this plan) · the level of the Aniimo running a climate machine does not matter — any " + fa.job + " Aniimo runs it") : (fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + working + " working for this plan)")) + '"' : "") + '>' + (fa.job ? (isClimateMachine(fa.facility) ? anyLevelMarker(fa.job, null) + "1 " + fa.job + " Aniimo each, " + working + " in all · any level" : abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + working + " in all") : "1 Aniimo each, " + working + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(planC > 0 ? (why[fa.facility] || "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add") : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
-          "</div>" + gatherHtml + "</div>");
+          '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(pinC > 0 && planC <= 0 ? "Pinned in Always staffed in Step 1: it stays out and staffed even when no recipe uses it" : planC > 0 ? (why[fa.facility] || "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add") : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
+          "</div>" + gatherHtml + "</div>";
+      }
+      /* Always blocks first in the layout: pinned named facilities in
+         pin list order, then the rest in their usual order. */
+      var namedOrder = [];
+      alwaysList.forEach(function(f){
+        FAC_ANIIMO.forEach(function(x){ if(x.facility === f && namedOrder.indexOf(x) === -1) namedOrder.push(x); });
       });
+      FAC_ANIIMO.forEach(function(fa){ if(namedOrder.indexOf(fa) === -1) namedOrder.push(fa); });
+      namedOrder.forEach(function(fa){ var h = namedBlock(fa); if(h) blocks.push(h); });
       /* The crafting and cooking facilities the combined plans work get
          blocks in the same dress, with the same steppers: their plan
          count comes from the same loads (allFacilityNeedCounts). Added
@@ -6326,28 +6573,39 @@
       Object.keys(facExtra).forEach(function(f){
         if(blockFacs.indexOf(f) === -1 && FAC_RV[f] && !FAC_ANIIMO.some(function(fa){ return fa.facility === f; })) blockFacs.push(f);
       });
-      blockFacs.sort().forEach(function(f){
+      /* Pinned facilities get a block even when the plan never uses
+         them, and pinned blocks come first, in pin list order. */
+      alwaysList.forEach(function(f){
+        if(alwaysCount(f) > 0 && FAC_RV[f] && blockFacs.indexOf(f) === -1 && !FAC_ANIIMO.some(function(fa){ return fa.facility === f; })) blockFacs.push(f);
+      });
+      blockFacs.sort(function(a, b){
+        var ca = alwaysCount(a) > 0 ? alwaysList.indexOf(a) : 999;
+        var cb = alwaysCount(b) > 0 ? alwaysList.indexOf(b) : 999;
+        return ca !== cb ? ca - cb : a.localeCompare(b);
+      }).forEach(function(f){
         if(FAC_ANIIMO.some(function(fa){ return fa.facility === f; })) return;
         var ownedC = facCount(f);
         var planC = allNeed[f] || 0;
-        var working = deployedCount(f, planC);
+        var pinC = alwaysCount(f);
+        var working = Math.max(deployedCount(f, planC), pinC);
         if(working <= 0) return;
-        if(onlyFacs && !onlyFacs[f] && !(facExtraFor(f) > 0)) return;
-        var extra = working - planC;
+        if(onlyFacs && !onlyFacs[f] && !(facExtraFor(f) > 0) && pinC <= 0) return;
+        var floorC = Math.max(planC, pinC);
+        var extra = working - floorC;
         var itemsHere = facilityPlanItems(f);
         var worker = facilityWorkerName(f);
-        blocks.push('<div class="fac-block"><h4>' + esc(f) + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
-          '<div class="zb-row"><span class="zb-k">Count</span><span>' + countLine(f, planC, ownedC) + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(f, working, planC, ownedC) + '</span></div>' +
+        blocks.push('<div class="fac-block"><h4>' + esc(f) + (pinC > 0 ? ' <span class="always-badge">Always</span>' : "") + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
+          '<div class="zb-row"><span class="zb-k">Count</span><span>' + (pinC > 0 ? working + " working · " + pinC + " Always pinned · plan uses " + planC + " · of " + ownedC + " owned" : countLine(f, planC, ownedC)) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(f, working, floorC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + (itemsHere.length ? esc(itemsHere.length > 1 ? assignText(itemsHere, working) : itemsHere[0]) : (planC > 0 ? "This plan's work there" : "Added by you: pick its job below — it runs one thing at a time, like every copy")) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span>' + (worker ? (planC > 0 ? "1 " + esc(worker) + " Aniimo post for this facility in your crew below" + (extra > 0 ? "; added copies with a job pick share that post and count in your crew and power" : "") : "Its job pick below puts a " + esc(worker) + " Aniimo post for this facility in your crew, and the copy counts in your power and totals") : 'Worker <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Why</span><span>' + (planC > 0 ? "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add" : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Why</span><span>' + (pinC > 0 && planC <= 0 ? "Pinned in Always staffed in Step 1: it stays out and staffed even when no recipe uses it" : planC > 0 ? "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add" : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
           "</div>" + extraPickHtml(f, planC, working) + "</div>");
       });
       var addPanel = addFacilityPanelHtml(climateUsed, usedCounts, allNeed);
       if(!blocks.length) return addPanel;
       return '<h3 class="layout-sec-head">🏭 Facilities out in this layout</h3><p class="sec-sub" style="margin:8px 0 0">' +
-        "Only the facilities this plan uses are out. Only as many copies as the plan needs. Never every copy you own. Each one used has 1 Aniimo in your crew below." +
+        "Facilities marked Always come first: pinned in Step 1, out and staffed whether or not a recipe uses them. After them, only the facilities this plan uses are out. Only as many copies as the plan needs. Never every copy you own. Each one used has 1 Aniimo in your crew below." +
         '<br />The coloured circle on an Aniimo row is that skill, in its game colour. The number inside is the Aniimo level. Climate machines show "any" instead of a number: the level of the Aniimo running one does not matter. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Tap or hover the row for more, with the strongest known Aniimo as a hint.' +
         "<br />Use − and + on a block to add copies you own, or take back copies you added. The plan's count is the floor. Your Step 1 count is the top. Added copies are marked added by you. They are staffed in your crew and counted in your power.<br />Change your basket or strategy and added copies reset to the plan's counts." +
         '</p><div class="fac-blocks">' + blocks.join("") + "</div>" + addPanel;
@@ -6697,8 +6955,24 @@
         if(planClim && CLIM_BUILDINGS.indexOf(fa.facility) > -1) base = Math.min(planClim[fa.facility] || 0, base);
         else base = Math.min(planNeed[fa.facility] || 0, base);
         var c = deployedCount(fa.facility, base);
+        var pinC = alwaysCount(fa.facility);
+        if(pinC > 0){
+          /* The pinned copies are listed in the Always section below;
+             here only the copies working above the pin are named, so
+             no copy is listed twice. */
+          var abovePin = Math.max(c, pinC) - pinC;
+          if(abovePin > 0) facLines.push("- " + fa.facility + " x" + abovePin + " more working, on top of the Always copies: " + (fa.job ? "1 " + fa.job + " Aniimo each" : "1 Aniimo each, type not verified yet"));
+          return;
+        }
         if(c > 0) facLines.push("- " + fa.facility + " x" + c + (c - base > 0 ? " working (" + base + " for the plan + " + (c - base) + " added by you)" : " needed for this plan") + ": " + (fa.job ? "1 " + fa.job + " Aniimo each" : "1 Aniimo each, type not verified yet"));
       });
+      var aLinesL = alwaysTextLines();
+      if(aLinesL.length){
+        lines.push("");
+        lines.push("Always staffed (staffed first, counted in your Aniimo limit, and never trimmed):");
+        aLinesL.forEach(function(l){ lines.push(l); });
+        lines.push("Always crew: " + alwaysCrewTotal() + " Aniimo.");
+      }
       if(facLines.length){
         lines.push("");
         lines.push("Facilities this plan uses, 1 Aniimo each, also in your crew:");
@@ -7801,6 +8075,12 @@
       var snapOrder = res.goalOrderSnap || bpGoalOrder, snapOn = res.goalOnSnap || bpGoalOn;
       lines.push(res.strategy === "levelup" ? "Aniimo strategy plan — Strategy: Level Up" : "Aniimo strategy plan — Strategy: Goals");
       lines.push("Setup used: RV " + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", with your Step 1 facility counts and levels.");
+      var aLinesB = alwaysTextLines();
+      if(aLinesB.length){
+        lines.push("Always staffed (staffed first, before the basket, counted in your Aniimo limit, and never trimmed):");
+        aLinesB.forEach(function(l){ lines.push(l); });
+        lines.push("Always crew: " + alwaysCrewTotal() + " Aniimo.");
+      }
       if(res.strategy === "levelup" && res.leveling){
         lines.push("Target: the RV " + res.leveling.from + " to RV " + res.leveling.next + " bill — " + fmt(res.leveling.coin) + " Home Coins + " + Object.keys(res.leveling.needs).map(function(n){ return n + " x" + fmt(res.leveling.needs[n]); }).join(", ") + ", expanded down to the base materials under them. Your basket is produced first, then the bill; production beyond the bill goes to Home Coins. The bill is a one-time target package and stays outside the per-hour income rates below" + (res.coinsCycle > 0 ? (res.cycleMins > 0 ? "; the coin part alone is about " + fmtRate(Math.ceil(res.leveling.coin / (res.coinsCycle * 60 / res.cycleMins) * 10) / 10) + " hours at this plan's counted rate." : "; no time estimate is shown for the coin part, because this plan has no per-hour rate.") : "."));
       } else {
@@ -8185,6 +8465,17 @@
       });
       var budMixSel = document.getElementById("budMix");
       if(budMixSel) budMixSel.addEventListener("change", function(){ renderHome(); renderTeam(); });
+      var alwaysAddBtn = document.getElementById("alwaysAddBtn");
+      if(alwaysAddBtn) alwaysAddBtn.addEventListener("click", function(){
+        var selA = document.getElementById("alwaysAddSelect");
+        var fA = selA ? selA.value : "";
+        if(!fA || alwaysList.indexOf(fA) > -1) return;
+        alwaysList.push(fA);
+        if(!alwaysPins[fA]) alwaysPins[fA] = 1;
+        renderAlways();
+        refreshAfterStage3();
+        toast(fA + " pinned at " + alwaysCount(fA) + ". Always staffed, counted first.");
+      });
       /* Auto-fill on open (player's ask, Oct 29, 2026): the page fills
          Step 1 for the RV standing in the picker before anything first
          renders, so the whole page — recipe lists, plans, layout,
@@ -8200,6 +8491,7 @@
       renderGoals();
       renderStrategy();
       renderFacilities();
+      renderAlways();
       renderChips();
       renderAll();
       renderMines();
