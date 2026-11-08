@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ece7ff" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="data:," />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("sw.js").catch(function () {});
+        });
+      }
+    </script>
+    <title>Aniimo Copy Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #ece7ff;
+        --card: #ffffff;
+        --ink: #33284d;
+        --ink-soft: #5c517a;
+        --shadow: 0 4px 18px rgba(90, 70, 160, 0.12);
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+        line-height: 1.4;
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px 16px 48px;
+      }
+
+      /* Top note */
+      .top {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: var(--card);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 18px 20px;
+        margin-bottom: 22px;
+      }
+      .pip { flex: 0 0 auto; width: 76px; height: 76px; }
+      .top-text h1 {
+        font-size: 24px;
+        font-weight: 900;
+        margin: 0 0 4px;
+        letter-spacing: 0.01em;
+      }
+      .top-text p {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ink-soft);
+        margin: 0;
+      }
+      .top-text .pip-line {
+        font-size: 15px;
+        font-weight: 800;
+        color: #8a5fc0;
+        margin-top: 6px;
+      }
+
+      /* Sections */
+      section {
+        background: var(--card);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 18px 18px 20px;
+        margin-bottom: 20px;
+      }
+      .sec-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .dot {
+        width: 16px; height: 16px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+        background: var(--accent);
+      }
+      h2 {
+        font-size: 21px;
+        font-weight: 900;
+        margin: 0;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .count {
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--ink-soft);
+        background: #f3f0ff;
+        border-radius: 999px;
+        padding: 3px 11px;
+      }
+
+      /* Buttons */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+        gap: 12px;
+      }
+      button.name-btn {
+        appearance: none;
+        -webkit-appearance: none;
+        font-family: inherit;
+        min-height: 68px;
+        padding: 12px 10px;
+        font-size: 21px;
+        font-weight: 800;
+        color: var(--ink);
+        background: var(--btn-bg);
+        border: 2px solid var(--btn-border);
+        border-radius: 16px;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: transform 0.08s ease, background 0.15s ease, border-color 0.15s ease;
+        word-break: break-word;
+      }
+      button.name-btn:hover { filter: brightness(0.98); }
+      button.name-btn:active { transform: scale(0.97); }
+      button.name-btn:focus-visible {
+        outline: 3px solid #7c5cd6;
+        outline-offset: 2px;
+      }
+      button.name-btn.copied {
+        background: #b9ecc9;
+        border-color: #4cb96e;
+        color: #14532d;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 560px) {
+        .wrap { padding: 14px 12px 40px; }
+        .top { padding: 14px 16px; gap: 12px; }
+        .pip { width: 60px; height: 60px; }
+        .top-text h1 { font-size: 21px; }
+        .top-text p { font-size: 16px; }
+        section { padding: 14px 12px 16px; }
+        h2 { font-size: 18px; }
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        button.name-btn {
+          min-height: 64px;
+          font-size: 19px;
+          padding: 10px 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <div class="top">
+        <svg class="pip" viewBox="0 0 100 100" role="img" aria-label="Pip, a cute round purple critter, waving hello">
+          <ellipse cx="24" cy="26" rx="10" ry="16" fill="#b79ced" transform="rotate(-18 24 26)"/>
+          <ellipse cx="76" cy="26" rx="10" ry="16" fill="#b79ced" transform="rotate(18 76 26)"/>
+          <ellipse cx="24" cy="26" rx="5" ry="9" fill="#ffd6e8" transform="rotate(-18 24 26)"/>
+          <ellipse cx="76" cy="26" rx="5" ry="9" fill="#ffd6e8" transform="rotate(18 76 26)"/>
+          <circle cx="50" cy="56" r="34" fill="#cdbcf5"/>
+          <ellipse cx="50" cy="66" rx="20" ry="15" fill="#efe9ff"/>
+          <circle cx="38" cy="52" r="5" fill="#33284d"/>
+          <circle cx="62" cy="52" r="5" fill="#33284d"/>
+          <circle cx="39.5" cy="50.5" r="1.8" fill="#ffffff"/>
+          <circle cx="63.5" cy="50.5" r="1.8" fill="#ffffff"/>
+          <path d="M43 62 Q50 68 57 62" fill="none" stroke="#33284d" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="29" cy="61" r="5" fill="#ffb3d1" opacity="0.8"/>
+          <circle cx="71" cy="61" r="5" fill="#ffb3d1" opacity="0.8"/>
+          <path d="M84 48 Q94 40 92 30" fill="none" stroke="#b79ced" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+        <div class="top-text">
+          <h1>Aniimo Copy Board</h1>
+          <p>Click a name to copy it, then paste it into the game's search.</p>
+          <p class="pip-line">Pip is here to help. One tap, one name.</p>
+        </div>
+      </div>
+
+      <div id="board"></div>
+
+      <div class="sr-only" role="status" aria-live="polite" id="live"></div>
+
+    </div>
+
+    <script>
+      var SECTIONS = [
+        {
+          title: "All My Species",
+          accent: "#7c5cd6",
+          btnBg: "#e7defc",
+          btnBorder: "#bda9ef",
+          names: ["Baleetle","Blazen","Bolty","Bonesky","Bouldus","Bubbeep","Budclaw","Budsquire","Bulbly","Celestis","Chirpi","Coinwisp","Coraliz","Cornet","Cozite","Cubbo","Dazmand","Dewlop","Dewy","Dreaple","Eko","Emberpup","Erlath","Fahloo","Fenmane","Fenrier","Fentuft","Flamerion","Flameruff","Flutternym","Fragrancier","Fulmintis","Gachapus","Glacy","Glameep","Glynsera","Gracewing","Grizbo","Helmut","Hexxin","Hummin","Hypnyto","Ignitis","Infergon","Inferlupa","Iris","Irisal","Irisalis","Jabster","Jawling","Lavazar","Leafy","Lilipole","Lunara","Melloblum","Nimbi","Panpanta","Pawney","Pebbling","Pomawk","Pomegg","Popapus","Popota","Pouchwisp","Pranky","Prawnch","Reefish","Rookey","Salabask","Saws","Scorchhowl","Sheldon","Shelly","Sherro","Shrubclaw","Skippy","Somniwing","Sparkelf","Sparki","Squashel","Stellarys","Sugarfish","Sugartini","Susuta","Thornblade","Tubster","Turbo","Veilfloat","Waleetle","Wisptis"]
+        },
+        {
+          title: "Combat Box",
+          accent: "#f2789f",
+          btnBg: "#ffe3ee",
+          btnBorder: "#f5a8c3",
+          names: ["Fulmintis","Lunara","Glacy","Somniwing","Shrubclaw","Melloblum","Squashel","Fenmane","Hypnyto","Dreaple","Glameep","Glameep","Skippy","Glacy","Thornblade","Baleetle","Baleetle","Bonesky","Emberpup","Panpanta","Susuta","Coinwisp","Reefish","Nimbi"]
+        },
+        {
+          title: "Homeland Box 1",
+          accent: "#3cb371",
+          btnBg: "#dcf5e5",
+          btnBorder: "#93dcb0",
+          names: ["Irisal","Infergon","Pouchwisp","Gachapus","Turbo","Glynsera","Blazen","Shrubclaw","Ignitis","Bouldus","Sparkelf","Panpanta","Glynsera","Stellarys","Cornet","Thornblade","Dazmand","Shrubclaw","Ignitis","Bouldus","Sugartini","Turbo","Leafy","Turbo"]
+        },
+        {
+          title: "Homeland Box 2",
+          accent: "#4a9eda",
+          btnBg: "#ddeffb",
+          btnBorder: "#9ccdf2",
+          names: ["Sparkelf","Grizbo","Grizbo","Popapus","Fragrancier","Stellarys"]
+        },
+        {
+          title: "Always Running, Mines",
+          accent: "#e8933a",
+          btnBg: "#ffecd4",
+          btnBorder: "#f7c98a",
+          names: ["Shrubclaw","Shrubclaw","Shrubclaw","Grizbo","Grizbo","Budclaw","Reefish","Lavazar"]
+        },
+        {
+          title: "Always Running, Climate Posts",
+          accent: "#8a5fc0",
+          btnBg: "#ece1fb",
+          btnBorder: "#c3a6ec",
+          names: ["Infergon","Sparkelf","Glynsera","Glynsera","Sugartini","Jabster"]
+        },
+        {
+          title: "Always Running, Leisure Posts",
+          accent: "#d9a514",
+          btnBg: "#fff3bf",
+          btnBorder: "#eed88a",
+          names: ["Fragrancier","Irisal","Turbo","Panpanta","Sherro","Stellarys"]
+        }
+      ];
+
+      var board = document.getElementById("board");
+      var live = document.getElementById("live");
+
+      function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text);
+        }
+        return new Promise(function (resolve, reject) {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            var ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+            if (ok) { resolve(); } else { reject(new Error("copy failed")); }
+          } catch (e) {
+            document.body.removeChild(ta);
+            reject(e);
+          }
+        });
+      }
+
+      SECTIONS.forEach(function (sec) {
+        var section = document.createElement("section");
+        section.style.setProperty("--accent", sec.accent);
+        section.style.setProperty("--btn-bg", sec.btnBg);
+        section.style.setProperty("--btn-border", sec.btnBorder);
+
+        var head = document.createElement("div");
+        head.className = "sec-head";
+
+        var dot = document.createElement("span");
+        dot.className = "dot";
+        dot.setAttribute("aria-hidden", "true");
+
+        var h2 = document.createElement("h2");
+        h2.textContent = sec.title;
+
+        var count = document.createElement("span");
+        count.className = "count";
+        count.textContent = sec.names.length + (sec.names.length === 1 ? " name" : " names");
+
+        head.appendChild(dot);
+        head.appendChild(h2);
+        head.appendChild(count);
+        section.appendChild(head);
+
+        var grid = document.createElement("div");
+        grid.className = "grid";
+
+        sec.names.forEach(function (name) {
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "name-btn";
+          btn.textContent = name;
+          btn.setAttribute("aria-label", "Copy " + name);
+          btn.addEventListener("click", function () {
+            copyText(name).then(function () {
+              showCopied(btn, name);
+            }).catch(function () {
+              showCopied(btn, name);
+            });
+          });
+          grid.appendChild(btn);
+        });
+
+        section.appendChild(grid);
+        board.appendChild(section);
+      });
+
+      function showCopied(btn, name) {
+        if (btn.dataset.busy === "1") { return; }
+        btn.dataset.busy = "1";
+        var original = btn.textContent;
+        btn.textContent = "Copied!";
+        btn.classList.add("copied");
+        live.textContent = name + " copied";
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove("copied");
+          btn.dataset.busy = "";
+        }, 1200);
+      }
+    </script>
+  </body>
+</html>
