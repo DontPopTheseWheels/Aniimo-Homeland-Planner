@@ -1491,7 +1491,11 @@
        already use its Step 1 name (Well, Mine, Dewy House,
        Tidewhisper Sandcastle, Starfall Hammock all match), so this is
        the only alias. Count, need, plan and layout lookups resolve
-       through facCanon so all four read the one Nimbus Bed count;
+       through facCanon so all four read the one Nimbus Bed count,
+       and every label that names the station — recipe cards, plan
+       lists, the crew table's facility pills — prints and keys
+       through facCanon too, so Wool, Petals and Scales read
+       Nimbus Bed wherever they show (player's fix, Nov 4, 2026);
        recipe levels and locking keep the station's own rule (the
        leisure station never locks), untouched. */
     var FAC_ALIAS = { "Homeland leisure station": "Nimbus Bed" };
@@ -1688,7 +1692,7 @@
         Object.keys(gross).forEach(function(n){
           var it = ITEMS[n];
           if(!it || !(gross[n] > 0) || it.kind === "grow") return;
-          var f = it.facility;
+          var f = facCanon(it.facility);
           if(f === "Mine" || f === "Farmland" || f === "Woodland") return;
           var w = it.kind === "craft" ? (gross[n] / it.yld) : (effYld(it) ? Math.ceil(gross[n] / effYld(it) - 1e-9) : 1);
           (prods[f] = prods[f] || []).push({ name:n, w:w });
@@ -1751,7 +1755,7 @@
          variants are never separate entries, so the Premium name points at
          the one base entry that covers it), the facility, the ingredients
          and the entry's own note. */
-      if(q && (n + " " + (it.alias || "") + " " + it.facility + " " + needsText(it) + " " + (it.blurb || "")).toLowerCase().indexOf(q) === -1) return false;
+      if(q && (n + " " + (it.alias || "") + " " + it.facility + " " + facCanon(it.facility) + " " + needsText(it) + " " + (it.blurb || "")).toLowerCase().indexOf(q) === -1) return false;
       return true;
     }
 
@@ -1791,7 +1795,7 @@
         var chainSteps = chainLockSteps(entry.name).filter(function(s){ return s.name !== entry.name; });
         var cropIngs = Object.keys(it.needs).filter(function(k){ return ITEMS[k] && ITEMS[k].kind === "grow"; });
         html += '<div class="pslot-details">' +
-          '<div class="meta">' + esc(it.facility) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + (it.event ? ' · ' + eventBadge(it) : "") + (it.whimsy ? ' · <strong>Whimsy Point +' + it.whimsy + '</strong>' : "") + "</div>" +
+          '<div class="meta">' + esc(facCanon(it.facility)) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + (it.event ? ' · ' + eventBadge(it) : "") + (it.whimsy ? ' · <strong>Whimsy Point +' + it.whimsy + '</strong>' : "") + "</div>" +
           (it.covers ? '<div class="ing">✨ This one recipe also covers <strong>' + esc(it.covers) + '</strong> — same ingredients, so there is no separate entry to pick and nothing is counted twice.</div>' : "") +
           (lock ? '<div class="lock-note">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + ". Yours is " + (lock.have === 0 ? "not built yet" : "Lv " + lock.have) + ". That facility level unlocks at RV " + rv + ", and you can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           (!lock && chainSteps.length ? '<div class="lock-note">🔒 Locked right now: this recipe\'s own station is open, but a step it needs is not: ' + chainSteps.map(function(s){ return esc(chainStepText(s)); }).join("; ") + ". You can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
@@ -1874,15 +1878,15 @@
         rows.forEach(function(n){
           var it = ITEMS[n];
           var extra = "";
-          if(kind === "craft"){ extra = " (at " + it.facility + ")"; }
+          if(kind === "craft"){ extra = " (at " + facCanon(it.facility) + ")"; }
           else if(it.kind === "grow"){ extra = " (" + plan.runs[n] + " plots at " + it.facility + ", " + effYld(it) + " per plot" + (it.facility === "Woodland" ? ", " + woodPlotText(n) : "") + ")" + climateText(n); }
-          else if(it.yld){ var leftT = plan.runs[n] * effYld(it) - plan.net[n]; extra = plan.perHour > 0 ? " (about " + fmtRate(plan.runs[n] * plan.perHour) + " runs per hour at " + it.facility + ", " + effYld(it) + " each time" + (leftT > 0.05 ? "; the runs bring " + fmtRate(plan.runs[n] * effYld(it) * plan.perHour) + " per hour in all, " + fmtRate(plan.net[n] * plan.perHour) + " used and " + fmtRate(leftT * plan.perHour) + " spare" : "") + ")" : " (at " + it.facility + ", " + effYld(it) + " each time)"; }
+          else if(it.yld){ var leftT = plan.runs[n] * effYld(it) - plan.net[n]; extra = plan.perHour > 0 ? " (about " + fmtRate(plan.runs[n] * plan.perHour) + " runs per hour at " + facCanon(it.facility) + ", " + effYld(it) + " each time" + (leftT > 0.05 ? "; the runs bring " + fmtRate(plan.runs[n] * effYld(it) * plan.perHour) + " per hour in all, " + fmtRate(plan.net[n] * plan.perHour) + " used and " + fmtRate(leftT * plan.perHour) + " spare" : "") + ")" : " (at " + facCanon(it.facility) + ", " + effYld(it) + " each time)"; }
           else if(n === "Wood Block"){
             var wf = woodFromPlan(plan);
             extra = " (tree byproduct at the Woodland: never planted, no seed and no plot of their own; they ride along with every tree harvest at a fixed rate per plot" +
               (wf.prod > 0 ? "; this plan's trees bring in about " + fmtRate(wf.prod * plan.perHour) + " per hour (" + wf.details.map(function(d){ return d.name + " " + fmtRate(d.total * plan.perHour) + " per hour"; }).join(", ") + ")" : "; this plan grows no trees, so harvest any Woodland trees to bring them in") + ")";
           }
-          else { extra = " (at " + it.facility + ", yield varies)"; }
+          else { extra = " (at " + facCanon(it.facility) + ", yield varies)"; }
           lines.push("- " + n + (it.event ? " 🎃" : "") + (plan.perHour > 0 ? ": " + fmtRate(plan.net[n] * plan.perHour) + " per hour" : "") + extra);
         });
       }
@@ -2089,7 +2093,7 @@
           }
           else { runsCell = '<span class="src">yield varies, see note</span>'; }
           var where = it.kind === "grow" ? esc(it.facility) + " · " + esc(it.time) + " · seed: " + esc(it.seed) + (it.yld ? " · " + effYld(it) + " per seed" + (it.modYld && it.mod && modulesOwned[it.mod] ? " (module recipe)" : "") : "") + (it.facility === "Woodland" ? " · " + woodPlotText(n) : "") + " · " + climateHtml(n)
-                                        : esc(it.facility) + (it.yld ? " · yields " + it.yld + " each time" : "");
+                                        : esc(facCanon(it.facility)) + (it.yld ? " · yields " + it.yld + " each time" : "");
           return "<tr><td><strong>" + esc(n) + (it.event ? " 🎃" : "") + '</strong><br /><span class="src">' + where + (it.note ? "<br />" + esc(it.note) : "") + '</span></td>' +
             '<td class="num"><strong>' + (plan.perHour > 0 ? fmtRate(g * plan.perHour) : "—") + "</strong></td>" +
             '<td class="num">' + runsCell + "</td></tr>";
@@ -2774,9 +2778,14 @@
     function computeTeam(){
       var plan = computePlan();
       var byFac = {}, uncounted = {};
+      /* Crew entries key and label by the Step 1 facility name
+         (facCanon): the leisure station's gathers (Wool, Petals,
+         Scales) sit under Nimbus Bed here, the name the crew table
+         prints — never under the recipe data's own station name. */
       function note(map, it, n){
-        if(!map[it.facility]) map[it.facility] = { facility:it.facility, items:[] };
-        map[it.facility].items.push(n);
+        var cf = facCanon(it.facility);
+        if(!map[cf]) map[cf] = { facility:cf, items:[] };
+        map[cf].items.push(n);
       }
       Object.keys(plan.gross).forEach(function(n){
         var it = ITEMS[n];
@@ -2785,9 +2794,10 @@
         var active = it.kind === "craft" ? (plan.batches[n] || 0) > 0 : (plan.net[n] || 0) > 0;
         if(!active) return;
         var job = it.kind === "craft" ? it.worker : (FAC_JOB[it.facility] || null);
+        var cf = facCanon(it.facility);
         if(job){
-          if(!byFac[it.facility]) byFac[it.facility] = { facility:it.facility, job:job, items:[] };
-          byFac[it.facility].items.push(n);
+          if(!byFac[cf]) byFac[cf] = { facility:cf, job:job, items:[] };
+          byFac[cf].items.push(n);
         } else {
           note(uncounted, it, n);
         }
@@ -2804,12 +2814,13 @@
           var it = ITEMS[n];
           if(!it) return;
           var job = it.kind === "craft" ? it.worker : (FAC_JOB[it.facility] || null);
+          var cf = facCanon(it.facility);
           if(job){
-            if(!byFac[it.facility]) byFac[it.facility] = { facility:it.facility, job:job, items:[] };
-            if(byFac[it.facility].items.indexOf(n) === -1) byFac[it.facility].items.push(n);
+            if(!byFac[cf]) byFac[cf] = { facility:cf, job:job, items:[] };
+            if(byFac[cf].items.indexOf(n) === -1) byFac[cf].items.push(n);
           } else {
-            if(!uncounted[it.facility]) uncounted[it.facility] = { facility:it.facility, items:[] };
-            if(uncounted[it.facility].items.indexOf(n) === -1) uncounted[it.facility].items.push(n);
+            if(!uncounted[cf]) uncounted[cf] = { facility:cf, items:[] };
+            if(uncounted[cf].items.indexOf(n) === -1) uncounted[cf].items.push(n);
           }
         });
       }
@@ -3656,7 +3667,7 @@
       if(strategy === "levelup"){
         var liT = levelingItems();
         var lvlFacs = [];
-        if(liT){ Object.keys(liT.craft).forEach(function(n){ var f = ITEMS[n].facility; if(lvlFacs.indexOf(f) === -1) lvlFacs.push(f); }); Object.keys(liT.gather).forEach(function(n){ var f2 = ITEMS[n].facility; if(FAC_JOB[f2] && lvlFacs.indexOf(f2) === -1) lvlFacs.push(f2); }); }
+        if(liT){ Object.keys(liT.craft).forEach(function(n){ var f = facCanon(ITEMS[n].facility); if(lvlFacs.indexOf(f) === -1) lvlFacs.push(f); }); Object.keys(liT.gather).forEach(function(n){ var f2 = facCanon(ITEMS[n].facility); if(FAC_JOB[f2] && lvlFacs.indexOf(f2) === -1) lvlFacs.push(f2); }); }
         if(lvlFacs.length) html += '<p class="src" style="margin-top:10px">🚐 Level Up jobs for RV ' + rvNext() + " are in this crew because Level Up is your picked strategy: " + lvlFacs.sort().map(function(f){ return esc(f); }).join(", ") + ".</p>";
       }
       /* The per-job chip row that used to sit here was a second
@@ -7282,8 +7293,9 @@
         if(it.noCrew) return;
         var job = it.kind === "craft" ? it.worker : (FAC_JOB[it.facility] || null);
         var map = job ? byFac : uncounted;
-        if(!map[it.facility]) map[it.facility] = { facility:it.facility, job:job, items:[] };
-        if(map[it.facility].items.indexOf(n) === -1) map[it.facility].items.push(n);
+        var cf = facCanon(it.facility);
+        if(!map[cf]) map[cf] = { facility:cf, job:job, items:[] };
+        if(map[cf].items.indexOf(n) === -1) map[cf].items.push(n);
       }
       Object.keys(res.exp.gross).forEach(function(n){
         var it = ITEMS[n];
