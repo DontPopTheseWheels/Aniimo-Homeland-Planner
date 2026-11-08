@@ -362,6 +362,8 @@
           </div>
           <div class="fac-grid" id="facGrid"></div>
           <p class="src" style="margin-top:8px">⛏️ The Mine count and level here are just how many Mines you own and how deep they go — what each Mine digs is <strong>not</strong> picked here. That comes later, in Step 5, after your strategy, because your strategy can claim Mines of its own.</p>
+          <p class="src" id="powerFillLine" style="margin-top:8px" aria-live="polite"></p>
+          <p class="src" style="margin-top:8px">🗄️ <strong>Storage Units take no worker.</strong> They are passive: no crew slot, no crew count, and no worker-based power. They never appear in your crew.</p>
           <h4 style="margin-top:20px">🌡️ Your climate buildings</h4>
           <p class="src" style="margin-top:4px">Counts fill from your RV too, or type your own. Source: Aniiland roadmap ladder (RV 7 unlock also backed by GameWith); the steps rest on Aniiland alone, so each count carries the single-source flag.<br />The layout puts out only the buildings the plan needs — never more than these counts.</p>
           <div class="fac-grid" id="climGrid"></div>
@@ -414,6 +416,27 @@
           <div class="picker-slots" id="recipeSlots"></div>
         </div>
 
+
+        <div class="note note-warn">
+          <h4>👨‍👩‍👧 Family gates: hard requirements, not notes</h4>
+          <p>These recipes can only be worked by an Aniimo of the named family. Their crew slots read as family-only requirements, and the copied plan lists them too. Quick recipes are module recipes for the same product and carry the same family gate.</p>
+          <p style="margin-top:8px">
+          <strong>Sea Salt</strong> (Tidewhisper Sandcastle Lv 1, Leisure 1, RV 5): Needs: Susuta family.<br />
+          <strong>Quick Sea Salt</strong> (Sandcastle Lv 2, Leisure 2, Resource Detector 2): Needs: Susuta family.<br />
+          <strong>Pearl</strong> (Sandcastle Lv 3, Leisure 3, RV 13): Needs: Shelly family. Wants Warmth +1: 80% without Heat Furnace coverage.<br />
+          <strong>Quick Pearl</strong> (Sandcastle Lv 4, Leisure 3, Resource Detector 9): Needs: Shelly family. Wants Warmth +1: 80% without Heat Furnace coverage.<br />
+          <strong>Sweet Cone</strong> (Sandcastle Lv 5, Leisure 3, RV 22): Needs: Sugar family (single-source). Wants Cold -2: 50% without Cooling Unit coverage.<br />
+          <strong>Aromathyst</strong> (Dewy House Lv 1, Leisure 2, RV 6): Needs: Dewy family.<br />
+          <strong>Quick Aromathyst</strong> (Dewy House Lv 2, Leisure 3, Resource Detector 3): Needs: Dewy family.<br />
+          <strong>Wool</strong> (Nimbus Bed Lv 1, Leisure 2, RV 10): Needs: Nimbi family.<br />
+          <strong>Quick Wool</strong> (Nimbus Bed Lv 2, Leisure 3, Resource Detector 5): Needs: Nimbi family.<br />
+          <strong>Petals</strong> (Nimbus Bed Lv 3, Leisure 3, RV 16): Needs: Iris family.<br />
+          <strong>Star</strong> (Starfall Hammock Lv 1, Leisure 3, RV 12): Needs: Celestis family. Wants Cool -1: 80% without Cooling Unit coverage.<br />
+          <strong>Gold-Speck Cap</strong> (Starfall Hammock Lv 2, Leisure 3, RV 21): Needs: Coinwisp family (single-source). Wants Warmth +1: 80% without Heat Furnace coverage.<br />
+          <strong>Scales</strong> (Floral Windmill Lv 1, Leisure 3, RV 18): Needs: Flutternym family. Hard gate: needs Light, so a Sunlamp must cover the Floral Windmill.<br />
+          <strong>Quick Scales</strong> (Floral Windmill Lv 1, Leisure 3, Resource Detector 8): Needs: Flutternym family. Hard gate: needs Light, so a Sunlamp must cover the Floral Windmill.</p>
+          <p style="margin-top:8px"><strong>Plans that eat family-only inputs:</strong> Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes. Woolen Yarn eats Wool, which only the Nimbi family makes. When a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production.</p>
+        </div>
 
         <div class="note note-teal">
           <h4>🌱 Grow times: should you worry? Not really</h4>
@@ -602,7 +625,9 @@
         <strong>Hauling is always in the total, always more than one</strong> (your stand-in rule, not game data). A worker verified to also hold Hauling carries its own output to storage and counts once, in its main job; everyone else doesn't cover. <strong>Utility posts never cover</strong> — Generator, Cooling Unit, Heat Furnace and Sunlamp Aniimo stay at their posts.<br />
         The crew staffs only the buildings the plan uses, at the copies it needs. Unused slots become home residents (🏠 below). Crew is shared by skill, not tied to one building.<br />
         <strong>Climate machines:</strong> the level of the Aniimo running a Cooling Unit, Heat Furnace or Sunlamp does not matter — any Aniimo with its ability runs it, so those posts read "any level" and never name a strongest Aniimo or a Lv.<br />
-        <strong>Fields get no personality bonus:</strong> planting speeds up with Grass Home Ability level only. The Mine keeps Playful +20%.</p>
+        <strong>Fields get no personality bonus:</strong> planting speeds up with Grass Home Ability level only. The Mine keeps Playful +20%.<br />
+        <strong>Family-only slots:</strong> a gated recipe's crew slot names its family, like "Leisure worker, Susuta family ONLY", never a generic worker.<br />
+        <strong>Storage Units take no worker:</strong> they are passive, with no crew slot, no crew count and no worker-based power math.</p>
         <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy first</strong> — in Level Up mode the bill's jobs join this crew. Switching rebuilds it clean.</p></div>
         <div class="card">
           <div id="teamGate"></div>
@@ -718,7 +743,7 @@
           <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the game's own data (aniimoguide homeland job list, build 1.1.3846247, read Oct 29, 2026), one job per facility, never keyed to a product: Leisure — Tidewhisper Sandcastle, Dewy House, Nimbus Bed, Starfall Hammock, Floral Windmill; Perfumery — Phonolfactory Table; Light — Sunlamp; Dark — Jukebox Dryer, Pickling Jar; Fire — Claw Game Cooker, Simmering Pot, Blazing Stove, Chimney Kiln, Heat Furnace; Water — Well, Bouncy Brew Keg; Wind — Carousel Mill, Joy Wheel Loom; Earth — Mine; Artisanship — Crafting Table, Woodworking Bench; Lightning — Aniipod Maker, Dance Pad Polisher; Ice — Cooling Unit. Farmland and Woodland have no facility job in that list — planting is the Grass line of its own — but each field still adds one Aniimo. <strong>Hauling:</strong> the count is the player's stand-in rule, not game data (2 while five or fewer facilities run, +1 per five more, max 6). Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is the Homeland leisure station (the player's word, Oct 29, 2026), so it counts the copies the plan's leisure gathers need, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
           <li><strong>Adding facilities by hand (player's ask, Oct 29, 2026):</strong> each facility block in the Layout Helper has − and + steppers. + puts out extra copies she owns, never above her Step 1 count; − takes back only copies she added; the plan's own count is the floor. Added copies are marked "added by you" and count in full: crew, power, totals, and the strategy plan's Working column. Amounts stay plan-driven — added copies are staffed spares, except Mines: each added Mine digs the material on its line, at that material's per run yield. Added copies live in memory only and reset when the basket or strategy changes. The layout also ends with an "Add a facility this plan isn't using" list, so any owned facility can go out even when no recipe needs it.</li>
           <li><strong>Mines come after the strategy (player's workflow fix, Oct 29, 2026):</strong> the one Mine picker lives in Step 5, after the strategy plan — the strategy itself can claim Mines (the Level Up bill's ore chain, a goal's materials), so Mines are never picked before it. Mines the plan claims are marked "used by this plan": locked, never offered again, so nothing is double-picked. She picks only for Mines she adds past the plan's, up to her Step 1 count (her example: 7 owned, 1 used by the plan, 6 left to add). Added Mines count like claimed ones — Earth crew, power, totals, per run yield; Mine takes count per run, never per hour (run times not checked). <strong>All mining gives Mineral Sand</strong> (player's rule): every run brings sand with the picked material, amount varies, so no Mine needs to sit on sand to earn it and no sand amount is counted. Picks and added Mines live in memory only and reset when the basket or strategy changes.</li>
-          <li><strong>Per-copy gather picks (player's extension of the Mine picker, Oct 29, 2026):</strong> each copy out of the Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock has one product pick on its Layout Helper block. Plan copies start on the plan's pick; added copies start on the facility's first product; any pick can change. An added copy counts like a plan copy: crew post, power, totals, per run yield (Sea Salt 10, Pearl 2 — Susuta and Shelly family notes — Aromathyst 4, Star 2 flagged not checked; the Well's waters use the Well's level). Takes count per run, never per hour. <strong>The Nimbus Bed gets no pick:</strong> it is the Homeland leisure station, and the plan sets what it gathers (Wool, Petals, Scales), so there is no pick to change; an added Nimbus Bed still counts as a staffed copy out.</li>
+          <li><strong>Per-copy gather picks (player's extension of the Mine picker, Oct 29, 2026):</strong> each copy out of the Well, Dewy House, Tidewhisper Sandcastle, Starfall Hammock and Floral Windmill has one product pick on its Layout Helper block. Plan copies start on the plan's pick; added copies start on the facility's first product; any pick can change. An added copy counts like a plan copy: crew post, power, totals, per run yield (Sea Salt 10, Pearl 2 — Susuta and Shelly family notes — Aromathyst 4, Star 2 flagged not checked, Scales 8 at the Floral Windmill; the Well's waters use the Well's level). Takes count per run, never per hour. <strong>The Nimbus Bed gets no pick:</strong> it is the Homeland leisure station, and the plan sets what it gathers (Wool and Petals), so there is no pick to change; an added Nimbus Bed still counts as a staffed copy out.</li>
           <li><strong>Job picks for added copies of ANY facility (player's generalisation, Oct 29, 2026):</strong> every copy she adds by hand gets one product pick on its layout block, starting on the plan's first product there (or the facility's first product at her levels). With a job picked it counts in full: crew post, power, totals, and its product's take (per batch for crafts, per run for gathers; times not checked, so never per hour). Pick lists show only products that fit her Step 1 facility level and her RV — the same rule as the recipe, Mine and gather lists. A facility that can make nothing at her level and RV offers no list and says so; climate buildings name their real job instead (the layout sets their zones); the Nimbus Bed names why it has no pick (the plan sets its gathers).</li>
           <li><strong>One Put out list (player's fix, Oct 29, 2026):</strong> the Team Helper used to show Aniimo counts four ways — the Put out list, "that total includes" paragraphs, a per-job chip row, and a How many column in the worker table. Now the Put out list is the only place Aniimo counts live. The other parts point to it or say who works where, with no counts of their own. Wording across the planner is kept short and plain on purpose: it is written for every player, not just its maker.</li>
           <li><strong>Climate machine runners — level does not matter (player's rule, Oct 31, 2026):</strong> an Aniimo running a Cooling Unit, Heat Furnace or Sunlamp works the same at any ability level, so those posts no longer name a strongest Aniimo or a Lv anywhere: the Layout zone cards, the facility blocks and the Team Helper's Put out list all show "any level" for them, with an "any" marker in the ability's colour instead of a level number. Counts do not change — still 1 Aniimo per climate building out. Every other post keeps its level and strongest-known hint as before.</li>
@@ -733,7 +758,11 @@
           <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
           <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
           <li><strong>Trips:</strong> the 4 public RV Parks and managers (Sea of Flowers / Ben, Nimbus Fields / Umi, Echoback Landing / Sesa, Driftwise Meadow / Yu); trip slots from the Signal Transmitter (Lv 1 at RV 6 holds 1, Lv 2 at RV 11 holds 2, Lv 3 at RV 16 holds 3, matching the RV ladder above); recalling early loses all the trip's rewards; park buffs from Element Essence placed at the park, +2% attack and resistance for one element, +5% for Pure; Element Gems from Home Orders exchange 10 for 1 essence.</li>
-          <li><strong>Power headroom (checked Oct 28, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Cap: the <strong>Lv 1 generator cap is 600</strong> (Steam guide; wikily's Crackle Generator page lists base power 600, made by a Lightning Lv 1 worker). No source states a cap for Lv 2 to 5 — the Steam guide says only that the cap goes up with each upgrade — so at those levels the line shows used power and says the cap is not verified yet, never a guessed cap. Spare power raises grid speed up to <strong>120%</strong>; over the cap, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator 22 × 22, Power Pole 14 × 14.</li>
+          <li><strong>Power headroom (caps and copies fixed Nov 7, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>. Step 1 auto-fill uses the right copy count for the picked RV, and the power headroom line totals all generators. Spare power raises grid speed up to <strong>120%</strong>; over the total supply, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator 22 × 22, Power Pole 14 × 14.</li>
+          <li><strong>Family gates are hard requirements (deep-dive audit, Nov 7, 2026):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
+          <li><strong>Climate and light gates on recipes (audit, Nov 7, 2026):</strong> Scales and Quick Scales are hard-gated on Light: the plan must include a Sunlamp covering the Floral Windmill in the Layout step, and the plan warns if it is missing. Pearl and Quick Pearl want Warmth +1: without Heat Furnace coverage of the Sandcastle they run at 80%, and the adjusted per-hour figure is shown, labelled. Star wants Cool -1: 80% without Cooling Unit coverage. Sweet Cone wants Cold -2: 50% without. Gold-Speck Cap wants Warmth +1: 80% without.</li>
+          <li><strong>Storage Units take no worker (audit, Nov 7, 2026):</strong> Storage Units are passive. They have no crew slot, no crew count and no worker-based power math, and they never appear in the crew.</li>
+          <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
@@ -770,12 +799,12 @@
       "Aniipod Maker":[3,6,9], "Crafting Table":[3,5,7,9,12,15,18,20],
       "Mine":[3,6,9,12,15,18], "Claw Game Cooker":[4,5,7,9,12,16,19],
       "Jukebox Dryer":[4,5,7,10,12,14,18], "Well":[4,8,11,13,17],
-      "Simmering Pot":[5,7,9,12,15,18], "Tidewhisper Sandcastle":[5,8,13],
+      "Simmering Pot":[5,7,9,12,15,18], "Tidewhisper Sandcastle":[5,8,13,20,22],
       "Bouncy Brew Keg":[6,9,13,17,19], "Chimney Kiln":[6,10,14,18],
       "Woodworking Bench":[6,10,14,18], "Phonolfactory Table":[6,7,10,14,17,19],
       "Joy Wheel Loom":[7,10,15,19], "Blazing Stove":[8,10,13,16,18],
       "Pickling Jar":[8,10,13,16,19], "Dewy House":[6,11], "Nimbus Bed":[10,13,16],
-      "Starfall Hammock":[12]
+      "Starfall Hammock":[12,21], "Floral Windmill":[18]
     };
     function rvNeedFor(facility, level){
       var tiers = FAC_RV[facility];
@@ -817,7 +846,7 @@
       "Phonolfactory Table":[[6,1],[13,2]], "Joy Wheel Loom":[[7,1],[14,2]],
       "Blazing Stove":[[8,1],[15,2]], "Pickling Jar":[[8,1],[15,2]],
       "Dewy House":[[6,1],[17,2]], "Nimbus Bed":[[10,1],[16,2]],
-      "Starfall Hammock":[[12,1],[20,2]]
+      "Starfall Hammock":[[12,1],[20,2]], "Floral Windmill":[[18,1]]
     };
     /* Climate building max counts per RV, approved by the player from the
        Aniiland RV roadmap (the RV 7 unlock is also backed by GameWith, and
@@ -881,7 +910,8 @@
       opts = opts || {};
       ITEMS[name] = { name:name, kind:"craft", facility:facility, lvl:lvl, worker:worker, needs:needs,
         yld: opts.yld || 1, cat: opts.cat || null, blurb: opts.blurb || "", special: !!opts.special,
-        alias: opts.alias || "", covers: opts.covers || "", event: opts.event || null, whimsy: opts.whimsy || 0 };
+        alias: opts.alias || "", covers: opts.covers || "", event: opts.event || null, whimsy: opts.whimsy || 0,
+        moduleGate: opts.moduleGate || 0, moduleGateFor: opts.moduleGateFor || "" };
     }
     /* Farmland, base yields */
     G("Wheat","Farmland",1,5,"4 min","Wheat Seed");
@@ -926,13 +956,15 @@
     GA("Gem","Mine",6,2,"Mined, no ingredients.");
     GA("Mineral Sand","Mine",1,null,"Every mining run brings Mineral Sand alongside whatever material that Mine is set to gather (player's rule, Oct 29, 2026), so any Mine out earns some; the amount per run varies. No fixed yield is printed on purpose.");
     GA("Wood Block","Woodland",1,null,"Tree byproduct, never planted: Wood Blocks ride along with every Woodland tree harvest at a fixed rate per plot, so they have no seed and no plot of their own. Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026: Level 1 gives 1 per plot, Level 2 gives 8, Level 3 gives 21, Level 4 gives 47, Level 5 gives 75, Level 6 gives 122.");
-    GA("Sea Salt","Tidewhisper Sandcastle",1,10,"Made only at the Tidewhisper Sandcastle. The known bottleneck: stock up early. The Aniimo assigned to make it must be from the Susuta family (the game's own note on the Sandcastle panel, from your screenshot, Oct 27, 2026).");
-    GA("Pearl","Tidewhisper Sandcastle",3,2,"Gathered at the Tidewhisper Sandcastle, no ingredients. The Aniimo assigned to gather it must be from the Shelly family (the game's own note on the Sandcastle panel, from your screenshot, Oct 27, 2026).");
-    GA("Wool","Homeland leisure station",1,4,"Gathered with no ingredients at a leisure station.");
-    GA("Petals","Homeland leisure station",3,6,"Gathered with no ingredients at a leisure station.");
-    GA("Star","Starfall Hammock",1,2,"Gathered with no ingredients at the Starfall Hammock, which needs a Cool environment to work (the player's own lookup, Oct 25, 2026). The Aniimo assigned to gather it can be any Aniimo from the Celestis family — the game's own note on the Starfall Hammock panel says Aniimo from the Celestis family can be assigned to production (from your screenshot, Oct 27, 2026).");
-    GA("Scales","Homeland leisure station",1,8,"Gathered with no ingredients at a leisure station.");
-    GA("Aromathyst","Dewy House",1,4,"Gathered at the Dewy House, no ingredients.");
+    GA("Sea Salt","Tidewhisper Sandcastle",1,10,"Made only at the Tidewhisper Sandcastle. The known bottleneck: stock up early. Needs: Susuta family. The Aniimo assigned to make it must be from the Susuta family (the game's own note on the Sandcastle panel, from your screenshot, Oct 27, 2026). Quick Sea Salt (Sandcastle Lv 2, Resource Detector 2) has the same gate: Needs: Susuta family.");
+    GA("Pearl","Tidewhisper Sandcastle",3,2,"Gathered at the Tidewhisper Sandcastle, no ingredients. Needs: Shelly family. The Aniimo assigned to gather it must be from the Shelly family (the game's own note on the Sandcastle panel, from your screenshot, Oct 27, 2026). Quick Pearl (Sandcastle Lv 4, Resource Detector 9) has the same gate: Needs: Shelly family.");
+    GA("Sweet Cone","Tidewhisper Sandcastle",5,2,"Gathered at the Tidewhisper Sandcastle, no ingredients. Needs: Sugar family (single-source). Wants Cold -2: without Cooling Unit coverage it runs at 50%.");
+    GA("Wool","Homeland leisure station",1,4,"Gathered with no ingredients at the Nimbus Bed. Needs: Nimbi family. Quick Wool (Nimbus Bed Lv 2, Resource Detector 5) has the same gate: Needs: Nimbi family.");
+    GA("Petals","Homeland leisure station",3,6,"Gathered with no ingredients at the Nimbus Bed. Needs: Iris family.");
+    GA("Star","Starfall Hammock",1,2,"Gathered with no ingredients at the Starfall Hammock, which needs a Cool environment to work (the player's own lookup, Oct 25, 2026). Needs: Celestis family. The Aniimo assigned to gather it can be any Aniimo from the Celestis family, the game's own note on the Starfall Hammock panel (from your screenshot, Oct 27, 2026). Wants Cool -1: without Cooling Unit coverage it runs at 80%.");
+    GA("Gold-Speck Cap","Starfall Hammock",2,8,"Gathered with no ingredients at the Starfall Hammock. Needs: Coinwisp family (single-source). Wants Warmth +1: without Heat Furnace coverage it runs at 80%.");
+    GA("Scales","Floral Windmill",1,8,"Gathered with no ingredients at the Floral Windmill. Needs: Flutternym family. Hard gate: it needs Light, so a Sunlamp must cover the Floral Windmill or Scales will not run at all. Quick Scales (Floral Windmill Lv 1, Resource Detector 8) has the same gates: Needs: Flutternym family, and Light.");
+    GA("Aromathyst","Dewy House",1,4,"Gathered at the Dewy House, no ingredients. Needs: Dewy family. Quick Aromathyst (Dewy House Lv 2, Resource Detector 3) has the same gate: Needs: Dewy family.");
     /* Carousel Mill */
     C("Wheatmeal","Carousel Mill",1,"Wind",{ "Wheat":50 }, { cat:"pantry", blurb:"The flour base for bread, tarts and cookies." });
     C("Milled Rice","Carousel Mill",2,"Wind",{ "Rice":18 }, { cat:"pantry", blurb:"Rice, milled and ready for porridge and rice balls." });
@@ -1064,17 +1096,17 @@
     C("Candied Strawberries","Pickling Jar",4,"Dark",{ "Maple Syrup":18, "Strawberry":8 }, { cat:"food" });
     C("Candied Orange Flower","Pickling Jar",5,"Dark",{ "Agave Syrup":1, "Orange Flower":8 }, { cat:"food" });
     /* Phonolfactory Table */
-    C("Soap","Phonolfactory Table",5,"Perfumery",{ "Coconut Oil":1, "Petals":6, "Deep Rock Spring Water":6 }, { cat:"craft", alias:"Premium Soap", covers:"Premium Soap (Crafting Module Lv 5)", blurb:"Premium Soap uses the same ingredients." });
+    C("Soap","Phonolfactory Table",5,"Perfumery",{ "Coconut Oil":1, "Petals":6, "Deep Rock Spring Water":6 }, { cat:"craft", alias:"Premium Soap", covers:"Premium Soap (Crafting Module Lv 5)", blurb:"Premium Soap uses the same ingredients.", moduleGate:5, moduleGateFor:"Premium Soap" });
     C("Lotion","Phonolfactory Table",6,"Perfumery",{ "Orange Flower":8, "Coconut Oil":2 }, { cat:"craft", blurb:"Two batches of coconut oil and a flower harvest." });
     /* Phonolfactory Table additions, full recipe audit (Daily Aniimo book) */
     C("Bamboo Joss Stick","Phonolfactory Table",1,"Perfumery",{ "Bamboo":15, "Aromathyst":2 }, { cat:"craft" });
     C("Cherry Incense","Phonolfactory Table",2,"Perfumery",{ "Dried Cherry Blossom":1, "Aromathyst":4 }, { cat:"craft" });
     C("Rose Incense","Phonolfactory Table",2,"Perfumery",{ "Rose":12, "Aromathyst":2 }, { cat:"craft", blurb:"The middle step inside Rose Freshener at the Crafting Table." });
-    C("Advanced Lemon Incense","Phonolfactory Table",3,"Perfumery",{ "Lemon":12, "Aromathyst":2 }, { cat:"craft", blurb:"The book lists Advanced Lemon Incense and Lemon Incense with the same ingredients; both are separate entries here because the book names them as different items." });
+    C("Advanced Lemon Incense","Phonolfactory Table",3,"Perfumery",{ "Lemon":12, "Aromathyst":2 }, { cat:"craft", blurb:"The book lists Advanced Lemon Incense and Lemon Incense with the same ingredients; both are separate entries here because the book names them as different items.", moduleGate:3, moduleGateFor:"Advanced Lemon Incense" });
     C("Lavender Incense","Phonolfactory Table",3,"Perfumery",{ "Lavender":11, "Aromathyst":2 }, { cat:"craft" });
     C("Lemon Incense","Phonolfactory Table",3,"Perfumery",{ "Lemon":12, "Aromathyst":2 }, { cat:"craft", blurb:"The book lists Lemon Incense and Advanced Lemon Incense with the same ingredients; both are separate entries here because the book names them as different items." });
     C("Herbal Ginseng Aroma","Phonolfactory Table",4,"Perfumery",{ "Ginseng Powder":1, "Aromathyst":8 }, { cat:"craft" });
-    C("Mixed Perfume","Phonolfactory Table",6,"Perfumery",{ "Dried Flowers":1, "Natural Mineral Spring":6 }, { cat:"craft", alias:"Premium Mixed Perfume", covers:"Premium Mixed Perfume (Crafting Module Lv 7)", blurb:"Premium Mixed Perfume uses the same ingredients, so one entry covers both." });
+    C("Mixed Perfume","Phonolfactory Table",6,"Perfumery",{ "Dried Flowers":1, "Natural Mineral Spring":6 }, { cat:"craft", alias:"Premium Mixed Perfume", covers:"Premium Mixed Perfume (Crafting Module Lv 7)", blurb:"Premium Mixed Perfume uses the same ingredients, so one entry covers both.", moduleGate:7, moduleGateFor:"Premium Mixed Perfume" });
     C("Orange Flower Incense","Phonolfactory Table",6,"Perfumery",{ "Orange Flower":8, "Aromathyst":8 }, { cat:"craft" });
     /* Joy Wheel Loom */
     C("Cotton Thread","Joy Wheel Loom",1,"Wind",{ "Cotton":7 }, { blurb:"Verified: Joy Wheel Loom Lv 1 (unlocks at RV 7), made from Cotton, sell price 410. Flagged figures only: the exact Cotton amount per thread and the craft time are not verified yet — everything else about this recipe is verified. See Sources & Flags." });
@@ -1180,13 +1212,13 @@
       ],
       resource:[
         { lvl:1, rv:5, label:"Quick Recipe: Well Water (Well)" },
-        { lvl:2, rv:8, label:"Quick Recipe: Sea Salt (Tidewhisper Sandcastle)" },
-        { lvl:3, rv:11, label:"Quick Recipe: Aromathyst (Dewy House)" },
+        { lvl:2, rv:8, label:"Quick Recipe: Sea Salt (Tidewhisper Sandcastle) · Needs: Susuta family" },
+        { lvl:3, rv:11, label:"Quick Recipe: Aromathyst (Dewy House) · Needs: Dewy family" },
         { lvl:4, rv:12, label:"Quick Recipe: Fresh Water (Well)" },
-        { lvl:5, rv:13, label:"Quick Recipe: Wool (Nimbus Bed)" },
+        { lvl:5, rv:13, label:"Quick Recipe: Wool (Nimbus Bed) · Needs: Nimbi family" },
         { lvl:6, rv:15, label:"Quick Recipe: Deep Rock Spring Water (Well)" },
         { lvl:7, rv:17, label:"Quick Recipe: Natural Mineral Water (Well)" },
-        { lvl:8, rv:19, label:"Quick Recipe: Scales (Floral Windmill)" }
+        { lvl:8, rv:19, label:"Quick Recipe: Scales (Floral Windmill) · Needs: Flutternym family · Light hard gate" }
       ],
       crafting:[
         { lvl:1, rv:5, label:"Premium River-Washed Stones (Crafting Table)" },
@@ -1306,6 +1338,138 @@
       return falloffRate(Math.abs(cs - TEMP_STEP[zTag]));
     }
 
+    /* ============ Homeland requirements: family, climate, module gates ============
+       Family gates are hard requirements, not notes (deep-dive audit,
+       Nov 7, 2026): a gated recipe can only be worked by an Aniimo of
+       the named family, so its crew slot reads as a family-only
+       requirement everywhere it shows. Quick variants are module
+       recipes for the same product and carry the same family gate as
+       their base recipe; they are listed here so the module panels
+       and the family list can name their gates too. Sweet Cone and
+       Gold-Speck Cap rest on one source each and are labelled
+       single-source wherever they show. */
+    var FAMILY_GATES = {
+      "Sea Salt":{ family:"Susuta" }, "Quick Sea Salt":{ family:"Susuta" },
+      "Pearl":{ family:"Shelly" }, "Quick Pearl":{ family:"Shelly" },
+      "Sweet Cone":{ family:"Sugar", single:true },
+      "Aromathyst":{ family:"Dewy" }, "Quick Aromathyst":{ family:"Dewy" },
+      "Wool":{ family:"Nimbi" }, "Quick Wool":{ family:"Nimbi" },
+      "Petals":{ family:"Iris" },
+      "Star":{ family:"Celestis" },
+      "Gold-Speck Cap":{ family:"Coinwisp", single:true },
+      "Scales":{ family:"Flutternym" }, "Quick Scales":{ family:"Flutternym" }
+    };
+    function familyGate(name){ return FAMILY_GATES[name] || null; }
+    /* "Needs: Susuta family", with the single-source label where it applies. */
+    function familyNeedsText(name){
+      var g = familyGate(name);
+      if(!g) return "";
+      return "Needs: " + g.family + " family" + (g.single ? " (single-source)" : "");
+    }
+    function familyNeedsHtml(name){
+      var g = familyGate(name);
+      if(!g) return "";
+      return "Needs: <strong>" + esc(g.family) + " family</strong>" + (g.single ? ' <span class="verdict v-mix">single-source</span>' : "");
+    }
+    /* The crew-slot wording for a gated product: the slot is a
+       family-only requirement, never a generic worker. */
+    function familyOnlyText(name){
+      var g = familyGate(name);
+      if(!g) return "";
+      return "Leisure worker, " + g.family + " family ONLY" + (g.single ? " (single-source)" : "");
+    }
+    /* Every gated product in a recipe's full chain: the recipe itself
+       when it is a gated gather, plus every gated material under it. */
+    function chainGatedProducts(name){
+      var out = [], seen = {};
+      (function walk(n){
+        if(seen[n]) return;
+        seen[n] = true;
+        if(familyGate(n) && out.indexOf(n) === -1) out.push(n);
+        var it = ITEMS[n];
+        if(it && it.kind === "craft"){ for(var k in it.needs) walk(k); }
+      })(name);
+      return out.sort();
+    }
+    /* Gated products a plan actually makes or gathers (gross > 0). */
+    function gatedInGross(gross){
+      return Object.keys(gross || {}).filter(function(n){ return familyGate(n) && (gross[n] || 0) > 0; }).sort();
+    }
+    /* Climate and light gates on recipes (audit, Nov 7, 2026).
+       Scales and Quick Scales are hard-gated on Light: no Sunlamp
+       covering the Floral Windmill, no Scales at all. The rest are
+       wants: without the named building covering the recipe's own
+       facility, the recipe runs at the stated rate. Coverage here
+       means the covering building is in your Step 1 counts, so the
+       layout can put it over the facility; the Layout step shows
+       the Floral Windmill's Sunlamp cover directly. */
+    var CLIMATE_GATES = {
+      "Pearl":{ want:"Warmth +1", building:"Heat Furnace", covers:"Tidewhisper Sandcastle", rate:80 },
+      "Quick Pearl":{ want:"Warmth +1", building:"Heat Furnace", covers:"Tidewhisper Sandcastle", rate:80 },
+      "Star":{ want:"Cool -1", building:"Cooling Unit", covers:"Starfall Hammock", rate:80 },
+      "Sweet Cone":{ want:"Cold -2", building:"Cooling Unit", covers:"Tidewhisper Sandcastle", rate:50 },
+      "Gold-Speck Cap":{ want:"Warmth +1", building:"Heat Furnace", covers:"Starfall Hammock", rate:80 },
+      "Scales":{ hard:"Light", building:"Sunlamp", covers:"Floral Windmill" },
+      "Quick Scales":{ hard:"Light", building:"Sunlamp", covers:"Floral Windmill" }
+    };
+    function climateGate(name){ return CLIMATE_GATES[name] || null; }
+    function climateCovered(name){
+      var g = climateGate(name);
+      if(!g) return true;
+      return facCount(g.building) > 0;
+    }
+    /* The rate a gated product runs at in this setup: 100 with
+       cover, its stated rate without, 0 for a hard gate with no cover. */
+    function climateRunRate(name){
+      var g = climateGate(name);
+      if(!g) return 100;
+      if(climateCovered(name)) return 100;
+      return g.hard ? 0 : g.rate;
+    }
+    function climateGateText(name){
+      var g = climateGate(name);
+      if(!g) return "";
+      if(g.hard) return name + " needs Light: a Sunlamp must cover the " + g.covers + ", or it will not run at all" + (climateCovered(name) ? " (your Step 1 counts have a Sunlamp, so the Layout step can cover it)" : " (you have no Sunlamp in your Step 1 counts)");
+      return name + " wants " + g.want + " from a " + g.building + " covering the " + g.covers + ": " + (climateCovered(name) ? "covered, so it runs at full rate" : "no " + g.building + " coverage in your Step 1 counts, so it runs at " + g.rate + "%");
+    }
+    /* Indirect family dependencies: recipes that are not gated
+       themselves but eat a family-only input. When the input is not
+       also being made in the plan, the plan depends on that family's
+       production from somewhere else, and the plan says so. */
+    var INDIRECT_DEPS = {
+      "Jello":{ input:"Petals" }, "Dye":{ input:"Petals" },
+      "Dried Flowers":{ input:"Petals" }, "Woolen Yarn":{ input:"Wool" }
+    };
+    function indirectWarnings(gross, pickedNames){
+      var out = [];
+      Object.keys(INDIRECT_DEPS).forEach(function(n){
+        if(!((gross || {})[n] > 0)) return;
+        var inp = INDIRECT_DEPS[n].input;
+        var g = familyGate(inp);
+        if(!g) return;
+        var madeHere = (gross[inp] || 0) > 0;
+        out.push({ recipe:n, input:inp, family:g.family, single:!!g.single, madeHere:madeHere,
+          text: n + " eats " + inp + ", which only the " + g.family + " family makes" +
+            (madeHere ? ": this plan makes its own " + inp + ", worked by a " + g.family + " family Aniimo at the " + facCanon((ITEMS[inp] || {}).facility || "") + "."
+                      : ": this plan does not make " + inp + ", so it depends on " + g.family + " family production from somewhere else. Add the " + g.family + " family worker at the " + facCanon((ITEMS[inp] || {}).facility || "") + ", or source " + inp + " another way.") });
+      });
+      return out;
+    }
+    /* Crafting Module gates on Phonolfactory recipes (audit,
+       Nov 7, 2026), shown the same way as the other module gates:
+       the base entry carries the gate for its Premium or Advanced
+       form in its covers line, and this map drives the warning when
+       a plan uses the entry below the module level. */
+    var CRAFTING_MODULE_GATES = {
+      "Advanced Lemon Incense":{ lvl:3, label:"Advanced Lemon Incense" },
+      "Soap":{ lvl:5, label:"Premium Soap" },
+      "Mixed Perfume":{ lvl:7, label:"Premium Mixed Perfume" }
+    };
+    function moduleGateText(it){
+      if(!it || !it.moduleGate) return "";
+      return (it.moduleGateFor || it.name) + " needs Crafting Module " + it.moduleGate;
+    }
+
     /* Aniipod Maker rate: about 4 pods per hour at the base maker,
        1 pod per about 15 minutes (single source: aniimoguide.com,
        read off the in-game bar). Higher maker levels are NOT scaled
@@ -1315,24 +1479,24 @@
     function aniipodMakerLine(product){
       return "🥚 The Aniipod Maker makes <strong>about 4 " + esc(product || "Aniipods") + " per hour</strong> at its base level (1 pod per about 15 minutes) — higher maker levels keep this same base figure here, because no faster rate is verified. <span class=\"verdict v-mix\">" + ANIIPOD_MAKER_FLAG + "</span>";
     }
-    /* ============ Power headroom (checked Oct 28, 2026) ============
+    /* ============ Power headroom (caps and copies fixed Nov 7, 2026) ============
        Draw, from the Steam Community RV/Homeland Guide: a building on
        E-mode costs 15 x its level; Mine, Well, Aniipod Maker and Dance
        Pad Polisher cost 30 x their level. Power unlocks at RV 12 with
        Power Module Lv 1 (AniimoTools, RV Levels; Aniiland's RV roadmap
        agrees), and generator levels follow the module: Lv 1 at RV 12,
        Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20.
-       Cap: only the Lv 1 cap is stated by a source — 600 (the Steam
-       guide; wikily's Crackle Generator page lists base power 600,
-       made by a Lightning Lv 1 worker). The Steam guide says the cap
-       goes up with each upgrade but gives no higher number, and the
-       Aniiland roadmap and AniimoTools list levels only, no caps, so
-       caps for Lv 2 to 5 are NOT verified and never guessed: those
-       setups show used power and say so plainly. Spare power raises
-       grid speed up to 120%; over the cap, everything on the grid
-       slows below 100%. Farmland and Woodland plots draw nothing. */
+       Supply per generator by its level (AniimoTools generator page
+       and the game-data extraction agree): Lv 1 = 600, Lv 2 = 800,
+       Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500. Generator copies: 1
+       before RV 15, 2 from RV 15, 3 from RV 18, and the headroom
+       line totals all of them. Storage Units are passive: they take
+       no worker and draw no worker-based power, so they are never
+       counted here. Spare power raises grid speed up to 120%; over
+       the cap, everything on the grid slows below 100%. Farmland
+       and Woodland plots draw nothing. */
     var POWER_HIGH_DRAW = { "Mine":true, "Well":true, "Aniipod Maker":true, "Dance Pad Polisher":true };
-    var POWER_GEN_CAPS = { 1:600 };
+    var POWER_GEN_CAPS = { 1:600, 2:800, 3:1000, 4:1200, 5:1500 };
     function powerGenLevel(rv){
       if(rv < 12) return 0;
       if(rv < 14) return 1;
@@ -1341,10 +1505,24 @@
       if(rv < 20) return 4;
       return 5;
     }
+    function powerGenCopies(rv){
+      if(rv < 12) return 0;
+      if(rv < 15) return 1;
+      if(rv < 18) return 2;
+      return 3;
+    }
+    function powerGenSupply(rv){
+      var lvl = powerGenLevel(rv);
+      if(!lvl) return 0;
+      return powerGenCopies(rv) * (POWER_GEN_CAPS[lvl] || 0);
+    }
     function powerUsed(facWorking){
       var used = 0;
       Object.keys(facWorking).forEach(function(f){
         if(f === "Farmland" || f === "Woodland") return;
+        /* Storage Units take no worker and no worker-based power:
+           they are passive, so a Storage Unit count never draws. */
+        if(f === "Storage Units" || f === "Storage Unit") return;
         var w = facWorking[f] || 0;
         if(!(w > 0)) return;
         var lvl = facLevel(f);
@@ -1356,22 +1534,22 @@
       return used;
     }
     /* facWorking: { facility: how many of that building the plan runs }.
-       One plain line: used, cap where verified, spare, and a clear
-       warning when the plan goes over a verified cap. */
+       One plain line: used, total supply from every generator copy
+       the RV allows, spare, and a clear warning when the plan goes
+       over the total. */
     function powerHeadroomHtml(facWorking){
       var genLvl = powerGenLevel(userRV);
       if(genLvl === 0){
         return "⚡ Power: power unlocks at <strong>RV 12</strong> (Power Module Lv 1), so a plan at RV " + userRV + " has no power grid yet. From RV 12, buildings on E-mode draw power and this line counts it.";
       }
       var used = powerUsed(facWorking);
-      var base = "⚡ Power: this plan's buildings would use <strong>" + fmt(used) + " power</strong> on E-mode (15 × level each; 30 × level for the Mine, Well, Aniipod Maker and Dance Pad Polisher), with a <strong>Crackle Generator Lv " + genLvl + "</strong> (the level RV " + userRV + " unlocks). ";
-      var cap = POWER_GEN_CAPS[genLvl];
-      if(cap){
-        var spare = cap - used;
-        if(spare >= 0) return base + "Cap <strong>" + fmt(cap) + "</strong>, so <strong>" + fmt(spare) + " power spare</strong>. Spare power speeds the grid up, to 120% at most.";
-        return base + "Cap <strong>" + fmt(cap) + "</strong> — <strong>⚠️ over the cap by " + fmt(-spare) + ": everything on the grid slows below 100%.</strong> Take a building off E-mode to get back under.";
-      }
-      return base + "The cap for a Lv " + genLvl + " generator is <strong>not verified yet</strong>, so no spare figure is shown rather than a guessed one. In game: over the cap, everything on the grid slows below 100%; spare power speeds it up, to 120% at most.";
+      var copies = powerGenCopies(userRV);
+      var perGen = POWER_GEN_CAPS[genLvl];
+      var cap = copies * perGen;
+      var base = "⚡ Power: this plan's buildings would use <strong>" + fmt(used) + " power</strong> on E-mode (15 × level each; 30 × level for the Mine, Well, Aniipod Maker and Dance Pad Polisher), with <strong>" + copies + (copies === 1 ? " Crackle Generator" : " Crackle Generators") + " Lv " + genLvl + "</strong> (the count and level RV " + userRV + " allows, " + fmt(perGen) + " supply each). ";
+      var spare = cap - used;
+      if(spare >= 0) return base + "Total supply <strong>" + fmt(cap) + "</strong>, so <strong>" + fmt(spare) + " power spare</strong>. Spare power speeds the grid up, to 120% at most.";
+      return base + "Total supply <strong>" + fmt(cap) + "</strong>: <strong>over the supply by " + fmt(-spare) + ", so everything on the grid slows below 100%.</strong> Take a building off E-mode to get back under.";
     }
     function eventBadge(it){
       if(!it || !it.event) return "";
@@ -1484,20 +1662,21 @@
       if(near) near.textContent = "🏭 " + text;
     }
     /* The one name mismatch in the data (player's word, Oct 29, 2026):
-       the recipe data gathers Wool, Petals and Scales at a station it
+       the recipe data gathers Wool and Petals at a station it
        calls the "Homeland leisure station", but that station IS the
        Nimbus Bed — the facility Step 1, FAC_RV, FAC_COUNT and
        FAC_ANIIMO all key by that name. Every other station's recipes
        already use its Step 1 name (Well, Mine, Dewy House,
-       Tidewhisper Sandcastle, Starfall Hammock all match), so this is
-       the only alias. Count, need, plan and layout lookups resolve
-       through facCanon so all four read the one Nimbus Bed count,
-       and every label that names the station — recipe cards, plan
-       lists, the crew table's facility pills — prints and keys
-       through facCanon too, so Wool, Petals and Scales read
+       Tidewhisper Sandcastle, Starfall Hammock, Floral Windmill all
+       match), so this is the only alias. Count, need, plan and layout
+       lookups resolve through facCanon so all four read the one
+       Nimbus Bed count, and every label that names the station —
+       recipe cards, plan lists, the crew table's facility pills —
+       prints and keys through facCanon too, so Wool and Petals read
        Nimbus Bed wherever they show (player's fix, Nov 4, 2026);
        recipe levels and locking keep the station's own rule (the
-       leisure station never locks), untouched. */
+       leisure station never locks), untouched. Scales gathers at the
+       Floral Windmill under its own name (audit, Nov 7, 2026). */
     var FAC_ALIAS = { "Homeland leisure station": "Nimbus Bed" };
     function facCanon(f){ return FAC_ALIAS[f] || f; }
     function facLevel(facility){
@@ -1797,6 +1976,18 @@
         html += '<div class="pslot-details">' +
           '<div class="meta">' + esc(facCanon(it.facility)) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + (it.event ? ' · ' + eventBadge(it) : "") + (it.whimsy ? ' · <strong>Whimsy Point +' + it.whimsy + '</strong>' : "") + "</div>" +
           (it.covers ? '<div class="ing">✨ This one recipe also covers <strong>' + esc(it.covers) + '</strong> — same ingredients, so there is no separate entry to pick and nothing is counted twice.</div>' : "") +
+          (it.moduleGate ? '<div class="ing">🧩 ' + esc(moduleGateText(it)) + (moduleLevels.crafting >= it.moduleGate ? ' · your Crafting Module is Lv ' + moduleLevels.crafting + ', so this gate is met' : ' · your Crafting Module is Lv ' + moduleLevels.crafting + ', so this gate is not met yet') + '.</div>' : "") +
+          (function(){
+            var gated = chainGatedProducts(entry.name);
+            if(!gated.length) return "";
+            return '<div class="ing">👨‍👩‍👧 Family needs in this recipe: ' + gated.map(function(n){ return "<strong>" + esc(n) + "</strong>: " + familyNeedsHtml(n) + " (" + esc(familyOnlyText(n)) + " at the " + esc(facCanon(ITEMS[n].facility)) + ")"; }).join(" · ") + "</div>";
+          })() +
+          (function(){
+            var cg = climateGate(entry.name);
+            if(!cg) return "";
+            return '<div class="ing">🌡️ ' + esc(climateGateText(entry.name)) + ".</div>";
+          })() +
+          (INDIRECT_DEPS[entry.name] ? '<div class="ing">⚠️ ' + esc(entry.name) + " eats " + esc(INDIRECT_DEPS[entry.name].input) + ", which only the " + esc((familyGate(INDIRECT_DEPS[entry.name].input) || {}).family || "") + " family makes. If this plan does not also make " + esc(INDIRECT_DEPS[entry.name].input) + ", it depends on that family's production.</div>" : "") +
           (lock ? '<div class="lock-note">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + ". Yours is " + (lock.have === 0 ? "not built yet" : "Lv " + lock.have) + ". That facility level unlocks at RV " + rv + ", and you can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           (!lock && chainSteps.length ? '<div class="lock-note">🔒 Locked right now: this recipe\'s own station is open, but a step it needs is not: ' + chainSteps.map(function(s){ return esc(chainStepText(s)); }).join("; ") + ". You can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           '<div class="ing">Needs: ' + esc(needsText(it)) + "</div>" +
@@ -1860,6 +2051,21 @@
       lines.push("Aniimo basket plan — recipes picked by you, amounts sized by the planner to your homeland (RV " + userRV + ")");
       lines.push("Recipes: " + basket.map(function(b){ return b.name + (ITEMS[b.name] && ITEMS[b.name].event ? " 🎃" : ""); }).join(", "));
       lines.push("Sizing: production is fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
+      var gatedTxt = gatedInGross(plan.gross);
+      if(gatedTxt.length){
+        lines.push("");
+        lines.push("Family requirements (hard requirements, not notes):");
+        gatedTxt.forEach(function(n){
+          lines.push("- " + n + ": " + familyNeedsText(n) + ". Crew slot: " + familyOnlyText(n) + " at the " + facCanon(ITEMS[n].facility) + ".");
+          var cgT = climateGate(n);
+          if(cgT) lines.push("- " + climateGateText(n) + (plan.perHour > 0 && (plan.gross[n] || 0) > 0 ? " At this plan's pace that is about " + fmtRate(plan.gross[n] * plan.perHour * climateRunRate(n) / 100) + " per hour" + (climateRunRate(n) === 100 ? " at full rate." : climateRunRate(n) === 0 ? ": it does not run without cover." : " at " + climateRunRate(n) + "%.") : "."));
+        });
+      }
+      indirectWarnings(plan.gross).forEach(function(w){ lines.push("Warning: " + w.text); });
+      Object.keys(plan.gross).forEach(function(n){
+        var mg = CRAFTING_MODULE_GATES[n];
+        if(mg && (plan.gross[n] || 0) > 0) lines.push("Module gate: " + mg.label + " needs Crafting Module " + mg.lvl + " (yours: Lv " + moduleLevels.crafting + (moduleLevels.crafting >= mg.lvl ? ", gate met" : ", gate NOT met") + ").");
+      });
       if(plan.perHour > 0){
         lines.push("The slowest crop takes about " + fmtRate(plan.cycleMins) + " minutes to grow (crops grow side by side), and the per-hour rates run at that pace. Per hour, your picked recipes make:");
         basket.forEach(function(b){ lines.push("- " + b.name + ": " + fmtRate((plan.gross[b.name] || 0) * plan.perHour) + " per hour"); });
@@ -2070,6 +2276,23 @@
       if(plan.net["Sea Salt"] > 0){
         html += '<div class="note note-warn"><h4>🧂 Salt check' + (plan.perHour > 0 ? ": ≈" + fmtRate(plan.net["Sea Salt"] * plan.perHour) + ' Sea Salt per hour' : '') + '</h4><p>Sea Salt comes only from the <strong>Tidewhisper Sandcastle</strong> (Lv 1 makes 10, Lv 2 makes 23) and lots of dishes need it — guides call it the bottleneck. Start the Sandcastle on salt first.<br />The Aniimo on salt must be from the Susuta family; Pearl there needs the Shelly family (game notes, your screenshots).</p></div>';
       }
+      /* Homeland requirements in this plan: family gates, climate
+         and light gates, indirect family dependencies and Crafting
+         Module gates, all as planning logic, not notes. */
+      (function(){
+        var gated = gatedInGross(plan.gross);
+        var inds = indirectWarnings(plan.gross);
+        var mods = Object.keys(CRAFTING_MODULE_GATES).filter(function(n){ return (plan.gross[n] || 0) > 0; });
+        var hardMissing = gated.filter(function(n){ var g = climateGate(n); return g && g.hard && !climateCovered(n); });
+        if(!gated.length && !inds.length && !mods.length) return;
+        var parts = [];
+        if(gated.length) parts.push("<strong>Family requirements:</strong> " + gated.map(function(n){ return "<strong>" + esc(n) + "</strong>: " + familyNeedsHtml(n) + ", crew slot: " + esc(familyOnlyText(n)) + " at the " + esc(facCanon(ITEMS[n].facility)); }).join(" · ") + ".");
+        gated.forEach(function(n){ if(climateGate(n)) parts.push("<strong>Climate:</strong> " + esc(climateGateText(n)) + (plan.perHour > 0 ? ". At this plan's pace: about <strong>" + fmtRate((plan.gross[n] || 0) * plan.perHour * climateRunRate(n) / 100) + " per hour</strong>" + (climateRunRate(n) === 100 ? " at full rate" : climateRunRate(n) === 0 ? " (it does not run without cover)" : " at " + climateRunRate(n) + "% (adjusted, labelled)") : "") + "."); });
+        inds.forEach(function(w){ parts.push((w.madeHere ? "<strong>Family dependency:</strong> " : "<strong>⚠️ Warning, family dependency:</strong> ") + esc(w.text)); });
+        mods.forEach(function(n){ var mg = CRAFTING_MODULE_GATES[n]; parts.push("<strong>Module gate:</strong> " + esc(mg.label) + " needs Crafting Module " + mg.lvl + " (yours: Lv " + moduleLevels.crafting + (moduleLevels.crafting >= mg.lvl ? ", gate met" : ", <strong>gate not met yet</strong>") + ")."); });
+        html += '<div class="note ' + (hardMissing.length || inds.some(function(w){ return !w.madeHere; }) ? "note-warn" : "note-info") + '"><h4>👨‍👩‍👧 Requirements in this plan</h4><p>' + parts.join("<br />") + "</p>" +
+          (hardMissing.length ? '<p style="margin-top:8px"><strong>⚠️ ' + hardMissing.map(function(n){ return esc(n); }).join(", ") + ' will not run:</strong> the plan must include a Sunlamp covering the Floral Windmill in the Layout step, and there is no Sunlamp in your Step 1 counts to cover it.</p>' : "") + "</div>";
+      })();
       /* money crop bonus */
       var moneyHits = growNames.filter(function(n){ return MONEY[n] && plan.net[n] > 0; });
       if(moneyHits.length){
@@ -2094,6 +2317,22 @@
           else { runsCell = '<span class="src">yield varies, see note</span>'; }
           var where = it.kind === "grow" ? esc(it.facility) + " · " + esc(it.time) + " · seed: " + esc(it.seed) + (it.yld ? " · " + effYld(it) + " per seed" + (it.modYld && it.mod && modulesOwned[it.mod] ? " (module recipe)" : "") : "") + (it.facility === "Woodland" ? " · " + woodPlotText(n) : "") + " · " + climateHtml(n)
                                         : esc(facCanon(it.facility)) + (it.yld ? " · yields " + it.yld + " each time" : "");
+          var cgRow = climateGate(n);
+          if(cgRow && it.kind === "gather"){
+            var rateRow = climateRunRate(n);
+            if(cgRow.hard){
+              where += climateCovered(n)
+                ? "<br />🌡️ Light hard gate: covered by a Sunlamp over the " + esc(cgRow.covers) + ", so it runs."
+                : "<br />🌡️ <strong>Light hard gate: no Sunlamp covering the " + esc(cgRow.covers) + ", so this does not run at all (0 per hour) until a Sunlamp covers it.</strong>";
+            } else if(plan.perHour > 0){
+              where += climateCovered(n)
+                ? "<br />🌡️ Wants " + esc(cgRow.want) + ": covered by your " + esc(cgRow.building) + ", so the per-hour figure runs at full rate."
+                : "<br />🌡️ Wants " + esc(cgRow.want) + ": no " + esc(cgRow.building) + " coverage, so it runs at " + rateRow + "%: <strong>about " + fmtRate(g * plan.perHour * rateRow / 100) + " per hour (adjusted for no " + esc(cgRow.building) + " coverage)</strong>, against " + fmtRate(g * plan.perHour) + " per hour at full rate.";
+            } else {
+              where += "<br />🌡️ Wants " + esc(cgRow.want) + ": " + (climateCovered(n) ? "covered by your " + esc(cgRow.building) + ", full rate." : "no " + esc(cgRow.building) + " coverage, so it runs at " + rateRow + "%.");
+            }
+          }
+          if(familyGate(n) && it.kind === "gather") where += "<br />👨‍👩‍👧 " + familyNeedsHtml(n) + " · crew slot: " + esc(familyOnlyText(n)) + ".";
           return "<tr><td><strong>" + esc(n) + (it.event ? " 🎃" : "") + '</strong><br /><span class="src">' + where + (it.note ? "<br />" + esc(it.note) : "") + '</span></td>' +
             '<td class="num"><strong>' + (plan.perHour > 0 ? fmtRate(g * plan.perHour) : "—") + "</strong></td>" +
             '<td class="num">' + runsCell + "</td></tr>";
@@ -2199,7 +2438,8 @@
       { facility:"Well", job:"Water" },
       { facility:"Dewy House", job:"Leisure" },
       { facility:"Tidewhisper Sandcastle", job:"Leisure" },
-      { facility:"Nimbus Bed", job:"Leisure" }
+      { facility:"Nimbus Bed", job:"Leisure" },
+      { facility:"Floral Windmill", job:"Leisure" }
     ];
     /* Planting floor (player's rule, Oct 25, 2026): planting always
        needs at least 1 Grass Aniimo, so that 1 is counted in the crew:
@@ -2779,9 +3019,10 @@
       var plan = computePlan();
       var byFac = {}, uncounted = {};
       /* Crew entries key and label by the Step 1 facility name
-         (facCanon): the leisure station's gathers (Wool, Petals,
-         Scales) sit under Nimbus Bed here, the name the crew table
-         prints — never under the recipe data's own station name. */
+         (facCanon): the leisure station's gathers (Wool and Petals)
+         sit under Nimbus Bed here, the name the crew table prints —
+         never under the recipe data's own station name. Scales sits
+         under its own Floral Windmill. */
       function note(map, it, n){
         var cf = facCanon(it.facility);
         if(!map[cf]) map[cf] = { facility:cf, items:[] };
@@ -3155,7 +3396,13 @@
         var tip = fa.job + " Lv." + bw.lvl + " · strongest known: " + bw.name + " Lv." + bw.lvl +
           (t ? " · Best personality: " + t.name + " (" + t.letter + ") (+20% work efficiency)" : " · no verified personality match in the guide data") +
           " · " + fa.facility + " · 1 Aniimo per building this plan uses (" + p.count + " needed for this plan)";
-        lines.push('<li data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(tip) + '">' + abilityMarker(fa.job, !!t) + "<strong>" + label + "</strong> · " + esc(fa.facility) + "</li>");
+        /* Family gates: when this facility's plan work is a gated
+           product, the slot is a family-only requirement and the
+           line says so, never a generic worker. */
+        var famItems = facilityPlanItems(fa.facility).filter(function(n){ return familyGate(n); });
+        var famSuffix = famItems.length ? " · " + famItems.map(function(n){ return esc(n) + ": " + esc(familyOnlyText(n)); }).join(" · ") : "";
+        if(famSuffix) tip += " · Family-only slots at this facility: " + famItems.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ");
+        lines.push('<li data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(tip) + '">' + abilityMarker(fa.job, !!t) + "<strong>" + label + "</strong> · " + esc(fa.facility) + famSuffix + "</li>");
       });
       return lines;
     }
@@ -3218,11 +3465,14 @@
         function dedicatedLine(bf){
           var bw = BEST_WORKERS[bf.job];
           var covers = plantCover && bw.name === plantCover && bf.job !== "Grass" && !grassFacPresent;
+          var famItemsBf = (bf.items || []).filter(function(n){ return familyGate(n); });
+          var famSuffixBf = famItemsBf.length ? " · " + famItemsBf.map(function(n){ return esc(n) + ": " + esc(familyOnlyText(n)); }).join(" · ") : "";
           var tip = "Strongest known: " + bw.name + " Lv." + bw.lvl + " · " + tipText(bf.job, bw.lvl, bf.facility, bf.items) +
-            (covers ? " · This Aniimo also does the planting: Grass Lv." + BEST_WORKERS.Grass.lvl : "");
+            (covers ? " · This Aniimo also does the planting: Grass Lv." + BEST_WORKERS.Grass.lvl : "") +
+            (famItemsBf.length ? " · Family-only slots: " + famItemsBf.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ") : "");
           var marks = (covers ? abilityMarker("Grass", false) : "") + abilityMarker(bf.job, !!FAC_TRAIT[bf.facility]);
           return '<li tabindex="0" data-tip="' + escA(tip) + '">' + marks + "<strong>" + (covers ? "Grass + " + esc(bf.job) : esc(bf.job)) + " Aniimo</strong> · " + esc(bf.facility) +
-            (covers ? " · also does the planting" : "") + "</li>";
+            (covers ? " · also does the planting" : "") + famSuffixBf + "</li>";
         }
         /* Individuals, not job slots: facilities whose jobs one
            multi-ability species covers are paired onto one Aniimo —
@@ -3364,8 +3614,11 @@
     }
     function assignHtml(bf, job, lvl){
       var t = FAC_TRAIT[bf.facility];
-      return '<button type="button" class="assign" data-tip="' + escA(tipText(job, lvl, bf.facility, bf.items)) + '">' + esc(bf.facility) +
+      var famItemsA = (bf.items || []).filter(function(n){ return familyGate(n); });
+      var tipA = tipText(job, lvl, bf.facility, bf.items) + (famItemsA.length ? " · Family-only slots: " + famItemsA.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ") : "");
+      return '<button type="button" class="assign" data-tip="' + escA(tipA) + '">' + esc(bf.facility) +
         ' <span class="src">(' + bf.items.map(function(x){ return esc(x); }).join(", ") + ")</span>" +
+        (famItemsA.length ? ' · <span class="trait">' + famItemsA.map(function(n){ return esc(n) + ": " + esc(familyOnlyText(n)); }).join(" · ") + "</span>" : "") +
         (t ? ' · <span class="trait">' + t.letter + " " + esc(t.name) + "</span>" : "") + "</button>";
     }
     function teamTable(rowsHtml){
@@ -3497,6 +3750,25 @@
       out.innerHTML = html;
     }
 
+    /* Family-only crew note for the Team Helper: any gated product
+       the displayed crew works gets a line naming its family-only
+       slot, so the crew list never reads as a generic worker for a
+       gated recipe. Storage Units get their own line: passive, no
+       worker, no crew count, no worker-based power. */
+    function familyCrewNoteHtml(planLike){
+      var gross = (planLike && planLike.gross) || {};
+      var gated = gatedInGross(gross);
+      var inds = indirectWarnings(gross);
+      if(!gated.length && !inds.length) return "";
+      var lines = gated.map(function(n){
+        return "<strong>" + esc(n) + "</strong>: " + esc(familyOnlyText(n)) + " at the " + esc(facCanon((ITEMS[n] || {}).facility || "")) + " (" + familyNeedsHtml(n) + ")";
+      });
+      inds.forEach(function(w){ lines.push((w.madeHere ? "" : "⚠️ ") + esc(w.text)); });
+      return '<div class="note note-warn"><h4>👨‍👩‍👧 Family-only crew slots in this plan</h4><p>' + lines.join("<br />") + "</p></div>";
+    }
+    function storagePassiveHtml(){
+      return '<div class="note note-info"><h4>🗄️ Storage Units: no worker</h4><p>Storage Units are passive. They take no worker, add no crew count and use no worker-based power, so they never appear in your crew.</p></div>';
+    }
     function renderTeam(){
       hideTip();
       syncFacExtras();
@@ -3618,6 +3890,11 @@
       teamSize = teamMode === "best" ? (fittedRows ? fittedSize : bestSize) : minSize;
       var fittedJobWorkers = {};
       if(fittedRows) fittedRows.forEach(function(r){ (r.jobs || [r.job]).forEach(function(j){ fittedJobWorkers[j] = (fittedJobWorkers[j] || 0) + r.count; }); });
+      /* The products this crew actually works, for the family note:
+         gated items among the team's facilities and placed posts. */
+      var teamGross = {};
+      facs.forEach(function(bf){ (bf.items || []).forEach(function(n){ teamGross[n] = 1; }); });
+      placedFacs.forEach(function(f){ ((team.placed[f] || {}).items || []).forEach(function(n){ teamGross[n] = 1; }); });
       if(note) note.textContent = (teamMode === "best"
         ? (fittedRows
           ? "Best, fitted to your RV " + userRV + " limit: a few workers are shared so the crew fits. Shared places take turns, so they run slower."
@@ -3645,7 +3922,7 @@
           "Best needs " + bestSize + " Aniimo, " + (bestSize - cap) + " over your limit of " + cap + ". The Minimum crew below is the one that fits: it puts out " + minSize + " Aniimo because its workers are shared, one Aniimo per job across every facility that needs that job. Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — facilities just take turns, so everything runs slower than Best.</p></div>";
       }
       var howToHtml = '<div class="note note-info"><h4>📖 How to read the list</h4><p>Each line names an <strong>ability</strong>, not one Aniimo you must use — <strong>Ice Aniimo ×2</strong> means any two Aniimo with Ice. Climate machine posts (Cooling Unit, Heat Furnace, Sunlamp) read <strong>any level</strong>: the level of the Aniimo running one does not matter. Tap a line for more detail.</p></div>';
-      var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml(team) + '<div class="summary-strip">' +
+      var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml(team) + familyCrewNoteHtml({ gross: teamGross }) + storagePassiveHtml() + '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? (fittedRows ? "Best, fitted to RV " + userRV : "Best") : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
         '<div class="sum-chip"><b>' + (facs.length + uncountedFacs.length + placedFacs.length) + '</b><span>facilities running</span></div>' +
@@ -3829,6 +4106,16 @@
       if(srcTop) srcTop.textContent = facProvenance;
       var srcNear = document.getElementById("facStateLine");
       if(srcNear) srcNear.textContent = "🏭 " + facProvenance;
+      var pf = document.getElementById("powerFillLine");
+      if(pf){
+        var gLvl = powerGenLevel(userRV);
+        if(gLvl === 0){
+          pf.textContent = "⚡ Power opens at RV 12 (Power Module Lv 1). At RV " + userRV + " there is no power grid yet, so no generator supply is counted.";
+        } else {
+          var gCopies = powerGenCopies(userRV);
+          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + ", Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each), total supply " + fmt(powerGenSupply(userRV)) + ". Auto-fill and the power headroom lines use this count and supply.";
+        }
+      }
       var grid = document.getElementById("facGrid");
       if(!grid) return;
       grid.innerHTML = Object.keys(FAC_RV).map(function(f){
@@ -3844,6 +4131,7 @@
         }
         if(f === "Carousel Mill" || f === "Well") sub += ' <span class="verdict v-ok">player-verified in game</span>';
         if(f === "Starfall Hammock") sub += " · <strong>Needs a Cool environment to work</strong> (your lookup, Oct 25, 2026): it stands inside a Cooling Unit zone, and that zone counts toward Cooling Unit coverage in the Layout Helper";
+        if(f === "Floral Windmill") sub += " · Gathers Scales (Needs: Flutternym family) · <strong>Scales is hard-gated on Light</strong>: a Sunlamp must cover the windmill or Scales will not run";
         return '<div class="fac-item"><span><span class="nm">' + esc(f) + '</span><span class="kd">' + sub + '</span></span>' +
           '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-fac-count-dec="' + escA(f) + '" aria-label="One fewer ' + escA(f) + '"' + (facCount(f) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(f) + '" data-fac-count="' + escA(f) + '" aria-label="' + escA(f) + ' count" /><button type="button" class="cnt-btn" data-fac-count-inc="' + escA(f) + '" aria-label="One more ' + escA(f) + '">+</button></span>' + aboveFlagHtml("fac-count:" + f, facCount(f) > rvMaxFacCount(f, userRV)) +
           ' <span class="src">Lv</span> <input type="number" class="fac-num" min="0" max="' + tiers.length + '" value="' + facLevel(f) + '" data-fac-lvl="' + escA(f) + '" aria-label="' + escA(f) + ' level" />' + aboveFlagHtml("fac-lvl:" + f, facLevel(f) > maxL) + '</span></div>';
@@ -4370,8 +4658,8 @@
     }
     function gatherYieldText(name){
       var it = ITEMS[name];
-      var fam = { "Sea Salt":" · the Aniimo on it must be from the Susuta family", "Pearl":" · the Aniimo on it must be from the Shelly family", "Star":" · the Aniimo on it can be any from the Celestis family" };
-      return "brings " + (it && it.yld ? it.yld + " " + name + " per run" : name + " per run, yield varies") + (fam[name] || "");
+      var famTxt = familyGate(name) ? " · crew slot: " + familyOnlyText(name) + " (" + familyNeedsText(name) + ")" : "";
+      return "brings " + (it && it.yld ? it.yld + " " + name + " per run" : name + " per run, yield varies") + famTxt;
     }
     /* The Gathering rows for one gather facility's layout block: one
        pick per copy out, plus the per-run-round tally across picks. */
@@ -5399,7 +5687,7 @@
       var lands = zoneLands(z);
       return lands.length > 1 ? "Farmland and Woodland" : (lands[0] || "");
     }
-    function computeFieldLayout(counts, hammock){
+    function computeFieldLayout(counts, hammock, windmill){
       var farmAvail = Math.max(0, facCount("Farmland"));
       var woodAvail = Math.max(0, facCount("Woodland"));
       var owned = {};
@@ -5579,6 +5867,19 @@
         var cuUsed = fieldBuildings(field)["Cooling Unit"] || 0;
         field.hammock = { own:!hasCU && cuUsed < owned["Cooling Unit"] };
       }
+      /* The Floral Windmill joins the layout whenever a plan gathers
+         Scales, and Scales is hard-gated on Light: the windmill must
+         stand inside a Sunlamp's zone or Scales will not run at all.
+         It rides one of the layout's own light zones when the layout
+         plants Light crops, and otherwise takes a Sunlamp zone of its
+         own when one is spare. When neither is possible the windmill
+         is uncovered, and the layout warns that Scales will not run. */
+      if(windmill){
+        var hasSL = field.zoneList.some(function(z){ return z.building === "Sunlamp"; });
+        var slUsed = fieldBuildings(field)["Sunlamp"] || 0;
+        var wmOwn = !hasSL && slUsed < owned["Sunlamp"];
+        field.windmill = { own:wmOwn, covered:hasSL || wmOwn };
+      }
       return {
         field:field, planted:planted, remainder:remainder, unplaced:unplaced, notes:notes,
         farmAvail:farmAvail, woodAvail:woodAvail, owned:owned,
@@ -5605,6 +5906,7 @@
         });
       }
       if(f.hammock && f.hammock.own) used["Cooling Unit"] = (used["Cooling Unit"] || 0) + 1;
+      if(f.windmill && f.windmill.own) used["Sunlamp"] = (used["Sunlamp"] || 0) + 1;
       return used;
     }
     /* Climate buildings a set of plot counts would need if it were all
@@ -5720,7 +6022,10 @@
       var starNeeded = false;
       if(basket.length && (computePlan().gross["Star"] || 0) > 0) starNeeded = true;
       if(typeof bpResult !== "undefined" && bpResult && (bpResult.exp.gross["Star"] || 0) > 0) starNeeded = true;
-      var plan = computeFieldLayout(fieldCounts, starNeeded && facCount("Starfall Hammock") > 0);
+      var scalesNeeded = false;
+      if(basket.length && (computePlan().gross["Scales"] || 0) > 0) scalesNeeded = true;
+      if(typeof bpResult !== "undefined" && bpResult && (bpResult.exp.gross["Scales"] || 0) > 0) scalesNeeded = true;
+      var plan = computeFieldLayout(fieldCounts, starNeeded && facCount("Starfall Hammock") > 0, scalesNeeded && facCount("Floral Windmill") > 0);
       var sharing = climateSharingInfo(plan);
       /* Climate copies added by hand stand alongside the layout's
          zones: staffed in the crew and counted like any building out. */
@@ -5743,6 +6048,17 @@
         '<rect x="8" y="8" width="2" height="2" rx="0.4" fill="#3d2a47" fill-opacity="0.92" stroke="#fff" stroke-width="0.3" tabindex="0" data-tip="Cooling Unit: the building itself, 1 building in the middle of its zone, footprint 2 × 2 cells, 4 tiles"><title>Cooling Unit: the building itself, in the middle of its zone on 2 x 2 cells, 4 tiles of its own ground</title></rect>' +
         '<rect x="2.2" y="2.2" width="3.4" height="3.4" rx="0.5" fill="#3d2a47" stroke="#ffd94d" stroke-width="0.35" tabindex="0" data-tip="Starfall Hammock: needs a Cool environment, so it stands inside this Cooling Unit zone"><title>Starfall Hammock: needs a Cool environment, so it stands inside this Cooling Unit zone</title></rect>' +
         '<text x="3.9" y="4.85" font-size="2.6" text-anchor="middle" fill="#ffd94d">★</text></svg>';
+    }
+    /* The Floral Windmill's own zone diagram: a Sunlamp zone with the
+       windmill inside it, the same pattern as the hammock diagram.
+       Uncovered, the zone is drawn plain and labelled as uncovered. */
+    function windmillSvg(covered){
+      var cs = GROUP_STYLE["Adequate light"] || { tint:"#fdf3d8" };
+      return '<svg viewBox="0 0 18 18" width="148" height="148" role="img" aria-label="Sunlamp zone with the Floral Windmill standing inside it' + (covered ? "" : ", not covered by any Sunlamp") + '">' +
+        '<rect x="0.15" y="0.15" width="17.7" height="17.7" rx="1" fill="' + cs.tint + '" tabindex="0" data-tip="' + (covered ? "Sunlamp zone: the Light ground the Floral Windmill needs for Scales" : "No Sunlamp covers this Floral Windmill: Scales will not run") + '"><title>' + (covered ? "Sunlamp zone: the Light ground the Floral Windmill needs for Scales" : "No Sunlamp covers this Floral Windmill: Scales will not run") + '</title></rect>' +
+        '<rect x="8" y="8" width="2" height="2" rx="0.4" fill="#3d2a47" fill-opacity="0.92" stroke="#fff" stroke-width="0.3" tabindex="0" data-tip="Sunlamp: the building itself, in the middle of its zone"><title>Sunlamp: the building itself, in the middle of its zone</title></rect>' +
+        '<rect x="2.2" y="2.2" width="3.4" height="3.4" rx="0.5" fill="#3d2a47" stroke="#ffd94d" stroke-width="0.35" tabindex="0" data-tip="Floral Windmill: needs Light to gather Scales, so it stands inside this Sunlamp zone"><title>Floral Windmill: needs Light to gather Scales, so it stands inside this Sunlamp zone</title></rect>' +
+        '<text x="3.9" y="4.85" font-size="2.6" text-anchor="middle" fill="#ffd94d">✿</text></svg>';
     }
     /* The layout as per-zone visual blocks, the Aniimax pattern: a small
        grid on the left, short writing beside it (facility, count,
@@ -5876,8 +6192,20 @@
             ["Facility", "Starfall Hammock × " + facCount("Starfall Hammock") + " you have (Step 1) — this plan uses the one standing here"],
             ["Count", f.hammock.own ? "Stands in a Cooling Unit zone of its own, counted in this layout's Cooling Units" : "Stands inside one of this layout's Cooling Unit zones, counted once"],
             ["Producing", "Star, for this plan"],
-            ["Aniimo", abilityMarker("Leisure", false, "Leisure Lv.4 · strongest known: Somniwing · 1 per Starfall Hammock") + "1 Leisure Aniimo per hammock · strongest known: Somniwing Lv 4"],
+            ["Aniimo", abilityMarker("Leisure", false, "Leisure Lv.4 · strongest known: Somniwing · 1 per Starfall Hammock") + "1 Leisure Aniimo per hammock · strongest known: Somniwing Lv 4 · " + esc(familyOnlyText("Star"))],
             ["Why", "Needs a Cool environment to work (your lookup, Oct 25, 2026)"]
+          ]) + "</div></div>");
+      }
+      if(f.windmill){
+        blocks.push('<div class="zone-block"><div class="zb-grid">' + windmillSvg(f.windmill.covered) + '</div><div class="zb-side"><h3>🌸 Floral Windmill</h3>' +
+          rowsHtml([
+            ["Facility", "Floral Windmill × " + facCount("Floral Windmill") + " you have (Step 1) — this plan uses the one standing here"],
+            ["Count", f.windmill.covered
+              ? (f.windmill.own ? "Stands in a Sunlamp zone of its own, counted in this layout's Sunlamps" : "Stands inside one of this layout's Sunlamp zones, counted once")
+              : "No Sunlamp zone covers it in this layout: Scales will not run until a Sunlamp covers it"],
+            ["Producing", "Scales, for this plan"],
+            ["Aniimo", abilityMarker("Leisure", false, "Leisure · 1 per Floral Windmill") + esc(familyOnlyText("Scales")) + " · 1 per Floral Windmill"],
+            ["Why", "Scales is hard-gated on Light: a Sunlamp must cover the Floral Windmill or Scales will not run at all"]
           ]) + "</div></div>");
       }
       /* Possible overlap bands ride at the very end as uncounted
@@ -5912,16 +6240,18 @@
         "Sunlamp":"Adequate light over its crops",
         "Heat Furnace":"Warm and Scorching zones",
         "Cooling Unit":"Freeze and Cool zones",
-        "Starfall Hammock":"Star",
+        "Starfall Hammock":"Star and Gold-Speck Cap",
         "Mine":"Rock, Clay and the Mine's other materials",
         "Well":"Well Water and the Well's other waters",
         "Dewy House":"Aromathyst",
-        "Tidewhisper Sandcastle":"Sea Salt and Pearl",
-        "Nimbus Bed":"Out and staffed"
+        "Tidewhisper Sandcastle":"Sea Salt, Pearl and Sweet Cone",
+        "Nimbus Bed":"Out and staffed",
+        "Floral Windmill":"Scales"
       };
       var why = {
         "Sunlamp":"Overlays temperature zones: ground counted once, one Sunlamp per light zone",
         "Starfall Hammock":"Needs a Cool environment: stands inside a Cooling Unit zone",
+        "Floral Windmill":"Scales is hard-gated on Light: a Sunlamp must cover it or Scales will not run. Needs: Flutternym family",
         "Mine":"Pick each Mine's material in Step 5 — Set your Mines, below your strategy plan — extra Mines you add there join this plan in full, and every Mine also brings Mineral Sand",
         "Well":"Its Water Aniimo also water the crops"
       };
@@ -6083,8 +6413,11 @@
       } else if(!plan.unplaced.length){
         s += '<p class="totals" style="margin-top:10px"><strong>Everything in your whole plan fits in this one layout.</strong> Plant the layout below and you are growing the whole plan at once.</p>';
       }
+      if(f.windmill && !f.windmill.covered){
+        s += '<p class="totals" style="margin-top:10px"><span class="layout-warn">⚠️ Light hard gate: this plan gathers Scales, and Scales will not run without Light.</span> The Floral Windmill must stand inside a Sunlamp zone, but this layout has no Sunlamp covering it: your Step 1 counts have no spare Sunlamp for it. Add a Sunlamp in Step 1, or set one of this layout\'s Sunlamps over the Floral Windmill.</p>';
+      }
       var hasPlots = f.entries.some(function(e){ return e.farm + e.wood > 0; });
-      if(hasPlots || f.hammock){
+      if(hasPlots || f.hammock || f.windmill){
         s += layoutZoneBlocksHtml(plan);
         s += layoutLegendHtml();
         var usedFB = fieldBuildings(f);
@@ -6121,6 +6454,7 @@
         onlyFacs = {};
         Object.keys(fieldBuildings(f)).forEach(function(b){ onlyFacs[b] = true; });
         if(f.hammock) onlyFacs["Starfall Hammock"] = true;
+        if(f.windmill) onlyFacs["Floral Windmill"] = true;
         var gp = computePlan();
         Object.keys(gp.gross).forEach(function(n){ var it = ITEMS[n]; if(it && (gp.net[n] || 0) > 0) onlyFacs[it.facility] = true; });
         if(typeof bpResult !== "undefined" && bpResult){
@@ -6149,7 +6483,7 @@
       if(plan.overField) lines.push("Your whole plan needs more plots than one field holds: plant the layout below, leave it running, and as each harvest comes in, replant the same layout until the whole-plan totals are met. Still to grow after the first planting: " + plan.remainder.map(function(x){ return x.name + " x" + x.left + " (" + x.facility + ")"; }).join("; ") + ".");
       else if(!plan.unplaced.length) lines.push("Everything in your whole plan fits in this one layout.");
       var hasPlots = f.entries.some(function(e){ return e.farm + e.wood > 0; });
-      if(hasPlots || f.hammock){
+      if(hasPlots || f.hammock || f.windmill){
         lines.push("");
         lines.push("The layout to plant (plants " + f.farmUsed + " of " + plan.farmAvail + " Farmland plots, " + f.woodUsed + " of " + plan.woodAvail + " Woodland plots; one planting grows about " + fmtDur(f.mins) + ", slowest crop " + f.slowest + "):");
         f.entries.forEach(function(e){
@@ -6162,7 +6496,8 @@
           if(info.building) lines.push(info.building + " zones this group touches in this layout: " + (e.zonesTouch != null ? e.zonesTouch : e.zonesFarm + e.zonesWood) + " (zones shared with another climate, or with the other land, are counted once in the layout's building total below; your RV level allows " + plan.owned[info.building] + ")");
         });
         fieldOverlapNotes(f).forEach(function(note){ lines.push(overlapNoteText(note)); });
-        if(f.hammock) lines.push("Starfall Hammock: needs a Cool environment to work (player's lookup, Oct 25, 2026), so it stands inside a Cooling Unit zone" + (f.hammock.own ? ", its own zone in this layout because the layout plants no Cool or Freezing crops, counted in this layout's Cooling Units" : ", sharing the zone that covers this layout's cold crops, counted once") + ".");
+        if(f.hammock) lines.push("Starfall Hammock: needs a Cool environment to work (player's lookup, Oct 25, 2026), so it stands inside a Cooling Unit zone" + (f.hammock.own ? ", its own zone in this layout because the layout plants no Cool or Freezing crops, counted in this layout's Cooling Units" : ", sharing the zone that covers this layout's cold crops, counted once") + ". Crew: " + familyOnlyText("Star") + ".");
+        if(f.windmill) lines.push("Floral Windmill: Scales is hard-gated on Light, so it stands inside a Sunlamp zone" + (f.windmill.covered ? (f.windmill.own ? ", its own zone in this layout because the layout plants no Light crops, counted in this layout's Sunlamps" : ", sharing the zone that covers this layout's Light crops, counted once") : ": WARNING, no Sunlamp covers it in this layout, so Scales will not run until a Sunlamp covers the Floral Windmill") + ". Crew: " + familyOnlyText("Scales") + ".");
         var shareT = climateSharingInfo(plan);
         var usedT = fieldBuildings(f);
         lines.push("Climate buildings in this layout, counted once each: " + Object.keys(usedT).map(function(b){ return b + " x " + usedT[b]; }).join("; ") + ".");
@@ -6515,6 +6850,11 @@
       var starNeeded = false;
       if(basket.length && (computePlan().gross["Star"] || 0) > 0) starNeeded = true;
       if(bpResult && (bpResult.exp.gross["Star"] || 0) > 0) starNeeded = true;
+      /* The Floral Windmill joins the layout whenever a plan gathers
+         Scales, so its Sunlamp cover shows (see computeFieldLayout). */
+      var scalesNeeded = false;
+      if(basket.length && (computePlan().gross["Scales"] || 0) > 0) scalesNeeded = true;
+      if(bpResult && (bpResult.exp.gross["Scales"] || 0) > 0) scalesNeeded = true;
       var combined = combinedLayoutCounts(autoGroups, bpGroups, groups);
       /* Whole-need climate buildings, packed the field layout's way:
          the fewest zones that cover the plots across every source —
@@ -6533,7 +6873,7 @@
         fieldCounts = {};
         Object.keys(combined).forEach(function(n){ fieldCounts[n] = 1; });
       }
-      var plan = anyGroups ? computeFieldLayout(fieldCounts, starNeeded && facCount("Starfall Hammock") > 0) : null;
+      var plan = anyGroups ? computeFieldLayout(fieldCounts, starNeeded && facCount("Starfall Hammock") > 0, scalesNeeded && facCount("Floral Windmill") > 0) : null;
       /* The Away box counts per planting round from the plots planted
          AT ONCE in this field layout (plan.planted, read off the
          layout's own entries), never from the whole-need totals in
@@ -6543,7 +6883,7 @@
       lastAwayPlanted = plan ? plan.planted : null;
       lastAwayWhole = plan ? combined : null;
       if(plan && layoutMode === "minimum"){
-        var wholePlan = computeFieldLayout(combined, false);
+        var wholePlan = computeFieldLayout(combined, false, false);
         plan.totalMins = wholePlan.totalMins;
         plan.bottleneck = wholePlan.bottleneck;
         plan.remainder = Object.keys(combined).filter(function(n){ return combined[n] > 1; }).map(function(n){
@@ -7217,6 +7557,17 @@
       var singleCount = 0;
       Object.keys(chosen).forEach(function(n){ if(SELL[n] !== undefined && !CROSS_PRICE[n] && !EVENT_PRICE[n]) singleCount++; });
       if(singleCount > 0) flags.push(singleCount + (singleCount === 1 ? " recipe price" : " recipe prices") + " in this plan rest on a single source (Aniiland) and are flagged in the recipe table. Spot-check one in game before a big spend.");
+      /* Homeland requirements flags: family gates and climate
+         gates in this plan are hard requirements, stated here too. */
+      gatedInGross(exp.gross).forEach(function(n){
+        flags.push("Family requirement: " + n + ": " + familyNeedsText(n) + ". Crew slot: " + familyOnlyText(n) + " at the " + facCanon(ITEMS[n].facility) + ".");
+        if(climateGate(n)) flags.push("Climate gate: " + climateGateText(n) + ".");
+      });
+      indirectWarnings(exp.gross).forEach(function(w){ if(!w.madeHere) flags.push("Warning, family dependency: " + w.text); });
+      Object.keys(CRAFTING_MODULE_GATES).forEach(function(n){
+        var mg = CRAFTING_MODULE_GATES[n];
+        if((exp.gross[n] || 0) > 0 && moduleLevels.crafting < mg.lvl) flags.push("Module gate not met: " + mg.label + " needs Crafting Module " + mg.lvl + " (yours: Lv " + moduleLevels.crafting + ").");
+      });
 
       var goalMade = assignedOrder.some(function(n){ return assignedGoal[n] !== "leveling"; }) || rawPicks.length > 0;
       var basketClaimBatches = 0;
@@ -7462,6 +7813,20 @@
         lines.push("The already-planned work claims every facility slot and spare plot in this plan, so no goal recipes could be added.");
       }
       lines.push("Set your Mines to (Step 5 in the planner, after this strategy plan): " + mineSetupText(res.mine));
+      var bpGated = gatedInGross(res.exp.gross || {});
+      if(bpGated.length){
+        lines.push("");
+        lines.push("Family requirements (hard requirements, not notes):");
+        bpGated.forEach(function(n){
+          lines.push("- " + n + ": " + familyNeedsText(n) + ". Crew slot: " + familyOnlyText(n) + " at the " + facCanon(ITEMS[n].facility) + ".");
+          if(climateGate(n)) lines.push("- " + climateGateText(n) + ".");
+        });
+      }
+      indirectWarnings(res.exp.gross || {}).forEach(function(w){ lines.push("Warning: " + w.text); });
+      Object.keys(CRAFTING_MODULE_GATES).forEach(function(n){
+        var mg = CRAFTING_MODULE_GATES[n];
+        if(((res.exp.gross || {})[n] || 0) > 0) lines.push("Module gate: " + mg.label + " needs Crafting Module " + mg.lvl + " (yours: Lv " + moduleLevels.crafting + (moduleLevels.crafting >= mg.lvl ? ", gate met" : ", gate NOT met") + ").");
+      });
       lines.push("");
       lines.push("Rates (per hour):");
       var bpPerH = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
