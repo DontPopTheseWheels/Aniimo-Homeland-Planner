@@ -365,7 +365,7 @@
           <div class="fac-grid" id="facGrid"></div>
           <p class="src" style="margin-top:8px">⛏️ The Mine count and level here are just how many Mines you own and how deep they go — what each Mine digs is <strong>not</strong> picked here. That comes later, in Step 5, after your strategy, because your strategy can claim Mines of its own.</p>
           <p class="src" id="powerFillLine" style="margin-top:8px" aria-live="polite"></p>
-          <p class="src" style="margin-top:8px">🗄️ <strong>Storage Units take no worker.</strong> They are passive: no crew slot, no crew count, and no worker-based power. They never appear in your crew.</p>
+          <p class="src" style="margin-top:8px">🗄️ <strong>Storage Units take no worker.</strong> They are passive: no crew slot, no crew count, and no worker-based power. They never appear in your crew. Size 2 × 2.</p>
           <h4 style="margin-top:20px">🌡️ Your climate buildings</h4>
           <p class="src" style="margin-top:4px">Counts fill from your RV too, or type your own. Source: Aniiland roadmap ladder (RV 7 unlock also backed by GameWith); the steps rest on Aniiland alone, so each count carries the single-source flag.<br />The layout puts out only the buildings the plan needs — never more than these counts.</p>
           <div class="fac-grid" id="climGrid"></div>
@@ -529,7 +529,7 @@
       <!-- ================= STEP 5: MINES, AFTER THE STRATEGY ================= -->
       <section id="mines">
         <div class="sec-head"><span class="sec-num">Step 5</span><h2>⛏️ Set Your Mines — After Your Strategy</h2></div>
-        <p class="sec-sub">Mines wait for your strategy: some of them come from it. Once the Step 4 plan is found, the Mines it uses are listed here, marked <strong>used by this plan</strong> and locked in — counted once, never pickable again. Add spare Mines you own, up to your Step 1 count, and pick what each added Mine digs.</p>
+        <p class="sec-sub">Mines wait for your strategy: some of them come from it. Once the Step 4 plan is found, the Mines it uses are listed here, marked <strong>used by this plan</strong> and locked in — counted once, never pickable again. Add spare Mines you own, up to your Step 1 count, and pick what each added Mine digs. Each Mine is <strong>Size 5 × 5</strong>.</p>
         <div id="minesOut"></div>
         <p class="src" style="margin-top:16px">Mines set? <a href="#layout">Next: Step 6 — lay it out, below ↓</a> (In Level Up mode, your next RV bill sits between here and the layout.)</p>
       </section>
@@ -629,7 +629,7 @@
 
         <div class="card" style="margin-top:16px">
           <h3>⚡ Power zones, for later</h3>
-          <p class="sec-sub" style="margin-bottom:0">Power isn't needed to grow anything — it matters later, for E-mode stations. Utility posts never count as Hauling cover.</p>
+          <p class="sec-sub" style="margin-bottom:0">Power isn't needed to grow anything — it matters later, for E-mode stations. Utility posts never count as Hauling cover. Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7.</p>
           <div class="zone-maps" id="powerRef"></div>
         </div>
 
@@ -757,6 +757,7 @@
           <li><strong>Overlap (Layout Helper):</strong> only the Steam guide's two verified blends are noted — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so a band never places or covers a crop: every crop keeps its own climate zone and building count (Cool crops always keep their own Cooling Unit zones, Warm crops their own Heat Furnace zones), nothing is deducted for a band anywhere, and a band appears only as an uncounted note naming the crops whose zones could cross to make it. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
           <li><strong>The Layout Helper also reads your strategy plan:</strong> once run, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your setup, basket, strategy or goals change after a run, the group says the plan is out of date until you run it again.</li>
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the touch rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, touching its 18 × 18 zone and hanging over its edge where the touch rule allows, so one zone holds up to 25 Farmland or 9 Woodland plots (24 Farmland around a Cooling Unit) and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
+          <li><strong>Facility sizes</strong> (measured from your in-game screenshots and cross-checked against wikily.gg game data, Nov 9, 2026): every facility's true footprint in tiles now shows beside its name in Step 1, in the Always list, on its Layout Helper block and in the strategy plan's facility table. Farmland 2 × 2, Woodland 3.5 × 3.5, Mine 5 × 5, Well 2 × 2, Aniipod Maker 4.5 × 4.5, Crafting Table 4 × 4, Woodworking Bench 2 × 1.5, Chimney Kiln 5 × 5, Blazing Stove 2.5 × 2.5, Simmering Pot 3 × 3, Claw Game Cooker 1.5 × 1.5, Jukebox Dryer 2.5 × 2.5, Pickling Jar 2.5 × 2, Joy Wheel Loom 4 × 4, Carousel Mill 5 × 5, Phonolfactory Table 3.5 × 3.5, Bouncy Brew Keg 3 × 3, Dance Pad Polisher 2.5 × 2.5, Storage Unit 2 × 2, Hatchinator 2 × 2, Tidewhisper Sandcastle 5 × 5, Dewy House 2 × 2, Nimbus Bed 5 × 5, Starfall Hammock 5 × 5, Heat Furnace 1 × 1, Sunlamp 1 × 1, Cooling Unit 2 × 2, Crackle Generator 2 × 2 (covers 11 × 11), Crackle Power Pole 1.5 × 1.5 (covers 7 × 7). The Floral Windmill has no verified size, so none is shown for it. Sizes are display only: no plan, crew or power figure reads them, and the layout packer keeps the reserved building footprints above.</li>
           <li><strong>Step 1 (setup):</strong> the boxes auto-fill on a fresh load to the most the RV level standing in the picker allows — facility counts, facility levels, climate counts and module levels — the same fill that picking an RV level or tapping Fill from RV level runs. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying, plans and Money Crops follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
           <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13 — and 2 is the cap here (player-verified, Oct 29, 2026: she has 2, her count wins over the guide ladder's third at RV 17, so Fill stops at 2 and no plan uses or shows a third); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19.</li>
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
@@ -917,6 +918,39 @@
       var stepRv = 0;
       for(var i = 0; i < steps.length; i++){ if(steps[i][0] <= rv) stepRv = steps[i][0]; }
       return stepRv > 12;
+    }
+
+    /* ============ facility footprints (tiles, width x depth) ============
+       Measured from the player's own in-game screenshots and cross-checked
+       against wikily.gg game data, Nov 9, 2026. Display only: sizes are
+       shown wherever the planner lists a facility and on its layout block,
+       and they never feed planning, staffing or power math. The Floral
+       Windmill has no verified size, so it is left out on purpose and
+       shows no size anywhere. Climate buildings keep the reserved
+       footprints the layout packer already uses (BUILDING_FOOTPRINT);
+       this table only names their true size beside them. */
+    var FAC_SIZE = {
+      "Farmland":[2,2], "Woodland":[3.5,3.5], "Mine":[5,5], "Well":[2,2],
+      "Aniipod Maker":[4.5,4.5], "Crafting Table":[4,4], "Woodworking Bench":[2,1.5],
+      "Chimney Kiln":[5,5], "Blazing Stove":[2.5,2.5], "Simmering Pot":[3,3],
+      "Claw Game Cooker":[1.5,1.5], "Jukebox Dryer":[2.5,2.5], "Pickling Jar":[2.5,2],
+      "Joy Wheel Loom":[4,4], "Carousel Mill":[5,5], "Phonolfactory Table":[3.5,3.5],
+      "Bouncy Brew Keg":[3,3], "Dance Pad Polisher":[2.5,2.5],
+      "Storage Unit":[2,2], "Storage Units":[2,2], "Hatchinator":[2,2],
+      "Tidewhisper Sandcastle":[5,5], "Dewy House":[2,2], "Nimbus Bed":[5,5],
+      "Starfall Hammock":[5,5],
+      "Heat Furnace":[1,1], "Sunlamp":[1,1], "Cooling Unit":[2,2],
+      "Crackle Generator":[2,2], "Crackle Power Pole":[1.5,1.5], "Power Pole":[1.5,1.5]
+    };
+    /* "5 × 5" for a facility with a verified size, null when unlisted. */
+    function facSizeText(f){
+      var s = FAC_SIZE[f];
+      return s ? String(s[0]) + " × " + String(s[1]) : null;
+    }
+    /* A small plain note for list rows: " · Size 5 × 5", or nothing. */
+    function facSizeNote(f){
+      var t = facSizeText(f);
+      return t ? " · Size " + t : "";
     }
 
     /* ============ item database ============
@@ -1569,7 +1603,7 @@
       var copies = powerGenCopies(userRV);
       var perGen = POWER_GEN_CAPS[genLvl];
       var cap = copies * perGen;
-      var base = "⚡ Power: this plan's buildings would use <strong>" + fmt(used) + " power</strong> on E-mode (15 × level each; 30 × level for the Mine, Well, Aniipod Maker and Dance Pad Polisher), with <strong>" + copies + (copies === 1 ? " Crackle Generator" : " Crackle Generators") + " Lv " + genLvl + "</strong> (the count and level RV " + userRV + " allows, " + fmt(perGen) + " supply each). ";
+      var base = "⚡ Power: this plan's buildings would use <strong>" + fmt(used) + " power</strong> on E-mode (15 × level each; 30 × level for the Mine, Well, Aniipod Maker and Dance Pad Polisher), with <strong>" + copies + (copies === 1 ? " Crackle Generator" : " Crackle Generators") + " Lv " + genLvl + "</strong> (the count and level RV " + userRV + " allows, " + fmt(perGen) + " supply each). Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7. ";
       var spare = cap - used;
       if(spare >= 0) return base + "Total supply <strong>" + fmt(cap) + "</strong>, so <strong>" + fmt(spare) + " power spare</strong>. Spare power speeds the grid up, to 120% at most.";
       return base + "Total supply <strong>" + fmt(cap) + "</strong>: <strong>over the supply by " + fmt(-spare) + ", so everything on the grid slows below 100%.</strong> Take a building off E-mode to get back under.";
@@ -3132,7 +3166,7 @@
         var c = alwaysCount(f);
         var job = alwaysJob(f);
         return '<div class="fac-item"><span><span class="nm">' + esc(f) + '</span><span class="kd">' +
-          (job ? esc(job) + " Aniimo" : "job not checked yet") + (isClimateMachine(f) ? " · any level" : "") + " · you own " + owned + (owned === 1 ? " copy" : " copies") + " (Step 1)" +
+          (job ? esc(job) + " Aniimo" : "job not checked yet") + (isClimateMachine(f) ? " · any level" : "") + " · you own " + owned + (owned === 1 ? " copy" : " copies") + " (Step 1)" + facSizeNote(f) +
           '</span></span>' +
           '<span class="fac-ctl"><span class="src">Pinned</span> <span class="count-step">' +
           '<button type="button" class="cnt-btn" data-always-dec="' + escA(f) + '" aria-label="One fewer pinned ' + escA(f) + '"' + (c <= 0 ? " disabled" : "") + '>−</button>' +
@@ -3987,7 +4021,7 @@
       return '<div class="note note-warn"><h4>👨‍👩‍👧 Family-only crew slots in this plan</h4><p>' + lines.join("<br />") + "</p></div>";
     }
     function storagePassiveHtml(){
-      return '<div class="note note-info"><h4>🗄️ Storage Units: no worker</h4><p>Storage Units are passive. They take no worker, add no crew count and use no worker-based power, so they never appear in your crew.</p></div>';
+      return '<div class="note note-info"><h4>🗄️ Storage Units: no worker</h4><p>Storage Units are passive. They take no worker, add no crew count and use no worker-based power, so they never appear in your crew. Size 2 × 2.</p></div>';
     }
     function renderTeam(){
       hideTip();
@@ -4344,7 +4378,7 @@
           pf.textContent = "⚡ Power opens at RV 12 (Power Module Lv 1). At RV " + userRV + " there is no power grid yet, so no generator supply is counted.";
         } else {
           var gCopies = powerGenCopies(userRV);
-          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + ", Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each), total supply " + fmt(powerGenSupply(userRV)) + ". Auto-fill and the power headroom lines use this count and supply.";
+          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + ", Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each), total supply " + fmt(powerGenSupply(userRV)) + ". Auto-fill and the power headroom lines use this count and supply. Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7.";
         }
       }
       var grid = document.getElementById("facGrid");
@@ -4360,6 +4394,7 @@
           sub += " · max " + maxFacCount(f, userRV) + " out at RV " + userRV;
           if(countSingleSource(f, userRV)) sub += ' <span class="verdict v-mix">count single source</span>';
         }
+        sub += facSizeNote(f);
         if(f === "Carousel Mill" || f === "Well") sub += ' <span class="verdict v-ok">player-verified in game</span>';
         if(f === "Starfall Hammock") sub += " · <strong>Needs a Cool environment to work</strong> (your lookup, Oct 25, 2026): it stands inside a Cooling Unit zone, and that zone counts toward Cooling Unit coverage in the Layout Helper";
         if(f === "Floral Windmill") sub += " · Gathers Scales (Needs: Flutternym family) · <strong>Scales is hard-gated on Light</strong>: a Sunlamp must cover the windmill or Scales will not run";
@@ -4429,6 +4464,7 @@
             sub = climHints[b] + " · max " + maxC + " out at RV " + userRV + (nxt ? " · next at RV " + nxt[0] : " · top count at your RV") +
               ' <span class="verdict v-mix">count single source</span>';
           }
+          sub += facSizeNote(b);
           return '<div class="fac-item"><span><span class="nm">' + esc(b) + '</span><span class="kd">' + sub + '</span></span>' +
             '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-clim-count-dec="' + escA(b) + '" aria-label="One fewer ' + escA(b) + '"' + (facCount(b) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(b) + '" data-clim-count="' + escA(b) + '" aria-label="' + escA(b) + ' count" /><button type="button" class="cnt-btn" data-clim-count-inc="' + escA(b) + '" aria-label="One more ' + escA(b) + '">+</button></span>' + aboveFlagHtml("clim-count:" + b, facCount(b) > maxC) + '</span></div>';
         }).join("");
@@ -6545,6 +6581,7 @@
         }
         return '<div class="fac-block"><h4>' + esc(fa.facility) + (pinC > 0 ? ' <span class="always-badge">Always</span>' : "") + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
           '<div class="zb-row"><span class="zb-k">Count</span><span>' + (pinC > 0 ? working + " working · " + pinC + " Always pinned · plan uses " + planC + " · of " + ownedC + " owned" : countLine(fa.facility, planC, ownedC)) + '</span></div>' +
+          (facSizeText(fa.facility) ? '<div class="zb-row"><span class="zb-k">Size</span><span>' + facSizeText(fa.facility) + ' tiles each</span></div>' : "") +
           '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(fa.facility, working, floorC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(namedProd) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(isClimateMachine(fa.facility) ? (fa.job + " · any level · 1 Aniimo per building this plan uses (" + working + " working for this plan) · the level of the Aniimo running a climate machine does not matter — any " + fa.job + " Aniimo runs it") : (fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + working + " working for this plan)")) + '"' : "") + '>' + (fa.job ? (isClimateMachine(fa.facility) ? anyLevelMarker(fa.job, null) + "1 " + fa.job + " Aniimo each, " + working + " in all · any level" : abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + working + " in all") : "1 Aniimo each, " + working + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
@@ -6596,6 +6633,7 @@
         var worker = facilityWorkerName(f);
         blocks.push('<div class="fac-block"><h4>' + esc(f) + (pinC > 0 ? ' <span class="always-badge">Always</span>' : "") + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
           '<div class="zb-row"><span class="zb-k">Count</span><span>' + (pinC > 0 ? working + " working · " + pinC + " Always pinned · plan uses " + planC + " · of " + ownedC + " owned" : countLine(f, planC, ownedC)) + '</span></div>' +
+          (facSizeText(f) ? '<div class="zb-row"><span class="zb-k">Size</span><span>' + facSizeText(f) + ' tiles each</span></div>' : "") +
           '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(f, working, floorC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + (itemsHere.length ? esc(itemsHere.length > 1 ? assignText(itemsHere, working) : itemsHere[0]) : (planC > 0 ? "This plan's work there" : "Added by you: pick its job below — it runs one thing at a time, like every copy")) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span>' + (worker ? (planC > 0 ? "1 " + esc(worker) + " Aniimo post for this facility in your crew below" + (extra > 0 ? "; added copies with a job pick share that post and count in your crew and power" : "") : "Its job pick below puts a " + esc(worker) + " Aniimo post for this facility in your crew, and the copy counts in your power and totals") : 'Worker <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
@@ -6641,7 +6679,7 @@
       var html = rows.map(function(f){
         var owned = facCount(f);
         var npNote = noPickNote(f);
-        return '<div class="addfac-row"><span><span class="nm">' + esc(f) + '</span><span class="kd">Not out in this plan · you own ' + owned + (owned === 1 ? " copy" : " copies") + ' (Step 1)</span>' + (npNote ? '<span class="kd">' + esc(npNote) + '</span>' : '<span class="kd">Tap + to put one out. Then pick its job on its block above. Only jobs at your levels are listed.</span>') + '</span>' +
+        return '<div class="addfac-row"><span><span class="nm">' + esc(f) + '</span><span class="kd">Not out in this plan · you own ' + owned + (owned === 1 ? " copy" : " copies") + ' (Step 1)' + facSizeNote(f) + '</span>' + (npNote ? '<span class="kd">' + esc(npNote) + '</span>' : '<span class="kd">Tap + to put one out. Then pick its job on its block above. Only jobs at your levels are listed.</span>') + '</span>' +
           '<span>' + facStepperHtml(f, 0, 0, owned) + '</span></div>';
       }).join("");
       return '<h3 class="layout-sec-head">➕ Add a facility this plan isn\'t using</h3><p class="sec-sub" style="margin:8px 0 0">' +
@@ -8279,6 +8317,7 @@
         html += '<div class="tbl-wrap"><table><thead><tr><th>Facility</th><th class="num">Working</th><th>Making</th></tr></thead><tbody>' +
           facGroups.map(function(g){
             return "<tr><td><strong>" + esc(g.facility) + "</strong>" +
+              (facSizeText(g.facility) ? '<br /><span class="src">Size ' + facSizeText(g.facility) + "</span>" : "") +
               (g.out > 0 ? '<br /><span class="src">' + (g.isField ? fmt(g.out) + " plots in Step 1" : fmt(g.out) + " out in Step 1") + "</span>" : "") +
               '</td><td class="num">' + fmt(g.working) + "</td><td>" +
               g.items.map(function(n){ return esc(n) + (n === "Star" ? unverifiedFlagHtml("Star") : ""); }).join(", ") +
