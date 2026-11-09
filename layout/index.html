@@ -878,11 +878,64 @@
       .true-note { margin: 14px 0 0; padding: 12px 16px; color: #4c3485; background: #fff7dc; border: 2px solid #eed88f; border-radius: 16px; font-weight: 900; }
       .card-note { margin: 10px 4px 0; padding: 10px 12px; color: #4c3485; background: #fff7dc; border: 2px solid #eed88f; border-radius: 14px; font-size: 0.92rem; font-weight: 800; line-height: 1.4; }
       .zoom-map.true-map { padding: 0; container-type: inline-size; }
-      .ts-block { position: absolute; display: grid; place-items: center; padding: 4px 3px; color: white; border: 3px solid var(--lav-deep); border-radius: 10px; background: var(--lav); font-family: "Baloo 2", "Nunito", sans-serif; font-size: clamp(9px, 2.6cqw, 15px); font-weight: 800; line-height: 1.08; text-align: center; text-shadow: 0 1px 0 rgba(0,0,0,0.18); overflow: hidden; }
+      .ts-block { position: absolute; display: grid; place-items: center; padding: 4px 3px; color: white; border: 3px solid var(--lav-deep); border-radius: 10px; background: var(--lav); box-shadow: inset 0 0 0 2px rgba(20, 14, 45, 0.34), 0 0 0 1px rgba(20, 14, 45, 0.28); font-family: "Baloo 2", "Nunito", sans-serif; font-size: clamp(9px, 2.6cqw, 15px); font-weight: 800; line-height: 1.08; text-align: center; text-shadow: 0 1px 0 rgba(0,0,0,0.18); overflow: hidden; }
       .ts-block small { display: block; font-family: "Nunito", sans-serif; font-size: 0.82em; font-weight: 900; opacity: 0.95; }
       .ts-block.tiny { font-size: clamp(7px, 1.9cqw, 11px); border-width: 2px; border-radius: 7px; padding: 2px 1px; }
       .ts-gen { background: rgba(255,255,255,0.6); border-style: dashed; border-color: #b97f0a; color: #7a5a12; text-shadow: none; }
       .ts-open { position: absolute; display: grid; place-items: center; color: var(--muted); border: 3px dashed rgba(102,90,125,0.45); border-radius: 10px; background: rgba(255,255,255,0.45); font-family: "Baloo 2", "Nunito", sans-serif; font-size: clamp(10px, 2.6cqw, 15px); font-weight: 800; text-align: center; }
+      .ts-block small.starts { font-size: 0.68em; margin-top: 1px; }
+      .ts-block.tiny small.starts { font-size: 0.6em; }
+
+      /* Counting grid overlay */
+      .count-grid {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        pointer-events: none;
+        background-image:
+          linear-gradient(90deg, rgba(30, 74, 28, 0.62) 3px, transparent 3px),
+          linear-gradient(rgba(30, 74, 28, 0.62) 3px, transparent 3px),
+          linear-gradient(90deg, rgba(38, 84, 34, 0.4) 2px, transparent 2px),
+          linear-gradient(rgba(38, 84, 34, 0.4) 2px, transparent 2px),
+          linear-gradient(90deg, rgba(38, 84, 34, 0.12) 1px, transparent 1px),
+          linear-gradient(rgba(38, 84, 34, 0.12) 1px, transparent 1px);
+        background-size: 25% 100%, 100% 33.333%, 5% 100%, 100% 6.667%, 1.25% 100%, 100% 1.667%;
+      }
+
+      .grid-num {
+        position: absolute;
+        z-index: 7;
+        padding: 1px 3px;
+        color: #1d3a10;
+        background: rgba(255, 255, 248, 0.96);
+        border-radius: 4px;
+        box-shadow: 0 0 0 1px rgba(29, 58, 16, 0.4);
+        font-family: "Nunito", sans-serif;
+        font-size: 13px;
+        font-weight: 900;
+        line-height: 1.15;
+        text-align: center;
+      }
+
+      .grid-num.gtop { top: 2px; transform: translateX(-50%); }
+      .grid-num.gleft { left: 2px; transform: translateY(-50%); }
+      .grid-num.gbottom { bottom: 2px; transform: translateX(-50%); }
+
+      .sketch-note { margin: 8px 4px 0; color: var(--muted); font-size: 0.85rem; font-weight: 800; }
+
+      /* Farm coverage boards */
+      .zoom-map.farm-map { padding: 0; container-type: inline-size; }
+      .ts-halo { position: absolute; z-index: 0; background: var(--halo); border: 3px dashed var(--halo-edge); border-radius: 16px; pointer-events: none; }
+      .zone-divider { position: absolute; z-index: 1; top: 0; bottom: 0; left: 50%; width: 0; border-left: 3px dashed rgba(76, 52, 133, 0.4); pointer-events: none; }
+      .ts-block.farm-tree { background: linear-gradient(180deg, #31965e, var(--tree)); border-color: var(--tree-edge); }
+      .ts-block.farm-field { background: linear-gradient(180deg, #93d878, var(--field)); border-color: var(--field-edge); }
+      .ts-block.ts-pad { background: linear-gradient(180deg, #b09cff, var(--pad)); border-color: var(--pad-edge); z-index: 5; overflow: visible; }
+      .ts-pad small.starts { width: max-content; max-width: 124px; padding: 1px 4px; color: #1d3a10; background: rgba(255, 255, 248, 0.96); border-radius: 4px; box-shadow: 0 0 0 1px rgba(29, 58, 16, 0.35); text-shadow: none; }
+      .farm-rule-note { grid-column: 1 / -1; margin: 0; padding: 12px 16px; color: #4c3485; background: var(--lav-pale); border-radius: 16px; font-weight: 900; }
+
+      @media (max-width: 720px) {
+        .grid-num { font-size: 11px; padding: 1px 2px; }
+      }
 
       @media (max-width: 720px) {
         .zoom-grid { grid-template-columns: minmax(0, 1fr); }
@@ -982,6 +1035,7 @@
           <div class="legend-item"><span class="swatch reach"></span><span>Lavender halo<br />Unit reach</span></div>
         </div>
         <p class="legend-note">The maps are flat overhead views. A Woodland square covers the same space as four Farmland squares.</p>
+        <p class="legend-note">How to count: each big square is 1 tile, and each tile holds 4 little squares across, like the game. Every facility sits on the lines. Its label gives its start: squares across and squares down from the top-left corner of the plot, counted in tiles.</p>
       </section>
 
       <section class="layout-card redesign-card" aria-labelledby="redesign-heading">
@@ -1147,11 +1201,13 @@
           </div>
         </div>
         <p class="diagram-caption">The gaps between the plots are on purpose. Paths and decorations can run between the neighborhoods, not just inside them.</p>
+        <p class="sketch-note">Sketch only, squares here are not one tile each.</p>
 
         <h3 class="sub">Every plot, up close</h3>
         <p class="zoom-intro">Each plot below has the exact same size working area, drawn at its true shape, 20 wide by 15 tall.</p>
         <p class="zoom-intro">One plot per card.</p>
         <p class="zoom-intro">Everything inside is placed the way you would place it in game.</p>
+        <p class="true-note">How to count: each big square is 1 tile, and each tile holds 4 little squares across, like the game. Every facility sits on the lines. Its label gives its start: squares across and squares down from the top-left corner of the plot, counted in tiles.</p>
         <p class="true-note">Spread out a little, on purpose: the gaps between blocks are decorating room, so you can decorate around every facility instead of everything being squeezed together. The open grass on each board is yours to pretty up, not leftover space.</p>
 
         <div class="zoom-grid">
@@ -1159,7 +1215,7 @@
           <div class="zoom-card empty">
             <h4>Plot 13, Open Plot</h4>
             <p class="zoom-sub">Open land. Generators and Power Poles live in your pocket and can be dropped anywhere when the grid needs them.</p>
-            <div class="zoom-map tint-empty" role="img" aria-label="Plot 13, 20 by 15, drawn empty. Open land with nothing placed on it.">
+            <div class="zoom-map tint-empty counted" role="img" aria-label="Plot 13, 20 by 15, drawn empty. Open land with nothing placed on it.">
               <div class="empty-note">Open land<br />Nothing placed here</div>
             </div>
           </div>
@@ -1168,7 +1224,7 @@
           <div class="zoom-card workshop">
             <h4>Plot 14, Workshop Row 1</h4>
             <p class="zoom-sub">Pods, crafting, and woodwork together. Spread across the whole board, true scale.</p>
-            <div class="zoom-map tint-workshop true-map" role="img" aria-label="Workshop Row 1 plot, 20 by 15, true scale. Two Aniipod Makers, each 4.5 by 4.5, spread across the upper part of the board. One Crafting Table, 4 by 4, at the upper right, and a second Crafting Table, 4 by 4, in the lower left. Three Woodworking Benches, each 2 by 1.5, spread across the lower part of the board, with one Storage Unit, 2 by 2, at the lower right.">
+            <div class="zoom-map tint-workshop true-map counted" role="img" aria-label="Workshop Row 1 plot, 20 by 15, true scale. Two Aniipod Makers, each 4.5 by 4.5, spread across the upper part of the board. One Crafting Table, 4 by 4, at the upper right, and a second Crafting Table, 4 by 4, in the lower left. Three Woodworking Benches, each 2 by 1.5, spread across the lower part of the board, with one Storage Unit, 2 by 2, at the lower right.">
               <div class="ts-block" style="left:5%; top:6.667%; width:22.5%; height:30%;">Aniipod Maker<small>4.5 x 4.5</small></div>
               <div class="ts-block" style="left:37.5%; top:6.667%; width:22.5%; height:30%;">Aniipod Maker<small>4.5 x 4.5</small></div>
               <div class="ts-block" style="left:67.5%; top:6.667%; width:20%; height:26.667%; background:#2fa89a; border-color:#1f7f74;">Crafting Table<small>4 x 4</small></div>
@@ -1186,7 +1242,7 @@
           <div class="zoom-card workshop">
             <h4>Plot 15, Workshop Row 2</h4>
             <p class="zoom-sub">Kilns, pots, and stoves together. Spread across the whole board, true scale.</p>
-            <div class="zoom-map tint-workshop true-map" role="img" aria-label="Workshop Row 2 plot, 20 by 15, true scale. Three Chimney Kilns, each 5 by 5, spread across the upper part of the board. Two Simmering Pots, each 3 by 3, spread across the lower part. Two Blazing Stoves, each 2.5 by 2.5, beside the pots in the lower right. One Storage Unit, 2 by 2, in the bottom right corner.">
+            <div class="zoom-map tint-workshop true-map counted" role="img" aria-label="Workshop Row 2 plot, 20 by 15, true scale. Three Chimney Kilns, each 5 by 5, spread across the upper part of the board. Two Simmering Pots, each 3 by 3, spread across the lower part. Two Blazing Stoves, each 2.5 by 2.5, beside the pots in the lower right. One Storage Unit, 2 by 2, in the bottom right corner.">
               <div class="ts-block" style="left:5%; top:6.667%; width:25%; height:33.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
               <div class="ts-block" style="left:37.5%; top:6.667%; width:25%; height:33.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
               <div class="ts-block" style="left:70%; top:6.667%; width:25%; height:33.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
@@ -1203,7 +1259,7 @@
           <div class="zoom-card workshop">
             <h4>Plot 16, Workshop Row 3</h4>
             <p class="zoom-sub">Milling, looming, drying, pickling, and cooking. Spread across the whole board, true scale.</p>
-            <div class="zoom-map tint-workshop true-map" role="img" aria-label="Workshop Row 3 plot, 20 by 15, true scale. Two Carousel Mills, each 5 by 5, spread across the upper part of the board, with one Joy Wheel Loom, 4 by 4, at the upper right and a second Joy Wheel Loom, 4 by 4, in the lower left. Two Jukebox Dryers, each 2.5 by 2.5, in the lower middle, with two Pickling Jars, each 2.5 by 2, beside them. Two Claw Game Cookers, each 1.5 by 1.5, below the dryers, and one Storage Unit, 2 by 2, in the bottom right corner.">
+            <div class="zoom-map tint-workshop true-map counted" role="img" aria-label="Workshop Row 3 plot, 20 by 15, true scale. Two Carousel Mills, each 5 by 5, spread across the upper part of the board, with one Joy Wheel Loom, 4 by 4, at the upper right and a second Joy Wheel Loom, 4 by 4, in the lower left. Two Jukebox Dryers, each 2.5 by 2.5, in the lower middle, with two Pickling Jars, each 2.5 by 2, beside them. Two Claw Game Cookers, each 1.5 by 1.5, below the dryers, and one Storage Unit, 2 by 2, in the bottom right corner.">
               <div class="ts-block" style="left:5%; top:6.667%; width:25%; height:33.333%; background:#d99a22; border-color:#a87312;">Carousel Mill<small>5 x 5</small></div>
               <div class="ts-block" style="left:37.5%; top:6.667%; width:25%; height:33.333%; background:#d99a22; border-color:#a87312;">Carousel Mill<small>5 x 5</small></div>
               <div class="ts-block" style="left:70%; top:6.667%; width:20%; height:26.667%; background:#e58bb1; border-color:#b95f8a;">Joy Wheel Loom<small>4 x 4</small></div>
@@ -1223,7 +1279,7 @@
           <div class="zoom-card mine">
             <h4>Plot 12, The Mines</h4>
             <p class="zoom-sub">All 8 mines. Four across by two rows, spread down the board, true scale. One Storage Unit in the open strip.</p>
-            <div class="zoom-map tint-mine true-map" role="img" aria-label="The Mines plot, 20 by 15, true scale. Eight Mines, each 5 by 5, four across by two rows spread down the board with a gap between the rows. One Storage Unit, 2 by 2, in the open bottom strip. The rest of the bottom strip is open.">
+            <div class="zoom-map tint-mine true-map counted" role="img" aria-label="The Mines plot, 20 by 15, true scale. Eight Mines, each 5 by 5, four across by two rows spread down the board with a gap between the rows. One Storage Unit, 2 by 2, in the open bottom strip. The rest of the bottom strip is open.">
               <div class="ts-block" style="left:0%; top:3.333%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
               <div class="ts-block" style="left:25%; top:3.333%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
               <div class="ts-block" style="left:50%; top:3.333%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
@@ -1241,7 +1297,7 @@
           <div class="zoom-card wet">
             <h4>Plot 7, The Wet Works</h4>
             <p class="zoom-sub">Brewing, polishing, and wells together. Spread across the whole board, true scale.</p>
-            <div class="zoom-map tint-wet true-map" role="img" aria-label="The Wet Works plot, 20 by 15, true scale. Two Phonolfactories, each 3.5 by 3.5, spread across the upper part of the board. Two Bouncy Brew Kegs, each 3 by 3, beside them in the upper right. Three Wells, each 2 by 2, spread across the lower part of the board. One Dance Pad Polisher, 2.5 by 2.5, in the lower right, with one Storage Unit, 2 by 2, at the far right.">
+            <div class="zoom-map tint-wet true-map counted" role="img" aria-label="The Wet Works plot, 20 by 15, true scale. Two Phonolfactories, each 3.5 by 3.5, spread across the upper part of the board. Two Bouncy Brew Kegs, each 3 by 3, beside them in the upper right. Three Wells, each 2 by 2, spread across the lower part of the board. One Dance Pad Polisher, 2.5 by 2.5, in the lower right, with one Storage Unit, 2 by 2, at the far right.">
               <div class="ts-block" style="left:5%; top:6.667%; width:17.5%; height:23.333%; background:#3f97c4; border-color:#2a6f94;">Phonolfactory<small>3.5 x 3.5</small></div>
               <div class="ts-block" style="left:30%; top:6.667%; width:17.5%; height:23.333%; background:#3f97c4; border-color:#2a6f94;">Phonolfactory<small>3.5 x 3.5</small></div>
               <div class="ts-block" style="left:55%; top:6.667%; width:15%; height:20%; background:#2fa89a; border-color:#1f7f74;">Bouncy Brew Keg<small>3 x 3</small></div>
@@ -1255,65 +1311,96 @@
             <p class="diagram-caption">The open grass between the kegs, wells and polisher is decorating room.</p>
           </div>
 
+          <p class="farm-rule-note">Each pad sits in the middle of its zone. Drop a climate unit on a pad and its shaded 9 by 9 area covers every tree and field around it.</p>
+
           <!-- 7 Farm Plot A -->
           <div class="zoom-card farmplot">
             <h4>Plot 8, Farm Plot A</h4>
-            <p class="zoom-sub">Zone 1 on the left. Zone 2 on the right.</p>
-            <div class="zoom-map" role="img" aria-label="Farm Plot A, 20 by 15. Zone 1 has 5 Woodland, 5 Farmland, and 1 climate pad. Zone 2 has 4 Woodland, 9 Farmland, and 2 climate pads side by side for the Walnut cold plus sun pair. Each pad has a soft halo showing one climate unit reach.">
-              <div class="farm-zones">
-                <div class="farm-zone">
-                  <span class="zone-name">Zone 1</span>
-                  <div class="farm-tiles">
-                    <div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div>
-                    <div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div>
-                    <div class="ft-pad-wrap"><div class="ft-pad">PAD</div></div>
-                  </div>
-                </div>
-                <div class="farm-zone">
-                  <span class="zone-name">Zone 2</span>
-                  <div class="farm-tiles">
-                    <div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div>
-                    <div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div>
-                    <div class="ft-pad-wrap"><div class="ft-pad">PAD</div></div><div class="ft-pad-wrap"><div class="ft-pad">PAD</div></div>
-                  </div>
-                </div>
-              </div>
+            <p class="zoom-sub">Zone 1 on the left, Zone 2 on the right. Every pad sits in the middle of its zone, with its trees and fields arranged around it, inside the shaded 9 by 9 cover area. Zone 2 has two pads stacked as a pair, one for a Sunlamp and one for a Cooling Unit, for the Walnut.</p>
+            <div class="zoom-map farm-map counted" role="img" aria-label="Farm Plot A, 20 by 15, true scale with a counting grid. Zone 1 on the left has 5 Woodland squares, 5 Farmland squares, and 1 empty pad in its middle. Zone 2 on the right has 4 Woodland squares, 9 Farmland squares, and 2 empty pads stacked in its middle as a pair. A shaded 9 by 9 halo around each pad covers every tree and field in its zone.">
+              <div class="ts-halo" style="left:2.5%; top:20%; width:45%; height:60%;"></div>
+              <div class="ts-halo" style="left:52.5%; top:13.333%; width:45%; height:60%;"></div>
+              <div class="ts-halo" style="left:52.5%; top:26.667%; width:45%; height:60%;"></div>
+              <div class="zone-divider"></div>
+              <div class="ts-block farm-tree" style="left:0%; top:0%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:32.5%; top:0%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:0%; top:76.667%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:32.5%; top:76.667%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:0%; top:30%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-field" style="left:20%; top:6.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:32.5%; top:30%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:20%; top:80%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:32.5%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:2.5%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block ts-pad" style="left:20%; top:43.333%; width:10%; height:13.333%;">PAD<small>climate space</small><small class="starts">Starts 4 across, 6.5 down</small></div>
+              <div class="ts-block farm-tree" style="left:50%; top:0%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:82.5%; top:0%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:50%; top:76.667%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:82.5%; top:76.667%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-field" style="left:70%; top:6.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:50%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:60%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:80%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:90%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:50%; top:53.333%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:60%; top:53.333%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:80%; top:53.333%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:90%; top:53.333%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block ts-pad" style="left:70%; top:36.667%; width:10%; height:13.333%;">PAD<small>climate space</small><small class="starts">Starts 14 across, 5.5 down</small></div>
+              <div class="ts-block ts-pad" style="left:70%; top:50%; width:10%; height:13.333%;">PAD<small>climate space</small><small class="starts">Starts 14 across, 7.5 down</small></div>
             </div>
-            <div class="farm-legend"><span>Dark green: Woodland, 2 by 2</span><span>Light green: Farmland, 1 by 1</span><span>Purple: empty pad</span><span>Halo: one unit reach</span></div>
+            <div class="farm-legend"><span>Zone 1: 5 trees, 5 fields, 1 pad</span><span>Zone 2: 4 trees, 9 fields, 2 pads</span><span>Dark green T: Woodland, 3.5 by 3.5</span><span>Light green F: Farmland, 2 by 2</span><span>Purple PAD: empty climate space, 2 by 2, nothing planted on it</span><span>Shaded area: the 9 by 9 cover of one climate unit on that pad</span></div>
+            <p class="diagram-caption">Every tree and field in each zone touches its pad shaded area, so one unit dropped on the pad covers the whole zone. Zone 2 trees and fields touch at least one of its two pad areas.</p>
           </div>
 
           <!-- 8 Farm Plot B -->
           <div class="zoom-card farmplot">
             <h4>Plot 9, Farm Plot B</h4>
-            <p class="zoom-sub">Zone 3 on the left. Zone 4 on the right.</p>
-            <div class="zoom-map" role="img" aria-label="Farm Plot B, 20 by 15. Zone 3 has 4 Woodland, 9 Farmland, and 1 climate pad. Zone 4 has 4 Woodland, 11 Farmland, and 1 climate pad. Each pad has a soft halo showing one climate unit reach.">
-              <div class="farm-zones">
-                <div class="farm-zone">
-                  <span class="zone-name">Zone 3</span>
-                  <div class="farm-tiles">
-                    <div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div>
-                    <div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div>
-                    <div class="ft-pad-wrap"><div class="ft-pad">PAD</div></div>
-                  </div>
-                </div>
-                <div class="farm-zone">
-                  <span class="zone-name">Zone 4</span>
-                  <div class="farm-tiles">
-                    <div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div><div class="ft-wood">T</div>
-                    <div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div><div class="ft-field">F</div>
-                    <div class="ft-pad-wrap"><div class="ft-pad">PAD</div></div>
-                  </div>
-                </div>
-              </div>
+            <p class="zoom-sub">Zone 3 on the left, Zone 4 on the right. Every pad sits in the middle of its zone, with its trees and fields arranged around it, inside the shaded 9 by 9 cover area.</p>
+            <div class="zoom-map farm-map counted" role="img" aria-label="Farm Plot B, 20 by 15, true scale with a counting grid. Zone 3 on the left has 4 Woodland squares, 9 Farmland squares, and 1 empty pad in its middle. Zone 4 on the right has 4 Woodland squares, 11 Farmland squares, and 1 empty pad in its middle. A shaded 9 by 9 halo around each pad covers every tree and field in its zone.">
+              <div class="ts-halo" style="left:2.5%; top:20%; width:45%; height:60%;"></div>
+              <div class="ts-halo" style="left:52.5%; top:20%; width:45%; height:60%;"></div>
+              <div class="zone-divider"></div>
+              <div class="ts-block farm-tree" style="left:0%; top:0%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:32.5%; top:0%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:0%; top:76.667%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:32.5%; top:76.667%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-field" style="left:20%; top:6.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:0%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:10%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:30%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:40%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:0%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:10%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:30%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:40%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block ts-pad" style="left:20%; top:43.333%; width:10%; height:13.333%;">PAD<small>climate space</small><small class="starts">Starts 4 across, 6.5 down</small></div>
+              <div class="ts-block farm-tree" style="left:50%; top:0%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:82.5%; top:0%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:50%; top:76.667%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:82.5%; top:76.667%; width:17.5%; height:23.333%;">T<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-field" style="left:70%; top:6.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:50%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:60%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:80%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:90%; top:26.667%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:50%; top:43.333%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:90%; top:43.333%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:50%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:60%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:80%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:90%; top:60%; width:10%; height:13.333%;">F<small>2 x 2</small></div>
+              <div class="ts-block ts-pad" style="left:70%; top:43.333%; width:10%; height:13.333%;">PAD<small>climate space</small><small class="starts">Starts 14 across, 6.5 down</small></div>
             </div>
-            <div class="farm-legend"><span>Dark green: Woodland, 2 by 2</span><span>Light green: Farmland, 1 by 1</span><span>Purple: empty pad</span><span>Halo: one unit reach</span></div>
+            <div class="farm-legend"><span>Zone 3: 4 trees, 9 fields, 1 pad</span><span>Zone 4: 4 trees, 11 fields, 1 pad</span><span>Dark green T: Woodland, 3.5 by 3.5</span><span>Light green F: Farmland, 2 by 2</span><span>Purple PAD: empty climate space, 2 by 2, nothing planted on it</span><span>Shaded area: the 9 by 9 cover of one climate unit on that pad</span></div>
+            <p class="diagram-caption">Every tree and field in each zone touches its pad shaded area, so one unit dropped on the pad covers the whole zone.</p>
           </div>
 
           <!-- 9 Leisure Corner -->
           <div class="zoom-card leisure">
             <h4>Plot 11, The Leisure Corner</h4>
             <p class="zoom-sub">Spread across the whole board, true scale, with open grass between everything to decorate. One Storage Unit lives here too.</p>
-            <div class="zoom-map tint-leisure true-map" role="img" aria-label="The Leisure Corner plot, 20 by 15, true scale. Two Tidewhisper Sandcastles, each 5 by 5, one at the upper left and one at the upper right. Two Nimbus Beds, each 5 by 5, one in the upper middle and one in the lower left. One Starfall Hammock, 5 by 5, in the lower middle. One Dewy House, 2 by 2, at the lower right. One Storage Unit, 2 by 2, in the bottom right corner. Everything is spread out across the board with open grass between.">
+            <div class="zoom-map tint-leisure true-map counted" role="img" aria-label="The Leisure Corner plot, 20 by 15, true scale. Two Tidewhisper Sandcastles, each 5 by 5, one at the upper left and one at the upper right. Two Nimbus Beds, each 5 by 5, one in the upper middle and one in the lower left. One Starfall Hammock, 5 by 5, in the lower middle. One Dewy House, 2 by 2, at the lower right. One Storage Unit, 2 by 2, in the bottom right corner. Everything is spread out across the board with open grass between.">
               <div class="ts-block" style="left:5%; top:6.667%; width:25%; height:33.333%; background:#e58bb1; border-color:#b95f8a;">Tidewhisper Sandcastle<small>5 x 5</small></div>
               <div class="ts-block" style="left:40%; top:6.667%; width:25%; height:33.333%; background:#8d72d6; border-color:#6d4fc2;">Nimbus Bed<small>5 x 5</small></div>
               <div class="ts-block" style="left:72.5%; top:6.667%; width:25%; height:33.333%; background:#e58bb1; border-color:#b95f8a;">Tidewhisper Sandcastle<small>5 x 5</small></div>
@@ -1354,7 +1441,7 @@
           <div class="zoom-card hatchery">
             <h4>Plot 6, The Hatchery</h4>
             <p class="zoom-sub">All 10 Hatchinators. Two rows of 5, spread across the whole board, true scale.</p>
-            <div class="zoom-map tint-hatchery true-map" role="img" aria-label="The Hatchery plot, 20 by 15, true scale. Ten Hatchinators, each 2 by 2, in two rows of five spread across the whole board, one row in the upper part and one row in the lower part, with open grass between the rows.">
+            <div class="zoom-map tint-hatchery true-map counted" role="img" aria-label="The Hatchery plot, 20 by 15, true scale. Ten Hatchinators, each 2 by 2, in two rows of five spread across the whole board, one row in the upper part and one row in the lower part, with open grass between the rows.">
               <div class="ts-block tiny" style="left:5%; top:16.667%; width:10%; height:13.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
               <div class="ts-block tiny" style="left:22.5%; top:16.667%; width:10%; height:13.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
               <div class="ts-block tiny" style="left:40%; top:16.667%; width:10%; height:13.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
@@ -1480,6 +1567,7 @@
           </div>
         </div>
         <p class="diagram-caption">Two full blocks, then the next one stamped on pale beside them. Stamp the same block on again and the row keeps going.</p>
+        <p class="sketch-note">Sketch only, squares here are not one tile each.</p>
 
         <ul class="points">
           <li>Every block is the same: 4 trees, 8 fields, 1 pad</li>
@@ -1509,6 +1597,7 @@
           </div>
         </div>
         <p class="diagram-caption">One grove, drawn from above. The full plan uses two groves and one smaller field ring.</p>
+        <p class="sketch-note">Sketch only, squares here are not one tile each.</p>
 
         <ul class="points">
           <li>Build 2 groves, plus 1 smaller field only ring.</li>
@@ -1541,6 +1630,7 @@
           </div>
         </div>
         <p class="diagram-caption">This map shows the full count: all 34 fields and all 17 trees. Your trees move once into one tidy block.</p>
+        <p class="sketch-note">Sketch only, squares here are not one tile each.</p>
 
         <ul class="points">
           <li>Fields stay in the tight grid you already have, just squared up.</li>
@@ -1573,6 +1663,7 @@
           </div>
         </div>
         <p class="diagram-caption">Shape study, not the full count. This map draws 24 fields and 8 trees. For your full build, add 5 fields to each strip to reach 34, and stretch the tree ring bigger to hold all 17 trees.</p>
+        <p class="sketch-note">Sketch only, squares here are not one tile each.</p>
 
         <ul class="points">
           <li>Fields sit in long strips.</li>
@@ -1701,6 +1792,102 @@
         [[1, 2], [5, 2], [2, 10], [6, 10]],
         [[0, 5], [2, 5], [4, 5], [7, 5], [8, 6], [1, 8], [3, 6], [6, 8], [8, 9], [3, 9], [0, 12]],
         [[5, 7]]);
+
+      // Counting grid: fine lines every quarter tile, stronger lines every tile,
+      // numbers 1 to 20 along the top and 1 to 15 down the left.
+      document.querySelectorAll('.zoom-map.counted').forEach(function (map) {
+        var grid = document.createElement('div');
+        grid.className = 'count-grid';
+        var c, r, num;
+        for (c = 1; c <= 20; c++) {
+          num = document.createElement('span');
+          num.className = 'grid-num gtop';
+          num.style.left = ((c - 0.5) * 5) + '%';
+          num.textContent = c;
+          grid.appendChild(num);
+        }
+        for (r = 1; r <= 15; r++) {
+          num = document.createElement('span');
+          num.className = 'grid-num gleft';
+          num.style.top = ((r - 0.5) * 100 / 15) + '%';
+          num.textContent = r;
+          grid.appendChild(num);
+        }
+        for (c = 1; c <= 20; c++) {
+          num = document.createElement('span');
+          num.className = 'grid-num gbottom';
+          num.style.left = ((c - 0.5) * 5) + '%';
+          num.textContent = c;
+          grid.appendChild(num);
+        }
+        map.appendChild(grid);
+      });
+
+      // Start positions for the true scale boards, matched to blocks by name
+      // in the order they appear on each board. Boards in page order:
+      // Plot 14, Plot 15, Plot 16, Plot 12, Plot 7, Plot 11, Plot 6.
+      var boardStarts = [
+        {
+          'Aniipod Maker': [[1, 1], [7.5, 1]],
+          'Crafting Table': [[13.5, 1], [2, 8]],
+          'Woodworking Bench': [[8, 8], [11, 8], [14, 8]],
+          'Storage Unit': [[17, 8]]
+        },
+        {
+          'Chimney Kiln': [[1, 1], [7.5, 1], [14, 1]],
+          'Simmering Pot': [[2, 8], [7, 8]],
+          'Blazing Stove': [[12, 8], [15.5, 8]],
+          'Storage Unit': [[16, 11]]
+        },
+        {
+          'Carousel Mill': [[1, 1], [7.5, 1]],
+          'Joy Wheel Loom': [[14, 1], [1, 8]],
+          'Jukebox Dryer': [[6.5, 8], [10, 8]],
+          'Pickling Jar': [[13.5, 8], [17, 8]],
+          'Claw Game Cooker': [[6.5, 11.5], [9, 11.5]],
+          'Storage Unit': [[17, 11]]
+        },
+        {
+          'Mine': [[0, 0.5], [5, 0.5], [10, 0.5], [15, 0.5], [0, 6], [5, 6], [10, 6], [15, 6]],
+          'Storage Unit': [[1, 12]]
+        },
+        {
+          'Phonolfactory': [[1, 1], [6, 1]],
+          'Bouncy Brew Keg': [[11, 1], [15.5, 1]],
+          'Well': [[1, 7], [5, 7], [9, 7]],
+          'Dance Pad Polisher': [[13, 7]],
+          'Storage Unit': [[17, 7]]
+        },
+        {
+          'Tidewhisper Sandcastle': [[1, 1], [14.5, 1]],
+          'Nimbus Bed': [[8, 1], [2, 8.5]],
+          'Starfall Hammock': [[9, 8.5]],
+          'Dewy House': [[16, 8.5]],
+          'Storage Unit': [[17, 11]]
+        },
+        {
+          'Hatchinator': [[1, 2.5], [4.5, 2.5], [8, 2.5], [11.5, 2.5], [15, 2.5], [1, 8], [4.5, 8], [8, 8], [11.5, 8], [15, 8]]
+        }
+      ];
+
+      document.querySelectorAll('.zoom-map.true-map').forEach(function (map, mi) {
+        var starts = boardStarts[mi];
+        if (!starts) return;
+        var seen = {};
+        map.querySelectorAll('.ts-block').forEach(function (block) {
+          var name = block.childNodes[0].textContent.trim();
+          var list = starts[name];
+          if (!list) return;
+          var idx = seen[name] || 0;
+          seen[name] = idx + 1;
+          var pos = list[idx];
+          if (!pos) return;
+          var line = document.createElement('small');
+          line.className = 'starts';
+          line.textContent = 'Starts ' + pos[0] + ' across, ' + pos[1] + ' down';
+          block.appendChild(line);
+        });
+      });
     </script>
   </body>
 </html>
