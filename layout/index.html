@@ -1068,6 +1068,114 @@
         .combined-shared-label { padding: 4px 6px; white-space: normal; }
       }
 
+      /* Game placement grid boards (Plot 8 and Plot 7 only): grass green,
+         white lines like the game — every big square split into its 4
+         little squares with fine light lines, big-square lines stronger.
+         No violet guides, no outside counting numbers, no start labels. */
+      .zoom-map.game-board {
+        padding: 0;
+        container-type: inline-size;
+        background-color: #7cc24f;
+        border-color: #5da244;
+        box-shadow: inset 0 0 0 3px rgba(46, 105, 32, 0.18);
+      }
+      .zoom-map.game-board-8 {
+        aspect-ratio: 33 / 19;
+        background-image:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.95) 2px, transparent 2px),
+          linear-gradient(rgba(255, 255, 255, 0.95) 2px, transparent 2px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+        background-size: 3.0303% 5.2632%, 3.0303% 5.2632%, 1.5152% 2.6316%, 1.5152% 2.6316%;
+      }
+      .zoom-map.game-board-7 {
+        aspect-ratio: 20 / 19;
+        background-image:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.95) 2px, transparent 2px),
+          linear-gradient(rgba(255, 255, 255, 0.95) 2px, transparent 2px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+        background-size: 5% 5.2632%, 5% 5.2632%, 2.5% 2.6316%, 2.5% 2.6316%;
+      }
+      .game-board .plot-edge-v {
+        position: absolute; z-index: 4; top: 0; height: 78.947%;
+        width: 0; border-left: 4px solid rgba(255, 255, 255, 0.98);
+        box-shadow: 0 0 0 1px rgba(46, 105, 32, 0.45);
+        pointer-events: none;
+      }
+      .game-board .plot-edge-h {
+        position: absolute; z-index: 4; left: 0; top: 78.947%;
+        height: 0; border-top: 4px solid rgba(255, 255, 255, 0.98);
+        box-shadow: 0 0 0 1px rgba(46, 105, 32, 0.45);
+        pointer-events: none;
+      }
+      .ts-block.anchor-block {
+        opacity: 0.74;
+        filter: saturate(0.72);
+        border-style: dashed;
+        z-index: 1;
+      }
+      .ts-block.anchor-block small.placed {
+        font-size: 0.62em;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+      }
+      .zoom-card.wide-card { grid-column: 1 / -1; }
+      .neighbor-tag {
+        position: absolute; z-index: 5;
+        padding: 3px 8px;
+        color: #274b32;
+        background: rgba(255, 255, 255, 0.92);
+        border: 2px solid rgba(46, 105, 32, 0.4);
+        border-radius: 999px;
+        font-size: clamp(9px, 2.2cqw, 14px);
+        font-weight: 900;
+        line-height: 1.2;
+        pointer-events: none;
+      }
+
+      /* Whole homeland board: one continuous 80 by 60 board, every plot
+         in its true spot, drawn with the game's grid like the Plot 8 and
+         Plot 7 boards. No outside counting numbers. */
+      .zoom-map.homeland-map {
+        aspect-ratio: 80 / 60;
+        padding: 0;
+        container-type: inline-size;
+        background-color: #7cc24f;
+        border-color: #5da244;
+        box-shadow: inset 0 0 0 3px rgba(46, 105, 32, 0.18);
+        background-image:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.98) 3px, transparent 3px),
+          linear-gradient(rgba(255, 255, 255, 0.98) 3px, transparent 3px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.95) 2px, transparent 2px),
+          linear-gradient(rgba(255, 255, 255, 0.95) 2px, transparent 2px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+        background-size: 25% 100%, 100% 25%, 1.25% 100%, 100% 1.6667%, 0.625% 100%, 100% 0.8333%;
+      }
+      .homeland-map .ts-block {
+        border-width: 2px;
+        border-radius: 4px;
+        padding: 1px;
+        font-size: clamp(5px, 0.72cqw, 11px);
+        line-height: 1.05;
+      }
+      .homeland-map .ts-block small { font-size: 0.78em; }
+      .plot-tag {
+        position: absolute;
+        z-index: 8;
+        padding: 2px 7px;
+        color: #274b32;
+        background: rgba(255, 255, 255, 0.92);
+        border: 2px solid rgba(46, 105, 32, 0.45);
+        border-radius: 999px;
+        font-size: clamp(8px, 1.15cqw, 15px);
+        font-weight: 900;
+        line-height: 1.2;
+        transform: translate(5px, 5px);
+        pointer-events: none;
+      }
+
       /* Farm coverage boards */
       .zoom-map.farm-map { padding: 0; container-type: inline-size; }
       .zone-divider { position: absolute; z-index: 1; top: 0; bottom: 0; left: 50%; width: 0; border-left: 3px dashed rgba(76, 52, 133, 0.4); pointer-events: none; }
@@ -1290,6 +1398,142 @@
           </a>
         </div>
         <p class="diagram-caption">Laid out like the game's Home Management screen, in the plots' true positions. Tap any tile to jump straight to that plot's board below.</p>
+
+        <h3 class="sub">The whole homeland, square by square</h3>
+        <p class="zoom-intro zoom-hint">Tap the map to zoom right in.</p>
+        <p class="zoom-intro">Your whole homeland on one board: all 16 plots in their true spots, 80 big squares across and 60 up, drawn with the game's own grid. Every facility sits on its true squares, the same spots as on its own plot card below. Climate spots and PADs are empty grass in game, so they are empty grass here too.</p>
+        <div class="zoom-map homeland-map zoomable-board" tabindex="0" role="img" aria-label="The whole homeland on one board, 80 big squares across and 60 up, drawn like the game's placement grid on grass, white lines, every big square split into 4 little squares. All 16 plots in their true positions: back row Plot 13 the Mines, Plot 14, Plot 15, Plot 16. Next row Plot 12, Plot 7 Workshop Row 1, Plot 8 Workshop Row 2, Plot 9 Workshop Row 3. Next row Plot 11, Plot 4 the Wet Works, Plot 3 Farm Plot A, Plot 6 Farm Plot B. Front row Plot 10 the Leisure Corner, Plot 2 the Decorating Plot, Plot 1 the Event Plot, Plot 5 the Hatchery. Every facility from every plot card is drawn at its true size on its true squares.">
+              <div class="ts-block" style="left:0%; top:0%; width:6.25%; height:8.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:6.25%; top:0%; width:6.25%; height:8.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:12.5%; top:0%; width:6.25%; height:8.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:18.75%; top:0%; width:6.25%; height:8.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:0%; top:10%; width:6.25%; height:8.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:6.25%; top:10%; width:6.25%; height:8.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:12.5%; top:10%; width:6.25%; height:8.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:18.75%; top:10%; width:6.25%; height:8.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:1.25%; top:20%; width:2.5%; height:3.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
+              <div class="ts-block" style="left:26.25%; top:27.5%; width:5.625%; height:7.5%;">Aniipod Maker<small>4.5 x 4.5</small></div>
+              <div class="ts-block" style="left:33.75%; top:27.5%; width:5.625%; height:7.5%;">Aniipod Maker<small>4.5 x 4.5</small></div>
+              <div class="ts-block" style="left:41.25%; top:26.667%; width:5%; height:6.667%; background:#2fa89a; border-color:#1f7f74;">Crafting Table<small>4 x 4</small></div>
+              <div class="ts-block" style="left:27.5%; top:38.333%; width:5%; height:6.667%; background:#2fa89a; border-color:#1f7f74;">Crafting Table<small>4 x 4</small></div>
+              <div class="ts-block" style="left:46.25%; top:38.333%; width:2.5%; height:3.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
+              <div class="ts-block" style="left:35%; top:39.167%; width:2.5%; height:2.5%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
+              <div class="ts-block" style="left:38.75%; top:39.167%; width:2.5%; height:2.5%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
+              <div class="ts-block" style="left:42.5%; top:39.167%; width:2.5%; height:2.5%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
+              <div class="ts-block" style="left:51.25%; top:26.667%; width:6.25%; height:8.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
+              <div class="ts-block" style="left:58.75%; top:26.667%; width:6.25%; height:8.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
+              <div class="ts-block" style="left:67.5%; top:26.667%; width:6.25%; height:8.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
+              <div class="ts-block" style="left:70%; top:43.333%; width:2.5%; height:3.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
+              <div class="ts-block" style="left:52.5%; top:38.333%; width:3.75%; height:5%; background:#3f97c4; border-color:#2a6f94;">Simmering Pot<small>3 x 3</small></div>
+              <div class="ts-block" style="left:58.75%; top:38.333%; width:3.75%; height:5%; background:#3f97c4; border-color:#2a6f94;">Simmering Pot<small>3 x 3</small></div>
+              <div class="ts-block" style="left:65%; top:39.167%; width:3.125%; height:4.167%; background:#d95f7a; border-color:#a83e57;">Blazing Stove<small>2.5 x 2.5</small></div>
+              <div class="ts-block" style="left:70%; top:39.167%; width:3.125%; height:4.167%; background:#d95f7a; border-color:#a83e57;">Blazing Stove<small>2.5 x 2.5</small></div>
+              <div class="ts-block" style="left:76.25%; top:25%; width:6.25%; height:8.333%; background:#d99a22; border-color:#a87312;">Carousel Mill<small>5 x 5</small></div>
+              <div class="ts-block" style="left:83.75%; top:25%; width:6.25%; height:8.333%; background:#d99a22; border-color:#a87312;">Carousel Mill<small>5 x 5</small></div>
+              <div class="ts-block" style="left:92.5%; top:25%; width:5%; height:6.667%; background:#e58bb1; border-color:#b95f8a;">Joy Wheel Loom<small>4 x 4</small></div>
+              <div class="ts-block" style="left:76.25%; top:38.333%; width:5%; height:6.667%; background:#e58bb1; border-color:#b95f8a;">Joy Wheel Loom<small>4 x 4</small></div>
+              <div class="ts-block" style="left:83.75%; top:37.5%; width:3.125%; height:4.167%; background:#3f97c4; border-color:#2a6f94;">Jukebox Dryer<small>2.5 x 2.5</small></div>
+              <div class="ts-block" style="left:87.5%; top:37.5%; width:3.125%; height:4.167%; background:#3f97c4; border-color:#2a6f94;">Jukebox Dryer<small>2.5 x 2.5</small></div>
+              <div class="ts-block" style="left:92.5%; top:36.667%; width:3.125%; height:3.333%; background:#2fa89a; border-color:#1f7f74;">Pickling Jar<small>2.5 x 2</small></div>
+              <div class="ts-block" style="left:96.25%; top:36.667%; width:3.125%; height:3.333%; background:#2fa89a; border-color:#1f7f74;">Pickling Jar<small>2.5 x 2</small></div>
+              <div class="ts-block" style="left:83.75%; top:44.167%; width:1.875%; height:2.5%; background:#d95f7a; border-color:#a83e57;">Claw Game Cooker<small>1.5 x 1.5</small></div>
+              <div class="ts-block" style="left:86.25%; top:44.167%; width:1.875%; height:2.5%; background:#d95f7a; border-color:#a83e57;">Claw Game Cooker<small>1.5 x 1.5</small></div>
+              <div class="ts-block" style="left:96.25%; top:43.333%; width:2.5%; height:3.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
+              <div class="ts-block" style="left:26.25%; top:50.833%; width:4.375%; height:5.833%; background:#3f97c4; border-color:#2a6f94;">Phonolfactory<small>3.5 x 3.5</small></div>
+              <div class="ts-block" style="left:32.5%; top:50.833%; width:4.375%; height:5.833%; background:#3f97c4; border-color:#2a6f94;">Phonolfactory<small>3.5 x 3.5</small></div>
+              <div class="ts-block" style="left:38.75%; top:51.667%; width:3.75%; height:5%; background:#2fa89a; border-color:#1f7f74;">Bouncy Brew Keg<small>3 x 3</small></div>
+              <div class="ts-block" style="left:43.75%; top:51.667%; width:3.75%; height:5%; background:#2fa89a; border-color:#1f7f74;">Bouncy Brew Keg<small>3 x 3</small></div>
+              <div class="ts-block" style="left:26.25%; top:61.667%; width:2.5%; height:3.333%;">Well<small>2 x 2</small></div>
+              <div class="ts-block" style="left:31.25%; top:61.667%; width:2.5%; height:3.333%;">Well<small>2 x 2</small></div>
+              <div class="ts-block" style="left:36.25%; top:61.667%; width:2.5%; height:3.333%;">Well<small>2 x 2</small></div>
+              <div class="ts-block" style="left:41.25%; top:62.5%; width:3.125%; height:4.167%; background:#e58bb1; border-color:#b95f8a;">Dance Pad Polisher<small>2.5 x 2.5</small></div>
+              <div class="ts-block" style="left:46.25%; top:61.667%; width:2.5%; height:3.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
+              <div class="ts-block farm-tree" style="left:50%; top:50.833%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:57.5%; top:50.833%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:50%; top:69.167%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:57.5%; top:69.167%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:50%; top:57.5%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:62.5%; top:50.833%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:70%; top:50.833%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:62.5%; top:69.167%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:70%; top:69.167%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-field" style="left:55%; top:53.333%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:57.5%; top:58.333%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:55%; top:70%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:57.5%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:50%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:67.5%; top:51.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:62.5%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:65%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:70%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:72.5%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:62.5%; top:63.333%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:65%; top:63.333%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:70%; top:63.333%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:72.5%; top:63.333%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-tree" style="left:75%; top:50.833%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:82.5%; top:50.833%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:75%; top:69.167%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:82.5%; top:69.167%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:87.5%; top:50.833%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:95%; top:50.833%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:87.5%; top:69.167%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-tree" style="left:95%; top:69.167%; width:4.375%; height:5.833%;">Woodland<small>3.5 x 3.5</small></div>
+              <div class="ts-block farm-field" style="left:80%; top:53.333%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:75%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:77.5%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:82.5%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:85%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:75%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:77.5%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:82.5%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:85%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:92.5%; top:53.333%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:87.5%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:90%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:95%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:97.5%; top:56.667%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:87.5%; top:60%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:97.5%; top:60%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:87.5%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:90%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:95%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block farm-field" style="left:97.5%; top:65%; width:2.5%; height:3.333%;">Farmland<small>2 x 2</small></div>
+              <div class="ts-block" style="left:1.25%; top:76.667%; width:6.25%; height:8.333%; background:#e58bb1; border-color:#b95f8a;">Tidewhisper Sandcastle<small>5 x 5</small></div>
+              <div class="ts-block" style="left:10%; top:76.667%; width:6.25%; height:8.333%; background:#8d72d6; border-color:#6d4fc2;">Nimbus Bed<small>5 x 5</small></div>
+              <div class="ts-block" style="left:17.5%; top:76.667%; width:6.25%; height:8.333%; background:#e58bb1; border-color:#b95f8a;">Tidewhisper Sandcastle<small>5 x 5</small></div>
+              <div class="ts-block" style="left:2.5%; top:88.333%; width:6.25%; height:8.333%; background:#8d72d6; border-color:#6d4fc2;">Nimbus Bed<small>5 x 5</small></div>
+              <div class="ts-block" style="left:11.25%; top:88.333%; width:6.25%; height:8.333%; background:#e58bb1; border-color:#b95f8a;">Starfall Hammock<small>5 x 5</small></div>
+              <div class="ts-block" style="left:20%; top:88.333%; width:2.5%; height:3.333%; background:#8d72d6; border-color:#6d4fc2;">Dewy House<small>2 x 2</small></div>
+              <div class="ts-block" style="left:21.25%; top:93.333%; width:2.5%; height:3.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
+              <div class="ts-block" style="left:76.25%; top:78.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:80%; top:78.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:85%; top:78.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:88.75%; top:78.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:93.75%; top:78.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:76.25%; top:88.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:80%; top:88.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:85%; top:88.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:88.75%; top:88.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <div class="ts-block" style="left:93.75%; top:88.333%; width:2.5%; height:3.333%; background:#e07f45; border-color:#b85f27;">Hatchinator<small>2 x 2</small></div>
+              <span class="plot-tag" style="left:0%; top:0%;">Plot 13</span>
+              <span class="plot-tag" style="left:25%; top:0%;">Plot 14</span>
+              <span class="plot-tag" style="left:50%; top:0%;">Plot 15</span>
+              <span class="plot-tag" style="left:75%; top:0%;">Plot 16</span>
+              <span class="plot-tag" style="left:0%; top:25%;">Plot 12</span>
+              <span class="plot-tag" style="left:25%; top:25%;">Plot 7</span>
+              <span class="plot-tag" style="left:50%; top:25%;">Plot 8</span>
+              <span class="plot-tag" style="left:75%; top:25%;">Plot 9</span>
+              <span class="plot-tag" style="left:0%; top:50%;">Plot 11</span>
+              <span class="plot-tag" style="left:25%; top:50%;">Plot 4</span>
+              <span class="plot-tag" style="left:50%; top:50%;">Plot 3</span>
+              <span class="plot-tag" style="left:75%; top:50%;">Plot 6</span>
+              <span class="plot-tag" style="left:0%; top:75%;">Plot 10</span>
+              <span class="plot-tag" style="left:25%; top:75%;">Plot 2</span>
+              <span class="plot-tag" style="left:50%; top:75%;">Plot 1</span>
+              <span class="plot-tag" style="left:75%; top:75%;">Plot 5</span>
+        </div>
+        <p class="diagram-caption">Plots 8 and 7 show where their pieces go. Every other plot is drawn the way you already built it.</p>
 
         <h3 class="sub">Every plot, up close</h3>
         <p class="zoom-intro zoom-hint">Tap any plot to zoom in.</p>
@@ -1571,36 +1815,61 @@
           </div>
 
           <!-- 10 Workshop Row 2 -->
-          <div class="zoom-card workshop" id="plot-8">
+          <div class="zoom-card workshop wide-card" id="plot-8">
             <h4>Plot 8, Workshop Row 2</h4>
-            <p class="zoom-sub">Kilns, pots, and stoves together. Spread across the whole board, true scale.</p>
-            <div class="zoom-map tint-workshop true-map counted zoomable-board" tabindex="0" role="img" aria-label="Workshop Row 2 plot, 20 by 15, true scale. Three Chimney Kilns, each 5 by 5, spread across the upper part of the board. Two Simmering Pots, each 3 by 3, spread across the lower part. Two Blazing Stoves, each 2.5 by 2.5, beside the pots in the lower right. One Storage Unit, 2 by 2, in the bottom right corner.">
-              <div class="ts-block" style="left:5%; top:6.667%; width:25%; height:33.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
-              <div class="ts-block" style="left:35%; top:6.667%; width:25%; height:33.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
-              <div class="ts-block" style="left:70%; top:6.667%; width:25%; height:33.333%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
-              <div class="ts-block" style="left:80%; top:73.333%; width:10%; height:13.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
-              <div class="ts-block" style="left:10%; top:53.333%; width:15%; height:20%; background:#3f97c4; border-color:#2a6f94;">Simmering Pot<small>3 x 3</small></div>
-              <div class="ts-block" style="left:35%; top:53.333%; width:15%; height:20%; background:#3f97c4; border-color:#2a6f94;">Simmering Pot<small>3 x 3</small></div>
-              <div class="ts-block" style="left:60%; top:56.667%; width:12.5%; height:16.667%; background:#d95f7a; border-color:#a83e57;">Blazing Stove<small>2.5 x 2.5</small></div>
-              <div class="ts-block" style="left:80%; top:56.667%; width:12.5%; height:16.667%; background:#d95f7a; border-color:#a83e57;">Blazing Stove<small>2.5 x 2.5</small></div>
+            <p class="zoom-sub">Kilns, pots, and stoves together. Spread across the whole board, true scale. Drawn like the game's own placement grid, with the pieces already placed next door drawn in.</p>
+            <div class="zoom-map true-map game-board game-board-8 zoomable-board" tabindex="0" role="img" aria-label="Workshop Row 2 plot, 20 by 15, drawn like the game's placement grid on grass, white lines, every big square split into 4 little squares. Three Chimney Kilns, each 5 by 5, spread across the upper part of the board. Two Simmering Pots, each 3 by 3, spread across the lower part. Two Blazing Stoves, each 2.5 by 2.5, beside the pots in the lower right. One Storage Unit, 2 by 2, in the lower right. Along the right edge, already placed on Plot 9: two Carousel Mills at the back and one Joy Wheel Loom in front of them. Along the front edge, already placed on Plot 3: its top row of Woodlands.">
+              <div class="ts-block" style="left:3.03%; top:5.263%; width:15.152%; height:26.316%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
+              <div class="ts-block" style="left:21.212%; top:5.263%; width:15.152%; height:26.316%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
+              <div class="ts-block" style="left:42.424%; top:5.263%; width:15.152%; height:26.316%; background:#e8734a; border-color:#b94f2a;">Chimney Kiln<small>5 x 5</small></div>
+              <div class="ts-block" style="left:48.485%; top:57.895%; width:6.061%; height:10.526%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
+              <div class="ts-block" style="left:6.061%; top:42.105%; width:9.091%; height:15.789%; background:#3f97c4; border-color:#2a6f94;">Simmering Pot<small>3 x 3</small></div>
+              <div class="ts-block" style="left:21.212%; top:42.105%; width:9.091%; height:15.789%; background:#3f97c4; border-color:#2a6f94;">Simmering Pot<small>3 x 3</small></div>
+              <div class="ts-block" style="left:36.364%; top:44.737%; width:7.576%; height:13.158%; background:#d95f7a; border-color:#a83e57;">Blazing Stove<small>2.5 x 2.5</small></div>
+              <div class="ts-block" style="left:48.485%; top:44.737%; width:7.576%; height:13.158%; background:#d95f7a; border-color:#a83e57;">Blazing Stove<small>2.5 x 2.5</small></div>
+              <div class="ts-block anchor-block" style="left:63.636%; top:0%; width:15.152%; height:26.316%; background:#d99a22; border-color:#a87312;">Carousel Mill<small>5 x 5</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block" style="left:81.818%; top:0%; width:15.152%; height:26.316%; background:#d99a22; border-color:#a87312;">Carousel Mill<small>5 x 5</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block" style="left:63.636%; top:42.105%; width:12.121%; height:21.053%; background:#e58bb1; border-color:#b95f8a;">Joy Wheel Loom<small>4 x 4</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block tiny" style="left:0%; top:81.579%; width:10.606%; height:18.421%; background:#24784a; border-color:#145c35;">Woodland<small>3.5 x 3.5</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block tiny" style="left:18.182%; top:81.579%; width:10.606%; height:18.421%; background:#24784a; border-color:#145c35;">Woodland<small>3.5 x 3.5</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block tiny" style="left:30.303%; top:81.579%; width:10.606%; height:18.421%; background:#24784a; border-color:#145c35;">Woodland<small>3.5 x 3.5</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block tiny" style="left:48.485%; top:81.579%; width:10.606%; height:18.421%; background:#24784a; border-color:#145c35;">Woodland<small>3.5 x 3.5</small><small class="placed">Already placed</small></div>
+              <div class="plot-edge-v" style="left:60.606%;"></div>
+              <div class="plot-edge-h" style="width:60.606%;"></div>
+              <span class="neighbor-tag" style="left:63.636%; top:29.5%;">Plot 9, already placed</span>
+              <span class="neighbor-tag" style="left:1.5%; top:70.5%;">Plot 3 below, already placed</span>
             </div>
+            <p class="card-note">Your walk for this plot, right to left, front to back, whole squares only. Anchor first: the Storage Unit. Its left edge lines up with the left edge of Plot 3's top right Woodland, drawn below the front edge. Count 2 squares back into Plot 8 from that shared border to its bottom line. Check: its right edge sits 2 squares in from Plot 8's right edge.</p>
+            <p class="card-note">Front band, right side: Blazing Stoves, bottoms on one line. That bottom line sits 2 squares behind the Storage Unit's bottom line, level with the top of the Storage Unit. The right Blazing Stove's left edge lines up with the Storage Unit's left edge, straight behind it. The left Blazing Stove: count 4 squares left from the right stove, left edge to left edge, bottoms lined up. The right stove's right edge stops short of Plot 8's right edge: that leftover comes from the stove's own width, it is 2.5 wide, it is not a count for you.</p>
+            <p class="card-note">Front band, keep going left on that same bottom line: Simmering Pots. The right Simmering Pot: count 5 squares left from the left Blazing Stove, left edge to left edge. The left Simmering Pot: count 5 squares left from the right pot, left edge to left edge, bottoms lined up. Check: its left edge sits 2 squares in from Plot 8's left edge, and 1 square right of the third Chimney Kiln's left edge.</p>
+            <p class="card-note">Back band: Chimney Kilns, bottoms all on one line. First kiln: from the Carousel Mill closest to Plot 8, drawn on the right edge, count 7 squares left, left edge to left edge: 1 square to the border between the plots, then 6 more into Plot 8. Its bottom line sits 1 square toward the front from the mills' bottom line. Check: its right edge sits 1 square in from Plot 8's right edge. Second kiln: count 7 squares left from the first kiln, left edge to left edge, bottoms lined up. Third kiln: count 6 squares left from the second kiln, bottoms lined up. Check: its left edge sits 1 square in from Plot 8's left edge.</p>
             <p class="diagram-caption">The open grass between the kilns, pots and stoves is decorating room.</p>
           </div>
 
           <!-- 11 Workshop Row 1 -->
           <div class="zoom-card workshop" id="plot-7">
             <h4>Plot 7, Workshop Row 1</h4>
-            <p class="zoom-sub">Pods, crafting, and woodwork together. Spread across the whole board, true scale.</p>
-            <div class="zoom-map tint-workshop true-map counted zoomable-board" tabindex="0" role="img" aria-label="Workshop Row 1 plot, 20 by 15, true scale. Two Aniipod Makers, each 4.5 by 4.5, spread across the upper part of the board. One Crafting Table, 4 by 4, at the upper right, and a second Crafting Table, 4 by 4, in the lower left. Three Woodworking Benches, each 2 by 1.5, spread across the lower part of the board, with one Storage Unit, 2 by 2, at the lower right.">
-              <div class="ts-block" style="left:5%; top:10%; width:22.5%; height:30%;">Aniipod Maker<small>4.5 x 4.5</small></div>
-              <div class="ts-block" style="left:35%; top:10%; width:22.5%; height:30%;">Aniipod Maker<small>4.5 x 4.5</small></div>
-              <div class="ts-block" style="left:65%; top:6.667%; width:20%; height:26.667%; background:#2fa89a; border-color:#1f7f74;">Crafting Table<small>4 x 4</small></div>
-              <div class="ts-block" style="left:10%; top:53.333%; width:20%; height:26.667%; background:#2fa89a; border-color:#1f7f74;">Crafting Table<small>4 x 4</small></div>
-              <div class="ts-block" style="left:85%; top:53.333%; width:10%; height:13.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
-              <div class="ts-block tiny" style="left:40%; top:56.667%; width:10%; height:10%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
-              <div class="ts-block tiny" style="left:55%; top:56.667%; width:10%; height:10%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
-              <div class="ts-block tiny" style="left:70%; top:56.667%; width:10%; height:10%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
+            <p class="zoom-sub">Pods, crafting, and woodwork together. Spread across the whole board, true scale. Drawn like the game's own placement grid, with the pieces already placed next door drawn in.</p>
+            <div class="zoom-map true-map game-board game-board-7 zoomable-board" tabindex="0" role="img" aria-label="Workshop Row 1 plot, 20 by 15, drawn like the game's placement grid on grass, white lines, every big square split into 4 little squares. Two Aniipod Makers, each 4.5 by 4.5, spread across the upper part of the board. One Crafting Table, 4 by 4, at the upper right, and a second Crafting Table, 4 by 4, in the lower left. Three Woodworking Benches, each 2 by 1.5, spread across the lower part of the board, with one Storage Unit, 2 by 2, at the lower right. Along the front edge, already placed on Plot 4: its back row of two Phonolfactories and two Bouncy Brew Kegs.">
+              <div class="ts-block" style="left:5%; top:7.895%; width:22.5%; height:23.684%;">Aniipod Maker<small>4.5 x 4.5</small></div>
+              <div class="ts-block" style="left:35%; top:7.895%; width:22.5%; height:23.684%;">Aniipod Maker<small>4.5 x 4.5</small></div>
+              <div class="ts-block" style="left:65%; top:5.263%; width:20%; height:21.053%; background:#2fa89a; border-color:#1f7f74;">Crafting Table<small>4 x 4</small></div>
+              <div class="ts-block" style="left:10%; top:42.105%; width:20%; height:21.053%; background:#2fa89a; border-color:#1f7f74;">Crafting Table<small>4 x 4</small></div>
+              <div class="ts-block" style="left:85%; top:42.105%; width:10%; height:10.526%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
+              <div class="ts-block tiny" style="left:40%; top:44.737%; width:10%; height:7.895%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
+              <div class="ts-block tiny" style="left:55%; top:44.737%; width:10%; height:7.895%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
+              <div class="ts-block tiny" style="left:70%; top:44.737%; width:10%; height:7.895%; background:#d99a22; border-color:#a87312;">Woodworking Bench<small>2 x 1.5</small></div>
+              <div class="ts-block anchor-block tiny" style="left:5%; top:81.579%; width:17.5%; height:18.421%; background:#3f97c4; border-color:#2a6f94;">Phonolfactory<small>3.5 x 3.5</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block tiny" style="left:30%; top:81.579%; width:17.5%; height:18.421%; background:#3f97c4; border-color:#2a6f94;">Phonolfactory<small>3.5 x 3.5</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block tiny" style="left:55%; top:84.211%; width:15%; height:15.789%; background:#2fa89a; border-color:#1f7f74;">Bouncy Brew Keg<small>3 x 3</small><small class="placed">Already placed</small></div>
+              <div class="ts-block anchor-block tiny" style="left:75%; top:84.211%; width:15%; height:15.789%; background:#2fa89a; border-color:#1f7f74;">Bouncy Brew Keg<small>3 x 3</small><small class="placed">Already placed</small></div>
+              <div class="plot-edge-h" style="width:100%;"></div>
+              <span class="neighbor-tag" style="left:1.5%; top:70.5%;">Plot 4 below, already placed</span>
             </div>
+            <p class="card-note">Your walk for this plot, right to left, front to back, whole squares only. Anchor first: the Storage Unit. Count 5 squares back into Plot 7 from the front border, the border with Plot 4, whose back row is drawn below that border, to its bottom line. Check: its right edge sits 1 square in from Plot 7's right edge.</p>
+            <p class="card-note">Front band: Woodworking Benches, bottoms all on the Storage Unit's bottom line. The right bench: count 3 squares left from the Storage Unit, left edge to left edge. The middle bench: count 3 squares left from the right bench, left edge to left edge. The left bench: count 3 squares left from the middle bench, bottoms lined up. Check: the middle bench's left edge lines up with the left edge of the left Bouncy Brew Keg drawn below the front border.</p>
+            <p class="card-note">Front band, left side: the front Crafting Table. Its bottom line sits 2 squares toward the front from the benches' bottom line. Count 6 squares left from the left bench, left edge to left edge, to its left edge. Check: its left edge sits 2 squares in from Plot 7's left edge, and 1 square right of the left Phonolfactory's left edge, drawn below the front border.</p>
+            <p class="card-note">Back band: the back Crafting Table first, on the right. Its right edge sits in the same column as the Storage Unit's left edge, and its bottom line sits 5 squares behind the Storage Unit's bottom line. Then the Aniipod Makers, bottoms on one line: the right maker, count 6 squares left from the back Crafting Table, left edge to left edge, its bottom line 1 square toward the front from the table's bottom line. The left maker: count 6 squares left from the right maker, left edge to left edge, bottoms lined up. Check: its left edge sits 1 square in from Plot 7's left edge. The gaps you see between the makers come from the makers' own width, they are 4.5 wide, not from a count.</p>
             <p class="card-note">Aniipod Maker drawn 4.5 x 4.5 from game data. If your in-game count says 3, tell Muse and it shrinks.</p>
             <p class="diagram-caption">The open grass between the makers, tables and benches is decorating room.</p>
           </div>
@@ -2082,6 +2351,7 @@
       document.querySelectorAll('.zoom-map.true-map').forEach(function (map, mi) {
         var starts = boardStarts[mi];
         if (!starts) return;
+        if (map.classList.contains('game-board')) return;
         var seen = {};
         map.querySelectorAll('.ts-block').forEach(function (block) {
           var name = block.childNodes[0].textContent.trim();
