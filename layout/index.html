@@ -654,6 +654,17 @@
         line-height: 1.35;
       }
 
+      .home-tile-now {
+        margin-top: 5px;
+        padding: 2px 10px;
+        color: #ffffff;
+        background: var(--lav-deep);
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 900;
+        line-height: 1.35;
+      }
+
       .home-tile.workshop { background: #f3edff; border-color: #d9c8ff; }
       .home-tile.mine { background: #eef1f6; border-color: #c9d2e0; }
       .home-tile.wet { background: #e8f6ff; border-color: #bfe0f5; }
@@ -940,13 +951,19 @@
       .true-note { margin: 8px 0 0; padding: 8px 12px; color: #4c3485; background: #fff7dc; border: 2px solid #eed88f; border-radius: 16px; font-weight: 900; }
       .card-note { margin: 6px 4px 0; padding: 8px 10px; color: #4c3485; background: #fff7dc; border: 2px solid #eed88f; border-radius: 14px; font-size: 0.92rem; font-weight: 800; line-height: 1.4; }
       .zoom-map.true-map { padding: 0; container-type: inline-size; }
-      .ts-block { position: absolute; display: grid; place-items: center; padding: 4px 3px; color: white; border: 3px solid var(--lav-deep); border-radius: 10px; background: var(--lav); box-shadow: inset 0 0 0 2px rgba(20, 14, 45, 0.34), 0 0 0 1px rgba(20, 14, 45, 0.28); font-family: "Baloo 2", "Nunito", sans-serif; font-size: clamp(9px, 2.6cqw, 15px); font-weight: 800; line-height: 1.08; text-align: center; text-shadow: 0 1px 0 rgba(0,0,0,0.18); overflow: hidden; }
+      .ts-block { position: absolute; display: grid; place-items: center; padding: 3px 2px; color: white; border: 3px solid var(--lav-deep); border-radius: 10px; background: var(--lav); box-shadow: inset 0 0 0 2px rgba(20, 14, 45, 0.34), 0 0 0 1px rgba(20, 14, 45, 0.28); font-family: "Baloo 2", "Nunito", sans-serif; font-size: clamp(9px, 2.6cqw, 15px); font-weight: 800; line-height: 1.05; text-align: center; text-shadow: 0 1px 0 rgba(0,0,0,0.18); overflow: hidden; }
       .ts-block small { display: block; font-family: "Nunito", sans-serif; font-size: 0.82em; font-weight: 900; opacity: 0.95; }
-      .ts-block.tiny { font-size: clamp(7px, 1.9cqw, 11px); border-width: 2px; border-radius: 7px; padding: 2px 1px; }
+      .ts-block.tiny { font-size: clamp(7px, 1.75cqw, 10.5px); border-width: 2px; border-radius: 7px; padding: 1px; }
       .ts-gen { background: rgba(255,255,255,0.6); border-style: dashed; border-color: #b97f0a; color: #7a5a12; text-shadow: none; }
       .ts-open { position: absolute; display: grid; place-items: center; color: var(--muted); border: 3px dashed rgba(102,90,125,0.45); border-radius: 10px; background: rgba(255,255,255,0.45); font-family: "Baloo 2", "Nunito", sans-serif; font-size: clamp(10px, 2.6cqw, 15px); font-weight: 800; text-align: center; }
-      .ts-block small.starts { font-size: 0.68em; margin-top: 1px; }
-      .ts-block.tiny small.starts { font-size: 0.6em; }
+      .ts-block small.starts { font-size: 0.66em; margin-top: 1px; line-height: 1.1; }
+      .ts-block.tiny small.starts { font-size: 0.58em; }
+      /* On the combined farm board the PAD blocks are half width, so the
+         middle "climate space" line is dropped there (the legend below the
+         board says what a PAD is) and the start badge wraps inside the
+         block instead of spilling past it. */
+      .combined-map .ts-pad > small:not(.starts) { display: none; }
+      .combined-map .ts-pad small.starts { width: auto; max-width: 100%; }
 
       /* Counting grid overlay: bold violet lines every tile, deeper
          violet guides every 5 tiles. No little quarter tile lines. */
@@ -1192,15 +1209,16 @@
           </div>
         </div>
 
-        <p class="working-order">Working order: work right to left, starting at Plot 5 on the bottom row (Plot 5, Plot 1, Plot 2, Plot 10), then move up one row at a time and work right to left again: Plot 6, Plot 3, Plot 4, Plot 11 (open plot now, nothing to place there), then Plot 9, Plot 8, Plot 7, Plot 12, and Plot 16, Plot 15, Plot 14, Plot 13 last, where the Mines go, placed in the top row's turn after the Workshop Rows. The right side has no hill, so the big squares are easier to count from that side.</p>
+        <p class="working-order">Where you are now: you work right to left, front to back. Done: Plot 5 (Hatchery), Plot 1 (Event), Plot 2 (Decorating, empty on purpose), Plot 10 (Leisure), Plot 6 and Plot 3 (the farms), Plot 4 (Wet Works) and Plot 13 (the Mines). Open on purpose, nothing to place: Plots 11, 12, 14, 15 and 16. Still to build, in your order: Plot 9 first (you are on it now, storage box placed), then Plot 8, then Plot 7.</p>
         <p class="true-note">Every diagram is now true scale. In game, facilities can cross plot lines, so neighborhoods can pull closer together than the plot borders suggest.</p>
 
         <h3 class="sub">The whole homeland</h3>
         <p class="compass">North is at the top</p>
         <div class="home-grid" aria-label="All 16 plots, in the same positions as the game Home Management screen">
-          <a class="home-tile mine" href="#plot-13" aria-label="Plot 13, The Mines. Jump to its board below.">
+          <a class="home-tile mine" href="#plot-13" aria-label="Plot 13, The Mines, done. Jump to its board below.">
             <span class="home-tile-num">Plot 13</span>
             <span class="home-tile-name">The Mines</span>
+            <span class="home-tile-done">Done &#10003;</span>
           </a>
           <a class="home-tile empty" href="#plot-14" aria-label="Plot 14, Empty. Jump to its board below.">
             <span class="home-tile-num">Plot 14</span>
@@ -1226,34 +1244,39 @@
             <span class="home-tile-num">Plot 8</span>
             <span class="home-tile-name">Workshop Row 2</span>
           </a>
-          <a class="home-tile workshop" href="#plot-9" aria-label="Plot 9, Workshop Row 3. Jump to its board below.">
+          <a class="home-tile workshop" href="#plot-9" aria-label="Plot 9, Workshop Row 3, building now. Jump to its board below.">
             <span class="home-tile-num">Plot 9</span>
             <span class="home-tile-name">Workshop Row 3</span>
+            <span class="home-tile-now">Building now</span>
           </a>
           <a class="home-tile empty" href="#plot-11" aria-label="Plot 11, Open Plot. Jump to its board below.">
             <span class="home-tile-num">Plot 11</span>
             <span class="home-tile-name">Open Plot</span>
           </a>
-          <a class="home-tile wet" href="#plot-4" aria-label="Plot 4, The Wet Works. Jump to its board below.">
+          <a class="home-tile wet" href="#plot-4" aria-label="Plot 4, The Wet Works, done. Jump to its board below.">
             <span class="home-tile-num">Plot 4</span>
             <span class="home-tile-name">The Wet Works</span>
+            <span class="home-tile-done">Done &#10003;</span>
           </a>
-          <a class="home-tile farmplot" href="#plot-3" aria-label="Plot 3, Farm Plot A. Jump to its board below.">
+          <a class="home-tile farmplot" href="#plot-3" aria-label="Plot 3, Farm Plot A, done. Jump to its board below.">
             <span class="home-tile-num">Plot 3</span>
             <span class="home-tile-name">Farm Plot A</span>
+            <span class="home-tile-done">Done &#10003;</span>
           </a>
-          <a class="home-tile farmplot" href="#plot-6" aria-label="Plot 6, Farm Plot B. Jump to its board below.">
+          <a class="home-tile farmplot" href="#plot-6" aria-label="Plot 6, Farm Plot B, done. Jump to its board below.">
             <span class="home-tile-num">Plot 6</span>
             <span class="home-tile-name">Farm Plot B</span>
+            <span class="home-tile-done">Done &#10003;</span>
           </a>
           <a class="home-tile leisure" href="#plot-10" aria-label="Plot 10, The Leisure Corner, done. Jump to its board below.">
             <span class="home-tile-num">Plot 10</span>
             <span class="home-tile-name">The Leisure Corner</span>
             <span class="home-tile-done">Done &#10003;</span>
           </a>
-          <a class="home-tile decor" href="#plot-2" aria-label="Plot 2, The Decorating Plot. Jump to its board below.">
+          <a class="home-tile decor" href="#plot-2" aria-label="Plot 2, The Decorating Plot, done. Jump to its board below.">
             <span class="home-tile-num">Plot 2</span>
             <span class="home-tile-name">The Decorating Plot</span>
+            <span class="home-tile-done">Done &#10003;</span>
           </a>
           <a class="home-tile event" href="#plot-1" aria-label="Plot 1, The Event Plot, done. Jump to its board below.">
             <span class="home-tile-num">Plot 1</span>
@@ -1340,7 +1363,7 @@
             <p class="diagram-caption">Tidewhisper Sandcastle needs a Warm environment when making Pearls. Drop a Heat Furnace on a climate spot.</p>
           </div>
 
-          <p class="farm-rule-note">Each PAD is the climate unit spot, sitting in the middle of its zone. Every tree and field around it was checked and sits inside its cover area.</p>
+          <p class="farm-rule-note">On the farm boards below, each PAD is the climate unit spot, sitting in the middle of its zone. Every tree and field around it was checked and sits inside its cover area.</p>
 
           <!-- 5 and 6 Combined: Plot 6 and Plot 3 side by side -->
           <div class="zoom-card farmplot combined-card" id="plot-3-6">
@@ -1526,7 +1549,7 @@
           <!-- 9 Workshop Row 3 -->
           <div class="zoom-card workshop" id="plot-9">
             <h4>Plot 9, Workshop Row 3</h4>
-            <p class="zoom-sub">Milling, looming, drying, pickling, and cooking. Spread across the whole board, true scale.</p>
+            <p class="zoom-sub">Milling, looming, drying, pickling, and cooking. Spread across the whole board, true scale. You are building this one now: the storage box is placed, the cookers come next.</p>
             <div class="zoom-map tint-workshop true-map counted zoomable-board" tabindex="0" role="img" aria-label="Workshop Row 3 plot, 20 by 15, true scale. Two Carousel Mills, each 5 by 5, spread across the upper part of the board, with one Joy Wheel Loom, 4 by 4, at the upper right and a second Joy Wheel Loom, 4 by 4, in the lower left. Two Jukebox Dryers, each 2.5 by 2.5, in the lower middle, with two Pickling Jars, each 2.5 by 2, beside them. Two Claw Game Cookers, each 1.5 by 1.5, below the dryers, and one Storage Unit, 2 by 2, in the bottom right corner.">
               <div class="ts-block" style="left:5%; top:6.667%; width:25%; height:33.333%; background:#d99a22; border-color:#a87312;">Carousel Mill<small>5 x 5</small></div>
               <div class="ts-block" style="left:35%; top:6.667%; width:25%; height:33.333%; background:#d99a22; border-color:#a87312;">Carousel Mill<small>5 x 5</small></div>
@@ -1540,6 +1563,10 @@
               <div class="ts-block tiny" style="left:45%; top:76.667%; width:7.5%; height:10%; background:#d95f7a; border-color:#a83e57;">Claw Game Cooker<small>1.5 x 1.5</small></div>
               <div class="ts-block" style="left:85%; top:73.333%; width:10%; height:13.333%; background:#7d8aa0; border-color:#5a6577;">Storage Unit<small>2 x 2</small></div>
             </div>
+            <p class="card-note">Your walk for this plot, right to left, front to back, whole squares only. Anchor first: the Storage Unit starts 17 across, 2 up, its right edge 1 square in from the right edge. Counting from the farm below, its left edge is 1 square right of Plot 6's top right tree's left edge, and it sits 2 squares up into this plot from the shared border (that tree's own top stops half a square short of the border, because the tree is 3.5 tall; that half is the tree's, not a count for you).</p>
+            <p class="card-note">Front band, bottoms all on the storage box's bottom line (2 up): Claw Game Cookers start 9 across and 7 across. Count the pair left edge to left edge: the second cooker is 2 squares left of the first. The half gap you see between them comes from the cookers' own width (1.5 each), never from a count.</p>
+            <p class="card-note">Middle band: Jukebox Dryers start 7 across and 10 across, 4 up, so their bottoms sit level with the storage box's top; count the pair left edge to left edge, second dryer 3 squares left of the first. Pickling Jars start 17 across and 14 across, 5 up: the 17 across jar's left edge lines up with the storage box's left edge, and its bottom sits 1 empty square above the storage box's top; count the pair left edge to left edge, second jar 3 squares left of the first, bottoms lined up. Front Joy Wheel Loom starts 1 across, 3 up: its right edge sits 2 squares left of the 7 across dryer's left edge, and its bottom sits 1 square below the dryers' bottoms.</p>
+            <p class="card-note">Back band: Back Joy Wheel Loom starts 14 across, 10 up. Carousel Mills start 7 across and 1 across, 9 up: the 7 across mill's left edge is in the same column as the 7 across dryer and the 7 across cooker, it sits 2 squares left of the back loom, and its bottom sits 1 square below the back loom's bottom. The second mill leaves a 1 square gap between the mills, bottoms lined up, and its left edge lines up with the front loom's left edge. Every count on this card is a whole square; the only halves anywhere are the pieces' own widths.</p>
             <p class="diagram-caption">The open grass between the mills, looms and dryers is decorating room.</p>
           </div>
 
@@ -1633,12 +1660,13 @@
               <div class="ts-open" style="left:0%; top:73.333%; width:100%; height:26.667%;">Open strip, path and decorating room</div>
               <div class="ts-block" style="left:5%; top:80%; width:10%; height:13.333%; background:#7d8aa0; border-color:#5a6577; z-index:2;">Storage Unit<small>2 x 2</small></div>
             </div>
+            <p class="diagram-caption">The storage box travels with the mines: it sits in the front strip at the west end, starting 1 across and 1 up, its top 1 square below the bottom row of mines.</p>
           </div>
 
         </div>
 
         <div class="zoom-totals">
-          <p class="totals-line">Totals: 17 trees, 34 fields, 6 climate pads, 10 Hatchinators, 6 Storage Units.</p>
+          <p class="totals-line">Totals: 17 trees, 34 fields, 5 farm climate pads (plus 1 spare PAD on the Event Plot and 3 climate spots in the Leisure Corner), 10 Hatchinators, 6 Storage Units.</p>
           <p>Storage Units 6 in total, one each in Plots 7, 8, 9, 4, 13 and 10, spread through the whole layout.</p>
           <p>Climate units stay in your pocket until needed, so the PADs are drawn empty.</p>
           <p>Heat Furnace, Cooling Unit, Sunlamp, and Crackle Generators wait in your pocket. Drop a climate unit on a PAD when it is needed; generators and power poles can be dropped anywhere.</p>
@@ -1658,7 +1686,7 @@
             <div class="map-tag" style="left:51%; bottom:2%;">Farm Plot B</div>
           </div>
         </div>
-        <p class="totals-line">Totals: 17 trees, 34 fields, 6 pads.</p>
+        <p class="totals-line">Totals: 17 trees, 34 fields, 5 pads.</p>
         <p class="diagram-caption">Each PAD sits in the middle of its zone, and every tree and field around it was checked to sit inside its cover area, so one unit dropped on the PAD covers the whole zone. Zone 2 has a second PAD right beside the first, for the Walnut cold plus sun pair. Heat Furnace 2, Cooling Unit 2 and Sunlamp 2 live in your pocket until a zone needs one: drop one on a PAD, pick it back up when you are done.</p>
 
         <h3 class="sub">Why this one works</h3>
