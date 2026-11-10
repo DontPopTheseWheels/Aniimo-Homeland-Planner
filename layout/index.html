@@ -1192,15 +1192,15 @@
           </div>
         </div>
 
-        <p class="working-order">Working order: work right to left, starting at Plot 5 on the bottom row (Plot 5, Plot 1, Plot 2, Plot 10), then move up one row at a time and work right to left again: Plot 6, Plot 3, Plot 4, Plot 11, then Plot 9, Plot 8, Plot 7, Plot 12, and Plot 16, Plot 15, Plot 14, Plot 13 last. The right side has no hill, so the big squares are easier to count from that side.</p>
+        <p class="working-order">Working order: work right to left, starting at Plot 5 on the bottom row (Plot 5, Plot 1, Plot 2, Plot 10), then move up one row at a time and work right to left again: Plot 6, Plot 3, Plot 4, Plot 11 (open plot now, nothing to place there), then Plot 9, Plot 8, Plot 7, Plot 12, and Plot 16, Plot 15, Plot 14, Plot 13 last, where the Mines go, placed in the top row's turn after the Workshop Rows. The right side has no hill, so the big squares are easier to count from that side.</p>
         <p class="true-note">Every diagram is now true scale. In game, facilities can cross plot lines, so neighborhoods can pull closer together than the plot borders suggest.</p>
 
         <h3 class="sub">The whole homeland</h3>
         <p class="compass">North is at the top</p>
         <div class="home-grid" aria-label="All 16 plots, in the same positions as the game Home Management screen">
-          <a class="home-tile empty" href="#plot-13" aria-label="Plot 13, Empty. Jump to its board below.">
+          <a class="home-tile mine" href="#plot-13" aria-label="Plot 13, The Mines. Jump to its board below.">
             <span class="home-tile-num">Plot 13</span>
-            <span class="home-tile-name">Empty</span>
+            <span class="home-tile-name">The Mines</span>
           </a>
           <a class="home-tile empty" href="#plot-14" aria-label="Plot 14, Empty. Jump to its board below.">
             <span class="home-tile-num">Plot 14</span>
@@ -1230,9 +1230,9 @@
             <span class="home-tile-num">Plot 9</span>
             <span class="home-tile-name">Workshop Row 3</span>
           </a>
-          <a class="home-tile mine" href="#plot-11" aria-label="Plot 11, The Mines. Jump to its board below.">
+          <a class="home-tile empty" href="#plot-11" aria-label="Plot 11, Open Plot. Jump to its board below.">
             <span class="home-tile-num">Plot 11</span>
-            <span class="home-tile-name">The Mines</span>
+            <span class="home-tile-name">Open Plot</span>
           </a>
           <a class="home-tile wet" href="#plot-4" aria-label="Plot 4, The Wet Works. Jump to its board below.">
             <span class="home-tile-num">Plot 4</span>
@@ -1513,22 +1513,14 @@
           </div>
 
 
-          <!-- 8 Mines -->
-          <div class="zoom-card mine" id="plot-11">
-            <h4>Plot 11, The Mines</h4>
-            <p class="zoom-sub">All 8 mines. Four across by two rows, spread down the board, true scale. One Storage Unit in the open strip.</p>
-            <div class="zoom-map tint-mine true-map counted zoomable-board" tabindex="0" role="img" aria-label="The Mines plot, 20 by 15, true scale. Eight Mines, each 5 by 5, four across by two rows spread down the board with a gap between the rows. One Storage Unit, 2 by 2, in the open bottom strip. The rest of the bottom strip is open.">
-              <div class="ts-block" style="left:0%; top:0%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
-              <div class="ts-block" style="left:25%; top:0%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
-              <div class="ts-block" style="left:50%; top:0%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
-              <div class="ts-block" style="left:75%; top:0%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
-              <div class="ts-block" style="left:0%; top:40%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
-              <div class="ts-block" style="left:25%; top:40%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
-              <div class="ts-block" style="left:50%; top:40%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
-              <div class="ts-block" style="left:75%; top:40%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
-              <div class="ts-open" style="left:0%; top:73.333%; width:100%; height:26.667%;">Open strip, path and decorating room</div>
-              <div class="ts-block" style="left:5%; top:80%; width:10%; height:13.333%; background:#7d8aa0; border-color:#5a6577; z-index:2;">Storage Unit<small>2 x 2</small></div>
+          <!-- 8 Plot 11 Open Plot -->
+          <div class="zoom-card empty" id="plot-11">
+            <h4>Plot 11, Open Plot</h4>
+            <p class="zoom-sub">Open land. Generators and Power Poles live in your pocket and can be dropped anywhere when the grid needs them.</p>
+            <div class="zoom-map tint-empty counted zoomable-board" tabindex="0" role="img" aria-label="Plot 11, 20 by 15, drawn empty. Open land with nothing placed on it.">
+              <div class="empty-note">Open land<br />Nothing placed here</div>
             </div>
+            <p class="diagram-caption">20 big squares across, 15 big squares up.</p>
           </div>
 
           <!-- 9 Workshop Row 3 -->
@@ -1625,21 +1617,29 @@
             <p class="diagram-caption">20 big squares across, 15 big squares up.</p>
           </div>
 
-          <!-- 16 Plot 13 -->
-          <div class="zoom-card empty" id="plot-13">
-            <h4>Plot 13</h4>
-            <p class="zoom-sub">The growth row.</p>
-            <div class="zoom-map tint-empty" role="img" aria-label="Plot 13, 20 by 15, drawn empty as part of the growth row.">
-              <div class="empty-note">Empty<br />Growth row, room to add more later</div>
+          <!-- 16 Plot 13, The Mines -->
+          <div class="zoom-card mine" id="plot-13">
+            <h4>Plot 13, The Mines</h4>
+            <p class="zoom-sub">All 8 mines. Four across by two rows, spread down the board, true scale. One Storage Unit in the open strip.</p>
+            <div class="zoom-map tint-mine true-map counted zoomable-board" tabindex="0" role="img" aria-label="The Mines plot, 20 by 15, true scale. Eight Mines, each 5 by 5, four across by two rows spread down the board with a gap between the rows. One Storage Unit, 2 by 2, in the open bottom strip. The rest of the bottom strip is open.">
+              <div class="ts-block" style="left:0%; top:0%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:25%; top:0%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:50%; top:0%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:75%; top:0%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:0%; top:40%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:25%; top:40%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:50%; top:40%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-block" style="left:75%; top:40%; width:25%; height:33.333%; background:#7a8699; border-color:#525e70;">Mine<small>5 x 5</small></div>
+              <div class="ts-open" style="left:0%; top:73.333%; width:100%; height:26.667%;">Open strip, path and decorating room</div>
+              <div class="ts-block" style="left:5%; top:80%; width:10%; height:13.333%; background:#7d8aa0; border-color:#5a6577; z-index:2;">Storage Unit<small>2 x 2</small></div>
             </div>
-            <p class="diagram-caption">20 big squares across, 15 big squares up.</p>
           </div>
 
         </div>
 
         <div class="zoom-totals">
           <p class="totals-line">Totals: 17 trees, 34 fields, 6 climate pads, 10 Hatchinators, 6 Storage Units.</p>
-          <p>Storage Units 6 in total, one each in Plots 7, 8, 9, 4, 11 and 10, spread through the whole layout.</p>
+          <p>Storage Units 6 in total, one each in Plots 7, 8, 9, 4, 13 and 10, spread through the whole layout.</p>
           <p>Climate units stay in your pocket until needed, so the PADs are drawn empty.</p>
           <p>Heat Furnace, Cooling Unit, Sunlamp, and Crackle Generators wait in your pocket. Drop a climate unit on a PAD when it is needed; generators and power poles can be dropped anywhere.</p>
         </div>
@@ -1665,7 +1665,7 @@
         <ul class="points">
           <li>Every facility has exactly one home.</li>
           <li>The workshops stand together in one quarter, so power poles can run down the rows.</li>
-          <li>The mines stay where they already are. Nothing about them changes.</li>
+          <li>The mines get the back corner at Plot 13, away from the busy middle plots, and Plot 11 opens back up.</li>
           <li>The fields and trees never move again. Only seeds and climate units change.</li>
           <li>Five whole plots stay empty on purpose, so new things get a home without a reshuffle.</li>
           <li>Whole plots and spare corners stay open on purpose, so there is room to decorate, not just room to work.</li>
@@ -1675,7 +1675,7 @@
         <ul class="points">
           <li>The 2 Aniipod Makers come down from the north field corner into Workshop Row 1.</li>
           <li>The Chimney Kilns, benches and kegs gather from two separate areas into the workshop quarter.</li>
-          <li>Storage Units 6 in total, one each in Plots 7, 8, 9, 4, 11 and 10, spread through the whole layout.</li>
+          <li>Storage Units 6 in total, one each in Plots 7, 8, 9, 4, 13 and 10, spread through the whole layout.</li>
           <li>Generators and Power Poles stay in your pocket until needed, then drop anywhere the grid needs them.</li>
           <li>The Tidewhisper Sandcastles, the 2 Nimbus Beds, the Starfall Hammock and the Dewy House gather into the Leisure Corner.</li>
           <li>The Hatchery goes in the empty plot by the Event Plot.</li>
@@ -2001,7 +2001,7 @@
 
       // Start positions for the true scale boards, matched to blocks by name
       // in the order they appear on each board. Boards in page order:
-      // Plot 5, Plot 1, Plot 10, Plot 4, Plot 11, Plot 9, Plot 8, Plot 7.
+      // Plot 5, Plot 1, Plot 10, Plot 4, Plot 9, Plot 8, Plot 7, Plot 13.
       var boardStarts = [
 {
           'Hatchinator': [[1, 2], [4, 2], [8, 2], [11, 2], [15, 2], [1, 8], [4, 8], [8, 8], [11, 8], [15, 8]]
@@ -2026,10 +2026,6 @@
           'Storage Unit': [[17, 7]]
         },
 {
-          'Mine': [[0, 0], [5, 0], [10, 0], [15, 0], [0, 6], [5, 6], [10, 6], [15, 6]],
-          'Storage Unit': [[1, 12]]
-        },
-{
           'Carousel Mill': [[1, 1], [7, 1]],
           'Joy Wheel Loom': [[14, 1], [1, 8]],
           'Jukebox Dryer': [[7, 8.5], [10, 8.5]],
@@ -2048,6 +2044,10 @@
           'Crafting Table': [[13, 1], [2, 8]],
           'Woodworking Bench': [[8, 8.5], [11, 8.5], [14, 8.5]],
           'Storage Unit': [[17, 8]]
+        },
+{
+          'Mine': [[0, 0], [5, 0], [10, 0], [15, 0], [0, 6], [5, 6], [10, 6], [15, 6]],
+          'Storage Unit': [[1, 12]]
         }
       ];
 
