@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>Aniimo Personal Planner — Sparkle's Homeland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFBF1; --surface:#FFFFFF; --surface2:#FFF4DC; --surface3:#EAF3EC;
+  --ink:#1E2A22; --muted:#5A6B5E; --line:#E6DDC8;
+  --teal:#14665A; --teal2:#0E4F46; --amber:#D97706; --amberBg:#FEF3C7;
+  --sage:#4A7C59; --rose:#BE4B3A; --gold:#B45309;
+  --chip:#EEF2E6;
+  --radius:18px;
+}
+@media(prefers-color-scheme:dark){
+  :root{ --bg:#101612; --surface:#1A211C; --surface2:#252E26; --surface3:#1E2A22; --ink:#EFF5EE; --muted:#A8B8AA; --line:#2E3A30; --teal:#5ED0B8; --teal2:#8FE8D3; --amber:#FBBF24; --amberBg:#2E2410; --chip:#232E26; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5}
+a{color:var(--teal)}
+button,select,input{font:inherit;min-height:44px}
+.top{padding:22px 18px 0;max-width:1180px;margin:0 auto}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--teal)}
+h1{font-family:"DM Serif Display",serif;font-weight:400;font-size:clamp(34px,6vw,56px);line-height:.95;margin:8px 0 8px;letter-spacing:-.02em}
+h1 em{font-style:italic;color:var(--teal)}
+.sub{max-width:680px;color:var(--muted);font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+.stat b{font-size:28px;line-height:1;display:block}
+.stat span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.stat small{display:block;margin-top:4px;color:var(--muted);font-size:13px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;border-bottom:1px solid var(--line)}
+.nav button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
+.nav button.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.main{max-width:1180px;margin:0 auto;padding:18px}
+.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.card h2{font-family:"DM Serif Display",serif;font-weight:400;font-size:26px;margin:0 0 6px}
+.card h3{margin:16px 0 8px;font-size:15px}
+.muted{color:var(--muted);font-size:14px}
+.basket{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:500px){.basket{grid-template-columns:1fr}}
+.basket div{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--surface2)}
+.basket div b{display:block}
+.rank{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.rank div{display:flex;gap:10px;align-items:center;background:var(--chip);border-radius:999px;padding:8px 12px;font-weight:600;font-size:14px}
+.rank i{width:28px;height:28px;background:var(--teal);color:#fff;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;flex-shrink:0}
+.warn{border-left:4px solid var(--amber);background:var(--amberBg);border-radius:0 14px 14px 0;padding:12px 14px;margin-top:12px;font-size:14px}
+.warn strong{color:var(--gold)}
+.facGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:12px}
+.fac{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+.fac b{font-size:22px}
+.fac span{font-size:13px;line-height:1.2}
+.searchRow{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.searchRow input{flex:1;min-width:200px;border:1px solid var(--line);border-radius:999px;padding:10px 16px;background:var(--surface)}
+.searchRow select{border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:var(--surface)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chips button{border-radius:999px;border:1px solid var(--line);background:var(--surface);padding:6px 12px;cursor:pointer;font-weight:600;font-size:13px;min-height:36px}
+.chips button.on{background:var(--ink);color:var(--bg)}
+.crewGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.crew{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--surface)}
+.crewTop{display:flex;justify-content:space-between;gap:8px}
+.crewTop b{font-size:16px}
+.badge{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:999px;white-space:nowrap}
+.badge.match{background:#DCFCE7;color:#166534}
+.badge.nomatch{background:#FEE2E2;color:#991B1B}
+.badge.neutral{background:var(--chip);color:var(--muted)}
+.crew p{margin:6px 0;font-size:14px}
+.crew .post{font-weight:700;color:var(--teal)}
+.pill{display:inline-block;background:var(--chip);border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700;margin:2px 2px 2px 0}
+.zones{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.zone{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--surface)}
+.zone h3{margin:0 0 4px}
+.blocks{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0}
+.sq{width:28px;height:28px;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
+.sq.f{background:var(--sage)} .sq.w{background:#92400E}
+.crop{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;line-height:1.2;color:#fff}
+.crop.f{background:var(--sage)} .crop.w{background:#92400E}
+.crop small{font-weight:800;opacity:.85;font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bill{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:700px){.bill{grid-template-columns:1fr}}
+.bill div{background:var(--surface3);border-radius:14px;padding:14px}
+.bill b{font-size:20px;display:block}
+.chain{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px}
+.chainFlow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px;font-weight:700;font-size:14px}
+.chainFlow span{background:var(--chip);padding:6px 10px;border-radius:999px}
+.calc{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:700px){.calc{grid-template-columns:1fr}}
+.calc label{font-size:13px;font-weight:700}
+.calc input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:4px;background:var(--surface)}
+.bestGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.best{border:1px solid var(--line);border-radius:14px;padding:14px}
+.best b{color:var(--teal)}
+.speed{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.speed{grid-template-columns:1fr}}
+.footer{max-width:1180px;margin:0 auto;padding:20px 18px 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+.hidden{display:none!important}
+.toggleRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toggleRow button{border-radius:999px;border:1px solid var(--line);background:var(--surface);padding:8px 14px;font-weight:700;cursor:pointer}
+.toggleRow button.on{background:var(--amber);color:#fff;border-color:var(--amber)}
+.layoutGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+@media(max-width:900px){.layoutGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.layoutGrid{grid-template-columns:1fr}}
+.plot{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface);min-height:132px;display:flex;flex-direction:column}
+.plotNum{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--teal)}
+.plot h3{margin:4px 0 4px;font-size:17px;line-height:1.2}
+.plot p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.45}
+.plot.farm{background:var(--surface3)}
+.plot.work{background:var(--surface2)}
+.plot.empty{border-style:dashed;background:transparent}
+.plot.empty h3{color:var(--muted)}
+.orderBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--chip);border-radius:12px;padding:10px 12px;margin-top:12px;font-size:14px;font-weight:600}
+.orderBar span{white-space:nowrap}
+.spots{list-style:none;margin:10px 0 0;padding:10px 0 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:6px}
+.spots li{font-size:13px;line-height:1.4;display:flex;gap:7px;align-items:flex-start}
+.spots li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:6px}
+.spots li.emptySpot{color:var(--muted)}
+.spots li.emptySpot::before{background:var(--amber)}
+.spots li b{font-weight:700;color:var(--ink)}
+.spots li.emptySpot b{color:var(--gold)}
+.plotRef{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13px;line-height:1.45;color:var(--muted)}
+.plotRef strong{color:var(--teal)}
+.sharedWork{margin-top:12px;border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--surface2)}
+.sharedWork h3{margin:0 0 4px;font-size:17px}
+.sharedGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 18px;margin-top:10px}
+.sharedGrid .spots{border-top:none;margin-top:0;padding-top:0}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="eyebrow">Personal copy • Just for you • Not the public planner</div>
+  <h1>Your homeland,<br><em>already set up.</em></h1>
+  <p class="sub">This is your planner — not a blank template. Your RV 16 homeland, your current 16-plot layout, your 40-person production crew, your basket, your farm zones, and your RV 17 bill are all loaded in. No re-picking everything every visit.</p>
+  <div class="stats">
+    <div class="stat"><span>RV Level</span><b>16</b><small>Next: RV 17 — see bill below</small></div>
+    <div class="stat"><span>Crew</span><b>40 / 40</b><small>Full — nobody free for trips right now</small></div>
+    <div class="stat"><span>Farmland</span><b>34</b><small>Level 7 • 4 zones</small></div>
+    <div class="stat"><span>Woodland</span><b>17</b><small>Level 5 • Maple, Coconut, Lemon</small></div>
+  </div>
+  <nav class="nav" id="nav">
+    <button class="active" data-target="overview">Overview</button>
+    <button data-target="layout">Homeland Layout</button>
+    <button data-target="crew">My Crew (40)</button>
+    <button data-target="farm">Farm Zones</button>
+    <button data-target="rv17">RV 17 Bill</button>
+    <button data-target="best">Best by Job</button>
+    <button data-target="rules">How It Works</button>
+  </nav>
+</header>
+
+<main class="main">
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="grid2">
+    <div class="card">
+      <h2>Your basket — preselected</h2>
+      <p class="muted">These four run constantly. Everything in your crew list exists to keep them flowing.</p>
+      <div class="basket">
+        <div><span>🥤 Drink</span><b>Ginseng Water</b><small>Sherro • Bouncy Brew Keg • Ginseng + Water</small></div>
+        <div><span>🍬 Sweet</span><b>Maple Sugar Chunk</b><small>Magmarex F 57 • Simmering Pot 1</small></div>
+        <div><span>🌱 Growth</span><b>Growth Fruit</b><small>Blazen • Dance Pad Polisher</small></div>
+        <div><span>🍪 Cookie</span><b>Lavender Cookies</b><small>Flamerion • Claw Game Cooker 1</small></div>
+      </div>
+      <div class="warn"><strong>Heads up — 4 facilities are tight:</strong> Mill (4 recipes, 2 copies), Cookers (4 recipes, 2 copies), Crafting Table &amp; Pickling Jar (3 each, 2 copies). The extra recipe waits for a free copy. If you drop the extra goal recipes, Mills + Cookers fit the basket exactly.</div>
+      <h3>Your homeland — facility copies (RV 16 max, except Aniipod Maker = 1)</h3>
+      <div class="facGrid" id="facGrid"></div>
+      <p class="muted" style="margin-top:12px"><strong>Also placed:</strong> Cooling 2 • Heat Furnaces 2 • Sunlamps 2 • Crackle Generators 2 • Power Poles 18 • Hatchinators 10<br><strong>Modules:</strong> Ecological 6 • Kitchen 6 • Resource Detector 6 • Crafting 4</p>
+    </div>
+    <div>
+      <div class="card">
+        <h2>Strategy: GOALS</h2>
+        <p class="muted">Your ranking — what the planner optimizes for first.</p>
+        <div class="rank">
+          <div><i>1</i> Whimsy Points</div>
+          <div><i>2</i> Wood Blocks</div>
+          <div><i>3</i> Home Coins</div>
+          <div><i>4</i> Aniimo XP</div>
+          <div><i>5</i> Aniipod Mega</div>
+          <div><i>6</i> Mineral Sand</div>
+        </div>
+        <p class="muted" style="margin-top:10px">Wood Blocks at #2 is why the lumber chain matters so much for RV 17 — see the bill tab.</p>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h2>Never forget</h2>
+        <div class="warn" style="margin-top:8px"><strong>Hauler is load-bearing.</strong> Inferlupa (Hauling 4) isn't optional. Finished goods pile up at the facility — when the pile is full, production stops. He carries it to storage.</div>
+        <div class="warn"><strong>Food bowls full = full speed.</strong> Empty bowl = every worker at ×0.2 speed. Check bowls before you wonder why things are slow.</div>
+        <div class="warn"><strong>Workers don't wander to help.</strong> When inputs run out, an Aniimo stops at his own facility. He never starts another building on his own. Moving him along a chain is your job.</div>
+        <p class="muted">One Aniimo = one post. A homeland Aniimo can't also be in your battle team — that's why Kyle &amp; Lita use a separate crew.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOMELAND LAYOUT -->
+<section id="layout" class="hidden">
+  <div class="card">
+    <h2>Your current layout — every spot labeled</h2>
+    <p class="muted">This is your homeland as it stands — plot by plot, and now spot by spot: what each spot should hold, what it makes, and who works it. Empty and unstaffed spots are labeled exactly that, so you can see them at a glance. Farm fields are labeled per-spot in the Farm Zones tab.</p>
+    <div class="orderBar"><span>🧭 Working order:</span><span>Right → Left</span><span aria-hidden="true">·</span><span>Front → Back</span><span class="muted" style="font-weight:500">— start at the front-right and work across, then move back a row.</span></div>
+    <div class="layoutGrid">
+      <article class="plot empty"><span class="plotNum">Plot 1</span><h3>Event Plot</h3><p>Kept clear for events.</p><ul class="spots"><li class="emptySpot"><span><b>Spare</b> — leave empty</span></li></ul></article>
+      <article class="plot"><span class="plotNum">Plot 2</span><h3>Decorating</h3><p>Your decorating plot.</p><ul class="spots"><li><span><b>Decorating</b> — your decor goes here</span></li></ul></article>
+      <article class="plot farm"><span class="plotNum">Plot 3 · Farm A</span><h3>Zones 1 &amp; 2</h3><p><strong>Zone 1 — Cool</strong> (Cooling Unit) + <strong>Zone 2 — Scorching</strong> (2× Heat Furnace). 14 fields + 9 woodlands.</p><p class="plotRef"><strong>Each field &amp; wood labeled →</strong> see <strong>Farm Zones</strong> tab, Zones 1 &amp; 2 for what to plant in every spot.</p></article>
+      <article class="plot"><span class="plotNum">Plot 4</span><h3>Wet Works</h3><p>Wells and water for the Keg and homeland.</p><ul class="spots"><li><span><b>Deep Rock Well</b> — Dreaple · Deep Rock Spring Water</span></li><li><span><b>Well</b> — Panpanta · Plain Fresh Water</span></li><li class="emptySpot"><span><b>Well spot 3 — Unstaffed</b></span></li></ul></article>
+      <article class="plot"><span class="plotNum">Plot 5</span><h3>Hatchery</h3><p>Hatching and Aniipods.</p><ul class="spots"><li><span><b>Hatchinators ×10</b> — passive, no worker</span></li><li><span><b>Aniipod Maker</b> — Dazmand · Aniipod Mega</span></li></ul></article>
+      <article class="plot farm"><span class="plotNum">Plot 6 · Farm B</span><h3>Zones 3 &amp; 4</h3><p><strong>Zone 3 — Adequate</strong> (Sunlamp) + <strong>Zone 4 — No unit</strong> (open air). 20 fields + 8 woodlands.</p><p class="plotRef"><strong>Each field &amp; wood labeled →</strong> see <strong>Farm Zones</strong> tab, Zones 3 &amp; 4 for what to plant in every spot.</p></article>
+      <article class="plot work"><span class="plotNum">Plot 7</span><h3>Workshop Row 1</h3><p>Workshop facilities — Rows 1 &amp; 3 together.</p><ul class="spots"><li><span><b>See shared list below</b> — Rows 1 &amp; 3 hold the workshop together; exact split between the two rows isn't pinned</span></li></ul></article>
+      <article class="plot work"><span class="plotNum">Plot 8</span><h3>Workshop Row 2 — Kilns</h3><p>Ore chain only.</p><ul class="spots"><li><span><b>Chimney Kiln 1</b> — Magmarex M 47 · Sintered Brick → Refined Ore</span></li><li><span><b>Chimney Kiln 2</b> — Scorchhowl M 40 · Sintered Brick → Refined Ore</span></li><li><span><b>Chimney Kiln 3</b> — Lavazar F 55 · Sintered Brick → Refined Ore</span></li></ul></article>
+      <article class="plot work"><span class="plotNum">Plot 9</span><h3>Workshop Row 3</h3><p>Workshop facilities — Rows 1 &amp; 3 together.</p><ul class="spots"><li><span><b>See shared list below</b> — Rows 1 &amp; 3 hold the workshop together; exact split between the two rows isn't pinned</span></li></ul></article>
+      <article class="plot"><span class="plotNum">Plot 10</span><h3>Leisure Corner</h3><p>Rest and family gates.</p><ul class="spots"><li><span><b>Nimbus Bed 1</b> — Irisal</span></li><li><span><b>Nimbus Bed 2</b> — Turbo Prismana</span></li><li><span><b>Starfall Hammock</b> — Stellarys F 45 · Star</span></li><li><span><b>Tidewhisper Sandcastle 1</b> — Susuta · Sea Salt</span></li><li><span><b>Tidewhisper Sandcastle 2</b> — second Sandcastle spot</span></li><li><span><b>Dewy House</b> — Fragrancier F 47 · Aromathyst</span></li></ul></article>
+      <article class="plot empty"><span class="plotNum">Plot 11</span><h3>Open</h3><ul class="spots"><li class="emptySpot"><span><b>Open</b> — nothing placed yet</span></li></ul></article>
+      <article class="plot empty"><span class="plotNum">Plot 12</span><h3>Open</h3><ul class="spots"><li class="emptySpot"><span><b>Open</b> — nothing placed yet</span></li></ul></article>
+      <article class="plot"><span class="plotNum">Plot 13</span><h3>The Mines — 8 spots</h3><p>7 staffed, 1 unstaffed.</p><ul class="spots"><li><span><b>Mine 1 — Shell</b> · Shrubclaw M 60</span></li><li><span><b>Mine 2 — Shell</b> · Shrubclaw M 45</span></li><li><span><b>Mine 3 — Copper Ore</b> · Shrubclaw F 49</span></li><li><span><b>Mine 4 — Copper Ore</b> · Waleetle F 60</span></li><li><span><b>Mine 5 — Copper Ore</b> · Grizbo F 42</span></li><li><span><b>Mine 6 — Quartz Ore</b> · Bouldus</span></li><li><span><b>Mine 7 — Quartz Ore</b> · Grizbo F 60</span></li><li class="emptySpot"><span><b>Mine 8 — Unstaffed</b> · its crew spot is Inferlupa the hauler instead</span></li></ul></article>
+      <article class="plot empty"><span class="plotNum">Plot 14</span><h3>Empty — Growth Row</h3><ul class="spots"><li class="emptySpot"><span><b>Empty</b> — growth row, room to expand</span></li></ul></article>
+      <article class="plot empty"><span class="plotNum">Plot 15</span><h3>Empty — Growth Row</h3><ul class="spots"><li class="emptySpot"><span><b>Empty</b> — growth row, room to expand</span></li></ul></article>
+      <article class="plot empty"><span class="plotNum">Plot 16</span><h3>Empty — Growth Row</h3><ul class="spots"><li class="emptySpot"><span><b>Empty</b> — growth row, room to expand</span></li></ul></article>
+    </div>
+    <div class="sharedWork" id="workshopShared">
+      <h3>Plots 7 &amp; 9 together — Workshop Rows 1 &amp; 3</h3>
+      <p class="muted" style="margin:0">These spots live across Rows 1 and 3 together. The list below is what those two rows should hold — the exact split between Row 1 and Row 3 isn't pinned, so use this as the combined checklist for both rows.</p>
+      <div class="sharedGrid">
+        <ul class="spots">
+          <li><span><b>Carousel Mill 1</b> — Cornet · Lavender Powder</span></li>
+          <li><span><b>Carousel Mill 2</b> — Turbo M 54 · Wheatmeal</span></li>
+          <li><span><b>Jukebox Dryer</b> — Pouchwisp · Dried Ginseng, Nuts</span></li>
+          <li><span><b>Simmering Pot 1</b> — Magmarex F · Maple Sugar Chunk</span></li>
+          <li><span><b>Simmering Pot 2</b> — Sparkelf INFP · Rock Candy</span></li>
+          <li><span><b>Bouncy Brew Keg</b> — Sherro · Ginseng Water</span></li>
+          <li><span><b>Claw Game Cooker 1</b> — Flamerion · Lavender Cookies</span></li>
+          <li><span><b>Claw Game Cooker 2</b> — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star</span></li>
+        </ul>
+        <ul class="spots">
+          <li><span><b>Dance Pad Polisher</b> — Blazen · Growth Fruit</span></li>
+          <li><span><b>Crafting Table 1</b> — Fenmane · Glowfruit Lantern Set</span></li>
+          <li><span><b>Crafting Table 2</b> — Gachapus · Magic Pumpkin Lantern, Memory Lantern</span></li>
+          <li><span><b>Blazing Stove 1</b> — Infergon · Honey-Glazed Pumpkin Cup</span></li>
+          <li><span><b>Blazing Stove 2</b> — Sparkelf ENFJ · Magic Pumpkin Cake</span></li>
+          <li><span><b>Pickling Jar</b> — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink</span></li>
+          <li><span><b>Phonolfactory 1</b> — Ignitis M · Advanced Lemon Incense</span></li>
+          <li><span><b>Phonolfactory 2</b> — Stellarys M 40 · Herbal Ginseng Aroma</span></li>
+        </ul>
+        <ul class="spots">
+          <li><span><b>Joy Wheel Loom</b> — Hypnyto · Cotton Thread</span></li>
+          <li><span><b>Woodworking Bench 1</b> — Melloblum · Planks → Laminated Beams</span></li>
+          <li><span><b>Woodworking Bench 2</b> — Ignitis F 47 · Planks → Laminated Beams</span></li>
+          <li><span><b>Woodworking Bench 3</b> — Popapus · Planks → Laminated Beams</span></li>
+          <li><span><b>Storage Units</b> — storage for finished goods</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px"><strong>At a glance:</strong> Farms on Plots 3 &amp; 6 · Water on Plot 4 · Hatching on Plot 5 · Kilns on Plot 8 · Rest of workshop across Plots 7 &amp; 9 · Rest &amp; family gates on Plot 10 · Mines on Plot 13 · Spare: Plot 1 · Open: Plots 11 &amp; 12 · Empty: Plots 14, 15 &amp; 16 · Unstaffed spots: Mine 8 and Well spot 3 on Plot 4.</p>
+  </div>
+</section>
+
+<!-- CREW -->
+<section id="crew" class="hidden">
+  <div class="card">
+    <h2>Your production crew — all 40</h2>
+    <p class="muted">Species, post, recipe, abilities, and personality match. <strong>30 of 36</strong> posts that can get the +20% personality bonus are matched. The 6 that aren't had no match at their ability level. Farm, Dance Pad, and Aniipod Maker have no bonus at all.</p>
+    <div class="searchRow">
+      <input id="crewSearch" type="search" placeholder="Search species, post, recipe, or personality… e.g. Sparkelf, Kiln, INFP">
+      <select id="crewFilter"><option value="all">All posts</option><option value="match">✓ Personality match only</option><option value="nomatch">No match only</option><option value="farm">Farm / Well / Mines / Hauler</option><option value="food">Food &amp; Drink</option><option value="craft">Crafting &amp; Chains</option><option value="leisure">Leisure &amp; Family Gates</option></select>
+    </div>
+    <div class="chips" id="quickChips">
+      <button data-q="Mine" class="">Mines (7)</button><button data-q="Kiln">Kilns</button><button data-q="Bench">Benches</button><button data-q="Sparkelf">Sparkelfs</button><button data-q="Stellarys">Stellarys</button><button data-q="Shrubclaw">Shrubclaws</button><button data-q="">Show all</button>
+    </div>
+    <div id="crewCount" class="muted" style="margin-bottom:10px"></div>
+    <div class="crewGrid" id="crewGrid"></div>
+  </div>
+</section>
+
+<!-- FARM -->
+<section id="farm" class="hidden">
+  <div class="card">
+    <h2>Farm zones — planting order 1 → 4</h2>
+    <p class="muted">Whole squares only — no half-squares to count. You're happy to replant for efficiency, and this layout is the efficient version. Fragrancier M 37 (Grass 4, Water 3) plants and waters everything.</p>
+    <div class="toggleRow" style="margin:12px 0"><span class="muted" style="font-weight:700">Zone 3 view:</span><button id="z3now" class="on">Now — event running</button><button id="z3after">After Dec 10 event ends</button></div>
+    <div class="zones" id="zones"></div>
+    <div class="warn"><strong>DFS rhythm reminder:</strong> each week plant the ingredients for <em>next</em> week's recipe. Same thinking applies here — keep Ginseng, Lavender, and Maple ahead of demand, not behind it.</div>
+  </div>
+</section>
+
+<!-- RV17 -->
+<section id="rv17" class="hidden">
+  <div class="card">
+    <h2>RV 17 Level Up — the bill</h2>
+    <p class="muted">What stands between RV 16 and RV 17. Type what you have now and see what's left — the math is done for you.</p>
+    <div class="bill">
+      <div><span class="muted">HOME COINS</span><b>8,630,000</b><small>needed total</small></div>
+      <div><span class="muted">WOOD BLOCKS</span><b>322,477</b><small>needed total — your #2 priority</small></div>
+      <div><span class="muted">MINERAL SAND</span><b>194,560</b><small>needed total — feeds the ore chain</small></div>
+    </div>
+    <div class="calc">
+      <label>Home Coins you have<input id="cCoins" type="number" min="0" placeholder="0"></label>
+      <label>Wood Blocks you have<input id="cWood" type="number" min="0" placeholder="0"></label>
+      <label>Mineral Sand you have<input id="cSand" type="number" min="0" placeholder="0"></label>
+    </div>
+    <div id="calcOut" class="warn" style="display:none"></div>
+    <h3>The two chains — why the numbers are so big</h3>
+    <div class="chain"><b>🪵 Lumber chain</b> — Melloblum, Ignitis F 47 &amp; Popapus on the 3 benches
+      <div class="chainFlow"><span>40,320 Rough Lumber</span> → <span>5,040 Planks</span> → <span>630 Laminated Beams</span></div>
+      <p class="muted">Benches make Planks first, then Laminated Beams. One Aniimo covers one step at a time — moving him along the chain is manual.</p>
+    </div>
+    <div class="chain"><b>⛏️ Ore chain</b> — Magmarex M 47, Scorchhowl M 40 &amp; Lavazar F 55 on the 3 kilns
+      <div class="chainFlow"><span>194,560 Mineral Sand</span> → <span>24,320 Coarse-Sifted Ore</span> → <span>3,040 Sintered Brick</span> → <span>380 Refined Ore</span></div>
+      <p class="muted">Every Refined Ore costs 8 Sintered Brick, and every Brick costs 8 Coarse-Sifted Ore. That's why Mineral Sand is in the hundreds of thousands.</p>
+    </div>
+    <div class="warn"><strong>Mines note:</strong> You're running 7 mines (2 Shell, 3 Copper Ore, 2 Quartz Ore) — Inferlupa's hauler spot came out of the mines, so you dropped one Quartz mine from the full 8. The basket needs nothing from the mines; this only slows the sand grind slightly.</div>
+  </div>
+</section>
+
+<!-- BEST -->
+<section id="best" class="hidden">
+  <div class="card">
+    <h2>Best by job — your named alternates</h2>
+    <p class="muted">When a post opens up, these are <em>your</em> best picks — not generic species advice. Combat-first Aniimo are last resorts for homeland posts.</p>
+    <div class="bestGrid" id="bestGrid"></div>
+    <h3 style="margin-top:20px">Bench &amp; mine understudies</h3>
+    <table><tr><th>Role</th><th>Who</th><th>Notes</th></tr>
+    <tr><td>Farm backup</td><td><strong>Leafy</strong></td><td>Grass 3, Water 2 — covers if Fragrancier M 37 is pulled</td></tr>
+    <tr><td>Mine understudies</td><td><strong>More Bouldus</strong> • <strong>Bailite ×2</strong></td><td>Earth 3, Hauling 3 each — can mine or haul in a pinch</td></tr>
+    <tr><td>Hauling bench</td><td>Inferlupa • Dreaple • Waleetle • Grizbo F 60 • Infergon</td><td>All Hauling 4 — if Inferlupa is out, one of these covers</td></tr></table>
+  </div>
+</section>
+
+<!-- RULES -->
+<section id="rules" class="hidden">
+  <div class="grid2">
+    <div class="card">
+      <h2>Speed — how fast things actually go</h2>
+      <div class="speed">
+        <div><h3>Processing (per minute)</h3><table><tr><th>Your level vs. asked</th><th>Speed</th></tr><tr><td>−1 below</td><td>45 / min</td></tr><tr><td>At asked level</td><td><strong>60 / min</strong></td></tr><tr><td>+1 above</td><td><strong>180 / min</strong></td></tr><tr><td>+2 above</td><td><strong>240 / min</strong></td></tr></table><p class="muted">No recipe asks above Lv 3 — Lv 4 is pure speed. That's why your Fire 4s and Artisanship 4s matter.</p></div>
+        <div><h3>Field / Mine / Well / Play steps</h3><table><tr><th>Level</th><th>Speed</th></tr><tr><td>−1</td><td>60</td></tr><tr><td>At level</td><td>90</td></tr><tr><td>+1</td><td>120</td></tr><tr><td>+2</td><td>150</td></tr></table><p class="muted">Plus +20% on top when the personality letter matches the facility (below).</p></div>
+      </div>
+      <h3>Family-gated recipes</h3>
+      <p class="muted">These only work with that family member on the leisure station:</p>
+      <p><span class="pill">Sea Salt = Susuta ✓ yours is on Sandcastle</span><span class="pill">Aromathyst = Dewy ✓ Fragrancier F 47</span><span class="pill">Star = Celestis ✓ Stellarys F 45</span><span class="pill">Pearl = Shelly</span><span class="pill">Wool = Nimbi</span><span class="pill">Petals = Iris</span><span class="pill">Scales = Flutternym</span><span class="pill">Gold-Speck Cap = Coinwisp</span></p>
+    </div>
+    <div class="card">
+      <h2>Personality match — wants by facility</h2>
+      <p class="muted">Matching letter = +20% speed at that facility. Farm, Dance Pad &amp; Aniipod Maker have no bonus.</p>
+      <table id="wantTable"></table>
+      <div class="warn"><strong>Inputs auto-pull</strong> from the Warehouse while stocked. If a line stalls, check: ① inputs in warehouse? ② food bowl full? ③ output pile cleared by hauler? — in that order.</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">Your personal planner • Built from your real roster, zones, and RV 16 homeland on Nov 11, 2026 • The public planner for friends stays generic — this one never needs to. Pull any Aniimo back for Bud Tickets or trips anytime; the crew panel shows exactly who you'd be borrowing.</footer>
+
+<script>
+var FACILITIES=[["Mines",8],["Wells",3],["Carousel Mills",2],["Jukebox Dryers",2],["Simmering Pots",2],["Bouncy Brew Kegs",2],["Claw Game Cookers",2],["Blazing Stoves",2],["Crafting Tables",2],["Pickling Jars",2],["Phonolfactory",2],["Woodworking Benches",3],["Chimney Kilns",3],["Joy Wheel Loom",1],["Dance Pad",1],["Dewy House",1],["Nimbus Beds",2],["Sandcastles",2],["Starfall Hammock",1],["Aniipod Maker",1]];
+document.getElementById('facGrid').innerHTML=FACILITIES.map(function(f){return '<div class="fac"><span>'+f[0]+'</span><b>×'+f[1]+'</b></div>'}).join('');
+
+var CREW=[
+{n:"Fragrancier",d:"M · Lv 37 · ISTP",post:"Farm — plants & waters everything",recipe:"All fields + woodlands",ab:"Grass 4 · Water 3",match:null,cat:"farm"},
+{n:"Dreaple",d:"M · Lv 60 · ISFJ",post:"Deep Rock Well",recipe:"Deep Rock Spring Water",ab:"Water 4",match:true,cat:"farm"},
+{n:"Panpanta",d:"M · Lv 55 · INFJ",post:"Well",recipe:"Plain Fresh Water",ab:"Water 3",match:true,cat:"farm"},
+{n:"Shrubclaw",d:"M · Lv 60 · INTP",post:"Mine — Shell / Copper / Quartz",recipe:"2 Shell · 3 Copper · 2 Quartz across 7 mines",ab:"Earth 3",match:true,cat:"farm"},
+{n:"Shrubclaw",d:"M · Lv 45 · ISFP",post:"Mine",recipe:"Ore & shell gathering",ab:"Earth 3",match:true,cat:"farm"},
+{n:"Shrubclaw",d:"F · Lv 49 · ESFP",post:"Mine",recipe:"Ore & shell gathering",ab:"Earth 3",match:true,cat:"farm"},
+{n:"Waleetle",d:"F · Lv 60 · INFP",post:"Mine",recipe:"Ore & shell gathering",ab:"Earth 4",match:true,cat:"farm"},
+{n:"Grizbo",d:"F · Lv 42 · ENFP",post:"Mine",recipe:"Ore & shell gathering",ab:"Earth 3",match:true,cat:"farm"},
+{n:"Bouldus",d:"M · Lv 47 · ENFP",post:"Mine",recipe:"Ore & shell gathering",ab:"Earth 3",match:true,cat:"farm"},
+{n:"Grizbo",d:"F · Lv 60 · ENTJ",post:"Mine",recipe:"Ore & shell gathering",ab:"Earth 4",match:false,cat:"farm"},
+{n:"Inferlupa",d:"M · Lv 60 · ESFP",post:"Hauler — REQUIRED",recipe:"Carries finished goods to storage",ab:"Hauling 4",match:null,cat:"farm"},
+{n:"Pouchwisp",d:"M · Lv 60 · INFJ",post:"Jukebox Dryer",recipe:"Dried Ginseng · Nuts",ab:"Dark 4",match:true,cat:"food"},
+{n:"Magmarex",d:"F · Lv 57 · ENTJ",post:"Simmering Pot 1",recipe:"Maple Sugar Chunk ★ basket",ab:"Fire 4",match:true,cat:"food"},
+{n:"Sparkelf",d:"Lv 60 · INFP · CP 2267",post:"Simmering Pot 2",recipe:"Rock Candy",ab:"Fire 4",match:false,cat:"food"},
+{n:"Sherro",d:"Lv 55 · ESTP",post:"Bouncy Brew Keg",recipe:"Ginseng Water ★ basket",ab:"Water 3",match:true,cat:"food"},
+{n:"Cornet",d:"M · Lv 12 · INFP",post:"Carousel Mill 1",recipe:"Lavender Powder",ab:"Wind 4",match:false,cat:"food"},
+{n:"Turbo",d:"M · Lv 54 · ISTP",post:"Carousel Mill 2",recipe:"Wheatmeal",ab:"Wind 3",match:true,cat:"food"},
+{n:"Flamerion",d:"Lv 47 · ISFJ",post:"Claw Game Cooker 1",recipe:"Lavender Cookies ★ basket",ab:"Fire 3",match:true,cat:"food"},
+{n:"Scorchhowl",d:"F · Lv 28 · ESFJ",post:"Claw Game Cooker 2",recipe:"Caramel Nut Chips · Maple Candy Star",ab:"Fire 3",match:true,cat:"food"},
+{n:"Blazen",d:"—",post:"Dance Pad Polisher",recipe:"Growth Fruit ★ basket",ab:"Lightning 3",match:null,cat:"food"},
+{n:"Dazmand",d:"F · Lv 42 · ENTP",post:"Aniipod Maker",recipe:"Aniipod Mega",ab:"Lightning 3 · Artisanship 3",match:null,cat:"craft"},
+{n:"Fenmane",d:"M · Lv 60 · INTJ",post:"Crafting Table 1",recipe:"Glowfruit Lantern Set",ab:"Artisanship 4",match:true,cat:"craft"},
+{n:"Gachapus",d:"F · Lv 57 · INTJ",post:"Crafting Table 2",recipe:"Magic Pumpkin Lantern → Memory Lantern",ab:"Artisanship 4",match:true,cat:"craft"},
+{n:"Infergon",d:"F · Lv 60 · ENFJ",post:"Blazing Stove 1",recipe:"Honey-Glazed Pumpkin Cup",ab:"Fire 4",match:true,cat:"food"},
+{n:"Sparkelf",d:"Lv 60 · ENFJ · CP 1745",post:"Blazing Stove 2",recipe:"Magic Pumpkin Cake",ab:"Fire 4",match:true,cat:"food"},
+{n:"Stellarys",d:"M · Lv 45 · ESFP",post:"Pickling Jar",recipe:"Candied Lanternfruit · Candied Strawberries · Sweet Rice Drink",ab:"Dark 3",match:true,cat:"food"},
+{n:"Ignitis",d:"M · Lv 48 · ISFP",post:"Phonolfactory 1",recipe:"Advanced Lemon Incense",ab:"Dark 3",match:true,cat:"craft"},
+{n:"Stellarys",d:"M · Lv 40 · INFJ",post:"Phonolfactory 2",recipe:"Herbal Ginseng Aroma",ab:"Dark 3",match:true,cat:"craft"},
+{n:"Hypnyto",d:"M · Lv 60 · ESTP",post:"Joy Wheel Loom",recipe:"Cotton Thread",ab:"Wind 4",match:false,cat:"craft"},
+{n:"Fragrancier",d:"F · Lv 47 · ISTJ",post:"Dewy House — family gate",recipe:"Aromathyst (Dewy family)",ab:"Leisure",match:true,cat:"leisure"},
+{n:"Irisal",d:"F · Lv 60 · INTJ",post:"Nimbus Bed 1",recipe:"Leisure line",ab:"Leisure 4",match:true,cat:"leisure"},
+{n:"Turbo Prismana",d:"F · Lv 48 · ESTJ",post:"Nimbus Bed 2",recipe:"Leisure line",ab:"Leisure 4",match:true,cat:"leisure"},
+{n:"Stellarys",d:"F · Lv 45 · ENFJ",post:"Starfall Hammock — family gate",recipe:"Star (Celestis family)",ab:"Leisure 3",match:true,cat:"leisure"},
+{n:"Susuta",d:"M · Lv 42 · ENTJ",post:"Tidewhisper Sandcastle — family gate",recipe:"Sea Salt (Susuta family)",ab:"Leisure",match:true,cat:"leisure"},
+{n:"Melloblum",d:"M · Lv 60 · ENFP",post:"Woodworking Bench",recipe:"Planks → Laminated Beams",ab:"Artisanship 4",match:true,cat:"craft"},
+{n:"Ignitis",d:"F · Lv 47 · ENFP",post:"Woodworking Bench",recipe:"Planks → Laminated Beams",ab:"Artisanship 3",match:true,cat:"craft"},
+{n:"Popapus",d:"M · Lv 47 · ISTJ",post:"Woodworking Bench",recipe:"Planks → Laminated Beams",ab:"Artisanship 3",match:false,cat:"craft"},
+{n:"Magmarex",d:"M · Lv 47 · ISFJ",post:"Chimney Kiln",recipe:"Sintered Brick → Refined Ore",ab:"Fire 3",match:true,cat:"craft"},
+{n:"Scorchhowl",d:"M · Lv 40 · ENTP",post:"Chimney Kiln",recipe:"Sintered Brick → Refined Ore",ab:"Fire 3",match:false,cat:"craft"},
+{n:"Lavazar",d:"F · Lv 55 · ESFP",post:"Chimney Kiln",recipe:"Sintered Brick → Refined Ore",ab:"Fire 2",match:true,cat:"craft"}
+];
+function badge(m){if(m===true)return '<span class="badge match">✓ +20% match</span>';if(m===false)return '<span class="badge nomatch">No match</span>';return '<span class="badge neutral">No bonus here</span>'}
+function renderCrew(){
+  var q=(document.getElementById('crewSearch').value||'').toLowerCase();
+  var f=document.getElementById('crewFilter').value;
+  var list=CREW.filter(function(c){
+    var hay=(c.n+' '+c.d+' '+c.post+' '+c.recipe+' '+c.ab).toLowerCase();
+    if(q&&hay.indexOf(q)===-1)return false;
+    if(f==='match'&&c.match!==true)return false;
+    if(f==='nomatch'&&c.match!==false)return false;
+    if(['farm','food','craft','leisure'].indexOf(f)>-1&&c.cat!==f)return false;
+    return true;
+  });
+  document.getElementById('crewCount').textContent='Showing '+list.length+' of 40 crew';
+  document.getElementById('crewGrid').innerHTML=list.map(function(c){
+    return '<article class="crew"><div class="crewTop"><b>'+c.n+' <span class="muted" style="font-weight:500;font-size:13px">'+c.d+'</span></b>'+badge(c.match)+'</div><p class="post">'+c.post+'</p><p>'+c.recipe+'</p><p><span class="pill">'+c.ab+'</span></p></article>';
+  }).join('')||'<p class="muted">No crew matches that search — try a species or post name.</p>';
+}
+document.getElementById('crewSearch').addEventListener('input',renderCrew);
+document.getElementById('crewFilter').addEventListener('change',renderCrew);
+document.querySelectorAll('#quickChips button').forEach(function(b){b.addEventListener('click',function(){document.getElementById('crewSearch').value=b.getAttribute('data-q');document.getElementById('crewFilter').value='all';renderCrew();})});
+renderCrew();
+
+var ZONES=[
+{title:"Zone 1 — Cool",unit:"Cooling Unit",fields:5,woods:5,now:"Ginseng 4F · Rose 1F · Maple 5W",after:null,detail:"Your Ginseng home — feeds Ginseng Water + Dried Ginseng.",spotsNow:[["Ginseng","F",4],["Rose","F",1],["Maple","W",5]],spotsAfter:null},
+{title:"Zone 2 — Scorching",unit:"2× Heat Furnace",fields:9,woods:4,now:"Sugarcane 9F · Coconut 4W",after:null,detail:"Sugarcane drives Maple Sugar Chunk & Rock Candy lines.",spotsNow:[["Sugarcane","F",9],["Coconut","W",4]],spotsAfter:null},
+{title:"Zone 3 — Adequate",unit:"Sunlamp",fields:9,woods:4,now:"Lavender 1F · Magic Pumpkin 4F · Memory Lanternfruit 4F · Lemon 4W",after:"Lavender 5F · Grapes 4F · Lemon 4W",detail:"Event planting now; switches when the Dec 10 event ends.",spotsNow:[["Lavender","F",1],["Magic Pumpkin","F",4],["Memory Lanternfruit","F",4],["Lemon","W",4]],spotsAfter:[["Lavender","F",5],["Grapes","F",4],["Lemon","W",4]]},
+{title:"Zone 4 — No unit",unit:"Open air",fields:11,woods:4,now:"Wheat 10F · Rice 1F · Maple 4W",after:null,detail:"Wheat 10F is your Wheatmeal engine — Turbo's mill never waits.",spotsNow:[["Wheat","F",10],["Rice","F",1],["Maple","W",4]],spotsAfter:null}
+];
+var z3after=false;
+function renderZones(){
+  document.getElementById('zones').innerHTML=ZONES.map(function(z,i){
+    var useAfter=(i===2&&z3after&&z.after);
+    var txt=useAfter?z.after:z.now;
+    var spots=useAfter&&z.spotsAfter?z.spotsAfter:z.spotsNow;
+    var blocks='';
+    spots.forEach(function(s){
+      for(var k=0;k<s[2];k++){ blocks+='<span class="crop '+(s[1]==='F'?'f':'w')+'">'+s[0]+' <small>'+(s[1]==='F'?'Field':'Wood')+'</small></span>'; }
+    });
+    return '<div class="zone"><h3>'+z.title+'</h3><p class="muted">'+z.unit+' • '+z.fields+' fields + '+z.woods+' woodlands — every spot labeled below</p><div class="blocks">'+blocks+'</div><p><strong>'+txt+'</strong></p><p class="muted">'+z.detail+'</p></div>';
+  }).join('');
+}
+document.getElementById('z3now').addEventListener('click',function(){z3after=false;this.classList.add('on');document.getElementById('z3after').classList.remove('on');renderZones()});
+document.getElementById('z3after').addEventListener('click',function(){z3after=true;this.classList.add('on');document.getElementById('z3now').classList.remove('on');renderZones()});
+renderZones();
+
+var BEST=[
+["Artisanship 4","Fenmane · Gachapus · Melloblum · Magmarex F · Fragrancier M 37","Fulmintis is Artisanship 4 too — but combat-first, last resort only."],
+["Fire 4","Infergon · Sparkelf ENFJ · Sparkelf INFP · Magmarex F","Your stove / pot / kiln speed team."],
+["Water 4","Dreaple · Glacy F (CP 2732) · Panpanta F (CP 1258)","Glacy is combat — borrow carefully."],
+["Earth 4","Waleetle · Grizbo F 60","Top miners. Everyone else mines at Earth 3."],
+["Hauling 4","Inferlupa · Dreaple · Waleetle · Grizbo F 60 · Infergon","Never leave hauling uncovered."],
+["Leisure 4","Pouchwisp · Irisal · Irisalis · Turbo Prismana","Beds & leisure gates."],
+["Dark 4","Pouchwisp · Inferlupa","Dryer + Phonolfactory depth."],
+["Wind 4","Cornet · Hypnyto","Mills & Loom. Cornet is only Lv 12 — level him and Mill 1 flies."],
+["Lightning 4","Fulmintis (combat-first) · Fenmane","Dance Pad & Aniipod depth is thin — protect Dazmand & Blazen."]
+];
+document.getElementById('bestGrid').innerHTML=BEST.map(function(x){return '<div class="best"><b>'+x[0]+'</b><p style="margin:6px 0;font-weight:600">'+x[1]+'</p><p class="muted" style="margin:0">'+x[2]+'</p></div>'}).join('');
+
+var WANTS=[["Blazing Stove","N"],["Bouncy Brew Keg","E"],["Carousel Mill","T"],["Chimney Kiln","S"],["Claw Game Cooker","S"],["Crafting Table","J"],["Dewy House","I"],["Joy Wheel Loom","F"],["Jukebox Dryer","N"],["Mine","P"],["Nimbus Bed","J"],["Phonolfactory","I"],["Pickling Jar","P"],["Simmering Pot","T"],["Starfall Hammock","F"],["Tidewhisper Sandcastle","J"],["Well","F"],["Woodworking Bench","E"]];
+document.getElementById('wantTable').innerHTML='<tr><th>Facility</th><th>Wants letter</th></tr>'+WANTS.map(function(w){return '<tr><td>'+w[0]+'</td><td><strong>'+w[1]+'</strong></td></tr>'}).join('');
+
+function fmt(n){return n.toLocaleString('en-US')}
+function calc(){
+  var coins=+document.getElementById('cCoins').value||0, wood=+document.getElementById('cWood').value||0, sand=+document.getElementById('cSand').value||0;
+  var out=document.getElementById('calcOut');
+  if(!coins&&!wood&&!sand){out.style.display='none';return}
+  out.style.display='block';
+  out.innerHTML='<strong>Still needed:</strong> '+fmt(Math.max(0,8630000-coins))+' Home Coins • '+fmt(Math.max(0,322477-wood))+' Wood Blocks • '+fmt(Math.max(0,194560-sand))+' Mineral Sand.'+((coins>=8630000&&wood>=322477&&sand>=194560)?' <strong>🎉 You can level to RV 17!</strong>':'');
+}
+['cCoins','cWood','cSand'].forEach(function(id){document.getElementById(id).addEventListener('input',calc)});
+
+document.querySelectorAll('#nav button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('#nav button').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    ['overview','layout','crew','farm','rv17','best','rules'].forEach(function(id){document.getElementById(id).classList.toggle('hidden',id!==btn.getAttribute('data-target'))});
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
