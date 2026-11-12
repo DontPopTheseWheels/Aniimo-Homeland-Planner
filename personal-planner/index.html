@@ -317,22 +317,43 @@
       .sugg-plot-list{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
       .sugg-plot-list li{background:var(--bg-soft);border:2px solid var(--card-line);border-radius:10px;padding:8px 11px;font-weight:700}
 
-      /* My Homeland Layout (personal copy only) */
-      .my-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:14px}
-      .my-plot{background:var(--card);border:2px solid var(--card-line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
-      .my-plot.farm{background:#f4fbf0}
-      .my-plot.work{background:#fdf8ec}
-      .my-plot.empty{border-style:dashed;box-shadow:none;background:transparent}
-      .my-plot .pnum{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
-      .my-plot h3{font-size:1.18rem;margin:2px 0 4px}
-      .my-plot p{margin:0;font-weight:600;color:var(--ink-soft);font-size:.94rem}
+      /* My Homeland Layout (personal copy only): her homeland ON THE GRID.
+         One 4 by 4 board of plots in their homeland positions, then every
+         plot drawn big as its own 20 by 15 grid board. Whole squares only:
+         every piece starts and ends on a whole square. */
       .my-spots{list-style:none;margin:10px 0 0;padding:10px 0 0;border-top:2px dashed var(--card-line);display:flex;flex-direction:column;gap:6px}
       .my-spots li{font-weight:700;font-size:.93rem;line-height:1.4}
       .my-spots li::before{content:"• ";color:var(--accent);font-weight:800}
       .my-spots li.open{color:var(--ink-faint)}
-      .my-shared{margin-top:14px}
-      .my-shared-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:4px 20px}
-      .my-shared-grid .my-spots{border-top:none;margin-top:2px;padding-top:2px}
+      .my-board{background:#79b657;border:2px solid var(--card-line);border-radius:12px;padding:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:14px}
+      .my-cell{position:relative;border:2px solid rgba(255,255,255,.85);border-radius:8px;overflow:hidden;background:rgba(255,255,255,.1);display:flex;flex-direction:column}
+      .my-cell-head{display:flex;align-items:center;gap:6px;background:rgba(61,42,71,.85);color:#fff;padding:3px 7px;flex:none}
+      .my-cell-head .n{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.85rem;background:#fff;color:var(--ink);border-radius:6px;padding:0 6px;line-height:1.5}
+      .my-cell-head .r{font-weight:800;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .my-pgrid{position:relative;background-color:#8fce6e;background-image:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px);background-size:calc(100%/20) calc(100%/15)}
+      .my-board .my-pgrid{aspect-ratio:4/3}
+      .my-cell.is-empty .my-pgrid{background-color:#a7bf92}
+      .my-piece{position:absolute;border:1.5px solid;border-radius:4px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:1px;color:var(--ink)}
+      .my-piece span{font-family:"Baloo 2",sans-serif;font-weight:700;line-height:1.05;overflow-wrap:anywhere}
+      .my-board .my-piece span{font-size:8.5px}
+      .my-piece.open-piece{background:repeating-linear-gradient(45deg,rgba(255,255,255,.6) 0 6px,rgba(230,224,242,.6) 6px 12px);color:#6d597c;border-style:dashed}
+      .my-piece.decor-piece{background:#efe6f7;border-color:#8a76b8;border-style:dashed;color:#5b4a75}
+      .my-empty-word{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;color:#fff;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1rem;text-shadow:0 1px 3px rgba(61,42,71,.55);padding:4px;line-height:1.15}
+      .my-empty-word small{font-family:"Nunito",sans-serif;font-weight:700;font-size:.7rem}
+      .my-board .my-empty-word{font-size:.78rem}
+      .my-board .my-empty-word small{display:none}
+      .my-details{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+      .my-detail{display:flex;gap:16px;flex-wrap:wrap;background:var(--card);border:2px solid var(--card-line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px}
+      .my-detail .md-grid{flex:1 1 340px;min-width:0;max-width:560px}
+      .my-detail .md-grid .my-pgrid{aspect-ratio:4/3;border:2px solid var(--card-line);border-radius:10px}
+      .my-detail .md-cap{font-size:.8rem;font-weight:700;color:var(--ink-soft);margin-top:5px}
+      .my-detail .md-side{flex:1 1 280px;min-width:0}
+      .my-detail .md-side .pnum{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+      .my-detail .md-side h3{font-size:1.2rem;margin:2px 0 4px}
+      .my-detail .md-side p{margin:0;font-weight:600;color:var(--ink-soft);font-size:.94rem}
+      .my-detail .my-pgrid .my-piece span{font-size:11px}
+      .my-detail .my-pgrid .my-piece.p-sm span{font-size:9px}
+      @media (max-width:560px){.my-cell-head .r{display:none}.my-board{padding:5px;gap:4px}}
       .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;border-radius:999px;padding:10px 20px;font-weight:800;opacity:0;pointer-events:none;transition:all .25s ease;z-index:50;max-width:92vw;text-align:center}
       .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
       footer{margin-top:44px;border-top:2px solid var(--card-line);padding-top:18px;color:var(--ink-soft);font-weight:600;font-size:.94rem}
@@ -355,7 +376,7 @@
           <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Tap Find the plan.</p></div>
           <div class="step"><span class="n">Step 5</span><br /><b>⛏️ Set your Mines</b><p>Only now — after your strategy. The plan's Mines are marked used; you pick only for extra Mines you add.</p></div>
           <div class="step"><span class="n">Steps 6–8</span><br /><b>🗺️ Layout, crew &amp; home</b><p>Layout plants it, Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
-          <div class="step"><span class="n">Mine</span><br /><b>🗺️ My homeland layout</b><p>Your real 16 plots, every spot labeled — what goes there, what it makes, and who works it. This is the one part that is yours only: it shows your homeland as it stands and never regenerates.</p></div>
+          <div class="step"><span class="n">Mine</span><br /><b>🗺️ My homeland layout</b><p>Your real 16 plots on the homeland grid, every spot placed in whole squares and labeled — what goes there, what it makes, and who works it. This is the one part that is yours only: it shows your homeland as it stands and never regenerates.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
         </div>
       </header>
@@ -676,60 +697,31 @@
       <!-- ================= MY HOMELAND LAYOUT (personal copy only) ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">Mine</span><h2>🗺️ My Homeland Layout</h2></div>
-        <p class="sec-sub"><strong>This is your homeland as it stands</strong> — your 16 plots of record, every spot labeled with what should sit there, what it makes, and who works it. Spare, open and unstaffed spots are labeled exactly that. Unlike everything else in this planner, this board does not regenerate from your Step 1 counts or your plan: your plots are your real homeland. Change your recipes, counts and crew anywhere else on the page as freely as in the public planner — this stays your layout to build against. <strong>Working order: Right → Left, Front → Back</strong> — start at the front-right and work across, then move back a row.</p>
+        <p class="sec-sub"><strong>This is your homeland as it stands — on the grid.</strong> Your 16 plots sit in their real positions on the homeland grid, and every plot is drawn as a grid board with its pieces placed in whole squares: fields and woodlands with their crops, mines by material, facilities, climate units and Leisure pieces, every spot labeled with what should sit there, what it makes, and who works it. Spare, open and unstaffed spots are labeled exactly that. Unlike everything else in this planner, this board does not regenerate from your Step 1 counts or your plan: your plots are your real homeland. Change your recipes, counts and crew anywhere else on the page as freely as in the public planner — this stays your layout to build against. <strong>Working order: Right → Left, Front → Back</strong> — start at the front-right and work across, then move back a row.</p>
 
-        <div class="my-grid">
-          <article class="my-plot empty"><span class="pnum">Plot 1</span><h3>Event Plot</h3><p>Kept clear for events.</p><ul class="my-spots"><li class="open"><strong>Spare</strong> — leave empty</li></ul></article>
-          <article class="my-plot"><span class="pnum">Plot 2</span><h3>Decorating</h3><p>Your decorating plot.</p><ul class="my-spots"><li><strong>Decorating</strong> — your decor goes here</li></ul></article>
-          <article class="my-plot farm"><span class="pnum">Plot 3 · Farm A</span><h3>Zones 1 &amp; 2 — 14 fields + 9 woodlands</h3><p>Fragrancier M 37 (Grass 4, Water 3) plants and waters everything.</p><ul class="my-spots"><li><strong>Zone 1 — Cool</strong> (Cooling Unit): Ginseng ×4 fields · Rose ×1 field · Maple ×5 woodlands</li><li><strong>Zone 2 — Scorching</strong> (2× Heat Furnace): Sugarcane ×9 fields · Coconut ×4 woodlands</li></ul></article>
-          <article class="my-plot"><span class="pnum">Plot 4</span><h3>Wet Works</h3><p>Wells and water for the Keg and homeland.</p><ul class="my-spots"><li><strong>Deep Rock Well</strong> — Dreaple · Deep Rock Spring Water</li><li><strong>Well</strong> — Panpanta · Plain Fresh Water</li><li class="open"><strong>Well spot 3 — Unstaffed</strong></li></ul></article>
-          <article class="my-plot"><span class="pnum">Plot 5</span><h3>Hatchery</h3><p>Hatching and Aniipods.</p><ul class="my-spots"><li><strong>Hatchinators ×10</strong> — passive, no worker</li><li><strong>Aniipod Maker</strong> — Dazmand · Aniipod Mega</li></ul></article>
-          <article class="my-plot farm"><span class="pnum">Plot 6 · Farm B</span><h3>Zones 3 &amp; 4 — 20 fields + 8 woodlands</h3><p>Zone 3 planting changes when the event ends — both versions are labeled.</p><ul class="my-spots"><li><strong>Zone 3 — Adequate</strong> (Sunlamp), now — event running: Lavender ×1 field · Magic Pumpkin ×4 fields · Memory Lanternfruit ×4 fields · Lemon ×4 woodlands</li><li><strong>Zone 3 — after the Dec 10 event ends:</strong> Lavender ×5 fields · Grapes ×4 fields · Lemon ×4 woodlands</li><li><strong>Zone 4 — No unit</strong> (open air): Wheat ×10 fields · Rice ×1 field · Maple ×4 woodlands</li></ul></article>
-          <article class="my-plot work"><span class="pnum">Plot 7</span><h3>Workshop Row 1</h3><p>Workshop facilities — Rows 1 &amp; 3 together.</p><ul class="my-spots"><li><strong>See the shared workshop list below</strong> — Rows 1 &amp; 3 hold the workshop together; the exact split between the two rows isn't pinned</li></ul></article>
-          <article class="my-plot work"><span class="pnum">Plot 8</span><h3>Workshop Row 2 — Kilns</h3><p>Ore chain only.</p><ul class="my-spots"><li><strong>Chimney Kiln 1</strong> — Magmarex M 47 · Sintered Brick → Refined Ore</li><li><strong>Chimney Kiln 2</strong> — Scorchhowl M 40 · Sintered Brick → Refined Ore</li><li><strong>Chimney Kiln 3</strong> — Lavazar F 55 · Sintered Brick → Refined Ore</li></ul></article>
-          <article class="my-plot work"><span class="pnum">Plot 9</span><h3>Workshop Row 3</h3><p>Workshop facilities — Rows 1 &amp; 3 together.</p><ul class="my-spots"><li><strong>See the shared workshop list below</strong> — Rows 1 &amp; 3 hold the workshop together; the exact split between the two rows isn't pinned</li></ul></article>
-          <article class="my-plot"><span class="pnum">Plot 10</span><h3>Leisure Corner</h3><p>Rest and family gates.</p><ul class="my-spots"><li><strong>Nimbus Bed 1</strong> — Irisal</li><li><strong>Nimbus Bed 2</strong> — Turbo Prismana</li><li><strong>Starfall Hammock</strong> — Stellarys F 45 · Star</li><li><strong>Tidewhisper Sandcastle 1</strong> — Susuta · Sea Salt</li><li><strong>Tidewhisper Sandcastle 2</strong> — second Sandcastle spot</li><li><strong>Dewy House</strong> — Fragrancier F 47 · Aromathyst</li></ul></article>
-          <article class="my-plot empty"><span class="pnum">Plot 11</span><h3>Open</h3><ul class="my-spots"><li class="open"><strong>Open</strong> — nothing placed yet</li></ul></article>
-          <article class="my-plot empty"><span class="pnum">Plot 12</span><h3>Open</h3><ul class="my-spots"><li class="open"><strong>Open</strong> — nothing placed yet</li></ul></article>
-          <article class="my-plot"><span class="pnum">Plot 13</span><h3>The Mines — 8 spots</h3><p>7 staffed, 1 unstaffed.</p><ul class="my-spots"><li><strong>Mine 1 — Shell</strong> · Shrubclaw M 60</li><li><strong>Mine 2 — Shell</strong> · Shrubclaw M 45</li><li><strong>Mine 3 — Copper Ore</strong> · Shrubclaw F 49</li><li><strong>Mine 4 — Copper Ore</strong> · Waleetle F 60</li><li><strong>Mine 5 — Copper Ore</strong> · Grizbo F 42</li><li><strong>Mine 6 — Quartz Ore</strong> · Bouldus</li><li><strong>Mine 7 — Quartz Ore</strong> · Grizbo F 60</li><li class="open"><strong>Mine 8 — Unstaffed</strong> · its crew spot is Inferlupa the hauler instead</li></ul></article>
-          <article class="my-plot empty"><span class="pnum">Plot 14</span><h3>Empty — Growth Row</h3><ul class="my-spots"><li class="open"><strong>Empty</strong> — growth row, room to expand</li></ul></article>
-          <article class="my-plot empty"><span class="pnum">Plot 15</span><h3>Empty — Growth Row</h3><ul class="my-spots"><li class="open"><strong>Empty</strong> — growth row, room to expand</li></ul></article>
-          <article class="my-plot empty"><span class="pnum">Plot 16</span><h3>Empty — Growth Row</h3><ul class="my-spots"><li class="open"><strong>Empty</strong> — growth row, room to expand</li></ul></article>
+        <div class="my-board" id="myBoard" role="img" aria-label="Your homeland on the grid: 16 plots in a 4 by 4 arrangement, back row at the top and front row at the bottom, each plot showing its pieces placed in whole squares"></div>
+        <p class="src" style="margin-top:8px">The whole homeland on its grid — back row at the top, front row at the bottom, so Plot 1 sits in the front row, second from the right. Hover or tap any square for its label. Every plot is then drawn big underneath, square by square, with every spot spelled out in words beside it.</p>
+
+        <div class="layout-legend">
+          <h3>How to read the grid</h3>
+          <div class="map-legend">
+            <p class="lg-row"><span class="lg-sw" style="background:#d7e8a8"></span>Farmland field — the label names the crop</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#e8b07e"></span>Woodland — the label names the tree crop</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#f6cf8b"></span>Workshop &amp; facility</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#e8ddc8"></span>Mine — the label names the material</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#f3b8d0"></span>Leisure Corner piece</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#bfe0f2"></span>Water &amp; climate — CU = Cooling Unit · HF = Heat Furnace · SL = Sunlamp</p>
+            <p class="lg-row"><span class="lg-sw" style="background:repeating-linear-gradient(45deg,#fff 0 3px,#e6e0f2 3px 6px)"></span>Open or unstaffed spot — labeled exactly that</p>
+          </div>
+          <p class="src" style="margin-top:8px"><strong>Whole squares only:</strong> every piece starts and ends on a whole square, so the board counts the way you count in game — no half positions. Each big board is one plot: 20 squares across by 15 back. Where a spot's exact square inside its plot was never pinned down, the piece sits in a sensible free spot in that same plot — its label is exact about the plot it belongs in, and the list beside each board carries the full spot: what goes there, what it makes, and who works it.</p>
         </div>
 
-        <div class="card my-shared">
-          <h3>Plots 7 &amp; 9 together — Workshop Rows 1 &amp; 3</h3>
-          <p class="sec-sub" style="margin-bottom:0">What those two rows should hold, as one combined checklist — the exact split between Row 1 and Row 3 isn't pinned.</p>
-          <div class="my-shared-grid">
-            <ul class="my-spots">
-              <li><strong>Carousel Mill 1</strong> — Cornet · Lavender Powder</li>
-              <li><strong>Carousel Mill 2</strong> — Turbo M 54 · Wheatmeal</li>
-              <li><strong>Jukebox Dryer</strong> — Pouchwisp · Dried Ginseng, Nuts</li>
-              <li><strong>Simmering Pot 1</strong> — Magmarex F 57 · Maple Sugar Chunk</li>
-              <li><strong>Simmering Pot 2</strong> — Sparkelf INFP · Rock Candy</li>
-              <li><strong>Bouncy Brew Keg</strong> — Sherro · Ginseng Water</li>
-              <li><strong>Claw Game Cooker 1</strong> — Flamerion · Lavender Cookies</li>
-              <li><strong>Claw Game Cooker 2</strong> — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star</li>
-            </ul>
-            <ul class="my-spots">
-              <li><strong>Dance Pad Polisher</strong> — Blazen · Growth Fruit</li>
-              <li><strong>Crafting Table 1</strong> — Fenmane · Glowfruit Lantern Set</li>
-              <li><strong>Crafting Table 2</strong> — Gachapus · Magic Pumpkin Lantern, Memory Lantern</li>
-              <li><strong>Blazing Stove 1</strong> — Infergon · Honey-Glazed Pumpkin Cup</li>
-              <li><strong>Blazing Stove 2</strong> — Sparkelf ENFJ · Magic Pumpkin Cake</li>
-              <li><strong>Pickling Jar</strong> — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink</li>
-              <li><strong>Phonolfactory 1</strong> — Ignitis M 48 · Advanced Lemon Incense</li>
-              <li><strong>Phonolfactory 2</strong> — Stellarys M 40 · Herbal Ginseng Aroma</li>
-            </ul>
-            <ul class="my-spots">
-              <li><strong>Joy Wheel Loom</strong> — Hypnyto · Cotton Thread</li>
-              <li><strong>Woodworking Bench 1</strong> — Melloblum · Planks → Laminated Beams</li>
-              <li><strong>Woodworking Bench 2</strong> — Ignitis F 47 · Planks → Laminated Beams</li>
-              <li><strong>Woodworking Bench 3</strong> — Popapus · Planks → Laminated Beams</li>
-              <li><strong>Storage Units</strong> — storage for finished goods</li>
-            </ul>
-          </div>
-          <p class="src" style="margin-top:10px"><strong>At a glance:</strong> Farms on Plots 3 &amp; 6 · Water on Plot 4 · Hatching on Plot 5 · Kilns on Plot 8 · Rest of workshop across Plots 7 &amp; 9 · Rest &amp; family gates on Plot 10 · Mines on Plot 13 · Spare: Plot 1 · Open: Plots 11 &amp; 12 · Empty: Plots 14, 15 &amp; 16 · Unstaffed spots: Mine 8 and Well spot 3 on Plot 4.</p>
+        <div class="my-details" id="myDetails"></div>
+
+        <div class="card" style="margin-top:14px">
+          <h3>At a glance</h3>
+          <p style="margin:6px 0 0;font-weight:600">Farms on Plots 3 &amp; 6 · Water on Plot 4 · Hatching on Plot 5 · Workshop Rows 1 &amp; 3 across Plots 7 &amp; 9 · Kilns on Plot 8 · Rest &amp; family gates on Plot 10 · Mines on Plot 13 · Spare: Plot 1 · Open: Plots 11 &amp; 12 · Empty: Plots 14, 15 &amp; 16 · Unstaffed spots: Mine 8 and Well spot 3 on Plot 4.</p>
+          <p class="src" style="margin-top:8px">Plots 7 &amp; 9 hold the workshop together as Rows 1 &amp; 3. Their boards place the facilities in a sensible arrangement across the two plots, because the exact split between the two rows was never pinned — every facility, recipe and worker label is exact; only which of the two rows a piece sits in is this board's arrangement.</p>
         </div>
 
         <div class="note note-warn">
@@ -892,7 +884,7 @@
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
-          <li><strong>My Homeland Layout (personal copy):</strong> in this personal copy, the layout section shows the player's own 16-plot homeland of record — every spot labeled with what goes there, what it makes and who works it — instead of a generated suggestion. It is fixed reference, not a plan output: it never regenerates from Step 1 counts, and changing recipes, counts or crew elsewhere never rewrites it.</li>
+          <li><strong>My Homeland Layout (personal copy):</strong> in this personal copy, the layout section shows the player's own 16-plot homeland of record drawn on the homeland grid — plots in their grid positions, each plot a grid board with its pieces placed in whole squares and every spot labeled with what goes there, what it makes and who works it — instead of a generated suggestion. Where a spot's exact square inside its plot was never pinned, its piece sits in a sensible free spot in that same plot and the label stays exact at plot level. It is fixed reference, not a plan output: it never regenerates from Step 1 counts, and changing recipes, counts or crew elsewhere never rewrites it.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
@@ -9075,6 +9067,226 @@
       document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeZoom(); });
     })();
 
+
+
+    /* ============ My Homeland Layout: her homeland ON THE GRID ============
+       Fixed reference for this personal copy only: it never reads Step 1
+       counts, the basket or any plan, and nothing else on the page can
+       rewrite it. Plot positions are the homeland map's own 4 by 4
+       arrangement (the same rows the layout board above uses): back row
+       at the top, front row at the bottom. Every plot is a 20 by 15
+       board and every piece is placed in WHOLE squares only — integer
+       starts, integer sizes — the way she counts in game. Where a spot's
+       exact square inside its plot was never pinned, the packer below
+       puts the piece in the first sensible free spot in that same plot;
+       labels stay exact at plot level and the words beside each big
+       board carry the full spot. Farm zones keep their own bands of
+       their plot (Zone 1 over Zone 2 on Plot 3, Zone 3 over Zone 4 on
+       Plot 6) so each zone's crops and its climate unit stay together. */
+    var MY_ROWS = [[13,14,15,16],[12,7,8,9],[11,4,3,6],[10,2,1,5]];
+    var MY_COL = {
+      "Ginseng":["#d7e8a8","#7d9c46"], "Rose":["#f6c3d6","#c96f9c"], "Sugarcane":["#a9d97c","#5f943a"],
+      "Lavender":["#cdbcf0","#8468b8"], "Magic Pumpkin":["#f7bd72","#cf7f24"], "Memory Lanternfruit":["#f9e08a","#c7a028"],
+      "Wheat":["#f2dd8f","#c2a13c"], "Rice":["#dcebc0","#8aa864"], "Grapes":["#cfa9e0","#8a5fa8"],
+      "Maple":["#e8b07e","#b06f35"], "Coconut":["#c9a876","#8a6b3f"], "Lemon":["#eee08a","#a89a3e"],
+      "Cooling Unit":["#bfe0f2","#4a86b5"], "Heat Furnace":["#f6a98b","#cf6238"], "Sunlamp":["#ffe9a8","#d1a92e"],
+      "Well":["#bfe0f2","#4a86b5"],
+      "MineShell":["#e8ddc8","#a08b62"], "MineCopper":["#eab892","#b06f35"], "MineQuartz":["#dcd6f2","#8a76b8"],
+      "Hatchinator":["#cfe3ff","#5b84c4"], "Aniipod Maker":["#ffd9a8","#d18a2e"],
+      "Carousel Mill":["#f0b95e","#c07f24"], "Jukebox Dryer":["#e8c39a","#b98a4e"], "Simmering Pot":["#f9d976","#c7a028"],
+      "Bouncy Brew Keg":["#cdeef5","#4a9ab5"], "Claw Game Cooker":["#f7bf9a","#cf8547"], "Dance Pad Polisher":["#d5c8f5","#7d63b8"],
+      "Crafting Table":["#f6cf8b","#c98f2e"], "Blazing Stove":["#f6a98b","#cf6238"], "Pickling Jar":["#dce8a0","#93a83e"],
+      "Phonolfactory":["#a8d4ea","#3d729e"], "Joy Wheel Loom":["#f2cd6b","#c39a28"], "Woodworking Bench":["#eecfa0","#bd9040"],
+      "Chimney Kiln":["#f2b183","#c96f35"], "Storage Unit":["#e6e0f2","#8a76b8"],
+      "Nimbus Bed":["#f3b8d0","#bd5f8c"], "Starfall Hammock":["#ffc7b8","#cf7a52"],
+      "Tidewhisper Sandcastle":["#f7c3d9","#c96f9c"], "Dewy House":["#fbd9e8","#d18bb0"]
+    };
+    var MY_PLOTS = {};
+    function myDef(num, role, title, sub, pieces, spots, emptyWord, emptySub){
+      MY_PLOTS[num] = { num:num, role:role, title:title, sub:sub, pieces:pieces, spots:spots, emptyWord:emptyWord || "", emptySub:emptySub || "" };
+    }
+    function myFac(name, short, full, w, h, colKey, cls){
+      return { s:short, f:full, w:w, h:h, c:colKey || name, cls:cls || "" };
+    }
+    function myFields(crop, n, zoneLabel){
+      var out = [];
+      for(var i = 0; i < n; i++) out.push({ s:crop, f:zoneLabel + " · " + crop + " field " + (i + 1) + " of " + n + " — Farmland", w:2, h:2, c:crop, cls:"" });
+      return out;
+    }
+    function myWoods(crop, n, zoneLabel){
+      var out = [];
+      for(var i = 0; i < n; i++) out.push({ s:crop, f:zoneLabel + " · " + crop + " woodland " + (i + 1) + " of " + n + " — Woodland, drawn 4 by 4 whole squares", w:4, h:4, c:crop, cls:"" });
+      return out;
+    }
+    function myBand(list, y0, y1){ list.forEach(function(pc){ pc.band = [y0, y1]; }); return list; }
+    function myCat(){ var out = []; for(var i = 0; i < arguments.length; i++) out = out.concat(arguments[i]); return out; }
+
+    myDef(1, "Event", "Event Plot", "Kept clear for events.", [],
+      '<li class="open"><strong>Spare</strong> — leave empty</li>', "Spare", "leave empty for events");
+    myDef(2, "Decorating", "Decorating", "Your decorating plot.",
+      [{ s:"Decorating", f:"Decorating — your decor goes here · Plot 2", w:18, h:13, x:1, y:1, c:"Storage Unit", cls:"decor-piece" }],
+      '<li><strong>Decorating</strong> — your decor goes here</li>');
+    myDef(3, "Farm A", "Zones 1 &amp; 2 — 14 fields + 9 woodlands", "Fragrancier M 37 (Grass 4, Water 3) plants and waters everything.",
+      myCat(
+        myBand(myCat(
+          [myFac("Cooling Unit", "Cooling Unit", "Zone 1 climate · Cooling Unit — covers Zone 1 · Plot 3, Farm A", 2, 2)],
+          myWoods("Maple", 5, "Zone 1 — Cool (Cooling Unit)"),
+          myFields("Ginseng", 4, "Zone 1 — Cool (Cooling Unit)"),
+          myFields("Rose", 1, "Zone 1 — Cool (Cooling Unit)")
+        ), 0, 8),
+        myBand(myCat(
+          [myFac("Heat Furnace", "HF", "Zone 2 climate · Heat Furnace 1 of 2 — covers Zone 2 · Plot 3, Farm A", 1, 1),
+           myFac("Heat Furnace", "HF", "Zone 2 climate · Heat Furnace 2 of 2 — covers Zone 2 · Plot 3, Farm A", 1, 1)],
+          myWoods("Coconut", 4, "Zone 2 — Scorching (2× Heat Furnace)"),
+          myFields("Sugarcane", 9, "Zone 2 — Scorching (2× Heat Furnace)")
+        ), 8, 15)
+      ),
+      '<li><strong>Zone 1 — Cool</strong> (Cooling Unit): Ginseng ×4 fields · Rose ×1 field · Maple ×5 woodlands</li><li><strong>Zone 2 — Scorching</strong> (2× Heat Furnace): Sugarcane ×9 fields · Coconut ×4 woodlands</li>');
+    myDef(4, "Wet Works", "Wet Works", "Wells and water for the Keg and homeland.",
+      [myFac("Well", "Deep Rock Well", "Deep Rock Well — Dreaple · Deep Rock Spring Water · Plot 4", 2, 2),
+       myFac("Well", "Well", "Well — Panpanta · Plain Fresh Water · Plot 4", 2, 2),
+       myFac("Well", "Well 3 · Unstaffed", "Well spot 3 — Unstaffed · Plot 4", 2, 2, "Well", "open-piece")],
+      '<li><strong>Deep Rock Well</strong> — Dreaple · Deep Rock Spring Water</li><li><strong>Well</strong> — Panpanta · Plain Fresh Water</li><li class="open"><strong>Well spot 3 — Unstaffed</strong></li>');
+    (function(){
+      var hatch = [];
+      for(var i = 0; i < 10; i++) hatch.push(myFac("Hatchinator", "Hatch", "Hatchinator " + (i + 1) + " of 10 — passive, no worker · Plot 5, Hatchery", 2, 2));
+      myDef(5, "Hatchery", "Hatchery", "Hatching and Aniipods.",
+        myCat([myFac("Aniipod Maker", "Aniipod Maker", "Aniipod Maker — Dazmand · Aniipod Mega · Plot 5, Hatchery · drawn 5 by 5 whole squares", 5, 5)], hatch),
+        '<li><strong>Hatchinators ×10</strong> — passive, no worker</li><li><strong>Aniipod Maker</strong> — Dazmand · Aniipod Mega</li>');
+    })();
+    myDef(6, "Farm B", "Zones 3 &amp; 4 — 20 fields + 8 woodlands", "The board draws Zone 3 as it stands now, with the event planting. Zone 3's planting changes when the event ends — both versions are in the list.",
+      myCat(
+        myBand(myCat(
+          [myFac("Sunlamp", "SL", "Zone 3 climate · Sunlamp — covers Zone 3 · Plot 6, Farm B", 1, 1)],
+          myWoods("Lemon", 4, "Zone 3 — Adequate (Sunlamp), event running"),
+          myFields("Magic Pumpkin", 4, "Zone 3 — Adequate (Sunlamp), event running"),
+          myFields("Memory Lanternfruit", 4, "Zone 3 — Adequate (Sunlamp), event running"),
+          myFields("Lavender", 1, "Zone 3 — Adequate (Sunlamp), event running")
+        ), 0, 8),
+        myBand(myCat(
+          myWoods("Maple", 4, "Zone 4 — No unit (open air)"),
+          myFields("Wheat", 10, "Zone 4 — No unit (open air)"),
+          myFields("Rice", 1, "Zone 4 — No unit (open air)")
+        ), 8, 15)
+      ),
+      '<li><strong>Zone 3 — Adequate</strong> (Sunlamp), now — event running: Lavender ×1 field · Magic Pumpkin ×4 fields · Memory Lanternfruit ×4 fields · Lemon ×4 woodlands</li><li><strong>Zone 3 — after the Dec 10 event ends:</strong> Lavender ×5 fields · Grapes ×4 fields · Lemon ×4 woodlands</li><li><strong>Zone 4 — No unit</strong> (open air): Wheat ×10 fields · Rice ×1 field · Maple ×4 woodlands</li>');
+    myDef(7, "Workshop 1", "Workshop Row 1", "Workshop facilities — Rows 1 &amp; 3 together; this board's split between the rows is the sensible arrangement, not a pinned one.",
+      [myFac("Carousel Mill", "Carousel Mill 1", "Carousel Mill 1 — Cornet · Lavender Powder · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
+       myFac("Carousel Mill", "Carousel Mill 2", "Carousel Mill 2 — Turbo M 54 · Wheatmeal · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
+       myFac("Crafting Table", "Crafting Table 1", "Crafting Table 1 — Fenmane · Glowfruit Lantern Set · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
+       myFac("Crafting Table", "Crafting Table 2", "Crafting Table 2 — Gachapus · Magic Pumpkin Lantern, Memory Lantern · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
+       myFac("Phonolfactory Table", "Phonolfactory 1", "Phonolfactory 1 — Ignitis M 48 · Advanced Lemon Incense · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4, "Phonolfactory"),
+       myFac("Joy Wheel Loom", "Joy Wheel Loom", "Joy Wheel Loom — Hypnyto · Cotton Thread · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
+       myFac("Woodworking Bench", "Wood Bench 1", "Woodworking Bench 1 — Melloblum · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Woodworking Bench", "Wood Bench 2", "Woodworking Bench 2 — Ignitis F 47 · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Woodworking Bench", "Wood Bench 3", "Woodworking Bench 3 — Popapus · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Storage Unit", "Storage", "Storage Units — storage for finished goods, no worker · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Storage Unit", "Storage", "Storage Units — storage for finished goods, no worker · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2)],
+      '<li><strong>Carousel Mill 1</strong> — Cornet · Lavender Powder</li><li><strong>Carousel Mill 2</strong> — Turbo M 54 · Wheatmeal</li><li><strong>Crafting Table 1</strong> — Fenmane · Glowfruit Lantern Set</li><li><strong>Crafting Table 2</strong> — Gachapus · Magic Pumpkin Lantern, Memory Lantern</li><li><strong>Phonolfactory 1</strong> — Ignitis M 48 · Advanced Lemon Incense</li><li><strong>Joy Wheel Loom</strong> — Hypnyto · Cotton Thread</li><li><strong>Woodworking Bench 1</strong> — Melloblum · Planks → Laminated Beams</li><li><strong>Woodworking Bench 2</strong> — Ignitis F 47 · Planks → Laminated Beams</li><li><strong>Woodworking Bench 3</strong> — Popapus · Planks → Laminated Beams</li><li><strong>Storage Units</strong> — storage for finished goods</li>');
+    myDef(8, "Kilns", "Workshop Row 2 — Kilns", "Ore chain only.",
+      [myFac("Chimney Kiln", "Kiln 1", "Chimney Kiln 1 — Magmarex M 47 · Sintered Brick → Refined Ore · Plot 8", 5, 5),
+       myFac("Chimney Kiln", "Kiln 2", "Chimney Kiln 2 — Scorchhowl M 40 · Sintered Brick → Refined Ore · Plot 8", 5, 5),
+       myFac("Chimney Kiln", "Kiln 3", "Chimney Kiln 3 — Lavazar F 55 · Sintered Brick → Refined Ore · Plot 8", 5, 5)],
+      '<li><strong>Chimney Kiln 1</strong> — Magmarex M 47 · Sintered Brick → Refined Ore</li><li><strong>Chimney Kiln 2</strong> — Scorchhowl M 40 · Sintered Brick → Refined Ore</li><li><strong>Chimney Kiln 3</strong> — Lavazar F 55 · Sintered Brick → Refined Ore</li>');
+    myDef(9, "Workshop 3", "Workshop Row 3", "Workshop facilities — Rows 1 &amp; 3 together; this board's split between the rows is the sensible arrangement, not a pinned one.",
+      [myFac("Phonolfactory Table", "Phonolfactory 2", "Phonolfactory 2 — Stellarys M 40 · Herbal Ginseng Aroma · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4, "Phonolfactory"),
+       myFac("Simmering Pot", "Simmering Pot 1", "Simmering Pot 1 — Magmarex F 57 · Maple Sugar Chunk · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Simmering Pot", "Simmering Pot 2", "Simmering Pot 2 — Sparkelf INFP · Rock Candy · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Blazing Stove", "Blazing Stove 1", "Blazing Stove 1 — Infergon · Honey-Glazed Pumpkin Cup · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Blazing Stove", "Blazing Stove 2", "Blazing Stove 2 — Sparkelf ENFJ · Magic Pumpkin Cake · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Jukebox Dryer", "Jukebox Dryer", "Jukebox Dryer — Pouchwisp · Dried Ginseng, Nuts · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Bouncy Brew Keg", "Brew Keg", "Bouncy Brew Keg — Sherro · Ginseng Water · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Dance Pad Polisher", "Dance Pad Polisher", "Dance Pad Polisher — Blazen · Growth Fruit · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Claw Game Cooker", "Claw Cooker 1", "Claw Game Cooker 1 — Flamerion · Lavender Cookies · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Claw Game Cooker", "Claw Cooker 2", "Claw Game Cooker 2 — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Pickling Jar", "Pickling Jar", "Pickling Jar — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 2)],
+      '<li><strong>Jukebox Dryer</strong> — Pouchwisp · Dried Ginseng, Nuts</li><li><strong>Simmering Pot 1</strong> — Magmarex F 57 · Maple Sugar Chunk</li><li><strong>Simmering Pot 2</strong> — Sparkelf INFP · Rock Candy</li><li><strong>Bouncy Brew Keg</strong> — Sherro · Ginseng Water</li><li><strong>Claw Game Cooker 1</strong> — Flamerion · Lavender Cookies</li><li><strong>Claw Game Cooker 2</strong> — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star</li><li><strong>Dance Pad Polisher</strong> — Blazen · Growth Fruit</li><li><strong>Blazing Stove 1</strong> — Infergon · Honey-Glazed Pumpkin Cup</li><li><strong>Blazing Stove 2</strong> — Sparkelf ENFJ · Magic Pumpkin Cake</li><li><strong>Pickling Jar</strong> — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink</li><li><strong>Phonolfactory 2</strong> — Stellarys M 40 · Herbal Ginseng Aroma</li>');
+    myDef(10, "Leisure", "Leisure Corner", "Rest and family gates.",
+      [myFac("Nimbus Bed", "Nimbus Bed 1", "Nimbus Bed 1 — Irisal · Plot 10, Leisure Corner", 5, 5),
+       myFac("Nimbus Bed", "Nimbus Bed 2", "Nimbus Bed 2 — Turbo Prismana · Plot 10, Leisure Corner", 5, 5),
+       myFac("Starfall Hammock", "Starfall Hammock", "Starfall Hammock — Stellarys F 45 · Star · Plot 10, Leisure Corner", 5, 5),
+       myFac("Tidewhisper Sandcastle", "Sandcastle 1", "Tidewhisper Sandcastle 1 — Susuta · Sea Salt · Plot 10, Leisure Corner", 5, 5),
+       myFac("Tidewhisper Sandcastle", "Sandcastle 2", "Tidewhisper Sandcastle 2 — second Sandcastle spot · Plot 10, Leisure Corner", 5, 5),
+       myFac("Dewy House", "Dewy House", "Dewy House — Fragrancier F 47 · Aromathyst · Plot 10, Leisure Corner", 2, 2)],
+      '<li><strong>Nimbus Bed 1</strong> — Irisal</li><li><strong>Nimbus Bed 2</strong> — Turbo Prismana</li><li><strong>Starfall Hammock</strong> — Stellarys F 45 · Star</li><li><strong>Tidewhisper Sandcastle 1</strong> — Susuta · Sea Salt</li><li><strong>Tidewhisper Sandcastle 2</strong> — second Sandcastle spot</li><li><strong>Dewy House</strong> — Fragrancier F 47 · Aromathyst</li>');
+    myDef(11, "Open", "Open", "", [], '<li class="open"><strong>Open</strong> — nothing placed yet</li>', "Open", "nothing placed yet");
+    myDef(12, "Open", "Open", "", [], '<li class="open"><strong>Open</strong> — nothing placed yet</li>', "Open", "nothing placed yet");
+    myDef(13, "Mines", "The Mines — 8 spots", "7 staffed, 1 unstaffed.",
+      [myFac("Mine", "Mine 1 · Shell", "Mine 1 — Shell · Shrubclaw M 60 · Plot 13, The Mines", 5, 5, "MineShell"),
+       myFac("Mine", "Mine 2 · Shell", "Mine 2 — Shell · Shrubclaw M 45 · Plot 13, The Mines", 5, 5, "MineShell"),
+       myFac("Mine", "Mine 3 · Copper", "Mine 3 — Copper Ore · Shrubclaw F 49 · Plot 13, The Mines", 5, 5, "MineCopper"),
+       myFac("Mine", "Mine 4 · Copper", "Mine 4 — Copper Ore · Waleetle F 60 · Plot 13, The Mines", 5, 5, "MineCopper"),
+       myFac("Mine", "Mine 5 · Copper", "Mine 5 — Copper Ore · Grizbo F 42 · Plot 13, The Mines", 5, 5, "MineCopper"),
+       myFac("Mine", "Mine 6 · Quartz", "Mine 6 — Quartz Ore · Bouldus · Plot 13, The Mines", 5, 5, "MineQuartz"),
+       myFac("Mine", "Mine 7 · Quartz", "Mine 7 — Quartz Ore · Grizbo F 60 · Plot 13, The Mines", 5, 5, "MineQuartz"),
+       myFac("Mine", "Mine 8 · Unstaffed", "Mine 8 — Unstaffed · its crew spot is Inferlupa the hauler instead · Plot 13, The Mines", 5, 5, "MineQuartz", "open-piece")],
+      '<li><strong>Mine 1 — Shell</strong> · Shrubclaw M 60</li><li><strong>Mine 2 — Shell</strong> · Shrubclaw M 45</li><li><strong>Mine 3 — Copper Ore</strong> · Shrubclaw F 49</li><li><strong>Mine 4 — Copper Ore</strong> · Waleetle F 60</li><li><strong>Mine 5 — Copper Ore</strong> · Grizbo F 42</li><li><strong>Mine 6 — Quartz Ore</strong> · Bouldus</li><li><strong>Mine 7 — Quartz Ore</strong> · Grizbo F 60</li><li class="open"><strong>Mine 8 — Unstaffed</strong> · its crew spot is Inferlupa the hauler instead</li>');
+    myDef(14, "Empty", "Empty — Growth Row", "", [], '<li class="open"><strong>Empty</strong> — growth row, room to expand</li>', "Empty", "growth row, room to expand");
+    myDef(15, "Empty", "Empty — Growth Row", "", [], '<li class="open"><strong>Empty</strong> — growth row, room to expand</li>', "Empty", "growth row, room to expand");
+    myDef(16, "Empty", "Empty — Growth Row", "", [], '<li class="open"><strong>Empty</strong> — growth row, room to expand</li>', "Empty", "growth row, room to expand");
+
+    /* Whole-square packer: first sensible free spot, scanning front to
+       back, left to right, inside the piece's band of its plot. Starts
+       and sizes are integers by construction — no half positions. */
+    function myPack(pieces){
+      var occ = [], y, x;
+      for(y = 0; y < 15; y++){ var row = []; for(x = 0; x < 20; x++) row.push(false); occ.push(row); }
+      function free(px, py, w, h){
+        if(px < 0 || py < 0 || px + w > 20 || py + h > 15) return false;
+        for(var j = py; j < py + h; j++) for(var i = px; i < px + w; i++) if(occ[j][i]) return false;
+        return true;
+      }
+      function mark(px, py, w, h){ for(var j = py; j < py + h; j++) for(var i = px; i < px + w; i++) occ[j][i] = true; }
+      var placed = [], unplaced = [];
+      pieces.forEach(function(pc){
+        if(typeof pc.x === "number" && free(pc.x, pc.y, pc.w, pc.h)){ mark(pc.x, pc.y, pc.w, pc.h); placed.push({ pc:pc, x:pc.x, y:pc.y }); return; }
+        var y0 = pc.band ? pc.band[0] : 0, y1 = pc.band ? pc.band[1] : 15, done = false;
+        for(var py = y0; py + pc.h <= y1 && !done; py++) for(var px = 0; px + pc.w <= 20 && !done; px++){
+          if(free(px, py, pc.w, pc.h)){ mark(px, py, pc.w, pc.h); placed.push({ pc:pc, x:px, y:py }); done = true; }
+        }
+        if(!done) unplaced.push(pc);
+      });
+      return { placed:placed, unplaced:unplaced };
+    }
+    function myGridHtml(def, big){
+      var res = myPack(def.pieces);
+      var out = '<div class="my-pgrid' + (big ? " big" : "") + '">';
+      res.placed.forEach(function(pl){
+        var pc = pl.pc, col = MY_COL[pc.c] || ["#eeeeee","#888888"];
+        var tip = pc.f + " · starts " + pl.x + " across, " + pl.y + " back on Plot " + def.num;
+        var showLabel = big || (pc.w >= 5 && pc.h >= 3);
+        out += '<div class="my-piece' + (pc.cls ? " " + pc.cls : "") + ((pc.w <= 2 || pc.h <= 2) ? " p-sm" : "") + '" style="left:' + (pl.x / 20 * 100) + "%;top:" + (pl.y / 15 * 100) + "%;width:" + (pc.w / 20 * 100) + "%;height:" + (pc.h / 15 * 100) + "%;background:" + col[0] + ";border-color:" + col[1] + '" data-tip="' + escA(tip) + '">' + (showLabel ? "<span>" + esc(pc.s) + "</span>" : "") + "</div>";
+      });
+      if(!def.pieces.length && def.emptyWord){
+        out += '<div class="my-empty-word">' + esc(def.emptyWord) + (def.emptySub ? "<small>" + esc(def.emptySub) + "</small>" : "") + "</div>";
+      }
+      out += "</div>";
+      return { html:out, unplaced:res.unplaced };
+    }
+    function renderMyHomeland(){
+      var board = document.getElementById("myBoard");
+      var details = document.getElementById("myDetails");
+      if(!board || !details) return;
+      var bHtml = "";
+      MY_ROWS.forEach(function(rowNums){
+        rowNums.forEach(function(num){
+          var def = MY_PLOTS[num];
+          var g = myGridHtml(def, false);
+          bHtml += '<div class="my-cell' + (!def.pieces.length ? " is-empty" : "") + '"><div class="my-cell-head"><span class="n">' + num + '</span><span class="r">' + esc(def.role) + "</span></div>" + g.html + "</div>";
+        });
+      });
+      board.innerHTML = bHtml;
+      var dHtml = "";
+      for(var n = 1; n <= 16; n++){
+        var def = MY_PLOTS[n];
+        var g = myGridHtml(def, true);
+        var cap = "Plot " + n + " on the grid · 20 squares across by 15 back · whole squares only";
+        if(g.unplaced.length) cap += " · " + g.unplaced.length + " piece(s) did not fit the drawing — their labels are in the list";
+        dHtml += '<div class="my-detail"><div class="md-grid">' + g.html + '<div class="md-cap">' + esc(cap) + '</div></div><div class="md-side"><span class="pnum">Plot ' + n + (def.role ? " · " + esc(def.role) : "") + "</span><h3>" + def.title + "</h3>" + (def.sub ? "<p>" + def.sub + "</p>" : "") + '<ul class="my-spots">' + def.spots + "</ul></div></div>";
+      }
+      details.innerHTML = dHtml;
+    }
+    renderMyHomeland();
 
     /* ============ init ============ */
     (function init(){
