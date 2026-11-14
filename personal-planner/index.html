@@ -319,8 +319,10 @@
 
       /* My Homeland Layout (personal copy only): her homeland ON THE GRID.
          One 4 by 4 board of plots in their homeland positions, then every
-         plot drawn big as its own 20 by 15 grid board. Whole squares only:
-         every piece starts and ends on a whole square. */
+         plot drawn big as its own 20 by 15 grid board. True sizes only,
+         halves included: pieces sit on a half-square grid (40 by 30
+         half-square cells), so a half in a size or a position lands
+         exactly where it does in game. */
       .my-spots{list-style:none;margin:10px 0 0;padding:10px 0 0;border-top:2px dashed var(--card-line);display:flex;flex-direction:column;gap:6px}
       .my-spots li{font-weight:700;font-size:.93rem;line-height:1.4}
       .my-spots li::before{content:"• ";color:var(--accent);font-weight:800}
@@ -330,7 +332,7 @@
       .my-cell-head{display:flex;align-items:center;gap:6px;background:rgba(61,42,71,.85);color:#fff;padding:3px 7px;flex:none}
       .my-cell-head .n{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.85rem;background:#fff;color:var(--ink);border-radius:6px;padding:0 6px;line-height:1.5}
       .my-cell-head .r{font-weight:800;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .my-pgrid{position:relative;background-color:#8fce6e;background-image:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px);background-size:calc(100%/20) calc(100%/15)}
+      .my-pgrid{position:relative;background-color:#8fce6e;background-image:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px);background-size:calc(100%/20) calc(100%/15),calc(100%/20) calc(100%/15),calc(100%/40) calc(100%/30),calc(100%/40) calc(100%/30)}
       .my-board .my-pgrid{aspect-ratio:4/3}
       .my-cell.is-empty .my-pgrid{background-color:#a7bf92}
       .my-piece{position:absolute;border:1.5px solid;border-radius:4px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:1px;color:var(--ink)}
@@ -357,8 +359,8 @@
          piece itself. Names wrap at their spaces, never mid-word, and the
          two long event-crop names take a smaller size so they fit whole. */
       .my-piece.farm-piece span{overflow-wrap:normal;word-break:normal;letter-spacing:-.02em}
-      .my-detail .my-pgrid .my-piece.farm-piece span{font-size:9px;line-height:1.12}
-      .my-detail .my-pgrid .my-piece.farm-piece.p-long span{font-size:7.5px}
+      .my-detail .my-pgrid .my-piece.farm-piece span{font-size:9px;line-height:1.12;max-width:100%}
+      .my-detail .my-pgrid .my-piece.farm-piece.p-long span{font-size:7px}
       @media (max-width:560px){.my-cell-head .r{display:none}.my-board{padding:5px;gap:4px}}
       .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;border-radius:999px;padding:10px 20px;font-weight:800;opacity:0;pointer-events:none;transition:all .25s ease;z-index:50;max-width:92vw;text-align:center}
       .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -703,9 +705,9 @@
       <!-- ================= MY HOMELAND LAYOUT (personal copy only) ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">Mine</span><h2>🗺️ My Homeland Layout</h2></div>
-        <p class="sec-sub"><strong>This is your homeland as it stands — on the grid.</strong> Your 16 plots sit in their real positions on the homeland grid, and every plot is drawn as a grid board with its pieces placed in whole squares: fields and woodlands with their crops, mines by material, facilities, climate units and Leisure pieces, every spot labeled with what should sit there, what it makes, and who works it. Spare, open and unstaffed spots are labeled exactly that. Unlike everything else in this planner, this board does not regenerate from your Step 1 counts or your plan: your plots are your real homeland. Change your recipes, counts and crew anywhere else on the page as freely as in the public planner — this stays your layout to build against. <strong>Working order: Right → Left, Front → Back</strong> — start at the front-right and work across, then move back a row.</p>
+        <p class="sec-sub"><strong>This is your homeland as it stands — on the grid.</strong> Your 16 plots sit in their real positions on the homeland grid, and every plot is drawn as a grid board with its pieces drawn at their true sizes, halves included: fields and woodlands with their crops, mines by material, facilities, climate units and Leisure pieces, every spot labeled with what should sit there, what it makes, and who works it. Spare, open and unstaffed spots are labeled exactly that. Unlike everything else in this planner, this board does not regenerate from your Step 1 counts or your plan: your plots are your real homeland. Change your recipes, counts and crew anywhere else on the page as freely as in the public planner — this stays your layout to build against. <strong>Working order: Right → Left, Front → Back</strong> — start at the front-right and work across, then move back a row.</p>
 
-        <div class="my-board" id="myBoard" role="img" aria-label="Your homeland on the grid: 16 plots in a 4 by 4 arrangement, back row at the top and front row at the bottom, each plot showing its pieces placed in whole squares"></div>
+        <div class="my-board" id="myBoard" role="img" aria-label="Your homeland on the grid: 16 plots in a 4 by 4 arrangement, back row at the top and front row at the bottom, each plot showing its pieces drawn at their true sizes, halves included"></div>
         <p class="src" style="margin-top:8px">The whole homeland on its grid — back row at the top, front row at the bottom, so Plot 1 sits in the front row, second from the right. Hover or tap any square for its label. Every plot is then drawn big underneath, square by square, with every spot spelled out in words beside it.</p>
 
         <div class="layout-legend">
@@ -719,7 +721,7 @@
             <p class="lg-row"><span class="lg-sw" style="background:#bfe0f2"></span>Water &amp; climate — CU = Cooling Unit · HF = Heat Furnace · SL = Sunlamp</p>
             <p class="lg-row"><span class="lg-sw" style="background:repeating-linear-gradient(45deg,#fff 0 3px,#e6e0f2 3px 6px)"></span>Open or unstaffed spot — labeled exactly that</p>
           </div>
-          <p class="src" style="margin-top:8px"><strong>Whole squares only:</strong> every piece starts and ends on a whole square, so the board counts the way you count in game — no half positions. Each big board is one plot: 20 squares across by 15 back. Where a spot's exact square inside its plot was never pinned down, the piece sits in a sensible free spot in that same plot — its label is exact about the plot it belongs in, and the list beside each board carries the full spot: what goes there, what it makes, and who works it.</p>
+          <p class="src" style="margin-top:8px"><strong>True sizes, halves included:</strong> every piece is drawn at its real size — Farmland fields are their real 2 by 2, Woodlands are really 3.5 by 3.5, and facilities draw at their real size too, halves included (Crafting Table 4.5 by 4.5, Phonolfactory 3.5 by 3.5, Aniipod Maker 3 by 3, Dance Pad Polisher 2 by 2). Pieces sit on a half-square grid: each big board is one plot, 20 squares across by 15 back — 40 by 30 half-squares — so a half in a size or a position lands exactly where it does in game, and the grid tells you where to put everything. <strong>Climate cover:</strong> each Cooling Unit, Heat Furnace and Sunlamp covers 9 by 9 squares centered on the unit itself, and a crop counts as covered when any part of it overlaps that 9 by 9. On the farm plots each unit sits among its crops, and every crop in a zone is placed where its unit's cover reaches it — Zone 1's crops around the Cooling Unit, Zone 2's crops between the two Heat Furnaces, and Zone 3's crops where the Sunlamp's cover reaches them. Where a spot's exact square inside its plot was never pinned down, the piece sits in a sensible free spot in that same plot — its label is exact about the plot it belongs in, and the list beside each board carries the full spot: what goes there, what it makes, and who works it.</p>
         </div>
 
         <div class="my-details" id="myDetails"></div>
@@ -9081,14 +9083,19 @@
        rewrite it. Plot positions are the homeland map's own 4 by 4
        arrangement (the same rows the layout board above uses): back row
        at the top, front row at the bottom. Every plot is a 20 by 15
-       board and every piece is placed in WHOLE squares only — integer
-       starts, integer sizes — the way she counts in game. Where a spot's
-       exact square inside its plot was never pinned, the packer below
-       puts the piece in the first sensible free spot in that same plot;
-       labels stay exact at plot level and the words beside each big
-       board carry the full spot. Farm zones keep their own bands of
-       their plot (Zone 1 over Zone 2 on Plot 3, Zone 3 over Zone 4 on
-       Plot 6) so each zone's crops and its climate unit stay together. */
+       board and every piece is drawn at its TRUE size, halves included,
+       placed on a half-square grid (40 by 30 half-square cells) — the
+       way she counts in game. Where a spot's exact square inside its
+       plot was never pinned, the packer below puts the piece in the
+       first sensible free spot in that same plot; labels stay exact at
+       plot level and the words beside each big board carry the full
+       spot. Farm zones keep their own bands of their plot (Zone 1 over
+       Zone 2 on Plot 3, Zone 3 over Zone 4 on Plot 6) so each zone's
+       crops and its climate unit stay together, and the farm pieces on
+       Plots 3 and 6 carry pinned positions worked out so each climate
+       unit's 9 by 9 cover, centered on the unit itself, reaches every
+       crop in its zone — a crop counts as covered when any part of it
+       overlaps that 9 by 9. */
     var MY_ROWS = [[13,14,15,16],[12,7,8,9],[11,4,3,6],[10,2,1,5]];
     var MY_COL = {
       "Ginseng":["#d7e8a8","#7d9c46"], "Rose":["#f6c3d6","#c96f9c"], "Sugarcane":["#a9d97c","#5f943a"],
@@ -9116,18 +9123,26 @@
     }
     function myFields(crop, n, zoneLabel){
       var out = [];
-      /* Fields draw 3 wide by 2 tall — wide enough that the crop's name
-         fits written on the piece itself, in whole squares. */
-      for(var i = 0; i < n; i++) out.push({ s:crop, f:zoneLabel + " · " + crop + " field " + (i + 1) + " of " + n + " — Farmland", w:3, h:2, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
+      /* Fields draw at their real size, 2 wide by 2 tall. The crop's
+         name is written on the piece itself: it wraps at the space in
+         the name, and long names (over 12 letters) take the p-long
+         small-text treatment so they stay whole inside the 2 by 2. */
+      for(var i = 0; i < n; i++) out.push({ s:crop, f:zoneLabel + " · " + crop + " field " + (i + 1) + " of " + n + " — Farmland, true size 2 by 2", w:2, h:2, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
       return out;
     }
     function myWoods(crop, n, zoneLabel){
       var out = [];
-      /* Woodlands draw 3 by 3 whole squares — big enough for the tree's
-         name written on the piece itself. */
-      for(var i = 0; i < n; i++) out.push({ s:crop, f:zoneLabel + " · " + crop + " woodland " + (i + 1) + " of " + n + " — Woodland, drawn 3 by 3 whole squares", w:3, h:3, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
+      /* Woodlands draw at their real size, 3.5 by 3.5 — halves
+         included, never rounded, so a woodland always claims exactly
+         the space it really takes. */
+      for(var i = 0; i < n; i++) out.push({ s:crop, f:zoneLabel + " · " + crop + " woodland " + (i + 1) + " of " + n + " — Woodland, true size 3.5 by 3.5", w:3.5, h:3.5, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
       return out;
     }
+    /* Pin a piece (or a whole list of pieces) to exact half-square
+       positions — used on the farm plots so each climate unit sits
+       among its crops and its 9 by 9 cover reaches every one of them. */
+    function myAt(pc, x, y){ pc.x = x; pc.y = y; return pc; }
+    function myPos(list, pts){ list.forEach(function(pc, i){ if(pts[i]){ pc.x = pts[i][0]; pc.y = pts[i][1]; } }); return list; }
     function myBand(list, y0, y1){ list.forEach(function(pc){ pc.band = [y0, y1]; }); return list; }
     function myCat(){ var out = []; for(var i = 0; i < arguments.length; i++) out = out.concat(arguments[i]); return out; }
 
@@ -9139,16 +9154,16 @@
     myDef(3, "Farm A", "Zones 1 &amp; 2 — 14 fields + 9 woodlands", "Fragrancier M 37 (Grass 4, Water 3) plants and waters everything.",
       myCat(
         myBand(myCat(
-          [myFac("Cooling Unit", "Cooling Unit", "Zone 1 climate · Cooling Unit — covers Zone 1 · Plot 3, Farm A", 2, 2)],
-          myWoods("Maple", 5, "Zone 1 — Cool (Cooling Unit)"),
-          myFields("Ginseng", 4, "Zone 1 — Cool (Cooling Unit)"),
-          myFields("Rose", 1, "Zone 1 — Cool (Cooling Unit)")
+          [myAt(myFac("Cooling Unit", "Cooling Unit", "Zone 1 climate · Cooling Unit — its 9 by 9 cover, centered on the unit, reaches every Zone 1 crop · Plot 3, Farm A", 2, 2), 9.5, 3.5)],
+          myPos(myWoods("Maple", 5, "Zone 1 — Cool (Cooling Unit)"), [[3,0],[6.5,0],[10,0],[13.5,0],[3,3.5]]),
+          myPos(myFields("Ginseng", 4, "Zone 1 — Cool (Cooling Unit)"), [[6.5,3.5],[11.5,3.5],[13.5,3.5],[6.5,5.5]]),
+          myPos(myFields("Rose", 1, "Zone 1 — Cool (Cooling Unit)"), [[8.5,5.5]])
         ), 0, 8),
         myBand(myCat(
-          [myFac("Heat Furnace", "HF", "Zone 2 climate · Heat Furnace 1 of 2 — covers Zone 2 · Plot 3, Farm A", 1, 1),
-           myFac("Heat Furnace", "HF", "Zone 2 climate · Heat Furnace 2 of 2 — covers Zone 2 · Plot 3, Farm A", 1, 1)],
-          myWoods("Coconut", 4, "Zone 2 — Scorching (2× Heat Furnace)"),
-          myFields("Sugarcane", 9, "Zone 2 — Scorching (2× Heat Furnace)")
+          [myAt(myFac("Heat Furnace", "HF", "Zone 2 climate · Heat Furnace 1 of 2 — toward the left end of Zone 2; its 9 by 9 cover, centered on the unit, reaches Zone 2's left-hand crops · Plot 3, Farm A", 1, 1), 5, 11.5),
+           myAt(myFac("Heat Furnace", "HF", "Zone 2 climate · Heat Furnace 2 of 2 — toward the right end of Zone 2; its 9 by 9 cover, centered on the unit, reaches Zone 2's right-hand crops · Plot 3, Farm A", 1, 1), 14, 11.5)],
+          myPos(myWoods("Coconut", 4, "Zone 2 — Scorching (2× Heat Furnace)"), [[1,8],[4.5,8],[8,8],[11.5,8]]),
+          myPos(myFields("Sugarcane", 9, "Zone 2 — Scorching (2× Heat Furnace)"), [[1,11.5],[3,11.5],[6,11.5],[8,11.5],[10,11.5],[12,11.5],[15,11.5],[15,8],[17,8]])
         ), 8, 15)
       ),
       '<li><strong>Zone 1 — Cool</strong> (Cooling Unit): Ginseng ×4 fields · Rose ×1 field · Maple ×5 woodlands</li><li><strong>Zone 2 — Scorching</strong> (2× Heat Furnace): Sugarcane ×9 fields · Coconut ×4 woodlands</li>');
@@ -9161,17 +9176,17 @@
       var hatch = [];
       for(var i = 0; i < 10; i++) hatch.push(myFac("Hatchinator", "Hatch", "Hatchinator " + (i + 1) + " of 10 — passive, no worker · Plot 5, Hatchery", 2, 2));
       myDef(5, "Hatchery", "Hatchery", "Hatching and Aniipods.",
-        myCat([myFac("Aniipod Maker", "Aniipod Maker", "Aniipod Maker — Dazmand · Aniipod Mega · Plot 5, Hatchery · drawn 5 by 5 whole squares", 5, 5)], hatch),
+        myCat([myFac("Aniipod Maker", "Aniipod Maker", "Aniipod Maker — Dazmand · Aniipod Mega · Plot 5, Hatchery · true size 3 by 3", 3, 3)], hatch),
         '<li><strong>Hatchinators ×10</strong> — passive, no worker</li><li><strong>Aniipod Maker</strong> — Dazmand · Aniipod Mega</li>');
     })();
     myDef(6, "Farm B", "Zones 3 &amp; 4 — 20 fields + 8 woodlands", "The board draws Zone 3 as it stands now, with the event planting. Zone 3's planting changes when the event ends — both versions are in the list.",
       myCat(
         myBand(myCat(
-          [myFac("Sunlamp", "SL", "Zone 3 climate · Sunlamp — covers Zone 3 · Plot 6, Farm B", 1, 1)],
-          myWoods("Lemon", 4, "Zone 3 — Adequate (Sunlamp), event running"),
-          myFields("Magic Pumpkin", 4, "Zone 3 — Adequate (Sunlamp), event running"),
-          myFields("Memory Lanternfruit", 4, "Zone 3 — Adequate (Sunlamp), event running"),
-          myFields("Lavender", 1, "Zone 3 — Adequate (Sunlamp), event running")
+          [myAt(myFac("Sunlamp", "SL", "Zone 3 climate · Sunlamp — its 9 by 9 cover, centered on the unit, reaches every Zone 3 crop · Plot 6, Farm B", 1, 1), 10, 5.5)],
+          myPos(myWoods("Lemon", 4, "Zone 3 — Adequate (Sunlamp), event running"), [[3,0],[6.5,0],[10,0],[13.5,0]]),
+          myPos(myFields("Magic Pumpkin", 4, "Zone 3 — Adequate (Sunlamp), event running"), [[4.5,3.5],[6.5,3.5],[8.5,3.5],[10.5,3.5]]),
+          myPos(myFields("Memory Lanternfruit", 4, "Zone 3 — Adequate (Sunlamp), event running"), [[12.5,3.5],[4.5,5.5],[6.5,5.5],[11,5.5]]),
+          myPos(myFields("Lavender", 1, "Zone 3 — Adequate (Sunlamp), event running"), [[13,5.5]])
         ), 0, 8),
         myBand(myCat(
           myWoods("Maple", 4, "Zone 4 — No unit (open air)"),
@@ -9183,13 +9198,13 @@
     myDef(7, "Workshop 1", "Workshop Row 1", "Workshop facilities — Rows 1 &amp; 3 together; this board's split between the rows is the sensible arrangement, not a pinned one.",
       [myFac("Carousel Mill", "Carousel Mill 1", "Carousel Mill 1 — Cornet · Lavender Powder · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
        myFac("Carousel Mill", "Carousel Mill 2", "Carousel Mill 2 — Turbo M 54 · Wheatmeal · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
-       myFac("Crafting Table", "Crafting Table 1", "Crafting Table 1 — Fenmane · Glowfruit Lantern Set · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
-       myFac("Crafting Table", "Crafting Table 2", "Crafting Table 2 — Gachapus · Magic Pumpkin Lantern, Memory Lantern · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
-       myFac("Phonolfactory Table", "Phonolfactory 1", "Phonolfactory 1 — Ignitis M 48 · Advanced Lemon Incense · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4, "Phonolfactory"),
+       myFac("Crafting Table", "Crafting Table 1", "Crafting Table 1 — Fenmane · Glowfruit Lantern Set · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4.5, 4.5),
+       myFac("Crafting Table", "Crafting Table 2", "Crafting Table 2 — Gachapus · Magic Pumpkin Lantern, Memory Lantern · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4.5, 4.5),
+       myFac("Phonolfactory Table", "Phonolfactory 1", "Phonolfactory 1 — Ignitis M 48 · Advanced Lemon Incense · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3.5, 3.5, "Phonolfactory"),
        myFac("Joy Wheel Loom", "Joy Wheel Loom", "Joy Wheel Loom — Hypnyto · Cotton Thread · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
-       myFac("Woodworking Bench", "Wood Bench 1", "Woodworking Bench 1 — Melloblum · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
-       myFac("Woodworking Bench", "Wood Bench 2", "Woodworking Bench 2 — Ignitis F 47 · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
-       myFac("Woodworking Bench", "Wood Bench 3", "Woodworking Bench 3 — Popapus · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Woodworking Bench", "Wood Bench 1", "Woodworking Bench 1 — Melloblum · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
+       myFac("Woodworking Bench", "Wood Bench 2", "Woodworking Bench 2 — Ignitis F 47 · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
+       myFac("Woodworking Bench", "Wood Bench 3", "Woodworking Bench 3 — Popapus · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
        myFac("Storage Unit", "Storage", "Storage Units — storage for finished goods, no worker · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
        myFac("Storage Unit", "Storage", "Storage Units — storage for finished goods, no worker · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2)],
       '<li><strong>Carousel Mill 1</strong> — Cornet · Lavender Powder</li><li><strong>Carousel Mill 2</strong> — Turbo M 54 · Wheatmeal</li><li><strong>Crafting Table 1</strong> — Fenmane · Glowfruit Lantern Set</li><li><strong>Crafting Table 2</strong> — Gachapus · Magic Pumpkin Lantern, Memory Lantern</li><li><strong>Phonolfactory 1</strong> — Ignitis M 48 · Advanced Lemon Incense</li><li><strong>Joy Wheel Loom</strong> — Hypnyto · Cotton Thread</li><li><strong>Woodworking Bench 1</strong> — Melloblum · Planks → Laminated Beams</li><li><strong>Woodworking Bench 2</strong> — Ignitis F 47 · Planks → Laminated Beams</li><li><strong>Woodworking Bench 3</strong> — Popapus · Planks → Laminated Beams</li><li><strong>Storage Units</strong> — storage for finished goods</li>');
@@ -9199,17 +9214,17 @@
        myFac("Chimney Kiln", "Kiln 3", "Chimney Kiln 3 — Lavazar F 55 · Sintered Brick → Refined Ore · Plot 8", 5, 5)],
       '<li><strong>Chimney Kiln 1</strong> — Magmarex M 47 · Sintered Brick → Refined Ore</li><li><strong>Chimney Kiln 2</strong> — Scorchhowl M 40 · Sintered Brick → Refined Ore</li><li><strong>Chimney Kiln 3</strong> — Lavazar F 55 · Sintered Brick → Refined Ore</li>');
     myDef(9, "Workshop 3", "Workshop Row 3", "Workshop facilities — Rows 1 &amp; 3 together; this board's split between the rows is the sensible arrangement, not a pinned one.",
-      [myFac("Phonolfactory Table", "Phonolfactory 2", "Phonolfactory 2 — Stellarys M 40 · Herbal Ginseng Aroma · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4, "Phonolfactory"),
+      [myFac("Phonolfactory Table", "Phonolfactory 2", "Phonolfactory 2 — Stellarys M 40 · Herbal Ginseng Aroma · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3.5, 3.5, "Phonolfactory"),
        myFac("Simmering Pot", "Simmering Pot 1", "Simmering Pot 1 — Magmarex F 57 · Maple Sugar Chunk · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
        myFac("Simmering Pot", "Simmering Pot 2", "Simmering Pot 2 — Sparkelf INFP · Rock Candy · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Blazing Stove", "Blazing Stove 1", "Blazing Stove 1 — Infergon · Honey-Glazed Pumpkin Cup · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Blazing Stove", "Blazing Stove 2", "Blazing Stove 2 — Sparkelf ENFJ · Magic Pumpkin Cake · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Jukebox Dryer", "Jukebox Dryer", "Jukebox Dryer — Pouchwisp · Dried Ginseng, Nuts · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Blazing Stove", "Blazing Stove 1", "Blazing Stove 1 — Infergon · Honey-Glazed Pumpkin Cup · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
+       myFac("Blazing Stove", "Blazing Stove 2", "Blazing Stove 2 — Sparkelf ENFJ · Magic Pumpkin Cake · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
+       myFac("Jukebox Dryer", "Jukebox Dryer", "Jukebox Dryer — Pouchwisp · Dried Ginseng, Nuts · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
        myFac("Bouncy Brew Keg", "Brew Keg", "Bouncy Brew Keg — Sherro · Ginseng Water · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Dance Pad Polisher", "Dance Pad Polisher", "Dance Pad Polisher — Blazen · Growth Fruit · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Claw Game Cooker", "Claw Cooker 1", "Claw Game Cooker 1 — Flamerion · Lavender Cookies · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
-       myFac("Claw Game Cooker", "Claw Cooker 2", "Claw Game Cooker 2 — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
-       myFac("Pickling Jar", "Pickling Jar", "Pickling Jar — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 2)],
+       myFac("Dance Pad Polisher", "Dance Pad Polisher", "Dance Pad Polisher — Blazen · Growth Fruit · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Claw Game Cooker", "Claw Cooker 1", "Claw Game Cooker 1 — Flamerion · Lavender Cookies · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 1.5, 1.5),
+       myFac("Claw Game Cooker", "Claw Cooker 2", "Claw Game Cooker 2 — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 1.5, 1.5),
+       myFac("Pickling Jar", "Pickling Jar", "Pickling Jar — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2)],
       '<li><strong>Jukebox Dryer</strong> — Pouchwisp · Dried Ginseng, Nuts</li><li><strong>Simmering Pot 1</strong> — Magmarex F 57 · Maple Sugar Chunk</li><li><strong>Simmering Pot 2</strong> — Sparkelf INFP · Rock Candy</li><li><strong>Bouncy Brew Keg</strong> — Sherro · Ginseng Water</li><li><strong>Claw Game Cooker 1</strong> — Flamerion · Lavender Cookies</li><li><strong>Claw Game Cooker 2</strong> — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star</li><li><strong>Dance Pad Polisher</strong> — Blazen · Growth Fruit</li><li><strong>Blazing Stove 1</strong> — Infergon · Honey-Glazed Pumpkin Cup</li><li><strong>Blazing Stove 2</strong> — Sparkelf ENFJ · Magic Pumpkin Cake</li><li><strong>Pickling Jar</strong> — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink</li><li><strong>Phonolfactory 2</strong> — Stellarys M 40 · Herbal Ginseng Aroma</li>');
     myDef(10, "Leisure", "Leisure Corner", "Rest and family gates.",
       [myFac("Nimbus Bed", "Nimbus Bed 1", "Nimbus Bed 1 — Irisal · Plot 10, Leisure Corner", 5, 5),
@@ -9235,24 +9250,31 @@
     myDef(15, "Empty", "Empty — Growth Row", "", [], '<li class="open"><strong>Empty</strong> — growth row, room to expand</li>', "Empty", "growth row, room to expand");
     myDef(16, "Empty", "Empty — Growth Row", "", [], '<li class="open"><strong>Empty</strong> — growth row, room to expand</li>', "Empty", "growth row, room to expand");
 
-    /* Whole-square packer: first sensible free spot, scanning front to
-       back, left to right, inside the piece's band of its plot. Starts
-       and sizes are integers by construction — no half positions. */
+    /* Half-square packer: the board is 40 by 30 half-square cells
+       (20 by 15 big squares). Sizes and starts are exact to the half
+       square, so true sizes like 3.5 by 3.5 and 2 by 1.5 pack and land
+       exactly where they would in game. First sensible free spot,
+       scanning front to back, left to right, inside the piece's band
+       of its plot; pinned pieces keep their pinned half-square spot. */
     function myPack(pieces){
       var occ = [], y, x;
-      for(y = 0; y < 15; y++){ var row = []; for(x = 0; x < 20; x++) row.push(false); occ.push(row); }
-      function free(px, py, w, h){
-        if(px < 0 || py < 0 || px + w > 20 || py + h > 15) return false;
-        for(var j = py; j < py + h; j++) for(var i = px; i < px + w; i++) if(occ[j][i]) return false;
+      for(y = 0; y < 30; y++){ var row = []; for(x = 0; x < 40; x++) row.push(false); occ.push(row); }
+      function free(cx, cy, cw, ch){
+        if(cx < 0 || cy < 0 || cx + cw > 40 || cy + ch > 30) return false;
+        for(var j = cy; j < cy + ch; j++) for(var i = cx; i < cx + cw; i++) if(occ[j][i]) return false;
         return true;
       }
-      function mark(px, py, w, h){ for(var j = py; j < py + h; j++) for(var i = px; i < px + w; i++) occ[j][i] = true; }
+      function mark(cx, cy, cw, ch){ for(var j = cy; j < cy + ch; j++) for(var i = cx; i < cx + cw; i++) occ[j][i] = true; }
       var placed = [], unplaced = [];
       pieces.forEach(function(pc){
-        if(typeof pc.x === "number" && free(pc.x, pc.y, pc.w, pc.h)){ mark(pc.x, pc.y, pc.w, pc.h); placed.push({ pc:pc, x:pc.x, y:pc.y }); return; }
-        var y0 = pc.band ? pc.band[0] : 0, y1 = pc.band ? pc.band[1] : 15, done = false;
-        for(var py = y0; py + pc.h <= y1 && !done; py++) for(var px = 0; px + pc.w <= 20 && !done; px++){
-          if(free(px, py, pc.w, pc.h)){ mark(px, py, pc.w, pc.h); placed.push({ pc:pc, x:px, y:py }); done = true; }
+        var cw = Math.round(pc.w * 2), ch = Math.round(pc.h * 2);
+        if(typeof pc.x === "number"){
+          var pcx = Math.round(pc.x * 2), pcy = Math.round(pc.y * 2);
+          if(free(pcx, pcy, cw, ch)){ mark(pcx, pcy, cw, ch); placed.push({ pc:pc, x:pc.x, y:pc.y }); return; }
+        }
+        var y0 = pc.band ? Math.round(pc.band[0] * 2) : 0, y1 = pc.band ? Math.round(pc.band[1] * 2) : 30, done = false;
+        for(var cy = y0; cy + ch <= y1 && !done; cy++) for(var cx = 0; cx + cw <= 40 && !done; cx++){
+          if(free(cx, cy, cw, ch)){ mark(cx, cy, cw, ch); placed.push({ pc:pc, x:cx / 2, y:cy / 2 }); done = true; }
         }
         if(!done) unplaced.push(pc);
       });
@@ -9290,7 +9312,7 @@
       for(var n = 1; n <= 16; n++){
         var def = MY_PLOTS[n];
         var g = myGridHtml(def, true);
-        var cap = "Plot " + n + " on the grid · 20 squares across by 15 back · whole squares only";
+        var cap = "Plot " + n + " on the grid · 20 squares across by 15 back · true sizes, halves included";
         if(g.unplaced.length) cap += " · " + g.unplaced.length + " piece(s) did not fit the drawing — their labels are in the list";
         dHtml += '<div class="my-detail"><div class="md-grid">' + g.html + '<div class="md-cap">' + esc(cap) + '</div></div><div class="md-side"><span class="pnum">Plot ' + n + (def.role ? " · " + esc(def.role) : "") + "</span><h3>" + def.title + "</h3>" + (def.sub ? "<p>" + def.sub + "</p>" : "") + '<ul class="my-spots">' + def.spots + "</ul></div></div>";
       }
