@@ -3212,6 +3212,44 @@
     ALWAYS_DEFAULTS.forEach(function(d){ alwaysPins[d[0]] = d[1]; alwaysList.push(d[0]); });
     var alwaysPlanCrew = null;
     function alwaysJob(f){ return (typeof FAC_JOB !== "undefined" && FAC_JOB[facCanon(f)]) || null; }
+    /* Wanted personality for each Always Staffed post (verified table,
+       Nov 13, 2026): the personality that earns the +20% bonus at that
+       facility. The letter just has to appear anywhere in the worker's
+       4-letter personality type. Posts marked null have no personality
+       bonus, and any post not listed here reads the same way, so no
+       Always row is left ambiguous. This table is for these rows only;
+       it does not change FAC_TRAIT or any other section. Keyed by the
+       Step 1 facility name, so Phonolfactory is "Phonolfactory Table". */
+    var ALWAYS_PERSONALITY = {
+      "Dewy House":{ letter:"I", name:"Instinctive" },
+      "Nimbus Bed":{ letter:"J", name:"Judicious" },
+      "Tidewhisper Sandcastle":{ letter:"J", name:"Judicious" },
+      "Starfall Hammock":{ letter:"F", name:"Faithful" },
+      "Blazing Stove":{ letter:"N", name:"Nimble" },
+      "Claw Game Cooker":{ letter:"S", name:"Practical" },
+      "Simmering Pot":{ letter:"T", name:"Tenacious" },
+      "Bouncy Brew Keg":{ letter:"E", name:"Energetic" },
+      "Well":{ letter:"F", name:"Faithful" },
+      "Aniipod Maker":null,
+      "Mine":{ letter:"P", name:"Playful" },
+      "Carousel Mill":{ letter:"T", name:"Tenacious" },
+      "Chimney Kiln":{ letter:"S", name:"Practical" },
+      "Crafting Table":{ letter:"J", name:"Judicious" },
+      "Joy Wheel Loom":{ letter:"F", name:"Faithful" },
+      "Jukebox Dryer":{ letter:"N", name:"Nimble" },
+      "Phonolfactory Table":{ letter:"I", name:"Instinctive" },
+      "Phonolfactory":{ letter:"I", name:"Instinctive" },
+      "Pickling Jar":{ letter:"P", name:"Playful" },
+      "Woodworking Bench":{ letter:"E", name:"Energetic" },
+      "Dance Pad Polisher":null,
+      "Heat Furnace":null,
+      "Cooling Unit":null,
+      "Sunlamp":null
+    };
+    function alwaysPersonalityText(f){
+      var t = ALWAYS_PERSONALITY[facCanon(f)];
+      return t ? " · personality " + t.letter + " · " + t.name + " (+20%)" : " · no personality bonus";
+    }
     function alwaysStaffable(){
       return Object.keys(FAC_JOB).filter(function(f){ return f !== "Homeland leisure station" && f !== "Farmland" && f !== "Woodland"; });
     }
@@ -3271,7 +3309,7 @@
         var c = alwaysCount(f);
         var job = alwaysJob(f);
         return '<div class="fac-item"><span><span class="nm">' + esc(f) + '</span><span class="kd">' +
-          (job ? esc(job) + " Aniimo" : "job not checked yet") + (isClimateMachine(f) ? " · any level" : "") + " · you own " + owned + (owned === 1 ? " copy" : " copies") + " (Step 1)" + facSizeNote(f) +
+          (job ? esc(job) + " Aniimo" : "job not checked yet") + (isClimateMachine(f) ? " · any level" : "") + alwaysPersonalityText(f) + " · you own " + owned + (owned === 1 ? " copy" : " copies") + " (Step 1)" + facSizeNote(f) +
           '</span></span>' +
           '<span class="fac-ctl"><span class="src">Pinned</span> <span class="count-step">' +
           '<button type="button" class="cnt-btn" data-always-dec="' + escA(f) + '" aria-label="One fewer pinned ' + escA(f) + '"' + (c <= 0 ? " disabled" : "") + '>−</button>' +
