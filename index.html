@@ -332,7 +332,7 @@
         <p class="tagline">Work top to bottom: RV, basket, one strategy, its plan, then your Mines. Your basket is planned first; the strategy uses what's left.</p>
         <div class="emoji-strip" aria-hidden="true">🧺 🌱 💧 🔥 🚐</div>
         <div class="how">
-          <div class="step"><span class="n">Step 1</span><br /><b>🏭 Set up first</b><p>Boxes fill for your RV. Change any number with − and +.</p></div>
+          <div class="step"><span class="n">Step 1</span><br /><b>🏭 Set up first</b><p>Pick your RV level — nothing is pre-picked for you. Picking fills the boxes; change any number with − and +.</p></div>
           <div class="step"><span class="n">Step 2</span><br /><b>🧺 Recipe basket</b><p>Pick recipes, no amounts. The planner sizes the whole chain for you.</p></div>
           <div class="step"><span class="n">Step 3</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
           <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Tap Find the plan.</p></div>
@@ -364,7 +364,7 @@
       <!-- ================= STEP 1: SET UP FIRST ================= -->
       <section id="facilities">
         <div class="sec-head"><span class="sec-num">Step 1</span><h2>🏭 Set Up First — RV, Facilities &amp; Modules</h2></div>
-        <p class="sec-sub"><strong>Boxes are filled for your RV.</strong> Change any number with − and +, or by typing. Picking a new RV refills them. Your real counts always win — type over any box that doesn't match your game.</p>
+        <p class="sec-sub"><strong>No RV level is picked for you.</strong> The picker starts on “Pick your RV level…” and every box starts at 0. Pick your RV level and the boxes fill to the most that RV allows; picking a new RV refills them. Change any number with − and +, or by typing. Your real counts always win — type over any box that doesn't match your game.</p>
 
         <div class="card">
           <h3>🏭 Your facilities &amp; modules</h3>
@@ -378,7 +378,7 @@
           <p class="sec-sub" style="margin-bottom:4px">Fill sets every count and level to the most your RV allows. Levels unlock recipes.</p>
           <div class="fill-row">
             <button class="btn btn-primary" id="fillFromRvBtn" type="button">🏭 Fill from RV level</button>
-            <span class="src" id="facSourceLine" aria-live="polite">Facilities auto-fill for your RV level when the page opens</span>
+            <span class="src" id="facSourceLine" aria-live="polite">No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts</span>
           </div>
           <div class="fac-grid" id="facGrid"></div>
           <p class="src" style="margin-top:8px">⛏️ The Mine count and level here are just how many Mines you own and how deep they go — what each Mine digs is <strong>not</strong> picked here. That comes later, in Step 5, after your strategy, because your strategy can claim Mines of its own.</p>
@@ -399,14 +399,14 @@
 
         <div class="card" id="alwaysCard" style="margin-top:16px">
           <h3>📌 Always staffed</h3>
-          <p class="sec-sub" style="margin:6px 0 0">Pin facilities that must always have a worker, even when no recipe uses them. They are staffed <strong>first</strong>, before your basket, with the best worker for each facility's job. They count toward your Aniimo limit, and the Always list is <strong>never trimmed</strong>: if the total goes over your limit, the plan side is trimmed instead.</p>
-          <p class="fac-state" id="alwaysTotalsLine" aria-live="polite">Always crew: 20 · Plan crew: not set yet · Total: 20</p>
+          <p class="sec-sub" style="margin:6px 0 0">The list starts empty — nothing is pinned or saved for you. Pin facilities that must always have a worker, even when no recipe uses them. They are staffed <strong>first</strong>, before your basket, with the best worker for each facility's job. They count toward your Aniimo limit, and the Always list is <strong>never trimmed</strong>: if the total goes over your limit, the plan side is trimmed instead.<br /><strong>Climate units are not pinned here:</strong> Cooling Unit, Heat Furnace and Sunlamp can't be pinned and don't appear in the Add list — the layout staffs a climate unit only when it actually puts one out for crops that need its cover.</p>
+          <p class="fac-state" id="alwaysTotalsLine" aria-live="polite">Always crew: 0 · Plan crew: not set yet · Total: 0</p>
           <div class="fac-grid" id="alwaysGrid"></div>
           <div class="controls" style="margin-top:14px">
             <div class="field" style="flex:1 1 240px">
               <label for="alwaysAddSelect">Add another facility</label>
               <select id="alwaysAddSelect"></select>
-              <span class="hint">Any staffable facility you own can be pinned. Storage Units take no worker, so they cannot be pinned.</span>
+              <span class="hint">Any staffable facility you own can be pinned, except the climate units (Cooling Unit, Heat Furnace, Sunlamp), which are never pinned. Storage Units take no worker, so they cannot be pinned either.</span>
             </div>
             <div class="field">
               <label aria-hidden="true">&nbsp;</label>
@@ -422,7 +422,7 @@
       <!-- ================= STEP 2: BASKET ================= -->
       <section id="basket">
         <div class="sec-head"><span class="sec-num">Step 2</span><h2>🧺 Your Recipe Basket</h2></div>
-        <p class="sec-sub">Add up to <strong>ten recipes</strong>. Chains merge into one list, sized by your Step 1 numbers.</p>
+        <p class="sec-sub">Add up to <strong>ten recipes</strong>. Chains merge into one list, sized by your Step 1 numbers. The basket starts empty every time — no recipe is saved or pre-picked for you.</p>
 
         <div class="note note-event">
           <h4>🎃 Magical Wonder Night</h4>
@@ -430,7 +430,7 @@
         </div>
 
         <div class="card">
-          <p class="fac-state" id="facStateLine" aria-live="polite">🏭 Facilities auto-fill for your RV level when the page opens</p>
+          <p class="fac-state" id="facStateLine" aria-live="polite">🏭 No RV level picked yet — pick your RV level in Step 1 and the boxes fill, or type your own counts</p>
           <div class="controls">
             <div class="field" style="flex:1 1 240px">
               <label for="recipeSearch">Find a recipe</label>
@@ -439,6 +439,11 @@
             <div class="field">
               <label aria-hidden="true">&nbsp;</label>
               <button class="btn" id="exampleBtn" type="button">⭐ Try an example basket</button>
+            </div>
+            <div class="field">
+              <label aria-hidden="true">&nbsp;</label>
+              <button class="btn" id="startFreshBtn" type="button">🧹 Start fresh — clear everything</button>
+              <span class="hint">Basket, strategy, goals, pins &amp; picks — nothing is kept or saved.</span>
             </div>
           </div>
           <div class="chips" id="catChips" role="group" aria-label="Recipe categories"></div>
@@ -523,7 +528,7 @@
           </div>
           <div id="goalsPanel" hidden>
           <h3>🎯 Rank your goals</h3>
-          <p class="sec-sub" style="margin-bottom:0">Turn goals on or off and rank them with the ↑ ↓ arrows. Goal 1 fills first, then the next with what is left; leftovers go to Home Coins. All off is allowed.</p>
+          <p class="sec-sub" style="margin-bottom:0">Every goal starts off — nothing is saved or pre-picked. Turn on the goals you want and rank them with the ↑ ↓ arrows. Goal 1 fills first, then the next with what is left; leftovers go to Home Coins. All off is allowed.</p>
           <div class="goal-list" id="goalList"></div>
           </div>
           <div class="plan-actions">
@@ -531,7 +536,7 @@
             <span class="src" id="findBestHint" style="align-self:center">Pick a strategy above first — Level Up or Goals.</span>
           </div>
           <div id="bestPlanOut">
-            <div class="empty-plan">Your strategy plan appears here. Pick a strategy above — your Step 1 setup at the top of this page is already filled for your RV — then tap Find the plan.</div>
+            <div class="empty-plan">Your strategy plan appears here. Pick your RV level in Step 1 at the top of this page first, pick a strategy above, then tap Find the plan.</div>
           </div>
         </div>
 
@@ -567,7 +572,7 @@
         <div class="rv-grid">
           <div class="card">
             <h3>Your next level</h3>
-            <p style="margin-top:12px;font-weight:700">Your current RV: <strong id="rvCurrentDisplay">RV 20</strong></p>
+            <p style="margin-top:12px;font-weight:700">Your current RV: <strong id="rvCurrentDisplay">Not picked yet</strong></p>
             <p class="hint" id="rvNextLabel" style="margin-top:4px"></p>
             <p class="src" style="margin-top:8px">Follows the one RV picker in Step 1, at the top of this page.</p>
             <p class="src" style="margin-top:12px">Home Coin is a cost in the bill, not a balance to track.</p>
@@ -799,7 +804,7 @@
           <li><strong>The Layout Helper also reads your strategy plan:</strong> once run, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your setup, basket, strategy or goals change after a run, the group says the plan is out of date until you run it again.</li>
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the touch rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, touching its 18 × 18 zone and hanging over its edge where the touch rule allows, so one zone holds up to 25 Farmland or 9 Woodland plots (24 Farmland around a Cooling Unit) and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
           <li><strong>Facility sizes</strong> (measured from your in-game screenshots and cross-checked against wikily.gg game data, Nov 9, 2026): every facility's true footprint in tiles now shows beside its name in Step 1, in the Always list, on its Layout Helper block and in the strategy plan's facility table. Farmland 2 × 2, Woodland 3.5 × 3.5, Mine 5 × 5, Well 2 × 2, Aniipod Maker 4.5 × 4.5, Crafting Table 4 × 4, Woodworking Bench 2 × 1.5, Chimney Kiln 5 × 5, Blazing Stove 2.5 × 2.5, Simmering Pot 3 × 3, Claw Game Cooker 1.5 × 1.5, Jukebox Dryer 2.5 × 2.5, Pickling Jar 2.5 × 2, Joy Wheel Loom 4 × 4, Carousel Mill 5 × 5, Phonolfactory Table 3.5 × 3.5, Bouncy Brew Keg 3 × 3, Dance Pad Polisher 2.5 × 2.5, Storage Unit 2 × 2, Hatchinator 2 × 2, Tidewhisper Sandcastle 5 × 5, Dewy House 2 × 2, Nimbus Bed 5 × 5, Starfall Hammock 5 × 5, Heat Furnace 1 × 1, Sunlamp 1 × 1, Cooling Unit 2 × 2, Crackle Generator 2 × 2 (covers 11 × 11), Crackle Power Pole 1.5 × 1.5 (covers 7 × 7). The Floral Windmill has no verified size, so none is shown for it. Sizes are display only: no plan, crew or power figure reads them, and the layout packer keeps the reserved building footprints above.</li>
-          <li><strong>Step 1 (setup):</strong> the boxes auto-fill on a fresh load to the most the RV level standing in the picker allows — facility counts, facility levels, climate counts and module levels — the same fill that picking an RV level or tapping Fill from RV level runs. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying, plans and Money Crops follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
+          <li><strong>Step 1 (setup):</strong> no RV level is auto-selected (player's rule, Nov 15, 2026): on a fresh load the picker stands on "Pick your RV level…" and every box — facility counts, facility levels, climate counts and module levels — stands at 0. Picking an RV level fills the boxes to the most that RV allows, the same fill tapping Fill from RV level runs; Fill does nothing until a level is picked. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying, plans and Money Crops follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
           <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13 — and 2 is the cap here (player-verified, Oct 29, 2026: she has 2, her count wins over the guide ladder's third at RV 17, so Fill stops at 2 and no plan uses or shows a third); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19.</li>
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
@@ -822,11 +827,11 @@
           <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
           <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
           <li><strong>Trips:</strong> the 4 public RV Parks and managers (Sea of Flowers / Ben, Nimbus Fields / Umi, Echoback Landing / Sesa, Driftwise Meadow / Yu); trip slots from the Signal Transmitter (Lv 1 at RV 6 holds 1, Lv 2 at RV 11 holds 2, Lv 3 at RV 16 holds 3, matching the RV ladder above); recalling early loses all the trip's rewards; park buffs from Element Essence placed at the park, +2% attack and resistance for one element, +5% for Pure; Element Gems from Home Orders exchange 10 for 1 essence.</li>
-          <li><strong>Power headroom (caps and copies fixed Nov 7, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>. Step 1 auto-fill uses the right copy count for the picked RV, and the power headroom line totals all generators. Spare power raises grid speed up to <strong>120%</strong>; over the total supply, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator 22 × 22, Power Pole 14 × 14.</li>
+          <li><strong>Power headroom (caps and copies fixed Nov 7, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>. Fill from RV level uses the right copy count for the picked RV, and the power headroom line totals all generators. Spare power raises grid speed up to <strong>120%</strong>; over the total supply, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator 22 × 22, Power Pole 14 × 14.</li>
           <li><strong>Family gates are hard requirements (deep-dive audit, Nov 7, 2026):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
           <li><strong>Climate and light gates on recipes (audit, Nov 7, 2026):</strong> Scales and Quick Scales are hard-gated on Light: the plan must include a Sunlamp covering the Floral Windmill in the Layout step, and the plan warns if it is missing. Pearl and Quick Pearl want Warmth +1: without Heat Furnace coverage of the Sandcastle they run at 80%, and the adjusted per-hour figure is shown, labelled. Star wants Cool -1: 80% without Cooling Unit coverage. Sweet Cone wants Cold -2: 50% without. Gold-Speck Cap wants Warmth +1: 80% without.</li>
           <li><strong>Storage Units take no worker (audit, Nov 7, 2026):</strong> Storage Units are passive. They have no crew slot, no crew count and no worker-based power math, and they never appear in the crew.</li>
-          <li><strong>Always staffed (player's rule, Nov 8, 2026):</strong> facilities pinned in Step 1 (defaults: Mine 8, Dewy House 1, Nimbus Bed 2, Tidewhisper Sandcastle 2, Starfall Hammock 1, Heat Furnace 2, Cooling Unit 2, Sunlamp 2; any other staffable facility can be added, up to the copies owned) are staffed first, before the recipe basket, with the best worker for each facility's job; climate posts stay level free. Their workers cover the plan's posts at the same facility, so no worker is counted twice, and the Always crew counts inside the Aniimo limit everywhere the limit is shown. When Always plus plan goes over the limit, only the plan side is fitted or trimmed; the Always list is never trimmed. A pinned copy with a recipe picked for it follows that recipe's family rules; a pinned copy with no recipe needs only a worker with the right job. Storage Units cannot be pinned.</li>
+          <li><strong>Always staffed (player's rule, Nov 8, 2026; climate units unpinned Nov 15, 2026):</strong> facilities pinned in Step 1 (nothing is pinned by default — the list starts empty every time the page opens, and any staffable facility can be pinned, up to the copies owned) are staffed first, before the recipe basket, with the best worker for each facility's job. Their workers cover the plan's posts at the same facility, so no worker is counted twice, and the Always crew counts inside the Aniimo limit everywhere the limit is shown. When Always plus plan goes over the limit, only the plan side is fitted or trimmed; the Always list is never trimmed. A pinned copy with a recipe picked for it follows that recipe's family rules; a pinned copy with no recipe needs only a worker with the right job. Storage Units cannot be pinned. <strong>Climate units — Cooling Unit, Heat Furnace and Sunlamp — cannot be pinned either:</strong> they are unpinned from Always Staffed, never appear in its Add list, and are staffed only by the layout when it puts one out for a plan (those plan posts stay level free).</li>
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
@@ -1643,7 +1648,7 @@
     function powerHeadroomHtml(facWorking){
       var genLvl = powerGenLevel(userRV);
       if(genLvl === 0){
-        return "⚡ Power: power unlocks at <strong>RV 12</strong> (Power Module Lv 1), so a plan at RV " + userRV + " has no power grid yet. From RV 12, buildings on E-mode draw power and this line counts it.";
+        return "⚡ Power: power unlocks at <strong>RV 12</strong> (Power Module Lv 1), so " + (userRV ? "a plan at RV " + userRV + " has" : "with no RV level picked yet there is") + " no power grid yet. From RV 12, buildings on E-mode draw power and this line counts it.";
       }
       var used = powerUsed(facWorking);
       var copies = powerGenCopies(userRV);
@@ -1692,19 +1697,23 @@
     function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
 
     /* ============ Step 2 (basket) state ============ */
-    var basket = [];            /* [{name}] recipe picks only, max 10, no amounts */
+    var basket = [];            /* [{name}] recipe picks only, max 10, no amounts.
+                                   Starts empty every time the page opens (player's
+                                   ask, Nov 15, 2026): no recipe is saved or pre-picked. */
     var activeCat = "all";
     var hideLocked = false;
-    var userRV = 20;
-    /* Step 1: facility counts, facility levels, climate counts and module
-       levels all live in editable boxes. On a fresh page load they are
-       auto-filled to the most the RV standing in the picker allows
-       (init runs the same fill the Fill button and an RV pick run:
-       FAC_RV for levels, FAC_COUNT for counts, CLIM_COUNT for climate
-       buildings), so the page works top to bottom straight away. Any
-       box can be changed afterwards — typed over, or with its −/+
-       steppers — and picking an RV level or tapping Fill from RV level
-       refills them to that RV's most. Planning reads the entered values
+    var userRV = 0;
+    /* 0 means NO RV level picked yet (player's ask, Nov 15, 2026):
+       the RV level is never auto-selected. The picker opens on
+       "Pick your RV level…" and every Step 1 box starts at 0.
+       Picking an RV level runs the same fill the Fill button runs
+       (FAC_RV for levels, FAC_COUNT for counts, CLIM_COUNT for
+       climate buildings) to the most that RV allows.
+       Step 1: facility counts, facility levels, climate counts and
+       module levels all live in editable boxes. Any box can be
+       changed afterwards — typed over, or with its −/+ steppers —
+       and picking an RV level or tapping Fill from RV level refills
+       them to that RV's most. Planning reads the entered values
        exactly as they stand; a value above the RV maximum is used as
        typed and flagged "above RV max". */
     var modulesOwned = { premiumWheat:false, strawberry:false, coconut:false, maple:false };
@@ -1739,7 +1748,7 @@
     }
     /* Entered Step 1 values: what every plan actually reads. */
     var facLevels = {}, facCounts = {}, climCounts = {};
-    var facProvenance = "Facilities auto-fill for your RV level when the page opens";
+    var facProvenance = "No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts";
     function fillFacilitiesOnly(rv){
       Object.keys(FAC_RV).forEach(function(f){
         facLevels[f] = maxFacLevel(f, rv) || 0;
@@ -1747,12 +1756,10 @@
       });
       Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = climCountFor(b, rv) || 0; });
     }
-    /* The state starts at 0 only as a blank slate for the script to
-       build on: init immediately auto-fills every facility, climate
-       and module to the most the RV in the picker allows (the
-       player's ask, Oct 29, 2026), so by the time anything renders
-       the boxes already hold that RV's numbers, ready to be changed
-       or added to by hand. */
+    /* The state starts at 0 and STAYS at 0 until the player picks
+       an RV level (player's ask, Nov 15, 2026 — no RV auto-selected):
+       no fill runs on page open, so the boxes hold 0, ready to be
+       filled by an RV pick or the Fill button, or changed by hand. */
     Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
     Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
     function setFacProvenance(text){
@@ -2151,7 +2158,7 @@
 
     function planText(plan){
       var lines = [];
-      lines.push("Aniimo basket plan — recipes picked by you, amounts sized by the planner to your homeland (RV " + userRV + ")");
+      lines.push("Aniimo basket plan — recipes picked by you, amounts sized by the planner to your homeland (" + (userRV ? "RV " + userRV : "no RV level picked yet") + ")");
       lines.push("Recipes: " + basket.map(function(b){ return b.name + (ITEMS[b.name] && ITEMS[b.name].event ? " 🎃" : ""); }).join(", "));
       lines.push("Sizing: production is fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
       var aLinesP = alwaysTextLines();
@@ -2277,7 +2284,7 @@
         (whimsyPerHour > 0 ? '<div class="sum-chip"><b>🎃 ' + fmtRate(whimsyPerHour) + '</b><span>Whimsy Points per hour</span></div>' : '') + '</div>';
 
       /* how the amounts were sized, stated on the plan itself */
-      html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>Fitted inside your RV ' + userRV + ' limits (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland, crew ' + aniimoCapText(userRV) + ').' +
+      html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>Fitted inside your ' + (userRV ? 'RV ' + userRV + ' limits' : 'Step 1 counts (no RV level picked yet)') + ' (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland' + (userRV ? ', crew ' + aniimoCapText(userRV) : '') + ').' +
         (plan.limits.length ? ' Tightest limit: <strong>' + plan.limits.map(function(l){ return esc(l); }).join(", ") + '</strong> — scaled down to fit.' : '') +
         (plan.perHour > 0 ? ' Rates are <strong>per hour</strong>, at the slowest crop\'s pace (about ' + fmtRate(plan.cycleMins) + ' min).' : ' <strong>No per-hour rate</strong> for this plan: it grows no crops, and craft/gather times aren\'t verified — the lists name what to gather and make, without amounts.') +
         '</p></div>';
@@ -2959,15 +2966,14 @@
        it has been plugged in. A plan must be picked, meaning the basket
        holds at least one recipe or a strategy plan has been run, and a
        strategy must have been picked (Level Up or Goals, a real tap —
-       there is no default). The RV and module parts of the gate are met
-       by the page's own auto-fill on open (player's ask, Oct 29, 2026:
-       Step 1 fills itself for the RV in the picker, so the flow runs
-       top to bottom without a setup detour): the picker stands at a
-       real level with its maxima filled in, which counts the same way
-       clicking Fill from RV level always counted as entering all four
-       module levels. Facility and climate counts and levels need no
-       step of their own: the auto-fill sets them, and changing or
-       adding to any box by hand works too. */
+       there is no default). The RV part of the gate needs a real RV
+       pick (player's ask, Nov 15, 2026 — no RV level is auto-selected):
+       the picker starts on "Pick your RV level…", and picking one fills
+       Step 1 to that RV's maxima, which counts the same way clicking
+       Fill from RV level always counted as entering all four module
+       levels. Facility and climate counts and levels need no step of
+       their own: the RV pick's fill sets them, and changing or adding
+       to any box by hand works too. */
     var crewGate = { rv:false, strategy:false,
       modules:{ ecological:false, kitchen:false, resource:false, crafting:false } };
     var CREW_MODULE_NAMES = { ecological:"Ecological", kitchen:"Kitchen", resource:"Resource Detector", crafting:"Crafting" };
@@ -2992,7 +2998,7 @@
       var t = e.target;
       if(!t || !t.getAttribute) return;
       var touched = false;
-      if(t.id === "rvLevel"){ crewGate.rv = true; touched = true; }
+      if(t.id === "rvLevel"){ crewGate.rv = !!t.value; touched = true; }
       if(t.id === "stratLevelBtn" || t.id === "stratGoalsBtn"){ crewGate.strategy = true; touched = true; }
       var modId = t.getAttribute("data-modlvl");
       if(modId && crewGate.modules.hasOwnProperty(modId)){ crewGate.modules[modId] = true; touched = true; }
@@ -3127,8 +3133,10 @@
 
     /* ============ Always staffed pins (player's idea, Nov 8, 2026) ============
        Facilities the player pins must always have a worker, whether or
-       not any recipe uses them. The defaults are her Always Running
-       list. A pin is a count of copies, edited with steppers from 0 up
+       not any recipe uses them. Nothing is pinned by default
+       (player's ask, Nov 15, 2026 — no saved stuff): the list starts
+       empty every time the page opens, and she pins only what she
+       wants, with the Add dropdown below. A pin is a count of copies, edited with steppers from 0 up
        to the copies owned in Step 1 (facCount, the entered count, so a
        lower RV or a hand-typed count caps the pin in force). Staffing
        order: the Always crew is staffed FIRST, with the best worker for
@@ -3143,18 +3151,21 @@
        gates still apply to a pinned copy with a recipe picked for it;
        a pinned copy with no recipe needs only the right job. Storage
        Units are passive and have no job in FAC_JOB, so they can never
-       be pinned. */
-    var ALWAYS_DEFAULTS = [
-      ["Mine", 8], ["Dewy House", 1], ["Nimbus Bed", 2], ["Tidewhisper Sandcastle", 2],
-      ["Starfall Hammock", 1], ["Heat Furnace", 2], ["Cooling Unit", 2], ["Sunlamp", 2]
-    ];
+       be pinned. Climate units (Cooling Unit, Heat Furnace, Sunlamp)
+       can never be pinned either — see ALWAYS_NOT_PINNABLE below. */
     var alwaysPins = {};
     var alwaysList = [];
-    ALWAYS_DEFAULTS.forEach(function(d){ alwaysPins[d[0]] = d[1]; alwaysList.push(d[0]); });
     var alwaysPlanCrew = null;
     function alwaysJob(f){ return (typeof FAC_JOB !== "undefined" && FAC_JOB[facCanon(f)]) || null; }
+    /* Climate units are NEVER pinnable (player's ask, Nov 15, 2026):
+       Cooling Unit, Heat Furnace and Sunlamp are unpinned from Always
+       Staffed for good — they are not in this list, not in the Add
+       dropdown, and any stray pin for one is dropped on render. The
+       layout still staffs a climate unit when it puts one out for a
+       plan; that is plan staffing, not an Always pin. */
+    var ALWAYS_NOT_PINNABLE = ["Cooling Unit", "Heat Furnace", "Sunlamp"];
     function alwaysStaffable(){
-      return Object.keys(FAC_JOB).filter(function(f){ return f !== "Homeland leisure station" && f !== "Farmland" && f !== "Woodland"; });
+      return Object.keys(FAC_JOB).filter(function(f){ return f !== "Homeland leisure station" && f !== "Farmland" && f !== "Woodland" && ALWAYS_NOT_PINNABLE.indexOf(f) === -1; });
     }
     /* The pin in force: the stored pin, capped at the copies owned in
        Step 1 right now. The stored pin itself is left alone, so raising
@@ -3207,6 +3218,13 @@
     function renderAlways(){
       var grid = document.getElementById("alwaysGrid");
       if(!grid) return;
+      /* Climate units stay unpinned, no matter how they got in:
+         drop any Cooling Unit, Heat Furnace or Sunlamp pin on sight. */
+      ALWAYS_NOT_PINNABLE.forEach(function(f){
+        var ix = alwaysList.indexOf(f);
+        if(ix > -1) alwaysList.splice(ix, 1);
+        if(alwaysPins[f]) delete alwaysPins[f];
+      });
       grid.innerHTML = alwaysList.length ? alwaysList.map(function(f){
         var owned = facCount(f);
         var c = alwaysCount(f);
@@ -4009,6 +4027,10 @@
     function renderHome(){
       var out = document.getElementById("homeOut");
       if(!out) return;
+      if(!userRV){
+        out.innerHTML = '<div class="empty-plan">Pick your RV level in Step 1 first — no level is picked yet, so there is no Aniimo cap to split between production and home yet.</div>';
+        return;
+      }
       var mix = budMix();
       var cap = aniimoCapFor(userRV);
       var capText = cap === null ? "" : (cap === 0 ? "RV " + userRV + " allows no Aniimo yet" : "RV " + userRV + " allows " + cap + " Aniimo, production and home together");
@@ -4410,6 +4432,7 @@
        every facility count and level, every climate count and all four
        module levels go to the most the picked RV allows. */
     function applyRvMaxima(){
+      if(!userRV) return;
       fillFacilitiesOnly(userRV);
       MODULE_DEFS.forEach(function(d){
         moduleLevels[d.id] = rvMaxModuleLevel(d, userRV);
@@ -4419,6 +4442,7 @@
       setFacProvenance("Facilities filled for RV " + userRV + " — the most RV " + userRV + " allows");
     }
     function fillFromRv(){
+      if(!userRV){ toast("Pick your RV level first — no RV level is picked yet, so there is nothing to fill from."); return; }
       applyRvMaxima();
       renderFacilities();
       refreshAfterStage3();
@@ -4434,11 +4458,13 @@
       var pf = document.getElementById("powerFillLine");
       if(pf){
         var gLvl = powerGenLevel(userRV);
-        if(gLvl === 0){
+        if(!userRV){
+          pf.textContent = "⚡ Power follows your RV level (it opens at RV 12, Power Module Lv 1). No RV level is picked yet, so no generator supply is counted.";
+        } else if(gLvl === 0){
           pf.textContent = "⚡ Power opens at RV 12 (Power Module Lv 1). At RV " + userRV + " there is no power grid yet, so no generator supply is counted.";
         } else {
           var gCopies = powerGenCopies(userRV);
-          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + ", Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each), total supply " + fmt(powerGenSupply(userRV)) + ". Auto-fill and the power headroom lines use this count and supply. Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7.";
+          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + ", Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each), total supply " + fmt(powerGenSupply(userRV)) + ". Fill from RV level and the power headroom lines use this count and supply. Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7.";
         }
       }
       var grid = document.getElementById("facGrid");
@@ -4648,7 +4674,7 @@
     function renderCrops(){
       var body = document.getElementById("cropsBody");
       if(!body) return;
-      document.getElementById("cropsRv").textContent = "This table follows the Farmland and Woodland levels your RV allows (RV picked in Step 1, RV " + userRV + "): the crops you can actually grow come first, and the ones still above your levels stay visible below, greyed out with their unlock level, so you can see what's coming.";
+      document.getElementById("cropsRv").textContent = !userRV ? "No RV level is picked yet: pick your RV level in Step 1 and this table follows it. Until then every crop below reads as locked, greyed out with its unlock level, so you can see what's coming." : "This table follows the Farmland and Woodland levels your RV allows (RV picked in Step 1, RV " + userRV + "): the crops you can actually grow come first, and the ones still above your levels stay visible below, greyed out with their unlock level, so you can see what's coming.";
       function cropRow(c){
         var it = ITEMS[c.name];
         var rv = rvNeedFor(it.facility, it.lvl);
@@ -4712,7 +4738,9 @@
     var TIER_COST = [0, 8, 8, 8, 4]; /* cost in tier below to make 1 of tier i */
 
     /* Single source of truth for RV level: rvFrom always mirrors userRV,
-       the one picker in Step 1. There is no second picker to keep in sync. */
+       the one picker in Step 1. There is no second picker to keep in sync.
+       rvFrom is 0 while no RV level is picked — the level is never
+       auto-selected, so there is no next-level bill until she picks one. */
     var rvFrom = userRV;
     /* ONE strategy at a time (player's rule, Oct 27, 2026, the Aniimax
        model): strategy is null until the player taps one — there is no
@@ -4722,8 +4750,8 @@
        never be active in the same plan. */
     var strategy = null;
     var levelingOn = false;
-    function rvHasNext(){ return rvFrom < 20; }
-    function rvNext(){ return Math.min(20, rvFrom + 1); }
+    function rvHasNext(){ return rvFrom >= 1 && rvFrom < 20; }
+    function rvNext(){ return Math.min(20, (rvFrom || 0) + 1); }
     function syncRvFrom(){ rvFrom = userRV; }
 
     /* Wood Blocks per Woodland plot per harvest, by Woodland level.
@@ -5293,6 +5321,10 @@
     function renderGates(){
       var el = document.getElementById("rvGates");
       if(!el) return;
+      if(!userRV){
+        el.innerHTML = "<li><b>Pick your RV level</b> in Step 1 first — no level is picked yet, so there is no next level to prepare for yet.</li>";
+        return;
+      }
       if(!rvHasNext()){
         el.innerHTML = "<li><b>🎉 You're at RV 20</b> — the top level in the ladder, so there is no next level to prepare for.</li>";
         return;
@@ -5350,12 +5382,16 @@
       renderGates();
       if(typeof renderStrategy === "function") renderStrategy();
       var curDisplay = document.getElementById("rvCurrentDisplay");
-      if(curDisplay) curDisplay.textContent = "RV " + rvFrom;
+      if(curDisplay) curDisplay.textContent = userRV ? ("RV " + rvFrom) : "Not picked yet";
       var nextLabel = document.getElementById("rvNextLabel");
-      if(nextLabel) nextLabel.textContent = rvHasNext() ? ("Next level: RV " + rvNext() + " · build timer " + LADDER[rvNext() - 1].time + " in game · Aniimo cap " + LADDER[rvNext() - 1].cap) : "You're at the top level — no next level to price.";
+      if(nextLabel) nextLabel.textContent = !userRV ? "Pick your RV level in Step 1 first — no level is picked yet." : rvHasNext() ? ("Next level: RV " + rvNext() + " · build timer " + LADDER[rvNext() - 1].time + " in game · Aniimo cap " + LADDER[rvNext() - 1].cap) : "You're at the top level — no next level to price.";
       var area = document.getElementById("rvPlanArea");
       if(!area) return;
       if(!levelingOn){ area.innerHTML = ""; return; }
+      if(!userRV){
+        area.innerHTML = '<div class="note note-warn" style="margin-top:16px"><h4>Pick your RV level first</h4><p>No RV level is picked yet, so there is no next-level bill to price. Pick your RV level in Step 1 at the top of this page and the bill appears here.</p></div>';
+        return;
+      }
       if(!rvHasNext()){
         area.innerHTML = '<div class="note note-good" style="margin-top:16px"><h4>🎉 Already at the top</h4><p>You are at RV 20, the highest level in the ladder, so there is no next-level bill to add to your plan.</p></div>';
         return;
@@ -7501,7 +7537,10 @@
       { id:"whimsy", name:"Whimsy Points", desc:"🎃 Magical Wonder Night (Oct 29 to Dec 10): dishes offered to the Pumpkin God. Facilities fill with the event recipes worth the most Whimsy Points each, Golden Lantern Pumpkin Soup +20 first, and spare Farmland plots grow the event crops, worth +1 each raw. Values from your screenshots, Oct 29, 2026" }
     ];
     var bpGoalOrder = ["coins", "xp", "mega", "wood", "sand", "whimsy"];
-    var bpGoalOn = { coins:true, xp:true, mega:true, wood:true, sand:true, whimsy:true };
+    /* No saved goals (player's ask, Nov 15, 2026): every goal starts
+       OFF and the order starts as the plain list order above — she
+       turns on and ranks only the goals she wants, each time. */
+    var bpGoalOn = { coins:false, xp:false, mega:false, wood:false, sand:false, whimsy:false };
     var bpResult = null, bpStale = false;
     var BP_PROC = ["Carousel Mill", "Dance Pad Polisher", "Aniipod Maker", "Crafting Table", "Claw Game Cooker", "Jukebox Dryer", "Simmering Pot", "Bouncy Brew Keg", "Chimney Kiln", "Woodworking Bench", "Phonolfactory Table", "Joy Wheel Loom", "Blazing Stove", "Pickling Jar"];
     /* Facility order for the strategy tables: the Step 1 facilities.
@@ -7722,7 +7761,9 @@
          player has while earning the level. */
       var lvlBill = null, levelingClaim = {};
       if(levelingOn && !rvHasNext()){
-        goalNotes.push("Strategy: Level Up, but you are at RV 20, the top level, so there is no next-level bill to target. Everything beyond your basket goes to Home Coins.");
+        goalNotes.push(!userRV
+          ? "Strategy: Level Up, but no RV level is picked yet, so there is no next-level bill to target. Pick your RV level in Step 1 and run the plan again to target its bill."
+          : "Strategy: Level Up, but you are at RV 20, the top level, so there is no next-level bill to target. Everything beyond your basket goes to Home Coins.");
       }
       if(levelingOn && rvHasNext()){
         lvlBill = computeRvBill();
@@ -8172,7 +8213,7 @@
       var lines = [];
       var snapOrder = res.goalOrderSnap || bpGoalOrder, snapOn = res.goalOnSnap || bpGoalOn;
       lines.push(res.strategy === "levelup" ? "Aniimo strategy plan — Strategy: Level Up" : "Aniimo strategy plan — Strategy: Goals");
-      lines.push("Setup used: RV " + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", with your Step 1 facility counts and levels.");
+      lines.push("Setup used: " + (userRV ? "RV " + userRV : "no RV level picked") + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", with your Step 1 facility counts and levels.");
       var aLinesB = alwaysTextLines();
       if(aLinesB.length){
         lines.push("Always staffed (staffed first, before the basket, counted in your Aniimo limit, and never trimmed):");
@@ -8280,7 +8321,7 @@
           ? '<div class="sum-chip"><b>' + fmtRate(res.coinsCycle * bpPerHH) + '</b><span>counted Home Coins per hour, after seed costs</span></div>' + (res.whimsyCycle > 0 ? '<div class="sum-chip"><b>🎃 ' + fmtRate(res.whimsyCycle * bpPerHH) + '</b><span>Whimsy Points per hour</span></div>' : '') + '</div>'
           : '<div class="sum-chip"><b>—</b><span>no per-hour rate for this plan — it grows no crops, and craft and gather times are not verified</span></div></div>');
       var snapOrderR = res.goalOrderSnap || bpGoalOrder, snapOnR = res.goalOnSnap || bpGoalOn;
-      html += '<p class="src" style="margin-top:10px">Setup used: RV ' + userRV + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", and your Step 1 facility counts and levels. " +
+      html += '<p class="src" style="margin-top:10px">Setup used: ' + (userRV ? "RV " + userRV : "no RV level picked") + ", Ecological Lv " + moduleLevels.ecological + ", Kitchen Lv " + moduleLevels.kitchen + ", Resource Detector Lv " + moduleLevels.resource + ", Crafting Lv " + moduleLevels.crafting + ", and your Step 1 facility counts and levels. " +
         (res.strategy === "levelup" && res.leveling
           ? "Strategy: <strong>Level Up</strong> — target: the RV " + res.leveling.next + " bill (" + fmt(res.leveling.coin) + " Home Coins + " + Object.keys(res.leveling.needs).map(function(n){ return esc(n) + " ×" + fmt(res.leveling.needs[n]); }).join(", ") + "). Your basket is planned first; production beyond the bill goes to Home Coins."
           : "Strategy: <strong>Goals</strong> — in your ranked order: " + snapOrderR.map(function(gid, i){ return (i + 1) + ". " + esc(bpGoalDef(gid).name) + (snapOnR[gid] ? "" : " (off)"); }).join(", ") + ". The leveling bill plays no part in this mode.") + "</p>";
@@ -9020,12 +9061,34 @@
     /* ============ init ============ */
     (function init(){
       var rvSel = document.getElementById("rvLevel");
-      var opts = "";
-      for(var i = 1; i <= 20; i++){ opts += '<option value="' + i + '"' + (i === 20 ? " selected" : "") + ">RV " + i + "</option>"; }
+      /* No RV level is auto-selected (player's ask, Nov 15, 2026):
+         the picker opens on the placeholder, no RV option carries
+         "selected", userRV stays 0 and every Step 1 box stays at 0
+         until the player picks a level herself. */
+      var opts = '<option value="" selected>Pick your RV level…</option>';
+      for(var i = 1; i <= 20; i++){ opts += '<option value="' + i + '">RV ' + i + "</option>"; }
       rvSel.innerHTML = opts;
+      rvSel.value = "";
       rvSel.addEventListener("change", function(){
+        var picked = parseInt(rvSel.value, 10);
+        if(isNaN(picked)){
+          /* Back on the placeholder: no RV picked, boxes back to 0. */
+          crewGate.rv = false;
+          userRV = 0;
+          syncRvFrom();
+          Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
+          Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
+          MODULE_DEFS.forEach(function(d){ moduleLevels[d.id] = 0; crewGate.modules[d.id] = false; });
+          modulesOwned.premiumWheat = false;
+          syncModulesFromLevels();
+          setFacProvenance("No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts");
+          renderFacilities();
+          refreshAfterStage3();
+          toast("No RV level picked: Step 1 is back to 0. Pick your RV level and the boxes fill.");
+          return;
+        }
         crewGate.rv = true;
-        userRV = parseInt(rvSel.value, 10) || 20;
+        userRV = picked;
         syncRvFrom();
         /* Picking an RV refills the Step 1 boxes to that RV's most, the
            same fill the Fill button does. The boxes start at zero and the
@@ -9069,6 +9132,61 @@
         toast("Example basket loaded: pudding, bread and shortbread. Watch the salt and cocoa chains.");
         document.getElementById("planArea").scrollIntoView({ behavior:"smooth", block:"start" });
       });
+      /* Start fresh (player's ask, Nov 15, 2026 — no saved stuff):
+         one tap wipes every pick both planners hold — the basket, the
+         strategy and its found plan, the goals (all off, plain list
+         order), the Always Staffed pins, and every Mine, layout and
+         facility pick — back to the blank state the page opens in.
+         That blank state includes Step 1: no RV level picked (the
+         picker back on "Pick your RV level…") and every facility,
+         climate and module box back at 0, because no RV level is
+         ever auto-selected. Nothing is stored anywhere, so a fresh
+         page open starts exactly this blank too. */
+      var startFreshBtn = document.getElementById("startFreshBtn");
+      if(startFreshBtn) startFreshBtn.addEventListener("click", function(){
+        basket = [];
+        strategy = null; levelingOn = false;
+        bpResult = null; bpStale = false;
+        bpGoalOrder = BP_GOALS.map(function(g){ return g.id; });
+        BP_GOALS.forEach(function(g){ bpGoalOn[g.id] = false; });
+        alwaysPins = {}; alwaysList = [];
+        layoutPicks = {}; layoutAutoAdj = {}; layoutBpAdj = {};
+        facExtra = {}; mineExtra = {}; minePick = null; gatherPick = {}; extraPick = {}; facExtraSig = null;
+        activeCat = "all"; hideLocked = false;
+        crewGate.strategy = false;
+        crewGate.rv = false;
+        userRV = 0; syncRvFrom();
+        if(rvSel) rvSel.value = "";
+        Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
+        Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
+        MODULE_DEFS.forEach(function(d){ moduleLevels[d.id] = 0; crewGate.modules[d.id] = false; });
+        modulesOwned.premiumWheat = false;
+        syncModulesFromLevels();
+        setFacProvenance("No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts");
+        suggStorageCount = 0; suggHatchCount = 0;
+        var ssI = document.getElementById("suggStorageInput"); if(ssI) ssI.value = "0";
+        var shI = document.getElementById("suggHatchInput"); if(shI) shI.value = "0";
+        var hlT = document.getElementById("hideLockedToggle"); if(hlT) hlT.checked = false;
+        var rsT = document.getElementById("recipeSearch"); if(rsT) rsT.value = "";
+        var bpOut = document.getElementById("bestPlanOut");
+        if(bpOut) bpOut.innerHTML = '<div class="empty-plan">Your strategy plan appears here. Pick your RV level in Step 1 at the top of this page first, pick a strategy above, then tap Find the plan.</div>';
+        renderChips();
+        renderGoals();
+        renderStrategy();
+        renderFacilities();
+        renderAlways();
+        renderAll();
+        renderMines();
+        renderCrops();
+        renderLayoutPicker();
+        renderLayout();
+        if(typeof renderSuggestedLayout === "function") renderSuggestedLayout();
+        renderRvPlan();
+        if(typeof renderTeam === "function") renderTeam();
+        renderHome();
+        toast("Fresh start: basket, strategy, goals, pins, picks and RV level all cleared — no RV level picked. Nothing was saved.");
+        document.getElementById("basket").scrollIntoView({ behavior:"smooth", block:"start" });
+      });
       var findBestBtn = document.getElementById("findBestBtn");
       if(findBestBtn) findBestBtn.addEventListener("click", function(){
         if(!strategy){ toast("Pick a strategy first — Level Up or Goals, one at a time."); return; }
@@ -9083,24 +9201,21 @@
         var selA = document.getElementById("alwaysAddSelect");
         var fA = selA ? selA.value : "";
         if(!fA || alwaysList.indexOf(fA) > -1) return;
+        if(ALWAYS_NOT_PINNABLE.indexOf(fA) > -1){ toast(fA + " can't be pinned — climate units are never in Always Staffed. The layout staffs one only when it puts one out."); return; }
         alwaysList.push(fA);
         if(!alwaysPins[fA]) alwaysPins[fA] = 1;
         renderAlways();
         refreshAfterStage3();
         toast(fA + " pinned at " + alwaysCount(fA) + ". Always staffed, counted first.");
       });
-      /* Auto-fill on open (player's ask, Oct 29, 2026): the page fills
-         Step 1 for the RV standing in the picker before anything first
-         renders, so the whole page — recipe lists, plans, layout,
-         crew — works top to bottom straight away, with no Fill tap
-         and no re-pick needed. The fill is the same one the Fill
-         button and an RV pick run, so the boxes can be changed or
-         added to by hand afterwards and stand exactly as left. The
-         RV pick counts as made, like tapping Fill counts as entering
-         the module levels, because the picker stands at a real level
-         with its maxima already filled in. */
-      applyRvMaxima();
-      crewGate.rv = true;
+      /* No auto-fill on open, and no RV auto-selected (player's ask,
+         Nov 15, 2026): the page opens with the RV picker on
+         "Pick your RV level…", userRV at 0, and every Step 1 facility,
+         climate and module box at 0. Nothing is filled, pinned or
+         saved for her. Picking an RV level runs the fill (the same
+         one the Fill button runs), and the boxes can then be changed
+         or added to by hand and stand exactly as left. The crew gate's
+         RV part stays unmet until she actually picks a level. */
       renderGoals();
       renderStrategy();
       renderFacilities();
