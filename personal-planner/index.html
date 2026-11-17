@@ -381,10 +381,10 @@
           <div class="step"><span class="n">Step 1</span><br /><b>🏭 Set up first</b><p>Boxes start empty. Pick your RV to fill them all in one go, or type your own numbers.</p></div>
           <div class="step"><span class="n">Step 2</span><br /><b>🧺 Recipe basket</b><p>Pick recipes, no amounts. The planner sizes the whole chain for you.</p></div>
           <div class="step"><span class="n">Step 3</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
-          <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Tap Find the plan.</p></div>
+          <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. The plan builds itself — and rebuilds itself on every change you make, so it is never out of date.</p></div>
           <div class="step"><span class="n">Step 5</span><br /><b>⛏️ Set your Mines</b><p>Only now — after your strategy. The plan's Mines are marked used; you pick only for extra Mines you add.</p></div>
           <div class="step"><span class="n">Steps 6–8</span><br /><b>🗺️ Layout, crew &amp; home</b><p>Layout plants it, Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
-          <div class="step"><span class="n">Mine</span><br /><b>🗺️ My homeland layout</b><p>Your real 16 plots on the homeland grid, every spot placed in whole squares and labeled — what goes there, what it makes, and who works it. This is the one part that is yours only: it shows your homeland as it stands and never regenerates.</p></div>
+          <div class="step"><span class="n">Mine</span><br /><b>🗺️ My homeland layout</b><p>Your real 16 plots on the homeland grid, every spot placed in whole squares and labeled — what goes there, what it makes, and who works it. The plots, pieces and workers are your real homeland and stay put; every recipe label on it refreshes live from your current basket and plan, every time they change.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
         </div>
       </header>
@@ -577,7 +577,7 @@
             <span class="src" id="findBestHint" style="align-self:center">Pick a strategy above first — Level Up or Goals.</span>
           </div>
           <div id="bestPlanOut">
-            <div class="empty-plan">Your strategy plan appears here. Pick a strategy above — your Step 1 setup at the top of this page is already filled for your RV — then tap Find the plan.</div>
+            <div class="empty-plan">Your strategy plan appears here. Pick a strategy above and it builds itself — then it refreshes itself on every change to your basket, setup or goals, so what you see is always the current plan.</div>
           </div>
         </div>
 
@@ -705,10 +705,16 @@
       <!-- ================= MY HOMELAND LAYOUT (personal copy only) ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">Mine</span><h2>🗺️ My Homeland Layout</h2></div>
-        <p class="sec-sub"><strong>This is your homeland as it stands — on the grid.</strong> Your 16 plots sit in their real positions on the homeland grid, and every plot is drawn as a grid board with its pieces drawn at their true sizes, halves included: fields and woodlands with their crops, mines by material, facilities, climate units and Leisure pieces, every spot labeled with what should sit there, what it makes, and who works it. Spare, open and unstaffed spots are labeled exactly that. Unlike everything else in this planner, this board does not regenerate from your Step 1 counts or your plan: your plots are your real homeland. Change your recipes, counts and crew anywhere else on the page as freely as in the public planner — this stays your layout to build against. <strong>Working order: Right → Left, Front → Back</strong> — start at the front-right and work across, then move back a row.</p>
+        <p class="sec-sub"><strong>This is your homeland as it stands — on the grid, and always current.</strong> Your 16 plots sit in their real positions on the homeland grid, and every plot is drawn as a grid board with its pieces drawn at their true sizes, halves included: fields and woodlands with their crops, mines by material, facilities, climate units and Leisure pieces, every spot labeled with what should sit there, what it makes, and who works it. Spare, open and unstaffed spots are labeled exactly that. The plots, pieces and workers are your real homeland and never move — but <strong>every recipe label on this board is rebuilt live from your basket as it stands right now</strong>: change a recipe or a count anywhere on the page and this board refreshes itself with it, so it can never hold onto an older basket. <strong>Working order: Right → Left, Front → Back</strong> — start at the front-right and work across, then move back a row.</p>
+
+        <div class="note note-info" style="margin-bottom:14px">
+          <h4>🎯 Current plan only — refreshed live, every change</h4>
+          <p id="myLivePlanNote">Your current plan will be listed here, and the board below rebuilt from it, the moment you pick recipes or a strategy.</p>
+          <p class="src" id="myLiveStamp" style="margin-top:6px" aria-live="polite"></p>
+        </div>
 
         <div class="my-board" id="myBoard" role="img" aria-label="Your homeland on the grid: 16 plots in a 4 by 4 arrangement, back row at the top and front row at the bottom, each plot showing its pieces drawn at their true sizes, halves included"></div>
-        <p class="src" style="margin-top:8px">The whole homeland on its grid — back row at the top, front row at the bottom, so Plot 1 sits in the front row, second from the right. Hover or tap any square for its label. Every plot is then drawn big underneath, square by square, with every spot spelled out in words beside it.</p>
+        <p class="src" style="margin-top:8px">The whole homeland on its grid — back row at the top, front row at the bottom, so Plot 1 sits in the front row, second from the right. Hover or tap any square for its label — hover a Farmland field or a Woodland and it says which crop that spot should grow. Every plot is then drawn big underneath, square by square, with every spot spelled out in words beside it.</p>
 
         <div class="layout-legend">
           <h3>How to read the grid</h3>
@@ -2555,7 +2561,14 @@
       });
     }
 
-    function renderAll(){ renderPicker(); renderPlan(); }
+    function renderAll(){
+      renderPicker(); renderPlan();
+      /* Live refresh: every basket change rebuilds the strategy plan
+         (when a strategy is picked) and the My Homeland board at once,
+         so nothing anywhere keeps showing an older plan. */
+      refreshStrategyPlan(false);
+      if(typeof renderMyHomeland === "function") renderMyHomeland();
+    }
 
     /* ============ Team Helper, the single crew suggestion ============
        Crew counts are worked out from the entire plan: the basket's own
@@ -4504,6 +4517,7 @@
       if(typeof renderTeam === "function") renderTeam();
       markBpStale();
       renderMines();
+      if(typeof renderMyHomeland === "function") renderMyHomeland();
     }
     /* Fill from RV level: every facility count and level, every climate
        count and all four module levels go to the most the planner's data
@@ -5343,7 +5357,7 @@
         return;
       }
       if(!bpResult){
-        out.innerHTML = '<div class="empty-plan">⛏️ Strategy picked: <strong>' + (strategy === "levelup" ? "🚐 Level Up" : "🎯 Goals") + '</strong>. Now tap <strong>Find the plan</strong> in <a href="#bestplan">Step 4 — Strategy Plan</a>: your Mines are set from that plan, so they appear here as soon as it is found.</div>';
+        out.innerHTML = '<div class="empty-plan">⛏️ Strategy picked: <strong>' + (strategy === "levelup" ? "🚐 Level Up" : "🎯 Goals") + '</strong>. Your Step 4 plan refreshes itself on every change, and your Mines are set from it — they appear here as soon as the plan stands.</div>';
         return;
       }
       out.innerHTML = (bpStale ? '<p class="src" style="margin-bottom:8px">Your setup changed since this plan was made. Tap Find the plan in Step 4 to refresh these Mines.</p>' : '') + mineSetupHtml(bpResult.mine);
@@ -6512,7 +6526,7 @@
       (z.placements || []).forEach(function(p){
         var st = GROUP_STYLE[layoutGroupOf(p.name).key] || GROUP_STYLE["none"];
         var cnt = z.crops[p.name];
-        var tip = p.name + ", " + cnt + (cnt === 1 ? " plot" : " plots") + " in this zone (" + ITEMS[p.name].facility + ")";
+        var tip = "Grow " + p.name + " here — this " + ITEMS[p.name].facility + " plot should be " + p.name + " (" + cnt + (cnt === 1 ? " plot" : " plots") + " of it in this zone)";
         if(z.building === "Sunlamp") tip += ", under this Sunlamp (light, not temperature)";
         else if(cropTempStep(p.name) !== null){ var r = zoneCropRate(p.name, z); if(r !== null) tip += ", " + (CLIMATE[p.name] ? CLIMATE[p.name].tag : "") + ", grows at " + r + "% here"; }
         else if(!CLIMATE[p.name]) tip += ", grows anywhere, sharing this " + z.building + " zone";
@@ -6545,7 +6559,7 @@
       function zoneSquareTip(n, z){
         var c = CLIMATE[n];
         var cnt = z.crops[n];
-        var base = n + ", " + cnt + (cnt === 1 ? " plot" : " plots");
+        var base = "Grow " + n + " here — this " + ITEMS[n].facility + " plot should be " + n + " (" + cnt + (cnt === 1 ? " plot" : " plots") + " of it in this zone)";
         if(z.building === "Sunlamp") return base + ", " + (c ? c.tag : "Adequate light") + ", under this Sunlamp (light, not temperature)";
         if(!c) return base + ", grows anywhere, sharing this " + z.building + " zone";
         var r = zoneCropRate(n, z);
@@ -6612,7 +6626,7 @@
           var src = fac === "Farmland" ? e.farmCrops : e.woodCrops;
           var total = Object.keys(src).reduce(function(a, n){ return a + src[n]; }, 0);
           if(!total) return;
-          blocks.push('<div class="zone-block"><div class="zb-grid">' + patchSvg(fac, total, GROUP_STYLE["none"], Object.keys(src).sort().map(function(n){ return { count:src[n], tip:n + ", " + src[n] + (src[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '</div><div class="zb-side"><h3>🌱 Grows anywhere</h3>' +
+          blocks.push('<div class="zone-block"><div class="zb-grid">' + patchSvg(fac, total, GROUP_STYLE["none"], Object.keys(src).sort().map(function(n){ return { count:src[n], tip:"Grow " + n + " here — this " + fac + " plot should be " + n + " (" + src[n] + (src[n] === 1 ? " plot" : " plots") + " of it in this block), grows anywhere, no climate building needed" }; })) + '</div><div class="zb-side"><h3>🌱 Grows anywhere</h3>' +
             rowsHtml([
               ["Facility", "None needed"],
               ["Count", total + " " + fac + (total === 1 ? " plot" : " plots")],
@@ -7076,13 +7090,27 @@
       var bSide = buildingSide(grp.info.building);
       var bTiles = buildingTiles(grp.info.building);
       var shown = Math.min(zones, 3), html = "", remaining = count;
+      /* Each square names its own crop: the group's crops of this
+         land, in order, fill the zone's squares crop by crop, so
+         hovering any one square says which crop that square
+         should be — never the whole group's list at once. */
+      var cropLeft = {};
+      grp.crops.forEach(function(n){ if(ITEMS[n].facility === fac) cropLeft[n] = grp.counts[n]; });
+      var cropOrder = Object.keys(cropLeft).sort();
       for(var z = 0; z < shown; z++){
         var filled = Math.min(remaining, perZone); remaining -= filled;
         var label = grp.info.building + " zone " + (z + 1) + " of " + zones + ", " + fac + " plots: " + filled + " of " + perZone + " filled, with the " + grp.info.building + " itself standing in the middle on " + bTiles + (bTiles === 1 ? " tile" : " tiles") + " of its own";
-        var grpTip = grp.crops.join(", ") + " · " + (grp.info.tag || "grows anywhere") + " · " + filled + " " + fac + (filled === 1 ? " plot" : " plots") + " in this zone";
+        var segs = [], left = filled;
+        cropOrder.forEach(function(n){
+          if(left <= 0 || !(cropLeft[n] > 0)) return;
+          var take = Math.min(cropLeft[n], left);
+          cropLeft[n] -= take; left -= take;
+          segs.push({ count:take, tip:"Grow " + n + " here — this " + fac + " plot should be " + n + " · " + (grp.info.tag || "grows anywhere") + " · " + grp.counts[n] + " " + fac + (grp.counts[n] === 1 ? " plot" : " plots") + " of " + n + " in this group" });
+        });
+        if(left > 0) segs.push({ count:left, tip:fac + " plot in this zone · " + (grp.info.tag || "grows anywhere") });
         html += '<div class="zone-map">' + zoneSvg(ZONE_CELLS, PLOT_SIZE[fac], filled, style, label, true, bSide, {
             noOverlap: true,
-            segments: [{ count:filled, tip:grpTip }],
+            segments: segs,
             emptyTip: "Empty plot: room left in this " + grp.info.building + " zone",
             buildingTip: grp.info.building + ": the building itself, 1 building in the middle of its zone, footprint " + bSide + " × " + bSide + ", " + bTiles + (bTiles === 1 ? " tile" : " tiles") + ", covers this whole zone. Its tiles are its own space: no plot is placed on them"
           }) +
@@ -7238,8 +7266,8 @@
         if(grp.farm) maps += zoneMapsHtml(grp, "Farmland", grp.farm, grp.zonesFarm);
         if(grp.wood) maps += zoneMapsHtml(grp, "Woodland", grp.wood, grp.zonesWood);
       } else {
-        if(grp.farm) maps += '<div class="zone-map">' + patchSvg("Farmland", grp.farm, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:n + ", " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '<div class="cap">Farmland: ' + grp.farm + (grp.farm === 1 ? " plot" : " plots") + "</div></div>";
-        if(grp.wood) maps += '<div class="zone-map">' + patchSvg("Woodland", grp.wood, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:n + ", " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '<div class="cap">Woodland: ' + grp.wood + (grp.wood === 1 ? " plot" : " plots") + "</div></div>";
+        if(grp.farm) maps += '<div class="zone-map">' + patchSvg("Farmland", grp.farm, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:"Grow " + n + " here — this Farmland plot should be " + n + " (" + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + " of it), grows anywhere, no climate building needed" }; })) + '<div class="cap">Farmland: ' + grp.farm + (grp.farm === 1 ? " plot" : " plots") + "</div></div>";
+        if(grp.wood) maps += '<div class="zone-map">' + patchSvg("Woodland", grp.wood, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:"Grow " + n + " here — this Woodland plot should be " + n + " (" + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + " of it), grows anywhere, no climate building needed" }; })) + '<div class="cap">Woodland: ' + grp.wood + (grp.wood === 1 ? " plot" : " plots") + "</div></div>";
       }
       if(maps) s += '<div class="zone-maps">' + maps + "</div>";
       return s + "</div>";
@@ -7643,12 +7671,48 @@
       if(sec) v += parseInt(sec[1], 10) / 60;
       return v;
     }
+    /* ============ Live refresh: this personal planner never goes stale ============
+       The old flow only FLAGGED the strategy plan "stale" when the
+       basket, Step 1 setup or goals changed, and kept showing the old
+       plan until "Find the plan" was tapped again — so in practice it
+       never refreshed. That is gone. markBpStale now RECOMPUTES the
+       plan on the spot, and renderAll calls refreshStrategyPlan after
+       every basket change, so the strategy plan, Mines, layout, crew
+       and the My Homeland board always show the plan as it stands
+       right now. A fingerprint of everything the plan reads (basket,
+       strategy, goals, RV, facility counts/levels, climate counts,
+       module levels/ownership) keeps repeat renders cheap: when
+       nothing the plan reads has changed, the recompute is skipped.
+       bpStale stays as a variable only because older surfaces read
+       it; the live flow keeps it false forever. */
+    var bpAutoSig = null, bpRefreshing = false;
+    function bpFingerprint(){
+      return JSON.stringify({
+        sig: (typeof planSignature === "function") ? planSignature() : "",
+        rv: userRV,
+        fc: facCounts, fl: facLevels, cc: climCounts,
+        ml: moduleLevels, mo: modulesOwned
+      });
+    }
+    function refreshStrategyPlan(force){
+      if(typeof strategy === "undefined" || !strategy) return;
+      if(bpRefreshing) return;
+      var fp = bpFingerprint();
+      if(!force && bpResult && fp === bpAutoSig) return;
+      bpRefreshing = true;
+      try {
+        renderBestPlan();
+        bpAutoSig = bpFingerprint();
+        bpStale = false;
+        var n = document.getElementById("bpStaleNote");
+        if(n) n.hidden = true;
+      } finally { bpRefreshing = false; }
+    }
     function markBpStale(){
-      if(!bpResult) return;
-      bpStale = true;
-      var n = document.getElementById("bpStaleNote");
-      if(n) n.hidden = false;
-      renderLayout();
+      /* Never stale any more: a change that used to flag the plan
+         out of date now refreshes it immediately instead. */
+      refreshStrategyPlan(false);
+      if(typeof renderMyHomeland === "function") renderMyHomeland();
     }
     document.addEventListener("change", function(e){
       var t = e.target;
@@ -8589,9 +8653,9 @@
       var fb = document.getElementById("findBestBtn"), fh = document.getElementById("findBestHint");
       if(fb){
         fb.disabled = !strategy;
-        fb.textContent = strategy === "levelup" ? "🚐 Find the plan — target RV " + rvNext() : strategy === "goals" ? "⭐ Find the plan — my ranked goals" : "⭐ Find the plan";
+        fb.textContent = strategy === "levelup" ? "↻ Refresh the plan now — target RV " + rvNext() : strategy === "goals" ? "↻ Refresh the plan now — my ranked goals" : "⭐ Find the plan";
       }
-      if(fh) fh.textContent = !strategy ? "Pick a strategy above first — Level Up or Goals." : strategy === "levelup" ? "Basket first, then the RV " + rvNext() + " bill, then Home Coins." : "Basket first, then your goals in your ranked order, then Home Coins.";
+      if(fh) fh.textContent = !strategy ? "Pick a strategy above first — Level Up or Goals. The plan then builds itself." : strategy === "levelup" ? "Live: this plan refreshes itself on every change — basket first, then the RV " + rvNext() + " bill, then Home Coins. The button just re-runs it now." : "Live: this plan refreshes itself on every change — basket first, then your goals in your ranked order, then Home Coins. The button just re-runs it now.";
     }
     function setStrategy(mode){
       if(strategy === mode){ renderStrategy(); return; }
@@ -8601,14 +8665,19 @@
       bpResult = null; bpStale = false;
       var out = document.getElementById("bestPlanOut");
       if(out) out.innerHTML = '<div class="empty-plan">' + (mode === "levelup"
-        ? "🚐 Level Up picked. Tap Find the plan and the planner targets the RV " + rvNext() + " bill after your basket, with production beyond the bill going to Home Coins. Any Goals plan from before is gone — nothing carries over. Then Step 5 sets your Mines from that plan."
-        : "🎯 Goals picked. Rank your goals above, then tap Find the plan: your basket runs first, then the goals cascade in your order. Any Level Up plan from before is gone — the bill plays no part here. Then Step 5 sets your Mines from that plan.") + "</div>";
+        ? "🚐 Level Up picked. Your plan is building itself now: the planner targets the RV " + rvNext() + " bill after your basket, with production beyond the bill going to Home Coins. Any Goals plan from before is gone — nothing carries over. Then Step 5 sets your Mines from that plan."
+        : "🎯 Goals picked. Your plan is building itself now: your basket runs first, then the goals cascade in your ranked order. Any Level Up plan from before is gone — the bill plays no part here. Then Step 5 sets your Mines from that plan.") + "</div>";
       renderStrategy();
       renderMines();
       renderRvPlan();
       renderPlan();
       renderLayout();
       if(typeof renderTeam === "function") renderTeam();
+      /* Picking a strategy builds its plan right away — no separate
+         "Find the plan" tap is ever needed on this planner, and every
+         later change rebuilds it again (refreshStrategyPlan). */
+      refreshStrategyPlan(true);
+      if(typeof renderMyHomeland === "function") renderMyHomeland();
       toast(mode === "levelup"
         ? "Strategy: Level Up. The RV " + rvNext() + " bill is the target now — goals are off, nothing stacks."
         : "Strategy: Goals. Your ranked goals run now — the leveling bill is off, nothing stacks.");
@@ -9181,7 +9250,7 @@
          name is written on the piece itself: it wraps at the space in
          the name, and long names (over 12 letters) take the p-long
          small-text treatment so they stay whole inside the 2 by 2. */
-      for(var i = 0; i < n; i++) out.push({ s:crop, f:zoneLabel + " · " + crop + " field " + (i + 1) + " of " + n + " — Farmland, true size 2 by 2", w:2, h:2, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
+      for(var i = 0; i < n; i++) out.push({ s:crop, crop:crop, land:"Farmland", f:zoneLabel + " · " + crop + " field " + (i + 1) + " of " + n + " — Farmland, true size 2 by 2", w:2, h:2, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
       return out;
     }
     function myWoods(crop, n, zoneLabel){
@@ -9189,7 +9258,7 @@
       /* Woodlands draw at their real size, 3.5 by 3.5 — halves
          included, never rounded, so a woodland always claims exactly
          the space it really takes. */
-      for(var i = 0; i < n; i++) out.push({ s:crop, f:zoneLabel + " · " + crop + " woodland " + (i + 1) + " of " + n + " — Woodland, true size 3.5 by 3.5", w:3.5, h:3.5, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
+      for(var i = 0; i < n; i++) out.push({ s:crop, crop:crop, land:"Woodland", f:zoneLabel + " · " + crop + " woodland " + (i + 1) + " of " + n + " — Woodland, true size 3.5 by 3.5", w:3.5, h:3.5, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
       return out;
     }
     /* Pin a piece (or a whole list of pieces) to exact half-square
@@ -9221,7 +9290,7 @@
           myPos(myFields("Rice", 3, "Zone 2 — Scorching (2× Heat Furnace)"), [[10,11.5],[12,11.5],[15,11.5]])
         ), 8, 15)
       ),
-      '<li><strong>Zone 1 — Cool</strong> (Cooling Unit): Ginseng ×6 fields · Maple ×5 woodlands — the old Rose field is Ginseng now: Growth Fruit left the basket for Premium Jello, and Ginseng Water dries a whole field into one Dried Ginseng, so four fields could not keep the Keg fed</li><li><strong>Zone 2 — Scorching</strong> (2× Heat Furnace): Sugarcane ×6 fields · Rice ×3 fields · Coconut ×2 woodlands · Cocoa ×2 woodlands — Sugarcane drops from nine, because nothing in the basket drinks Rock Candy right now; six fields keep that pantry line fed, and the freed woodland spots go to Cocoa, the top money woodland, which wants this Scorching zone. Rice takes the spare end of the row: it grows anywhere, and three fields of it keep the event Cake\'s Milled Rice fed without breaking up Zone 4\'s Wheat block</li>');
+      '<li><strong>Zone 1 — Cool</strong> (Cooling Unit): Ginseng ×6 fields · Maple ×5 woodlands — both are current-plan crops: Ginseng Water dries a whole field of Ginseng into one Dried Ginseng, so four fields could not keep the Keg fed, and the Maple woodlands feed Maple Sugar Chunk (and through it, Premium Jello)</li><li><strong>Zone 2 — Scorching</strong> (2× Heat Furnace): Sugarcane ×6 fields · Rice ×3 fields · Coconut ×2 woodlands · Cocoa ×2 woodlands — Rice is the plan crop here: three fields of it keep the Magic Pumpkin Cake\'s Milled Rice fed without breaking up Zone 4\'s Wheat block. Sugarcane, Coconut and Cocoa are <strong>not</strong> in the current plan\'s recipes — they are money crops filling this Scorching zone, Cocoa the top money woodland</li>');
     myDef(4, "Wet Works", "Wet Works", "Wells and water for the Keg and homeland.",
       [myFac("Well", "Deep Rock Well", "Deep Rock Well — Dreaple · Deep Rock Spring Water · Plot 4", 2, 2),
        myFac("Well", "Well", "Well — Panpanta · Plain Fresh Water · Plot 4", 2, 2),
@@ -9248,46 +9317,46 @@
           myFields("Wheat", 10, "Zone 4 — No unit (open air)")
         ), 8, 15)
       ),
-      '<li><strong>Zone 3 — Adequate</strong> (Sunlamp), now — event running: Magic Pumpkin ×5 fields · Memory Lanternfruit ×5 fields · Lavender ×3 fields — every Sunlamp spot now grows a crop that needs the light: the event pair feeds the Soup first, then Cake and Nectar, and Lavender starts the Cookies planting now instead of waiting for Dec 10. Lemon moved down to Zone 4 — it grows anywhere, so it was spending light it does not need</li><li><strong>Zone 3 — after the Dec 10 event ends:</strong> Lavender ×5 fields · Grapes ×4 fields</li><li><strong>Zone 4 — No unit</strong> (open air): Wheat ×10 fields · Lemon ×4 woodlands · Maple ×2 woodlands — Wheat stays at ten (exactly one Wheatmeal a cycle for the Cookies), and Zone 4 Maple drops to two: open air is the worst spot for a Freeze crop, so the main Maple block stays in Zone 1 under the Cooling Unit. Rice moved to the spare end of Zone 2\'s row on Plot 3 — it grows anywhere, and this plot has no room left beside the Wheat block</li>');
+      '<li><strong>Zone 3 — Adequate</strong> (Sunlamp), now — event running: Magic Pumpkin ×5 fields · Memory Lanternfruit ×5 fields · Lavender ×3 fields — every Sunlamp spot now grows a crop that needs the light: the event pair feeds the Soup first, then Cake and Nectar, and Lavender starts the Cookies planting now instead of waiting for Dec 10. Lemon moved down to Zone 4 — it grows anywhere, so it was spending light it does not need</li><li><strong>Zone 3 — after the Dec 10 event ends:</strong> Lavender ×5 fields · Grapes ×4 fields (a post-event idea only — Grapes are not in the current plan)</li><li><strong>Zone 4 — No unit</strong> (open air): Wheat ×10 fields · Lemon ×4 woodlands · Maple ×2 woodlands — Wheat (Wheatmeal for the Cookies) and Maple (Maple Sugar Chunk, via Maple Syrup) are the plan crops here; Lemon is not in the current plan\'s recipes — it sits in open air because it grows anywhere. Wheat stays at ten (exactly one Wheatmeal a cycle for the Cookies), and Zone 4 Maple drops to two: open air is the worst spot for a Freeze crop, so the main Maple block stays in Zone 1 under the Cooling Unit. Rice moved to the spare end of Zone 2\'s row on Plot 3 — it grows anywhere, and this plot has no room left beside the Wheat block</li>');
     myDef(7, "Workshop 1", "Workshop Row 1", "Workshop facilities — Rows 1 &amp; 3 together; this board's split between the rows is the sensible arrangement, not a pinned one.",
-      [myFac("Carousel Mill", "Carousel Mill 1", "Carousel Mill 1 — Cornet · Lavender Powder · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
-       myFac("Carousel Mill", "Carousel Mill 2", "Carousel Mill 2 — Turbo M 54 · Wheatmeal · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
-       myFac("Crafting Table", "Crafting Table 1", "Crafting Table 1 — Fenmane · Glowfruit Lantern Set · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4.5, 4.5),
-       myFac("Crafting Table", "Crafting Table 2", "Crafting Table 2 — Gachapus · Magic Pumpkin Lantern, Memory Lantern · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4.5, 4.5),
-       myFac("Phonolfactory Table", "Phonolfactory 1", "Phonolfactory 1 — Ignitis M 48 · Advanced Lemon Incense · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3.5, 3.5, "Phonolfactory"),
-       myFac("Joy Wheel Loom", "Joy Wheel Loom", "Joy Wheel Loom — Hypnyto · Cotton Thread · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
-       myFac("Woodworking Bench", "Wood Bench 1", "Woodworking Bench 1 — Melloblum · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
-       myFac("Woodworking Bench", "Wood Bench 2", "Woodworking Bench 2 — Ignitis F 47 · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
-       myFac("Woodworking Bench", "Wood Bench 3", "Woodworking Bench 3 — Popapus · Planks → Laminated Beams · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
+      [myFac("Carousel Mill", "Carousel Mill 1", "Carousel Mill 1 — Cornet · Lavender Powder (for Lavender Cookies) · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
+       myFac("Carousel Mill", "Carousel Mill 2", "Carousel Mill 2 — Turbo M 54 · Wheatmeal (for Lavender Cookies) and Milled Rice (for Magic Pumpkin Cake), taking turns · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
+       myFac("Crafting Table", "Crafting Table 1", "Crafting Table 1 — Fenmane · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4.5, 4.5),
+       myFac("Crafting Table", "Crafting Table 2", "Crafting Table 2 — Gachapus · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4.5, 4.5),
+       myFac("Phonolfactory Table", "Phonolfactory 1", "Phonolfactory 1 — Ignitis M 48 · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3.5, 3.5, "Phonolfactory"),
+       myFac("Joy Wheel Loom", "Joy Wheel Loom", "Joy Wheel Loom — Hypnyto · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
+       myFac("Woodworking Bench", "Wood Bench 1", "Woodworking Bench 1 — Melloblum · Not in current plan — building stock only, no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
+       myFac("Woodworking Bench", "Wood Bench 2", "Woodworking Bench 2 — Ignitis F 47 · Not in current plan — building stock only, no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
+       myFac("Woodworking Bench", "Wood Bench 3", "Woodworking Bench 3 — Popapus · Not in current plan — building stock only, no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
        myFac("Storage Unit", "Storage", "Storage Units — storage for finished goods, no worker · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
        myFac("Storage Unit", "Storage", "Storage Units — storage for finished goods, no worker · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2)],
-      '<li><strong>Carousel Mill 1</strong> — Cornet · Lavender Powder</li><li><strong>Carousel Mill 2</strong> — Turbo M 54 · Wheatmeal</li><li><strong>Crafting Table 1</strong> — Fenmane · Glowfruit Lantern Set</li><li><strong>Crafting Table 2</strong> — Gachapus · Magic Pumpkin Lantern, Memory Lantern</li><li><strong>Phonolfactory 1</strong> — Ignitis M 48 · Advanced Lemon Incense</li><li><strong>Joy Wheel Loom</strong> — Hypnyto · Cotton Thread</li><li><strong>Woodworking Bench 1</strong> — Melloblum · Planks → Laminated Beams</li><li><strong>Woodworking Bench 2</strong> — Ignitis F 47 · Planks → Laminated Beams</li><li><strong>Woodworking Bench 3</strong> — Popapus · Planks → Laminated Beams</li><li><strong>Storage Units</strong> — storage for finished goods</li>');
+      '<li><strong>Carousel Mill 1</strong> — Cornet · Lavender Powder (for Lavender Cookies)</li><li><strong>Carousel Mill 2</strong> — Turbo M 54 · Wheatmeal (for Lavender Cookies) and Milled Rice (for Magic Pumpkin Cake), taking turns</li><li><strong>Crafting Table 1</strong> — Fenmane · Not in current plan — no recipe assigned</li><li><strong>Crafting Table 2</strong> — Gachapus · Not in current plan — no recipe assigned</li><li><strong>Phonolfactory 1</strong> — Ignitis M 48 · Not in current plan — no recipe assigned</li><li><strong>Joy Wheel Loom</strong> — Hypnyto · Not in current plan — no recipe assigned</li><li><strong>Woodworking Bench 1</strong> — Melloblum · Not in current plan — building stock only</li><li><strong>Woodworking Bench 2</strong> — Ignitis F 47 · Not in current plan — building stock only</li><li><strong>Woodworking Bench 3</strong> — Popapus · Not in current plan — building stock only</li><li><strong>Storage Units</strong> — storage for finished goods</li>');
     myDef(8, "Kilns", "Workshop Row 2 — Kilns", "Ore chain only.",
-      [myFac("Chimney Kiln", "Kiln 1", "Chimney Kiln 1 — Magmarex M 47 · Sintered Brick → Refined Ore · Plot 8", 5, 5),
-       myFac("Chimney Kiln", "Kiln 2", "Chimney Kiln 2 — Scorchhowl M 40 · Sintered Brick → Refined Ore · Plot 8", 5, 5),
-       myFac("Chimney Kiln", "Kiln 3", "Chimney Kiln 3 — Lavazar F 55 · Sintered Brick → Refined Ore · Plot 8", 5, 5)],
-      '<li><strong>Chimney Kiln 1</strong> — Magmarex M 47 · Sintered Brick → Refined Ore</li><li><strong>Chimney Kiln 2</strong> — Scorchhowl M 40 · Sintered Brick → Refined Ore</li><li><strong>Chimney Kiln 3</strong> — Lavazar F 55 · Sintered Brick → Refined Ore</li>');
+      [myFac("Chimney Kiln", "Kiln 1", "Chimney Kiln 1 — Magmarex M 47 · Not in current plan — building stock only, no recipe assigned · Plot 8", 5, 5),
+       myFac("Chimney Kiln", "Kiln 2", "Chimney Kiln 2 — Scorchhowl M 40 · Not in current plan — building stock only, no recipe assigned · Plot 8", 5, 5),
+       myFac("Chimney Kiln", "Kiln 3", "Chimney Kiln 3 — Lavazar F 55 · Not in current plan — building stock only, no recipe assigned · Plot 8", 5, 5)],
+      '<li><strong>Chimney Kiln 1</strong> — Magmarex M 47 · Not in current plan — building stock only</li><li><strong>Chimney Kiln 2</strong> — Scorchhowl M 40 · Not in current plan — building stock only</li><li><strong>Chimney Kiln 3</strong> — Lavazar F 55 · Not in current plan — building stock only</li>');
     myDef(9, "Workshop 3", "Workshop Row 3", "Workshop facilities — Rows 1 &amp; 3 together; this board's split between the rows is the sensible arrangement, not a pinned one.",
-      [myFac("Phonolfactory Table", "Phonolfactory 2", "Phonolfactory 2 — Stellarys M 40 · Herbal Ginseng Aroma · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3.5, 3.5, "Phonolfactory"),
+      [myFac("Phonolfactory Table", "Phonolfactory 2", "Phonolfactory 2 — Stellarys M 40 · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3.5, 3.5, "Phonolfactory"),
        myFac("Simmering Pot", "Simmering Pot 1", "Simmering Pot 1 — Magmarex F 57 · Maple Sugar Chunk · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Simmering Pot", "Simmering Pot 2", "Simmering Pot 2 — Sparkelf INFP · Rock Candy · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Blazing Stove", "Blazing Stove 1", "Blazing Stove 1 — Infergon · Honey-Glazed Pumpkin Cup · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
+       myFac("Simmering Pot", "Simmering Pot 2", "Simmering Pot 2 — Sparkelf INFP · Golden Lantern Pumpkin Soup · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Blazing Stove", "Blazing Stove 1", "Blazing Stove 1 — Infergon · Premium Jello · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
        myFac("Blazing Stove", "Blazing Stove 2", "Blazing Stove 2 — Sparkelf ENFJ · Magic Pumpkin Cake · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
-       myFac("Jukebox Dryer", "Jukebox Dryer", "Jukebox Dryer — Pouchwisp · Dried Ginseng, Nuts · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
-       myFac("Bouncy Brew Keg", "Brew Keg", "Bouncy Brew Keg — Sherro · Ginseng Water · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Dance Pad Polisher", "Dance Pad Polisher", "Dance Pad Polisher — Blazen · Growth Fruit · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
+       myFac("Jukebox Dryer", "Jukebox Dryer", "Jukebox Dryer — Pouchwisp · Dried Ginseng (for Ginseng Water) · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
+       myFac("Bouncy Brew Keg", "Brew Keg", "Bouncy Brew Keg — Sherro · Ginseng Water and Gleam Fruit Nectar, taking turns · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
+       myFac("Dance Pad Polisher", "Dance Pad Polisher", "Dance Pad Polisher — Blazen · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
        myFac("Claw Game Cooker", "Claw Cooker 1", "Claw Game Cooker 1 — Flamerion · Lavender Cookies · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 1.5, 1.5),
-       myFac("Claw Game Cooker", "Claw Cooker 2", "Claw Game Cooker 2 — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 1.5, 1.5),
-       myFac("Pickling Jar", "Pickling Jar", "Pickling Jar — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2)],
-      '<li><strong>Jukebox Dryer</strong> — Pouchwisp · Dried Ginseng, Nuts</li><li><strong>Simmering Pot 1</strong> — Magmarex F 57 · Maple Sugar Chunk</li><li><strong>Simmering Pot 2</strong> — Sparkelf INFP · Rock Candy</li><li><strong>Bouncy Brew Keg</strong> — Sherro · Ginseng Water</li><li><strong>Claw Game Cooker 1</strong> — Flamerion · Lavender Cookies</li><li><strong>Claw Game Cooker 2</strong> — Scorchhowl F 28 · Caramel Nut Chips, Maple Candy Star</li><li><strong>Dance Pad Polisher</strong> — Blazen · Growth Fruit</li><li><strong>Blazing Stove 1</strong> — Infergon · Honey-Glazed Pumpkin Cup</li><li><strong>Blazing Stove 2</strong> — Sparkelf ENFJ · Magic Pumpkin Cake</li><li><strong>Pickling Jar</strong> — Stellarys M 45 · Candied Lanternfruit, Candied Strawberries, Sweet Rice Drink</li><li><strong>Phonolfactory 2</strong> — Stellarys M 40 · Herbal Ginseng Aroma</li>');
+       myFac("Claw Game Cooker", "Claw Cooker 2", "Claw Game Cooker 2 — Scorchhowl F 28 · Not in current plan — no recipe assigned (Lavender Cookies is Cooker 1\'s job) · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 1.5, 1.5),
+       myFac("Pickling Jar", "Pickling Jar", "Pickling Jar — Stellarys M 45 · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2)],
+      '<li><strong>Jukebox Dryer</strong> — Pouchwisp · Dried Ginseng (for Ginseng Water)</li><li><strong>Simmering Pot 1</strong> — Magmarex F 57 · Maple Sugar Chunk</li><li><strong>Simmering Pot 2</strong> — Sparkelf INFP · Golden Lantern Pumpkin Soup</li><li><strong>Bouncy Brew Keg</strong> — Sherro · Ginseng Water and Gleam Fruit Nectar, taking turns</li><li><strong>Claw Game Cooker 1</strong> — Flamerion · Lavender Cookies</li><li><strong>Claw Game Cooker 2</strong> — Scorchhowl F 28 · Not in current plan — no recipe assigned (Lavender Cookies is Cooker 1\'s job; there is no second cooker recipe in this plan and no queue behind it)</li><li><strong>Dance Pad Polisher</strong> — Blazen · Not in current plan — no recipe assigned</li><li><strong>Blazing Stove 1</strong> — Infergon · Premium Jello</li><li><strong>Blazing Stove 2</strong> — Sparkelf ENFJ · Magic Pumpkin Cake</li><li><strong>Pickling Jar</strong> — Stellarys M 45 · Not in current plan — no recipe assigned</li><li><strong>Phonolfactory 2</strong> — Stellarys M 40 · Not in current plan — no recipe assigned</li>');
     myDef(10, "Leisure", "Leisure Corner", "Rest and family gates.",
-      [myFac("Nimbus Bed", "Nimbus Bed 1", "Nimbus Bed 1 — Irisal · Plot 10, Leisure Corner", 5, 5),
-       myFac("Nimbus Bed", "Nimbus Bed 2", "Nimbus Bed 2 — Turbo Prismana · Plot 10, Leisure Corner", 5, 5),
-       myFac("Starfall Hammock", "Starfall Hammock", "Starfall Hammock — Stellarys F 45 · Star · Plot 10, Leisure Corner", 5, 5),
-       myFac("Tidewhisper Sandcastle", "Sandcastle 1", "Tidewhisper Sandcastle 1 — Susuta · Sea Salt · Plot 10, Leisure Corner", 5, 5),
-       myFac("Tidewhisper Sandcastle", "Sandcastle 2", "Tidewhisper Sandcastle 2 — second Sandcastle spot · Plot 10, Leisure Corner", 5, 5),
-       myFac("Dewy House", "Dewy House", "Dewy House — Fragrancier F 47 · Aromathyst · Plot 10, Leisure Corner", 2, 2)],
-      '<li><strong>Nimbus Bed 1</strong> — Irisal</li><li><strong>Nimbus Bed 2</strong> — Turbo Prismana</li><li><strong>Starfall Hammock</strong> — Stellarys F 45 · Star</li><li><strong>Tidewhisper Sandcastle 1</strong> — Susuta · Sea Salt</li><li><strong>Tidewhisper Sandcastle 2</strong> — second Sandcastle spot</li><li><strong>Dewy House</strong> — Fragrancier F 47 · Aromathyst</li>');
+      [myFac("Nimbus Bed", "Nimbus Bed 1", "Nimbus Bed 1 — Irisal · Petals (for Premium Jello) · Plot 10, Leisure Corner", 5, 5),
+       myFac("Nimbus Bed", "Nimbus Bed 2", "Nimbus Bed 2 — Turbo Prismana · Not in current plan — no recipe assigned · Plot 10, Leisure Corner", 5, 5),
+       myFac("Starfall Hammock", "Starfall Hammock", "Starfall Hammock — Stellarys F 45 · Not in current plan — no recipe assigned · Plot 10, Leisure Corner", 5, 5),
+       myFac("Tidewhisper Sandcastle", "Sandcastle 1", "Tidewhisper Sandcastle 1 — Susuta · Not in current plan — no recipe assigned · Plot 10, Leisure Corner", 5, 5),
+       myFac("Tidewhisper Sandcastle", "Sandcastle 2", "Tidewhisper Sandcastle 2 — second Sandcastle spot · Not in current plan · Plot 10, Leisure Corner", 5, 5),
+       myFac("Dewy House", "Dewy House", "Dewy House — Fragrancier F 47 · Not in current plan — no recipe assigned · Plot 10, Leisure Corner", 2, 2)],
+      '<li><strong>Nimbus Bed 1</strong> — Irisal · Petals (for Premium Jello)</li><li><strong>Nimbus Bed 2</strong> — Turbo Prismana · Not in current plan — no recipe assigned</li><li><strong>Starfall Hammock</strong> — Stellarys F 45 · Not in current plan — no recipe assigned</li><li><strong>Tidewhisper Sandcastle 1</strong> — Susuta · Not in current plan — no recipe assigned</li><li><strong>Tidewhisper Sandcastle 2</strong> — second Sandcastle spot · Not in current plan</li><li><strong>Dewy House</strong> — Fragrancier F 47 · Not in current plan — no recipe assigned</li>');
     myDef(11, "Open", "Open", "", [], '<li class="open"><strong>Open</strong> — nothing placed yet</li>', "Open", "nothing placed yet");
     myDef(12, "Open", "Open", "", [], '<li class="open"><strong>Open</strong> — nothing placed yet</li>', "Open", "nothing placed yet");
     myDef(13, "Mines", "The Mines — 8 spots", "7 staffed, 1 unstaffed.",
@@ -9339,7 +9408,7 @@
       var out = '<div class="my-pgrid' + (big ? " big" : "") + '">';
       res.placed.forEach(function(pl){
         var pc = pl.pc, col = MY_COL[pc.c] || ["#eeeeee","#888888"];
-        var tip = pc.f + " · starts " + pl.x + " across, " + pl.y + " back on Plot " + def.num;
+        var tip = (pc.crop ? "Grow " + pc.crop + " here — this " + pc.land + " spot should be " + pc.crop + " · " : "") + (pc._liveF || pc.f) + " · starts " + pl.x + " across, " + pl.y + " back on Plot " + def.num;
         var showLabel = big || (pc.w >= 5 && pc.h >= 3);
         out += '<div class="my-piece' + (pc.cls ? " " + pc.cls : "") + ((pc.w <= 2 || pc.h <= 2) ? " p-sm" : "") + '" style="left:' + (pl.x / 20 * 100) + "%;top:" + (pl.y / 15 * 100) + "%;width:" + (pc.w / 20 * 100) + "%;height:" + (pc.h / 15 * 100) + "%;background:" + col[0] + ";border-color:" + col[1] + '" data-tip="' + escA(tip) + '">' + (showLabel ? "<span>" + esc(pc.s) + "</span>" : "") + "</div>";
       });
@@ -9349,10 +9418,186 @@
       out += "</div>";
       return { html:out, unplaced:res.unplaced };
     }
+    /* ============ My Homeland board: LIVE labels ============
+       The plot geography above (MY_PLOTS) is her real homeland:
+       positions, true sizes, pieces and workers never move. But the
+       recipe each facility piece is "making" used to be baked into
+       those definitions as fixed text, so the board could never
+       refresh — it kept naming an older plan forever. Now every
+       render rebuilds each facility piece's recipe segment live
+       from the CURRENT basket plan (computePlan): copies of a
+       facility take the basket chain's products in order, extra
+       products take turns on the last copy, and a facility with
+       no job in the basket reads "Not in current plan — no recipe
+       assigned". The strategy plan never writes onto this board —
+       it refreshes live in its own steps instead. Farm plantings, Mine
+       materials, hatchers, storage and climate units are physical
+       homeland facts, not plan labels, so they keep their labels;
+       the farm and Mine plots instead gain a live check line that
+       says what the current plan actually uses from them. */
+    var MY_FAC_BY_COL = { "Phonolfactory": "Phonolfactory Table" };
+    var MY_SKIP_COLS = { "Hatchinator":1, "Storage Unit":1, "Mine":1, "Cooling Unit":1, "Heat Furnace":1, "Sunlamp":1 };
+    var MY_LIVE_SPOT_PLOTS = { 4:1, 5:1, 7:1, 8:1, 9:1, 10:1 };
+    function myPieceFac(pc){
+      if(!pc || pc.crop) return null;
+      if(pc.cls && (pc.cls.indexOf("decor-piece") > -1 || pc.cls.indexOf("open-piece") > -1)) return null;
+      var fac = MY_FAC_BY_COL[pc.c] || pc.c;
+      if(MY_SKIP_COLS[fac]) return null;
+      if(!FAC_JOB[fac] && !(typeof FAC_RV !== "undefined" && FAC_RV[fac])) return null;
+      return fac;
+    }
+    function myLiveContext(){
+      /* This board follows the BASKET only — her own picks. The
+         strategy plan refreshes live in Steps 4–7, but it never
+         writes onto this board: a strategy filler is a suggestion,
+         not an assignment, and her rule is that this board names
+         only what she actually picked (plus the steps feeding
+         those picks). */
+      var gross = {}, parents = {}, finals = {}, basketNames = [];
+      basket.forEach(function(b){ finals[b.name] = true; basketNames.push(b.name); });
+      var bp = computePlan();
+      Object.keys(bp.gross).forEach(function(n){ if((bp.gross[n] || 0) > 0) gross[n] = true; });
+      Object.keys(gross).forEach(function(n){
+        var it = ITEMS[n];
+        if(!it || it.kind !== "craft") return;
+        for(var k in it.needs){
+          if(!parents[k]) parents[k] = [];
+          if(parents[k].indexOf(n) === -1) parents[k].push(n);
+        }
+      });
+      var prodsCache = {};
+      function prodsFor(fac){
+        if(prodsCache[fac]) return prodsCache[fac];
+        var out = [];
+        function push(n){ if(n && out.indexOf(n) === -1) out.push(n); }
+        var fa = bp.facAssign && bp.facAssign[fac];
+        if(fa && fa.products) fa.products.forEach(push);
+        /* Any other basket-chain product at this facility the
+           per-copy assignment did not list (gather steps ride in
+           the gross, not always in facAssign's product order). */
+        Object.keys(gross).forEach(function(n){
+          var it = ITEMS[n];
+          if(it && it.kind !== "grow" && facCanon(it.facility) === fac) push(n);
+        });
+        /* The Deep Rock Well piece takes Deep Rock Spring Water
+           first when the plan gathers it, matching its name. */
+        if(fac === "Well"){
+          var di = out.indexOf("Deep Rock Spring Water");
+          if(di > 0){ out.splice(di, 1); out.unshift("Deep Rock Spring Water"); }
+        }
+        prodsCache[fac] = out;
+        return out;
+      }
+      return { gross:gross, parents:parents, finals:finals, basketNames:basketNames, prodsFor:prodsFor };
+    }
+    function myProductLabel(ctx, name){
+      if(ctx.finals[name]) return name;
+      var ps = (ctx.parents[name] || []).filter(function(p){ return ctx.gross[p]; });
+      return ps.length ? name + " (for " + ps.join(", ") + ")" : name;
+    }
+    function myAssignFor(ctx, fac, count){
+      var prods = ctx.prodsFor(fac);
+      var idle = (fac === "Woodworking Bench" || fac === "Chimney Kiln")
+        ? "Not in current plan — building stock only, no recipe assigned"
+        : "Not in current plan — no recipe assigned";
+      var out = [], i;
+      if(!prods.length){ for(i = 0; i < count; i++) out.push(idle); return out; }
+      if(prods.length <= count){
+        for(i = 0; i < count; i++) out.push(i < prods.length ? myProductLabel(ctx, prods[i]) : idle);
+        return out;
+      }
+      for(i = 0; i < count - 1; i++) out.push(myProductLabel(ctx, prods[i]));
+      out.push(prods.slice(count - 1).map(function(n){ return myProductLabel(ctx, n); }).join(" and ") + ", taking turns");
+      return out;
+    }
+    function myRebuildF(pc, liveText){
+      if(!liveText) return pc.f;
+      var parts = pc.f.split(" — ");
+      if(parts.length < 2) return pc.f;
+      var segs = parts.slice(1).join(" — ").split(" · ");
+      if(segs.length < 3) return pc.f;
+      return parts[0] + " — " + segs[0] + " · " + liveText + " · " + segs.slice(2).join(" · ");
+    }
+    function myApplyLive(){
+      var ctx = myLiveContext();
+      var counts = {}, n, def;
+      for(n = 1; n <= 16; n++){
+        def = MY_PLOTS[n];
+        if(!def) continue;
+        def.pieces.forEach(function(pc){ var f = myPieceFac(pc); if(f) counts[f] = (counts[f] || 0) + 1; });
+      }
+      var assigns = {};
+      Object.keys(counts).forEach(function(f){ assigns[f] = myAssignFor(ctx, f, counts[f]); });
+      var seen = {};
+      for(n = 1; n <= 16; n++){
+        def = MY_PLOTS[n];
+        if(!def) continue;
+        def.pieces.forEach(function(pc){
+          var f = myPieceFac(pc);
+          if(!f){ pc._liveF = null; return; }
+          var i = seen[f] || 0;
+          seen[f] = i + 1;
+          pc._liveF = myRebuildF(pc, assigns[f][i]);
+        });
+      }
+      return ctx;
+    }
+    function myLiveSpots(def){
+      var lis = [], hatchCount = 0, seenF = {};
+      def.pieces.forEach(function(pc){
+        if(pc.c === "Hatchinator"){ hatchCount++; return; }
+        var f = pc._liveF || pc.f;
+        if(seenF[f]) return;
+        seenF[f] = true;
+        var idx = f.indexOf(" — ");
+        var head = idx > -1 ? f.slice(0, idx) : f;
+        var rest = idx > -1 ? f.slice(idx + 3) : "";
+        var open = pc.cls && pc.cls.indexOf("open-piece") > -1;
+        lis.push('<li' + (open ? ' class="open"' : "") + "><strong>" + esc(head) + "</strong>" + (rest ? " — " + esc(rest) : "") + "</li>");
+      });
+      if(hatchCount) lis.unshift('<li><strong>Hatchinators ×' + hatchCount + "</strong> — passive, no worker</li>");
+      return lis.join("");
+    }
+    function myFarmCheckLi(def, ctx){
+      var planted = [];
+      def.pieces.forEach(function(pc){ if(pc.crop && planted.indexOf(pc.crop) === -1) planted.push(pc.crop); });
+      if(!planted.length) return "";
+      if(!Object.keys(ctx.gross).length) return '<li><strong>Live check</strong> — no basket or strategy plan yet: pick recipes and this line names which of these crops your plan uses, updated on every change</li>';
+      var used = planted.filter(function(c){ return ctx.gross[c]; });
+      var unused = planted.filter(function(c){ return !ctx.gross[c]; });
+      return "<li><strong>Live check</strong> — your current plan uses from this plot: " + (used.length ? used.map(function(c){ return esc(c); }).join(", ") : "none of these crops") + (unused.length ? " · planted here but not in this plan: " + unused.map(function(c){ return esc(c); }).join(", ") : "") + "</li>";
+    }
+    function myMineCheckLi(){
+      if(typeof bpResult !== "undefined" && bpResult && bpResult.mine && bpResult.mine.assignments && bpResult.mine.assignments.length){
+        return "<li><strong>Live check</strong> — Mines as Step 5 has them right now: " + bpResult.mine.assignments.map(function(m, i){ return "Mine " + (i + 1) + ": " + esc(m); }).join(" · ") + " — the spots above are your standing mine spots; Step 5 is the live pick list</li>";
+      }
+      return "<li><strong>Live check</strong> — no strategy plan yet, so Step 5 has no live Mine picks; the spots above are your standing mine spots</li>";
+    }
+    function myUpdateNote(ctx){
+      var note = document.getElementById("myLivePlanNote");
+      var stamp = document.getElementById("myLiveStamp");
+      if(note){
+        var steps = Object.keys(ctx.gross).filter(function(n){ return !ctx.finals[n] && ITEMS[n] && ITEMS[n].kind !== "grow"; });
+        var crops = Object.keys(ctx.gross).filter(function(n){ return ITEMS[n] && ITEMS[n].kind === "grow"; });
+        if(!ctx.basketNames.length && !steps.length){
+          note.innerHTML = "Nothing is picked yet, so every station below honestly reads <strong>Not in current plan</strong>. Pick recipes in Step 2 and this note and every label on the board rebuild themselves from your basket at once — no button, no waiting.";
+        } else {
+          var parts = [];
+          if(ctx.basketNames.length) parts.push("<strong>Your basket:</strong> " + ctx.basketNames.map(function(n){ return esc(n); }).join(" · "));
+          if(steps.length) parts.push("<strong>Steps that feed them:</strong> " + steps.map(function(n){ return esc(n); }).join(" · "));
+          if(crops.length) parts.push("<strong>Crops they grow:</strong> " + crops.map(function(n){ return esc(n); }).join(" · "));
+          note.innerHTML = "The recipe labels on this board list <strong>only your current basket</strong> — rebuilt just now from: " + parts.join(" — ") + ". A station with no job in this basket is marked <strong>Not in current plan</strong> and names no recipe, so nothing from an older basket can stay on the board. Your strategy plan refreshes live in Steps 4–7 too, but it never writes onto this board — a strategy suggestion is not an assignment until you pick it into your basket.";
+        }
+      }
+      if(stamp){
+        stamp.textContent = "↻ Board refreshed just now (" + new Date().toLocaleTimeString("en-US", { hour:"numeric", minute:"2-digit", second:"2-digit" }) + ") — rebuilt from your basket as it stands. Change anything above and this board refreshes with it, and the Step 4 plan, Step 5 Mines, the layout and the crew all refresh themselves too — no button to tap, nothing ever stale.";
+      }
+    }
     function renderMyHomeland(){
       var board = document.getElementById("myBoard");
       var details = document.getElementById("myDetails");
       if(!board || !details) return;
+      var ctx = myApplyLive();
       var bHtml = "";
       MY_ROWS.forEach(function(rowNums){
         rowNums.forEach(function(num){
@@ -9368,9 +9613,12 @@
         var g = myGridHtml(def, true);
         var cap = "Plot " + n + " on the grid · 20 squares across by 15 back · true sizes, halves included";
         if(g.unplaced.length) cap += " · " + g.unplaced.length + " piece(s) did not fit the drawing — their labels are in the list";
-        dHtml += '<div class="my-detail"><div class="md-grid">' + g.html + '<div class="md-cap">' + esc(cap) + '</div></div><div class="md-side"><span class="pnum">Plot ' + n + (def.role ? " · " + esc(def.role) : "") + "</span><h3>" + def.title + "</h3>" + (def.sub ? "<p>" + def.sub + "</p>" : "") + '<ul class="my-spots">' + def.spots + "</ul></div></div>";
+        var spotsHtml = MY_LIVE_SPOT_PLOTS[def.num] ? myLiveSpots(def)
+          : def.spots + (def.num === 3 || def.num === 6 ? myFarmCheckLi(def, ctx) : "") + (def.num === 13 ? myMineCheckLi() : "");
+        dHtml += '<div class="my-detail"><div class="md-grid">' + g.html + '<div class="md-cap">' + esc(cap) + '</div></div><div class="md-side"><span class="pnum">Plot ' + n + (def.role ? " · " + esc(def.role) : "") + "</span><h3>" + def.title + "</h3>" + (def.sub ? "<p>" + def.sub + "</p>" : "") + '<ul class="my-spots">' + spotsHtml + "</ul></div></div>";
       }
       details.innerHTML = dHtml;
+      myUpdateNote(ctx);
     }
     renderMyHomeland();
 
@@ -9436,8 +9684,9 @@
       var findBestBtn = document.getElementById("findBestBtn");
       if(findBestBtn) findBestBtn.addEventListener("click", function(){
         if(!strategy){ toast("Pick a strategy first — Level Up or Goals, one at a time."); return; }
-        renderBestPlan();
-        toast(strategy === "levelup" ? "Level Up plan ready: basket first, then the RV " + rvNext() + " bill." : "Goals plan ready, in your ranked order.");
+        refreshStrategyPlan(true);
+        if(typeof renderMyHomeland === "function") renderMyHomeland();
+        toast(strategy === "levelup" ? "Plan refreshed just now: basket first, then the RV " + rvNext() + " bill." : "Plan refreshed just now, in your ranked order.");
         document.getElementById("bestPlanOut").scrollIntoView({ behavior:"smooth", block:"start" });
       });
       var budMixSel = document.getElementById("budMix");
