@@ -5670,8 +5670,11 @@
        one product name per copy out, in order. An absent entry means
        the plan's own assignment fills the picks in. Setting an entry
        (changing a pick on a facility's layout block) makes her list
-       the one the block, crew and power lines read. Resets with the
-       basket or strategy, like minePick. */
+       the one the block, crew and power lines read. Unlike minePick,
+       a gather pick is NOT reset when the basket or strategy changes:
+       it is her own setting, and it survives every plan change while
+       its facility stays in the plan (see syncFacExtras) — it is
+       forgotten only when the facility leaves the plan entirely. */
     var gatherPick = {};
     /* Job picks for hand-added copies of ANY other facility kind
        (player's generalisation, Oct 29, 2026): facility name -> one
@@ -5708,7 +5711,29 @@
     function syncFacExtras(){
       var sig = planSignature();
       if(facExtraSig === null){ facExtraSig = sig; return; }
-      if(sig !== facExtraSig){ facExtra = {}; mineExtra = {}; minePick = null; gatherPick = {}; extraPick = {}; facExtraSig = sig; }
+      if(sig !== facExtraSig){
+        facExtra = {}; mineExtra = {}; minePick = null; extraPick = {};
+        /* Her hand-set gather picks are HERS, not the plan's, so they
+           are NOT wiped with the plan-shaped state above (player's
+           fix, Nov 16, 2026: a Nimbus Bed pick set to Wool snapped
+           back to the plan's Petals on the very next basket, strategy
+           or goal change, because every render runs this sync — the
+           bed "wouldn't let her change the recipe"). A pick stays
+           while its facility still has copies working in the new
+           plan — plan copies or an Always pin — and is forgotten
+           only when the facility leaves the plan entirely, so no
+           pick from an older plan lingers either. gatherAssignments
+           re-filters every saved pick against the products the
+           facility can gather at her current levels, position by
+           position, so a kept pick can never name a product the
+           facility cannot gather now. */
+        var ncKeep = facilityNeedCounts();
+        Object.keys(gatherPick).forEach(function(f){
+          var planC = Math.min(ncKeep[f] || 0, facCount(f));
+          if(!(planC > 0) && !(alwaysCount(f) > 0)) delete gatherPick[f];
+        });
+        facExtraSig = sig;
+      }
     }
     /* One facility stepper, in the same dress as the plot steppers:
        minus takes back only copies added by hand (the plan's count is
@@ -6937,9 +6962,16 @@
         if(f.hammock) onlyFacs["Starfall Hammock"] = true;
         if(f.windmill) onlyFacs["Floral Windmill"] = true;
         var gp = computePlan();
-        Object.keys(gp.gross).forEach(function(n){ var it = ITEMS[n]; if(it && (gp.net[n] || 0) > 0) onlyFacs[it.facility] = true; });
+        /* Keys are canonical facility names (facCanon), the names the
+           facility blocks look up: the leisure station's products are
+           filed under "Homeland leisure station" in the data, so the
+           raw name put the Nimbus Bed in this set under a key its
+           block never checks, and in Minimum mode the bed's block —
+           and its Wool / Petals pick — never appeared at all
+           (player's fix, Nov 16, 2026). */
+        Object.keys(gp.gross).forEach(function(n){ var it = ITEMS[n]; if(it && (gp.net[n] || 0) > 0) onlyFacs[facCanon(it.facility)] = true; });
         if(typeof bpResult !== "undefined" && bpResult){
-          Object.keys(bpResult.exp.gross).forEach(function(n){ var it2 = ITEMS[n]; if(it2 && (bpResult.exp.gross[n] || 0) > 0) onlyFacs[it2.facility] = true; });
+          Object.keys(bpResult.exp.gross).forEach(function(n){ var it2 = ITEMS[n]; if(it2 && (bpResult.exp.gross[n] || 0) > 0) onlyFacs[facCanon(it2.facility)] = true; });
         }
       }
       s += facilityBlocksHtml(onlyFacs, fieldBuildings(f), facilityNeedCounts());
