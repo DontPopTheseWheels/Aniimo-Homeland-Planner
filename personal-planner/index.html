@@ -1781,8 +1781,16 @@
        RV level or types into a box herself (player's ask, Nov 15,
        2026: nothing saved or pre-filled on open). Picking an RV or
        tapping Fill runs the fill to that RV's numbers; until then the
-       boxes stand empty, ready to be filled or typed into by hand. */
+       boxes stand empty, ready to be filled or typed into by hand.
+       One exception, in this personal copy only: the Farmland LEVEL
+       starts at her real level, Lv 7 (player-verified from her
+       in-game Home Management screenshot, Nov 17, 2026: her Farmland
+       plots are Lv 7, and Premium Wheat is a Lv 6 Facility crop she
+       already grows). Only that one level is prefilled — every count
+       and every other level still starts at 0, and picking an RV or
+       tapping Fill refills the Farmland box like any other. */
     Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
+    facLevels["Farmland"] = 7;
     Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
     function setFacProvenance(text){
       facProvenance = text;
@@ -9641,10 +9649,30 @@
       return "<li><strong>Live check</strong> — your current plan uses from this plot: " + (used.length ? used.map(function(c){ return esc(c); }).join(", ") : "none of these crops") + (unused.length ? " · planted here but not in this plan: " + unused.map(function(c){ return esc(c); }).join(", ") : "") + "</li>";
     }
     function myMineCheckLi(){
-      if(typeof bpResult !== "undefined" && bpResult && bpResult.mine && bpResult.mine.assignments && bpResult.mine.assignments.length){
-        return "<li><strong>Live check</strong> — Mines as Facilities out has them right now: " + bpResult.mine.assignments.map(function(m, i){ return "Mine " + (i + 1) + ": " + esc(m); }).join(" · ") + " — the spots above are your standing mine spots; the Mines picker in Facilities out is the live pick list</li>";
+      /* Live by construction, never a snapshot: this line used to read
+         bpResult.mine.assignments, the pick list frozen when the
+         strategy plan was last computed. The Mine picker handlers
+         update the live minePick list and re-render this board BEFORE
+         the recomputed plan replaces bpResult (and the live-refresh
+         fingerprint does not include the Mine picks), so the frozen
+         list is what this line kept showing — a plan built with no
+         Mines out fell through to the "no strategy plan yet" wording,
+         and a hand-changed pick never reached this line at all.
+         Now the line derives from currentMinePicks() — the same
+         mineSetup resolution the Facilities Out Mine block and its
+         picker handlers read — so it always names each Mine out with
+         the material currently picked for it, plan-set or hand-set.
+         "No plan yet" is said only when no strategy plan stands. */
+      var hasPlan = typeof bpResult !== "undefined" && !!bpResult;
+      if(!hasPlan){
+        return "<li><strong>Live check</strong> — no strategy plan yet, so Facilities out has no live Mine picks; the spots above are your standing mine spots</li>";
       }
-      return "<li><strong>Live check</strong> — no strategy plan yet, so Facilities out has no live Mine picks; the spots above are your standing mine spots</li>";
+      var live = (typeof currentMinePicks === "function") ? currentMinePicks() : null;
+      var assigns = live && live.assignments ? live.assignments : [];
+      if(assigns.length){
+        return "<li><strong>Live check</strong> — Mines as Facilities out has them right now: " + assigns.map(function(m, i){ return "Mine " + (i + 1) + ": " + esc(m); }).join(" · ") + " — the spots above are your standing mine spots; the Mines picker in Facilities out is the live pick list</li>";
+      }
+      return "<li><strong>Live check</strong> — a strategy plan is built, but no Mines are out in Facilities out right now; the spots above are your standing mine spots</li>";
     }
     function myUpdateNote(ctx){
       var note = document.getElementById("myLivePlanNote");
