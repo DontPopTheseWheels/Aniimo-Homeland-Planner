@@ -335,7 +335,7 @@
           <div class="step"><span class="n">Step 1</span><br /><b>🏭 Set up first</b><p>Pick your RV level — nothing is pre-picked for you. Picking fills the boxes; change any number with − and +.</p></div>
           <div class="step"><span class="n">Step 2</span><br /><b>🧺 Recipe basket</b><p>Pick recipes, no amounts. The planner sizes the whole chain for you.</p></div>
           <div class="step"><span class="n">Step 3</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
-          <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Tap Find the plan.</p></div>
+          <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Picking a strategy builds its plan on the spot — and every change after that rebuilds it right away.</p></div>
           <div class="step"><span class="n">Step 5</span><br /><b>⛏️ Set your Mines</b><p>Only now — after your strategy. The plan's Mines are marked used; you pick only for extra Mines you add.</p></div>
           <div class="step"><span class="n">Steps 6–8</span><br /><b>🗺️ Layout, crew &amp; home</b><p>Layout plants it, Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
           <div class="step"><span class="n">New</span><br /><b>🗺️ Suggested homeland</b><p>One full grid suggestion for your whole homeland, drawn from your RV level and your Step 1 facilities. Follow it or ignore it.</p></div>
@@ -510,8 +510,8 @@
               <span class="strat-state" id="stratGoalsState">Not picked</span>
             </button>
           </div>
-          <p class="src" id="strategyStatus" style="margin-top:12px" aria-live="polite">No strategy picked yet. Tap Level Up or Goals above.</p>
-          <p class="src" style="margin-top:8px">Picked? <a href="#bestplan">Next: Step 4 — rank goals (Goals mode) and find your plan, right below ↓</a> Then Step 5 sets your Mines from that plan. The Level Up bill follows in Level Up mode.</p>
+          <p class="src" id="strategyStatus" style="margin-top:12px" aria-live="polite">No strategy picked yet. Tap Level Up or Goals above — its plan builds on the spot.</p>
+          <p class="src" style="margin-top:8px">Picked? <a href="#bestplan">Next: Step 4 — rank goals (Goals mode); the plan is already built below and rebuilds as you rank ↓</a> Then Step 5 sets your Mines from that plan. The Level Up bill follows in Level Up mode.</p>
         </div>
       </section>
 
@@ -520,7 +520,7 @@
       <!-- ================= STRATEGY PLAN ================= -->
       <section id="bestplan">
         <div class="sec-head"><span class="sec-num">Step 4</span><h2>⭐ Strategy Plan Finder</h2></div>
-        <p class="sec-sub">Your basket takes slots and plots first. The strategy fills what is left. Level Up fills the next RV bill. Goals fills your ranked goals. All makes and earnings show per hour.</p>
+        <p class="sec-sub">Your basket takes slots and plots first. The strategy fills what is left. Level Up fills the next RV bill. Goals fills your ranked goals. All makes and earnings show per hour. <strong>Picking a strategy builds this plan on the spot, and any change to your basket, Step 1 setup or goals rebuilds it — plus Mines, layout and crew — right away. Nothing holds onto old picks.</strong></p>
 
         <div class="card">
           <div id="goalsInactive">
@@ -528,15 +528,15 @@
           </div>
           <div id="goalsPanel" hidden>
           <h3>🎯 Rank your goals</h3>
-          <p class="sec-sub" style="margin-bottom:0">Every goal starts off — nothing is saved or pre-picked. Turn on the goals you want and rank them with the ↑ ↓ arrows. Goal 1 fills first, then the next with what is left; leftovers go to Home Coins. All off is allowed.</p>
+          <p class="sec-sub" style="margin-bottom:0">Every goal starts off — nothing is saved or pre-picked. Turn on the goals you want and rank them with the ↑ ↓ arrows. Goal 1 fills first, then the next with what is left; leftovers go to Home Coins. All off is allowed. Every toggle or arrow rebuilds the plan on the spot.</p>
           <div class="goal-list" id="goalList"></div>
           </div>
           <div class="plan-actions">
-            <button class="btn btn-primary" id="findBestBtn" type="button" disabled>⭐ Find the plan</button>
-            <span class="src" id="findBestHint" style="align-self:center">Pick a strategy above first — Level Up or Goals.</span>
+            <button class="btn btn-primary" id="findBestBtn" type="button" disabled>↻ Refresh the plan now</button>
+            <span class="src" id="findBestHint" style="align-self:center">Pick a strategy above first — Level Up or Goals — and its plan builds on the spot.</span>
           </div>
           <div id="bestPlanOut">
-            <div class="empty-plan">Your strategy plan appears here. Pick your RV level in Step 1 at the top of this page first, pick a strategy above, then tap Find the plan.</div>
+            <div class="empty-plan">Your strategy plan appears here. Pick your RV level in Step 1 at the top of this page first, then pick a strategy above — its plan builds on the spot, no tap needed.</div>
           </div>
         </div>
 
@@ -544,7 +544,7 @@
           <h4>🔍 How to read the prices and flags on a best plan</h4>
           <p>Sell prices: shop price research (checked Oct 24, 2026).<br /><span class="verdict v-ok">Cross-checked</span> = two sources agree. <span class="verdict v-mix">Single source, spot-check in game</span> = Aniiland only. <span class="verdict v-lock">No verified sell price</span> = can't earn Home Coins.<br />Star items are in but flagged <span class="verdict v-mix">Not verified yet, included because it makes sense</span>; the plan says how much of the rate rests on them. Aniimo XP and Mineral Sand per run have no checked figures — flagged, never made up.</p>
         </div>
-        <p class="src" style="margin-top:16px">Plan found? <a href="#mines">Next: Step 5 — set your Mines, right below ↓</a> Your Mines are set from this plan, never before it.</p>
+        <p class="src" style="margin-top:16px">Plan built? <a href="#mines">Next: Step 5 — set your Mines, right below ↓</a> Your Mines are set from this plan, never before it — and they refresh with it on every change.</p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
@@ -552,7 +552,7 @@
       <!-- ================= STEP 5: MINES, AFTER THE STRATEGY ================= -->
       <section id="mines">
         <div class="sec-head"><span class="sec-num">Step 5</span><h2>⛏️ Set Your Mines — After Your Strategy</h2></div>
-        <p class="sec-sub">Mines wait for your strategy: some of them come from it. Once the Step 4 plan is found, the Mines it uses are listed here, marked <strong>used by this plan</strong> and locked in — counted once, never pickable again. Add spare Mines you own, up to your Step 1 count, and pick what each added Mine digs. Each Mine is <strong>Size 5 × 5</strong>.</p>
+        <p class="sec-sub">Mines wait for your strategy: some of them come from it. Once the Step 4 plan builds — on the spot when you pick a strategy, and rebuilt on every change — the Mines it uses are listed here, marked <strong>used by this plan</strong> and locked in — counted once, never pickable again. Add spare Mines you own, up to your Step 1 count, and pick what each added Mine digs. Each Mine is <strong>Size 5 × 5</strong>.</p>
         <div id="minesOut"></div>
         <p class="src" style="margin-top:16px">Mines set? <a href="#layout">Next: Step 6 — lay it out, below ↓</a> (In Level Up mode, your next RV bill sits between here and the layout.)</p>
       </section>
@@ -615,7 +615,7 @@
           <h3>🎛️ Where to find each job pick</h3>
           <p class="sec-sub" style="margin-bottom:0">Each pick sits with its facility.<br />
           ⛏️ <strong>Mines:</strong> extra Mines in <strong>Step 5</strong> (the plan's own Mines are already set there).<br />
-          💧 <strong>Wells, Dewy Houses, Sandcastles, Hammocks:</strong> one pick per copy, on the facility's block in <strong>Facilities out</strong> below.<br />
+          💧 <strong>Wells, Dewy Houses, Sandcastles, Hammocks, Nimbus Beds and the Floral Windmill:</strong> one pick per copy, on the facility's block in <strong>Facilities out</strong> below.<br />
           ➕ <strong>Any spare facility:</strong> add it in <strong>Add a facility this plan isn't using</strong>; its pick is on its new block.<br />
           Picks list only what the facility can make at your RV and level.</p>
         </div>
@@ -664,7 +664,7 @@
       <!-- ================= SUGGESTED HOMELAND LAYOUT ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">Suggestion</span><h2>🗺️ Suggested Homeland Layout</h2></div>
-        <p class="sec-sub"><strong>This is a suggestion only.</strong> Follow it, change it, or ignore it: it never changes anything else in the planner. It shows <strong>one tidy way any player can arrange a homeland</strong>. A layout is mostly about the farm, so this one is <strong>built around the farm and trees</strong>: what to grow, and what to have cooking for orders. The Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange. When an unlocked plot would be left open anyway, the plot directly beside the farm block is the one left open as moving room, and the later groups start after that open plot, so swapping a Farmland or a Woodland never means working around the other buildings. Like goes with like, with farms and trees together, the cooking buildings on the plots right beside the farm so what is grown and what gets cooked for orders stays together, then the other workshops, Mines together, leisure pieces together, Hatchinators together and the wet works together, and a Storage Unit spread onto each busy plot. The farm plots are packed into one tight block, side by side and stacked so their corners meet, and that is for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered when any part of it touches that area, so one unit dropped at a corner shared by farm plots covers all of them at once. It is worked out fresh from <strong>your RV level</strong> and the <strong>facility counts in Step 1</strong> every time it draws, on the true homeland grid: 16 plots in a 4 by 4 arrangement, each plot <strong>20 big squares across by 15 up</strong>, so the whole board is <strong>80 across by 60 up</strong>. Plot numbers are the unlock order, so at RV level N you have plots 1 to N. Groups take the earliest plots you have unlocked, in number order, and stay compact, apart from that one moving room plot beside the farm block when a plot is spare: at a low RV or with small counts they use fewer plots, and any unlocked plot no group needs is left open. Locked plots show muted with their number. The board redraws itself whenever your RV level or a Step 1 count changes.</p>
+        <p class="sec-sub"><strong>This is a suggestion only.</strong> Follow it, change it, or ignore it: it never changes anything else in the planner. It shows <strong>one tidy way any player can arrange a homeland</strong>. A layout is mostly about the farm, so this one is <strong>built around the farm and trees</strong>: what to grow, and what to have cooking for orders. The Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange. When an unlocked plot would be left open anyway, the plot directly beside the farm block is the one left open as moving room, and the later groups start after that open plot, so swapping a Farmland or a Woodland never means working around the other buildings. Like goes with like, with farms and trees together, the cooking buildings on the plots right beside the farm so what is grown and what gets cooked for orders stays together, then the other workshops, Mines together, leisure pieces together, Hatchinators together and the wet works together, and a Storage Unit spread onto each busy plot. The farm plots are packed into one tight block, side by side and stacked so their corners meet, and that is for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered when any part of it touches that area, so one unit dropped at a corner shared by farm plots covers all of them at once. It is worked out fresh from <strong>your RV level</strong> and the <strong>facility counts in Step 1</strong> every time it draws, on the true homeland grid: 16 plots in a 4 by 4 arrangement, each plot <strong>20 big squares across by 15 up</strong>, so the whole board is <strong>80 across by 60 up</strong>. Plot numbers are the unlock order, so at RV level N you have plots 1 to N. Groups take the earliest plots you have unlocked, in number order, and stay compact, apart from that one moving room plot beside the farm block when a plot is spare: at a low RV or with small counts they use fewer plots, and any unlocked plot no group needs is left open. Locked plots show muted with their number. The board redraws itself whenever your RV level or a Step 1 count changes. <strong>Hover or tap any Farmland or Woodland piece</strong> and it says which crop or tree that spot should grow, from your current plan — the same planting Step 6 lays out.</p>
 
         <div class="card">
           <h3>🗄️ Two counts Step 1 has no box for</h3>
@@ -801,7 +801,7 @@
           <li><strong>The Layout Helper reads your basket:</strong> every crop the plan needs, grouped by climate, with the Grow list's own plot counts. The − and + buttons adjust a crop's count and the change sticks; a crop at 0 stays listed. Hand picks are optional extras in their own group, never merged. Above-level crops stay listed, greyed, and still count.</li>
           <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, packs each building's plots into the fewest zones that cover them (Farmland and Woodland plots of one climate sharing one 18 × 18 zone, every plot touching it and clear of the building's own tiles in the middle), shares zones between two climates whenever that covers the plan with fewer buildings, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
           <li><strong>Overlap (Layout Helper):</strong> only the Steam guide's two verified blends are noted — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so a band never places or covers a crop: every crop keeps its own climate zone and building count (Cool crops always keep their own Cooling Unit zones, Warm crops their own Heat Furnace zones), nothing is deducted for a band anywhere, and a band appears only as an uncounted note naming the crops whose zones could cross to make it. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
-          <li><strong>The Layout Helper also reads your strategy plan:</strong> once run, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your setup, basket, strategy or goals change after a run, the group says the plan is out of date until you run it again.</li>
+          <li><strong>The Layout Helper also reads your strategy plan:</strong> once built, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your basket, setup, strategy or goals change, that plan rebuilds and refreshes on the spot and its group rebuilds with it: nothing from an old plan is ever listed as part of the current plan — not here, not in the facility blocks' Producing lines, not in the crew or the Mines.</li>
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the touch rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, touching its 18 × 18 zone and hanging over its edge where the touch rule allows, so one zone holds up to 25 Farmland or 9 Woodland plots (24 Farmland around a Cooling Unit) and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
           <li><strong>Facility sizes</strong> (measured from your in-game screenshots and cross-checked against wikily.gg game data, Nov 9, 2026): every facility's true footprint in tiles now shows beside its name in Step 1, in the Always list, on its Layout Helper block and in the strategy plan's facility table. Farmland 2 × 2, Woodland 3.5 × 3.5, Mine 5 × 5, Well 2 × 2, Aniipod Maker 4.5 × 4.5, Crafting Table 4 × 4, Woodworking Bench 2 × 1.5, Chimney Kiln 5 × 5, Blazing Stove 2.5 × 2.5, Simmering Pot 3 × 3, Claw Game Cooker 1.5 × 1.5, Jukebox Dryer 2.5 × 2.5, Pickling Jar 2.5 × 2, Joy Wheel Loom 4 × 4, Carousel Mill 5 × 5, Phonolfactory Table 3.5 × 3.5, Bouncy Brew Keg 3 × 3, Dance Pad Polisher 2.5 × 2.5, Storage Unit 2 × 2, Hatchinator 2 × 2, Tidewhisper Sandcastle 5 × 5, Dewy House 2 × 2, Nimbus Bed 5 × 5, Starfall Hammock 5 × 5, Heat Furnace 1 × 1, Sunlamp 1 × 1, Cooling Unit 2 × 2, Crackle Generator 2 × 2 (covers 11 × 11), Crackle Power Pole 1.5 × 1.5 (covers 7 × 7). The Floral Windmill has no verified size, so none is shown for it. Sizes are display only: no plan, crew or power figure reads them, and the layout packer keeps the reserved building footprints above.</li>
           <li><strong>Step 1 (setup):</strong> no RV level is auto-selected (player's rule, Nov 15, 2026): on a fresh load the picker stands on "Pick your RV level…" and every box — facility counts, facility levels, climate counts and module levels — stands at 0. Picking an RV level fills the boxes to the most that RV allows, the same fill tapping Fill from RV level runs; Fill does nothing until a level is picked. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying, plans and Money Crops follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
@@ -2150,16 +2150,17 @@
           var i = +sel.getAttribute("data-slot");
           var v = sel.value;
           if(!v){
-            if(basket[i]){ var nm = basket[i].name; basket.splice(i, 1); renderAll(); toast(nm + " removed."); }
+            if(basket[i]){ var nm = basket[i].name; basket.splice(i, 1); markBpStale(); renderAll(); toast(nm + " removed."); }
             return;
           }
           if(i < basket.length){ basket[i] = { name:v }; }
           else { basket.push({ name:v }); }
+          markBpStale();
           renderAll();
           toast(v + " picked for Recipe " + (i + 1) + ".");
         });
       });
-      el.querySelectorAll("[data-remove]").forEach(function(btn){ btn.addEventListener("click", function(){ var i = +btn.getAttribute("data-remove"); var nm = basket[i].name; basket.splice(i, 1); renderAll(); toast(nm + " removed."); }); });
+      el.querySelectorAll("[data-remove]").forEach(function(btn){ btn.addEventListener("click", function(){ var i = +btn.getAttribute("data-remove"); var nm = basket[i].name; basket.splice(i, 1); markBpStale(); renderAll(); toast(nm + " removed."); }); });
     }
 
     function planText(plan){
@@ -2241,7 +2242,7 @@
       } else if(typeof bpResult !== "undefined" && bpResult){
         lines.push("Set your Mines to: " + mineSetupText(bpResult.mine));
       } else {
-        lines.push("Mines: set them in Step 5 of the planner, after you tap Find the plan in Step 4 — they come from your basket and your strategy plan together." + (basketMineNames.length ? " This basket alone needs " + basketMineNames.join(", ") + " from the Mine." : ""));
+        lines.push("Mines: set them in Step 5 of the planner — they come from your basket and your strategy plan together, and refresh on the spot when either changes." + (basketMineNames.length ? " This basket alone needs " + basketMineNames.join(", ") + " from the Mine." : ""));
       }
       lines.push("Strategy: " + (strategy === "levelup" ? "Level Up — target: the RV " + rvNext() + " bill (see below)" : strategy === "goals" ? "Goals — ranked: " + (typeof bpGoalOrder !== "undefined" ? bpGoalOrder.map(function(gid, i){ return (i + 1) + ". " + bpGoalDef(gid).name + (bpGoalOn[gid] ? "" : " (off)"); }).join(", ") : "") : "none picked yet") + ". Your basket below is planned first in both modes.");
       if(levelingOn && rvHasNext()){
@@ -2505,7 +2506,7 @@
         toast("Plan downloaded.");
       });
       document.getElementById("clearBasketBtn").addEventListener("click", function(){
-        basket = []; renderAll(); toast("Basket cleared.");
+        basket = []; markBpStale(); renderAll(); toast("Basket cleared.");
       });
     }
 
@@ -4050,7 +4051,7 @@
         return;
       }
       if(!basket.length && !levelingOn && !(typeof bpResult !== "undefined" && bpResult)){
-        out.innerHTML = '<div class="empty-plan">Pick recipes in your basket or run a Best Plan, and the places your production crew leaves for the Homebuilding Zone — and the Bud Tickets they earn — appear here on their own.</div>';
+        out.innerHTML = '<div class="empty-plan">Pick recipes in your basket or pick a strategy (its plan builds on the spot), and the places your production crew leaves for the Homebuilding Zone — and the Bud Tickets they earn — appear here on their own.</div>';
         return;
       }
       var team = computeTeam();
@@ -4427,8 +4428,13 @@
       renderAll(); renderCrops(); renderLayoutPicker(); renderLayout(); renderRvPlan();
       if(typeof renderSuggestedLayout === "function") renderSuggestedLayout();
       if(typeof renderTeam === "function") renderTeam();
-      markBpStale();
+      /* Rebuild + refresh on the spot: a Step 1 change recomputes the
+         strategy plan (and, through it, Mines, layout and crew) right
+         away when a strategy is picked — never a cleared stale plan. */
+      refreshStrategyPlan();
       renderMines();
+      if(typeof renderSuggestedLayout === "function") renderSuggestedLayout();
+      if(typeof renderTeam === "function") renderTeam();
     }
     /* Fill from RV level: every facility count and level, every climate
        count and all four module levels go to the most the planner's data
@@ -4613,7 +4619,10 @@
             setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
             syncModulesFromLevels();
             renderModulePanels(); renderAll(); renderCrops(); renderLayoutPicker(); renderLayout();
-            toast(def.name + " set to Lv " + moduleLevels[id] + ". Verified unlocks updated.");
+            /* A module level is Step 1 setup: rebuild the strategy
+               plan (and Mines / crew through it) on the spot too. */
+            refreshStrategyPlan();
+            toast(def.name + " set to Lv " + moduleLevels[id] + ". Verified unlocks updated — plan refreshed on the spot.");
           });
         });
       }
@@ -4662,7 +4671,8 @@
             if(id !== "premiumWheat") return;
             modulesOwned[id] = !modulesOwned[id];
             renderFacilities(); renderAll(); renderCrops(); renderLayoutPicker(); renderLayout();
-            toast(modulesOwned[id] ? "Premium Wheat marked as owned ✓" : "Premium Wheat unmarked.");
+            refreshStrategyPlan();
+            toast(modulesOwned[id] ? "Premium Wheat marked as owned ✓ — plan refreshed on the spot." : "Premium Wheat unmarked — plan refreshed on the spot.");
           });
         });
       }
@@ -5244,11 +5254,11 @@
         : ' This basket alone needs nothing from the Mine — but your strategy might, which is exactly why the Mines wait.';
       if(!strategy){
         return '<div class="note note-teal"><h4>⛏️ Mines come after your strategy — nothing to set yet</h4><p>' + needTxt +
-          ' Don\'t set your Mines here: <a href="#strategy">pick your strategy in Step 3</a> first, tap Find the plan in Step 4, and your Mines are set once, in <a href="#mines">Step 5 — Set your Mines</a>, from your basket and your strategy together. Some of them can come from the strategy you pick, so setting them now would mean setting them twice.</p></div>';
+          ' Don\'t set your Mines here: <a href="#strategy">pick your strategy in Step 3</a> first — its plan builds on the spot in Step 4 — and your Mines are set once, in <a href="#mines">Step 5 — Set your Mines</a>, from your basket and your strategy together. Some of them can come from the strategy you pick, so setting them now would mean setting them twice.</p></div>';
       }
       if(!bpResult){
         return '<div class="note note-teal"><h4>⛏️ Mines come after your strategy plan</h4><p>' + needTxt +
-          ' Strategy picked: <strong>' + (strategy === "levelup" ? "Level Up" : "Goals") + '</strong>. Tap <strong>Find the plan</strong> in <a href="#bestplan">Step 4</a>, and your Mines are set in <a href="#mines">Step 5 — Set your Mines</a>, from your basket and that plan together.</p></div>';
+          ' Strategy picked: <strong>' + (strategy === "levelup" ? "Level Up" : "Goals") + '</strong>. Its plan builds on the spot in <a href="#bestplan">Step 4</a>, and your Mines are set in <a href="#mines">Step 5 — Set your Mines</a>, from your basket and that plan together — and refresh with it on every change.</p></div>';
       }
       var ms = bpResult.mine;
       return '<div class="note note-teal"><h4>⛏️ Your Mines are set in Step 5</h4><p>' + needTxt +
@@ -5257,24 +5267,29 @@
         '. The plan\'s own Mines are already set there; add extra Mines there if you want more.</p></div>';
     }
     /* Step 5: the one place Mines are set. It renders only from a
-       found strategy plan (bpResult), whose mineSetup already merged
+       built strategy plan (bpResult), whose mineSetup already merged
        basket claims, the Level Up bill and goal claims in that order,
        so the picks it offers are the combined plan's needs, with her
-       own picks still editable on top. Before a strategy is picked —
-       or before Find the plan is tapped — it says so and offers
-       nothing to set. */
+       own picks still editable on top. Before a strategy is picked it
+       says so and offers nothing to set; once one is picked the plan
+       — and these Mines — build and refresh on the spot. */
     function renderMines(){
       var out = document.getElementById("minesOut");
       if(!out) return;
       if(!strategy){
-        out.innerHTML = '<div class="empty-plan">⛏️ Nothing to set yet — and that is on purpose. <a href="#strategy">Pick your strategy in Step 3</a> first, then tap Find the plan in Step 4. Some of your Mines come from that strategy, so they are set after it, in this step, from your basket and your strategy plan together.</div>';
+        out.innerHTML = '<div class="empty-plan">⛏️ Nothing to set yet — and that is on purpose. <a href="#strategy">Pick your strategy in Step 3</a> first: its plan builds on the spot in Step 4. Some of your Mines come from that strategy, so they are set after it, in this step, from your basket and your strategy plan together.</div>';
         return;
       }
       if(!bpResult){
-        out.innerHTML = '<div class="empty-plan">⛏️ Strategy picked: <strong>' + (strategy === "levelup" ? "🚐 Level Up" : "🎯 Goals") + '</strong>. Now tap <strong>Find the plan</strong> in <a href="#bestplan">Step 4 — Strategy Plan</a>: your Mines are set from that plan, so they appear here as soon as it is found.</div>';
-        return;
+        /* A strategy is picked, so a plan should already exist — build
+           it on the spot rather than waiting for a tap. */
+        refreshStrategyPlan();
+        if(!bpResult){
+          out.innerHTML = '<div class="empty-plan">⛏️ Strategy picked: <strong>' + (strategy === "levelup" ? "🚐 Level Up" : "🎯 Goals") + '</strong>. Its plan is building in <a href="#bestplan">Step 4 — Strategy Plan</a>: your Mines are set from that plan and refresh with it.</div>';
+          return;
+        }
       }
-      out.innerHTML = (bpStale ? '<p class="src" style="margin-bottom:8px">Your setup changed since this plan was made. Tap Find the plan in Step 4 to refresh these Mines.</p>' : '') + mineSetupHtml(bpResult.mine);
+      out.innerHTML = '<p class="src" style="margin-bottom:8px">↻ Refreshed with your current plan — change your basket, setup or goals and these Mines rebuild on the spot.</p>' + mineSetupHtml(bpResult.mine);
     }
 
     /* The next level's bill: headline needs expanded down both chains,
@@ -6448,7 +6463,7 @@
       (z.placements || []).forEach(function(p){
         var st = GROUP_STYLE[layoutGroupOf(p.name).key] || GROUP_STYLE["none"];
         var cnt = z.crops[p.name];
-        var tip = p.name + ", " + cnt + (cnt === 1 ? " plot" : " plots") + " in this zone (" + ITEMS[p.name].facility + ")";
+        var tip = "Grow " + p.name + " here · " + p.name + ", " + cnt + (cnt === 1 ? " plot" : " plots") + " of it in this zone (" + ITEMS[p.name].facility + ")";
         if(z.building === "Sunlamp") tip += ", under this Sunlamp (light, not temperature)";
         else if(cropTempStep(p.name) !== null){ var r = zoneCropRate(p.name, z); if(r !== null) tip += ", " + (CLIMATE[p.name] ? CLIMATE[p.name].tag : "") + ", grows at " + r + "% here"; }
         else if(!CLIMATE[p.name]) tip += ", grows anywhere, sharing this " + z.building + " zone";
@@ -6481,7 +6496,7 @@
       function zoneSquareTip(n, z){
         var c = CLIMATE[n];
         var cnt = z.crops[n];
-        var base = n + ", " + cnt + (cnt === 1 ? " plot" : " plots");
+        var base = "Grow " + n + " here · " + n + ", " + cnt + (cnt === 1 ? " plot" : " plots");
         if(z.building === "Sunlamp") return base + ", " + (c ? c.tag : "Adequate light") + ", under this Sunlamp (light, not temperature)";
         if(!c) return base + ", grows anywhere, sharing this " + z.building + " zone";
         var r = zoneCropRate(n, z);
@@ -6548,7 +6563,7 @@
           var src = fac === "Farmland" ? e.farmCrops : e.woodCrops;
           var total = Object.keys(src).reduce(function(a, n){ return a + src[n]; }, 0);
           if(!total) return;
-          blocks.push('<div class="zone-block"><div class="zb-grid">' + patchSvg(fac, total, GROUP_STYLE["none"], Object.keys(src).sort().map(function(n){ return { count:src[n], tip:n + ", " + src[n] + (src[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '</div><div class="zb-side"><h3>🌱 Grows anywhere</h3>' +
+          blocks.push('<div class="zone-block"><div class="zb-grid">' + patchSvg(fac, total, GROUP_STYLE["none"], Object.keys(src).sort().map(function(n){ return { count:src[n], tip:"Grow " + n + " here · " + n + ", " + src[n] + (src[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '</div><div class="zb-side"><h3>🌱 Grows anywhere</h3>' +
             rowsHtml([
               ["Facility", "None needed"],
               ["Count", total + " " + fac + (total === 1 ? " plot" : " plots")],
@@ -7015,7 +7030,7 @@
       for(var z = 0; z < shown; z++){
         var filled = Math.min(remaining, perZone); remaining -= filled;
         var label = grp.info.building + " zone " + (z + 1) + " of " + zones + ", " + fac + " plots: " + filled + " of " + perZone + " filled, with the " + grp.info.building + " itself standing in the middle on " + bTiles + (bTiles === 1 ? " tile" : " tiles") + " of its own";
-        var grpTip = grp.crops.join(", ") + " · " + (grp.info.tag || "grows anywhere") + " · " + filled + " " + fac + (filled === 1 ? " plot" : " plots") + " in this zone";
+        var grpTip = "Grow " + grp.crops.join(", ") + " here · " + grp.crops.join(", ") + " · " + (grp.info.tag || "grows anywhere") + " · " + filled + " " + fac + (filled === 1 ? " plot" : " plots") + " in this zone";
         html += '<div class="zone-map">' + zoneSvg(ZONE_CELLS, PLOT_SIZE[fac], filled, style, label, true, bSide, {
             noOverlap: true,
             segments: [{ count:filled, tip:grpTip }],
@@ -7174,8 +7189,8 @@
         if(grp.farm) maps += zoneMapsHtml(grp, "Farmland", grp.farm, grp.zonesFarm);
         if(grp.wood) maps += zoneMapsHtml(grp, "Woodland", grp.wood, grp.zonesWood);
       } else {
-        if(grp.farm) maps += '<div class="zone-map">' + patchSvg("Farmland", grp.farm, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:n + ", " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '<div class="cap">Farmland: ' + grp.farm + (grp.farm === 1 ? " plot" : " plots") + "</div></div>";
-        if(grp.wood) maps += '<div class="zone-map">' + patchSvg("Woodland", grp.wood, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:n + ", " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '<div class="cap">Woodland: ' + grp.wood + (grp.wood === 1 ? " plot" : " plots") + "</div></div>";
+        if(grp.farm) maps += '<div class="zone-map">' + patchSvg("Farmland", grp.farm, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:"Grow " + n + " here · " + n + ", " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '<div class="cap">Farmland: ' + grp.farm + (grp.farm === 1 ? " plot" : " plots") + "</div></div>";
+        if(grp.wood) maps += '<div class="zone-map">' + patchSvg("Woodland", grp.wood, style, grp.crops.map(function(n){ return { count:grp.counts[n], tip:"Grow " + n + " here · " + n + ", " + grp.counts[n] + (grp.counts[n] === 1 ? " plot" : " plots") + ", grows anywhere, no climate building needed" }; })) + '<div class="cap">Woodland: ' + grp.wood + (grp.wood === 1 ? " plot" : " plots") + "</div></div>";
       }
       if(maps) s += '<div class="zone-maps">' + maps + "</div>";
       return s + "</div>";
@@ -7334,7 +7349,7 @@
         html += layoutHtml(plan, combined, totalFarm, totalWood, totalB);
       }
       if(!hasAuto && !groups.length){
-        html += '<p class="sec-sub" style="margin:0">Your layout shows here once you pick basket recipes, run a Best Plan, or add extra crops by hand below. It fills in on its own. It is one layout, fitted to the plots you have. Nothing to fill out here.</p>';
+        html += '<p class="sec-sub" style="margin:0">Your layout shows here once you pick basket recipes, pick a strategy (its plan builds on the spot), or add extra crops by hand below. It fills in on its own. It is one layout, fitted to the plots you have. Nothing to fill out here.</p>';
       } else if(hasAuto) {
       html += '<h3 class="layout-sec-head">🧺 From your basket — the counts behind the layout</h3>';
       if(autoGroups.length) html += '<p class="sec-sub" style="margin:8px 0 0">These counts fill in from your basket. They feed the one layout above. They are not another layout.<br />Use − and + on any crop to change its count. More for extras. Fewer if some are already grown. Your change sticks to that crop when the basket updates its count.</p>';
@@ -7343,13 +7358,13 @@
         : autoNote;
       html += zeroedHtml(zeroed, false);
       if(hasBp){
-        html += '<h3 class="layout-sec-head">⭐ From your best plan — the counts behind the layout</h3>';
-        if(bpStale) html += '<p class="src" style="margin:8px 0 0">Your setup or goals changed since this plan was run, so these counts come from that run. Tap Find the best plan up in the Best Plan Finder and this group updates with the new plan.</p>';
+        html += '<h3 class="layout-sec-head">⭐ From your strategy plan — the counts behind the layout</h3>';
+        html += '<p class="src" style="margin:8px 0 0">↻ Refreshed on the spot from your current basket, setup and goals — change any of them and this group rebuilds right away.</p>';
         if(bpGroups.length){
-          html += '<p class="sec-sub" style="margin:8px 0 0">The seeds to plant from the best plan you ran, kept as their own count list: never merged with the basket list above or your own picks below, and not another layout — the layout above already combines them. Plot counts are the plan\'s own, worked out the same way as the basket\'s, and the − and + buttons work the same way here: your change sticks to that crop when the plan is run again.</p>';
+          html += '<p class="sec-sub" style="margin:8px 0 0">The seeds to plant from the strategy plan built for what you have picked now, kept as their own count list: never merged with the basket list above or your own picks below, and not another layout — the layout above already combines them. Plot counts are the plan\'s own, worked out the same way as the basket\'s, and the − and + buttons work the same way here: your change sticks to that crop when the plan rebuilds.</p>';
           html += layoutSourceListHtml(bpGroups, "bp");
         } else if(!bpZeroed.length){
-          html += '<div class="empty-plan">This best plan plants nothing: every recipe in it runs on gathered materials alone, so it has no seeds to lay out. Run a best plan that grows crops and they appear here.</div>';
+          html += '<div class="empty-plan">This strategy plan plants nothing: every recipe in it runs on gathered materials alone, so it has no seeds to lay out. A plan that grows crops shows its seeds here as soon as it builds.</div>';
         }
         html += zeroedHtml(bpZeroed, true);
       }
@@ -7392,6 +7407,11 @@
         layoutPicks = {}; renderLayoutPicker(); renderLayout(); renderTeam(); toast("Your extra crops cleared. The automatic groups above are untouched.");
       });
       renderAway();
+      /* The Suggested board's farm pieces name their crops from this
+         same planting, so it redraws whenever the layout does —
+         basket, strategy plan, hand picks and layout mode all reach
+         it from here. */
+      if(typeof renderSuggestedLayout === "function") renderSuggestedLayout();
     }
 
     /* While you're away: seeds to have ready. Crops keep replanting
@@ -7582,17 +7602,61 @@
       if(sec) v += parseInt(sec[1], 10) / 60;
       return v;
     }
-    function markBpStale(){
-      if(!bpResult) return;
-      bpStale = true;
-      var n = document.getElementById("bpStaleNote");
-      if(n) n.hidden = false;
-      renderLayout();
+    /* A strategy plan belongs to the basket, setup and goals it was
+       built for — and to nothing else. It REBUILDS AND REFRESHES ON
+       THE SPOT (player's rule, Nov 15, 2026, extended to this public
+       planner the same night at her ask: "make sure the public one
+       rebuilds and refreshes on the spot as well" — mirroring her
+       personal planner): picking a strategy builds its plan
+       immediately, and the moment the basket, Step 1 setup or goals
+       change, the plan is recomputed from what is picked NOW and
+       every downstream surface is repainted from the fresh result —
+       Step 4's tables, Step 5 Mines, Step 6 facility blocks'
+       Producing lines (Copy 1, Copy 2, takes turns), the layout
+       crop groups, the Suggested board's crop tips and the crew.
+       Nothing is ever left showing a cleared / stale plan waiting
+       for a tap, and no recipe from an older plan (the Caramel Nut
+       Chips / Maple Candy Star at the Claw Game Cooker bug) can keep
+       listing beside the current basket's own recipes. The old
+       clear-and-wait behaviour is gone: markBpStale is kept only as
+       a backwards-compatible name for this instant rebuild. */
+    var bpRefreshing = false, bpRefreshQueued = false, bpBuiltSig = null, bpRefreshedAt = null;
+    function bpInputSignature(){
+      try {
+        return JSON.stringify({
+          b: basket.map(function(x){ return x.name; }),
+          s: strategy || "", lv: !!levelingOn,
+          go: bpGoalOrder.join(","), on: bpGoalOrder.map(function(g){ return bpGoalOn[g] ? 1 : 0; }).join(""),
+          rv: userRV || 0,
+          fc: Object.keys(FAC_RV).map(function(f){ return [f, facCount(f), facLevel(f)]; }),
+          cc: Object.keys(CLIM_COUNT).map(function(b){ return [b, facCount(b)]; }),
+          ml: MODULE_DEFS.map(function(d){ return [d.id, moduleLevels[d.id] || 0]; }),
+          pw: modulesOwned.premiumWheat ? 1 : 0
+        });
+      } catch(e){ return ""; }
     }
+    function refreshStrategyPlan(){
+      if(!strategy){
+        /* No strategy picked: there is no strategy plan to rebuild.
+           Drop any old result so nothing from it can linger anywhere. */
+        bpResult = null; bpStale = false; bpBuiltSig = null;
+        if(typeof renderMines === "function") renderMines();
+        if(typeof renderSuggestedLayout === "function") renderSuggestedLayout();
+        return;
+      }
+      if(bpRefreshing){ bpRefreshQueued = true; return; }
+      var sig = bpInputSignature();
+      if(bpResult && bpBuiltSig !== null && bpBuiltSig === sig) return;
+      bpRefreshing = true;
+      try { renderBestPlan(); } finally { bpRefreshing = false; }
+      /* renderBestPlan -> findBestPlan stamps bpBuiltSig/bpRefreshedAt. */
+      if(bpRefreshQueued){ bpRefreshQueued = false; refreshStrategyPlan(); }
+    }
+    function markBpStale(){ refreshStrategyPlan(); }
     document.addEventListener("change", function(e){
       var t = e.target;
       if(!t || !t.getAttribute) return;
-      if(t.getAttribute("data-modlvl") || t.getAttribute("data-fac-count") || t.getAttribute("data-fac-lvl") || t.getAttribute("data-clim-count") || t.id === "rvLevel") markBpStale();
+      if(t.getAttribute("data-modlvl") || t.getAttribute("data-fac-count") || t.getAttribute("data-fac-lvl") || t.getAttribute("data-clim-count") || t.id === "rvLevel") refreshStrategyPlan();
     });
 
     function renderGoals(){
@@ -8046,6 +8110,8 @@
         } : null,
         noRoomForGoals: strategy === "goals" && !goalMade && (basket.length > 0 || !!lvlBill) };
       bpStale = false;
+      bpBuiltSig = bpInputSignature();
+      bpRefreshedAt = new Date();
       return bpResult;
     }
 
@@ -8323,7 +8389,7 @@
         return d !== 0 ? d : a.localeCompare(b);
       });
 
-      var html = '<p class="src" id="bpStaleNote" hidden>Your setup changed since this plan was made. Tap Find the best plan to run it again with the new numbers.</p>';
+      var html = '<p class="src" id="bpRefreshedNote" aria-live="polite">↻ Refreshed just now' + (bpRefreshedAt ? ' — ' + bpRefreshedAt.toLocaleTimeString([], { hour:'numeric', minute:'2-digit', second:'2-digit' }) : '') + ' · rebuilt on the spot from your current basket, setup and goals. Change anything and this plan, Mines, layout and crew rebuild right away — no tap needed.</p>';
       var bpPerHH = res.cycleMins > 0 ? 60 / res.cycleMins : 0;
       html += '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + (res.assignedOrder.length + res.rawPicks.length) + '</b><span>recipes and plantings picked for you</span></div>' +
@@ -8530,29 +8596,27 @@
       var fb = document.getElementById("findBestBtn"), fh = document.getElementById("findBestHint");
       if(fb){
         fb.disabled = !strategy;
-        fb.textContent = strategy === "levelup" ? "🚐 Find the plan — target RV " + rvNext() : strategy === "goals" ? "⭐ Find the plan — my ranked goals" : "⭐ Find the plan";
+        fb.textContent = strategy === "levelup" ? "↻ Refresh the plan now — target RV " + rvNext() : strategy === "goals" ? "↻ Refresh the plan now — my ranked goals" : "↻ Refresh the plan now";
       }
-      if(fh) fh.textContent = !strategy ? "Pick a strategy above first — Level Up or Goals." : strategy === "levelup" ? "Basket first, then the RV " + rvNext() + " bill, then Home Coins." : "Basket first, then your goals in your ranked order, then Home Coins.";
+      if(fh) fh.textContent = !strategy ? "Pick a strategy above first — Level Up or Goals — and its plan builds on the spot." : strategy === "levelup" ? "Built on the spot: basket first, then the RV " + rvNext() + " bill, then Home Coins. Any change rebuilds it right away; this button is only a manual refresh." : "Built on the spot: basket first, then your goals in your ranked order, then Home Coins. Any change rebuilds it right away; this button is only a manual refresh.";
     }
     function setStrategy(mode){
-      if(strategy === mode){ renderStrategy(); return; }
+      if(strategy === mode){ renderStrategy(); refreshStrategyPlan(); return; }
       strategy = mode;
       levelingOn = mode === "levelup";
       crewGate.strategy = true;
-      bpResult = null; bpStale = false;
-      var out = document.getElementById("bestPlanOut");
-      if(out) out.innerHTML = '<div class="empty-plan">' + (mode === "levelup"
-        ? "🚐 Level Up picked. Tap Find the plan and the planner targets the RV " + rvNext() + " bill after your basket, with production beyond the bill going to Home Coins. Any Goals plan from before is gone — nothing carries over. Then Step 5 sets your Mines from that plan."
-        : "🎯 Goals picked. Rank your goals above, then tap Find the plan: your basket runs first, then the goals cascade in your order. Any Level Up plan from before is gone — the bill plays no part here. Then Step 5 sets your Mines from that plan.") + "</div>";
+      /* Switching drops the previous mode's plan outright so no claim
+         — bill or goal — can leak across, then builds the NEW mode's
+         plan on the spot (no Find tap): renderBestPlan below. */
+      bpResult = null; bpStale = false; bpBuiltSig = null;
       renderStrategy();
-      renderMines();
       renderRvPlan();
       renderPlan();
-      renderLayout();
-      if(typeof renderTeam === "function") renderTeam();
+      /* Build immediately: this also repaints Mines, layout and crew. */
+      renderBestPlan();
       toast(mode === "levelup"
-        ? "Strategy: Level Up. The RV " + rvNext() + " bill is the target now — goals are off, nothing stacks."
-        : "Strategy: Goals. Your ranked goals run now — the leveling bill is off, nothing stacks.");
+        ? "Strategy: Level Up — plan built on the spot. The RV " + rvNext() + " bill is the target now — goals are off, nothing stacks."
+        : "Strategy: Goals — plan built on the spot. Your ranked goals run now — the leveling bill is off, nothing stacks.");
     }
 
     /* ============ Suggested Homeland Layout ============
@@ -8861,15 +8925,82 @@
       if(h && lines.length * f * 1.08 > h) f = Math.max(0.34, h / (lines.length * 1.08) * 0.96);
       return { lines:lines, f:f };
     }
-    function suggPieceTip(pc, plotNum){
+    /* Which crop each Farmland and Woodland piece on this board
+       should grow (player's ask, Nov 15, 2026): the same planting
+       Step 6 lays out, worked out the same way — basket crops, then
+       the strategy plan's crops, then extra crops added by hand,
+       combined and fitted to the field by computeFieldLayout (in
+       Minimum mode, one plot of each crop, exactly as Step 6 plants
+       it). Crops are queued in Step 6's own group order (climate
+       groups in their rank order, crops sorted inside a group), so
+       crops that share a climate sit together on the board, ready
+       for one climate unit dropped at their shared corner. A piece
+       past the plan's needs gets no crop: its tip says the spot is
+       spare until a plan names a crop for it, and no crop is ever
+       invented for it. */
+    function suggCropQueues(){
+      var queues = { Farmland:[], Woodland:[] };
+      try {
+        var combined = combinedLayoutCounts(computeBasketLayout(), (typeof bpResult !== "undefined" && bpResult) ? computeBpLayout() : [], computeLayout());
+        var fieldCounts = combined;
+        if(layoutMode === "minimum"){
+          fieldCounts = {};
+          Object.keys(combined).forEach(function(n){ fieldCounts[n] = 1; });
+        }
+        if(!Object.keys(fieldCounts).length) return queues;
+        var planted = computeFieldLayout(fieldCounts, false, false).planted || {};
+        buildLayoutGroups(planted).forEach(function(grp){
+          grp.crops.forEach(function(n){
+            var fac = ITEMS[n] ? ITEMS[n].facility : null;
+            if(queues[fac]) for(var i = 0; i < (grp.counts[n] || 0); i++) queues[fac].push(n);
+          });
+        });
+      } catch(e){ return { Farmland:[], Woodland:[] }; }
+      return queues;
+    }
+    /* One crop assignment per farm piece on a built board, keyed by
+       the piece itself: pieces are walked in the same order the
+       board draws them (plot rows, then placement order inside a
+       plot), Woodland pieces drawing from the Woodland queue and
+       Farmland pieces from the Farmland queue. A piece the plan
+       does not reach maps to null (spare). */
+    function suggCropAssignments(res){
+      var queues = suggCropQueues();
+      var counters = { Farmland:0, Woodland:0 };
+      var assign = new Map();
+      SUGG_PLOT_ROWS.forEach(function(rowNums){
+        rowNums.forEach(function(num){
+          var st = res.plots[num];
+          if(!st) return;
+          st.pieces.forEach(function(pc){
+            if(pc.name !== "Farmland" && pc.name !== "Woodland") return;
+            var idx = counters[pc.name]++;
+            var crop = queues[pc.name][idx] || null;
+            assign.set(pc, crop ? { crop:crop, idx:idx, total:queues[pc.name].length } : null);
+          });
+        });
+      });
+      return assign;
+    }
+    function suggPieceTip(pc, plotNum, cropAssign){
       var ts = FAC_SIZE[pc.name];
-      var tip = pc.name + " · Plot " + plotNum;
+      var tip;
+      if(pc.name === "Farmland" || pc.name === "Woodland"){
+        if(cropAssign && cropAssign.crop){
+          tip = "Grow " + cropAssign.crop + " here · " + cropAssign.crop + " · " + pc.name + " spot " + (cropAssign.idx + 1) + " of " + cropAssign.total + " your current plan plants · " + climateLabel(cropAssign.crop) + " · Plot " + plotNum;
+        } else {
+          tip = pc.name + " · Plot " + plotNum + " · no crop assigned to this spot yet: pick recipes in Step 2 (or add a crop by hand in Step 6) and your plan will name the crop this spot should grow — until then it is a spare " + pc.name + " in this suggestion";
+        }
+      } else {
+        tip = pc.name + " · Plot " + plotNum;
+      }
       if(ts) tip += " · true size " + ts[0] + " by " + ts[1] + " big squares, drawn at that size";
       tip += " · starts at " + pc.x + " across, " + pc.y + " back on this plot";
       if(pc.name === "Aniipod Maker") tip += " · this size comes from wikily and is not confirmed in game";
       return tip;
     }
     function suggSvg(res, suffix){
+      var cropAssign = suggCropAssignments(res);
       var out = '<svg viewBox="0 0 80 60" role="img" aria-label="Suggested layout for the whole homeland at RV ' + res.rv + ': 16 plots in a 4 by 4 arrangement, each plot 20 big squares across by 15 up" font-family="Baloo 2, Nunito, sans-serif">';
       out += '<defs><pattern id="suggGrid' + suffix + '" width="1" height="1" patternUnits="userSpaceOnUse"><path d="M0.5 0V1M0 0.5H1" stroke="rgba(255,255,255,0.38)" stroke-width="0.035"/><path d="M1 0H0V1" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="0.05"/></pattern></defs>';
       out += '<rect x="0" y="0" width="80" height="60" fill="#79b657"/>';
@@ -8887,7 +9018,7 @@
                board say which climate unit to use and where. */
             st.pieces.forEach(function(pc){
               var col = SUGG_COLORS[pc.name] || ["#eeeeee","#888888"];
-              out += '<rect x="' + (ox + pc.x + 0.06) + '" y="' + (oy + pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="' + col[0] + '" stroke="' + col[1] + '" stroke-width="0.09" data-tip="' + escA(suggPieceTip(pc, num)) + '"/>';
+              out += '<rect x="' + (ox + pc.x + 0.06) + '" y="' + (oy + pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="' + col[0] + '" stroke="' + col[1] + '" stroke-width="0.09" data-tip="' + escA(suggPieceTip(pc, num, cropAssign.get(pc))) + '"/>';
               var lab = suggLabel(pc.name, pc.w, pc.h);
               var cx = ox + pc.x + pc.w / 2;
               var y0 = oy + pc.y + pc.h / 2 - ((lab.lines.length - 1) * lab.f * 1.08) / 2 + lab.f * 0.36;
@@ -8935,6 +9066,7 @@
         html += '<p style="margin-top:10px"><strong>Count check:</strong> ' + (parts.length ? parts.join(" · ") : "no facilities set yet") + '. Nothing was placed past your counts.</p>';
       }
       html += '<p style="margin-top:10px">The basket and recipe steps decide what to grow and what to cook. This layout just keeps the farm and the cooking together for orders.</p>';
+      html += '<p style="margin-top:10px"><strong>Hover or tap any Farmland or Woodland piece</strong> on the board and it names the crop or tree that spot should grow — the same planting Step 6 lays out for your current basket, strategy plan and hand-added crops. A spot your plan does not use says so instead; pick recipes and it names its crop. The farm plot list below repeats the same assignments in writing.</p>';
       html += '<p style="margin-top:10px"><strong>Easy to rearrange:</strong> the Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange.' + (res.movingRoom ? " Plot " + res.movingRoom + ", directly beside the farm block, is left open as moving room for that swapping, and the later groups start after it." : "") + '</p>';
       var climateLines = [];
       var suggPlotsSorted = Object.keys(res.plots).map(function(k){ return res.plots[k]; }).sort(function(a, b){ return a.num - b.num; });
@@ -9024,6 +9156,7 @@
         html += '<div class="note note-warn"><h4>Still to place by hand</h4><p>' + res.unplaced.map(function(u){ return "<strong>" + esc(u.name) + " ×" + u.count + ":</strong> " + esc(u.reason); }).join("<br />") + "</p></div>";
       }
       var items = [];
+      var listCropAssign = suggCropAssignments(res);
       SUGG_PLOT_ROWS.forEach(function(rowNums){
         rowNums.forEach(function(num){
           var st = res.plots[num];
@@ -9031,6 +9164,18 @@
           var counts = {}, order = [];
           st.pieces.forEach(function(pc){ if(!counts[pc.name]){ counts[pc.name] = 0; order.push(pc.name); } counts[pc.name]++; });
           var line = "<strong>Plot " + num + ", " + esc((SUGG_ROLE_LABEL[st.role] || "").toLowerCase()) + ":</strong> " + order.map(function(f){ return esc(f) + " ×" + counts[f]; }).join(", ") + ".";
+          if(st.role === "farm"){
+            var cropCounts = {}, cropOrder = [], farmSpots = 0;
+            st.pieces.forEach(function(pc){
+              if(pc.name !== "Farmland" && pc.name !== "Woodland") return;
+              farmSpots++;
+              var a = listCropAssign.get(pc);
+              if(a && a.crop){ if(!cropCounts[a.crop]){ cropCounts[a.crop] = 0; cropOrder.push(a.crop); } cropCounts[a.crop]++; }
+            });
+            if(farmSpots) line += cropOrder.length
+              ? " Grow here: " + cropOrder.map(function(n){ return esc(n) + " ×" + cropCounts[n]; }).join(", ") + (cropOrder.reduce(function(sum, n){ return sum + cropCounts[n]; }, 0) < farmSpots ? ", and the rest spare until your plan names a crop for them" : "") + "."
+              : " No crop assigned to these spots yet — pick recipes in Step 2 and your plan names what each spot should grow.";
+          }
           items.push("<li>" + line + "</li>");
         });
       });
@@ -9139,6 +9284,7 @@
           { name:"Bread" },
           { name:"Rose Shortbread" }
         ];
+        markBpStale();
         renderAll();
         toast("Example basket loaded: pudding, bread and shortbread. Watch the salt and cocoa chains.");
         document.getElementById("planArea").scrollIntoView({ behavior:"smooth", block:"start" });
@@ -9180,7 +9326,8 @@
         var hlT = document.getElementById("hideLockedToggle"); if(hlT) hlT.checked = false;
         var rsT = document.getElementById("recipeSearch"); if(rsT) rsT.value = "";
         var bpOut = document.getElementById("bestPlanOut");
-        if(bpOut) bpOut.innerHTML = '<div class="empty-plan">Your strategy plan appears here. Pick your RV level in Step 1 at the top of this page first, pick a strategy above, then tap Find the plan.</div>';
+        if(bpOut) bpOut.innerHTML = '<div class="empty-plan">Your strategy plan appears here. Pick your RV level in Step 1 at the top of this page first, then pick a strategy above — its plan builds on the spot.</div>';
+        bpBuiltSig = null; bpRefreshedAt = null;
         renderChips();
         renderGoals();
         renderStrategy();
@@ -9200,9 +9347,12 @@
       });
       var findBestBtn = document.getElementById("findBestBtn");
       if(findBestBtn) findBestBtn.addEventListener("click", function(){
-        if(!strategy){ toast("Pick a strategy first — Level Up or Goals, one at a time."); return; }
+        if(!strategy){ toast("Pick a strategy first — Level Up or Goals, one at a time. Its plan builds on the spot."); return; }
+        /* Manual refresh only: the plan already rebuilds on every
+           change, this just forces one more rebuild right now. */
+        bpBuiltSig = null;
         renderBestPlan();
-        toast(strategy === "levelup" ? "Level Up plan ready: basket first, then the RV " + rvNext() + " bill." : "Goals plan ready, in your ranked order.");
+        toast(strategy === "levelup" ? "Level Up plan refreshed: basket first, then the RV " + rvNext() + " bill." : "Goals plan refreshed, in your ranked order.");
         document.getElementById("bestPlanOut").scrollIntoView({ behavior:"smooth", block:"start" });
       });
       var budMixSel = document.getElementById("budMix");
