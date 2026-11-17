@@ -270,6 +270,8 @@
       .mine-pick select{flex:1 1 190px;min-width:0;min-height:48px}
       .mine-pick .mine-yield{flex:1 1 100%;font-size:.88rem;color:var(--ink-soft);font-weight:700}
       .mine-pick .mine-tag{flex:none}
+      .mine-pick.is-off{border-style:dashed;background:var(--bg-soft)}
+      .mine-pick.is-off .mine-yield{color:var(--ink-faint)}
       .mine-add-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
       .mine-warn{background:var(--warn-bg);border:2px solid var(--gold);border-radius:10px;padding:8px 11px;font-weight:700;font-size:.92rem;margin-top:10px}
       .adj-zero{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card);border:2px dashed var(--card-line);border-radius:14px;padding:10px 14px;margin-top:10px;font-weight:700}
@@ -616,6 +618,8 @@
           <p class="sec-sub" style="margin-bottom:0">Each pick sits with its facility.<br />
           ⛏️ <strong>Mines:</strong> extra Mines in <strong>Step 5</strong> (the plan's own Mines are already set there).<br />
           💧 <strong>Wells, Dewy Houses, Sandcastles, Hammocks, Nimbus Beds and the Floral Windmill:</strong> one pick per copy, on the facility's block in <strong>Facilities out</strong> below.<br />
+          🍳 <strong>Every other facility out (stoves, pots, benches, tables and the rest):</strong> one recipe pick per copy too — the plan's copies included — on the facility's block in <strong>Facilities out</strong> below.<br />
+          ⏸ <strong>Changed your mind about a copy?</strong> Every pick in Facilities out can be changed to any other recipe the facility can make, or set to <strong>Off — not running</strong> to leave that one copy idle. The plan's choice is only the starting point, and your pick stays when the plan rebuilds.<br />
           ➕ <strong>Any spare facility:</strong> add it in <strong>Add a facility this plan isn't using</strong>; its pick is on its new block.<br />
           Picks list only what the facility can make at your RV and level.</p>
         </div>
@@ -814,6 +818,7 @@
           <li><strong>Mines come after the strategy (player's workflow fix, Oct 29, 2026):</strong> the one Mine picker lives in Step 5, after the strategy plan — the strategy itself can claim Mines (the Level Up bill's ore chain, a goal's materials), so Mines are never picked before it. Mines the plan claims are marked "used by this plan": locked, never offered again, so nothing is double-picked. She picks only for Mines she adds past the plan's, up to her Step 1 count (her example: 7 owned, 1 used by the plan, 6 left to add). Added Mines count like claimed ones — Earth crew, power, totals, per run yield; Mine takes count per run, never per hour (run times not checked). <strong>All mining gives Mineral Sand</strong> (player's rule): every run brings sand with the picked material, amount varies, so no Mine needs to sit on sand to earn it and no sand amount is counted. Picks and added Mines live in memory only and reset when the basket or strategy changes.</li>
           <li><strong>Per-copy gather picks (player's extension of the Mine picker, Oct 29, 2026):</strong> each copy out of the Well, Dewy House, Tidewhisper Sandcastle, Starfall Hammock, Floral Windmill and Nimbus Bed has one product pick on its Layout Helper block. Plan copies start on the plan's pick; added copies start on the facility's first product; any pick can change. An added copy counts like a plan copy: crew post, power, totals, per run yield (Sea Salt 10, Pearl 2 — Susuta and Shelly family notes — Aromathyst 4, Star 2 flagged not checked, Scales 8 at the Floral Windmill; the Well's waters use the Well's level). Takes count per run, never per hour. <strong>The Nimbus Bed picks like the rest:</strong> it is the Homeland leisure station, and each copy — the plan's or one added by hand — picks what it gathers, Wool (Nimbus Bed Lv 1) or Petals (Lv 3), at her Nimbus Bed level and RV. <strong>A pick she sets by hand is hers (fix, Nov 16, 2026):</strong> it used to reset with the basket, strategy and goals, so every on-the-spot rebuild snapped a changed Nimbus Bed back to the plan's Petals; now a hand-set gather pick stays on its copy across rebuilds, re-checked each render against what her level and RV allow, and only Start fresh clears it.</li>
           <li><strong>Job picks for added copies of ANY facility (player's generalisation, Oct 29, 2026):</strong> every copy she adds by hand gets one product pick on its layout block, starting on the plan's first product there (or the facility's first product at her levels). With a job picked it counts in full: crew post, power, totals, and its product's take (per batch for crafts, per run for gathers; times not checked, so never per hour). Pick lists show only products that fit her Step 1 facility level and her RV — the same rule as the recipe, Mine and gather lists. A facility that can make nothing at her level and RV offers no list and says so; climate buildings name their real job instead (the layout sets their zones).</li>
+          <li><strong>Change or turn off any copy's recipe in Facilities out (player's ask, Nov 16, 2026):</strong> every copy out on a Facilities out block now has its own pick — the crafting and cooking facilities' plan copies included, which before showed the algorithm's assignment as fixed text (only copies added by hand had a pick). Any copy can be changed to any other recipe its facility can make at her Step 1 level and RV, or set to <strong>Off — not running</strong>: an off copy stays out but makes and gathers nothing, and its block's per-round tally skips it. The gather facilities' picks (Well, Dewy House, Sandcastle, Hammock, Nimbus Bed, Floral Windmill) and the added-copy job picks carry the same Off option. A pick she sets by hand is hers, like the gather picks: it stays on its copy across basket, strategy and goal rebuilds, re-checked each render against what her level and RV allow, and only Start fresh clears it. The plan's own amounts, crew posts and power stay plan-driven — these picks set what each copy out is working on in the layout, they do not re-plan the basket.</li>
           <li><strong>One Put out list (player's fix, Oct 29, 2026):</strong> the Team Helper used to show Aniimo counts four ways — the Put out list, "that total includes" paragraphs, a per-job chip row, and a How many column in the worker table. Now the Put out list is the only place Aniimo counts live. The other parts point to it or say who works where, with no counts of their own. Wording across the planner is kept short and plain on purpose: it is written for every player, not just its maker.</li>
           <li><strong>Climate machine runners — level does not matter (player's rule, Oct 31, 2026):</strong> an Aniimo running a Cooling Unit, Heat Furnace or Sunlamp works the same at any ability level, so those posts no longer name a strongest Aniimo or a Lv anywhere: the Layout zone cards, the facility blocks and the Team Helper's Put out list all show "any level" for them, with an "any" marker in the ability's colour instead of a level number. Counts do not change — still 1 Aniimo per climate building out. Every other post keeps its level and strongest-known hint as before.</li>
           <li><strong>Aniimo caps:</strong> the "place N Aniimo in your Home" numbers from AniimoTools, matching MetaBot.GG at every level: RV 2 = 8, then 11, 14, 17, 20, 22, 24, 26, 28, 30, 32, 34, <strong>36 at RV 14</strong>, 38, 40, 42, 43, 44, 45 at RV 20. The crew check covers the whole put-out total — nothing counted outside it. A crew over the cap is never shown as usable: Best is fitted down to the cap by sharing workers at as few facilities as possible (named on the plan); only when even Minimum is over does no crew show. Flag: aniimoguide prints a lower second set from RV 13 on (40 at RV 20) and advises planning on it; this planner follows the AniimoTools/MetaBot numbers, which match the player's own game (36 at RV 14).</li>
@@ -3398,7 +3403,7 @@
           var planCT = Math.min(ncT[f] || 0, facCount(f));
           var exT = deployedCount(f, planCT) - planCT;
           if(exT <= 0) return;
-          var jobs = extraAssignments(f, exT);
+          var jobs = extraAssignments(f, exT).filter(function(n){ return n !== "__off__" && ITEMS[n]; });
           if(!jobs.length) return;
           var jobT = null;
           jobs.forEach(function(n){ if(!jobT){ var itT = ITEMS[n]; jobT = itT.kind === "craft" ? itT.worker : (typeof FAC_JOB !== "undefined" ? FAC_JOB[f] : null); } });
@@ -5024,12 +5029,17 @@
       if(!planProds.length) planProds = avail.slice(0, 1);
       var defs = [];
       for(var i = 0; i < working; i++) defs.push(planProds[Math.min(i, planProds.length - 1)]);
-      var saved = (typeof gatherPick !== "undefined" && gatherPick && gatherPick[f]) ? gatherPick[f].filter(function(n){ return avail.indexOf(n) > -1; }) : null;
+      /* Position-preserving re-check: a pick that no longer fits
+         her level or RV becomes a blank in ITS OWN slot (the plan's
+         assignment fills that copy), never a deletion — deleting
+         would slide every later copy's pick one copy up. */
+      var saved = (typeof gatherPick !== "undefined" && gatherPick && gatherPick[f]) ? gatherPick[f].map(function(n){ return (n === "__off__" || avail.indexOf(n) > -1) ? n : null; }) : null;
       var list = [];
       for(var j = 0; j < working; j++) list.push(saved && saved[j] ? saved[j] : defs[j]);
       return list;
     }
     function gatherYieldText(name){
+      if(name === "__off__") return "off — this copy is not running and gathers nothing";
       var it = ITEMS[name];
       var famTxt = familyGate(name) ? " · crew slot: " + familyOnlyText(name) + " (" + familyNeedsText(name) + ")" : "";
       return "brings " + (it && it.yld ? it.yld + " " + name + " per run" : name + " per run, yield varies") + famTxt;
@@ -5043,24 +5053,27 @@
       var fid = f.replace(/[^a-z0-9]+/gi, "-");
       var rows = list.map(function(prod, i){
         var added = i >= planC;
-        var opts = avail.map(function(m){
+        var off = prod === "__off__";
+        var opts = '<option value="__off__"' + (off ? ' selected' : '') + '>⏸ Off — not running</option>' + avail.map(function(m){
           var it = ITEMS[m];
           return '<option value="' + escA(m) + '"' + (m === prod ? ' selected' : '') + '>' + esc(m) + (it.yld ? ' — ' + it.yld + ' per run' : ' — yield varies') + '</option>';
         }).join("");
-        return '<div class="mine-pick"><span class="mine-n">Copy ' + (i + 1) + '</span>' +
-          '<span class="mine-tag verdict ' + (added ? 'v-mix' : 'v-ok') + '">' + (added ? 'added by you' : 'for the plan') + '</span>' +
+        return '<div class="mine-pick' + (off ? ' is-off' : '') + '"><span class="mine-n">Copy ' + (i + 1) + '</span>' +
+          '<span class="mine-tag verdict ' + (off ? 'v-lock' : (added ? 'v-mix' : 'v-ok')) + '">' + (off ? 'off' : (added ? 'added by you' : 'for the plan')) + '</span>' +
           '<label class="src" for="gatherPick-' + fid + '-' + i + '" style="flex:none">is gathering</label>' +
           '<select id="gatherPick-' + fid + '-' + i + '" data-gather-assign="' + escA(f) + '" data-gather-idx="' + i + '" aria-label="' + escA(f) + ' copy ' + (i + 1) + ' gathering product">' + opts + '</select>' +
           '<span class="mine-yield">' + esc(gatherYieldText(prod)) + '.</span></div>';
       }).join("");
-      var tally = {};
-      list.forEach(function(n){ tally[n] = (tally[n] || 0) + 1; });
+      var tally = {}, offCount = 0;
+      list.forEach(function(n){ if(n === "__off__"){ offCount++; return; } tally[n] = (tally[n] || 0) + 1; });
       var tallyNames = Object.keys(tally).sort();
-      return '<div class="mine-picks">' + rows + '</div>' +
-        '<p class="src" style="margin-top:8px">In all, per run round: ' + tallyNames.map(function(n){
+      var tallyTxt = tallyNames.length ? 'In all, per run round: ' + tallyNames.map(function(n){
           var it = ITEMS[n];
           return '<strong>' + esc(n) + '</strong> ×' + (it.yld ? (it.yld * tally[n]) : "varies") + ' (' + tally[n] + (tally[n] === 1 ? ' copy' : ' copies') + ')' + unverifiedFlagHtml(n);
-        }).join(", ") + '.<br />One copy gathers one thing at a time. Takes count per run, never per hour (run times are not checked).</p>';
+        }).join(", ") + '.' : 'Every copy is off right now, so this facility gathers nothing until you set a copy back to a product.';
+      if(offCount > 0 && tallyNames.length) tallyTxt += ' ' + offCount + (offCount === 1 ? ' copy is' : ' copies are') + ' off and gather nothing.';
+      return '<div class="mine-picks">' + rows + '</div>' +
+        '<p class="src" style="margin-top:8px">' + tallyTxt + '<br />One copy gathers one thing at a time — change its pick to any product listed, or set it to Off to leave that copy idle. Your pick stays on the copy when the plan rebuilds. Takes count per run, never per hour (run times are not checked).</p>';
     }
 
     /* The resolved job list for a facility's ADDED copies: one
@@ -5073,13 +5086,15 @@
       if(!avail.length || extraCount <= 0) return [];
       var planProds = facilityPlanItems(f).filter(function(n){ return avail.indexOf(n) > -1; });
       var defProd = planProds[0] || avail[0];
-      var saved = (typeof extraPick !== "undefined" && extraPick && extraPick[f]) ? extraPick[f].filter(function(n){ return avail.indexOf(n) > -1; }) : null;
+      var saved = (typeof extraPick !== "undefined" && extraPick && extraPick[f]) ? extraPick[f].map(function(n){ return (n === "__off__" || avail.indexOf(n) > -1) ? n : null; }) : null;
       var list = [];
       for(var i = 0; i < extraCount; i++) list.push(saved && saved[i] ? saved[i] : defProd);
       return list;
     }
     function extraYieldText(name){
+      if(name === "__off__") return "off — this copy is not running and makes nothing";
       var it = ITEMS[name];
+      if(!it) return "";
       if(it.kind === "gather") return gatherYieldText(name);
       return "makes " + (it.yld || 1) + " " + name + " per batch";
     }
@@ -5097,23 +5112,92 @@
       var list = extraAssignments(f, extra);
       var fid = f.replace(/[^a-z0-9]+/gi, "-");
       var rows = list.map(function(prod, i){
-        var opts = avail.map(function(m){
+        var off = prod === "__off__";
+        var opts = '<option value="__off__"' + (off ? ' selected' : '') + '>⏸ Off — not running</option>' + avail.map(function(m){
           var it = ITEMS[m];
           return '<option value="' + escA(m) + '"' + (m === prod ? ' selected' : '') + '>' + esc(m) + ' (Lv ' + it.lvl + (it.kind === "craft" ? ', ' + (it.yld || 1) + ' per batch' : (it.yld ? ', ' + it.yld + ' per run' : ', yield varies')) + ')</option>';
         }).join("");
-        return '<div class="mine-pick"><span class="mine-n">Added copy ' + (i + 1) + '</span>' +
-          '<span class="mine-tag verdict v-mix">added by you</span>' +
+        return '<div class="mine-pick' + (off ? ' is-off' : '') + '"><span class="mine-n">Added copy ' + (i + 1) + '</span>' +
+          '<span class="mine-tag verdict ' + (off ? 'v-lock' : 'v-mix') + '">' + (off ? 'off' : 'added by you') + '</span>' +
           '<label class="src" for="extraPick-' + fid + '-' + i + '" style="flex:none">is making</label>' +
           '<select id="extraPick-' + fid + '-' + i + '" data-extra-assign="' + escA(f) + '" data-extra-idx="' + i + '" aria-label="' + escA(f) + ' added copy ' + (i + 1) + ' job">' + opts + '</select>' +
           '<span class="mine-yield">' + esc(extraYieldText(prod)) + '.</span></div>';
       }).join("");
-      var tally = {};
-      list.forEach(function(n){ tally[n] = (tally[n] || 0) + 1; });
-      return '<div class="mine-picks">' + rows + '</div>' +
-        '<p class="src" style="margin-top:8px">Your added ' + (extra === 1 ? 'copy brings' : 'copies bring') + ': ' + Object.keys(tally).sort().map(function(n){
+      var tally = {}, offCount = 0;
+      list.forEach(function(n){ if(n === "__off__"){ offCount++; return; } tally[n] = (tally[n] || 0) + 1; });
+      var tallyNames = Object.keys(tally).sort();
+      var bringsTxt = tallyNames.length ? 'Your added ' + (extra === 1 ? 'copy brings' : 'copies bring') + ': ' + tallyNames.map(function(n){
           var it = ITEMS[n];
           return '<strong>' + esc(n) + '</strong> ×' + tally[n] + (it.kind === "craft" ? ' cop' + (tally[n] === 1 ? 'y' : 'ies') + ' (' + ((it.yld || 1) * tally[n]) + ' per batch round)' : ' cop' + (tally[n] === 1 ? 'y' : 'ies') + ' (' + (it.yld ? (it.yld * tally[n]) + ' per run round' : 'yield varies') + ')') + unverifiedFlagHtml(n);
-        }).join(", ") + '.<br />With a job picked, an added copy counts in full: crew, power, totals. Only things your ' + esc(f) + ' can make at Lv ' + facLevel(f) + ' at RV ' + userRV + ' are listed. ' + (ITEMS[list[0]] && ITEMS[list[0]].kind === "craft" ? 'Takes count per batch, never per hour.' : 'Takes count per run, never per hour.') + '</p>';
+        }).join(", ") + '.' : 'Your added ' + (extra === 1 ? 'copy is' : 'copies are') + ' off right now, so ' + (extra === 1 ? 'it brings' : 'they bring') + ' nothing until you set a job again.';
+      if(offCount > 0 && tallyNames.length) bringsTxt += ' ' + offCount + (offCount === 1 ? ' added copy is' : ' added copies are') + ' off and bring nothing.';
+      var firstOn = list.filter(function(n){ return n !== "__off__"; })[0];
+      return '<div class="mine-picks">' + rows + '</div>' +
+        '<p class="src" style="margin-top:8px">' + bringsTxt + '<br />With a job picked, an added copy counts in full: crew, power, totals; set to Off, it is out but idle and brings nothing. Only things your ' + esc(f) + ' can make at Lv ' + facLevel(f) + ' at RV ' + userRV + ' are listed. ' + (firstOn && ITEMS[firstOn] && ITEMS[firstOn].kind === "craft" ? 'Takes count per batch, never per hour.' : 'Takes count per run, never per hour.') + '</p>';
+    }
+    /* ============ Per-copy recipe picks for EVERY copy out
+       (Facilities out, player's ask, Nov 16, 2026) ============
+       The crafting and cooking facilities' blocks used to show the
+       plan's per-copy assignment as fixed text: only copies added
+       by hand got a job pick. Now every copy out — the plan's own
+       copies included — gets one pick on its block: any recipe the
+       facility can make at her Step 1 level and RV, or Off. The
+       plan's own assignment is only the starting point; a pick she
+       sets replaces it on that copy and stays across rebuilds (the
+       facPick rule above). An Off copy is still out and still
+       counted in the block's copy count, but it runs nothing: it
+       brings no take, and the block's tally skips it. */
+    function facAssignments(f, planC, working){
+      var avail = pickProductsFor(f);
+      if(!avail.length || working <= 0) return [];
+      var planProds = facilityPlanItems(f).filter(function(n){ return avail.indexOf(n) > -1; });
+      var defs = [];
+      if(planProds.length){
+        var a = assignProducts(planProds, working);
+        defs = a.perCopy.slice();
+      }
+      while(defs.length < working) defs.push(planProds[0] || avail[0]);
+      /* Added copies start on the added-copy defaults (extraPick's
+         own list), so the two pickers never disagree on a copy. */
+      var exList = extraAssignments(f, Math.max(0, working - planC));
+      for(var k = planC; k < working; k++){ if(exList[k - planC]) defs[k] = exList[k - planC]; }
+      var saved = (typeof facPick !== "undefined" && facPick && facPick[f]) ? facPick[f].map(function(n){ return (n === "__off__" || avail.indexOf(n) > -1) ? n : null; }) : null;
+      var list = [];
+      for(var j = 0; j < working; j++) list.push(saved && saved[j] ? saved[j] : defs[j]);
+      return list;
+    }
+    /* The recipe rows for one crafting/cooking facility's layout
+       block: one pick per copy out (plan copies and added copies
+       alike), plus the per-round tally across the copies that are
+       on. Mirrors gatherPickHtml for the gather facilities. */
+    function facPickHtml(f, planC, working){
+      var avail = pickProductsFor(f);
+      var list = facAssignments(f, planC, working);
+      if(!list.length) return "";
+      var fid = f.replace(/[^a-z0-9]+/gi, "-");
+      var rows = list.map(function(prod, i){
+        var added = i >= planC;
+        var off = prod === "__off__";
+        var opts = '<option value="__off__"' + (off ? ' selected' : '') + '>⏸ Off — not running</option>' + avail.map(function(m){
+          var it = ITEMS[m];
+          return '<option value="' + escA(m) + '"' + (m === prod ? ' selected' : '') + '>' + esc(m) + ' (Lv ' + it.lvl + (it.kind === "craft" ? ', ' + (it.yld || 1) + ' per batch' : (it.yld ? ', ' + it.yld + ' per run' : ', yield varies')) + ')</option>';
+        }).join("");
+        return '<div class="mine-pick' + (off ? ' is-off' : '') + '"><span class="mine-n">Copy ' + (i + 1) + '</span>' +
+          '<span class="mine-tag verdict ' + (off ? 'v-lock' : (added ? 'v-mix' : 'v-ok')) + '">' + (off ? 'off' : (added ? 'added by you' : 'for the plan')) + '</span>' +
+          '<label class="src" for="facPick-' + fid + '-' + i + '" style="flex:none">is making</label>' +
+          '<select id="facPick-' + fid + '-' + i + '" data-facpick-assign="' + escA(f) + '" data-facpick-idx="' + i + '" aria-label="' + escA(f) + ' copy ' + (i + 1) + ' recipe">' + opts + '</select>' +
+          '<span class="mine-yield">' + esc(extraYieldText(prod)) + '.</span></div>';
+      }).join("");
+      var tally = {}, offCount = 0;
+      list.forEach(function(n){ if(n === "__off__"){ offCount++; return; } tally[n] = (tally[n] || 0) + 1; });
+      var tallyNames = Object.keys(tally).sort();
+      var tallyTxt = tallyNames.length ? 'In all, per round: ' + tallyNames.map(function(n){
+          var it = ITEMS[n];
+          return '<strong>' + esc(n) + '</strong> on ' + tally[n] + (tally[n] === 1 ? ' copy' : ' copies') + ' (' + (it.kind === "craft" ? ((it.yld || 1) * tally[n]) + ' per batch round' : (it.yld ? (it.yld * tally[n]) + ' per run round' : 'yield varies')) + ')' + unverifiedFlagHtml(n);
+        }).join(", ") + '.' : 'Every copy is off right now, so this facility makes nothing until you set a copy back to a recipe.';
+      if(offCount > 0 && tallyNames.length) tallyTxt += ' ' + offCount + (offCount === 1 ? ' copy is' : ' copies are') + ' off and make nothing.';
+      return '<div class="mine-picks">' + rows + '</div>' +
+        '<p class="src" style="margin-top:8px">' + tallyTxt + '<br />One copy makes one thing at a time — change its pick to any recipe listed, or set it to Off to leave that copy idle. The plan\'s pick is only the starting point: yours stays on the copy when the plan rebuilds. Only recipes your ' + esc(f) + ' can make at Lv ' + facLevel(f) + ' at RV ' + userRV + ' are listed. Takes count per batch or per run, never per hour.</p>';
     }
     /* Added copies count for power on every power line: for any
        facility with copies added by hand, the map's count becomes
@@ -5628,6 +5712,20 @@
        products that fit her entered facility level and her current
        RV are ever offered. Resets with the basket or strategy. */
     var extraPick = {};
+    /* Per-copy recipe picks for the plan's own copies of the crafting
+       and cooking facilities in Facilities out (player's ask,
+       Nov 16, 2026): facility name -> one entry per copy out, in
+       order — a product name, or "__off__" when she has turned that
+       copy off. Until now only copies she ADDED by hand got a job
+       pick (extraPick above); the plan's own copies just showed the
+       algorithm's assignment as fixed text, with no way to change a
+       recipe the algorithm chose or to switch a copy off. An absent
+       entry means the plan's own assignment fills the picks in.
+       Like gatherPick, a pick she sets here is HERS: it is NOT reset
+       when the basket, strategy or goals change — facAssignments
+       re-checks every saved pick against what her facility level
+       and RV allow right now, and only Start fresh clears them. */
+    var facPick = {};
     var facExtraSig = null;
     function mineExtraTotal(){
       return Object.keys(mineExtra).reduce(function(a, n){ return a + (mineExtra[n] || 0); }, 0);
@@ -5745,7 +5843,8 @@
       var idx = t.getAttribute("data-mine-assign");
       var gFac = t.getAttribute("data-gather-assign"), gIdx = t.getAttribute("data-gather-idx");
       var xFac = t.getAttribute("data-extra-assign"), xIdx = t.getAttribute("data-extra-idx");
-      if(idx === null && !gFac && !xFac) return;
+      var pFac = t.getAttribute("data-facpick-assign"), pIdx = t.getAttribute("data-facpick-idx");
+      if(idx === null && !gFac && !xFac && !pFac) return;
       syncFacExtras();
       if(idx !== null){
         var ms = currentMinePicks();
@@ -5757,7 +5856,31 @@
           if(facExtra["Mine"]) delete facExtra["Mine"];
         }
       }
-      if(xFac && ITEMS[t.value] && facCanon(ITEMS[t.value].facility) === facCanon(xFac) && pickAvailable(ITEMS[t.value])){
+      if(pFac && (t.value === "__off__" || (ITEMS[t.value] && facCanon(ITEMS[t.value].facility) === facCanon(pFac) && pickAvailable(ITEMS[t.value])))){
+        /* One copy's new recipe at a crafting/cooking facility —
+           plan copies included, or Off: resolve the facility's
+           current pick list at its working count, swap this copy's
+           entry, and save the list as hers (facPick: never reset by
+           a plan rebuild, only by Start fresh). Added copies also
+           write through to extraPick, so the crew and power lines
+           that read the added-copy list follow the same pick. */
+        var ncP = allFacilityNeedCounts();
+        var planCP = Math.min(ncP[pFac] || 0, facCount(pFac));
+        var workingP = Math.max(deployedCount(pFac, planCP), alwaysCount(pFac));
+        var floorP = Math.max(planCP, alwaysCount(pFac));
+        var listP = facAssignments(pFac, floorP, workingP);
+        var pi = parseInt(pIdx, 10);
+        if(pi >= 0 && pi < listP.length){
+          listP[pi] = t.value;
+          facPick[pFac] = listP;
+          if(pi >= floorP){
+            var exSync = extraAssignments(pFac, Math.max(0, workingP - floorP));
+            var ei = pi - floorP;
+            if(ei >= 0 && ei < exSync.length){ exSync[ei] = t.value; extraPick[pFac] = exSync; }
+          }
+        }
+      }
+      if(xFac && (t.value === "__off__" || (ITEMS[t.value] && facCanon(ITEMS[t.value].facility) === facCanon(xFac) && pickAvailable(ITEMS[t.value])))){
         /* One added copy's new job, at any facility kind: resolve
            the added copies' current job list, swap this copy's
            product, and save the list as hers. */
@@ -5771,7 +5894,7 @@
           extraPick[xFac] = listX;
         }
       }
-      if(gFac && ITEMS[t.value] && facCanon(ITEMS[t.value].facility) === facCanon(gFac) && ITEMS[t.value].kind === "gather"){
+      if(gFac && (t.value === "__off__" || (ITEMS[t.value] && facCanon(ITEMS[t.value].facility) === facCanon(gFac) && ITEMS[t.value].kind === "gather"))){
         /* One gather copy's new product: resolve the facility's
            current pick list at its working count, swap this copy's
            product, and save the list as hers. */
@@ -6713,7 +6836,7 @@
         var gatherHtml = "";
         if(isGatherPickFac(fa.facility)){
           var gList = gatherAssignments(fa.facility, planC, working);
-          if(gList.length) namedProd = gList.map(function(m, i){ return "Copy " + (i + 1) + ": " + m; }).join(" · ");
+          if(gList.length) namedProd = gList.map(function(m, i){ return "Copy " + (i + 1) + ": " + (m === "__off__" ? "Off — not running" : m); }).join(" · ");
           gatherHtml = gatherPickHtml(fa.facility, planC, working);
         } else if(fa.facility === "Nimbus Bed"){
           gatherHtml = extraPickHtml(fa.facility, floorC, working);
@@ -6770,21 +6893,27 @@
         var extra = working - floorC;
         var itemsHere = facilityPlanItems(f);
         var worker = facilityWorkerName(f);
+        /* Every copy out gets its own recipe pick below (player's
+           ask, Nov 16, 2026) — the plan's copies included, not just
+           added ones — so the Producing line reads her picks, with
+           the plan's assignment only where she has not set one. */
+        var facList = pickProductsFor(f).length ? facAssignments(f, floorC, working) : [];
+        var prodTxt = facList.length ? facList.map(function(m, i){ return "Copy " + (i + 1) + ": " + (m === "__off__" ? "Off — not running" : m); }).join(" · ") : (itemsHere.length ? (itemsHere.length > 1 ? assignText(itemsHere, working) : itemsHere[0]) : (planC > 0 ? "This plan's work there" : "Added by you: pick its job below — it runs one thing at a time, like every copy"));
         blocks.push('<div class="fac-block"><h4>' + esc(f) + (pinC > 0 ? ' <span class="always-badge">Always</span>' : "") + (extra > 0 ? ' <span class="verdict v-mix">+' + extra + ' added by you</span>' : "") + '</h4><div class="zb-rows">' +
           '<div class="zb-row"><span class="zb-k">Count</span><span>' + (pinC > 0 ? working + " working · " + pinC + " Always pinned · plan uses " + planC + " · of " + ownedC + " owned" : countLine(f, planC, ownedC)) + '</span></div>' +
           (facSizeText(f) ? '<div class="zb-row"><span class="zb-k">Size</span><span>' + facSizeText(f) + ' tiles each</span></div>' : "") +
           '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(f, working, floorC, ownedC) + '</span></div>' +
-          '<div class="zb-row"><span class="zb-k">Producing</span><span>' + (itemsHere.length ? esc(itemsHere.length > 1 ? assignText(itemsHere, working) : itemsHere[0]) : (planC > 0 ? "This plan's work there" : "Added by you: pick its job below — it runs one thing at a time, like every copy")) + '</span></div>' +
+          '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(prodTxt) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span>' + (worker ? (planC > 0 ? "1 " + esc(worker) + " Aniimo post for this facility in your crew below" + (extra > 0 ? "; added copies with a job pick share that post and count in your crew and power" : "") : "Its job pick below puts a " + esc(worker) + " Aniimo post for this facility in your crew, and the copy counts in your power and totals") : 'Worker <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Why</span><span>' + (pinC > 0 && planC <= 0 ? "Pinned in Always staffed in Step 1: it stays out and staffed even when no recipe uses it" : planC > 0 ? "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add" : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
-          "</div>" + extraPickHtml(f, planC, working) + "</div>");
+          "</div>" + (facList.length ? facPickHtml(f, floorC, working) : extraPickHtml(f, planC, working)) + "</div>");
       });
       var addPanel = addFacilityPanelHtml(climateUsed, usedCounts, allNeed);
       if(!blocks.length) return addPanel;
       return '<h3 class="layout-sec-head">🏭 Facilities out in this layout</h3><p class="sec-sub" style="margin:8px 0 0">' +
         "Facilities marked Always come first: pinned in Step 1, out and staffed whether or not a recipe uses them. After them, only the facilities this plan uses are out. Only as many copies as the plan needs. Never every copy you own. Each one used has 1 Aniimo in your crew below." +
         '<br />The coloured circle on an Aniimo row is that skill, in its game colour. The number inside is the Aniimo level. Climate machines show "any" instead of a number: the level of the Aniimo running one does not matter. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Tap or hover the row for more, with the strongest known Aniimo as a hint.' +
-        "<br />Use − and + on a block to add copies you own, or take back copies you added. The plan's count is the floor. Your Step 1 count is the top. Added copies are marked added by you. They are staffed in your crew and counted in your power.<br />Change your basket or strategy and added copies reset to the plan's counts.<br />A gathering pick you set by hand on a copy above is yours: it stays on that copy when the plan rebuilds — the plan's own assignment only fills copies you have not set — until you change it yourself or start fresh." +
+        "<br />Use − and + on a block to add copies you own, or take back copies you added. The plan's count is the floor. Your Step 1 count is the top. Added copies are marked added by you. They are staffed in your crew and counted in your power.<br />Change your basket or strategy and added copies reset to the plan's counts.<br /><strong>Every copy on a block has its own recipe pick</strong> — the plan's copies too, not just ones you added. Change any copy to a different recipe the facility can make, or set it to <strong>Off — not running</strong> to leave that copy idle: an off copy stays out but makes and gathers nothing, and the block's tally skips it.<br />A pick you set by hand on a copy above is yours: it stays on that copy when the plan rebuilds — the plan's own assignment only fills copies you have not set — until you change it yourself or start fresh." +
         '</p><div class="fac-blocks">' + blocks.join("") + "</div>" + addPanel;
     }
 
@@ -9325,7 +9454,7 @@
         BP_GOALS.forEach(function(g){ bpGoalOn[g.id] = false; });
         alwaysPins = {}; alwaysList = [];
         layoutPicks = {}; layoutAutoAdj = {}; layoutBpAdj = {};
-        facExtra = {}; mineExtra = {}; minePick = null; gatherPick = {}; extraPick = {}; facExtraSig = null;
+        facExtra = {}; mineExtra = {}; minePick = null; gatherPick = {}; extraPick = {}; facPick = {}; facExtraSig = null;
         activeCat = "all"; hideLocked = false;
         crewGate.strategy = false;
         crewGate.rv = false;
