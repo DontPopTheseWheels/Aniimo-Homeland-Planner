@@ -3413,7 +3413,9 @@
        HARD EXCLUSION: no Turbo or Gracewing may ever fill a
        Sandcastle post, at any level, in any mode, including
        step-down picks and pairing/sharing reuse.
-       FAMILY PREFERENCE: Panpanta and Shelly candidates rank ahead
+       FAMILY PREFERENCE: candidates from the Panpanta and Shelly
+       families — their whole evolution lines (SANDCASTLE_FAMILY
+       below) — rank ahead
        of all other candidates for a Sandcastle post; within the
        family, and among non-family candidates when no family member
        is available, the usual ranking applies unchanged. The
@@ -3423,7 +3425,11 @@
        label when it lands below the asked/best level. */
     var SANDCASTLE_FACILITY = "Tidewhisper Sandcastle";
     var SANDCASTLE_BANNED = { "Turbo":true, "Gracewing":true };
-    var SANDCASTLE_FAMILY = { "Panpanta":true, "Shelly":true };
+    /* The generic Sandcastle preference is the two families' whole
+       evolution lines (family = the line, as everywhere): the
+       Panpanta line is the Susuta line (Susuta, Popota, Panpanta,
+       Piopiota) and the Shelly line is Shelly, Sheldon, Sherro. */
+    var SANDCASTLE_FAMILY = { "Susuta":true, "Popota":true, "Panpanta":true, "Piopiota":true, "Shelly":true, "Sheldon":true, "Sherro":true };
     function sandcastleBanned(a){ return !!(a && SANDCASTLE_BANNED[a.species]); }
     function sandcastleFamily(a){ return !!(a && SANDCASTLE_FAMILY[a.species]); }
     /* Sparkle's production-family rules (completed Nov 18, 2026,
@@ -3538,71 +3544,95 @@
       });
       return out;
     }
-    /* The production family a post's assigned production names at
-       one facility, or null when the production is not assigned,
-       is a product with no production rule, or mixes two ruled
-       products (no single family can be named for the post). */
-    function postProductionFamily(p, facility, prodMap){
+    /* Every production family a post's assigned production names
+       at one facility: both families when the post's plan mixes
+       two gated products at that station (Wool and Petals at the
+       Nimbus Bed, Star and Gold-Speck Cap at the Hammock). */
+    function postProductionFamilies(p, facility, prodMap){
       var fams = [], seen = {};
       postProductsAt(p, facility).forEach(function(n){
         var fam = prodMap[n];
         if(fam && !seen[fam]){ seen[fam] = true; fams.push(fam); }
       });
-      return fams.length === 1 ? fams[0] : null;
+      return fams;
     }
-    /* The production family one post's assigned production names,
-       or null: Sandcastle posts answer for the castle; every other
-       post answers for the first of its facilities whose data
-       carries family tags and whose assigned production names
-       exactly one family. The generic Sandcastle fallback names no
-       single family, so it never answers here. */
-    function postFamilyName(p){
-      if(isSandcastlePost(p)){
-        return postProductionFamily(p, SANDCASTLE_FACILITY, PROD_FAMILY_BY_FAC[SANDCASTLE_FACILITY] || {});
-      }
-      var fs = postFacilities(p);
-      for(var i = 0; i < fs.length; i++){
-        var f = facCanon(fs[i]);
+    /* Every family that ranks first for one post, across every
+       facility the post serves: each facility contributes the
+       families its assigned production names, and a shared Minimum
+       slot spanning several gated stations carries every one of
+       those stations' families. A Sandcastle post whose own
+       production names no family adds the generic fallback
+       families — the Panpanta and Shelly families, whose lines are
+       the Susuta and Shelly evolution lines. */
+    function postFamilyFamilies(p){
+      var fams = [], seen = {};
+      function add(f){ if(f && !seen[f]){ seen[f] = true; fams.push(f); } }
+      if(!p) return fams;
+      var castleNamed = false;
+      postFacilities(p).forEach(function(f0){
+        var f = facCanon(f0);
         var map = PROD_FAMILY_BY_FAC[f];
-        if(!map) continue;
-        var fam = postProductionFamily(p, f, map);
-        if(fam) return fam;
-      }
-      return null;
-    }
-    /* The family set that ranks first for this post, or null when
-       the post picks by the normal ranking: Sandcastle posts always
-       have one — their production family when known, the generic
-       Panpanta/Shelly set as the fallback; posts at any other
-       family-tagged station (Dewy House, Nimbus Bed, Starfall
-       Hammock, Floral Windmill) have one only when their production
-       names a family. */
-    function postFamilySet(p){
-      if(isSandcastlePost(p)){
-        var cf = postFamilyName(p);
-        return cf ? familySetOf(cf) : SANDCASTLE_FAMILY;
-      }
-      var fn = postFamilyName(p);
-      return fn ? familySetOf(fn) : null;
-    }
-    /* The family a post's production tags when that family has NO
-       pickable member in her roster at all — no eligible Aniimo of
-       the family's evolution line holding the post's job at any
-       level (Turbo and Gracewing never count at the Sandcastle,
-       where they are banned outright). The post still fills by the
-       family-first pass, which is then just the normal ranking;
-       this name exists so the row can say why no family member was
-       picked. Null whenever a family member is pickable — including
-       when one was simply picked earlier for another post. */
-    function familyNoneName(p){
-      var name = postFamilyName(p);
-      if(!name || !p || !p.job) return null;
-      var set = familySetOf(name);
-      var castle = isSandcastlePost(p);
-      var any = ROSTER.some(function(a){
-        return rosterEligible(a) && inFamilySet(a, set) && animalAbility(a, p.job) >= 1 && !(castle && sandcastleBanned(a));
+        if(!map) return;
+        postProductionFamilies(p, f, map).forEach(function(fam){
+          if(f === SANDCASTLE_FACILITY) castleNamed = true;
+          add(fam);
+        });
       });
-      return any ? null : name;
+      if(isSandcastlePost(p) && !castleNamed){ add("Susuta"); add("Shelly"); }
+      return fams;
+    }
+    /* The first family a post tags, for callers that name one;
+       postFamilyFamilies is the full list. */
+    function postFamilyName(p){
+      var fams = postFamilyFamilies(p);
+      return fams.length ? fams[0] : null;
+    }
+    /* The family set that ranks first for this post — the UNION of
+       the evolution lines of every family in postFamilyFamilies —
+       or null when the post picks by the normal ranking: Sandcastle
+       posts always have one (their production families when known,
+       the generic Panpanta/Shelly lines as the fallback); posts at
+       any other family-tagged station (Dewy House, Nimbus Bed,
+       Starfall Hammock, Floral Windmill) have one only when their
+       production names a family. One Aniimo staffs one post, so a
+       post gated to two families can only be filled from one of
+       them; the union guarantees the pick is a member of one of
+       the post's gated families whenever any member of any of them
+       is pickable — never an outsider to all of them, which is
+       what an ungated mixed post used to seat. */
+    function postFamilySet(p){
+      var fams = postFamilyFamilies(p);
+      if(!fams.length) return null;
+      var s = {};
+      fams.forEach(function(f){
+        var ls = familySetOf(f);
+        Object.keys(ls).forEach(function(sp){ s[sp] = true; });
+      });
+      return s;
+    }
+    /* The families a post tags that have NO pickable member in her
+       roster at all — no eligible Aniimo of the family's evolution
+       line holding the post's job at any level (Turbo and Gracewing
+       never count at the Sandcastle, where they are banned
+       outright). The post still fills by the family-first pass,
+       which is then just the normal ranking; these names exist so
+       the row can say why no family member was picked. Empty
+       whenever a family member is pickable — including when one
+       was simply picked earlier for another post. */
+    function familyNoneNames(p){
+      if(!p || !p.job) return [];
+      var castle = isSandcastlePost(p);
+      return postFamilyFamilies(p).filter(function(name){
+        var set = familySetOf(name);
+        var any = ROSTER.some(function(a){
+          return rosterEligible(a) && inFamilySet(a, set) && animalAbility(a, p.job) >= 1 && !(castle && sandcastleBanned(a));
+        });
+        return !any;
+      });
+    }
+    function familyNoneName(p){
+      var ns = familyNoneNames(p);
+      return ns.length ? ns[0] : null;
     }
     /* Family-first ranking: the given family's candidates rank
        ahead of everything else; the player's usual ranking decides
@@ -3780,12 +3810,22 @@
                  slot can never be reused at the Sandcastle, and a
                  sharer from the post's family outranks every other
                  sharer — ahead of ability level too, labelled a
-                 step-down when it lands below the asked level. */
+                 step-down when it lands below the asked level.
+                 Reuse itself is family-gated: a sharer outside the
+                 post's families is NOT reused onto the slot while
+                 any of its families has a pickable member — the slot
+                 then takes a fresh family pick in tryPick below
+                 instead of seating a non-family animal sideways.
+                 Only when none of the post's families has a pickable
+                 member in the roster at all is reuse the normal
+                 ranking again, exactly like the fresh pick. */
+              var famNoneSlot = familyNoneNames(p).length === postFamilyFamilies(p).length;
               Object.keys(slotAnimals).forEach(function(k){
                 if(slotJobsSeen[job][k]) return;
                 var a = ROSTER[k];
                 if(isSandcastlePost(p) && sandcastleBanned(a)) return;
                 if(animalAbility(a, job) < 1) return;
+                if(!famNoneSlot && !inFamilySet(a, famSetSlot)) return;
                 if(!cand || rankCompareFamily(a, cand, job, postTraits(p), famSetSlot) < 0) cand = a;
               });
               if(cand && p.req > 1 && animalAbility(cand, job) < p.req) p.steppedDown = true;
@@ -4089,8 +4129,8 @@
       /* A family-tagged post whose family has no pickable member
          in her roster says so on its row: the pick beside it came
          from the normal ranking, not from the family. */
-      var fn = familyNoneName(p);
-      var fnTxt = fn ? " · the " + fn + " family has no pickable member you own, so this post picked by the normal ranking" : "";
+      var fnNames = familyNoneNames(p);
+      var fnTxt = fnNames.length ? " · " + fnNames.map(function(n){ return "the " + n + " family has no pickable member you own"; }).join(" · ") + ", so this post picked by the normal ranking" : "";
       if(p.animal >= 0){
         var pa = ROSTER[p.animal];
         var sdSub = stepDownText(p, pa);
@@ -4165,8 +4205,9 @@
           : esc(animalLabel(a, jobs[0])) + " · shared across " + assigns.length + (assigns.length === 1 ? " facility" : " facilities");
         var sdSlot = jobs.map(function(j){ return stepDownText({ job:j, req:crewReqLvl(j, null) }, a); }).filter(Boolean);
         if(sdSlot.length) sub += " · " + sdSlot.map(function(s){ return esc(s); }).join(" · ");
-        var fnSlot = mine.map(function(x){ return familyNoneName(x); }).filter(Boolean);
-        if(fnSlot.length) sub += " · " + fnSlot.map(function(n){ return "the " + esc(n) + " family has no pickable member you own, so this post picked by the normal ranking"; }).join(" · ");
+        var fnSlot = [];
+        mine.forEach(function(x){ familyNoneNames(x).forEach(function(n){ if(fnSlot.indexOf(n) === -1) fnSlot.push(n); }); });
+        if(fnSlot.length) sub += " · " + fnSlot.map(function(n){ return "the " + esc(n) + " family has no pickable member you own"; }).join(" · ") + ", so this post picked by the normal ranking";
         lines.push('<tr data-heads="1" tabindex="0" data-tip="' + escA(tip) + '"><td>' + marks + "<strong>" + esc(jobs.join(" + ")) + ' Aniimo</strong><br /><span class="src">' + sub + "</span></td><td>" + PUTOUT_SHARED_TRAIT + "</td><td>" +
           assigns.map(function(bf){ return assignHtml(bf, bf.job, animalAbility(a, bf.job)); }).join("") +
           (plantCover === p.animal ? " · also does the planting" : "") + "</td></tr>");
@@ -4209,8 +4250,8 @@
       facPosts.forEach(function(p){
         if(p.animal < 0){
           var bw = BEST_WORKERS[p.job];
-          var fnB = familyNoneName(p);
-          rows.push("<tr><td>" + abilityMarker(p.job, !!p.trait) + "<strong>" + esc(p.job) + ' Aniimo</strong><br /><span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + (fnB ? " · the " + esc(fnB) + " family has no pickable member you own" : "") + '</span></td><td>' + pickMatchHtml(null, p.trait || null, p.facility) + "</td><td>" + assignHtml(p.bf, p.job, null) + "</td></tr>");
+          var fnB = familyNoneNames(p).map(function(n){ return "the " + esc(n) + " family has no pickable member you own"; }).join(" · ");
+          rows.push("<tr><td>" + abilityMarker(p.job, !!p.trait) + "<strong>" + esc(p.job) + ' Aniimo</strong><br /><span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + (fnB ? " · " + fnB : "") + '</span></td><td>' + pickMatchHtml(null, p.trait || null, p.facility) + "</td><td>" + assignHtml(p.bf, p.job, null) + "</td></tr>");
           return;
         }
         if(seen[p.animal]) return;
@@ -4227,7 +4268,7 @@
           (mine.some(function(x){ return x.paired; }) ? " · covers two jobs" : "") +
           (mine.some(function(x){ return x.sharedFit; }) ? " · shared to fit your RV limit" : "") +
           jobs.map(function(j){ var mpS = mine.filter(function(x){ return x.job === j; })[0]; return stepDownText(mpS, a); }).filter(Boolean).map(function(s){ return " · " + esc(s); }).join("") +
-          mine.map(function(x){ var fn = familyNoneName(x); return fn ? " · the " + esc(fn) + " family has no pickable member you own, so the " + esc(x.facility || "family-tagged") + " post picked by the normal ranking" : ""; }).filter(Boolean).join("") +
+          mine.map(function(x){ return familyNoneNames(x).map(function(fn){ return " · the " + esc(fn) + " family has no pickable member you own, so the " + esc(x.facility || "family-tagged") + " post picked by the normal ranking"; }).join(""); }).filter(Boolean).join("") +
           (picks.plantingCovered && picks.plantingAnimal === p.animal ? " · also covers Planting (Grass Lv " + animalAbility(a, "Grass") + ")" : "") + "</span>";
         var traitCell = mine.map(function(x){ return esc(x.facility) + ": " + (x.trait ? (traitMatch(a, x.trait) ? "✓ " + x.trait.letter + " · " + esc(x.trait.name) + " (+20%)" : "✗ no match (wants " + x.trait.letter + " · " + esc(x.trait.name) + "; " + esc(a.species) + " is " + esc(a.personality) + ")") : "no verified +20% match"); }).join("<br />");
         rows.push("<tr><td>" + workerCell + "</td><td>" + traitCell + "</td><td>" +
@@ -4242,8 +4283,8 @@
       slotPosts.forEach(function(p){
         if(p.animal < 0){
           var bw = BEST_WORKERS[p.job];
-          var fnM = familyNoneName(p);
-          rows.push("<tr><td>" + abilityMarker(p.job, false) + "<strong>Any " + esc(p.job) + ' Aniimo</strong><br /><span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + (fnM ? " · the " + esc(fnM) + " family has no pickable member you own" : "") + '</span></td><td>' + PUTOUT_SHARED_TRAIT + "</td><td>" +
+          var fnM = familyNoneNames(p).map(function(n){ return "the " + esc(n) + " family has no pickable member you own"; }).join(" · ");
+          rows.push("<tr><td>" + abilityMarker(p.job, false) + "<strong>Any " + esc(p.job) + ' Aniimo</strong><br /><span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + (fnM ? " · " + fnM : "") + '</span></td><td>' + PUTOUT_SHARED_TRAIT + "</td><td>" +
             p.assigns.map(function(bf){ return assignHtml(bf, p.job, null); }).join("") + "</td></tr>");
           return;
         }
@@ -4257,7 +4298,7 @@
         mine.forEach(function(x){ assigns = assigns.concat(x.assigns); });
         assigns.sort(function(x, y){ return x.facility.localeCompare(y.facility); });
         var workerCell = jobs.map(function(j){ return abilityMarkerLvl(j, animalAbility(a, j), false, j + " Lv " + animalAbility(a, j) + " · " + animalLabel(a, j)); }).join("") +
-          "<strong>" + esc(jobs.join(" + ")) + ' Aniimo</strong><br /><span class="src">' + esc(animalLabel(a)) + " (" + jobs.map(function(j){ return j + " Lv " + animalAbility(a, j); }).join(", ") + ") · shared across " + assigns.length + (assigns.length === 1 ? " facility" : " facilities") + jobs.map(function(j){ return stepDownText({ job:j, req:crewReqLvl(j, null) }, a); }).filter(Boolean).map(function(s){ return " · " + esc(s); }).join("") + mine.map(function(x){ var fn = familyNoneName(x); return fn ? " · the " + esc(fn) + " family has no pickable member you own, so this post picked by the normal ranking" : ""; }).filter(Boolean).join("") + (picks.plantingCovered && picks.plantingAnimal === p.animal ? " · also covers Planting (Grass Lv " + animalAbility(a, "Grass") + ")" : "") + "</span>";
+          "<strong>" + esc(jobs.join(" + ")) + ' Aniimo</strong><br /><span class="src">' + esc(animalLabel(a)) + " (" + jobs.map(function(j){ return j + " Lv " + animalAbility(a, j); }).join(", ") + ") · shared across " + assigns.length + (assigns.length === 1 ? " facility" : " facilities") + jobs.map(function(j){ return stepDownText({ job:j, req:crewReqLvl(j, null) }, a); }).filter(Boolean).map(function(s){ return " · " + esc(s); }).join("") + mine.map(function(x){ return familyNoneNames(x).map(function(fn){ return " · the " + esc(fn) + " family has no pickable member you own, so this post picked by the normal ranking"; }).join(""); }).filter(Boolean).join("") + (picks.plantingCovered && picks.plantingAnimal === p.animal ? " · also covers Planting (Grass Lv " + animalAbility(a, "Grass") + ")" : "") + "</span>";
         if(mine.length > 1 || assigns.length > 4) workerCell += '<br /><span class="src"><strong>Extra workers on this job</strong>: one worker\'s load passes 80% here, so more hands join (Aniiland\'s rule). How many is in the Put out list.</span>';
         var traitCell = '<span class="src">One worker carries one personality, so it can only match one of these facilities at a time. Each assignment below lists its own match.</span>';
         rows.push("<tr><td>" + workerCell + "</td><td>" + traitCell + "</td><td>" +
