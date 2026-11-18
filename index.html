@@ -661,7 +661,7 @@
         <strong>Fields get no personality bonus:</strong> planting speeds up with Grass Home Ability level only. The Mine keeps Playful +20%.<br />
         <strong>Family-only slots:</strong> a gated recipe's crew slot names its family, like "Leisure worker, Susuta family ONLY", never a generic worker.<br />
         <strong>Storage Units take no worker:</strong> they are passive, with no crew slot, no crew count and no worker-based power math.<br />
-        <strong>📌 Always staffed:</strong> your Step 1 pins are staffed first, stand first in the list below marked Always, and count toward your limit. If the total goes over, the plan side is trimmed; the Always list never is.</p>
+        <strong>📌 Always staffed:</strong> your Step 1 pins are staffed first, stand first in the table below, marked Always, and count toward your limit. If the total goes over, the plan side is trimmed; the Always list never is.</p>
         <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy first</strong> — in Level Up mode the bill's jobs join this crew. Switching rebuilds it clean.</p></div>
         <div class="card">
           <div id="teamGate"></div>
@@ -3553,15 +3553,33 @@
       var t = FAC_TRAIT[facility];
       return t ? t.name + " (" + t.letter + ")" : null;
     }
+    /* Put-out table cells (Nov 17, 2026): the one Put out list is a
+       table in the assignments table's style — Worker, Personality
+       match, Working where — so these helpers mirror that table's
+       cell wording exactly. */
+    function putTraitCell(f){
+      var t = FAC_TRAIT[f];
+      return t ? '<span class="verdict v-ok">' + t.letter + " · " + esc(t.name) + " (+20%)</span>"
+        : '<span class="src">No verified +20% personality match in the guide data for ' + esc(f) + ".</span>";
+    }
+    var PUT_SHARED_TRAIT = '<span class="src">One worker carries one personality, so it can only match one of these facilities at a time. Each assignment in this row lists its own match.</span>';
+    var PUT_ANYLEVEL_TRAIT = '<span class="src">Any level — the level of the Aniimo running a climate machine does not matter.</span>';
+    var PUT_NOJOB_TRAIT = '<span class="src">job not checked yet</span>';
+    var PUT_NOMATCH_TRAIT = '<span class="src">No verified +20% personality match in the guide data.</span>';
+    function putPlainPill(label){ return '<button type="button" class="assign">' + esc(label) + "</button>"; }
+    function putStrongest(bw){ return '<br /><span class="src">strongest known: ' + esc(bw.name) + " Lv." + bw.lvl + "</span>"; }
     function putOutFarmLines(uncounted, includeAll){
       var lines = [];
       var order = ["Farmland", "Woodland"];
+      function farmRow(f){
+        return "<tr><td><strong>1 Aniimo</strong></td><td>" + PUT_NOJOB_TRAIT + "</td><td>" + putPlainPill(f) + "</td></tr>";
+      }
       order.forEach(function(f){
-        if(uncounted[f]) lines.push("<li><strong>1 Aniimo</strong> · " + esc(f) + " · job not checked yet</li>");
+        if(uncounted[f]) lines.push(farmRow(f));
       });
       if(includeAll){
         Object.keys(uncounted).sort().forEach(function(f){
-          if(order.indexOf(f) === -1) lines.push("<li><strong>1 Aniimo</strong> · " + esc(f) + " · job not checked yet</li>");
+          if(order.indexOf(f) === -1) lines.push(farmRow(f));
         });
       }
       return lines;
@@ -3591,11 +3609,11 @@
         if(p.count > 1) label += " ×" + p.count;
         if(fa.job && isClimateMachine(fa.facility)){
           var cTip = fa.job + " · any level · " + fa.facility + " · 1 Aniimo per building this plan uses (" + p.count + " needed for this plan) · the level of the Aniimo running a climate machine does not matter — any " + fa.job + " Aniimo runs it";
-          lines.push('<li data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(cTip) + '">' + anyLevelMarker(fa.job, null) + "<strong>" + label + "</strong> · " + esc(fa.facility) + " · any level</li>");
+          lines.push('<tr data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(cTip) + '"><td>' + anyLevelMarker(fa.job, null) + "<strong>" + label + "</strong></td><td>" + PUT_ANYLEVEL_TRAIT + "</td><td>" + assignHtml({ facility:fa.facility, items:facilityPlanItems(fa.facility) }, fa.job, null) + " · any level</td></tr>");
           return;
         }
         if(!bw){
-          lines.push('<li data-heads="' + p.count + '"><strong>' + label + "</strong> · " + esc(fa.facility) + " · job not checked yet</li>");
+          lines.push('<tr data-heads="' + p.count + '"><td><strong>' + label + "</strong></td><td>" + PUT_NOJOB_TRAIT + "</td><td>" + putPlainPill(fa.facility) + "</td></tr>");
           return;
         }
         var t = FAC_TRAIT[fa.facility];
@@ -3608,7 +3626,8 @@
         var famItems = facilityPlanItems(fa.facility).filter(function(n){ return familyGate(n); });
         var famSuffix = famItems.length ? " · " + famItems.map(function(n){ return esc(n) + ": " + esc(familyOnlyText(n)); }).join(" · ") : "";
         if(famSuffix) tip += " · Family-only slots at this facility: " + famItems.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ");
-        lines.push('<li data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(tip) + '">' + abilityMarker(fa.job, !!t) + "<strong>" + label + "</strong> · " + esc(fa.facility) + famSuffix + "</li>");
+        var pillBf = fa.facility === "Mine" ? { facility:"Mine", items:currentMinePicks().assignments } : { facility:fa.facility, items:facilityPlanItems(fa.facility) };
+        lines.push('<tr data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(tip) + '"><td>' + abilityMarker(fa.job, !!t) + "<strong>" + label + "</strong>" + putStrongest(bw) + "</td><td>" + putTraitCell(fa.facility) + "</td><td>" + assignHtml(pillBf, fa.job, bw.lvl) + "</td></tr>");
       });
       return lines;
     }
@@ -3620,10 +3639,10 @@
          the one Put out list above (player's fix, Oct 29, 2026: one
          list, no second count list) — this note only explains them,
          in plain words, and adds no numbers of its own. */
-      return '<div class="note note-info"><h4>🐾 Three jobs in that list, in plain words</h4><p>' +
-        "<strong>Hauling:</strong> carries finished things to storage. Some Aniimo in the list do it alongside their main job — they are counted once, there.<br />" +
-        "<strong>Planting:</strong> a Grass Aniimo plants your crops. It is in the list.<br />" +
-        "<strong>Watering:</strong> Water Aniimo run the Wells and water crops. They are in the list too." +
+      return '<div class="note note-info"><h4>🐾 Three jobs in that table, in plain words</h4><p>' +
+        "<strong>Hauling:</strong> carries finished things to storage. Some Aniimo in the table do it alongside their main job — they are counted once, there.<br />" +
+        "<strong>Planting:</strong> a Grass Aniimo plants your crops. It is in the table.<br />" +
+        "<strong>Watering:</strong> Water Aniimo run the Wells and water crops. They are in the table too." +
         "</p></div>";
     }
     /* Aniimo cap: how many Aniimo can be put out (placed) in your Home
@@ -3667,18 +3686,18 @@
         var famSuffix = famItems.length ? " · " + famItems.map(function(n){ return esc(n) + ": " + esc(familyOnlyText(n)); }).join(" · ") : "";
         if(job && isClimateMachine(f)){
           var cTip = job + " · any level · " + f + " · Always staffed first: " + a.count + (a.count === 1 ? " pinned copy" : " pinned copies") + ", staffed whether or not a recipe uses them · the level of the Aniimo running a climate machine does not matter, any " + job + " Aniimo runs it";
-          lines.push('<li data-heads="' + a.count + '" tabindex="0" data-tip="' + escA(cTip) + '">' + anyLevelMarker(job, null) + "<strong>" + esc(job) + " Aniimo" + (a.count > 1 ? " ×" + a.count : "") + "</strong> · " + esc(f) + badge + " · any level</li>");
+          lines.push('<tr data-heads="' + a.count + '" tabindex="0" data-tip="' + escA(cTip) + '"><td>' + anyLevelMarker(job, null) + "<strong>" + esc(job) + " Aniimo" + (a.count > 1 ? " ×" + a.count : "") + "</strong></td><td>" + PUT_ANYLEVEL_TRAIT + "</td><td>" + assignHtml({ facility:f, items:facilityPlanItems(f) }, job, null) + badge + " · any level</td></tr>");
           return;
         }
         if(!job){
-          lines.push('<li data-heads="' + a.count + '"><strong>Aniimo' + (a.count > 1 ? " ×" + a.count : "") + "</strong> · " + esc(f) + badge + " · job not checked yet</li>");
+          lines.push('<tr data-heads="' + a.count + '"><td><strong>Aniimo' + (a.count > 1 ? " ×" + a.count : "") + "</strong></td><td>" + PUT_NOJOB_TRAIT + "</td><td>" + putPlainPill(f) + badge + "</td></tr>");
           return;
         }
         var bw = BEST_WORKERS[job];
         var tip = job + " Lv." + bw.lvl + " · strongest known: " + bw.name + " Lv." + bw.lvl +
           " · " + f + " · Always staffed first: " + a.count + (a.count === 1 ? " pinned copy" : " pinned copies") + ", staffed whether or not a recipe uses them" +
           (famItems.length ? " · Family-only slots at this facility: " + famItems.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ") : "");
-        lines.push('<li data-heads="' + a.count + '" tabindex="0" data-tip="' + escA(tip) + '">' + abilityMarker(job, !!FAC_TRAIT[f]) + "<strong>" + esc(job) + " Aniimo" + (a.count > 1 ? " ×" + a.count : "") + "</strong> · " + esc(f) + badge + famSuffix + "</li>");
+        lines.push('<tr data-heads="' + a.count + '" tabindex="0" data-tip="' + escA(tip) + '"><td>' + abilityMarker(job, !!FAC_TRAIT[f]) + "<strong>" + esc(job) + " Aniimo" + (a.count > 1 ? " ×" + a.count : "") + "</strong>" + putStrongest(bw) + "</td><td>" + putTraitCell(f) + "</td><td>" + assignHtml({ facility:f, items:facilityPlanItems(f) }, job, bw.lvl) + badge + "</td></tr>");
       });
       return lines;
     }
@@ -3714,8 +3733,8 @@
             (covers ? " · This Aniimo also does the planting: Grass Lv." + BEST_WORKERS.Grass.lvl : "") +
             (famItemsBf.length ? " · Family-only slots: " + famItemsBf.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ") : "");
           var marks = (covers ? abilityMarker("Grass", false) : "") + abilityMarker(bf.job, !!FAC_TRAIT[bf.facility]);
-          return '<li tabindex="0" data-tip="' + escA(tip) + '">' + marks + "<strong>" + (covers ? "Grass + " + esc(bf.job) : esc(bf.job)) + " Aniimo</strong> · " + esc(bf.facility) +
-            (covers ? " · also does the planting" : "") + famSuffixBf + "</li>";
+          return '<tr tabindex="0" data-tip="' + escA(tip) + '"><td>' + marks + "<strong>" + (covers ? "Grass + " + esc(bf.job) : esc(bf.job)) + " Aniimo</strong>" + putStrongest(bw) + "</td><td>" + putTraitCell(bf.facility) + "</td><td>" + assignHtml(bf, bf.job, bw.lvl) +
+            (covers ? " · also does the planting" : "") + "</td></tr>";
         }
         /* Individuals, not job slots: facilities whose jobs one
            multi-ability species covers are paired onto one Aniimo —
@@ -3734,9 +3753,9 @@
             if(present.length > 1){
               var pairTip = "Strongest known: " + sp + " · " + present.map(function(bf){ return tipText(bf.job, BEST_WORKERS[bf.job].lvl, bf.facility, bf.items); }).join(" · ");
               var pairMarks = present.map(function(bf){ return abilityMarker(bf.job, !!FAC_TRAIT[bf.facility]); }).join("");
-              lines.push('<li tabindex="0" data-tip="' + escA(pairTip) + '">' + pairMarks + "<strong>" + esc(present.map(function(f){ return f.job; }).join(" + ")) + " Aniimo</strong> · " +
-                present.map(function(f){ return esc(f.facility); }).join(", ") +
-                " · One Aniimo covers both jobs, counted once</li>");
+              lines.push('<tr tabindex="0" data-tip="' + escA(pairTip) + '"><td>' + pairMarks + "<strong>" + esc(present.map(function(f){ return f.job; }).join(" + ")) + " Aniimo</strong>" + '<br /><span class="src">strongest known: ' + esc(sp) + "</span></td><td>" + PUT_SHARED_TRAIT + "</td><td>" +
+                present.map(function(bf){ return assignHtml(bf, bf.job, BEST_WORKERS[bf.job].lvl); }).join("") +
+                " · One Aniimo covers both jobs, counted once</td></tr>");
             } else {
               lines.push(dedicatedLine(present[0]));
             }
@@ -3781,10 +3800,11 @@
               return abilityMarker(j, ring);
             }).join("");
             var label = (covers ? "Grass + " : "") + gJobs.join(" + ") + " Aniimo";
-            lines.push('<li tabindex="0" data-tip="' + escA(tip) + '">' + marks + "<strong>" + esc(label) + "</strong> · " +
-              g.map(function(bf){ return esc(bf.facility); }).join(", ") +
+            var gTrait = g.length > 1 ? PUT_SHARED_TRAIT : putTraitCell(g[0].facility);
+            lines.push('<tr tabindex="0" data-tip="' + escA(tip) + '"><td>' + marks + "<strong>" + esc(label) + "</strong>" + '<br /><span class="src">strongest known: ' + esc(r.worker) + "</span></td><td>" + gTrait + "</td><td>" +
+              g.map(function(bf){ return assignHtml(bf, bf.job, BEST_WORKERS[bf.job].lvl); }).join("") +
               (g.length > 1 ? (gJobs.length > 1 ? " · One Aniimo covers both jobs, counted once" : " · shared across " + g.length + " facilities") : "") +
-              (covers ? " · also does the planting" : "") + "</li>");
+              (covers ? " · also does the planting" : "") + "</td></tr>");
           });
         });
       } else {
@@ -3794,8 +3814,12 @@
           var tip = "Strongest known: " + r.worker + " · " + facsSorted.map(function(bf){ return tipText(bf.job, BEST_WORKERS[bf.job].lvl, bf.facility, bf.items); }).join(" · ") +
             (r.planting ? " · This Aniimo also does the planting: Grass Lv." + BEST_WORKERS.Grass.lvl : "");
           var minMarks = r.jobs.map(function(j){ return abilityMarker(j, false); }).join("");
-          lines.push('<li tabindex="0" data-tip="' + escA(tip) + '">' + minMarks + "<strong>" + esc(r.jobs.join(" + ")) + " Aniimo</strong>" + (r.count > 1 ? " ×" + r.count : "") + " · " + esc(facNames) +
-            (r.planting ? " · also does the planting" : "") + "</li>");
+          var minSub = r.jobs.length > 1
+            ? "strongest known: " + esc(r.worker) + " (" + r.jobs.map(function(j){ return j + " Lv." + BEST_WORKERS[j].lvl; }).join(", ") + ") · shared across " + facsSorted.length + (facsSorted.length === 1 ? " facility" : " facilities")
+            : "strongest known: " + esc(r.worker) + " Lv." + BEST_WORKERS[r.jobs[0]].lvl + " · shared across " + facsSorted.length + (facsSorted.length === 1 ? " facility" : " facilities");
+          lines.push('<tr tabindex="0" data-tip="' + escA(tip) + '"><td>' + minMarks + "<strong>" + esc(r.jobs.join(" + ")) + " Aniimo</strong>" + (r.count > 1 ? " ×" + r.count : "") + '<br /><span class="src">' + minSub + "</span></td><td>" + PUT_SHARED_TRAIT + "</td><td>" +
+            facsSorted.map(function(bf){ return assignHtml(bf, bf.job, null); }).join("") +
+            (r.planting ? " · also does the planting" : "") + "</td></tr>");
         });
       }
       lines = lines.concat(putOutFarmLines(team.uncounted, includeAllUncounted));
@@ -3812,7 +3836,7 @@
       if(team.planting && !plantCover){
         var gw = BEST_WORKERS.Grass;
         var pTip = "Grass Lv." + gw.lvl + " · strongest known: " + gw.name + " Lv." + gw.lvl + (gw.alt ? " (or " + gw.alt.name + " Lv." + gw.alt.lvl + ")" : "") + " · Planting · at least " + team.planting + " for planting; exact count beyond " + team.planting + " not verified yet · Hauling cover: staff this post with Tuckin (Grass Lv 3 + Hauling Lv 3; Leafy works too) and it also covers 1 of the plan's Hauling — a Grass Lv 3 worker covering, a step down from the Grass Lv 4 strongest, because Somniwing has no Hauling in any source checked";
-        lines.push('<li tabindex="0" data-tip="' + escA(pTip) + '">' + abilityMarker("Grass", false) + "<strong>Grass Aniimo</strong> · Planting · at least " + team.planting + " for planting</li>");
+        lines.push('<tr tabindex="0" data-tip="' + escA(pTip) + '"><td>' + abilityMarker("Grass", false) + "<strong>Grass Aniimo</strong>" + putStrongest(gw) + "</td><td>" + PUT_NOMATCH_TRAIT + "</td><td>" + putPlainPill("Planting") + " · at least " + team.planting + " for planting</td></tr>");
       }
       /* Hauling, in the put-out list like every other job: the line
          stands for the plan's whole hauling count, and its data-heads
@@ -3830,7 +3854,7 @@
           : "0 covered by this crew — no Aniimo on it confirmed to also hold Hauling";
         var hRest = haulingRestText(hs2);
         var hTip = "Hauling Lv." + hw.lvl + " · strongest known: " + hw.name + " Lv." + hw.lvl + " · Hauling · " + hs2.need + " Hauling Aniimo in all for the " + hs2.facilities + (hs2.facilities === 1 ? " facility" : " facilities") + " this plan sets running (your stand-in count, not game-verified data). Workers who finish making something can carry it to storage if they have Hauling too: " + hs2.covered + " covered by Aniimo already on this crew whose Hauling the verified per-species data confirms (counted once, in their main job" + (hs2.names.length ? ": " + hs2.names.join(", ") : "") + "), " + hs2.dedicated + " dedicated hauler" + (hs2.dedicated === 1 ? "" : "s") + " added to the total." + (hRest ? " The rest of this crew: " + hRest : "");
-        lines.push('<li data-heads="' + hs2.dedicated + '" tabindex="0" data-tip="' + escA(hTip) + '">' + abilityMarker("Hauling", false) + "<strong>Hauling Aniimo ×" + hs2.need + "</strong> · Hauling · carries finished things to storage · " + hCoverTxt + " · " + hs2.dedicated + " extra to put out</li>");
+        lines.push('<tr data-heads="' + hs2.dedicated + '" tabindex="0" data-tip="' + escA(hTip) + '"><td>' + abilityMarker("Hauling", false) + "<strong>Hauling Aniimo ×" + hs2.need + "</strong>" + putStrongest(hw) + "</td><td>" + PUT_NOMATCH_TRAIT + "</td><td>Hauling · carries finished things to storage · " + hCoverTxt + " · " + hs2.dedicated + " extra to put out</td></tr>");
       }
       if(!lines.length) return "";
       /* The total counts individuals, not entries: an aggregated
@@ -3848,20 +3872,20 @@
         (capLine ? '<p class="putout-cap">' + capLine + "</p>" : "") +
         '<p class="putout-cap">Always crew: ' + alwaysCrewTotal() + " · Plan crew: " + Math.max(0, totalHeads - alwaysCrewTotal()) + " · Total: " + totalHeads + (capNow !== null ? " of " + capNow : "") + "</p>" +
         '<p class="src" style="margin:0 0 10px">Every Aniimo for this plan is in this one list, counted once. Nothing else on this page adds more.</p>' +
-        '<ul class="putout-list">' + lines.join("") + "</ul></div>";
+        teamTable(lines.join("")) + "</div>";
     }
 
     function tipText(job, lvl, facility, items){
       var t = FAC_TRAIT[facility];
       var mid = t ? t.name + " (" + t.letter + ") (+20% work efficiency)" : "no verified personality match in the guide data";
-      return job + (lvl ? " Lv." + lvl : " · any level") + " · " + mid + " · " + facility + " (" + items.join(", ") + ")";
+      return job + (lvl ? " Lv." + lvl : " · any level") + " · " + mid + " · " + facility + (items && items.length ? " (" + items.join(", ") + ")" : "");
     }
     function assignHtml(bf, job, lvl){
       var t = FAC_TRAIT[bf.facility];
       var famItemsA = (bf.items || []).filter(function(n){ return familyGate(n); });
       var tipA = tipText(job, lvl, bf.facility, bf.items) + (famItemsA.length ? " · Family-only slots: " + famItemsA.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ") : "");
       return '<button type="button" class="assign" data-tip="' + escA(tipA) + '">' + esc(bf.facility) +
-        ' <span class="src">(' + bf.items.map(function(x){ return esc(x); }).join(", ") + ")</span>" +
+        (bf.items && bf.items.length ? ' <span class="src">(' + bf.items.map(function(x){ return esc(x); }).join(", ") + ")</span>" : "") +
         (famItemsA.length ? ' · <span class="trait">' + famItemsA.map(function(n){ return esc(n) + ": " + esc(familyOnlyText(n)); }).join(" · ") + "</span>" : "") +
         (t ? ' · <span class="trait">' + t.letter + " " + esc(t.name) + "</span>" : "") + "</button>";
     }
@@ -3874,9 +3898,9 @@
     function uncountedHtml(uncounted){
       var facs = Object.keys(uncounted);
       if(!facs.length) return "";
-      return '<div class="note note-info"><h4>🌱 In the list, job not checked yet</h4><p>' +
+      return '<div class="note note-info"><h4>🌱 In the table, job not checked yet</h4><p>' +
         facs.sort().map(function(f){ return "<strong>" + esc(f) + "</strong> (" + uncounted[f].items.map(function(x){ return esc(x); }).join(", ") + ")"; }).join(" · ") +
-        '. Each of these stations has its Aniimo in the Put out list above. Which ability staffs them is not checked yet, so no worker is named.</p></div>';
+        '. Each of these stations has its Aniimo in the Put out table above. Which ability staffs them is not checked yet, so no worker is named.</p></div>';
     }
 
     /* ============ Home side & Bud Tickets ============
@@ -4138,7 +4162,7 @@
         area.innerHTML = '<div class="note note-warn"><h4>No plan crew fits RV ' + userRV + ' yet</h4><p>' +
           "Always crew: <strong>" + alwaysTotal + "</strong> · Plan crew: <strong>" + (minSize - alwaysTotal) + "</strong> at Minimum (Best plan crew: " + (bestSize - alwaysTotal) + ") · Total: <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so the plan side does not fit in the " + Math.max(0, cap - alwaysTotal) + " places the Always crew leaves, and no plan crew is shown. " +
           "The Always list is never trimmed: only the plan side is cut. To fix it: take recipes out of the basket, switch strategy, or level the RV up first.</p></div>" +
-          (alwaysTotal > 0 ? '<div class="putout"><h3>📌 Always crew · never trimmed</h3><ul class="putout-list">' + putOutAlwaysLines(team).join("") + "</ul></div>" : "");
+          (alwaysTotal > 0 ? '<div class="putout"><h3>📌 Always crew · never trimmed</h3>' + teamTable(putOutAlwaysLines(team).join("")) + "</div>" : "");
         renderHome();
         return;
       }
@@ -4182,7 +4206,7 @@
         capHtml = '<div class="note note-info"><h4>⭐ Best does not fit RV ' + userRV + ', so it is not shown</h4><p>' +
           "Best needs " + bestSize + " Aniimo, " + (bestSize - cap) + " over your limit of " + cap + ". The Minimum crew below is the one that fits: it puts out " + minSize + " Aniimo because its workers are shared, one Aniimo per job across every facility that needs that job. Every job, every facility's attached Aniimo and the planting Grass Aniimo are still covered — facilities just take turns, so everything runs slower than Best.</p></div>";
       }
-      var howToHtml = '<div class="note note-info"><h4>📖 How to read the list</h4><p>Each line names an <strong>ability</strong>, not one Aniimo you must use — <strong>Ice Aniimo ×2</strong> means any two Aniimo with Ice. Climate machine posts (Cooling Unit, Heat Furnace, Sunlamp) read <strong>any level</strong>: the level of the Aniimo running one does not matter. Tap a line for more detail.</p></div>';
+      var howToHtml = '<div class="note note-info"><h4>📖 How to read the list</h4><p>Each row names an <strong>ability</strong>, not one Aniimo you must use — <strong>Ice Aniimo ×2</strong> means any two Aniimo with Ice. Climate machine posts (Cooling Unit, Heat Furnace, Sunlamp) read <strong>any level</strong>: the level of the Aniimo running one does not matter. Tap a row for more detail.</p></div>';
       var html = capHtml + howToHtml + putOutHtml(team, true, (teamMode === "best" && fittedRows) ? { mode:"fitted", fittedRows:fittedRows } : null) + crewExtraHtml(team) + familyCrewNoteHtml({ gross: teamGross }) + storagePassiveHtml() + '<div class="summary-strip">' +
         '<div class="sum-chip"><b>' + teamSize + '</b><span>Aniimo on the crew (' + (teamMode === "best" ? (fittedRows ? "Best, fitted to RV " + userRV : "Best") : "Minimum") + ')</span></div>' +
         (cap !== null ? '<div class="sum-chip"><b>' + (cap === 0 ? "None yet" : cap) + '</b><span>Aniimo allowed at RV ' + userRV + '</span></div>' : "") +
@@ -4200,7 +4224,7 @@
          above is the only place Aniimo counts live; what remains
          below points at it or adds facts it does not carry. */
       if(team.climate && team.climate.savedAniimo > 0){
-        html += '<p class="src" style="margin-top:10px">🌡️ Shared climate zones in your layout save <strong>' + team.climate.savedAniimo + ' Aniimo</strong> on this plan. The climate Aniimo themselves are in the Put out list above.</p>';
+        html += '<p class="src" style="margin-top:10px">🌡️ Shared climate zones in your layout save <strong>' + team.climate.savedAniimo + ' Aniimo</strong> on this plan. The climate Aniimo themselves are in the Put out table above.</p>';
       }
       if(strategy === "levelup"){
         var liT = levelingItems();
@@ -4212,7 +4236,7 @@
          count list under the Put out list (player's fix, Oct 29,
          2026) — it and its §/‡ footnote paragraphs are gone. One
          short line covers the one idea they explained. */
-      if(merged || plantingBy) html += '<p class="src" style="margin-top:8px">One Aniimo can cover two jobs. It is counted once, in the Put out list above.</p>';
+      if(merged || plantingBy) html += '<p class="src" style="margin-top:8px">One Aniimo can cover two jobs. It is counted once, in the Put out table above.</p>';
       if(facs.length && teamMode === "best"){
         html += teamTable((fittedRows || teamBestRows(team.byFac)).map(function(r){
           var traitCell;
