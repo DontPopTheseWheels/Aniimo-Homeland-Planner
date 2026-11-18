@@ -508,8 +508,8 @@
 
 
         <div class="note note-warn">
-          <h4>👨‍👩‍👧 Family gates: hard requirements, not notes</h4>
-          <p>These recipes can only be worked by an Aniimo of the named family. Their crew slots read as family-only requirements, and the copied plan lists them too. Quick recipes are module recipes for the same product and carry the same family gate.</p>
+          <h4>👨‍👩‍👧 Family gates: the game's own family tags</h4>
+          <p>In the game, these recipes belong to the named family — their crew slots read as family-only requirements, and the copied plan lists them too. My Crew staffs every one of them family-first: a member of the family — its whole evolution line — ranks ahead of every other Aniimo for the post, ahead of ability level too. When no family member is pickable, the post falls back to the normal ranking and its row says the family has no pickable member you own. Quick recipes are module recipes for the same product and carry the same family gate.</p>
           <p style="margin-top:8px">
           <strong>Sea Salt</strong> (Tidewhisper Sandcastle Lv 1, Leisure 1, RV 5): Needs: Susuta family.<br />
           <strong>Quick Sea Salt</strong> (Sandcastle Lv 2, Leisure 2, Resource Detector 2): Needs: Susuta family.<br />
@@ -708,7 +708,7 @@
         <strong>Storage Units take no worker:</strong> they are passive, with no crew slot, no crew count and no worker-based power math.<br />
         <strong>📌 Always staffed:</strong> your Step 1 pins are staffed first, stand first in the table below, marked Always, and count toward your limit. If the total goes over, the plan side is trimmed; the Always list never is.</p>
         <p class="src" style="margin:0 0 12px">Your crew picks come from your roster as of Nov 18, 2026 — 182 of your 211 home Aniimo are pickable (battle party, Release-marked and undecided are never picked). A post whose asked level nobody free meets is stepped down to your best Aniimo holding that job at any level, labelled on its row; only a job nobody you own holds at any level stays unfilled.</p>
-        <p class="src" style="margin:0 0 12px"><strong>🏰 Sandcastle &amp; Nimbus Bed family rules (Sparkle's):</strong> which family staffs these two stations depends on what the station is producing. A Tidewhisper Sandcastle making <strong>Sea Salt</strong> goes to the <strong>Susuta</strong> family first; making <strong>Pearls</strong>, to the <strong>Shelly</strong> family first. A Nimbus Bed making <strong>Wool</strong> — either Wool formula, the Lv 1 one or the Lv 2 Quick Recipe: Wool — goes to the <strong>Nimbi</strong> family first; making <strong>Petals</strong>, to the <strong>Iris</strong> family first. Family first means that family ranks ahead of every other Aniimo for that post, ahead of ability level too, and the pick still shows its step-down label when it lands below the asked level. When a Sandcastle post's production is known, that production rule replaces the standing fallback — <strong>Panpanta</strong> and <strong>Shelly</strong> families first — which still applies whenever a Sandcastle post has no production assigned; a Nimbus Bed post with no production assigned picks by the normal ranking. <strong>Turbo</strong> and <strong>Gracewing</strong> never work the Sandcastle, whatever it is making — they can still be picked for every other post.</p>
+        <p class="src" style="margin:0 0 12px"><strong>🏰 Family rules (Sparkle's):</strong> which family staffs a leisure station depends on what the station is producing — every family tag in the planner's data is enforced. A Tidewhisper Sandcastle making <strong>Sea Salt</strong> goes to the <strong>Susuta</strong> family first; making <strong>Pearls</strong>, to the <strong>Shelly</strong> family first; making <strong>Sweet Cone</strong>, to the <strong>Sugar</strong> family first. A Dewy House making <strong>Aromathyst</strong> goes to the <strong>Dewy</strong> family first. A Nimbus Bed making <strong>Wool</strong> — either Wool formula, the Lv 1 one or the Lv 2 Quick Recipe: Wool — goes to the <strong>Nimbi</strong> family first; making <strong>Petals</strong>, to the <strong>Iris</strong> family first. A Starfall Hammock gathering <strong>Star</strong> goes to the <strong>Celestis</strong> family first; gathering <strong>Gold-Speck Cap</strong>, to the <strong>Coinwisp</strong> family first. A Floral Windmill gathering <strong>Scales</strong> goes to the <strong>Flutternym</strong> family first. A family is its whole evolution line — the Dewy family is Dewy <em>and</em> Fragrancier, the Iris family is Iris, Irisal and Irisalis, and so on. Family first means that family ranks ahead of every other Aniimo for that post, ahead of ability level too, and the pick still shows its step-down label when it lands below the asked level. When a Sandcastle post's production is known, that production rule replaces the standing fallback — <strong>Panpanta</strong> and <strong>Shelly</strong> families first — which still applies whenever a Sandcastle post has no production assigned; a post at any other station with no production assigned picks by the normal ranking. If a tagged family has no pickable member in your roster at all, the post still fills by the normal ranking and its row says the family has no pickable member you own. <strong>Turbo</strong> and <strong>Gracewing</strong> never work the Sandcastle, whatever it is making — they can still be picked for every other post.</p>
                 <div class="note note-info" style="margin:0 0 16px"><p><strong>Pick your strategy first</strong> — in Level Up mode the bill's jobs join this crew. Switching rebuilds it clean.</p></div>
         <div class="card">
           <div id="teamGate"></div>
@@ -836,7 +836,7 @@
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
           <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 8): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 8): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales. Crafting (max 7): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Premium Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume. Only three change numbers, auto-applied from Ecological: Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8). Premium Wheat is not a module recipe at all: it is what Wheat Seeds grow into on a Farmland at Lv 6 from RV 12 (The Hidden Gaming Lair's Premium Wheat page, checked Nov 17, 2026, matching this planner's Farmland Lv 6 / RV 12 listing), so it is auto-applied when your RV is 12 or more and your entered Farmland level is 6 or more — no tap needed.</li>
-          <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: one Aniimo covering two paired posts counts once. <strong>My Crew (Nov 18, 2026):</strong> this personal planner names the player's own Aniimo for every post, picked from a baked-in snapshot of her roster — the home list, 211 Aniimo, as of Nov 18, 2026; her battle party and the 56 undecided are never picked, and neither is any animal marked Release or with no verified jobs. Special forms (Prismana, Sparkling, Umbral, Alpha, Regional) are pickable like anyone else. Ranking is her own rule: highest ability level for the job first (one whole level outweighs everything else), personality-facility match second (the facility's +20% letter against the same slot of the animal's 4-letter personality), already homeland-based third, highest CP last. A post asks the level the generic worker table names for its job (Fire Lv 3, Grass Lv 4, Leisure Lv 4, and so on); climate machines ask any level. <strong>Sandcastle family rule (Sparkle's standing rule, Nov 7, 2026):</strong> Tidewhisper Sandcastle posts go to the Panpanta and Shelly families first — a family member ranks ahead of every other candidate, even at a lower Leisure level (labelled a step-down as usual) — and Turbo and Gracewing never work the Sandcastle, in any mode, including step-down picks and pairing or sharing reuse; if that leaves a Sandcastle post with nobody, it reads unfilled like any other post. The rule touches Sandcastle posts only: Turbo and Gracewing stay fully pickable everywhere else. <strong>Production-family rules (Sparkle's, completed Nov 18, 2026, from her in-game Select Product screens):</strong> which family staffs a leisure station depends on what that station is producing — the product or gather the plan assigns to the post, per-copy gather picks included. A Tidewhisper Sandcastle post producing Sea Salt ranks the Susuta family first, and a post producing Pearls ranks the Shelly family first; when a Sandcastle post's production is known, that production rule replaces the generic Panpanta/Shelly preference for that post, and when its production is not assigned the generic preference is the fallback. A Nimbus Bed post producing Wool ranks the Nimbi family first — both Wool formulas count as Wool, the Lv 1 formula and the Lv 2 Quick Recipe: Wool — and a post producing Petals ranks the Iris family first; a Bed post with no production assigned picks by the normal ranking. Family-first ranking, the step-down labels and the absolute Turbo/Gracewing Sandcastle ban work exactly as for the generic rule in every mode, including pairing and sharing reuse, and no other station's picking changes. Step-down (player's decision, Nov 17, 2026): when nobody free meets a post's asked level, the best Aniimo holding that job at any level fills the post under the same ranking, labelled on its put-out and assignment rows — "below the Lv {asked} asked — works slower", or "below the Lv {best} best — works slower" where the asked level is only the best-worker preference (the Leisure Lv 4 posts) — and its tooltip says it stepped down because no Lv {asked} animal was available. Only a post whose job no available owned Aniimo holds at any level stays unfilled; there the row says so plainly and keeps the strongest known Aniimo (Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3) as a what-to-catch note only. Her sheet files the Cooling Unit's job as Cooling for several species (Glacy, Glynsera, Prawnch) at the same levels the generic data gives their Ice job, and as Ice for others, so the picker reads both names as the Ice job. Jobs follow the game's own data (aniimoguide homeland job list, build 1.1.3846247, read Oct 29, 2026), one job per facility, never keyed to a product: Leisure — Tidewhisper Sandcastle, Dewy House, Nimbus Bed, Starfall Hammock, Floral Windmill; Perfumery — Phonolfactory Table; Light — Sunlamp; Dark — Jukebox Dryer, Pickling Jar; Fire — Claw Game Cooker, Simmering Pot, Blazing Stove, Chimney Kiln, Heat Furnace; Water — Well, Bouncy Brew Keg; Wind — Carousel Mill, Joy Wheel Loom; Earth — Mine; Artisanship — Crafting Table, Woodworking Bench; Lightning — Aniipod Maker, Dance Pad Polisher; Ice — Cooling Unit. Farmland and Woodland have no facility job in that list — planting is the Grass line of its own — but each field still adds one Aniimo. <strong>Hauling:</strong> the need is the player's stand-in rule, not game data (player's combo, Nov 17, 2026): counted in hauling power — 2, +1 per 10 facility copies out, cap 8; Farmland, Woodland and Storage Units never count toward the copies. Cover: the actual picked Aniimo's own Hauling, read off her roster — a picked Aniimo with Hauling covers, once, in its main job, weighted by its own Hauling level (Lv 4 counts 2, Lv 3 counts 1.5, Lv 1–2 count 1); dedicated haulers, picked by name from her remaining Aniimo with the highest Hauling, fill what is left, every fraction rounded up. Her roster is hauling-rich where the generic table was blind: her Inferlupa is Hauling Lv 4 (the verified per-species data found no Hauling for his species at all), and her Glynsera and Grizbo ♀ Lv 60 are Hauling Lv 4 too. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is the Homeland leisure station (the player's word, Oct 29, 2026), so it counts the copies the plan's leisure gathers need, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries name the picked Aniimo — species, sex, level, CP and its ability level for the job — and the Personality match column shows that animal's own match. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
+          <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: one Aniimo covering two paired posts counts once. <strong>My Crew (Nov 18, 2026):</strong> this personal planner names the player's own Aniimo for every post, picked from a baked-in snapshot of her roster — the home list, 211 Aniimo, as of Nov 18, 2026; her battle party and the 56 undecided are never picked, and neither is any animal marked Release or with no verified jobs. Special forms (Prismana, Sparkling, Umbral, Alpha, Regional) are pickable like anyone else. Ranking is her own rule: highest ability level for the job first (one whole level outweighs everything else), personality-facility match second (the facility's +20% letter against the same slot of the animal's 4-letter personality), already homeland-based third, highest CP last. A post asks the level the generic worker table names for its job (Fire Lv 3, Grass Lv 4, Leisure Lv 4, and so on); climate machines ask any level. <strong>Sandcastle family rule (Sparkle's standing rule, Nov 7, 2026):</strong> Tidewhisper Sandcastle posts go to the Panpanta and Shelly families first — a family member ranks ahead of every other candidate, even at a lower Leisure level (labelled a step-down as usual) — and Turbo and Gracewing never work the Sandcastle, in any mode, including step-down picks and pairing or sharing reuse; if that leaves a Sandcastle post with nobody, it reads unfilled like any other post. The rule touches Sandcastle posts only: Turbo and Gracewing stay fully pickable everywhere else. <strong>Production-family rules (Sparkle's, completed Nov 18, 2026, from her in-game Select Product screens; extended the same day to every family tag in the planner's own data):</strong> which family staffs a leisure station depends on what that station is producing — the product or gather the plan assigns to the post, per-copy gather picks included. A Tidewhisper Sandcastle post producing Sea Salt ranks the Susuta family first, a post producing Pearls ranks the Shelly family first, and a post producing Sweet Cone ranks the Sugar family first; when a Sandcastle post's production is known, that production rule replaces the generic Panpanta/Shelly preference for that post, and when its production is not assigned the generic preference is the fallback. A Dewy House post producing Aromathyst ranks the Dewy family first. A Nimbus Bed post producing Wool ranks the Nimbi family first — both Wool formulas count as Wool, the Lv 1 formula and the Lv 2 Quick Recipe: Wool — and a post producing Petals ranks the Iris family first. A Starfall Hammock post gathering Star ranks the Celestis family first, and one gathering Gold-Speck Cap ranks the Coinwisp family first. A Floral Windmill post gathering Scales ranks the Flutternym family first. A post at any of these stations with no production assigned picks by the normal ranking. Family membership is the evolution line: Susuta's line is Susuta, Popota, Panpanta and Piopiota; Shelly's is Shelly, Sheldon and Sherro; the Sugar family is the Sugarfish line — Sugarfish, Sugarslime and Sugartini; Dewy's is Dewy and Fragrancier; Nimbi's is Nimbi, Turbo and Dreaple; Iris's is Iris, Irisal and Irisalis; Celestis's is Celestis and Stellarys; Coinwisp's is Coinwisp and Pouchwisp; Flutternym's is Flutternym and Gracewing. When a tagged family has no pickable member in her roster at all, the post still fills by the normal ranking — never left unfilled for that reason alone — and its row says the family has no pickable member she owns. Family-first ranking, the step-down labels and the absolute Turbo/Gracewing Sandcastle ban work exactly as for the generic rule in every mode, including pairing and sharing reuse. Step-down (player's decision, Nov 17, 2026): when nobody free meets a post's asked level, the best Aniimo holding that job at any level fills the post under the same ranking, labelled on its put-out and assignment rows — "below the Lv {asked} asked — works slower", or "below the Lv {best} best — works slower" where the asked level is only the best-worker preference (the Leisure Lv 4 posts) — and its tooltip says it stepped down because no Lv {asked} animal was available. Only a post whose job no available owned Aniimo holds at any level stays unfilled; there the row says so plainly and keeps the strongest known Aniimo (Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3) as a what-to-catch note only. Her sheet files the Cooling Unit's job as Cooling for several species (Glacy, Glynsera, Prawnch) at the same levels the generic data gives their Ice job, and as Ice for others, so the picker reads both names as the Ice job. Jobs follow the game's own data (aniimoguide homeland job list, build 1.1.3846247, read Oct 29, 2026), one job per facility, never keyed to a product: Leisure — Tidewhisper Sandcastle, Dewy House, Nimbus Bed, Starfall Hammock, Floral Windmill; Perfumery — Phonolfactory Table; Light — Sunlamp; Dark — Jukebox Dryer, Pickling Jar; Fire — Claw Game Cooker, Simmering Pot, Blazing Stove, Chimney Kiln, Heat Furnace; Water — Well, Bouncy Brew Keg; Wind — Carousel Mill, Joy Wheel Loom; Earth — Mine; Artisanship — Crafting Table, Woodworking Bench; Lightning — Aniipod Maker, Dance Pad Polisher; Ice — Cooling Unit. Farmland and Woodland have no facility job in that list — planting is the Grass line of its own — but each field still adds one Aniimo. <strong>Hauling:</strong> the need is the player's stand-in rule, not game data (player's combo, Nov 17, 2026): counted in hauling power — 2, +1 per 10 facility copies out, cap 8; Farmland, Woodland and Storage Units never count toward the copies. Cover: the actual picked Aniimo's own Hauling, read off her roster — a picked Aniimo with Hauling covers, once, in its main job, weighted by its own Hauling level (Lv 4 counts 2, Lv 3 counts 1.5, Lv 1–2 count 1); dedicated haulers, picked by name from her remaining Aniimo with the highest Hauling, fill what is left, every fraction rounded up. Her roster is hauling-rich where the generic table was blind: her Inferlupa is Hauling Lv 4 (the verified per-species data found no Hauling for his species at all), and her Glynsera and Grizbo ♀ Lv 60 are Hauling Lv 4 too. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is the Homeland leisure station (the player's word, Oct 29, 2026), so it counts the copies the plan's leisure gathers need, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries name the picked Aniimo — species, sex, level, CP and its ability level for the job — and the Personality match column shows that animal's own match. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
           <li><strong>Adding facilities by hand (player's ask, Oct 29, 2026):</strong> each facility block in Step 5 (Add &amp; Adjust) has − and + steppers. + puts out extra copies she owns, never above her Step 1 count; − takes back only copies she added; the plan's own count is the floor. Added copies are marked "added by you" and count in full: crew, power, totals, and the strategy plan's Working column. Amounts stay plan-driven — added copies are staffed spares, except Mines: each added Mine digs the material on its line, at that material's per run yield. Added copies live in memory only and reset when the basket or strategy changes. The layout also ends with an "Add a facility this plan isn't using" list, so any owned facility can go out even when no recipe needs it.</li>
           <li><strong>Mines come after the strategy (player's workflow fix, Oct 29, 2026; moved into Facilities out, Nov 16, 2026):</strong> the one Mine picker lives in Facilities out in Step 5 (Add & Adjust), after the strategy plan — there is no separate Mines step any more. The strategy itself can claim Mines (the Level Up bill's ore chain, a goal's materials), so Mines are never picked before it. Mines the plan claims are marked "used by this plan": locked, never offered again, so nothing is double-picked. She picks only for Mines she adds past the plan's, up to her Step 1 count (her example: 7 owned, 1 used by the plan, 6 left to add). Added Mines count like claimed ones — Earth crew, power, totals, per run yield; Mine takes count per run, never per hour (run times not checked). <strong>All mining gives Mineral Sand</strong> (player's rule): every run brings sand with the picked material, amount varies, so no Mine needs to sit on sand to earn it and no sand amount is counted. Picks and added Mines live in memory only and reset when the basket or strategy changes.</li>
           <li><strong>Per-copy gather picks (player's extension of the Mine picker, Oct 29, 2026):</strong> each copy out of the Well, Dewy House, Tidewhisper Sandcastle, Starfall Hammock, Floral Windmill and Nimbus Bed has one product pick on its Step 5 (Add &amp; Adjust) block. Plan copies start on the plan's pick; added copies start on the facility's first product; any pick can change. An added copy counts like a plan copy: crew post, power, totals, per run yield (Sea Salt 10, Pearl 2 — Susuta and Shelly family notes — Aromathyst 4, Star 2 flagged not checked, Scales 8 at the Floral Windmill; the Well's waters use the Well's level). Takes count per run, never per hour. <strong>The Nimbus Bed picks Wool or Petals per copy</strong> (Wool 4 per run, Petals 6 per run): it is the Homeland leisure station, and its products are filed under that station name in the data, so its picks resolve through the same name fix as its counts — a Nimbus Bed added by hand gets its pick on its block, marked added by you, exactly like the other gather facilities.</li>
@@ -855,7 +855,7 @@
           <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
           <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
           <li><strong>Power headroom (caps and copies fixed Nov 7, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>. The Step 1 fill uses the right copy count for the picked RV, and the power headroom line totals all generators. Spare power raises grid speed up to <strong>120%</strong>; over the total supply, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator 22 × 22, Power Pole 14 × 14.</li>
-          <li><strong>Family gates are hard requirements (deep-dive audit, Nov 7, 2026):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
+          <li><strong>Family gates are the game's own tags (deep-dive audit, Nov 7, 2026; My Crew enforces every one family-first, with the normal-ranking fallback and row note when a family has no pickable member):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
           <li><strong>Climate and light gates on recipes (audit, Nov 7, 2026):</strong> Scales and Quick Scales are hard-gated on Light: the plan must include a Sunlamp covering the Floral Windmill in Step 5 (Add & Adjust), and the plan warns if it is missing. Pearl and Quick Pearl want Warmth +1: without Heat Furnace coverage of the Sandcastle they run at 80%, and the adjusted per-hour figure is shown, labelled. Star wants Cool -1: 80% without Cooling Unit coverage. Sweet Cone wants Cold -2: 50% without. Gold-Speck Cap wants Warmth +1: 80% without.</li>
           <li><strong>Storage Units take no worker (audit, Nov 7, 2026):</strong> Storage Units are passive. They have no crew slot, no crew count and no worker-based power math, and they never appear in the crew.</li>
           <li><strong>Always staffed (player's rule, Nov 8, 2026):</strong> facilities the player pins in Step 1 (nothing is pinned by default; any staffable facility except the climate units can be added, up to the copies owned) are staffed first, before the recipe basket, with the best worker for each facility's job. The climate units — Cooling Unit, Heat Furnace and Sunlamp — can never be pinned (player's ask, Nov 15, 2026): they are staffed only when a plan's layout actually puts one out, and those posts stay level free. Their workers cover the plan's posts at the same facility, so no worker is counted twice, and the Always crew counts inside the Aniimo limit everywhere the limit is shown. When Always plus plan goes over the limit, only the plan side is fitted or trimmed; the Always list is never trimmed. A pinned copy with a recipe picked for it follows that recipe's family rules; a pinned copy with no recipe needs only a worker with the right job. Storage Units cannot be pinned.</li>
@@ -3427,35 +3427,82 @@
     function sandcastleBanned(a){ return !!(a && SANDCASTLE_BANNED[a.species]); }
     function sandcastleFamily(a){ return !!(a && SANDCASTLE_FAMILY[a.species]); }
     /* Sparkle's production-family rules (completed Nov 18, 2026,
-       from her in-game Select Product screens): which family staffs
-       a leisure station depends on what that station is producing.
-       Tidewhisper Sandcastle producing Sea Salt -> Susuta family
-       first; producing Pearls -> Shelly family first. Nimbus Bed
-       producing Wool -> Nimbi family first (both Wool formulas
-       count as Wool: the Lv 1 Wool and the Lv 2 "Quick Recipe:
-       Wool" / Quick Wool); producing Petals -> Iris family first.
-       "Family first" works exactly like the Sandcastle preference
-       above: that family's candidates rank ahead of all others for
-       the post, ahead of ability level, the normal ranking applies
-       within the family and among everyone else when no family
-       member is available, and the step-down label still shows when
-       the pick lands below the asked/best level. A post's
-       production is the product/gather the plan assigns to that
-       post (per-copy gather picks included). When a Sandcastle
+       from her in-game Select Product screens; extended the same
+       day to EVERY family tag the planner's own data carries):
+       which family staffs a leisure station depends on what that
+       station is producing. The enforced set is swept from
+       FAMILY_GATES itself — every product the data tags with a
+       family — so no tagged post can slip past the picker again:
+         Tidewhisper Sandcastle: Sea Salt -> Susuta family,
+           Pearl -> Shelly family, Sweet Cone -> Sugar family
+         Dewy House: Aromathyst -> Dewy family
+         Nimbus Bed: Wool -> Nimbi family, Petals -> Iris family
+         Starfall Hammock: Star -> Celestis family,
+           Gold-Speck Cap -> Coinwisp family
+         Floral Windmill: Scales -> Flutternym family
+       Quick variants carry their base product's family, exactly as
+       FAMILY_GATES lists them; both Wool formulas count as Wool
+       (the Lv 1 Wool and the Lv 2 "Quick Recipe: Wool" / Quick
+       Wool). "Family first" works exactly like the Sandcastle
+       preference above: that family's candidates rank ahead of all
+       others for the post, ahead of ability level, the normal
+       ranking applies within the family and as the fallback when
+       no family member is pickable, and the step-down label still
+       shows when the pick lands below the asked/best level. A
+       post's production is the product/gather the plan assigns to
+       that post (per-copy gather picks included). When a Sandcastle
        post's production is known, its production rule REPLACES the
        generic Panpanta/Shelly preference for that post; when a
        post's production is not assigned or not known, the existing
        behaviour is the fallback (generic family-first at the
-       Sandcastle, normal ranking at the Bed). The Turbo/Gracewing
-       Sandcastle ban is unchanged and absolute in all cases. No
-       other station's picking changes. Family here names the
-       species, exactly as the Panpanta/Shelly set above does. */
+       Sandcastle, normal ranking at the other stations). The
+       Turbo/Gracewing Sandcastle ban is unchanged and absolute in
+       all cases. FAMILY MEMBERSHIP IS THE EVOLUTION LINE
+       (FAMILY_LINES below): the Iris family is Iris, Irisal and
+       Irisalis; the Dewy family is Dewy and Fragrancier; and so on
+       for every line. When a tagged family has NO pickable member
+       in her roster at all, the post still fills by the normal
+       ranking — never left unfilled for that reason alone — and
+       its row says the family has no pickable member she owns (see
+       familyNoneName). */
     var BED_FACILITY = "Nimbus Bed";
-    var CASTLE_PROD_FAMILY = { "Sea Salt":"Susuta", "Quick Sea Salt":"Susuta",
-      "Pearl":"Shelly", "Quick Pearl":"Shelly" };
-    var BED_PROD_FAMILY = { "Wool":"Nimbi", "Quick Wool":"Nimbi", "Petals":"Iris" };
-    function familySetOf(name){ var s = {}; if(name) s[name] = true; return s; }
+    /* Evolution lines: every species that counts as a member of
+       each gated family — the game's own evolution chains, checked
+       Nov 18, 2026: Susuta -> Popota -> Panpanta / Piopiota;
+       Shelly -> Sheldon -> Sherro; Sugarfish -> Sugarslime /
+       Sugartini (the line the data tags the "Sugar" family);
+       Dewy -> Fragrancier; Nimbi -> Turbo / Dreaple;
+       Iris -> Irisal -> Irisalis; Celestis -> Stellarys;
+       Coinwisp -> Pouchwisp; Flutternym -> Gracewing. */
+    var FAMILY_LINES = {
+      "Susuta":["Susuta","Popota","Panpanta","Piopiota"],
+      "Shelly":["Shelly","Sheldon","Sherro"],
+      "Sugar":["Sugarfish","Sugarslime","Sugartini"],
+      "Dewy":["Dewy","Fragrancier"],
+      "Nimbi":["Nimbi","Turbo","Dreaple"],
+      "Iris":["Iris","Irisal","Irisalis"],
+      "Celestis":["Celestis","Stellarys"],
+      "Coinwisp":["Coinwisp","Pouchwisp"],
+      "Flutternym":["Flutternym","Gracewing"]
+    };
+    function familySetOf(name){
+      var s = {};
+      (FAMILY_LINES[name] || (name ? [name] : [])).forEach(function(sp){ s[sp] = true; });
+      return s;
+    }
     function inFamilySet(a, set){ return !!(a && set && set[a.species]); }
+    /* The sweep: every family tag in the planner's data, grouped by
+       the facility whose post it governs — built from FAMILY_GATES
+       and each product's own facility (a Quick variant resolves
+       through its base product), so the picker enforces exactly
+       the tags the data carries, no more and no fewer. */
+    var PROD_FAMILY_BY_FAC = {};
+    Object.keys(FAMILY_GATES).forEach(function(n){
+      var it = ITEMS[n] || ITEMS[n.replace(/^Quick /, "")];
+      if(!it || !it.facility) return;
+      var f = facCanon(it.facility);
+      (PROD_FAMILY_BY_FAC[f] = PROD_FAMILY_BY_FAC[f] || {})[n] = FAMILY_GATES[n].family;
+    });
     /* The facilities a post serves: its own facility, plus every
        assigned facility for a shared Minimum slot — a shared Leisure
        slot that covers the Sandcastle IS a Sandcastle post. */
@@ -3503,21 +3550,59 @@
       });
       return fams.length === 1 ? fams[0] : null;
     }
+    /* The production family one post's assigned production names,
+       or null: Sandcastle posts answer for the castle; every other
+       post answers for the first of its facilities whose data
+       carries family tags and whose assigned production names
+       exactly one family. The generic Sandcastle fallback names no
+       single family, so it never answers here. */
+    function postFamilyName(p){
+      if(isSandcastlePost(p)){
+        return postProductionFamily(p, SANDCASTLE_FACILITY, PROD_FAMILY_BY_FAC[SANDCASTLE_FACILITY] || {});
+      }
+      var fs = postFacilities(p);
+      for(var i = 0; i < fs.length; i++){
+        var f = facCanon(fs[i]);
+        var map = PROD_FAMILY_BY_FAC[f];
+        if(!map) continue;
+        var fam = postProductionFamily(p, f, map);
+        if(fam) return fam;
+      }
+      return null;
+    }
     /* The family set that ranks first for this post, or null when
        the post picks by the normal ranking: Sandcastle posts always
        have one — their production family when known, the generic
-       Panpanta/Shelly set as the fallback; Nimbus Bed posts have
-       one only when their production names a family. */
+       Panpanta/Shelly set as the fallback; posts at any other
+       family-tagged station (Dewy House, Nimbus Bed, Starfall
+       Hammock, Floral Windmill) have one only when their production
+       names a family. */
     function postFamilySet(p){
       if(isSandcastlePost(p)){
-        var cf = postProductionFamily(p, SANDCASTLE_FACILITY, CASTLE_PROD_FAMILY);
+        var cf = postFamilyName(p);
         return cf ? familySetOf(cf) : SANDCASTLE_FAMILY;
       }
-      if(isNimbusBedPost(p)){
-        var bf2 = postProductionFamily(p, BED_FACILITY, BED_PROD_FAMILY);
-        return bf2 ? familySetOf(bf2) : null;
-      }
-      return null;
+      var fn = postFamilyName(p);
+      return fn ? familySetOf(fn) : null;
+    }
+    /* The family a post's production tags when that family has NO
+       pickable member in her roster at all — no eligible Aniimo of
+       the family's evolution line holding the post's job at any
+       level (Turbo and Gracewing never count at the Sandcastle,
+       where they are banned outright). The post still fills by the
+       family-first pass, which is then just the normal ranking;
+       this name exists so the row can say why no family member was
+       picked. Null whenever a family member is pickable — including
+       when one was simply picked earlier for another post. */
+    function familyNoneName(p){
+      var name = postFamilyName(p);
+      if(!name || !p || !p.job) return null;
+      var set = familySetOf(name);
+      var castle = isSandcastlePost(p);
+      var any = ROSTER.some(function(a){
+        return rosterEligible(a) && inFamilySet(a, set) && animalAbility(a, p.job) >= 1 && !(castle && sandcastleBanned(a));
+      });
+      return any ? null : name;
     }
     /* Family-first ranking: the given family's candidates rank
        ahead of everything else; the player's usual ranking decides
@@ -3580,8 +3665,10 @@
       var posts = [];
       var planWorkers = {}; /* idx -> true: facility/slot picks, for planting cover */
       function addPost(p){ p.animal = -1; posts.push(p); return p; }
-      /* Per-copy production for the two production-ruled stations:
-         the gather assignment (the plan's own assignment, with her
+      /* Per-copy production for the production-ruled stations (every
+         facility whose data carries family tags: Sandcastle, Dewy
+         House, Nimbus Bed, Starfall Hammock, Floral Windmill): the
+         gather assignment (the plan's own assignment, with her
          Facilities-out picks on top) for copy idx of that facility,
          resolved once per facility per pickCrew run. Null when the
          copy has no production assigned (or is Off). */
@@ -3589,7 +3676,7 @@
       function copyProduction(facility, idx){
         if(!facility) return null;
         var cf = facCanon(facility);
-        if(cf !== SANDCASTLE_FACILITY && cf !== BED_FACILITY) return null;
+        if(!PROD_FAMILY_BY_FAC[cf]) return null;
         if(!(cf in prodCache)){
           var list = null;
           if(typeof gatherAssignments === "function"){
@@ -3612,15 +3699,21 @@
              at the Sandcastle, Turbo and Gracewing are excluded
              outright, and the post's family — its production family
              when the production is known (Susuta for Sea Salt,
-             Shelly for Pearls at the castle; Nimbi for Wool, Iris
-             for Petals at the Bed), the generic Panpanta/Shelly set
-             at a castle with no production assigned — ranks ahead of
-             all other candidates, ahead of ability level too, so a
-             family member below the asked level still wins the post
-             over a non-family animal at the asked level, labelled a
-             step-down as usual. Only when no eligible Aniimo with
-             the job at any level remains does the post stay
-             unfilled, honestly, like any other post. */
+             Shelly for Pearls, Sugar for Sweet Cone at the castle;
+             Dewy for Aromathyst at the Dewy House; Nimbi for Wool,
+             Iris for Petals at the Bed; Celestis for Star, Coinwisp
+             for Gold-Speck Cap at the Hammock; Flutternym for Scales
+             at the Windmill), the generic Panpanta/Shelly set at a
+             castle with no production assigned — ranks ahead of all
+             other candidates, ahead of ability level too, so a family
+             member below the asked level still wins the post over a
+             non-family animal at the asked level, labelled a
+             step-down as usual. When the tagged family has no
+             pickable member in the roster at all, this same pass is
+             the normal ranking, so the post still fills and its row
+             names the empty family (familyNoneName). Only when no
+             eligible Aniimo with the job at any level remains does
+             the post stay unfilled, honestly, like any other post. */
           var aS = bestAnimalFor(p.job, postTraits(p), 1, used, isSandcastlePost(p), famSetP);
           if(aS){
             used[aS.idx] = true; p.animal = aS.idx;
@@ -3680,7 +3773,8 @@
             var famSetSlot = postFamilySet(p);
             if(famSetSlot){
               /* A shared slot covering a family-ruled post (the
-                 Sandcastle, or a Nimbus Bed with a known production)
+                 Sandcastle, or another family-tagged station with a
+                 known production)
                  follows the family rule in one pass over every
                  level: a Turbo or Gracewing already sharing another
                  slot can never be reused at the Sandcastle, and a
@@ -3737,12 +3831,13 @@
           var a = ROSTER[p.animal];
           var pairedDone = false;
           /* Pairing never fills a family-ruled post: a Sandcastle
-             post (and a Nimbus Bed post whose production names a
-             family) is always picked on its own under its family
-             rule, so no Aniimo — banned or simply non-family — can
-             be paired into one sideways. (An Aniimo picked FOR such
-             a post may still pair outward onto a later post with no
-             family rule, exactly like anyone else.) */
+             post (and a post at any other family-tagged station
+             whose production names a family) is always picked on
+             its own under its family rule, so no Aniimo — banned or
+             simply non-family — can be paired into one sideways.
+             (An Aniimo picked FOR such a post may still pair outward
+             onto a later post with no family rule, exactly like
+             anyone else.) */
           for(var qi = pi + 1; qi < facPosts.length; qi++){
             var q = facPosts[qi];
             if(q.animal >= 0 || q.job === p.job) continue;
@@ -3878,13 +3973,13 @@
           /* Jobs are tried from most heads down, as before — with
              one guard for the family rules: a family-ruled post (a
              Sandcastle post, under its production family or the
-             generic Panpanta/Shelly set; a Nimbus Bed post whose
-             production names a family) may only be shared onto an
-             Aniimo of that post's own family, so it can never land
-             on a Turbo or Gracewing at the castle, or on any
-             non-family animal, through fitted sharing. Jobs are
-             tried in turn until one offers a share this guard
-             allows. */
+             generic Panpanta/Shelly set; a post at any other
+             family-tagged station whose production names a family)
+             may only be shared onto an Aniimo of that post's own
+             family, so it can never land on a Turbo or Gracewing at
+             the castle, or on any non-family animal, through fitted
+             sharing. Jobs are tried in turn until one offers a share
+             this guard allows. */
           var jobOrder = Object.keys(perJob).map(function(j){
             return { job:j, n:Object.keys(perJob[j]).length };
           }).filter(function(x){ return x.n > 1; })
@@ -3991,13 +4086,18 @@
       return '<span class="src">✗ no match — ' + (facility ? esc(facility) : "this post") + " wants " + trait.letter + " · " + esc(trait.name) + "; " + esc(a.species) + " is " + esc(a.personality) + "</span>";
     }
     function pickSubHtml(p){
+      /* A family-tagged post whose family has no pickable member
+         in her roster says so on its row: the pick beside it came
+         from the normal ranking, not from the family. */
+      var fn = familyNoneName(p);
+      var fnTxt = fn ? " · the " + fn + " family has no pickable member you own, so this post picked by the normal ranking" : "";
       if(p.animal >= 0){
         var pa = ROSTER[p.animal];
         var sdSub = stepDownText(p, pa);
-        return '<span class="src">' + esc(animalLabel(pa, p.job)) + (sdSub ? " · " + esc(sdSub) : "") + "</span>";
+        return '<span class="src">' + esc(animalLabel(pa, p.job)) + (sdSub ? " · " + esc(sdSub) : "") + esc(fnTxt) + "</span>";
       }
       var bw = BEST_WORKERS[p.job];
-      return '<span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + "</span>";
+      return '<span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + esc(fnTxt) + "</span>";
     }
     /* One put-out row for a single post (Always, facility, placed,
        planting): names the picked Aniimo, or says plainly that no
@@ -4065,6 +4165,8 @@
           : esc(animalLabel(a, jobs[0])) + " · shared across " + assigns.length + (assigns.length === 1 ? " facility" : " facilities");
         var sdSlot = jobs.map(function(j){ return stepDownText({ job:j, req:crewReqLvl(j, null) }, a); }).filter(Boolean);
         if(sdSlot.length) sub += " · " + sdSlot.map(function(s){ return esc(s); }).join(" · ");
+        var fnSlot = mine.map(function(x){ return familyNoneName(x); }).filter(Boolean);
+        if(fnSlot.length) sub += " · " + fnSlot.map(function(n){ return "the " + esc(n) + " family has no pickable member you own, so this post picked by the normal ranking"; }).join(" · ");
         lines.push('<tr data-heads="1" tabindex="0" data-tip="' + escA(tip) + '"><td>' + marks + "<strong>" + esc(jobs.join(" + ")) + ' Aniimo</strong><br /><span class="src">' + sub + "</span></td><td>" + PUTOUT_SHARED_TRAIT + "</td><td>" +
           assigns.map(function(bf){ return assignHtml(bf, bf.job, animalAbility(a, bf.job)); }).join("") +
           (plantCover === p.animal ? " · also does the planting" : "") + "</td></tr>");
@@ -4107,7 +4209,8 @@
       facPosts.forEach(function(p){
         if(p.animal < 0){
           var bw = BEST_WORKERS[p.job];
-          rows.push("<tr><td>" + abilityMarker(p.job, !!p.trait) + "<strong>" + esc(p.job) + ' Aniimo</strong><br /><span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + '</span></td><td>' + pickMatchHtml(null, p.trait || null, p.facility) + "</td><td>" + assignHtml(p.bf, p.job, null) + "</td></tr>");
+          var fnB = familyNoneName(p);
+          rows.push("<tr><td>" + abilityMarker(p.job, !!p.trait) + "<strong>" + esc(p.job) + ' Aniimo</strong><br /><span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + (fnB ? " · the " + esc(fnB) + " family has no pickable member you own" : "") + '</span></td><td>' + pickMatchHtml(null, p.trait || null, p.facility) + "</td><td>" + assignHtml(p.bf, p.job, null) + "</td></tr>");
           return;
         }
         if(seen[p.animal]) return;
@@ -4124,6 +4227,7 @@
           (mine.some(function(x){ return x.paired; }) ? " · covers two jobs" : "") +
           (mine.some(function(x){ return x.sharedFit; }) ? " · shared to fit your RV limit" : "") +
           jobs.map(function(j){ var mpS = mine.filter(function(x){ return x.job === j; })[0]; return stepDownText(mpS, a); }).filter(Boolean).map(function(s){ return " · " + esc(s); }).join("") +
+          mine.map(function(x){ var fn = familyNoneName(x); return fn ? " · the " + esc(fn) + " family has no pickable member you own, so the " + esc(x.facility || "family-tagged") + " post picked by the normal ranking" : ""; }).filter(Boolean).join("") +
           (picks.plantingCovered && picks.plantingAnimal === p.animal ? " · also covers Planting (Grass Lv " + animalAbility(a, "Grass") + ")" : "") + "</span>";
         var traitCell = mine.map(function(x){ return esc(x.facility) + ": " + (x.trait ? (traitMatch(a, x.trait) ? "✓ " + x.trait.letter + " · " + esc(x.trait.name) + " (+20%)" : "✗ no match (wants " + x.trait.letter + " · " + esc(x.trait.name) + "; " + esc(a.species) + " is " + esc(a.personality) + ")") : "no verified +20% match"); }).join("<br />");
         rows.push("<tr><td>" + workerCell + "</td><td>" + traitCell + "</td><td>" +
@@ -4138,7 +4242,8 @@
       slotPosts.forEach(function(p){
         if(p.animal < 0){
           var bw = BEST_WORKERS[p.job];
-          rows.push("<tr><td>" + abilityMarker(p.job, false) + "<strong>Any " + esc(p.job) + ' Aniimo</strong><br /><span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + '</span></td><td>' + PUTOUT_SHARED_TRAIT + "</td><td>" +
+          var fnM = familyNoneName(p);
+          rows.push("<tr><td>" + abilityMarker(p.job, false) + "<strong>Any " + esc(p.job) + ' Aniimo</strong><br /><span class="src">No Aniimo you own covers this post' + (bw ? " · strongest known: " + esc(bw.name) + " Lv " + bw.lvl + " (what to catch)" : "") + (fnM ? " · the " + esc(fnM) + " family has no pickable member you own" : "") + '</span></td><td>' + PUTOUT_SHARED_TRAIT + "</td><td>" +
             p.assigns.map(function(bf){ return assignHtml(bf, p.job, null); }).join("") + "</td></tr>");
           return;
         }
@@ -4152,7 +4257,7 @@
         mine.forEach(function(x){ assigns = assigns.concat(x.assigns); });
         assigns.sort(function(x, y){ return x.facility.localeCompare(y.facility); });
         var workerCell = jobs.map(function(j){ return abilityMarkerLvl(j, animalAbility(a, j), false, j + " Lv " + animalAbility(a, j) + " · " + animalLabel(a, j)); }).join("") +
-          "<strong>" + esc(jobs.join(" + ")) + ' Aniimo</strong><br /><span class="src">' + esc(animalLabel(a)) + " (" + jobs.map(function(j){ return j + " Lv " + animalAbility(a, j); }).join(", ") + ") · shared across " + assigns.length + (assigns.length === 1 ? " facility" : " facilities") + jobs.map(function(j){ return stepDownText({ job:j, req:crewReqLvl(j, null) }, a); }).filter(Boolean).map(function(s){ return " · " + esc(s); }).join("") + (picks.plantingCovered && picks.plantingAnimal === p.animal ? " · also covers Planting (Grass Lv " + animalAbility(a, "Grass") + ")" : "") + "</span>";
+          "<strong>" + esc(jobs.join(" + ")) + ' Aniimo</strong><br /><span class="src">' + esc(animalLabel(a)) + " (" + jobs.map(function(j){ return j + " Lv " + animalAbility(a, j); }).join(", ") + ") · shared across " + assigns.length + (assigns.length === 1 ? " facility" : " facilities") + jobs.map(function(j){ return stepDownText({ job:j, req:crewReqLvl(j, null) }, a); }).filter(Boolean).map(function(s){ return " · " + esc(s); }).join("") + mine.map(function(x){ var fn = familyNoneName(x); return fn ? " · the " + esc(fn) + " family has no pickable member you own, so this post picked by the normal ranking" : ""; }).filter(Boolean).join("") + (picks.plantingCovered && picks.plantingAnimal === p.animal ? " · also covers Planting (Grass Lv " + animalAbility(a, "Grass") + ")" : "") + "</span>";
         if(mine.length > 1 || assigns.length > 4) workerCell += '<br /><span class="src"><strong>Extra workers on this job</strong>: one worker\'s load passes 80% here, so more hands join (Aniiland\'s rule). How many is in the Put out list.</span>';
         var traitCell = '<span class="src">One worker carries one personality, so it can only match one of these facilities at a time. Each assignment below lists its own match.</span>';
         rows.push("<tr><td>" + workerCell + "</td><td>" + traitCell + "</td><td>" +
