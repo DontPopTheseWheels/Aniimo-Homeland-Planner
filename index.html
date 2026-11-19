@@ -378,6 +378,7 @@
             <button class="btn btn-primary" id="fillFromRvBtn" type="button">🏭 Fill from RV level</button>
             <span class="src" id="facSourceLine" aria-live="polite">No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts</span>
           </div>
+          <p class="fac-state" id="rvTotalsLine" aria-live="polite">🏭 No RV level picked yet — pick your RV level above and your facility totals for that level show here, filled into the boxes below.</p>
           <div class="fac-grid" id="facGrid"></div>
           <p class="src" style="margin-top:8px">⛏️ The Mine count and level here are just how many Mines you own and how deep they go — what each Mine digs is <strong>not</strong> picked here. That comes later, on the Mine block in Facilities out in Step 5 · Add &amp; Adjust, after your strategy, because your strategy can claim Mines of its own.</p>
           <p class="src" id="powerFillLine" style="margin-top:8px" aria-live="polite"></p>
@@ -385,6 +386,9 @@
           <h4 style="margin-top:20px">🌡️ Your climate buildings</h4>
           <p class="src" style="margin-top:4px">Counts fill from your RV too, or type your own. Source: Aniiland roadmap ladder (RV 7 unlock also backed by GameWith); the steps rest on Aniiland alone, so each count carries the single-source flag.<br />The layout puts out only the buildings the plan needs — never more than these counts.</p>
           <div class="fac-grid" id="climGrid"></div>
+          <h4 style="margin-top:20px">🗄️ Storage, hatching &amp; power — counts from your RV</h4>
+          <p class="src" style="margin-top:4px">Storage Units, Hatchinators, Crackle Generators and Crackle Power Poles have no level of their own — just a count, and it fills from your RV like every other count on this card. The same boxes feed everything else: the Suggested Layout reads the Storage Unit and Hatchinator counts from here (its own two boxes are these same counts), and the power lines read the Generator and Power Pole counts from here. Source: Aniiland's building-count table, cross-checked against AniimoTools' RV level lists — Storage 4 at RV 12 in both — and your own RV 17 totals.</p>
+          <div class="fac-grid" id="extraGrid"></div>
           <h4 style="margin-top:20px">🧩 Your module levels</h4>
           <p class="src" style="margin-top:4px">Fill sets these too, or type each level. Only checked yields are used.</p>
           <div class="fac-grid" id="modLevelGrid"></div>
@@ -718,8 +722,8 @@
         <p class="sec-sub"><strong>This is a suggestion only.</strong> Follow it, change it, or ignore it: it never changes anything else in the planner. It shows <strong>one tidy way any player can arrange a homeland</strong>. A layout is mostly about the farm, so this one is <strong>built around the farm and trees</strong>: what to grow, and what to have cooking for orders. The Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange. When an unlocked plot would be left open anyway, the plot directly beside the farm block is the one left open as moving room, and the later groups start after that open plot, so swapping a Farmland or a Woodland never means working around the other buildings. Like goes with like, with farms and trees together, the cooking buildings on the plots right beside the farm so what is grown and what gets cooked for orders stays together, then the other workshops, Mines together, leisure pieces together, Hatchinators together and the wet works together, and a Storage Unit spread onto each busy plot. The farm plots are packed into one tight block, side by side and stacked so their corners meet, and that is for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered when any part of it touches that area, so one unit dropped at a corner shared by farm plots covers all of them at once. It is worked out fresh from <strong>your RV level</strong> and the <strong>facility counts in Step 1</strong> every time it draws, on the true homeland grid: 16 plots in a 4 by 4 arrangement, each plot <strong>20 big squares across by 15 up</strong>, so the whole board is <strong>80 across by 60 up</strong>. Plot numbers are the unlock order, so at RV level N you have plots 1 to N. Groups take the earliest plots you have unlocked, in number order, and stay compact, apart from that one moving room plot beside the farm block when a plot is spare: at a low RV or with small counts they use fewer plots, and any unlocked plot no group needs is left open. Locked plots show muted with their number. The board redraws itself whenever your RV level or a Step 1 count changes. <strong>Hover or tap any Farmland or Woodland piece</strong> and it says which crop or tree that spot should grow, from your current plan — the same planting Step 5 · Add &amp; Adjust lays out.</p>
 
         <div class="card">
-          <h3>🗄️ Two counts Step 1 has no box for</h3>
-          <p class="sec-sub" style="margin-bottom:0">Step 1 has no box for Storage Units or Hatchinators, so their counts live here. Set each one to what you own and the board redraws. Both start at 0, and nothing is placed until you set a count.</p>
+          <h3>🗄️ Storage Units &amp; Hatchinators — the same counts as Step 1</h3>
+          <p class="sec-sub" style="margin-bottom:0">These counts live in Step 1 now and fill from your RV level there. The two boxes here are the very same counts — change either place and both update, and the board redraws. With no RV level picked they stand at 0, and nothing is placed until a count is set.</p>
           <div class="fac-grid">
             <div class="fac-item"><span><span class="nm">Storage Unit</span><span class="kd">Size 2 × 2 · passive, takes no worker · one goes on each busy plot</span></span>
               <span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" id="suggStorageDec" aria-label="One fewer Storage Unit">−</button><input type="number" class="fac-num" min="0" value="0" id="suggStorageInput" aria-label="Storage Unit count" /><button type="button" class="cnt-btn" id="suggStorageInc" aria-label="One more Storage Unit">+</button></span></span></div>
@@ -762,9 +766,9 @@
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the touch rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, touching its 18 × 18 zone and hanging over its edge where the touch rule allows, so one zone holds up to 25 Farmland or 9 Woodland plots (24 Farmland around a Cooling Unit) and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
           <li><strong>Facility sizes</strong> (measured from your in-game screenshots and cross-checked against wikily.gg game data, Nov 9, 2026): every facility's true footprint in tiles now shows beside its name in Step 1, in the Always list, on its Add & Adjust block and in the strategy plan's facility table. Farmland 2 × 2, Woodland 3.5 × 3.5, Mine 5 × 5, Well 2 × 2, Aniipod Maker 4.5 × 4.5, Crafting Table 4 × 4, Woodworking Bench 2 × 1.5, Chimney Kiln 5 × 5, Blazing Stove 2.5 × 2.5, Simmering Pot 3 × 3, Claw Game Cooker 1.5 × 1.5, Jukebox Dryer 2.5 × 2.5, Pickling Jar 2.5 × 2, Joy Wheel Loom 4 × 4, Carousel Mill 5 × 5, Phonolfactory Table 3.5 × 3.5, Bouncy Brew Keg 3 × 3, Dance Pad Polisher 2.5 × 2.5, Storage Unit 2 × 2, Hatchinator 2 × 2, Tidewhisper Sandcastle 5 × 5, Dewy House 2 × 2, Nimbus Bed 5 × 5, Starfall Hammock 5 × 5, Heat Furnace 1 × 1, Sunlamp 1 × 1, Cooling Unit 2 × 2, Crackle Generator 2 × 2 (covers 11 × 11), Crackle Power Pole 1.5 × 1.5 (covers 7 × 7). The Floral Windmill has no verified size, so none is shown for it. Sizes are display only: no plan, crew or power figure reads them, and the layout packer keeps the reserved building footprints above.</li>
           <li><strong>Step 1 (setup):</strong> no RV level is auto-selected (player's rule, Nov 15, 2026): on a fresh load the picker stands on "Pick your RV level…" and every box — facility counts, facility levels, climate counts and module levels — stands at 0. Picking an RV level fills the boxes to the most that RV allows, the same fill tapping Fill from RV level runs; Fill does nothing until a level is picked. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying and plans follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
-          <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13 — and 2 is the cap here (player-verified, Oct 29, 2026: she has 2, her count wins over the guide ladder's third at RV 17, so Fill stops at 2 and no plan uses or shows a third); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19.</li>
+          <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17 (AniimoTools' RV 17 list and Aniiland's count table agree, and her own game confirms 3 at RV 17 — corrected Nov 18, 2026; the Oct 29, 2026 note that capped Cooling at 2 was her count before she reached RV 17); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19. Counts with no level follow the same one-table rule (Aniiland's building-count table, cross-checked against AniimoTools' RV lists and its RV 12 max-out table, and her own RV 17 totals, Nov 18, 2026): Storage Unit 1 at RV 2, 2 at RV 4, 3 at RV 7, 4 at RV 10, 5 at RV 13, 6 at RV 16, 7 at RV 19, 8 at RV 20; Hatchinator 3 at RV 2 rising by one a level to 10 at RV 9; Crackle Generator 1 at RV 12, 2 at RV 15, 3 at RV 18; Crackle Power Pole 6 at RV 12, 12 at RV 14, 18 at RV 16, 24 at RV 18, 30 at RV 20. All four have Step 1 boxes filled by the same Fill, and the totals line, every facility card and every layout ceiling read those boxes — there is no second copy of the totals anywhere.</li>
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
-          <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 20, Aniiland alone, flagged <span class="verdict v-mix">count single source</span>). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
+          <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 18 — Aniiland's building-count table and AniimoTools' RV 18 list agree; corrected Nov 18, 2026 from RV 20, and still flagged <span class="verdict v-mix">count single source</span> in the panel like every above-RV 12 step). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
           <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 8): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 8): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales. Crafting (max 7): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Premium Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume. Only three change numbers, auto-applied from Ecological: Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8). Premium Wheat appears in no module ladder — it is not a module unlock at all: it switches on by itself at RV 12 with a Farmland at Lv 6 (Wheat Seeds planted on a Lv 6 Farmland grow Premium Wheat instead; The Hidden Gaming Lair's Premium Wheat page and the planner's Farmland ladder, RV 12 for Lv 6), auto-applied from your Step 1 RV and Farmland level like the Ecological harvests.</li>
           <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: a multi-ability Aniimo counts once (Somniwing: Grass Lv 4 + Leisure Lv 4). Best workers: Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3. Jobs follow the game's own data (aniimoguide homeland job list, build 1.1.3846247, read Oct 29, 2026), one job per facility, never keyed to a product: Leisure — Tidewhisper Sandcastle, Dewy House, Nimbus Bed, Starfall Hammock, Floral Windmill; Perfumery — Phonolfactory Table; Light — Sunlamp; Dark — Jukebox Dryer, Pickling Jar; Fire — Claw Game Cooker, Simmering Pot, Blazing Stove, Chimney Kiln, Heat Furnace; Water — Well, Bouncy Brew Keg; Wind — Carousel Mill, Joy Wheel Loom; Earth — Mine; Artisanship — Crafting Table, Woodworking Bench; Lightning — Aniipod Maker, Dance Pad Polisher; Ice — Cooling Unit. Farmland and Woodland have no facility job in that list — planting is the Grass line of its own — but each field still adds one Aniimo. <strong>Hauling:</strong> the need is counted in hauling power under the player's stand-in rule, not game data (2, plus 1 for every 10 facility copies the plan puts out, cap 8; Farmland, Woodland and Storage Units never count toward copies out). Coverage is weighted by each covering Aniimo's Hauling level (Lv 4 counts 2, Lv 3 counts 1.5, Lv 1–2 count 1), every fraction rounds up in the player's favour, and the Hauling line shows its math. Cover: only Aniimo confirmed in the verified per-species data (aniimoguide launch-client table and species pages, Game8, Daily Aniimo, allthings.how, cross-checked against a Gemini pass — nothing rests on the Gemini pass alone) to also hold Hauling count as covering, once, in their main job. Confirmed holders include Scorchhowl, Glacy, Shrubclaw, Geoclaw, Fennelun, Tuckin, Leafy, Bouldus, Fenmane, Minespine, Grizbo, Magmarex, Glynsera, Pranky, Emberpup (Highland form too), Pebbling and Fentuft. Two posts cover through named alternates: Lightning through Fenmane (Blazen does not haul), planting through Tuckin or Leafy at Grass Lv 3, a step down from Grass Lv 4. Tromber and Cornet are confirmed single-job (Wind only) and cannot cover; no Hauling was found for Ignitis, Somniwing, Inferlupa or Fragrancier. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is the Homeland leisure station (the player's word, Oct 29, 2026), so it counts the copies the plan's leisure gathers need, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries are labelled by ability and count; the strongest known Aniimo is a hover/tap hint only. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
           <li><strong>Adding facilities by hand (player's ask, Oct 29, 2026):</strong> each facility block in Add & Adjust has − and + steppers. + puts out extra copies she owns, never above her Step 1 count; − takes back only copies she added; the plan's own count is the floor. Added copies are marked "added by you" and count in full: crew, power, totals, and the strategy plan's Working column. Amounts stay plan-driven — added copies are staffed spares, except Mines: each added Mine digs the material on its line, at that material's per run yield. Added copies live in memory only and reset when the basket or strategy changes. The layout also ends with an "Add a facility this plan isn't using" list, so any owned facility can go out even when no recipe needs it.</li>
@@ -793,7 +797,7 @@
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
-          <li><strong>Suggested Homeland Layout (added Nov 9, 2026, player's ask):</strong> one suggestion board for the whole homeland, drawn from the RV level and the Step 1 facility counts, and from the two counts kept in its own panel (Storage Units and Hatchinators, which have no Step 1 box). The arrangement is generic for any player and is worked out fresh from those counts each time the board draws, never copied from any one homeland: the layout is built around the farm and trees, and like is grouped with like (farms and trees together, the cooking buildings, Simmering Pot, Blazing Stove, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Carousel Mill and Joy Wheel Loom, on the plots right beside the farm, then the remaining workshops, Crafting Table, Woodworking Bench, Chimney Kiln, Phonolfactory Table, Bouncy Brew Keg, Dance Pad Polisher and Aniipod Maker, then Mines together, leisure pieces together, Hatchinators together, wet works together, and one Storage Unit spread onto each busy plot), groups take unlocked plots in unlock order starting from the lowest number and stay compact, at a low RV or with small counts the groups use fewer plots, and unlocked plots no group needs stay open. The grid is the game's homeland grid: 16 plots in a 4 by 4 arrangement (rows top to bottom: 13, 14, 15, 16 / 12, 7, 8, 9 / 11, 4, 3, 6 / 10, 2, 1, 5), each plot 20 big squares across by 15 up, 80 by 60 in all, and plot numbers are the unlock order, so RV level N unlocks plots 1 to N. Facility sizes are the verified table above, and every piece on the board is drawn at its true size, packing and overlap checks included: Woodland 3.5 by 3.5, Aniipod Maker 4.5 by 4.5, Woodworking Bench 2 by 1.5, Claw Game Cooker 1.5 by 1.5, Blazing Stove 2.5 by 2.5, Jukebox Dryer 2.5 by 2.5, Pickling Jar 2.5 by 2, Phonolfactory Table 3.5 by 3.5 and Dance Pad Polisher 2.5 by 2.5, with every other facility at its whole number size. Placement starts are counted in whole squares only, so a half can sit on a piece's far edge, exactly like the real footprints; the board's grid shows little quarter squares, so halves draw exactly. The Aniipod Maker's 4.5 by 4.5 size is wikily's and is not confirmed in game, and the board says so. The Floral Windmill has no verified size, so it is never drawn, only listed as still to place by hand. Climate units, Crackle Generators and Power Poles are pocket items and are never drawn as pieces: nothing is placed in the middle 2 by 2 of each farm plot, so its center stays open grass, and open grass is kept beside each Starfall Hammock and each Tidewhisper Sandcastle on the leisure plot the same way, with nothing drawn there either. The farm plots pack into one compact block, side by side and stacked so their corners meet, for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered when any part of it touches that area, so one unit dropped at a corner shared by up to four farm plots covers all of them at once, and more whenever more farm plots fall inside the area. Lines under the board say which climate unit to use and where, and the farm lines are worked out from the board as drawn: each names a best drop spot, a spot where one dropped unit touches the most farm plots, and says how many farm plots that one unit covers. Any climate unit can be the one dropped at a named spot, a Cooling Unit, Heat Furnace or Sunlamp, whichever the crops it covers need. When only one farm plot is placed, its line still names the center of its plot. A Cooling Unit goes on the open grass beside each Starfall Hammock, and a Heat Furnace goes on the open grass beside each Tidewhisper Sandcastle. No game bonus for the farm and cooking closeness is claimed anywhere; the grouping only keeps the grow and cook steps together for orders, and the basket and recipe steps, not the layout, decide what to grow and what to cook. Instruction lines are listed only for pieces actually placed. Placed counts are summed and checked against the entered counts before the board shows, and the check line under the board prints both.</li>
+          <li><strong>Suggested Homeland Layout (added Nov 9, 2026, player's ask):</strong> one suggestion board for the whole homeland, drawn from the RV level and the Step 1 facility counts — Storage Units and Hatchinators included, since their counts live in Step 1 and fill from the RV level (the two boxes in this panel are those same Step 1 counts, kept in step both ways). The arrangement is generic for any player and is worked out fresh from those counts each time the board draws, never copied from any one homeland: the layout is built around the farm and trees, and like is grouped with like (farms and trees together, the cooking buildings, Simmering Pot, Blazing Stove, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Carousel Mill and Joy Wheel Loom, on the plots right beside the farm, then the remaining workshops, Crafting Table, Woodworking Bench, Chimney Kiln, Phonolfactory Table, Bouncy Brew Keg, Dance Pad Polisher and Aniipod Maker, then Mines together, leisure pieces together, Hatchinators together, wet works together, and one Storage Unit spread onto each busy plot), groups take unlocked plots in unlock order starting from the lowest number and stay compact, at a low RV or with small counts the groups use fewer plots, and unlocked plots no group needs stay open. The grid is the game's homeland grid: 16 plots in a 4 by 4 arrangement (rows top to bottom: 13, 14, 15, 16 / 12, 7, 8, 9 / 11, 4, 3, 6 / 10, 2, 1, 5), each plot 20 big squares across by 15 up, 80 by 60 in all, and plot numbers are the unlock order, so RV level N unlocks plots 1 to N. Facility sizes are the verified table above, and every piece on the board is drawn at its true size, packing and overlap checks included: Woodland 3.5 by 3.5, Aniipod Maker 4.5 by 4.5, Woodworking Bench 2 by 1.5, Claw Game Cooker 1.5 by 1.5, Blazing Stove 2.5 by 2.5, Jukebox Dryer 2.5 by 2.5, Pickling Jar 2.5 by 2, Phonolfactory Table 3.5 by 3.5 and Dance Pad Polisher 2.5 by 2.5, with every other facility at its whole number size. Placement starts are counted in whole squares only, so a half can sit on a piece's far edge, exactly like the real footprints; the board's grid shows little quarter squares, so halves draw exactly. The Aniipod Maker's 4.5 by 4.5 size is wikily's and is not confirmed in game, and the board says so. The Floral Windmill has no verified size, so it is never drawn, only listed as still to place by hand. Climate units, Crackle Generators and Power Poles are pocket items and are never drawn as pieces: nothing is placed in the middle 2 by 2 of each farm plot, so its center stays open grass, and open grass is kept beside each Starfall Hammock and each Tidewhisper Sandcastle on the leisure plot the same way, with nothing drawn there either. The farm plots pack into one compact block, side by side and stacked so their corners meet, for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered when any part of it touches that area, so one unit dropped at a corner shared by up to four farm plots covers all of them at once, and more whenever more farm plots fall inside the area. Lines under the board say which climate unit to use and where, and the farm lines are worked out from the board as drawn: each names a best drop spot, a spot where one dropped unit touches the most farm plots, and says how many farm plots that one unit covers. Any climate unit can be the one dropped at a named spot, a Cooling Unit, Heat Furnace or Sunlamp, whichever the crops it covers need. When only one farm plot is placed, its line still names the center of its plot. A Cooling Unit goes on the open grass beside each Starfall Hammock, and a Heat Furnace goes on the open grass beside each Tidewhisper Sandcastle. No game bonus for the farm and cooking closeness is claimed anywhere; the grouping only keeps the grow and cook steps together for orders, and the basket and recipe steps, not the layout, decide what to grow and what to cook. Instruction lines are listed only for pieces actually placed. Placed counts are summed and checked against the entered counts before the board shows, and the check line under the board prints both.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
@@ -862,10 +866,11 @@
        alone (aniimoguide calls those player-reported), so the panel flags
        them "count single source"; Well is excepted because the Steam guide
        confirms three Wells before RV 19 and the fourth at RV 19. The
-       Starfall Hammock joins the ladder from Aniiland's materials
-       buildings guide (1 from RV 12, up to 2 by RV 20; AniimoTools' RV 12
-       table likewise shows one at Lv 1), so its RV 20 step carries the
-       same single source flag.
+       Starfall Hammock joins the ladder from Aniiland's building-count
+       table (1 from RV 12, 2 from RV 18; AniimoTools' RV 18 list agrees,
+       "Starfall Hammock 1 → 2" — corrected Nov 18, 2026 from the older
+       RV 20 step, which rested on Aniiland's materials guide alone), so
+       its step still carries the same single source flag in the panel.
        Player-verified anchors (her own game, Oct 28, 2026; these win over
        any source table): Carousel Mill max placement is 2 (her panel reads
        2/2 at RV 15, and 2 at RV 14), so its count never goes above 2. She
@@ -884,7 +889,7 @@
       "Phonolfactory Table":[[6,1],[13,2]], "Joy Wheel Loom":[[7,1],[14,2]],
       "Blazing Stove":[[8,1],[15,2]], "Pickling Jar":[[8,1],[15,2]],
       "Dewy House":[[6,1],[17,2]], "Nimbus Bed":[[10,1],[16,2]],
-      "Starfall Hammock":[[12,1],[20,2]], "Floral Windmill":[[18,1]]
+      "Starfall Hammock":[[12,1],[18,2]], "Floral Windmill":[[18,1]]
     };
     /* Climate building max counts per RV, approved by the player from the
        Aniiland RV roadmap (the RV 7 unlock is also backed by GameWith, and
@@ -893,13 +898,14 @@
        (and what the boxes start with); they can be typed over, and the
        steps rest on Aniiland alone, so the panel flags them
        "count single source" like the other facility counts.
-       Cooling Unit stops at 2 (player-verified, Oct 29, 2026): she has
-       2, and her real count wins over the guide ladder's third unit at
-       RV 17 — Fill never sets 3, and since every layout, crew and
-       total reads the entered count, no plan can use or show a third. */
+       Cooling Unit reaches 3 at RV 17 (AniimoTools' RV 17 list reads
+       "Cooling Unit 2 → 3" and Aniiland's building-count table agrees;
+       the player confirms 3 in her own game at RV 17, Nov 18, 2026).
+       This replaces the Oct 29, 2026 note that capped Cooling at 2 —
+       that was her count then, before she reached RV 17. */
     var CLIM_COUNT = {
       "Heat Furnace":[[7,1],[12,2],[17,3]],
-      "Cooling Unit":[[7,1],[13,2]],
+      "Cooling Unit":[[7,1],[13,2],[17,3]],
       "Sunlamp":[[9,1],[13,2],[19,3]]
     };
     function climCountFor(building, rv){
@@ -911,6 +917,37 @@
     }
     function climNextStep(building, rv){
       var steps = CLIM_COUNT[building];
+      if(!steps) return null;
+      for(var i = 0; i < steps.length; i++){ if(steps[i][0] > rv) return steps[i]; }
+      return null;
+    }
+    /* ============ counts with no level: storage, hatching, power ============
+       These four have a count per RV but no facility level and no
+       recipes, so they live outside FAC_RV / CLIM_COUNT — but they fill
+       from the RV through the same fill, sit in Step 1 boxes like every
+       other count, and every reader goes through facCount, so there is
+       exactly one table of totals per RV on the page. Aniiland's
+       building-count table (RV 1 to 20), cross-checked against
+       AniimoTools' RV level lists and its RV 12 max-out table (Storage
+       Unit 4 at RV 12 in both) and the player's own RV 17 totals
+       (Nov 18, 2026: Storage 6, Crackle Power Poles 18 — both match
+       this table at RV 17). Crackle Generator steps match AniimoTools'
+       RV lists too: 1 at RV 12, 2 at RV 15, 3 at RV 18. */
+    var EXTRA_COUNT = {
+      "Storage Unit":[[2,1],[4,2],[7,3],[10,4],[13,5],[16,6],[19,7],[20,8]],
+      "Hatchinator":[[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10]],
+      "Crackle Generator":[[12,1],[15,2],[18,3]],
+      "Crackle Power Pole":[[12,6],[14,12],[16,18],[18,24],[20,30]]
+    };
+    function extraCountFor(name, rv){
+      var steps = EXTRA_COUNT[name];
+      if(!steps) return null;
+      var c = 0;
+      for(var i = 0; i < steps.length; i++){ if(steps[i][0] <= rv) c = steps[i][1]; }
+      return c;
+    }
+    function extraNextStep(name, rv){
+      var steps = EXTRA_COUNT[name];
       if(!steps) return null;
       for(var i = 0; i < steps.length; i++){ if(steps[i][0] > rv) return steps[i]; }
       return null;
@@ -1577,10 +1614,10 @@
       return 5;
     }
     function powerGenCopies(rv){
-      if(rv < 12) return 0;
-      if(rv < 15) return 1;
-      if(rv < 18) return 2;
-      return 3;
+      /* The one count table: EXTRA_COUNT's Crackle Generator steps
+         (1 at RV 12, 2 at RV 15, 3 at RV 18), so the power lines, the
+         Step 1 box and the totals line can never disagree. */
+      return extraCountFor("Crackle Generator", rv) || 0;
     }
     function powerGenSupply(rv){
       var lvl = powerGenLevel(rv);
@@ -1721,7 +1758,7 @@
       return Math.min(def.max, m);
     }
     /* Entered Step 1 values: what every plan actually reads. */
-    var facLevels = {}, facCounts = {}, climCounts = {};
+    var facLevels = {}, facCounts = {}, climCounts = {}, extraCounts = {};
     var facProvenance = "No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts";
     function fillFacilitiesOnly(rv){
       Object.keys(FAC_RV).forEach(function(f){
@@ -1729,6 +1766,7 @@
         facCounts[f] = rvMaxFacCount(f, rv);
       });
       Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = climCountFor(b, rv) || 0; });
+      Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = extraCountFor(n, rv) || 0; });
     }
     /* The state starts at 0 and STAYS at 0 until the player picks
        an RV level (player's ask, Nov 15, 2026 — no RV auto-selected):
@@ -1736,6 +1774,7 @@
        filled by an RV pick or the Fill button, or changed by hand. */
     Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
     Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
+    Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = 0; });
     function setFacProvenance(text){
       facProvenance = text;
       var el = document.getElementById("facSourceLine");
@@ -1744,6 +1783,8 @@
       if(top) top.textContent = text;
       var near = document.getElementById("facStateLine");
       if(near) near.textContent = "🏭 " + text;
+      /* The totals line follows every hand edit too, not just fills. */
+      updateRvTotalsLine();
     }
     /* The one name mismatch in the data (player's word, Oct 29, 2026):
        the recipe data gathers Wool and Petals at a station it
@@ -1770,6 +1811,7 @@
     function facCount(facility){
       facility = facCanon(facility);
       if(CLIM_COUNT[facility]) return climCounts.hasOwnProperty(facility) ? climCounts[facility] : 0;
+      if(EXTRA_COUNT[facility]) return extraCounts.hasOwnProperty(facility) ? extraCounts[facility] : 0;
       if(FAC_RV[facility]) return facCounts.hasOwnProperty(facility) ? facCounts[facility] : 0;
       return 0;
     }
@@ -4477,7 +4519,61 @@
       refreshAfterStage3();
       toast("Filled for RV " + userRV + ": max facilities, climates and modules set.");
     }
+    /* The one totals line: every facility total at the picked RV, read
+       from the same Step 1 boxes everything else reads (FAC_COUNT via
+       facCounts, CLIM_COUNT via climCounts, EXTRA_COUNT via
+       extraCounts — all through facCount), so the line can never show
+       a second, stale copy of the numbers. */
+    function rvTotalsText(){
+      if(!userRV) return "🏭 No RV level picked yet — pick your RV level above and your facility totals for that level show here, filled into the boxes below.";
+      var parts = [];
+      Object.keys(FAC_RV).forEach(function(f){ parts.push(f + " " + facCount(f)); });
+      ["Cooling Unit", "Heat Furnace", "Sunlamp"].forEach(function(b){ parts.push(b + " " + facCount(b)); });
+      Object.keys(EXTRA_COUNT).forEach(function(n){ parts.push(n + " " + facCount(n)); });
+      return "🏭 Your facility totals at RV " + userRV + " — the Step 1 boxes as they stand: " + parts.join(" · ");
+    }
+    function updateRvTotalsLine(){
+      var el = document.getElementById("rvTotalsLine");
+      if(el) el.textContent = rvTotalsText();
+      /* The Suggested Layout panel's two boxes are these same counts:
+         keep what they show in step with the Step 1 state after a
+         fill or reset (a box being typed in is left alone — its own
+         change commit writes the value through). */
+      var ss = document.getElementById("suggStorageInput");
+      if(ss && document.activeElement !== ss) ss.value = facCount("Storage Unit");
+      var sh = document.getElementById("suggHatchInput");
+      if(sh && document.activeElement !== sh) sh.value = facCount("Hatchinator");
+      var sd = document.getElementById("suggStorageDec");
+      if(sd) sd.disabled = facCount("Storage Unit") <= 0;
+      var hd = document.getElementById("suggHatchDec");
+      if(hd) hd.disabled = facCount("Hatchinator") <= 0;
+    }
+    /* One commit for a no-level count (Storage Unit, Hatchinator,
+       Crackle Generator, Crackle Power Pole), shared by the Step 1
+       boxes and the Suggested Layout panel's two boxes: both places
+       write the same extraCounts entry, both places' boxes update in
+       place, and everything downstream re-reads it. */
+    function commitExtraCount(name, v){
+      extraCounts[name] = isNaN(v) ? 0 : Math.max(0, Math.floor(v));
+      document.querySelectorAll("[data-extra-count]").forEach(function(inp){
+        if(inp.getAttribute("data-extra-count") === name) inp.value = extraCounts[name];
+      });
+      document.querySelectorAll("[data-extra-count-dec]").forEach(function(btn){
+        if(btn.getAttribute("data-extra-count-dec") === name) btn.disabled = extraCounts[name] <= 0;
+      });
+      var suggId = name === "Storage Unit" ? "suggStorageInput" : (name === "Hatchinator" ? "suggHatchInput" : null);
+      if(suggId){
+        var si = document.getElementById(suggId);
+        if(si) si.value = extraCounts[name];
+        var sd = document.getElementById(name === "Storage Unit" ? "suggStorageDec" : "suggHatchDec");
+        if(sd) sd.disabled = extraCounts[name] <= 0;
+      }
+      updateAboveFlag("extra-count:" + name, extraCounts[name] > (extraCountFor(name, userRV) || 0));
+      setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+      refreshAfterStage3();
+    }
     function renderFacilities(){
+      updateRvTotalsLine();
       var srcLine = document.getElementById("facSourceLine");
       if(srcLine) srcLine.textContent = facProvenance;
       var srcTop = document.getElementById("facSourceLineTop");
@@ -4493,7 +4589,7 @@
           pf.textContent = "⚡ Power opens at RV 12 (Power Module Lv 1). At RV " + userRV + " there is no power grid yet, so no generator supply is counted.";
         } else {
           var gCopies = powerGenCopies(userRV);
-          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + ", Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each), total supply " + fmt(powerGenSupply(userRV)) + ". Fill from RV level and the power headroom lines use this count and supply. Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7.";
+          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + ", Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each), total supply " + fmt(powerGenSupply(userRV)) + ", and " + facCount("Crackle Power Pole") + " Crackle Power Poles. Fill from RV level and the power headroom lines use these counts and this supply — the Generator and Power Pole counts are the Step 1 boxes below. Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7.";
         }
       }
       var grid = document.getElementById("facGrid");
@@ -4610,6 +4706,50 @@
           btn.addEventListener("click", function(){
             var b = btn.getAttribute("data-clim-count-dec");
             commitClimCount(b, (climCounts[b] || 0) - 1);
+          });
+        });
+      }
+      /* No-level counts (EXTRA_COUNT): Storage Unit, Hatchinator,
+         Crackle Generator, Crackle Power Pole. Counts only, no level
+         box. Filled by the same RV fill, committed through the one
+         commitExtraCount, and read everywhere through facCount — the
+         Suggested Layout's Storage and Hatchinator boxes are these
+         same counts. */
+      var xg = document.getElementById("extraGrid");
+      if(xg){
+        var extraHints = {
+          "Storage Unit":"Passive, takes no worker · one goes on each busy plot in the Suggested Layout",
+          "Hatchinator":"All of them group together on the hatchery plot in the Suggested Layout",
+          "Crackle Generator":"Makes the power grid's supply — the power lines above read this count",
+          "Crackle Power Pole":"Spreads the grid — covers 7 × 7 each"
+        };
+        xg.innerHTML = Object.keys(EXTRA_COUNT).map(function(n){
+          var maxC = extraCountFor(n, userRV) || 0;
+          var sub;
+          if(maxC === 0){ sub = extraHints[n] + " · not open yet: first one unlocks at RV " + EXTRA_COUNT[n][0][0]; }
+          else {
+            var nxt = extraNextStep(n, userRV);
+            sub = extraHints[n] + " · max " + maxC + " out at RV " + userRV + (nxt ? " · next at RV " + nxt[0] : " · top count at your RV");
+          }
+          sub += facSizeNote(n);
+          return '<div class="fac-item"><span><span class="nm">' + esc(n) + '</span><span class="kd">' + sub + '</span></span>' +
+            '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-extra-count-dec="' + escA(n) + '" aria-label="One fewer ' + escA(n) + '"' + (facCount(n) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(n) + '" data-extra-count="' + escA(n) + '" aria-label="' + escA(n) + ' count" /><button type="button" class="cnt-btn" data-extra-count-inc="' + escA(n) + '" aria-label="One more ' + escA(n) + '">+</button></span>' + aboveFlagHtml("extra-count:" + n, facCount(n) > maxC) + '</span></div>';
+        }).join("");
+        xg.querySelectorAll("[data-extra-count]").forEach(function(inp){
+          inp.addEventListener("change", function(){
+            commitExtraCount(inp.getAttribute("data-extra-count"), parseInt(inp.value, 10));
+          });
+        });
+        xg.querySelectorAll("[data-extra-count-inc]").forEach(function(btn){
+          btn.addEventListener("click", function(){
+            var n = btn.getAttribute("data-extra-count-inc");
+            commitExtraCount(n, (extraCounts[n] || 0) + 1);
+          });
+        });
+        xg.querySelectorAll("[data-extra-count-dec]").forEach(function(btn){
+          btn.addEventListener("click", function(){
+            var n = btn.getAttribute("data-extra-count-dec");
+            commitExtraCount(n, (extraCounts[n] || 0) - 1);
           });
         });
       }
@@ -8878,8 +9018,9 @@
     /* ============ Suggested Homeland Layout ============
        One suggestion board for the whole homeland, built only from the
        RV level in Step 1 (userRV) and the entered Step 1 counts
-       (facCount), plus the two counts kept in this section's own panel
-       (Storage Units and Hatchinators have no Step 1 box). The grid is
+       (facCount) — Storage Units and Hatchinators included, since
+       their counts live in Step 1 (EXTRA_COUNT) and this section's
+       two boxes are the same counts. The grid is
        the game's homeland grid: 16 plots in a 4 by 4 arrangement,
        each plot 20 big squares across by 15 up, 80 by 60 in all, and
        plot numbers are the unlock order, so RV level N unlocks plots
@@ -8939,10 +9080,11 @@
        biggest pieces are placed first, which is a packing rule, not a
        layout copied from anyone: large footprints pack cleanly when
        they go down before the small ones fill the gaps. */
-    var suggStorageCount = 0, suggHatchCount = 0, suggLast = null;
+    var suggLast = null;
     function suggOwnCount(f){
-      if(f === "Storage Unit") return suggStorageCount;
-      if(f === "Hatchinator") return suggHatchCount;
+      /* Every count — Storage Unit and Hatchinator too — reads the
+         one Step 1 state through facCount (EXTRA_COUNT), so the
+         board can never run on a second copy of the totals. */
       return Math.max(0, facCount(f) || 0);
     }
     function suggNewPlot(num, role){
@@ -9449,8 +9591,8 @@
         if(inc) inc.addEventListener("click", function(){ commit(get() + 1); });
         if(dec){ dec.disabled = get() <= 0; dec.addEventListener("click", function(){ commit(get() - 1); }); }
       }
-      bindCount("suggStorageInput", "suggStorageDec", "suggStorageInc", function(){ return suggStorageCount; }, function(v){ suggStorageCount = v; });
-      bindCount("suggHatchInput", "suggHatchDec", "suggHatchInc", function(){ return suggHatchCount; }, function(v){ suggHatchCount = v; });
+      bindCount("suggStorageInput", "suggStorageDec", "suggStorageInc", function(){ return facCount("Storage Unit"); }, function(v){ commitExtraCount("Storage Unit", v); });
+      bindCount("suggHatchInput", "suggHatchDec", "suggHatchInc", function(){ return facCount("Hatchinator"); }, function(v){ commitExtraCount("Hatchinator", v); });
       var board = document.getElementById("suggBoard");
       var zoom = document.getElementById("suggZoom");
       function openZoom(){
@@ -9490,6 +9632,7 @@
           syncRvFrom();
           Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
           Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
+          Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = 0; });
           MODULE_DEFS.forEach(function(d){ moduleLevels[d.id] = 0; crewGate.modules[d.id] = false; });
           modulesOwned.premiumWheat = false;
           syncModulesFromLevels();
@@ -9576,7 +9719,7 @@
         modulesOwned.premiumWheat = false;
         syncModulesFromLevels();
         setFacProvenance("No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts");
-        suggStorageCount = 0; suggHatchCount = 0;
+        Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = 0; });
         var ssI = document.getElementById("suggStorageInput"); if(ssI) ssI.value = "0";
         var shI = document.getElementById("suggHatchInput"); if(shI) shI.value = "0";
         var hlT = document.getElementById("hideLockedToggle"); if(hlT) hlT.checked = false;
