@@ -3350,7 +3350,7 @@
          new pick, never the material the plan first assigned. */
       if(byFac["Mine"] && typeof currentMinePicks === "function"){
         var mpT = currentMinePicks();
-        var mpList = (mpT && (mpT.cardAssignments || mpT.assignments)) || [];
+        var mpList = (mpT && (mpT.blockAssignments || mpT.assignments)) || [];
         if(mpList.length){
           var seenMp = {};
           byFac["Mine"].items = mpList.filter(function(n){ if(seenMp[n]) return false; seenMp[n] = true; return true; });
@@ -3744,7 +3744,7 @@
         var famItems = facilityPlanItems(fa.facility).filter(function(n){ return familyGate(n); });
         var famSuffix = famItems.length ? " · " + famItems.map(function(n){ return esc(n) + ": " + esc(familyOnlyText(n)); }).join(" · ") : "";
         if(famSuffix) tip += " · Family-only slots at this facility: " + famItems.map(function(n){ return n + ": " + familyOnlyText(n); }).join("; ");
-        var pillBf = fa.facility === "Mine" ? { facility:"Mine", items:(function(){ var mp = currentMinePicks(); return mp.cardAssignments || mp.assignments; })() } : { facility:fa.facility, items:facilityPlanItems(fa.facility) };
+        var pillBf = fa.facility === "Mine" ? { facility:"Mine", items:(function(){ var mp = currentMinePicks(); return mp.blockAssignments || mp.assignments; })() } : { facility:fa.facility, items:facilityPlanItems(fa.facility) };
         lines.push('<tr data-heads="' + p.count + '" tabindex="0" data-tip="' + escA(tip) + '"><td>' + abilityMarker(fa.job, !!t) + "<strong>" + label + "</strong>" + putStrongest(bw) + "</td><td>" + putTraitCell(fa.facility) + "</td><td>" + assignHtml(pillBf, fa.job, bw.lvl) + "</td></tr>");
       });
       return lines;
@@ -3818,7 +3818,7 @@
         /* A pinned Mine's Earth post names her actual Mine picks,
            like the placed Mine line does — plan, added and pinned
            picks alike — never just the plan's own items. */
-        var pillA = f === "Mine" ? { facility:"Mine", items:(function(){ var mp = currentMinePicks(); return mp.cardAssignments || mp.assignments; })() } : { facility:f, items:facilityPlanItems(f) };
+        var pillA = f === "Mine" ? { facility:"Mine", items:(function(){ var mp = currentMinePicks(); return mp.blockAssignments || mp.assignments; })() } : { facility:f, items:facilityPlanItems(f) };
         lines.push('<tr data-heads="' + a.count + '" tabindex="0" data-tip="' + escA(tip) + '"><td>' + abilityMarker(job, !!FAC_TRAIT[f]) + "<strong>" + esc(job) + " Aniimo" + (a.count > 1 ? " ×" + a.count : "") + "</strong>" + putStrongest(bw) + "</td><td>" + putTraitCell(f) + "</td><td>" + assignHtml(pillA, job, bw.lvl) + badge + "</td></tr>");
       });
       return lines;
@@ -5044,9 +5044,23 @@
          any Mines added from Add & Adjust's Mine stepper. */
       var mats = mineMaterialsUpTo(lvl);
       var genericFac = (typeof facExtra !== "undefined" && facExtra && facExtra["Mine"]) || 0;
+      /* The ONE pick list (minePick) holds every Mine out, in order:
+         the accounted list first (plan Mines, then Mines she added —
+         the part assignments, mineExtra, crew and power count), then
+         any Always-pinned copies the pin puts out past that list.
+         How many of the stored entries are accounted is known from
+         mineExtra as this call found it (the add / take-back
+         handlers keep it in step), so the pinned tail can ride in
+         the same list without ever being counted as added Mines. */
+      var entryAdded = (typeof mineExtra !== "undefined" && mineExtra)
+        ? Object.keys(mineExtra).reduce(function(a, n){ return a + (mineExtra[n] || 0); }, 0) : 0;
+      var rawPinned = [];
       var assignments;
       if(Array.isArray(minePick)){
-        assignments = minePick.filter(function(n){ return mats.indexOf(n) > -1; }).slice(0, count);
+        var rawStored = minePick.map(function(n){ return mats.indexOf(n) > -1 ? n : null; });
+        var acctBoundary = Math.min(count, planNeed + entryAdded);
+        rawPinned = rawStored.slice(acctBoundary).filter(function(n){ return n !== null; });
+        assignments = rawStored.slice(0, acctBoundary).filter(function(n){ return n !== null; });
         while(assignments.length < planNeed) assignments.push(defaultAssign[assignments.length] || mats[0]);
         /* Mines added from Add & Adjust's Mine stepper arrive
            as a generic facExtra count: absorb them into the pick
@@ -5054,7 +5068,7 @@
            generic count so nothing is ever counted twice. */
         for(var g3 = 0; g3 < genericFac; g3++) assignments.push(defaultAssign[0] || mats[0] || "Rock");
         assignments = assignments.slice(0, count);
-        if(genericFac && typeof facExtra !== "undefined" && facExtra){ minePick = assignments.slice(); delete facExtra["Mine"]; }
+        if(genericFac && typeof facExtra !== "undefined" && facExtra){ minePick = assignments.concat(rawPinned); delete facExtra["Mine"]; }
       } else {
         assignments = defaultAssign.slice();
         var extraByMat = (typeof mineExtra !== "undefined" && mineExtra) ? mineExtra : {};
@@ -5079,38 +5093,40 @@
       assignments.forEach(function(n){ tally[n] = (tally[n] || 0) + 1; });
       var uncovered = defaultAssign.filter(function(n){ return !tally[n]; });
       var waiting = claims.filter(function(c){ return ITEMS[c.name].lvl > lvl; }).map(function(c){ return c.name; });
-      /* The Facilities Out card's own pick list: every Mine working
-         on that card gets a material pick — the plan's Mines and the
-         Mines she added (assignments above) plus any Always-pinned
-         copies the card puts out beyond them. Pinned copies never
-         enter assignments or mineExtra (the Always crew staffs them
-         and the pin already counts them in the card's working
-         total), but the card still owes each one a pick, or it would
-         render with no dropdown and only the generic materials line.
-         Positions past the accounted list read her saved pin picks
-         (minePinPick), defaulting to the plan's first material, else
-         the lowest material her Mine level offers (Mineral Sand). */
+      /* The Set your Mines block's full pick list — the ONE list
+         every surface reads: the plan's Mines and the Mines she
+         added (assignments above) plus any Always-pinned copies
+         the pin puts out beyond them. Pinned copies never enter
+         assignments or mineExtra (the Always crew staffs them and
+         the pin already counts them in the working total), but the
+         block still owes each one a pick. Positions past the
+         accounted list read her saved picks from the tail of the
+         same minePick list, defaulting to the plan's first
+         material, else the lowest material her Mine level offers
+         (Mineral Sand). The Mine card in Facilities Out is pure
+         display now: its Producing line and per-run tally read
+         this same list and carry no picks of their own. */
       var pinC = (typeof alwaysCount === "function") ? alwaysCount("Mine") : 0;
-      var cardOut = Math.min(count, Math.max(totalOut, pinC));
-      var cardAssignments = assignments.slice();
+      var blockOut = Math.min(count, Math.max(totalOut, pinC));
+      var blockAssignments = assignments.slice();
       var pinDef = defaultAssign[0] || mats[0] || "Rock";
-      for(var ci = assignments.length; ci < cardOut; ci++){
-        var savedPin = (typeof minePinPick !== "undefined" && minePinPick && mats.indexOf(minePinPick[ci]) > -1) ? minePinPick[ci] : null;
-        cardAssignments.push(savedPin || pinDef);
+      for(var ci = assignments.length; ci < blockOut; ci++){
+        var savedPin = rawPinned[ci - assignments.length] || null;
+        blockAssignments.push(savedPin || pinDef);
       }
-      var cardTally = {};
-      cardAssignments.forEach(function(n){ cardTally[n] = (cardTally[n] || 0) + 1; });
-      /* The card's own uncovered list: plan materials no Mine on
-         the card — plan, added or Always-pinned — is gathering.
-         It follows her actual picks on every copy, so changing a
-         plan Mine's material can leave a plan material uncovered
-         here even though the plan's own list still claims it. */
-      var cardUncovered = defaultAssign.filter(function(n){ return !cardTally[n]; });
+      var blockTally = {};
+      blockAssignments.forEach(function(n){ blockTally[n] = (blockTally[n] || 0) + 1; });
+      /* The block's uncovered list: plan materials no Mine out —
+         plan, added or Always-pinned — is gathering. It follows
+         her actual picks on every copy, so changing a plan Mine's
+         material can leave a plan material uncovered here even
+         though the plan's own list still claims it. */
+      var blockUncovered = defaultAssign.filter(function(n){ return !blockTally[n]; });
       return { lvl:lvl, count:count, need:planNeed, planNeed:planNeed, totalOut:totalOut, claims:claims, pick:pick,
         goalsShutOut:goalsShutOut, sandClaimed:sandClaimed, assignments:assignments, defaultAssign:defaultAssign,
         uncovered:uncovered, waiting:waiting, tally:tally,
-        cardOut:cardOut, cardAssignments:cardAssignments, cardTally:cardTally, cardPinFrom:totalOut,
-        cardUncovered:cardUncovered };
+        blockOut:blockOut, blockAssignments:blockAssignments, blockTally:blockTally, blockPinFrom:totalOut,
+        blockUncovered:blockUncovered };
     }
     /* ============ Per-copy gather picks (Well, Dewy House,
        Tidewhisper Sandcastle, Starfall Hammock, Nimbus Bed,
@@ -5354,81 +5370,25 @@
       if(name === "Mineral Sand") return "brings Mineral Sand per run (amount varies, so no number is counted)";
       return "brings " + (it && it.yld ? it.yld + " " + name + " per run" : name + " per run, yield varies") + ", plus Mineral Sand (amount varies)";
     }
-    /* The Mine picker, on the Mine block in Facilities out (player's
-       flow fix, Nov 16, 2026): there is no separate Mines step any
-       more — the Mines live with every other facility out, in the
-       Step 5 · Add & Adjust. Every Mine out gets a material pick
-       here (player's consistency fix, Nov 18, 2026, retiring her
-       Oct 29, 2026 rule that plan-claimed Mines stay locked): Mines
-       the plan claims are marked "used by this plan" and pre-set to
-       the material the plan assigned them, but the pick is hers to
-       change like any other Mine's, up to her Step 1 count; the same
-       delegated data-mine-* handlers the old step used drive every
-       control here. */
-    function mineBlockPickHtml(ms){
-      if(ms.lvl <= 0){
-        return '<p class="src" style="margin-top:10px">⛏️ Mines are not open at RV ' + userRV + ' yet: the first Mines unlock at RV 3, so there is nothing to pick today.</p>';
-      }
-      if(ms.count <= 0){
-        return '<p class="src" style="margin-top:10px">⛏️ Your Step 1 count says you have no Mines, so there is no Mine to pick. Raise the Mine count in Step 1 and a picker for each Mine appears here.</p>';
-      }
-      var mats = mineMaterialsUpTo(ms.lvl);
-      var s = '<p class="src" style="margin-top:10px">⛏️ <strong>Pick each Mine\'s material here.</strong> One Mine gathers one material at a time, at its own level or below. <strong>Every mining run brings Mineral Sand too</strong>, whatever the Mine is set to (amount varies <span class="verdict v-mix">Not verified yet</span>, so no sand number is counted). <strong>Every Mine out gets a pick</strong> — Mines marked “used by this plan” start on the material the plan assigned them, and you can change them like any other Mine: your pick wins. That goes for extra Mines you add and any you pinned in Always Staffed too.</p>';
-      s += '<div class="mine-picks">';
-      if(!ms.assignments.length){
-        s += '<p style="margin:0"><strong>No Mines out in this plan.</strong> Add one below and pick what it gathers.</p>';
-      }
-      s += ms.assignments.map(function(mat, i){
-        /* Every Mine out gets a dropdown (player's consistency fix,
-           Nov 18, 2026): plan Mines included. A plan Mine is pre-set
-           to the material the plan assigned it and keeps its "used
-           by this plan" tag, but its pick is a real select wired to
-           the same shared pick list as every other Mine — changing
-           it rewrites minePick at that position, so the Producing
-           line, the totals, the layout check and the crew all read
-           her new pick. Only added Mines get the take-back button:
-           a plan Mine's count is the plan's, a pinned Mine comes off
-           in Always Staffed, not here. */
-        var opts = mats.map(function(m){
-          var it = ITEMS[m];
-          return '<option value="' + escA(m) + '"' + (m === mat ? ' selected' : '') + '>' + esc(m) + (m === "Mineral Sand" ? ' — yield varies' : (it.yld ? ' — ' + it.yld + ' per run' : ' — yield varies')) + '</option>';
-        }).join("");
-        /* A row past the accounted list (plan Mines + added Mines)
-           is an Always-pinned copy: same pick, its own tag, and no
-           take-back button — pins come off in Always Staffed, not
-           here. */
-        var pinned = (typeof ms.cardPinFrom === "number" && i >= ms.cardPinFrom);
-        var forPlan = i < ms.planNeed;
-        return '<div class="mine-pick"><span class="mine-n">Mine ' + (i + 1) + '</span>' +
-          (forPlan ? '<span class="mine-tag verdict v-ok">used by this plan</span>' : (pinned ? '<span class="mine-tag always-badge">Always pinned</span>' : '<span class="mine-tag verdict v-mix">added by you</span>')) +
-          '<label class="src" for="minePick' + i + '" style="flex:none">is gathering</label>' +
-          '<select id="minePick' + i + '" data-mine-assign="' + i + '" aria-label="Mine ' + (i + 1) + ' gathering material">' + opts + '</select>' +
-          (!forPlan && !pinned ? '<button type="button" class="adj-btn" data-mine-remove="' + i + '" aria-label="Take Mine ' + (i + 1) + ' back out of this plan">\u2212</button>' : '') +
-          '<span class="mine-yield">' + esc(mineYieldText(mat)) + (forPlan ? '. Put out by the plan and pre-set to its pick — change it here and your pick wins.' : '.') + '</span></div>';
-      }).join("");
-      s += '</div>';
-      var pinFrom = (typeof ms.cardPinFrom === "number") ? ms.cardPinFrom : ms.totalOut;
-      var addedN = Math.max(0, pinFrom - ms.planNeed), pinnedN = Math.max(0, ms.totalOut - pinFrom);
-      s += '<div class="mine-add-row"><button type="button" class="btn btn-small" data-mine-add="1"' + (ms.totalOut >= ms.count ? ' disabled' : '') + '>' + (ms.totalOut >= ms.count ? '+ Add a Mine into this plan' : '+ Add a Mine (' + (ms.count - ms.totalOut) + ' left)') + '</button>' +
-        '<span class="src">Mines out: <strong>' + ms.totalOut + ' of ' + ms.count + ' owned</strong> (Step 1): ' + ms.planNeed + ' used by this plan' + (addedN ? ', ' + addedN + ' added by you' : '') + (pinnedN ? ', ' + pinnedN + ' Always pinned' : '') + '. ' +
-        (ms.totalOut >= ms.count ? 'All your Mines are out — no more to add.' : 'An added Mine counts in full: crew, power, totals, take per run.') +
-        '</span></div>';
-      if(ms.assignments.length){
-        var tallyNames = Object.keys(ms.tally).sort(function(a, b){ return ms.tally[b] - ms.tally[a] || a.localeCompare(b); });
-        s += '<p class="src" style="margin-top:8px">In all, per run round: ' + tallyNames.map(function(n){
-          var it = ITEMS[n];
-          return '<strong>' + ms.tally[n] + (ms.tally[n] === 1 ? ' Mine' : ' Mines') + ' on ' + esc(n) + '</strong>' + (it.yld ? ' (' + (it.yld * ms.tally[n]) + ' ' + esc(n) + ')' : ' (yield varies)');
-        }).join(", ") + '. Every one of the ' + ms.totalOut + (ms.totalOut === 1 ? ' Mine' : ' Mines') + ' also brings Mineral Sand each run. Mine takes count per run, never per hour (run times aren\'t checked).</p>';
-      }
-      var cardUnc = ms.cardUncovered || ms.uncovered;
-      if(cardUnc && cardUnc.length){
-        s += '<div class="mine-warn">' + cardUnc.map(function(n){ return 'This plan uses <strong>' + esc(n) + '</strong>, but no mine is gathering it now.'; }).join(' ') + '</div>';
-      }
-      if(ms.waiting.length && ms.planNeed > 0){
-        s += '<p class="src" style="margin-top:8px">Still waiting: ' + ms.waiting.map(function(n){ return '<strong>' + esc(n) + '</strong> needs Mine Lv ' + ITEMS[n].lvl + ', above yours, so no Mine can be set to it yet'; }).join("; ") + '.</p>';
-      }
-      return s;
+    /* The Mine card's per-run tally, as pure display (player's
+       consolidation, Nov 18, 2026): the card carries no picks of
+       its own any more — this tally is computed from the Set your
+       Mines block's one pick list (blockAssignments / blockTally),
+       exactly like the card's Producing line above it. The only
+       place a Mine's material is picked is the Set your Mines
+       block in Facilities out, rendered by mineSetupHtml below. */
+    function mineCardTallyText(ms){
+      var list = ms.blockAssignments || ms.assignments;
+      if(!list.length) return "";
+      var tally = ms.blockTally || ms.tally;
+      var out = (ms.blockOut != null ? ms.blockOut : ms.totalOut);
+      var tallyNames = Object.keys(tally).sort(function(a, b){ return tally[b] - tally[a] || a.localeCompare(b); });
+      return 'In all, per run round: ' + tallyNames.map(function(n){
+        var it = ITEMS[n];
+        return tally[n] + (tally[n] === 1 ? ' Mine' : ' Mines') + ' on ' + n + (it.yld ? ' (' + (it.yld * tally[n]) + ' ' + n + ')' : ' (yield varies)');
+      }).join(", ") + '. Every one of the ' + out + (out === 1 ? ' Mine' : ' Mines') + ' also brings Mineral Sand each run. Mine takes count per run, never per hour (run times aren\'t checked).';
     }
+
     function mineSetupHtml(ms){
       var names = ms.claims.map(function(c){ return c.name; });
       if(ms.lvl <= 0){
@@ -5440,7 +5400,8 @@
       }
       var mats = mineMaterialsUpTo(ms.lvl);
       var s = '<div class="note note-teal"><h4>⛏️ Set your Mines — pick each Mine\'s material</h4>';
-      s += '<p><strong>Every mining run brings Mineral Sand too</strong>, whatever the Mine is set to. The amount varies <span class="verdict v-mix">Not verified yet</span>, so no sand number is counted — you never need a Mine on sand just to get sand.</p>';
+      s += '<p>Set your Mines here — this is the only place. The Mine card above shows what each Mine is bringing in from these picks; change a pick here and the card, the totals and the layout mine check all follow.</p>';
+      s += '<p style="margin-top:8px"><strong>Every mining run brings Mineral Sand too</strong>, whatever the Mine is set to. The amount varies <span class="verdict v-mix">Not verified yet</span>, so no sand number is counted — you never need a Mine on sand just to get sand.</p>';
       s += '<p style="margin-top:8px">';
       if(ms.planNeed > 0){
         s += 'This plan puts out <strong>' + ms.planNeed + (ms.planNeed === 1 ? ' Mine' : ' Mines') + ' at Mine Lv ' + ms.lvl + '</strong>, set to ' +
@@ -5450,54 +5411,64 @@
       } else {
         s += 'This plan needs nothing from the Mine, so it puts out no Mines on its own — but you can add your own Mines into the plan below, each with your pick of material. ';
       }
-      s += 'One Mine gathers <strong>one material at a time</strong>, at its own level or below.<br /><strong>Every Mine out gets a pick:</strong> Mines marked “used by this plan” start on the material the plan assigned them, and you can change them like any other Mine — your pick wins. You pick for extra Mines you add too.</p>';
-      if(ms.sandClaimed && ms.totalOut > 0 && !(ms.assignments.indexOf("Mineral Sand") > -1 && ms.planNeed === 1 && ms.defaultAssign[0] === "Mineral Sand")){
+      s += 'One Mine gathers <strong>one material at a time</strong>, at its own level or below.<br /><strong>Every Mine out gets a pick:</strong> Mines marked “used by this plan” start on the material the plan assigned them, and you can change them like any other Mine — your pick wins. You pick for extra Mines you add too, and for any Mine you pinned in Always Staffed.</p>';
+      if(ms.sandClaimed && ms.totalOut > 0 && !((ms.blockAssignments || ms.assignments).indexOf("Mineral Sand") > -1 && ms.planNeed === 1 && ms.defaultAssign[0] === "Mineral Sand")){
         s += '<p style="margin-top:8px">This plan needs <strong>Mineral Sand</strong>' + (ms.claims.filter(function(c){ return c.name === "Mineral Sand"; }).length ? ' (' + esc(ms.claims.filter(function(c){ return c.name === "Mineral Sand"; })[0].why) + ')' : '') + ' — and every Mine out below brings it on every run, so no Mine has to be set to sand for it.</p>';
       }
       if(ms.goalsShutOut) s += '<p style="margin-top:8px">Your basket' + (levelingOn ? ' and the Level Up bill' : '') + ' already claim the plan\'s Mines in this plan, so the goals do not change them.</p>';
-      /* The picker itself: one row per Mine out. */
+      /* The picker itself: one row per Mine out, on the block's
+         full list — plan Mines, Mines she added, and Always-pinned
+         copies past them. This block is the ONLY place a Mine's
+         material is picked (player's consolidation, Nov 18, 2026):
+         the Mine card above is display only. Every Mine out gets a
+         picker (player's consistency fix, Nov 18, 2026, retiring
+         her Oct 29, 2026 rule that plan-claimed Mines stay locked):
+         plan-claimed Mines are pre-set to the plan's own picks and
+         marked used by this plan, but they render with the same
+         select as every other Mine, all wired to the one shared
+         pick list — and adding still stops at her Step 1 count, so
+         plan Mines + added Mines can never pass what she owns
+         (7 owned, 1 used by the plan: 6 left to add). Only added
+         Mines get the take-back button: a plan Mine's count is the
+         plan's, a pinned Mine comes off in Always Staffed. */
+      var blockList = ms.blockAssignments || ms.assignments;
+      var blockOut = (ms.blockOut != null ? ms.blockOut : ms.totalOut);
+      var pinFrom = (ms.blockPinFrom != null ? ms.blockPinFrom : ms.totalOut);
       s += '<div class="mine-picks">';
-      if(!ms.assignments.length){
+      if(!blockList.length){
         s += '<p style="margin:0"><strong>No Mines out in this plan.</strong> Add one below and pick what it gathers.</p>';
       }
-      s += ms.assignments.map(function(mat, i){
-        /* Every Mine out gets a picker (player's consistency fix,
-           Nov 18, 2026, retiring her Oct 29, 2026 rule that
-           plan-claimed Mines stay locked): plan-claimed Mines are
-           pre-set to the plan's own picks and marked used by this
-           plan, but they render with the same select as Mines she
-           adds, wired to the same shared pick list — and adding
-           still stops at her Step 1 count, so plan Mines + added
-           Mines can never pass what she owns (7 owned, 1 used by
-           the plan: 6 left to add). Only added Mines get the
-           take-back button. */
+      s += blockList.map(function(mat, i){
         var forPlan = i < ms.planNeed;
+        var pinned = i >= pinFrom;
         var opts = mats.map(function(m){
           var it = ITEMS[m];
           return '<option value="' + escA(m) + '"' + (m === mat ? ' selected' : '') + '>' + esc(m) + (m === "Mineral Sand" ? ' — yield varies' : (it.yld ? ' — ' + it.yld + ' per run' : ' — yield varies')) + '</option>';
         }).join("");
         return '<div class="mine-pick"><span class="mine-n">Mine ' + (i + 1) + '</span>' +
-          (forPlan ? '<span class="mine-tag verdict v-ok">used by this plan</span>' : '<span class="mine-tag verdict v-mix">added by you</span>') +
+          (forPlan ? '<span class="mine-tag verdict v-ok">used by this plan</span>' : (pinned ? '<span class="mine-tag always-badge">Always pinned</span>' : '<span class="mine-tag verdict v-mix">added by you</span>')) +
           '<label class="src" for="minePick' + i + '" style="flex:none">is gathering</label>' +
           '<select id="minePick' + i + '" data-mine-assign="' + i + '" aria-label="Mine ' + (i + 1) + ' gathering material">' + opts + '</select>' +
-          (forPlan ? '' : '<button type="button" class="adj-btn" data-mine-remove="' + i + '" aria-label="Take Mine ' + (i + 1) + ' back out of this plan">\u2212</button>') +
+          (!forPlan && !pinned ? '<button type="button" class="adj-btn" data-mine-remove="' + i + '" aria-label="Take Mine ' + (i + 1) + ' back out of this plan">\u2212</button>' : '') +
           '<span class="mine-yield">' + esc(mineYieldText(mat)) + (forPlan ? '. Put out by the plan and pre-set to its pick — change it here and your pick wins.' : '.') + '</span></div>';
       }).join("");
       s += '</div>';
-      s += '<div class="mine-add-row"><button type="button" class="btn btn-small" data-mine-add="1"' + (ms.totalOut >= ms.count ? ' disabled' : '') + '>' + (ms.totalOut >= ms.count ? '+ Add a Mine into this plan' : '+ Add a Mine (' + (ms.count - ms.totalOut) + ' left)') + '</button>' +
-        '<span class="src">Mines out: <strong>' + ms.totalOut + ' of ' + ms.count + ' owned</strong> (Step 1): ' + ms.planNeed + ' used by this plan' + (ms.totalOut > ms.planNeed ? ', ' + (ms.totalOut - ms.planNeed) + ' added by you' : '') + '. ' +
-        (ms.totalOut >= ms.count ? 'All your Mines are out — no more to add.' : 'An added Mine counts in full: crew, power, totals, take per run.') +
+      s += '<div class="mine-add-row"><button type="button" class="btn btn-small" data-mine-add="1"' + (blockOut >= ms.count ? ' disabled' : '') + '>' + (blockOut >= ms.count ? '+ Add a Mine into this plan' : '+ Add a Mine (' + (ms.count - blockOut) + ' left)') + '</button>' +
+        '<span class="src">Mines out: <strong>' + blockOut + ' of ' + ms.count + ' owned</strong> (Step 1): ' + ms.planNeed + ' used by this plan' + (ms.totalOut > ms.planNeed ? ', ' + (ms.totalOut - ms.planNeed) + ' added by you' : '') + (blockOut > pinFrom ? ', ' + (blockOut - pinFrom) + ' Always pinned' : '') + '. ' +
+        (blockOut >= ms.count ? 'All your Mines are out — no more to add.' : 'An added Mine counts in full: crew, power, totals, take per run.') +
         '</span></div>';
       /* Totals across her picks. */
-      if(ms.assignments.length){
-        var tallyNames = Object.keys(ms.tally).sort(function(a, b){ return ms.tally[b] - ms.tally[a] || a.localeCompare(b); });
+      if(blockList.length){
+        var blockTally = ms.blockTally || ms.tally;
+        var tallyNames = Object.keys(blockTally).sort(function(a, b){ return blockTally[b] - blockTally[a] || a.localeCompare(b); });
         s += '<p style="margin-top:10px">In all, per run round: ' + tallyNames.map(function(n){
           var it = ITEMS[n];
-          return '<strong>' + ms.tally[n] + (ms.tally[n] === 1 ? ' Mine' : ' Mines') + ' on ' + esc(n) + '</strong>' + (it.yld ? ' (' + (it.yld * ms.tally[n]) + ' ' + esc(n) + ')' : ' (yield varies)');
-        }).join(", ") + '.<br /><strong>Every one of the ' + ms.totalOut + (ms.totalOut === 1 ? ' Mine' : ' Mines') + ' also brings Mineral Sand</strong> each run. Mine takes count per run, never per hour (run times aren\'t checked).</p>';
+          return '<strong>' + blockTally[n] + (blockTally[n] === 1 ? ' Mine' : ' Mines') + ' on ' + esc(n) + '</strong>' + (it.yld ? ' (' + (it.yld * blockTally[n]) + ' ' + esc(n) + ')' : ' (yield varies)');
+        }).join(", ") + '.<br /><strong>Every one of the ' + blockOut + (blockOut === 1 ? ' Mine' : ' Mines') + ' also brings Mineral Sand</strong> each run. Mine takes count per run, never per hour (run times aren\'t checked).</p>';
       }
-      if(ms.uncovered.length){
-        s += '<div class="mine-warn">' + ms.uncovered.map(function(n){ return 'This plan uses <strong>' + esc(n) + '</strong>, but no mine is gathering it now.'; }).join(' ') + '</div>';
+      var blockUnc = ms.blockUncovered || ms.uncovered;
+      if(blockUnc && blockUnc.length){
+        s += '<div class="mine-warn">' + blockUnc.map(function(n){ return 'This plan uses <strong>' + esc(n) + '</strong>, but no mine is gathering it now.'; }).join(' ') + '</div>';
       }
       if(ms.waiting.length && ms.planNeed > 0){
         s += '<p style="margin-top:8px">Still waiting: ' + ms.waiting.map(function(n){ return '<strong>' + esc(n) + '</strong> needs Mine Lv ' + ITEMS[n].lvl + ', above yours, so no Mine can be set to it yet'; }).join("; ") + '.</p>';
@@ -5512,19 +5483,20 @@
       }
       if(ms.count <= 0) return "your Step 1 count says you have no Mines, so there is no Mine to set.";
       var s = "";
-      var cardList = ms.cardAssignments || ms.assignments;
-      var cardOut = (ms.cardOut != null ? ms.cardOut : ms.totalOut);
-      var pinFrom = (ms.cardPinFrom != null ? ms.cardPinFrom : ms.assignments.length);
-      if(cardList.length){
-        s += "put out " + cardOut + (cardOut === 1 ? " Mine" : " Mines") + " at Mine Lv " + ms.lvl + " (" + ms.planNeed + " for the plan" + (pinFrom > ms.planNeed ? " + " + (pinFrom - ms.planNeed) + " added by you" : "") + (cardOut > pinFrom ? " + " + (cardOut - pinFrom) + " Always pinned" : "") + ", of " + ms.count + " owned). ";
-        s += "Each Mine's pick: " + cardList.map(function(m, i){ return "Mine " + (i + 1) + ": " + m + (i >= pinFrom ? " (Always pinned, your pick)" : (i >= ms.planNeed ? " (added by you, your pick)" : " (put out by the plan, pre-set to its pick — your pick wins if you change it)")); }).join(", ") + ". ";
+      var blockList = ms.blockAssignments || ms.assignments;
+      var blockOut = (ms.blockOut != null ? ms.blockOut : ms.totalOut);
+      var pinFrom = (ms.blockPinFrom != null ? ms.blockPinFrom : ms.assignments.length);
+      if(blockList.length){
+        s += "put out " + blockOut + (blockOut === 1 ? " Mine" : " Mines") + " at Mine Lv " + ms.lvl + " (" + ms.planNeed + " for the plan" + (pinFrom > ms.planNeed ? " + " + (pinFrom - ms.planNeed) + " added by you" : "") + (blockOut > pinFrom ? " + " + (blockOut - pinFrom) + " Always pinned" : "") + ", of " + ms.count + " owned). ";
+        s += "Each Mine's pick: " + blockList.map(function(m, i){ return "Mine " + (i + 1) + ": " + m + (i >= pinFrom ? " (Always pinned, your pick)" : (i >= ms.planNeed ? " (added by you, your pick)" : " (put out by the plan, pre-set to its pick — your pick wins if you change it)")); }).join(", ") + ". ";
       } else {
         s += "no Mines are out in this plan (the plan claims none, and none have been added). ";
       }
       s += "Every mining run also brings Mineral Sand alongside its material (amount varies, Not verified yet, so no sand amount or rate is counted), so any Mine out covers a Mineral Sand need — no Mine has to be set to sand just for sand. ";
       s += "A Mine gathers one material at a time and can run any material for its own level or below: at Mine Lv " + ms.lvl + " that is " + listAnd(mineMaterialsUpTo(ms.lvl)) + ".";
       if(ms.sandClaimed) s += " This plan needs Mineral Sand (" + (ms.claims.filter(function(c){ return c.name === "Mineral Sand"; })[0] || {}).why + ").";
-      if(ms.uncovered.length) s += " " + ms.uncovered.map(function(n){ return "This plan uses " + n + ", but no mine is gathering it now."; }).join(" ");
+      var textUnc = ms.blockUncovered || ms.uncovered;
+      if(textUnc.length) s += " " + textUnc.map(function(n){ return "This plan uses " + n + ", but no mine is gathering it now."; }).join(" ");
       if(ms.waiting.length) s += " Waiting for a higher Mine level: " + ms.waiting.map(function(n){ return n + " (needs Mine Lv " + ITEMS[n].lvl + ")"; }).join(", ") + ".";
       if(ms.goalsShutOut) s += " Your basket" + (levelingOn ? " and the Level Up bill" : "") + " already claim the plan's Mines in this plan, so the goals do not change them.";
       return s;
@@ -5551,8 +5523,8 @@
           ' Strategy picked: <strong>' + (strategy === "levelup" ? "Level Up" : "Goals") + '</strong>. Its plan builds on the spot in <a href="#bestplan">Step 4</a>, and your Mines are picked on the Mine block in <a href="#layout">Facilities out in Step 5 · Add & Adjust</a>, from your basket and that plan together — and refresh with it on every change.</p></div>';
       }
       var ms = bpResult.mine;
-      var msList = ms.cardAssignments || ms.assignments;
-      var msOut = (ms.cardOut != null ? ms.cardOut : ms.totalOut);
+      var msList = ms.blockAssignments || ms.assignments;
+      var msOut = (ms.blockOut != null ? ms.blockOut : ms.totalOut);
       return '<div class="note note-teal"><h4>⛏️ Your Mines are picked in Facilities out</h4><p>' + needTxt +
         ' Your Mines — basket and strategy together — are picked on the Mine block in <a href="#layout">Facilities out in Step 5 · Add & Adjust</a>, below your strategy plan: <strong>' + msOut + (msOut === 1 ? ' Mine' : ' Mines') + ' out</strong>' +
         (msList.length ? ' (' + msList.map(function(m, i){ return 'Mine ' + (i + 1) + ': ' + esc(m); }).join(", ") + ')' : '') +
@@ -5881,14 +5853,14 @@
        Nov 18, 2026 consistency fix) survives every in-session
        rebuild that keeps that Mine in the plan. */
     var minePick = null;
-    /* Material picks for Always-pinned Mine copies on the Facilities
-       Out card, keyed by card position. A pinned Mine sits past the
-       accounted list (plan Mines + added Mines) that minePick holds,
-       so its pick lives here instead; mineSetup pads the card's pick
-       list from it so the card, the crew pill and the copied plan all
-       read the same per-Mine picks. Hers like the gather picks: a
-       plan rebuild does not clear it, only Start fresh does. */
-    var minePinPick = [];
+    /* There is no second Mine pick list (player's consolidation,
+       Nov 18, 2026): Always-pinned Mine copies sit past the
+       accounted list (plan Mines + added Mines) inside this same
+       minePick list — mineSetup knows the accounted length from
+       mineExtra, so the pinned tail rides here without ever being
+       counted as added Mines, and the one Set your Mines block in
+       Facilities Out is the only place any of these picks is set.
+       The Mine card there is display only. */
     /* Per-copy gather picks for the other gather facilities (player's
        extension of the Mine picker, Oct 29, 2026): facility name ->
        one product name per copy out, in order. An absent entry means
@@ -6018,19 +5990,27 @@
       if(mineAdd){
         var msA = currentMinePicks();
         if(msA.totalOut < msA.count){
-          var picksA = msA.assignments.slice();
-          picksA.push(msA.defaultAssign[0] || mineMaterialsUpTo(msA.lvl)[0] || "Rock");
+          /* Insert at the end of the accounted list, ahead of any
+             Always-pinned tail, and count the new Mine in mineExtra
+             so mineSetup keeps the accounted boundary in the right
+             place in the one pick list. */
+          var addMat = msA.defaultAssign[0] || mineMaterialsUpTo(msA.lvl)[0] || "Rock";
+          var picksA = (msA.blockAssignments || msA.assignments).slice();
+          picksA.splice(msA.totalOut, 0, addMat);
           minePick = picksA;
+          mineExtra[addMat] = (mineExtra[addMat] || 0) + 1;
           if(facExtra["Mine"]) delete facExtra["Mine"];
         }
       }
       if(mineRemove !== null){
         var idxR = parseInt(mineRemove, 10);
         var msR = currentMinePicks();
-        if(idxR >= msR.planNeed && idxR < msR.assignments.length){
-          var picksR = msR.assignments.slice();
+        if(idxR >= msR.planNeed && idxR < msR.totalOut){
+          var picksR = (msR.blockAssignments || msR.assignments).slice();
+          var removedMat = picksR[idxR];
           picksR.splice(idxR, 1);
           minePick = picksR;
+          if(mineExtra[removedMat]){ mineExtra[removedMat]--; if(!mineExtra[removedMat]) delete mineExtra[removedMat]; }
           if(facExtra["Mine"]) delete facExtra["Mine"];
         }
       }
@@ -6050,22 +6030,22 @@
       if(idx === null && !gFac && !xFac && !pFac) return;
       syncFacExtras();
       if(idx !== null){
+        /* One pick list for every Mine out — plan, added and
+           Always-pinned alike: the change lands in minePick at the
+           row's own position, and every surface (the Mine card's
+           Producing line and tally, the block totals, the layout
+           mine check, the crew) re-reads that same list. A pinned
+           copy's position sits past the accounted list; writing it
+           there changes nothing about the pin's own staffing or
+           totals, because mineSetup keeps the accounted boundary
+           from mineExtra. */
         var ms = currentMinePicks();
-        var picks = ms.assignments.slice();
+        var picks = (ms.blockAssignments || ms.assignments).slice();
         var i = parseInt(idx, 10);
-        if(i >= 0 && ITEMS[t.value] && ITEMS[t.value].facility === "Mine"){
-          if(i < picks.length){
-            picks[i] = t.value;
-            minePick = picks;
-            if(facExtra["Mine"]) delete facExtra["Mine"];
-          } else if(ms.cardAssignments && i < ms.cardAssignments.length){
-            /* An Always-pinned copy's pick: it lives past the
-               accounted list, in minePinPick, so the pin's own
-               staffing and totals stay exactly as they were while
-               the card pick still takes effect everywhere the
-               card's pick list is read. */
-            minePinPick[i] = t.value;
-          }
+        if(i >= 0 && i < picks.length && ITEMS[t.value] && ITEMS[t.value].facility === "Mine"){
+          picks[i] = t.value;
+          minePick = picks;
+          if(facExtra["Mine"]) delete facExtra["Mine"];
         }
       }
       if(pFac && (t.value === "__off__" || (ITEMS[t.value] && facCanon(ITEMS[t.value].facility) === facCanon(pFac) && pickAvailable(ITEMS[t.value])))){
@@ -6990,7 +6970,7 @@
         "Sunlamp":"Overlays temperature zones: ground counted once, one Sunlamp per light zone",
         "Starfall Hammock":"Needs a Cool environment: stands inside a Cooling Unit zone",
         "Floral Windmill":"Scales is hard-gated on Light: a Sunlamp must cover it or Scales will not run. Needs: Flutternym family",
-        "Mine":"Pick each Mine's material on this block below — extra Mines you add here join this plan in full, and every Mine also brings Mineral Sand",
+        "Mine":"What each Mine digs is set on the Set your Mines block below — extra Mines added there join this plan in full, and every Mine also brings Mineral Sand",
         "Well":"Its Water Aniimo also water the crops"
       };
       var blocks = [];
@@ -7030,13 +7010,14 @@
         var extra = working - floorC;
         var namedItems = fa.facility === "Mine" ? [] : facilityPlanItems(fa.facility);
         var namedProd = namedItems.length > 1 ? assignText(namedItems, working) : (namedItems.length === 1 ? namedItems[0] : prod[fa.facility]);
-        /* The Mine block names her actual picks, Mine by Mine, from
-           the same pick list the Mines note edits — and every Mine
-           on it also brings Mineral Sand. */
+        /* The Mine card names her actual picks, Mine by Mine, from
+           the one pick list the Set your Mines block below edits —
+           pure display: the card carries no pick of its own, and
+           every Mine on it also brings Mineral Sand. */
         if(fa.facility === "Mine"){
           var msLay = currentMinePicks();
-          var cardList = msLay.cardAssignments || msLay.assignments;
-          if(cardList.length) namedProd = cardList.map(function(m, i){ return "Mine " + (i + 1) + ": " + m; }).join(" · ") + " — every Mine also brings Mineral Sand";
+          var blockList = msLay.blockAssignments || msLay.assignments;
+          if(blockList.length) namedProd = blockList.map(function(m, i){ return "Mine " + (i + 1) + ": " + m; }).join(" · ") + " — every Mine also brings Mineral Sand";
         }
         /* Gather facilities name their per-copy picks the same way,
            and the block carries the picker itself underneath: one
@@ -7047,26 +7028,17 @@
            nothing it gathers fits her Nimbus Bed level and RV yet,
            the added-copy rows below say so instead of a picker. */
         var gatherHtml = "";
-        /* Mines live in Facilities out now (player's flow fix,
-           Nov 16, 2026): the Mine block carries the full Mine
-           picker — plan Mines marked used and pre-set to the plan's
-           materials but pickable like every other Mine, picks for
-           added Mines, the add-a-Mine row — instead of pointing at
-           a Mines step. */
-        var mineHtml = "";
+        /* Mines are set in ONE place only (player's consolidation,
+           Nov 18, 2026): the Set your Mines block below, after these
+           facility blocks — the Mine card here is pure display, its
+           Producing line and the per-run tally row underneath it
+           both computed from that block's picks, with no dropdown
+           or pick of its own. */
+        var mineTallyRow = "";
         if(fa.facility === "Mine"){
-          /* The picker renders the card's full pick list — a
-             dropdown for every Mine out: plan Mines pre-set to the
-             plan's materials, plus every added or Always-pinned
-             copy — so the card never shows a working Mine with no
-             way to set what it gathers. */
           var msSrc = (typeof msLay !== "undefined" && msLay) ? msLay : currentMinePicks();
-          mineHtml = mineBlockPickHtml({ lvl:msSrc.lvl, count:msSrc.count, planNeed:msSrc.planNeed,
-            totalOut:(msSrc.cardOut != null ? msSrc.cardOut : msSrc.totalOut),
-            assignments:(msSrc.cardAssignments || msSrc.assignments),
-            tally:(msSrc.cardTally || msSrc.tally),
-            uncovered:msSrc.uncovered, cardUncovered:msSrc.cardUncovered, waiting:msSrc.waiting,
-            cardPinFrom:(msSrc.cardPinFrom != null ? msSrc.cardPinFrom : msSrc.assignments.length) });
+          var tallyTxt = mineCardTallyText(msSrc);
+          if(tallyTxt) mineTallyRow = '<div class="zb-row"><span class="zb-k">Per run</span><span>' + esc(tallyTxt) + '</span></div>';
         }
         if(isGatherPickFac(fa.facility)){
           var gList = gatherAssignments(fa.facility, planC, working);
@@ -7082,7 +7054,8 @@
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(namedProd) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(isClimateMachine(fa.facility) ? (fa.job + " · any level · 1 Aniimo per building this plan uses (" + working + " working for this plan) · the level of the Aniimo running a climate machine does not matter — any " + fa.job + " Aniimo runs it") : (fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + working + " working for this plan)")) + '"' : "") + '>' + (fa.job ? (isClimateMachine(fa.facility) ? anyLevelMarker(fa.job, null) + "1 " + fa.job + " Aniimo each, " + working + " in all · any level" : abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + working + " in all") : "1 Aniimo each, " + working + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(pinC > 0 && planC <= 0 ? "Pinned in Always staffed in Step 1: it stays out and staffed even when no recipe uses it" : planC > 0 ? (why[fa.facility] || "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add") : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
-          "</div>" + gatherHtml + mineHtml + "</div>";
+          mineTallyRow +
+          "</div>" + gatherHtml + "</div>";
       }
       /* Always blocks first in the layout: pinned named facilities in
          pin list order, then the rest in their usual order. */
@@ -7143,13 +7116,20 @@
           "</div>" + (facList.length ? facPickHtml(f, floorC, working) : extraPickHtml(f, planC, working)) + "</div>");
       });
       var addPanel = addFacilityPanelHtml(climateUsed, usedCounts, allNeed);
-      if(!blocks.length) return addPanel;
+      /* The ONE place Mines are set (player's consolidation,
+         Nov 18, 2026): the Set your Mines block stands in Facilities
+         out, right after the facility blocks — the Mine card among
+         them only shows what each Mine is bringing in from these
+         picks. It renders even when no facility block does, so a
+         Mine can always be added into the plan from here. */
+      var minesBlock = mineSetupHtml(currentMinePicks());
+      if(!blocks.length) return minesBlock + addPanel;
       return '<h3 class="layout-sec-head">🏭 Facilities out in this layout</h3><p class="sec-sub" style="margin:8px 0 0">' +
         "Facilities marked Always come first: pinned in Step 1, out and staffed whether or not a recipe uses them. After them, only the facilities this plan uses are out. Only as many copies as the plan needs. Never every copy you own. Each one used has 1 Aniimo in your crew below." +
-        '<br />⛏️ <strong>Mines live here too</strong> — there is no separate Mines step any more: the Mine block above carries the material pick for every Mine out, with the plan\'s Mines marked used by this plan and pre-set to the plan\'s materials — changeable there like any other Mine\'s pick — exactly where every other facility\'s picks are.' +
+        '<br />⛏️ <strong>Mines are set in one place only</strong> — there is no separate Mines step any more, and the Mine card above carries no picks: the Set your Mines block below, after these blocks, carries the material pick for every Mine out, with the plan\'s Mines marked used by this plan and pre-set to the plan\'s materials — changeable there like any other Mine\'s pick. The card only shows what each Mine is bringing in from those picks.' +
         '<br />The coloured circle on an Aniimo row is that skill, in its game colour. The number inside is the Aniimo level. Climate machines show "any" instead of a number: the level of the Aniimo running one does not matter. A gold ring means the plan counts on that facility\'s personality bonus (+20%). Tap or hover the row for more, with the strongest known Aniimo as a hint.' +
         "<br />Use − and + on a block to add copies you own, or take back copies you added. The plan's count is the floor. Your Step 1 count is the top. Added copies are marked added by you. They are staffed in your crew and counted in your power.<br />Change your basket or strategy and added copies reset to the plan's counts.<br /><strong>Every copy on a block has its own recipe pick</strong> — the plan's copies too, not just ones you added. Change any copy to a different recipe the facility can make, or set it to <strong>Off — not running</strong> to leave that copy idle: an off copy stays out but makes and gathers nothing, and the block's tally skips it.<br />A pick you set by hand on a copy above is yours: it stays on that copy when the plan rebuilds — the plan's own assignment only fills copies you have not set — until you change it yourself or start fresh." +
-        '</p><div class="fac-blocks">' + blocks.join("") + "</div>" + addPanel;
+        '</p><div class="fac-blocks">' + blocks.join("") + "</div>" + minesBlock + addPanel;
     }
 
     /* Add a facility this plan is not using (player's ask, Oct 29,
@@ -9707,7 +9687,7 @@
         BP_GOALS.forEach(function(g){ bpGoalOn[g.id] = false; });
         alwaysPins = {}; alwaysList = [];
         layoutPicks = {}; layoutAutoAdj = {}; layoutBpAdj = {};
-        facExtra = {}; mineExtra = {}; minePick = null; minePinPick = []; gatherPick = {}; extraPick = {}; facPick = {}; facExtraSig = null;
+        facExtra = {}; mineExtra = {}; minePick = null; gatherPick = {}; extraPick = {}; facPick = {}; facExtraSig = null;
         activeCat = "all"; hideLocked = false;
         crewGate.strategy = false;
         crewGate.rv = false;
