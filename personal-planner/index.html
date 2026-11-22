@@ -496,7 +496,7 @@
             </div>
           </div>
           <div class="chips" id="catChips" role="group" aria-label="Recipe categories"></div>
-          <p class="src" style="margin-top:8px">Marks: ⭐ needs a rare-currency unlock. 🎃 is an event recipe. Premium recipes aren't listed twice — the base entry covers them (Salted Lemon covers Premium Salted Lemon). Type a Premium name in Find a recipe to find its entry.</p>
+          <p class="src" style="margin-top:8px">Marks: ⭐ needs a rare-currency unlock. 🎃 is an event recipe. Premium recipes have their own entries, locked 🔒 until your module level meets their gate. One exception: Sweet Rice Drink still covers Premium Sweet Rice Wine, so type that name in Find a recipe to find its entry.</p>
           <p class="src" id="pickerCount" style="margin-top:10px"></p>
           <div class="hide-row">
             <label class="hide-toggle" for="hideLockedToggle"><input type="checkbox" id="hideLockedToggle" /> <span>Only show recipes I can make</span></label>
@@ -816,7 +816,7 @@
           <li><strong>Recipe ingredients, facility levels and craft times:</strong> <a href="https://dailyaniimo.com/homeland/recipes">Daily Aniimo</a> (game data, Oct 9, 2026), cross-checked against <a href="https://aniimotools.dev/systems/homeland/crops-and-facilities/">AniimoTools</a>. Where station names differ, AniimoTools wins.</li>
           <li><strong>RV costs, caps, prerequisites and unlocks:</strong> <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a>, cross-checked against MetaBot.GG's retail-file Homeland guide.</li>
           <li><strong>Grow amounts use base yields.</strong> Higher yields exist (facility levels, module recipes); the planner counts the base yield, so plots finish early, never late.</li>
-          <li><strong>Premium variants are not listed twice.</strong> Premium versions use the same ingredients as the regular version, so one entry covers both. The recipe search still knows the Premium names: searching Premium Salted Lemon finds the Salted Lemon entry that covers it.</li>
+          <li><strong>Premium variants have their own entries</strong> (changed Nov 21, 2026; before that, one entry covered both). Each Premium recipe is listed separately with the same facility, level, worker and ingredients as its base, and locks in the picker until your Kitchen or Crafting Module level meets its gate. One exception: Premium Sweet Rice Wine has no separate entry — no verified base recipe data for it — so Sweet Rice Drink still covers it, and the recipe search still finds it there.</li>
           <li><strong>Special recipes:</strong> Rose Shortbread and Potato Kvass unlock with Dream Sparks at the Dream Spark Exchange (Home Shop, BINI #2333). Their exact note prices are not verified yet. Plans only make sense once you own them.</li>
           <li><strong>Harvest Moon Festival recipes were removed when the festival ended</strong> (Oct 27, 2026): the moon crops and every dish whose Recipe Note cost Moonray Wheat are gone from the planner.</li>
           <li><strong>Magical Wonder Night (season Oct 29 to Dec 10, 2026), from your own in-game screenshots, Oct 29, 2026:</strong> the event is named by its official name everywhere on this page. Magic Pumpkin and Memory Lanternfruit: Farmland Lv 5, 1 seed grows 8, 40 minutes, Adequate light (Required, the lighting axis, so Sunlamp plots), sell 61 Home Coins, Energy 1350, Whimsy Point +1 raw; their seeds cost 4 Weird Jelly Beans each at the Seed Shop, event currency, so no Home Coin seed cost is ever counted for them. The nine 🎃 recipes carry their facilities, levels, ingredients, sell prices and Whimsy Points exactly as your cards showed (Golden Lantern Pumpkin Soup +20 is the biggest; the two end products, Honey-Glazed Pumpkin Cup and Glowfruit Lantern Set, are +4 each and read as sell pieces). Cooked dishes are offered to the Pumpkin God for Whimsy Points; plans show Whimsy Points per hour only, and Whimsy Points is a rankable goal in Goals mode. Event prices carry the flag "From your screenshots, Oct 29, 2026" rather than a shop research flag, because your cards are the source.</li>
@@ -870,6 +870,7 @@
           <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
           <li><strong>Full recipe audit (Oct 24, 2026):</strong> the whole Daily Aniimo recipe book (209 rows) was diffed against this planner: 56 verified recipes added, makeable recipes 68 → 124, plus Captain Spud and one middle step (Rose Incense). Every addition carries its facility, level and Worker from the book; RV unlocks follow the verified facility tier tables.</li>
+          <li><strong>Recipe-catalog audit (Nov 21, 2026):</strong> 18 category-less recipes (Cotton Thread and its loom, mill, pot, jar and dryer kin) made pickable in the basket again; Silver Ore added as the Mine's seventh product (Mine Lv 7, unlocking at RV 21); Premium and Quick variants given their own gated entries — Premium recipes in the basket behind their Kitchen or Crafting Module gates, Quick gathers in the facility product lists behind their Resource Detector gates.</li>
           <li><strong>Level variants:</strong> where the book lists an item at several levels with bigger yields, there is <strong>one entry per item at its base level and base yield</strong>, so plans never come up short. Where two different items share ingredients without the Premium pattern (Wind Chime / Advanced Wind Chime, Gemstone Dust / Advanced Gemstone Dust, Lemon Incense / Advanced Lemon Incense), both are listed separately and say so.</li>
           <li><strong>Flagged in the audit, never guessed:</strong> (1) Captain Spud has no climate tag — it wasn't in the verified in-game survey. (2) The book lists no prices or blurbs, so none were invented for the additions.</li>
         </ul>
@@ -899,7 +900,7 @@
       "Farmland":[1,2,5,7,9,12,16], "Woodland":[2,4,7,11,14,18],
       "Carousel Mill":[2,5,9,13,16,18], "Dance Pad Polisher":[2,5,7],
       "Aniipod Maker":[3,6,9], "Crafting Table":[3,5,7,9,12,15,18,20],
-      "Mine":[3,6,9,12,15,18], "Claw Game Cooker":[4,5,7,9,12,16,19],
+      "Mine":[3,6,9,12,15,18,21], "Claw Game Cooker":[4,5,7,9,12,16,19],
       "Jukebox Dryer":[4,5,7,10,12,14,18], "Well":[4,8,11,13,17],
       "Simmering Pot":[5,7,9,12,15,18], "Tidewhisper Sandcastle":[5,8,13,20,22],
       "Bouncy Brew Keg":[6,9,13,17,19], "Chimney Kiln":[6,10,14,18],
@@ -1077,15 +1078,16 @@
     function G(name, facility, lvl, yld, time, seed, note){
       ITEMS[name] = { name:name, kind:"grow", facility:facility, lvl:lvl, yld:yld, time:time, seed:seed, note:note || "" };
     }
-    function GA(name, facility, lvl, yld, note){
-      ITEMS[name] = { name:name, kind:"gather", facility:facility, lvl:lvl, yld:yld, note:note || "" };
+    function GA(name, facility, lvl, yld, note, opts){
+      opts = opts || {};
+      ITEMS[name] = { name:name, kind:"gather", facility:facility, lvl:lvl, yld:yld, note:note || "", rdGate: opts.rdGate || 0 };
     }
     function C(name, facility, lvl, worker, needs, opts){
       opts = opts || {};
       ITEMS[name] = { name:name, kind:"craft", facility:facility, lvl:lvl, worker:worker, needs:needs,
         yld: opts.yld || 1, cat: opts.cat || null, blurb: opts.blurb || "", special: !!opts.special,
         alias: opts.alias || "", covers: opts.covers || "", event: opts.event || null, whimsy: opts.whimsy || 0,
-        moduleGate: opts.moduleGate || 0, moduleGateFor: opts.moduleGateFor || "" };
+        moduleGate: opts.moduleGate || 0, moduleGateFor: opts.moduleGateFor || "", moduleId: opts.moduleId || "" };
     }
     /* Farmland, base yields */
     G("Wheat","Farmland",1,5,"4 min","Wheat Seed");
@@ -1128,17 +1130,23 @@
     GA("Copper Ore","Mine",4,5,"Mined, no ingredients.");
     GA("Quartz Ore","Mine",5,4,"Mined, no ingredients.");
     GA("Gem","Mine",6,2,"Mined, no ingredients.");
+    GA("Silver Ore","Mine",7,2,"Mined, no ingredients. The Mine's seventh product (AniimoTools + Aniiland station data, Nov 7, 2026 requirements audit). Every Mine run also brings Mineral Sand alongside, ×165 at this tier — the amount varies and is never counted, same as the other ores.");
     GA("Mineral Sand","Mine",1,null,"Every mining run brings Mineral Sand alongside whatever material that Mine is set to gather (player's rule, Oct 29, 2026), so any Mine out earns some; the amount per run varies. No fixed yield is printed on purpose.");
     GA("Wood Block","Woodland",1,null,"Tree byproduct, never planted: Wood Blocks ride along with every Woodland tree harvest at a fixed rate per plot, so they have no seed and no plot of their own. Wood Blocks per plot by Woodland level, from your screenshots, Oct 25, 2026: Level 1 gives 1 per plot, Level 2 gives 8, Level 3 gives 21, Level 4 gives 47, Level 5 gives 75, Level 6 gives 122.");
     GA("Sea Salt","Tidewhisper Sandcastle",1,10,"Made only at the Tidewhisper Sandcastle. The known bottleneck: stock up early. Needs: Susuta family. The Aniimo assigned to make it must be from the Susuta family (the game's own note on the Sandcastle panel, from your screenshot, Oct 27, 2026). Quick Sea Salt (Sandcastle Lv 2, Resource Detector 2) has the same gate: Needs: Susuta family.");
+    GA("Quick Sea Salt","Tidewhisper Sandcastle",2,23,"Gathered at the Tidewhisper Sandcastle, no ingredients. The Quick recipe for Sea Salt: its own entry since the Nov 21, 2026 audit, gated on Resource Detector Lv 2. Needs: Susuta family, same as Sea Salt.", { rdGate:2 });
     GA("Pearl","Tidewhisper Sandcastle",3,2,"Gathered at the Tidewhisper Sandcastle, no ingredients. Needs: Shelly family. The Aniimo assigned to gather it must be from the Shelly family (the game's own note on the Sandcastle panel, from your screenshot, Oct 27, 2026). Quick Pearl (Sandcastle Lv 4, Resource Detector 9) has the same gate: Needs: Shelly family.");
+    GA("Quick Pearl","Tidewhisper Sandcastle",4,4,"Gathered at the Tidewhisper Sandcastle, no ingredients. The Quick recipe for Pearl: its own entry since the Nov 21, 2026 audit, gated on Resource Detector Lv 9. Needs: Shelly family, same as Pearl.", { rdGate:9 });
     GA("Sweet Cone","Tidewhisper Sandcastle",5,2,"Gathered at the Tidewhisper Sandcastle, no ingredients. Needs: Sugar family (single-source). Wants Cold -2: without Cooling Unit coverage it runs at 50%.");
     GA("Wool","Homeland leisure station",1,4,"Gathered with no ingredients at the Nimbus Bed. Needs: Nimbi family. Quick Wool (Nimbus Bed Lv 2, Resource Detector 5) has the same gate: Needs: Nimbi family.");
+    GA("Quick Wool","Homeland leisure station",2,6,"Gathered with no ingredients at the Nimbus Bed. The Quick recipe for Wool: its own entry since the Nov 21, 2026 audit, gated on Resource Detector Lv 5. Needs: Nimbi family, same as Wool.", { rdGate:5 });
     GA("Petals","Homeland leisure station",3,6,"Gathered with no ingredients at the Nimbus Bed. Needs: Iris family.");
     GA("Star","Starfall Hammock",1,2,"Gathered with no ingredients at the Starfall Hammock, which needs a Cool environment to work (the player's own lookup, Oct 25, 2026). Needs: Celestis family. The Aniimo assigned to gather it can be any Aniimo from the Celestis family, the game's own note on the Starfall Hammock panel (from your screenshot, Oct 27, 2026). Wants Cool -1: without Cooling Unit coverage it runs at 80%.");
     GA("Gold-Speck Cap","Starfall Hammock",2,8,"Gathered with no ingredients at the Starfall Hammock. Needs: Coinwisp family (single-source). Wants Warmth +1: without Heat Furnace coverage it runs at 80%.");
     GA("Scales","Floral Windmill",1,8,"Gathered with no ingredients at the Floral Windmill. Needs: Flutternym family. Hard gate: it needs Light, so a Sunlamp must cover the Floral Windmill or Scales will not run at all. Quick Scales (Floral Windmill Lv 1, Resource Detector 8) has the same gates: Needs: Flutternym family, and Light.");
+    GA("Quick Scales","Floral Windmill",1,12,"Gathered with no ingredients at the Floral Windmill. The Quick recipe for Scales: its own entry since the Nov 21, 2026 audit, gated on Resource Detector Lv 8. Needs: Flutternym family, same as Scales, and the same Light hard gate: a Sunlamp must cover the Floral Windmill or it will not run at all.", { rdGate:8 });
     GA("Aromathyst","Dewy House",1,4,"Gathered at the Dewy House, no ingredients. Needs: Dewy family. Quick Aromathyst (Dewy House Lv 2, Resource Detector 3) has the same gate: Needs: Dewy family.");
+    GA("Quick Aromathyst","Dewy House",2,12,"Gathered at the Dewy House, no ingredients. The Quick recipe for Aromathyst: its own entry since the Nov 21, 2026 audit, gated on Resource Detector Lv 3. Needs: Dewy family, same as Aromathyst.", { rdGate:3 });
     /* Carousel Mill */
     C("Wheatmeal","Carousel Mill",1,"Wind",{ "Wheat":50 }, { cat:"pantry", blurb:"The flour base for bread, tarts and cookies." });
     C("Milled Rice","Carousel Mill",2,"Wind",{ "Rice":18 }, { cat:"pantry", blurb:"Rice, milled and ready for porridge and rice balls." });
@@ -1170,19 +1178,24 @@
     /* Crafting Table additions, full recipe audit (Daily Aniimo book) */
     C("Wood Sculpture","Crafting Table",1,"Artisanship",{ "Willow Wood":19 }, { cat:"craft" });
     C("Bamboo Ware","Crafting Table",2,"Artisanship",{ "Bamboo":10 }, { cat:"craft" });
-    C("River-Washed Stones","Crafting Table",2,"Artisanship",{ "Rock":18, "Well Water":5 }, { cat:"craft", alias:"Premium River-Washed Stones", covers:"Premium River-Washed Stones (Crafting Module Lv 1)", blurb:"Premium River-Washed Stones uses the same ingredients, so one entry covers both." });
-    C("Rose Freshener","Crafting Table",3,"Artisanship",{ "Rose Incense":1, "Bamboo":13 }, { cat:"craft", alias:"Premium Rose Freshener", covers:"Premium Rose Freshener (Crafting Module Lv 2)", blurb:"Premium Rose Freshener uses the same ingredients, so one entry covers both." });
+    C("River-Washed Stones","Crafting Table",2,"Artisanship",{ "Rock":18, "Well Water":5 }, { cat:"craft" });
+    C("Premium River-Washed Stones","Crafting Table",2,"Artisanship",{ "Rock":18, "Well Water":5 }, { cat:"craft", blurb:"The Premium version of River-Washed Stones: same facility, level and ingredients, behind its module gate.", moduleGate:1, moduleId:"crafting", moduleGateFor:"Premium River-Washed Stones" });
+    C("Rose Freshener","Crafting Table",3,"Artisanship",{ "Rose Incense":1, "Bamboo":13 }, { cat:"craft" });
+    C("Premium Rose Freshener","Crafting Table",3,"Artisanship",{ "Rose Incense":1, "Bamboo":13 }, { cat:"craft", blurb:"The Premium version of Rose Freshener: same facility, level and ingredients, behind its module gate.", moduleGate:2, moduleId:"crafting", moduleGateFor:"Premium Rose Freshener" });
     C("Shell Ornament","Crafting Table",4,"Artisanship",{ "Shell":6, "Cotton Thread":1 }, { cat:"craft" });
     C("Advanced Wind Chime","Crafting Table",5,"Artisanship",{ "Copper Ore":5, "Woolen Yarn":1, "Star":2 }, { cat:"craft", blurb:"The book lists Advanced Wind Chime and Wind Chime with the same ingredients; both are separate entries here because the book names them as different items." });
     C("Star Wish Lantern","Crafting Table",5,"Artisanship",{ "Copper Ore":5, "Star":2 }, { cat:"craft" });
     C("Wind Chime","Crafting Table",5,"Artisanship",{ "Copper Ore":5, "Woolen Yarn":1, "Star":2 }, { cat:"craft", blurb:"The book lists Wind Chime and Advanced Wind Chime with the same ingredients; both are separate entries here because the book names them as different items." });
+    C("Premium Wind Chime","Crafting Table",5,"Artisanship",{ "Copper Ore":5, "Woolen Yarn":1, "Star":2 }, { cat:"craft", blurb:"The Premium version of Wind Chime: same facility, level and ingredients, behind its module gate.", moduleGate:4, moduleId:"crafting", moduleGateFor:"Premium Wind Chime" });
     C("Rubber Duck","Crafting Table",6,"Artisanship",{ "Natural Rubber":3 }, { cat:"craft" });
     C("Woven Toy","Crafting Table",6,"Artisanship",{ "Palm Rope":1 }, { cat:"craft" });
     C("Advanced Gemstone Dust","Crafting Table",7,"Artisanship",{ "Gem":2, "Scales":8 }, { cat:"craft", blurb:"The book lists Advanced Gemstone Dust and Gemstone Dust with the same ingredients; both are separate entries here because the book names them as different items." });
     C("Flowers in a Bottle","Crafting Table",7,"Artisanship",{ "Dried Flowers":1, "Porcelain":1 }, { cat:"craft" });
     C("Gemstone Dust","Crafting Table",7,"Artisanship",{ "Gem":2, "Scales":8 }, { cat:"craft", blurb:"The book lists Gemstone Dust and Advanced Gemstone Dust with the same ingredients; both are separate entries here because the book names them as different items." });
+    C("Premium Gemstone Dust","Crafting Table",7,"Artisanship",{ "Gem":2, "Scales":8 }, { cat:"craft", blurb:"The Premium version of Gemstone Dust: same facility, level and ingredients, behind its module gate.", moduleGate:6, moduleId:"crafting", moduleGateFor:"Premium Gemstone Dust" });
     /* Claw Game Cooker */
-    C("Bread","Claw Game Cooker",1,"Fire",{ "Wheatmeal":2, "Well Water":5 }, { cat:"food", alias:"Premium Bread", covers:"Premium Bread (Kitchen Module Lv 2)", blurb:"The homeland staple. Premium Bread uses the same ingredients." });
+    C("Bread","Claw Game Cooker",1,"Fire",{ "Wheatmeal":2, "Well Water":5 }, { cat:"food", blurb:"The homeland staple." });
+    C("Premium Bread","Claw Game Cooker",1,"Fire",{ "Wheatmeal":2, "Well Water":5 }, { cat:"food", blurb:"The Premium version of Bread: same facility, level and ingredients, behind its module gate.", moduleGate:2, moduleId:"kitchen", moduleGateFor:"Premium Bread" });
     C("Roasted Soybeans","Claw Game Cooker",2,"Fire",{ "Soybean":16, "Sea Salt":10 }, { cat:"food", blurb:"Salty, simple, and a fast way to spend a soybean harvest." });
     C("Apple Tart","Claw Game Cooker",3,"Fire",{ "Wheatmeal":1, "Apple":8 }, { cat:"food", blurb:"One apple harvest in a wheatmeal crust." });
     C("Maple Candy Roasted Potatoes","Claw Game Cooker",3,"Fire",{ "Potato":8, "Maple Syrup":9, "Sea Salt":10 }, { cat:"food", blurb:"Sweet, salty, and very maple." });
@@ -1190,7 +1203,8 @@
     C("Lavender Cookies","Claw Game Cooker",4,"Fire",{ "Lavender Powder":1, "Wheatmeal":1 }, { cat:"food", blurb:"One lavender harvest, milled, per batch of cookies." });
     C("Grape Candy","Claw Game Cooker",5,"Fire",{ "Grapes":9, "Rock Candy":1 }, { cat:"food", blurb:"Extracted natural grape sugars concentrated into tiny candies that capture the fruit's sweet, fragrant essence." });
     C("Coconut Cookie","Claw Game Cooker",6,"Fire",{ "Shredded Coconut":1, "Refined Flour":1 }, { cat:"food", blurb:"Dryer plus mill, then the cooker." });
-    C("Berry Chocolate Coconut Pudding","Claw Game Cooker",7,"Fire",{ "Cocoa Spread":1, "Strawberry":16, "Coconut Milk":1 }, { cat:"food", alias:"Premium Berry Chocolate Coconut Pudding", covers:"Premium Berry Chocolate Coconut Pudding (Kitchen Module Lv 7)", blurb:"The deepest dessert chain in the book: cocoa, malt sugar, strawberries and coconut milk. Premium Berry Chocolate Coconut Pudding uses the same ingredients, so one entry covers both." });
+    C("Berry Chocolate Coconut Pudding","Claw Game Cooker",7,"Fire",{ "Cocoa Spread":1, "Strawberry":16, "Coconut Milk":1 }, { cat:"food", blurb:"The deepest dessert chain in the book: cocoa, malt sugar, strawberries and coconut milk." });
+    C("Premium Berry Chocolate Coconut Pudding","Claw Game Cooker",7,"Fire",{ "Cocoa Spread":1, "Strawberry":16, "Coconut Milk":1 }, { cat:"food", blurb:"The Premium version of Berry Chocolate Coconut Pudding: same facility, level and ingredients, behind its module gate.", moduleGate:7, moduleId:"kitchen", moduleGateFor:"Premium Berry Chocolate Coconut Pudding" });
     C("Flower Bread","Claw Game Cooker",7,"Fire",{ "Refined Flour":1, "Dried Flowers":1 }, { cat:"food", blurb:"Refined flour topped with dried flowers." });
     /* Claw Game Cooker additions, full recipe audit (Daily Aniimo book) */
     C("Apple Candy","Claw Game Cooker",4,"Fire",{ "Apple":8, "Rock Candy":1 }, { cat:"food" });
@@ -1245,9 +1259,11 @@
     C("Coconut Cocoa","Bouncy Brew Keg",5,"Water",{ "Coconut":5, "Cocoa Powder":1 }, { cat:"drink" });
     /* Blazing Stove */
     C("Cherry Blossom Rice Ball","Blazing Stove",1,"Fire",{ "Salted Cherry Blossom":1, "Milled Rice":1 }, { cat:"food", blurb:"Pickling jar meets mill, on the stove." });
-    C("Creamy Potato Soup","Blazing Stove",1,"Fire",{ "Potato":15, "Plain Fresh Water":8 }, { cat:"food", alias:"Premium Potato Soup", covers:"Premium Potato Soup (Kitchen Module Lv 3)", blurb:"Premium Potato Soup uses the same ingredients." });
+    C("Creamy Potato Soup","Blazing Stove",1,"Fire",{ "Potato":15, "Plain Fresh Water":8 }, { cat:"food" });
+    C("Premium Potato Soup","Blazing Stove",1,"Fire",{ "Potato":15, "Plain Fresh Water":8 }, { cat:"food", blurb:"The Premium version of Creamy Potato Soup: same facility, level and ingredients, behind its module gate.", moduleGate:3, moduleId:"kitchen", moduleGateFor:"Premium Potato Soup" });
     C("Tanghulu","Blazing Stove",2,"Fire",{ "Strawberry":8, "Rock Candy":1 }, { cat:"food", blurb:"Strawberries on a stick, candied." });
-    C("Jello","Blazing Stove",4,"Fire",{ "Petals":6, "Maple Sugar Chunk":1, "Deep Rock Spring Water":6 }, { cat:"food", alias:"Premium Jello", covers:"Premium Jello (Kitchen Module Lv 6)", blurb:"Petals and a lot of maple. Premium Jello uses the same ingredients." });
+    C("Jello","Blazing Stove",4,"Fire",{ "Petals":6, "Maple Sugar Chunk":1, "Deep Rock Spring Water":6 }, { cat:"food", blurb:"Petals and a lot of maple." });
+    C("Premium Jello","Blazing Stove",4,"Fire",{ "Petals":6, "Maple Sugar Chunk":1, "Deep Rock Spring Water":6 }, { cat:"food", blurb:"The Premium version of Jello: same facility, level and ingredients, behind its module gate.", moduleGate:6, moduleId:"kitchen", moduleGateFor:"Premium Jello" });
     C("Strawberry Cream Puff","Blazing Stove",5,"Fire",{ "Refined Flour":1, "Strawberry":16, "Coconut Oil":1 }, { cat:"food", blurb:"Two strawberry harvests plus mill work." });
     /* Blazing Stove additions, full recipe audit (Daily Aniimo book) */
     C("Soy Sauce Fried Rice","Blazing Stove",1,"Fire",{ "Milled Rice":1, "Soy Sauce":1 }, { cat:"food" });
@@ -1266,11 +1282,13 @@
     /* Pickling Jar additions, full recipe audit (Daily Aniimo book) */
     C("Sweet Rice Drink","Pickling Jar",2,"Dark",{ "Milled Rice":1, "Plain Fresh Water":8, "Rock Candy":1 }, { cat:"drink", alias:"Premium Sweet Rice Wine", covers:"Premium Sweet Rice Wine (Kitchen Module Lv 4)", blurb:"Premium Sweet Rice Wine uses the same ingredients, so one entry covers both." });
     C("Rice Vinegar","Pickling Jar",3,"Dark",{ "Rice Drink":1 }, { cat:"pantry" });
-    C("Salted Lemon","Pickling Jar",3,"Dark",{ "Lemon":16, "Sea Salt":13 }, { cat:"pantry", alias:"Premium Salted Lemon", covers:"Premium Salted Lemon (Kitchen Module Lv 5)", blurb:"Premium Salted Lemon uses the same ingredients, so one entry covers both." });
+    C("Salted Lemon","Pickling Jar",3,"Dark",{ "Lemon":16, "Sea Salt":13 }, { cat:"pantry" });
+    C("Premium Salted Lemon","Pickling Jar",3,"Dark",{ "Lemon":16, "Sea Salt":13 }, { cat:"pantry", blurb:"The Premium version of Salted Lemon: same facility, level and ingredients, behind its module gate.", moduleGate:5, moduleId:"kitchen", moduleGateFor:"Premium Salted Lemon" });
     C("Candied Strawberries","Pickling Jar",4,"Dark",{ "Maple Syrup":18, "Strawberry":8 }, { cat:"food" });
     C("Candied Orange Flower","Pickling Jar",5,"Dark",{ "Agave Syrup":1, "Orange Flower":8 }, { cat:"food" });
     /* Phonolfactory Table */
-    C("Soap","Phonolfactory Table",5,"Perfumery",{ "Coconut Oil":1, "Petals":6, "Deep Rock Spring Water":6 }, { cat:"craft", alias:"Premium Soap", covers:"Premium Soap (Crafting Module Lv 5)", blurb:"Premium Soap uses the same ingredients.", moduleGate:5, moduleGateFor:"Premium Soap" });
+    C("Soap","Phonolfactory Table",5,"Perfumery",{ "Coconut Oil":1, "Petals":6, "Deep Rock Spring Water":6 }, { cat:"craft" });
+    C("Premium Soap","Phonolfactory Table",5,"Perfumery",{ "Coconut Oil":1, "Petals":6, "Deep Rock Spring Water":6 }, { cat:"craft", blurb:"The Premium version of Soap: same facility, level and ingredients, behind its module gate.", moduleGate:5, moduleId:"crafting", moduleGateFor:"Premium Soap" });
     C("Lotion","Phonolfactory Table",6,"Perfumery",{ "Orange Flower":8, "Coconut Oil":2 }, { cat:"craft", blurb:"Two batches of coconut oil and a flower harvest." });
     /* Phonolfactory Table additions, full recipe audit (Daily Aniimo book) */
     C("Bamboo Joss Stick","Phonolfactory Table",1,"Perfumery",{ "Bamboo":15, "Aromathyst":2 }, { cat:"craft" });
@@ -1280,7 +1298,8 @@
     C("Lavender Incense","Phonolfactory Table",3,"Perfumery",{ "Lavender":11, "Aromathyst":2 }, { cat:"craft" });
     C("Lemon Incense","Phonolfactory Table",3,"Perfumery",{ "Lemon":12, "Aromathyst":2 }, { cat:"craft", blurb:"The book lists Lemon Incense and Advanced Lemon Incense with the same ingredients; both are separate entries here because the book names them as different items." });
     C("Herbal Ginseng Aroma","Phonolfactory Table",4,"Perfumery",{ "Ginseng Powder":1, "Aromathyst":8 }, { cat:"craft" });
-    C("Mixed Perfume","Phonolfactory Table",6,"Perfumery",{ "Dried Flowers":1, "Natural Mineral Spring":6 }, { cat:"craft", alias:"Premium Mixed Perfume", covers:"Premium Mixed Perfume (Crafting Module Lv 7)", blurb:"Premium Mixed Perfume uses the same ingredients, so one entry covers both.", moduleGate:7, moduleGateFor:"Premium Mixed Perfume" });
+    C("Mixed Perfume","Phonolfactory Table",6,"Perfumery",{ "Dried Flowers":1, "Natural Mineral Spring":6 }, { cat:"craft" });
+    C("Premium Mixed Perfume","Phonolfactory Table",6,"Perfumery",{ "Dried Flowers":1, "Natural Mineral Spring":6 }, { cat:"craft", blurb:"The Premium version of Mixed Perfume: same facility, level and ingredients, behind its module gate.", moduleGate:7, moduleId:"crafting", moduleGateFor:"Premium Mixed Perfume" });
     C("Orange Flower Incense","Phonolfactory Table",6,"Perfumery",{ "Orange Flower":8, "Aromathyst":8 }, { cat:"craft" });
     /* Joy Wheel Loom */
     C("Cotton Thread","Joy Wheel Loom",1,"Wind",{ "Cotton":7 }, { blurb:"Verified: Joy Wheel Loom Lv 1 (unlocks at RV 7), made from Cotton, sell price 410. Flagged figures only: the exact Cotton amount per thread and the craft time are not verified yet — everything else about this recipe is verified. See Sources & Flags." });
@@ -1354,9 +1373,9 @@
        homeland guide and the Aniiland RV level roadmap. Each level names the
        recipe it unlocks and the RV that level needs. Only the three Ecological
        harvests change this planner's grow math; the Kitchen, Resource Detector
-       and Crafting unlocks are Premium or Advanced variants whose base entries
-       already carry the same ingredients in this planner, so they are listed
-       for ownership only and change no amounts. Premium Wheat appears in no
+       and Crafting unlocks are Premium, Advanced or Quick variants, each with
+       its own entry carrying the same ingredients as its base since the
+       Nov 21, 2026 audit, gated on its module level. Premium Wheat appears in no
        module ladder, so it has no entry here: it switches on by itself from
        the RV level and Farmland level instead (RV 12+, Farmland Lv 6+). */
     var MODULE_DEFS = [
@@ -1630,19 +1649,34 @@
       });
       return out;
     }
-    /* Crafting Module gates on Phonolfactory recipes (audit,
-       Nov 7, 2026), shown the same way as the other module gates:
-       the base entry carries the gate for its Premium or Advanced
-       form in its covers line, and this map drives the warning when
-       a plan uses the entry below the module level. */
-    var CRAFTING_MODULE_GATES = {
-      "Advanced Lemon Incense":{ lvl:3, label:"Advanced Lemon Incense" },
-      "Soap":{ lvl:5, label:"Premium Soap" },
-      "Mixed Perfume":{ lvl:7, label:"Premium Mixed Perfume" }
+    /* Module gates on Premium and Advanced variants (Nov 7, 2026
+       audit; Premium variants became their own entries in the
+       Nov 21, 2026 audit): each gated entry carries its own gate —
+       Kitchen Module for the Premium foods, Crafting Module for the
+       Premium crafts and Advanced Lemon Incense — the gate locks the
+       entry in the picker until her Step 1 module level meets it,
+       and this map drives the gate line when a plan uses the entry. */
+    var MODULE_GATES = {
+      "Premium Bread":{ mod:"kitchen", lvl:2, label:"Premium Bread" },
+      "Premium Potato Soup":{ mod:"kitchen", lvl:3, label:"Premium Potato Soup" },
+      "Premium Salted Lemon":{ mod:"kitchen", lvl:5, label:"Premium Salted Lemon" },
+      "Premium Jello":{ mod:"kitchen", lvl:6, label:"Premium Jello" },
+      "Premium Berry Chocolate Coconut Pudding":{ mod:"kitchen", lvl:7, label:"Premium Berry Chocolate Coconut Pudding" },
+      "Premium River-Washed Stones":{ mod:"crafting", lvl:1, label:"Premium River-Washed Stones" },
+      "Premium Rose Freshener":{ mod:"crafting", lvl:2, label:"Premium Rose Freshener" },
+      "Advanced Lemon Incense":{ mod:"crafting", lvl:3, label:"Advanced Lemon Incense" },
+      "Premium Wind Chime":{ mod:"crafting", lvl:4, label:"Premium Wind Chime" },
+      "Premium Soap":{ mod:"crafting", lvl:5, label:"Premium Soap" },
+      "Premium Gemstone Dust":{ mod:"crafting", lvl:6, label:"Premium Gemstone Dust" },
+      "Premium Mixed Perfume":{ mod:"crafting", lvl:7, label:"Premium Mixed Perfume" }
     };
+    function moduleDisplayName(id){
+      var d = MODULE_DEFS.filter(function(x){ return x.id === id; })[0];
+      return d ? d.name : "Crafting Module";
+    }
     function moduleGateText(it){
       if(!it || !it.moduleGate) return "";
-      return (it.moduleGateFor || it.name) + " needs Crafting Module " + it.moduleGate;
+      return (it.moduleGateFor || it.name) + " needs " + moduleDisplayName(it.moduleId || "crafting") + " " + it.moduleGate;
     }
 
     /* Aniipod Maker rate: about 4 pods per hour at the base maker,
@@ -1902,6 +1936,14 @@
           added[n] = true;
           out.push({ name:n, facility:lk.facility, need:lk.need, have:lk.have, rv:lk.rv, premium:false });
         }
+        /* A module-gated entry (a Premium variant, or Advanced Lemon
+           Incense) is locked while her Step 1 level for its module
+           sits below the gate (Nov 21, 2026 audit: the gate used to
+           ride on the base entry's covers line and locked nothing). */
+        if(it.moduleGate && !added[n] && moduleLevels[it.moduleId || "crafting"] < it.moduleGate){
+          added[n] = true;
+          out.push({ name:n, module:true, moduleId:it.moduleId || "crafting", need:it.moduleGate, have:moduleLevels[it.moduleId || "crafting"], premium:false });
+        }
         if(n === "Premium Wheat" && !modulesOwned.premiumWheat && !added[n]){
           added[n] = true;
           out.push({ name:n, premium:true });
@@ -1919,6 +1961,7 @@
       return chainLockSteps(name).length > 0;
     }
     function chainStepText(s){
+      if(s.module) return s.name + " (needs " + moduleDisplayName(s.moduleId) + " Lv " + s.need + ", yours Lv " + s.have + ")";
       if(s.premium) return s.name + " (not switched on yet: it needs RV 12 and a Farmland at Lv 6 in Step 1, so it cannot be grown)";
       return s.name + " (" + s.facility + " Lv " + s.need + " needed, yours " + (s.have === 0 ? "not built" : "Lv " + s.have) + ")";
     }
@@ -2104,16 +2147,23 @@
     }
 
     function sortedRecipeNames(){
-      return Object.keys(ITEMS).filter(function(n){ return ITEMS[n].cat; }).sort(function(a, b){ return a.localeCompare(b); });
+      /* Every craft recipe in the data, category or not (Nov 21, 2026
+         audit): this used to list only items carrying a category, which
+         silently dropped 18 real recipes — Cotton Thread and its loom,
+         mill, pot, jar and dryer kin — from all ten basket slots. A
+         recipe with no category shows under "All recipes" and in name
+         search; no category chip narrows to it. */
+      return Object.keys(ITEMS).filter(function(n){ return ITEMS[n].kind === "craft"; }).sort(function(a, b){ return a.localeCompare(b); });
     }
     function recipeMatches(n, q){
       var it = ITEMS[n];
       if(activeCat === "event"){ if(!it.event) return false; }
       else if(activeCat !== "all" && it.cat !== activeCat) return false;
       /* Search covers the name, any covered Premium name (alias: Premium
-         variants are never separate entries, so the Premium name points at
-         the one base entry that covers it), the facility, the ingredients
-         and the entry's own note. */
+         variants have their own entries since the Nov 21, 2026 audit;
+         the one alias left, Premium Sweet Rice Wine, points at the
+         Sweet Rice Drink entry that covers it), the facility, the
+         ingredients and the entry's own note. */
       if(q && (n + " " + (it.alias || "") + " " + it.facility + " " + facCanon(it.facility) + " " + needsText(it) + " " + (it.blurb || "")).toLowerCase().indexOf(q) === -1) return false;
       return true;
     }
@@ -2156,7 +2206,7 @@
         html += '<div class="pslot-details">' +
           '<div class="meta">' + esc(facCanon(it.facility)) + " · recipe Lv " + it.lvl + (rv ? " · RV " + rv + "+" : "") + (it.yld > 1 ? " · makes ×" + it.yld + " per batch" : "") + (it.special ? ' · <span class="verdict v-mix">special unlock</span>' : "") + (it.event ? ' · ' + eventBadge(it) : "") + (it.whimsy ? ' · <strong>Whimsy Point +' + it.whimsy + '</strong>' : "") + "</div>" +
           (it.covers ? '<div class="ing">✨ This one recipe also covers <strong>' + esc(it.covers) + '</strong> — same ingredients, so there is no separate entry to pick and nothing is counted twice.</div>' : "") +
-          (it.moduleGate ? '<div class="ing">🧩 ' + esc(moduleGateText(it)) + (moduleLevels.crafting >= it.moduleGate ? ' · your Crafting Module is Lv ' + moduleLevels.crafting + ', so this gate is met' : ' · your Crafting Module is Lv ' + moduleLevels.crafting + ', so this gate is not met yet') + '.</div>' : "") +
+          (it.moduleGate ? '<div class="ing">🧩 ' + esc(moduleGateText(it)) + (moduleLevels[it.moduleId || "crafting"] >= it.moduleGate ? ' · your ' + esc(moduleDisplayName(it.moduleId || "crafting")) + ' is Lv ' + moduleLevels[it.moduleId || "crafting"] + ', so this gate is met' : ' · your ' + esc(moduleDisplayName(it.moduleId || "crafting")) + ' is Lv ' + moduleLevels[it.moduleId || "crafting"] + ', so this gate is not met yet') + '.</div>' : "") +
           (function(){
             var gated = chainGatedProducts(entry.name);
             if(!gated.length) return "";
@@ -2170,6 +2220,7 @@
           (INDIRECT_DEPS[entry.name] ? '<div class="ing">⚠️ ' + esc(entry.name) + " eats " + esc(INDIRECT_DEPS[entry.name].input) + ", which only the " + esc((familyGate(INDIRECT_DEPS[entry.name].input) || {}).family || "") + " family makes. If this plan does not also make " + esc(INDIRECT_DEPS[entry.name].input) + ", it depends on that family's production.</div>" : "") +
           (lock ? '<div class="lock-note">🔒 Locked: needs ' + esc(it.facility) + " Lv " + it.lvl + ". Yours is " + (lock.have === 0 ? "not built yet" : "Lv " + lock.have) + ". That facility level unlocks at RV " + rv + ", and you can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           (!lock && chainSteps.length ? '<div class="lock-note">🔒 Locked right now: this recipe\'s own station is open, but a step it needs is not: ' + chainSteps.map(function(s){ return esc(chainStepText(s)); }).join("; ") + ". You can still plan with the recipe. Facility levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
+          (it.moduleGate && moduleLevels[it.moduleId || "crafting"] < it.moduleGate ? '<div class="lock-note">🔒 Locked: ' + esc(moduleGateText(it)) + ". Yours is Lv " + moduleLevels[it.moduleId || "crafting"] + ". You can still plan with the recipe. Module levels are the ones listed in the Step 1 panel at the top of this page.</div>" : "") +
           '<div class="ing">Needs: ' + esc(needsText(it)) + "</div>" +
           (cropIngs.length ? '<div class="ing">🌡️ Crops in this recipe: ' + cropIngs.map(function(k){ return esc(k) + ": Climate: " + climateLabel(k); }).join(" · ") + "</div>" : "") +
           (it.blurb ? '<div class="ing">' + esc(it.blurb) + "</div>" : "") +
@@ -2250,8 +2301,8 @@
       }
       indirectWarnings(plan.gross).forEach(function(w){ lines.push("Warning: " + w.text); });
       Object.keys(plan.gross).forEach(function(n){
-        var mg = CRAFTING_MODULE_GATES[n];
-        if(mg && (plan.gross[n] || 0) > 0) lines.push("Module gate: " + mg.label + " needs Crafting Module " + mg.lvl + " (yours: Lv " + moduleLevels.crafting + (moduleLevels.crafting >= mg.lvl ? ", gate met" : ", gate NOT met") + ").");
+        var mg = MODULE_GATES[n];
+        if(mg && (plan.gross[n] || 0) > 0) lines.push("Module gate: " + mg.label + " needs " + moduleDisplayName(mg.mod) + " " + mg.lvl + " (yours: Lv " + moduleLevels[mg.mod] + (moduleLevels[mg.mod] >= mg.lvl ? ", gate met" : ", gate NOT met") + ").");
       });
       if(plan.perHour > 0){
         lines.push("The slowest crop takes about " + fmtRate(plan.cycleMins) + " minutes to grow (crops grow side by side), and the per-hour rates run at that pace. Per hour, your picked recipes make:");
@@ -2464,14 +2515,14 @@
       (function(){
         var gated = gatedInGross(plan.gross);
         var inds = indirectWarnings(plan.gross);
-        var mods = Object.keys(CRAFTING_MODULE_GATES).filter(function(n){ return (plan.gross[n] || 0) > 0; });
+        var mods = Object.keys(MODULE_GATES).filter(function(n){ return (plan.gross[n] || 0) > 0; });
         var hardMissing = gated.filter(function(n){ var g = climateGate(n); return g && g.hard && !climateCovered(n); });
         if(!gated.length && !inds.length && !mods.length) return;
         var parts = [];
         if(gated.length) parts.push("<strong>Family requirements:</strong> " + gated.map(function(n){ return "<strong>" + esc(n) + "</strong>: " + familyNeedsHtml(n) + ", crew slot: " + esc(familyOnlyText(n)) + " at the " + esc(facCanon(ITEMS[n].facility)); }).join(" · ") + ".");
         gated.forEach(function(n){ if(climateGate(n)) parts.push("<strong>Climate:</strong> " + esc(climateGateText(n)) + (plan.perHour > 0 ? ". At this plan's pace: about <strong>" + fmtRate((plan.gross[n] || 0) * plan.perHour * climateRunRate(n) / 100) + " per hour</strong>" + (climateRunRate(n) === 100 ? " at full rate" : climateRunRate(n) === 0 ? " (it does not run without cover)" : " at " + climateRunRate(n) + "% (adjusted, labelled)") : "") + "."); });
         inds.forEach(function(w){ parts.push((w.madeHere ? "<strong>Family dependency:</strong> " : "<strong>⚠️ Warning, family dependency:</strong> ") + esc(w.text)); });
-        mods.forEach(function(n){ var mg = CRAFTING_MODULE_GATES[n]; parts.push("<strong>Module gate:</strong> " + esc(mg.label) + " needs Crafting Module " + mg.lvl + " (yours: Lv " + moduleLevels.crafting + (moduleLevels.crafting >= mg.lvl ? ", gate met" : ", <strong>gate not met yet</strong>") + ")."); });
+        mods.forEach(function(n){ var mg = MODULE_GATES[n]; parts.push("<strong>Module gate:</strong> " + esc(mg.label) + " needs " + esc(moduleDisplayName(mg.mod)) + " " + mg.lvl + " (yours: Lv " + moduleLevels[mg.mod] + (moduleLevels[mg.mod] >= mg.lvl ? ", gate met" : ", <strong>gate not met yet</strong>") + ")."); });
         html += '<div class="note ' + (hardMissing.length || inds.some(function(w){ return !w.madeHere; }) ? "note-warn" : "note-info") + '"><h4>👨‍👩‍👧 Requirements in this plan</h4><p>' + parts.join("<br />") + "</p>" +
           (hardMissing.length ? '<p style="margin-top:8px"><strong>⚠️ ' + hardMissing.map(function(n){ return esc(n); }).join(", ") + ' will not run:</strong> the plan must include a Sunlamp covering the Floral Windmill in Step 5 (Add & Adjust), and there is no Sunlamp in your Step 1 counts to cover it.</p>' : "") + "</div>";
       })();
@@ -5605,7 +5656,7 @@
             }).join("");
             return '<div class="mod-group"><h5>' + esc(d.name) + ": Lv " + lvl + " of " + d.max + '</h5><ul>' + rows + "</ul></div>";
           }).join("") + "</div>" +
-          '<p class="src" style="margin-top:8px">The Kitchen, Resource Detector and Crafting lists just show what you own — the base recipe covers each one, so they change no amounts. Only the Ecological harvests above change your numbers.</p>';
+          '<p class="src" style="margin-top:8px">The Kitchen, Resource Detector and Crafting unlocks have their own entries — Premium recipes in the basket, Quick gathers in the gather lists — each locked until your level for that module meets its gate. Only the Ecological harvests above change your numbers by themselves.</p>';
         }
         ms.innerHTML = statusHtml;
       }
@@ -5767,7 +5818,26 @@
       if(it.lvl > facLevel(it.facility)) return false;
       var rv = rvNeedFor(facCanon(it.facility), it.lvl);
       if(rv !== null && rv !== undefined && rv > userRV) return false;
+      /* Quick gather variants (own entries since the Nov 21, 2026
+         audit) also carry a Resource Detector gate: locked wherever
+         they are picked until her Step 1 Resource Detector level
+         meets it. rdLockedProductsFor names them for the lists, so
+         the lock is explained where it bites, not just enforced. */
+      if(it.rdGate && moduleLevels.resource < it.rdGate) return false;
       return true;
+    }
+    /* A facility's gather products that fit her facility level and
+       RV but are locked by their Resource Detector gate alone. */
+    function rdLockedProductsFor(f){
+      return Object.keys(ITEMS).filter(function(n){
+        var it = ITEMS[n];
+        if(!it || it.kind !== "gather" || facCanon(it.facility) !== facCanon(f) || !it.rdGate) return false;
+        if(moduleLevels.resource >= it.rdGate) return false;
+        if(it.lvl > facLevel(it.facility)) return false;
+        var rv = rvNeedFor(facCanon(it.facility), it.lvl);
+        if(rv !== null && rv !== undefined && rv > userRV) return false;
+        return true;
+      }).sort(function(a, b){ var d = ITEMS[a].lvl - ITEMS[b].lvl; return d !== 0 ? d : a.localeCompare(b); });
     }
     /* Every product a facility can make at her current levels —
        crafts and gathers alike — for the added-copy job picks. */
@@ -5954,7 +6024,8 @@
       if(name === FAC_OFF) return "Off — this copy is idle and gathers nothing";
       var it = ITEMS[name];
       var famTxt = familyGate(name) ? " · crew slot: " + familyOnlyText(name) + " (" + familyNeedsText(name) + ")" : "";
-      return "brings " + (it && it.yld ? it.yld + " " + name + " per run" : name + " per run, yield varies") + famTxt;
+      var rdTxt = (it && it.rdGate) ? " · Quick recipe: needs Resource Detector Lv " + it.rdGate + " (yours: Lv " + moduleLevels.resource + ")" : "";
+      return "brings " + (it && it.yld ? it.yld + " " + name + " per run" : name + " per run, yield varies") + famTxt + rdTxt;
     }
     /* The Gathering rows for one gather facility's layout block: one
        pick per copy out, plus the per-run-round tally across picks. */
@@ -5963,13 +6034,19 @@
       var list = gatherAssignments(f, planC, working);
       if(!list.length) return "";
       var fid = f.replace(/[^a-z0-9]+/gi, "-");
+      /* Quick variants locked by the Resource Detector gate stay in
+         the list, disabled and labelled, so the lock is explained
+         right where the pick happens (Nov 21, 2026 audit). */
+      var rdLockedOpts = rdLockedProductsFor(f).map(function(m){
+        return '<option value="" disabled>' + esc(m) + ' 🔒 — needs Resource Detector Lv ' + ITEMS[m].rdGate + ' (yours: Lv ' + moduleLevels.resource + ')</option>';
+      }).join("");
       var rows = list.map(function(prod, i){
         var added = i >= planC;
         var off = prod === FAC_OFF;
         var opts = '<option value="' + FAC_OFF + '"' + (off ? ' selected' : '') + '>' + esc(facOffLabel()) + '</option>' + avail.map(function(m){
           var it = ITEMS[m];
           return '<option value="' + escA(m) + '"' + (m === prod ? ' selected' : '') + '>' + esc(m) + (it.yld ? ' — ' + it.yld + ' per run' : ' — yield varies') + '</option>';
-        }).join("");
+        }).join("") + rdLockedOpts;
         return '<div class="mine-pick' + (off ? ' is-off' : '') + '"><span class="mine-n">Copy ' + (i + 1) + '</span>' +
           '<span class="mine-tag verdict ' + (off ? 'v-lock' : (added ? 'v-mix' : 'v-ok')) + '">' + (off ? 'off' : (added ? 'added by you' : 'for the plan')) + '</span>' +
           '<label class="src" for="gatherPick-' + fid + '-' + i + '" style="flex:none">is gathering</label>' +
@@ -9252,9 +9329,9 @@
         if(climateGate(n)) flags.push("Climate gate: " + climateGateText(n) + ".");
       });
       indirectWarnings(exp.gross).forEach(function(w){ if(!w.madeHere) flags.push("Warning, family dependency: " + w.text); });
-      Object.keys(CRAFTING_MODULE_GATES).forEach(function(n){
-        var mg = CRAFTING_MODULE_GATES[n];
-        if((exp.gross[n] || 0) > 0 && moduleLevels.crafting < mg.lvl) flags.push("Module gate not met: " + mg.label + " needs Crafting Module " + mg.lvl + " (yours: Lv " + moduleLevels.crafting + ").");
+      Object.keys(MODULE_GATES).forEach(function(n){
+        var mg = MODULE_GATES[n];
+        if((exp.gross[n] || 0) > 0 && moduleLevels[mg.mod] < mg.lvl) flags.push("Module gate not met: " + mg.label + " needs " + moduleDisplayName(mg.mod) + " " + mg.lvl + " (yours: Lv " + moduleLevels[mg.mod] + ").");
       });
 
       var goalMade = assignedOrder.some(function(n){ return assignedGoal[n] !== "leveling"; }) || rawPicks.length > 0;
@@ -9517,9 +9594,9 @@
         });
       }
       indirectWarnings(res.exp.gross || {}).forEach(function(w){ lines.push("Warning: " + w.text); });
-      Object.keys(CRAFTING_MODULE_GATES).forEach(function(n){
-        var mg = CRAFTING_MODULE_GATES[n];
-        if(((res.exp.gross || {})[n] || 0) > 0) lines.push("Module gate: " + mg.label + " needs Crafting Module " + mg.lvl + " (yours: Lv " + moduleLevels.crafting + (moduleLevels.crafting >= mg.lvl ? ", gate met" : ", gate NOT met") + ").");
+      Object.keys(MODULE_GATES).forEach(function(n){
+        var mg = MODULE_GATES[n];
+        if(((res.exp.gross || {})[n] || 0) > 0) lines.push("Module gate: " + mg.label + " needs " + moduleDisplayName(mg.mod) + " " + mg.lvl + " (yours: Lv " + moduleLevels[mg.mod] + (moduleLevels[mg.mod] >= mg.lvl ? ", gate met" : ", gate NOT met") + ").");
       });
       lines.push("");
       lines.push("Rates (per hour):");
