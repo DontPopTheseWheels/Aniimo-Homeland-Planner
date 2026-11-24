@@ -281,6 +281,25 @@
       .mine-add-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
       .mine-warn{background:var(--warn-bg);border:2px solid var(--gold);border-radius:10px;padding:8px 11px;font-weight:700;font-size:.92rem;margin-top:10px}
       .adj-zero{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card);border:2px dashed var(--card-line);border-radius:14px;padding:10px 14px;margin-top:10px;font-weight:700}
+      /* Step 2 plantings: her own plot counts. Big −/+ steppers are the
+         main control (tap-friendly, one-handed); the number box between
+         them is the secondary typed option and always shows the count
+         the plan is using right now. */
+      .plant-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+      .plant-row{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;background:#fff;border:2px solid var(--card-line);border-radius:12px;padding:9px 12px}
+      .plant-row.is-set{border-color:var(--accent);background:var(--accent-soft)}
+      .plant-row .plant-nm{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1rem;flex:1 1 190px;min-width:0}
+      .plant-row .plant-meta{display:block;font-family:inherit;font-size:.85rem;color:var(--ink-soft);font-weight:700;margin-top:2px}
+      .plant-control{display:inline-flex;align-items:center;gap:6px;flex:none}
+      .plant-step{width:48px;height:48px;border-radius:12px;border:2px solid var(--card-line);background:#fff;font-size:1.35rem;font-weight:800;color:var(--ink);line-height:1;padding:0;cursor:pointer}
+      .plant-step:hover{border-color:var(--accent);color:var(--accent)}
+      .plant-control input{width:74px;min-height:48px;text-align:center;font-size:1.05rem;font-weight:800}
+      .plant-unit{font-family:"Baloo 2",sans-serif;font-weight:800;white-space:nowrap}
+      .plant-set-tag{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;padding:2px 11px;font-size:.78rem;font-weight:800;font-family:"Baloo 2",sans-serif;vertical-align:middle}
+      .plant-reset{min-height:44px;border-radius:999px;border:2px solid var(--card-line);background:#fff;font-weight:800;font-size:.86rem;padding:6px 13px;color:var(--ink);cursor:pointer}
+      .plant-reset:hover{border-color:var(--accent);color:var(--accent)}
+      .plant-over{background:var(--bad-bg);border:2px solid var(--bad);border-radius:12px;padding:10px 13px;font-weight:700;margin-top:10px}
+      .plant-over strong{color:var(--bad)}
       /* RV planner */
       .rv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
       @media (max-width:760px){.rv-grid{grid-template-columns:1fr}}
@@ -1820,6 +1839,21 @@
 
     /* ============ Step 2 (basket) state ============ */
     var basket = [];            /* [{name}] recipe picks only, max 10, no amounts — starts empty: nothing is pre-picked or carried over from a past visit */
+    /* Her own plot counts for Farmland and Woodland plantings (player's
+       ask, Nov 23, 2026): crop name -> plots she set herself with the
+       −/+ steppers (or typed) on the planting's row in the Step 2 plan.
+       A name in here wins over the planner's worked-out plots for that
+       planting: computePlan reads the harvest as her plots × the crop's
+       yield, and every figure downstream of the plan follows. Plantings
+       she never touches keep the planner's counts. Session-only, like
+       every other choice in this planner: nothing is saved, and the
+       page opens clean each time. Her number is never capped or thrown
+       away — going over a Step 1 plot count is flagged, not fixed. */
+    var plotOverrides = {};
+    /* The planner's own worked-out plot count per crop from the most
+       recent computePlan, captured before her overrides are applied,
+       so a planting's row can say "planner worked out X" beside hers. */
+    var plotCalcRuns = {};
     var activeCat = "all";
     var hideLocked = false;
     var userRV = 0;             /* 0 = no RV level picked yet: nothing is carried in on open (player's ask, Nov 15, 2026) */
@@ -2152,6 +2186,47 @@
           runs[name] = (n > 0 && ey2) ? Math.ceil(n / ey2 - 1e-9) : (n > 0 ? null : 0);
         }
       });
+      /* Her own plot counts land last, on purpose: the worked-out
+         counts above are captured untouched (plotCalcRuns, for the
+         "planner worked out X" labels), then every planting she set
+         herself is replaced by her plots — its harvest becomes her
+         plots × the crop's yield (module harvest included, through
+         effYld), and gross/net follow, so the per-hour rates, the
+         Wood Block byproduct, the layout's basket counts and every
+         other reader of this plan recompute from her number. The
+         cap-fitting scale above never touches a planting she set:
+         her total can stand over a Step 1 plot count, and the plan
+         output flags it instead of trimming it. A crop she added
+         from the plan's own add list lives only in here — it enters
+         gross/runs the same way, with its grow time joining the
+         cycle like any other crop's. */
+      var calcRunsSnap = {};
+      Object.keys(runs).forEach(function(k){ calcRunsSnap[k] = runs[k]; });
+      plotCalcRuns = calcRunsSnap;
+      if(Object.keys(plotOverrides).length){
+        Object.keys(plotOverrides).forEach(function(name){
+          var oit = ITEMS[name];
+          if(!oit || oit.kind !== "grow") return;
+          var p = plotOverrides[name];
+          if(!(p >= 0)) return;
+          var ey = effYld(oit);
+          if(!ey) return;
+          gross[name] = p * ey;
+          net[name] = gross[name];
+          runs[name] = p;
+        });
+        /* The cycle is the slowest crop still growing, hers included:
+           recompute it from the final gross so a crop she zeroed no
+           longer sets the pace and a crop she added does. */
+        cycleMins = 0;
+        Object.keys(gross).forEach(function(name){
+          var git = ITEMS[name];
+          if(git && git.kind === "grow" && (gross[name] || 0) > 0){
+            var gt = parseTimeMin(git.time);
+            if(gt > cycleMins) cycleMins = gt;
+          }
+        });
+      }
       return { gross:gross, net:net, batches:batches, runs:runs, cycleMins:cycleMins, scale:scale, limits:limits, perHour:(cycleMins > 0 ? 60 / cycleMins : 0), facAssign:facAssign };
     }
 
@@ -2308,6 +2383,30 @@
       lines.push("Aniimo basket plan — recipes picked by you, amounts sized by the planner to your homeland (RV " + userRV + ")");
       lines.push("Recipes: " + basket.map(function(b){ return b.name + (ITEMS[b.name] && ITEMS[b.name].event ? " 🎃" : ""); }).join(", "));
       lines.push("Sizing: production is fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
+      /* Plot totals and her own set counts, in the copied plan too:
+         totals are the final runs (her numbers included), read against
+         the Step 1 plot counts, and any planting she set is named with
+         the count the planner worked out underneath it. */
+      (function(){
+        var fTot = 0, wTot = 0, anyGrow = false;
+        Object.keys(plan.runs || {}).forEach(function(n){
+          var it = ITEMS[n];
+          if(!it || it.kind !== "grow") return;
+          anyGrow = true;
+          if(it.facility === "Farmland") fTot += plan.runs[n] || 0;
+          else if(it.facility === "Woodland") wTot += plan.runs[n] || 0;
+        });
+        if(!anyGrow) return;
+        var fCap = facCount("Farmland"), wCap = facCount("Woodland");
+        lines.push("Planting totals in this plan: Farmland " + fTot + " / " + fCap + " plots, Woodland " + wTot + " / " + wCap + " plots (your Step 1 counts)" +
+          ((fCap > 0 && fTot > fCap) ? ". Farmland is OVER your count by " + (fTot - fCap) + " — your numbers stand as set: plant what fits and replant the same plots as harvests finish" : "") +
+          ((wCap > 0 && wTot > wCap) ? ". Woodland is OVER your count by " + (wTot - wCap) + " — your numbers stand as set: plant what fits and replant the same plots as harvests finish" : "") + ".");
+        var hers = Object.keys(plotOverrides).filter(function(n){ return ITEMS[n] && ITEMS[n].kind === "grow" && (plan.runs[n] !== undefined); }).sort();
+        if(hers.length){
+          lines.push("Plot counts set by you (these win over the planner's worked-out counts, and the harvests above and below are counted from them): " +
+            hers.map(function(n){ return n + " " + (plan.runs[n] || 0) + (plan.runs[n] === 1 ? " plot" : " plots") + " (planner worked out " + (plotCalcRuns[n] || 0) + ")"; }).join(", ") + ".");
+        }
+      })();
       var aLinesP = alwaysTextLines();
       if(aLinesP.length){
         lines.push("");
@@ -2436,6 +2535,89 @@
         (plan.perHour > 0 ? ' Rates are <strong>per hour</strong>, at the slowest crop\'s pace (about ' + fmtRate(plan.cycleMins) + ' min).' : ' <strong>No per-hour rate</strong> for this plan: it grows no crops, and craft/gather times aren\'t verified — the lists name what to gather and make, without amounts.') +
         '</p></div>';
 
+      /* Her plantings, listed with the plot counts this plan is
+         actually using — and hers to change (player's ask, Nov 23,
+         2026). Every Farmland and Woodland planting in the plan gets
+         a row: name, yield per plot, the harvest those plots bring
+         in, and a big − / + stepper with the count in a box between
+         them (tap the steppers, or type in the box — the steppers
+         are the main control). Setting a count stores it in
+         plotOverrides, and the whole plan — harvests, ingredient
+         supply, per-hour rates, Wood Blocks, the layout's basket
+         counts — has already recomputed from it inside computePlan
+         by the time this renders, because renderAll rebuilt
+         everything. Totals run against the Step 1 plot counts and
+         going over is flagged in the open: her number is never
+         trimmed back to fit. Crops not in the plan yet can be added
+         from the tap-to-add list under the rows, exactly like the
+         Step 5 picker, and then set the same way. */
+      (function(){
+        var rowNames = {};
+        Object.keys(plotCalcRuns).forEach(function(n){ if(ITEMS[n] && ITEMS[n].kind === "grow" && (plotCalcRuns[n] || 0) > 0) rowNames[n] = true; });
+        Object.keys(plotOverrides).forEach(function(n){ if(ITEMS[n] && ITEMS[n].kind === "grow") rowNames[n] = true; });
+        var names = Object.keys(rowNames).sort(function(a, b){
+          var d = (ITEMS[a].facility === "Farmland" ? 0 : 1) - (ITEMS[b].facility === "Farmland" ? 0 : 1);
+          return d !== 0 ? d : a.localeCompare(b);
+        });
+        if(!names.length) return;
+        var fTot = 0, wTot = 0;
+        names.forEach(function(n){
+          if(ITEMS[n].facility === "Farmland") fTot += plan.runs[n] || 0;
+          else if(ITEMS[n].facility === "Woodland") wTot += plan.runs[n] || 0;
+        });
+        var fCap = facCount("Farmland"), wCap = facCount("Woodland");
+        var fOver = fCap > 0 && fTot > fCap, wOver = wCap > 0 && wTot > wCap;
+        html += '<h3 style="margin-top:22px">🌱 What you\'re growing — set your own plot counts</h3>' +
+          '<p class="sec-sub" style="margin-bottom:0">These are the plantings behind the plan above, with the plot count the plan is using for each. Tap <strong>−</strong> or <strong>+</strong> to change a count (or type it in the box) and the whole plan reworks itself around your number — harvests, ingredient supply and every rate follow from <strong>your plots × the crop\'s yield per plot</strong>. A planting you don\'t touch keeps the planner\'s worked-out count. Your numbers are never trimmed to fit: go over a Step 1 count and it is flagged, not fixed.</p>';
+        html += '<div class="summary-strip">' +
+          '<div class="sum-chip"><b>' + fmt(fTot) + " / " + fmt(fCap) + '</b><span>Farmland plots in this plan / your Step 1 count' + (fOver ? " — ⚠️ over by " + fmt(fTot - fCap) : "") + '</span></div>' +
+          '<div class="sum-chip"><b>' + fmt(wTot) + " / " + fmt(wCap) + '</b><span>Woodland plots in this plan / your Step 1 count' + (wOver ? " — ⚠️ over by " + fmt(wTot - wCap) : "") + '</span></div></div>';
+        if(fOver || wOver){
+          html += '<div class="plant-over" role="alert">⚠️ <strong>Over your Step 1 plot counts:</strong> ' +
+            [fOver ? "Farmland " + fmt(fTot) + " of " + fmt(fCap) + " (over by " + fmt(fTot - fCap) + ")" : "", wOver ? "Woodland " + fmt(wTot) + " of " + fmt(wCap) + " (over by " + fmt(wTot - wCap) + ")" : ""].filter(Boolean).join(" · ") +
+            ". Your counts stand exactly as you set them — nothing was capped or taken away. Plant what fits and replant the same plots as harvests finish, or raise the count in Step 1.</div>";
+        }
+        function plantRow(n){
+          var it = ITEMS[n];
+          var plots = plan.runs[n] || 0;
+          var isSet = plotOverrides.hasOwnProperty(n);
+          var calc = plotCalcRuns[n] || 0;
+          var harvest = plan.gross[n] || 0;
+          var meta = esc(it.facility) + " · " + fmt(effYld(it)) + " per plot · harvest " + fmtRate(harvest) + " per planting round" +
+            (plan.perHour > 0 && harvest > 0 ? " · ≈" + fmtRate(harvest * plan.perHour) + " per hour" : "") +
+            (it.facility === "Woodland" ? " · " + woodPlotText(n) : "") + climateText(n);
+          return '<div class="plant-row' + (isSet ? " is-set" : "") + '">' +
+            '<span class="plant-nm">' + esc(n) + (it.event ? " 🎃" : "") + (isSet ? ' <span class="plant-set-tag">set by you</span>' : "") +
+            '<span class="plant-meta">' + meta + (isSet ? " · planner worked out " + fmt(calc) + (calc === 1 ? " plot" : " plots") : "") + "</span></span>" +
+            '<span class="plant-control"><button type="button" class="plant-step" data-plot-dec="' + escA(n) + '" aria-label="One fewer ' + escA(n) + ' plot">−</button>' +
+            '<input type="number" data-plot-input="' + escA(n) + '" value="' + plots + '" min="0" step="1" inputmode="numeric" aria-label="' + escA(n) + ' plots — type a number, or use the − and + buttons" />' +
+            '<button type="button" class="plant-step" data-plot-inc="' + escA(n) + '" aria-label="One more ' + escA(n) + ' plot">+</button>' +
+            '<span class="plant-unit">' + (plots === 1 ? "plot" : "plots") + "</span></span>" +
+            (isSet ? '<button type="button" class="plant-reset" data-plot-reset="' + escA(n) + '">' + (calc > 0 ? "↺ Use planner's " + fmt(calc) : "↺ Take back out (planner grows none)") + "</button>" : "") +
+            "</div>";
+        }
+        ["Farmland", "Woodland"].forEach(function(fac){
+          var facNames = names.filter(function(n){ return ITEMS[n].facility === fac; });
+          if(!facNames.length) return;
+          html += '<h4 style="margin-top:16px">' + (fac === "Farmland" ? "🌾 Farmland plantings" : "🌳 Woodland plantings") + " — " + fmt(fac === "Farmland" ? fTot : wTot) + " / " + fmt(fac === "Farmland" ? fCap : wCap) + " plots</h4>" +
+            '<div class="plant-list">' + facNames.map(plantRow).join("") + "</div>";
+        });
+        /* Tap-to-add: every grow crop not already listed, grouped the
+           same way as the Step 5 picker. Adding one starts it at
+           1 plot as her own count; the steppers on its new row take
+           it from there. */
+        var addNames = Object.keys(ITEMS).filter(function(n){ return ITEMS[n].kind === "grow" && !rowNames[n]; }).sort(function(a, b){
+          var d = (ITEMS[a].facility === "Farmland" ? 0 : 1) - (ITEMS[b].facility === "Farmland" ? 0 : 1);
+          return d !== 0 ? d : a.localeCompare(b);
+        });
+        if(addNames.length){
+          html += '<details class="ladder"><summary>➕ Add a Farmland or Woodland crop to this plan</summary>' +
+            '<p class="sec-sub" style="margin:8px 0 0">Tap a crop to add it at 1 plot, then set its plots on its row above. It grows for this plan alongside everything else, at your count.</p>' +
+            '<div class="pick-grid">' + addNames.map(function(n){
+              return '<button type="button" class="stock-item pick-toggle" data-plot-add="' + escA(n) + '" aria-label="Add one plot of ' + escA(n) + ' to this plan"><span><span class="nm">' + esc(n) + (ITEMS[n].event ? " 🎃" : "") + '</span><span class="kd">' + esc(ITEMS[n].facility) + " · " + esc(climateLabel(n)) + '</span></span><span class="pick-state">Tap to add</span></button>';
+            }).join("") + "</div></details>";
+        }
+      })();
       /* One type of thing at a time: any facility whose distinct
          products outnumber its working copies queues the rest. The
          queued products take turns on the copies there, and the
@@ -2582,6 +2764,49 @@
       document.getElementById("clearBasketBtn").addEventListener("click", function(){
         basket = []; renderAll(); toast("Basket cleared.");
       });
+      /* Her plot-count controls: the steppers are the main control —
+         each tap moves the planting's count by one plot from the
+         count the plan is using right now (hers if she set one, the
+         planner's otherwise) and stores the result as her count.
+         The number box is the typed option: entering a number sets
+         her count to it, clearing the box hands the planting back
+         to the planner's count. Every path ends in renderAll, so
+         the plan, layout, crew and strategy all rebuild from the
+         new number at once. */
+      area.querySelectorAll("[data-plot-inc]").forEach(function(btn){ btn.addEventListener("click", function(){
+        var n = btn.getAttribute("data-plot-inc");
+        plotOverrides[n] = (plan.runs[n] || 0) + 1;
+        renderAll();
+        toast(n + ": " + plotOverrides[n] + (plotOverrides[n] === 1 ? " plot" : " plots") + ", set by you.");
+      }); });
+      area.querySelectorAll("[data-plot-dec]").forEach(function(btn){ btn.addEventListener("click", function(){
+        var n = btn.getAttribute("data-plot-dec");
+        plotOverrides[n] = Math.max(0, (plan.runs[n] || 0) - 1);
+        renderAll();
+        toast(n + ": " + plotOverrides[n] + (plotOverrides[n] === 1 ? " plot" : " plots") + ", set by you.");
+      }); });
+      area.querySelectorAll("[data-plot-input]").forEach(function(inp){ inp.addEventListener("change", function(){
+        var n = inp.getAttribute("data-plot-input");
+        var v = inp.value.trim();
+        if(v === ""){ delete plotOverrides[n]; renderAll(); toast(n + ": back to the planner's count."); return; }
+        var p = Math.floor(Number(v));
+        if(!(p >= 0)){ renderPlan(); return; }
+        plotOverrides[n] = p;
+        renderAll();
+        toast(n + ": " + p + (p === 1 ? " plot" : " plots") + ", set by you.");
+      }); });
+      area.querySelectorAll("[data-plot-reset]").forEach(function(btn){ btn.addEventListener("click", function(){
+        var n = btn.getAttribute("data-plot-reset");
+        delete plotOverrides[n];
+        renderAll();
+        toast(n + ": back to the planner's count.");
+      }); });
+      area.querySelectorAll("[data-plot-add]").forEach(function(btn){ btn.addEventListener("click", function(){
+        var n = btn.getAttribute("data-plot-add");
+        plotOverrides[n] = 1;
+        renderAll();
+        toast(n + " added at 1 plot — set its plots on its row.");
+      }); });
     }
 
     function renderAll(){
