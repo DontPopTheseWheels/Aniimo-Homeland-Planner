@@ -259,6 +259,7 @@
       .adj-wrap{display:inline-flex;align-items:center;gap:5px;vertical-align:middle;margin:0 2px}
       .adj-btn{width:34px;height:34px;border-radius:10px;border:2px solid var(--card-line);background:#fff;font-size:1.1rem;font-weight:800;color:var(--ink);line-height:1;padding:0}
       .adj-btn:hover{border-color:var(--accent);color:var(--accent)}
+      .adj-reset{background:none;border:none;color:var(--accent);font:inherit;font-size:.85rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0 2px;white-space:nowrap}
       .adj-count{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.95rem;white-space:nowrap}
       .adj-btn[disabled]{opacity:.35;cursor:default}
       .adj-btn[disabled]:hover{border-color:var(--card-line);color:var(--ink)}
@@ -361,6 +362,7 @@
         <a href="#basket">🧺 Step 2 · Recipe Basket</a>
         <a href="#strategy">🎯 Step 3 · Strategy</a>
         <a href="#bestplan">⭐ Step 4 · Strategy Plan</a>
+        <a href="#growing">🌱 What You're Growing</a>
         <a href="#rv" id="rvNavLink" hidden>🚐 Level Up Bill</a>
         <a href="#layout">🛠️ Step 5 · Add &amp; Adjust</a>
         <a href="#jobs">🎛️ Job Picks</a>
@@ -552,7 +554,7 @@
           <h4>🔍 How to read the prices and flags on a best plan</h4>
           <p>Sell prices: shop price research (checked Oct 24, 2026).<br /><span class="verdict v-ok">Cross-checked</span> = two sources agree. <span class="verdict v-mix">Single source, spot-check in game</span> = Aniiland only. <span class="verdict v-lock">No verified sell price</span> = can't earn Home Coins.<br />Star items are in but flagged <span class="verdict v-mix">Not verified yet, included because it makes sense</span>; the plan says how much of the rate rests on them. Aniimo XP and Mineral Sand per run have no checked figures — flagged, never made up.</p>
         </div>
-        <p class="src" style="margin-top:16px">Plan built? <a href="#layout">Next: Step 5 — Add &amp; Adjust, below ↓</a> Your Mines are picked from this plan on the Mine block in Facilities out there, never before it — and they refresh with it on every change.</p>
+        <p class="src" style="margin-top:16px">Plan built? <a href="#growing">Next: What you're growing — every planting from your basket and this plan in one list, below ↓</a> Your Mines are picked from this plan on the Mine block in Facilities out in Step 5, never before it — and they refresh with it on every change.</p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
@@ -604,6 +606,25 @@
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
+      <!-- ================= WHAT YOU'RE GROWING ================= -->
+      <section id="growing">
+        <div class="sec-head"><span class="sec-num">After Step 4</span><h2>🌱 What You're Growing</h2></div>
+        <p class="sec-sub">Every planting in your whole plan, in <strong>one list in one place</strong>: the crops your basket needs, the crops your strategy plan adds, and any crops you add by hand — grouped by where they came from, with <strong>one set of totals</strong> for all of them together, held against your Step 1 Farmland and Woodland counts. Set how many plots of each you grow with its − and + buttons (or type the number between them): <strong>your number wins</strong> over the planner's count — basket counts drive the basket plan, strategy counts drive the strategy plan — and the layout in Step 5 and your crew rebuild from your counts on the spot. <strong>The caps are hard:</strong> plantings can never pass your Step 1 counts — + stops at the cap, a typed number over it is set to the most that fits, and lowering a Step 1 land count below what's planted trims the plantings over the new cap (the planner's own plantings first, then yours, largest first) and names every cut in a note beside the totals. Your counts live only while this page is open.</p>
+        <div id="growingOut"></div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>✋ Add extra crops by hand <span class="src">(optional, never needed for layout help)</span></h3>
+          <p class="sec-sub" style="margin-bottom:0">Extras only — your layout already comes from your basket and plan. Tap a crop to add one plot, tap again to remove it. Once it's added, set how many plots of it you grow with the − and + buttons on its row in "Your extra crops, added by hand" below.</p>
+          <div id="layoutPicker"></div>
+        </div>
+
+        <div id="layoutManualOut"></div>
+
+        <p class="src" style="margin-top:16px">Counts set? <a href="#layout">Next: Step 5 — Add &amp; Adjust, where the layout plants them all, below ↓</a></p>
+      </section>
+
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
       <!-- ================= STAGE 4: LAYOUT ================= -->
       <section id="layout">
         <div class="sec-head"><span class="sec-num">Step 5</span><h2>🛠️ Add &amp; Adjust</h2></div>
@@ -643,14 +664,6 @@
           </div>
           <div id="awayOut" aria-live="polite"></div>
         </div>
-
-        <div class="card" style="margin-top:16px">
-          <h3>✋ Add extra crops by hand <span class="src">(optional, never needed for layout help)</span></h3>
-          <p class="sec-sub" style="margin-bottom:0">Extras only — your layout already comes from your basket and plan. Tap a crop to add one plot, tap again to remove it. Once it's added, set how many plots of it you grow with the − and + buttons on its row in "Your extra crops, added by hand" below.</p>
-          <div id="layoutPicker"></div>
-        </div>
-
-        <div id="layoutManualOut"></div>
 
         <div class="card" style="margin-top:16px">
           <h3>⚡ Power zones, for later</h3>
@@ -731,7 +744,7 @@
       <!-- ================= SUGGESTED HOMELAND LAYOUT ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">Suggestion</span><h2>🗺️ Suggested Homeland Layout</h2></div>
-        <p class="sec-sub"><strong>This is a suggestion only.</strong> Follow it, change it, or ignore it: it never changes anything else in the planner. It shows <strong>one tidy way any player can arrange a homeland</strong>. A layout is mostly about the farm, so this one is <strong>built around the farm and trees</strong>: what to grow, and what to have cooking for orders. The Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange. When an unlocked plot would be left open anyway, the plot directly beside the farm block is the one left open as moving room, and the later groups start after that open plot, so swapping a Farmland or a Woodland never means working around the other buildings. Like goes with like, with farms and trees together, the cooking buildings on the plots right beside the farm so what is grown and what gets cooked for orders stays together, then the other workshops, Mines together, leisure pieces together, Hatchinators together and the wet works together, and a Storage Unit spread onto each busy plot. The farm plots are packed into one tight block, side by side and stacked so their corners meet, and that is for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered when any part of it touches that area, so one unit dropped at a corner shared by farm plots covers all of them at once. It is worked out fresh from <strong>your RV level</strong> and the <strong>facility counts in Step 1</strong> every time it draws, on the true homeland grid: 16 plots in a 4 by 4 arrangement, each plot <strong>20 big squares across by 15 up</strong>, so the whole board is <strong>80 across by 60 up</strong>. Plot numbers are the unlock order, so at RV level N you have plots 1 to N. Groups take the earliest plots you have unlocked, in number order, and stay compact, apart from that one moving room plot beside the farm block when a plot is spare: at a low RV or with small counts they use fewer plots, and any unlocked plot no group needs is left open. Locked plots show muted with their number. The board redraws itself whenever your RV level or a Step 1 count changes. <strong>Hover or tap any Farmland or Woodland piece</strong> and it says which crop or tree that spot should grow, from your current plan — the same planting Step 5 · Add &amp; Adjust lays out.</p>
+        <p class="sec-sub"><strong>This is a suggestion only.</strong> Follow it, change it, or ignore it: it never changes anything else in the planner. It shows <strong>one tidy way any player can arrange a homeland</strong>. A layout is mostly about the farm, so this one is <strong>built around the farm and trees</strong>: what to grow, and what to have cooking for orders. The Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange. When an unlocked plot would be left open anyway, the plot directly beside the farm block is the one left open as moving room, and the later groups start after that open plot, so swapping a Farmland or a Woodland never means working around the other buildings. Like goes with like, with farms and trees together, the cooking buildings on the plots right beside the farm so what is grown and what gets cooked for orders stays together, then the other workshops, Mines together, leisure pieces together, Hatchinators together and the wet works together, and a Storage Unit spread onto each busy plot. The farm plots are packed into one tight block, side by side and stacked so their corners meet, and that is for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered when any part of it touches that area, so one unit dropped at a corner shared by farm plots covers all of them at once. It is worked out fresh from <strong>your RV level</strong> and the <strong>facility counts in Step 1</strong> every time it draws, on the true homeland grid: 16 plots in a 4 by 4 arrangement, each plot <strong>20 big squares across by 15 up</strong>, so the whole board is <strong>80 across by 60 up</strong>. Plot numbers are the unlock order, so at RV level N you have plots 1 to N. Groups take the earliest plots you have unlocked, in number order, and stay compact, apart from that one moving room plot beside the farm block when a plot is spare: at a low RV or with small counts they use fewer plots, and any unlocked plot no group needs is left open. Locked plots show muted with their number. The board redraws itself whenever your RV level or a Step 1 count changes. <strong>Hover or tap any Farmland or Woodland piece</strong> and it says which crop or tree that spot should grow, from your current plan — the same planting the growing list after Step 4 lays out.</p>
 
         <div class="card">
           <h3>🗄️ Storage Units &amp; Hatchinators — the same counts as Step 1</h3>
@@ -777,7 +790,7 @@
           <li><strong>Add & Adjust also reads your strategy plan:</strong> once built, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your basket, setup, strategy or goals change, that plan rebuilds and refreshes on the spot and its group rebuilds with it: nothing from an old plan is ever listed as part of the current plan — not here, not in the facility blocks' Producing lines, not in the crew or the Mines.</li>
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the touch rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, touching its 18 × 18 zone and hanging over its edge where the touch rule allows, so one zone holds up to 25 Farmland or 9 Woodland plots (24 Farmland around a Cooling Unit) and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
           <li><strong>Facility sizes</strong> (measured from your in-game screenshots and cross-checked against wikily.gg game data, Nov 9, 2026): every facility's true footprint in tiles now shows beside its name in Step 1, in the Always list, on its Add & Adjust block and in the strategy plan's facility table. Farmland 2 × 2, Woodland 3.5 × 3.5, Mine 5 × 5, Well 2 × 2, Aniipod Maker 4.5 × 4.5, Crafting Table 4 × 4, Woodworking Bench 2 × 1.5, Chimney Kiln 5 × 5, Blazing Stove 2.5 × 2.5, Simmering Pot 3 × 3, Claw Game Cooker 1.5 × 1.5, Jukebox Dryer 2.5 × 2.5, Pickling Jar 2.5 × 2, Joy Wheel Loom 4 × 4, Carousel Mill 5 × 5, Phonolfactory Table 3.5 × 3.5, Bouncy Brew Keg 3 × 3, Dance Pad Polisher 2.5 × 2.5, Storage Unit 2 × 2, Hatchinator 2 × 2, Tidewhisper Sandcastle 5 × 5, Dewy House 2 × 2, Nimbus Bed 5 × 5, Starfall Hammock 5 × 5, Heat Furnace 1 × 1, Sunlamp 1 × 1, Cooling Unit 2 × 2, Crackle Generator 2 × 2 (covers 11 × 11), Crackle Power Pole 1.5 × 1.5 (covers 7 × 7). The Floral Windmill has no verified size, so none is shown for it. Sizes are display only: no plan, crew or power figure reads them, and the layout packer keeps the reserved building footprints above.</li>
-          <li><strong>Step 1 (setup):</strong> no RV level is auto-selected (player's rule, Nov 15, 2026): on a fresh load the picker stands on "Pick your RV level…" and every box — facility counts, facility levels, climate counts and module levels — stands at 0. Picking an RV level fills the boxes to the most that RV allows, the same fill tapping Fill from RV level runs; Fill does nothing until a level is picked. Any box can then be changed with its − and + steppers or typed over; a count above the RV maximum is set to the maximum, with a note saying so (counts are hard-capped, player's rule, Nov 24, 2026), while a level above the RV maximum is used as entered and flagged "above RV max". Recipe greying and plans follow the entered values. Planting totals carry the same hard cap (Nov 24, 2026): Farmland and Woodland plantings in Step 5 can never pass the Step 1 Farmland and Woodland counts — + steppers stop at the cap, typed plot numbers clamp to the most that fits, and lowering a Step 1 land count trims the plantings stranded over it, planner-calculated plantings first, then her own counts, largest first, with the trim named in a note. Facility tier caps per RV come from AniimoTools' station tables.</li>
+          <li><strong>Step 1 (setup):</strong> no RV level is auto-selected (player's rule, Nov 15, 2026): on a fresh load the picker stands on "Pick your RV level…" and every box — facility counts, facility levels, climate counts and module levels — stands at 0. Picking an RV level fills the boxes to the most that RV allows, the same fill tapping Fill from RV level runs; Fill does nothing until a level is picked. Any box can then be changed with its − and + steppers or typed over; a count above the RV maximum is set to the maximum, with a note saying so (counts are hard-capped, player's rule, Nov 24, 2026), while a level above the RV maximum is used as entered and flagged "above RV max". Recipe greying and plans follow the entered values. Planting totals carry the same hard cap (Nov 24, 2026): Farmland and Woodland plantings in What you're growing can never pass the Step 1 Farmland and Woodland counts — + steppers stop at the cap, typed plot numbers clamp to the most that fits, and lowering a Step 1 land count trims the plantings stranded over it, planner-calculated plantings first, then her own counts, largest first, with the trim named in a note. Facility tier caps per RV come from AniimoTools' station tables.</li>
           <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17 (AniimoTools' RV 17 list and Aniiland's count table agree, and her own game confirms 3 at RV 17 — corrected Nov 18, 2026; the Oct 29, 2026 note that capped Cooling at 2 was her count before she reached RV 17); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19. Counts with no level follow the same one-table rule (Aniiland's building-count table, cross-checked against AniimoTools' RV lists and its RV 12 max-out table, and her own RV 17 totals, Nov 18, 2026): Storage Unit 1 at RV 2, 2 at RV 4, 3 at RV 7, 4 at RV 10, 5 at RV 13, 6 at RV 16, 7 at RV 19, 8 at RV 20; Hatchinator 3 at RV 2 rising by one a level to 10 at RV 9; Crackle Generator 1 at RV 12, 2 at RV 15, 3 at RV 18; Crackle Power Pole 6 at RV 12, 12 at RV 14, 18 at RV 16, 24 at RV 18, 30 at RV 20. All four have Step 1 boxes filled by the same Fill, and the totals line, every facility card and every layout ceiling read those boxes — there is no second copy of the totals anywhere.</li>
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 18 — Aniiland's building-count table and AniimoTools' RV 18 list agree; corrected Nov 18, 2026 from RV 20, and still flagged <span class="verdict v-mix">count single source</span> in the panel like every above-RV 12 step). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
@@ -2157,7 +2170,7 @@
       return { gross:gross, net:net, batches:batches, runs:runs, cycleMins:cycleMins, scale:scale, limits:limits, perHour:(cycleMins > 0 ? 60 / cycleMins : 0), facAssign:facAssign };
     }
 
-    /* The plot counts she sets in Step 5 · Add & Adjust — the − / +
+    /* The plot counts she sets in What you're growing (after Step 4) — the − / +
        steppers and typed numbers on each Farmland and Woodland
        planting, plus any hand-added crop this basket also grows —
        are plan inputs, exactly like her Step 1 counts: they feed
@@ -2398,7 +2411,7 @@
       lines.push("Recipes: " + basket.map(function(b){ return b.name + (ITEMS[b.name] && ITEMS[b.name].event ? " 🎃" : ""); }).join(", "));
       lines.push("Sizing: production is fitted inside your facility counts, your Farmland and Woodland plot counts and your Aniimo limit" + (plan.limits.length ? ". Tightest limit: " + plan.limits.join(", ") + ", so production is scaled to fit it" : "") + ".");
       if(plan.userPlots && plan.userPlots.length){
-        lines.push("Your plot counts (set with the steppers in Step 5) drive this plan: " + plan.userPlots.map(function(u){ return u.name + " " + u.plots + (u.plots === 1 ? " plot" : " plots") + " ≈ " + fmt(u.harvest) + " per planting (the recipes needed " + fmt(Math.ceil(u.need - 1e-9)) + ")"; }).join("; ") + ". Recipes that use a crop you set lower are scaled to what your planting covers; a harvest past the recipes' need is surplus.");
+        lines.push("Your plot counts (set with the steppers in What you're growing, after Step 4) drive this plan: " + plan.userPlots.map(function(u){ return u.name + " " + u.plots + (u.plots === 1 ? " plot" : " plots") + " ≈ " + fmt(u.harvest) + " per planting (the recipes needed " + fmt(Math.ceil(u.need - 1e-9)) + ")"; }).join("; ") + ". Recipes that use a crop you set lower are scaled to what your planting covers; a harvest past the recipes' need is surplus.");
       }
       var aLinesP = alwaysTextLines();
       if(aLinesP.length){
@@ -2526,7 +2539,7 @@
       html += '<div class="note note-info"><h4>🧮 Sized to your homeland</h4><p>Fitted inside your ' + (userRV ? 'RV ' + userRV + ' limits' : 'Step 1 counts (no RV level picked yet)') + ' (' + facCount("Farmland") + ' Farmland, ' + facCount("Woodland") + ' Woodland' + (userRV ? ', crew ' + aniimoCapText(userRV) : '') + ').' +
         (plan.limits.length ? ' Tightest limit: <strong>' + plan.limits.map(function(l){ return esc(l); }).join(", ") + '</strong> — scaled down to fit.' : '') +
         (plan.perHour > 0 ? ' Rates are <strong>per hour</strong>, at the slowest crop\'s pace (about ' + fmtRate(plan.cycleMins) + ' min).' : ' <strong>No per-hour rate</strong> for this plan: it grows no crops, and craft/gather times aren\'t verified — the lists name what to gather and make, without amounts.') +
-        (plan.userPlots && plan.userPlots.length ? ' <strong>Your Step 5 plot counts are driving this plan:</strong> ' + plan.userPlots.map(function(u){
+        (plan.userPlots && plan.userPlots.length ? ' <strong>Your plot counts from What you\'re growing are driving this plan:</strong> ' + plan.userPlots.map(function(u){
           return esc(u.name) + " " + u.plots + (u.plots === 1 ? " plot" : " plots") + " ≈ " + fmt(u.harvest) + " per planting" +
             (u.harvest < u.need - 1e-9 ? " — less than the recipes need, so the recipes that use it are scaled to fit" : u.harvest > u.need + 1e-9 ? " — more than the recipes need, so the extra harvests as surplus" : " — exactly what the recipes need");
         }).join("; ") + '.' : '') +
@@ -8035,6 +8048,17 @@
         layoutBpAdj[n] = Math.max(-base, (layoutBpAdj[n] || 0) - 1);
         refreshAfterPlotChange();
       }); });
+      /* Reset on a row she changed: her adjustment comes off and the
+         planner's own count stands again, in whichever plan the row
+         belongs to. */
+      scope.querySelectorAll("[data-adj-reset]").forEach(function(btn){ btn.addEventListener("click", function(){
+        delete layoutAutoAdj[btn.getAttribute("data-adj-reset")];
+        refreshAfterPlotChange();
+      }); });
+      scope.querySelectorAll("[data-bpadj-reset]").forEach(function(btn){ btn.addEventListener("click", function(){
+        delete layoutBpAdj[btn.getAttribute("data-bpadj-reset")];
+        refreshAfterPlotChange();
+      }); });
       /* Hand-added crops: the same − / + steppers set their plot count
          directly (tap-to-add starts them at 1; stepping down to 0
          takes the crop back off, exactly like tapping it off in the
@@ -8095,6 +8119,13 @@
     function layoutSourceListHtml(groups, mode){
       var auto = mode === "basket" || mode === "bp";
       var dp = mode === "bp" ? "data-bpadj" : (mode === "manual" ? "data-manual" : "data-adj");
+      /* The planner's own counts and her changes to them, per crop:
+         a row whose count she changed says so — "set by you", the
+         count the planner worked out, and a one-tap reset back to
+         it. Hand-added rows are hers by definition, so they carry
+         no tag. */
+      var bases = mode === "basket" ? basketBaseRuns() : (mode === "bp" ? bpBaseRuns() : {});
+      var adjs = mode === "basket" ? layoutAutoAdj : (mode === "bp" ? layoutBpAdj : {});
       if(!groups.length) return "";
       var rows = [];
       groups.forEach(function(grp){
@@ -8116,7 +8147,11 @@
             '<input type="number" class="plot-input" ' + dp + '-input="' + escA(n) + '" value="' + c + '" min="0" step="1" inputmode="numeric" aria-label="Plots of ' + escA(n) + ' — type how many to grow" />' +
             '<span class="adj-count">plots</span>' +
             '<button type="button" class="adj-btn" ' + dp + '-inc="' + escA(n) + '" aria-label="One more ' + escA(n) + ' plot"' + (plotRoomLeft(n) <= 0 ? " disabled" : "") + '>+</button></span>';
-          rows.push('<div class="zb-row" style="justify-content:space-between;border-bottom:1px solid #e7dcf5;padding:5px 0"><span>' + label + (lk ? ' <span class="verdict v-lock">🔒 needs ' + esc(it.facility) + " Lv " + lk.need + " · still counted</span>" : "") + "</span><span>" + count + "</span></div>");
+          var adj = auto ? (adjs[n] || 0) : 0;
+          var yours = (auto && adj !== 0 && bases[n] !== undefined)
+            ? ' <span class="verdict v-mix">✋ set by you</span> <span class="src">planner counted ' + bases[n] + (bases[n] === 1 ? " plot" : " plots") + '</span> <button type="button" class="adj-reset" ' + dp + '-reset="' + escA(n) + '" aria-label="Reset ' + escA(n) + ' to the planner count of ' + bases[n] + '">↺ reset</button>'
+            : "";
+          rows.push('<div class="zb-row" style="justify-content:space-between;border-bottom:1px solid #e7dcf5;padding:5px 0"><span>' + label + (lk ? ' <span class="verdict v-lock">🔒 needs ' + esc(it.facility) + " Lv " + lk.need + " · still counted</span>" : "") + yours + "</span><span>" + count + "</span></div>");
         });
       });
       return '<div class="layout-group" style="box-shadow:none"><div class="zb-rows">' + rows.join("") + "</div></div>";
@@ -8135,6 +8170,7 @@
          with the totals and as a toast. */
       trimPlantingsToCaps();
       var mOut = document.getElementById("layoutManualOut");
+      var gOut = document.getElementById("growingOut");
       /* The Best layout itself renders into its own container at
          the very end of Step 5 (player's flow fix): the counts behind
          the layout stay in layoutOut above, Facilities out with the
@@ -8220,6 +8256,7 @@
         : "🪶 Minimum layout: one plot of each crop, each climate in its own zone where your buildings cover it: the smallest start that still grows everything, replanted as harvests come in.") +
         " Both stay within your RV " + userRV + " limits: at most " + facCount("Farmland") + " Farmland plots, " + facCount("Woodland") + " Woodland plots, and " + CLIM_BUILDINGS.map(function(b){ return facCount(b) + " " + b; }).join(", ") + ".";
       var html = "";
+      var growHtml = "";
       if(anyGroups){
         html += '<div class="summary-strip">' +
           '<div class="sum-chip"><b>' + Object.keys(distinct).length + '</b><span>different crops</span></div>' +
@@ -8243,7 +8280,7 @@
            names itself in the line beside the chips. */
         var farmCap = facCount("Farmland"), woodCap = facCount("Woodland");
         var farmOver = totalFarm - farmCap, woodOver = totalWood - woodCap;
-        html += '<div class="cap-totals" aria-live="polite">' +
+        growHtml += '<div class="cap-totals" aria-live="polite">' +
           '<span class="cap-chip' + (farmOver > 0 ? " over" : "") + '">🌾 Farmland <b>' + fmt(totalFarm) + " / " + fmt(farmCap) + "</b> plots" + (farmOver > 0 ? " — over by " + fmt(farmOver) : "") + "</span>" +
           '<span class="cap-chip' + (woodOver > 0 ? " over" : "") + '">🌳 Woodland <b>' + fmt(totalWood) + " / " + fmt(woodCap) + "</b> plots" + (woodOver > 0 ? " — over by " + fmt(woodOver) : "") + "</span>" +
           (plotTrimNote
@@ -8251,34 +8288,36 @@
             : '<span class="src">Running totals for the whole plan, held at the plot counts you set in Step 1: + stops at the cap and a typed number over it is set to the most that fits. Change any planting with its − and + buttons (or type its number) and these totals update on the spot.</span>') +
           "</div>";
         plotTrimNote = "";
+        html += '<p class="src" style="margin-top:10px">🌱 Every planting behind this layout — from your basket, your strategy plan and your own hand-added crops — is counted and set in <a href="#growing">the growing list after Step 4</a>: change any count there and this layout rebuilds from it on the spot.</p>';
       }
       var bestHtml = anyGroups ? layoutHtml(plan, combined, totalFarm, totalWood, totalB) : "";
       var facOutEl = document.getElementById("layoutFacOut");
       if(facOutEl) facOutEl.innerHTML = anyGroups ? facilityBlocksForPlan(plan) : "";
       if(!hasAuto && !groups.length){
-        html += '<p class="sec-sub" style="margin:0">Your layout shows here once you pick basket recipes, pick a strategy (its plan builds on the spot), or add extra crops by hand below. It fills in on its own. It is one layout, fitted to the plots you have. Nothing to fill out here.</p>';
+        html += '<p class="sec-sub" style="margin:0">Your layout shows here once you pick basket recipes, pick a strategy (its plan builds on the spot), or add extra crops by hand in the growing list above. It fills in on its own. It is one layout, fitted to the plots you have. Nothing to fill out here.</p>';
+        growHtml += '<p class="sec-sub" style="margin:8px 0 0">Nothing growing yet. Pick recipes in Step 2 and the crops they need land here in their own group; pick a strategy in Step 3 and, once its plan builds in Step 4, its plantings join as a second group; or add a crop by hand with the picker under this list. Every planting is set here, in this one place — there is no second list to keep in step.</p>';
       } else if(hasAuto) {
-      html += '<h3 class="layout-sec-head">🧺 From your basket — the counts behind the layout</h3>';
-      if(autoGroups.length) html += '<p class="sec-sub" style="margin:8px 0 0">These counts fill in from your basket. They feed the one layout below, after your extra crops. They are not another layout.<br />Tap − and + on any crop to change how many plots of it you grow — your number wins over the planner\'s count, and it drives the whole plan, not just this layout: the basket plan above, the strategy plan, the harvest line under each crop (your plots × its yield), this layout and your crew all rebuild from your count on the spot. You can also type the number between the buttons. More for extras. Fewer if some are already grown. Your change sticks to that crop when the basket updates its count. One hard limit: Farmland plantings in all can never pass your Step 1 Farmland count, and Woodland plantings your Woodland count — + stops at the cap, and a typed number over it is set to the most that fits.</p>';
-      html += autoGroups.length
+      growHtml += '<h3 class="layout-sec-head">🧺 From your basket</h3>';
+      if(autoGroups.length) growHtml += '<p class="sec-sub" style="margin:8px 0 0">These counts fill in from your basket. They feed the one layout in Step 5, after your extra crops. They are not another layout.<br />Tap − and + on any crop to change how many plots of it you grow — your number wins over the planner\'s count, and it drives the whole plan, not just the layout: the basket plan above, the strategy plan, the harvest line under each crop (your plots × its yield), the layout in Step 5 and your crew all rebuild from your count on the spot. You can also type the number between the buttons. More for extras. Fewer if some are already grown. Your change sticks to that crop when the basket updates its count. One hard limit: Farmland plantings in all can never pass your Step 1 Farmland count, and Woodland plantings your Woodland count — + stops at the cap, and a typed number over it is set to the most that fits.</p>';
+      growHtml += autoGroups.length
         ? layoutSourceListHtml(autoGroups, "basket")
         : autoNote;
-      html += zeroedHtml(zeroed, false);
+      growHtml += zeroedHtml(zeroed, false);
       if(hasBp){
-        html += '<h3 class="layout-sec-head">⭐ From your strategy plan — the counts behind the layout</h3>';
-        html += '<p class="src" style="margin:8px 0 0">↻ Refreshed on the spot from your current basket, setup and goals — change any of them and this group rebuilds right away.</p>';
+        growHtml += '<h3 class="layout-sec-head">⭐ From your strategy plan</h3>';
+        growHtml += '<p class="src" style="margin:8px 0 0">↻ Refreshed on the spot from your current basket, setup and goals — change any of them and this group rebuilds right away.</p>';
         if(bpGroups.length){
-          html += '<p class="sec-sub" style="margin:8px 0 0">The seeds to plant from the strategy plan built for what you have picked now, kept as their own count list: never merged with the basket list above or your own picks below, and not another layout — the layout below, after your extra crops, already combines them. Plot counts are the plan\'s own, worked out the same way as the basket\'s, and the − and + buttons work the same way here: your change sticks to that crop when the plan rebuilds.</p>';
-          html += layoutSourceListHtml(bpGroups, "bp");
+          growHtml += '<p class="sec-sub" style="margin:8px 0 0">The seeds to plant from the strategy plan built for what you have picked now, kept as their own count list: never merged with the basket list above or your own picks below, and not another layout — the one layout in Step 5 already combines them. Plot counts are the plan\'s own, worked out the same way as the basket\'s, and the − and + buttons work the same way here: your change sticks to that crop when the plan rebuilds, and it drives that plan — its harvests, rates, Mines and crew — the same way basket counts drive the basket plan.</p>';
+          growHtml += layoutSourceListHtml(bpGroups, "bp");
         } else if(!bpZeroed.length){
-          html += '<div class="empty-plan">This strategy plan plants nothing: every recipe in it runs on gathered materials alone, so it has no seeds to lay out. A plan that grows crops shows its seeds here as soon as it builds.</div>';
+          growHtml += '<div class="empty-plan">This strategy plan plants nothing: every recipe in it runs on gathered materials alone, so it has no seeds to lay out. A plan that grows crops shows its seeds here as soon as it builds.</div>';
         }
-        html += zeroedHtml(bpZeroed, true);
+        growHtml += zeroedHtml(bpZeroed, true);
       }
       }
       var mHtml = "";
       if(groups.length){
-        mHtml += '<h3 class="layout-sec-head">✋ Your extra crops, added by hand — counts behind the layout</h3>' +
+        mHtml += '<h3 class="layout-sec-head">✋ Added by hand — your extra crops</h3>' +
           '<p class="sec-sub" style="margin:8px 0 0">Tap − and + on any crop here to set how many plots of it you grow (or type the number between the buttons). Stepping down to 0 takes the crop back off.</p>' +
           layoutSourceListHtml(groups, "manual");
       } else if(anyGroups){
@@ -8290,9 +8329,11 @@
           (Object.keys(layoutPicks).length ? '<button class="btn" id="clearLayoutBtn" type="button">Clear your extra crops</button>' : "") + "</div>";
       }
       out.innerHTML = html;
+      if(gOut) gOut.innerHTML = growHtml;
       if(mOut) mOut.innerHTML = mHtml;
       if(bestOut) bestOut.innerHTML = bestHtml;
       wireAdjButtons(out);
+      if(gOut) wireAdjButtons(gOut);
       if(mOut) wireAdjButtons(mOut);
       if(bestOut) wireAdjButtons(bestOut);
       var copyBtn = document.getElementById("copyLayoutBtn");
@@ -8919,7 +8960,7 @@
             } else {
               bpUserExtra[n] = (bpUserExtra[n] || 0) + d;
             }
-            bpAdjNotes.push(n + " +" + d + (d === 1 ? " plot" : " plots") + " at your Step 5 count");
+            bpAdjNotes.push(n + " +" + d + (d === 1 ? " plot" : " plots") + " at the count you set in What you're growing");
           });
           for(var bpPass = 0; bpPass < 6; bpPass++){
             var bpShort = null;
@@ -8986,7 +9027,7 @@
             if(it.facility === "Farmland") farmUsed += exp.runs[n] || 0;
             else if(it.facility === "Woodland") woodUsed += exp.runs[n] || 0;
           });
-          if(bpAdjNotes.length) goalNotes.push("Your Step 5 plot counts drive this plan: " + bpAdjNotes.join("; ") + ". Harvests, seed costs, per-hour rates, Mines, layout and crew all rebuild from those counts.");
+          if(bpAdjNotes.length) goalNotes.push("Your plot counts from What you're growing drive this plan: " + bpAdjNotes.join("; ") + ". Harvests, seed costs, per-hour rates, Mines, layout and crew all rebuild from those counts.");
         }
       }
       var seedCost = 0, seedUnknown = [], eventSeedNames = [];
@@ -10003,7 +10044,7 @@
         if(cropAssign && cropAssign.crop){
           tip = "Grow " + cropAssign.crop + " here · " + cropAssign.crop + " · " + pc.name + " spot " + (cropAssign.idx + 1) + " of " + cropAssign.total + " your current plan plants · " + climateLabel(cropAssign.crop) + " · Plot " + plotNum;
         } else {
-          tip = pc.name + " · Plot " + plotNum + " · no crop assigned to this spot yet: pick recipes in Step 2 (or add a crop by hand in Step 5 · Add & Adjust) and your plan will name the crop this spot should grow — until then it is a spare " + pc.name + " in this suggestion";
+          tip = pc.name + " · Plot " + plotNum + " · no crop assigned to this spot yet: pick recipes in Step 2 (or add a crop by hand in the growing list after Step 4) and your plan will name the crop this spot should grow — until then it is a spare " + pc.name + " in this suggestion";
         }
       } else {
         tip = pc.name + " · Plot " + plotNum;
@@ -10080,7 +10121,7 @@
         html += '<p style="margin-top:10px"><strong>Count check:</strong> ' + (parts.length ? parts.join(" · ") : "no facilities set yet") + '. Nothing was placed past your counts.</p>';
       }
       html += '<p style="margin-top:10px">The basket and recipe steps decide what to grow and what to cook. This layout just keeps the farm and the cooking together for orders.</p>';
-      html += '<p style="margin-top:10px"><strong>Hover or tap any Farmland or Woodland piece</strong> on the board and it names the crop or tree that spot should grow — the same planting Step 5 · Add & Adjust lays out for your current basket, strategy plan and hand-added crops. A spot your plan does not use says so instead; pick recipes and it names its crop. The farm plot list below repeats the same assignments in writing.</p>';
+      html += '<p style="margin-top:10px"><strong>Hover or tap any Farmland or Woodland piece</strong> on the board and it names the crop or tree that spot should grow — the same planting the growing list after Step 4 lays out for your current basket, strategy plan and hand-added crops. A spot your plan does not use says so instead; pick recipes and it names its crop. The farm plot list below repeats the same assignments in writing.</p>';
       html += '<p style="margin-top:10px"><strong>Easy to rearrange:</strong> the Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange.' + (res.movingRoom ? " Plot " + res.movingRoom + ", directly beside the farm block, is left open as moving room for that swapping, and the later groups start after it." : "") + '</p>';
       var climateLines = [];
       var suggPlotsSorted = Object.keys(res.plots).map(function(k){ return res.plots[k]; }).sort(function(a, b){ return a.num - b.num; });
