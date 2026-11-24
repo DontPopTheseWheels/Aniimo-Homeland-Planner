@@ -293,6 +293,8 @@
       .plant-control{display:inline-flex;align-items:center;gap:6px;flex:none}
       .plant-step{width:48px;height:48px;border-radius:12px;border:2px solid var(--card-line);background:#fff;font-size:1.35rem;font-weight:800;color:var(--ink);line-height:1;padding:0;cursor:pointer}
       .plant-step:hover{border-color:var(--accent);color:var(--accent)}
+      .plant-step[disabled]{opacity:.35;cursor:default}
+      .plant-step[disabled]:hover{border-color:var(--card-line);color:var(--ink)}
       .plant-control input{width:74px;min-height:48px;text-align:center;font-size:1.05rem;font-weight:800}
       .plant-unit{font-family:"Baloo 2",sans-serif;font-weight:800;white-space:nowrap}
       .plant-set-tag{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;padding:2px 11px;font-size:.78rem;font-weight:800;font-family:"Baloo 2",sans-serif;vertical-align:middle}
@@ -434,7 +436,7 @@
       <!-- ================= STEP 1: SET UP FIRST ================= -->
       <section id="facilities">
         <div class="sec-head"><span class="sec-num">Step 1</span><h2>🏭 Set Up First — RV, Facilities &amp; Modules</h2></div>
-        <p class="sec-sub"><strong>Boxes start empty — nothing is carried in.</strong> Pick your RV level and every box fills to the most that RV allows; change any number with − and +, or by typing. Picking a new RV refills them. Your real counts always win — type over any box that doesn't match your game.</p>
+        <p class="sec-sub"><strong>Boxes start empty — nothing is carried in.</strong> Pick your RV level and every box fills to the most that RV allows; change any number with − and +, or by typing. Picking a new RV refills them. Counts stop at the most your picked RV allows — a number typed or stepped over that max is pulled back to it. Lowering your Farmland or Woodland count trims the plan's plantings to fit, and the trim is noted.</p>
 
         <div class="card">
           <h3>🏭 Your facilities &amp; modules</h3>
@@ -451,6 +453,7 @@
             <span class="src" id="facSourceLine" aria-live="polite">Nothing is filled in yet — pick your RV level above to fill every box, or type your own counts</span>
           </div>
           <div class="fac-grid" id="facGrid"></div>
+          <p class="src" id="plantTrimLine" style="margin-top:8px" aria-live="polite"></p>
           <p class="src" style="margin-top:8px">⛏️ The Mine count and level here are just how many Mines you own and how deep they go — what each Mine digs is <strong>not</strong> picked here. That is picked later, in <strong>Facilities out</strong> in Step 5 (Add &amp; Adjust), after your strategy, because your strategy can claim Mines of its own.</p>
           <p class="src" id="powerFillLine" style="margin-top:8px" aria-live="polite"></p>
           <p class="src" style="margin-top:8px">🗄️ <strong>Storage Units take no worker.</strong> They are passive: no crew slot, no crew count, and no worker-based power. They never appear in your crew. Size 2 × 2. Their count box is with the storage, power &amp; hatching counts below the climate buildings — it fills from your RV like everything else here.</p>
@@ -1847,13 +1850,98 @@
        yield, and every figure downstream of the plan follows. Plantings
        she never touches keep the planner's counts. Session-only, like
        every other choice in this planner: nothing is saved, and the
-       page opens clean each time. Her number is never capped or thrown
-       away — going over a Step 1 plot count is flagged, not fixed. */
+       page opens clean each time. Her totals are hard-capped by the
+       Step 1 plot counts (player's rule, Nov 24, 2026): the + stepper
+       stops at the cap, a typed number over it is pulled back to the
+       biggest count that fits, and lowering a Step 1 count trims
+       plantings to fit — planner-calculated ones first, then hers,
+       largest first. */
     var plotOverrides = {};
+    /* The most recent cap-trim note, shown under the Step 1 boxes and
+       again in the plantings list, so what was trimmed stays visible
+       after the toast fades. */
+    var plantTrimNote = "";
     /* The planner's own worked-out plot count per crop from the most
        recent computePlan, captured before her overrides are applied,
        so a planting's row can say "planner worked out X" beside hers. */
     var plotCalcRuns = {};
+    /* Hard planting caps (player's rule, Nov 24, 2026). The cap for a
+       land type is the Step 1 count itself; a count of 0 means none
+       has been entered yet, so — like the rest of this planner, which
+       only flags "over" against a positive count — no cap is enforced
+       until a Step 1 count stands. plantMaxFor is the biggest count
+       one planting may hold: the cap less every other planting of the
+       same land type in the plan as it stands. */
+    function plantMaxFor(fac, plan, exceptName){
+      var cap = facCount(fac);
+      if(!(cap > 0)) return Infinity;
+      var others = 0;
+      Object.keys((plan && plan.runs) || {}).forEach(function(n){
+        if(n === exceptName) return;
+        var it = ITEMS[n];
+        if(it && it.kind === "grow" && it.facility === fac) others += plan.runs[n] || 0;
+      });
+      return Math.max(0, cap - others);
+    }
+    function plantTotalFor(fac, plan){
+      var total = 0;
+      Object.keys((plan && plan.runs) || {}).forEach(function(n){
+        var it = ITEMS[n];
+        if(it && it.kind === "grow" && it.facility === fac) total += plan.runs[n] || 0;
+      });
+      return total;
+    }
+    /* Trim plantings to a freshly lowered Step 1 count. Planner-
+       calculated plantings are trimmed first — computePlan's own fit
+       rescales them inside the new cap before overrides are applied,
+       so by the time this runs the excess sits in her set counts,
+       which are then cut largest first. (At a cap of 0 the planner
+       fit does not run, so calculated plantings are pinned down too.)
+       Every cut is named in a note that stays on the page. */
+    function trimPlantingsToCap(fac){
+      var cap = facCount(fac);
+      var plan = computePlan();
+      var excess = plantTotalFor(fac, plan) - cap;
+      if(excess <= 0) return;
+      var notes = [];
+      function cutRows(rows){
+        rows.forEach(function(n){
+          if(excess <= 0) return;
+          var cur = plan.runs[n] || 0;
+          if(cur <= 0) return;
+          var cut = Math.min(cur, excess);
+          plotOverrides[n] = cur - cut;
+          excess -= cut;
+          notes.push(n + " " + fmt(cur) + " → " + fmt(cur - cut) + (cur - cut === 1 ? " plot" : " plots"));
+        });
+      }
+      var bySize = function(a, b){ return (plan.runs[b] || 0) - (plan.runs[a] || 0) || a.localeCompare(b); };
+      var setRows = Object.keys(plotOverrides).filter(function(n){
+        var it = ITEMS[n];
+        return it && it.kind === "grow" && it.facility === fac && (plan.runs[n] || 0) > 0;
+      }).sort(bySize);
+      var calcRows = Object.keys(plan.runs).filter(function(n){
+        var it = ITEMS[n];
+        return it && it.kind === "grow" && it.facility === fac && !plotOverrides.hasOwnProperty(n) && (plan.runs[n] || 0) > 0;
+      }).sort(bySize);
+      if(cap > 0){
+        /* Calculated plantings were already trimmed first, by the
+           planner's own fit inside computePlan; hers are cut now. */
+        cutRows(setRows);
+        if(excess > 0) cutRows(calcRows);
+      } else {
+        /* No planner fit runs at a 0 cap: calculated plantings are
+           pinned down first, then hers, largest first either way. */
+        cutRows(calcRows);
+        cutRows(setRows);
+      }
+      if(notes.length){
+        plantTrimNote = "✂️ Trimmed to fit your new " + fac + " count (" + fmt(cap) + "): " + notes.join(", ") + ".";
+        var line = document.getElementById("plantTrimLine");
+        if(line) line.textContent = plantTrimNote;
+        toast(plantTrimNote);
+      }
+    }
     var activeCat = "all";
     var hideLocked = false;
     var userRV = 0;             /* 0 = no RV level picked yet: nothing is carried in on open (player's ask, Nov 15, 2026) */
@@ -1865,9 +1953,11 @@
        for counts, CLIM_COUNT for climate buildings) to the most that RV
        allows. Any box can be changed afterwards — typed over, or with
        its −/+ steppers — and picking an RV level or tapping Fill from
-       RV level refills them to that RV's most. Planning reads the
-       entered values exactly as they stand; a value above the RV
-       maximum is used as typed and flagged "above RV max". */
+       RV level refills them to that RV's most. Counts are hard-capped
+       at the picked RV's ladder maximum (player's rule, Nov 24, 2026):
+       a count typed or stepped over the maximum is pulled back to it,
+       with a note. Levels keep the older behaviour: a level above the
+       RV maximum is used as typed and flagged "above RV max". */
     var modulesOwned = { premiumWheat:false, strawberry:false, coconut:false, maple:false, bamboo:false, lemon:false, rice:false, agave:false };
     /* Module levels typed by the player, all starting at 0 like every other box.
        The three verified Ecological harvests are derived from the Ecological
@@ -2194,9 +2284,11 @@
          effYld), and gross/net follow, so the per-hour rates, the
          Wood Block byproduct, the layout's basket counts and every
          other reader of this plan recompute from her number. The
-         cap-fitting scale above never touches a planting she set:
-         her total can stand over a Step 1 plot count, and the plan
-         output flags it instead of trimming it. A crop she added
+         cap-fitting scale above never touches a planting she set —
+         her counts are held to the Step 1 caps by the controls that
+         set them and by the trim that runs when a Step 1 count is
+         lowered, so a plan's planting totals never pass those
+         counts. A crop she added
          from the plan's own add list lives only in here — it enters
          gross/runs the same way, with its grow time joining the
          cycle like any other crop's. */
@@ -2399,8 +2491,8 @@
         if(!anyGrow) return;
         var fCap = facCount("Farmland"), wCap = facCount("Woodland");
         lines.push("Planting totals in this plan: Farmland " + fTot + " / " + fCap + " plots, Woodland " + wTot + " / " + wCap + " plots (your Step 1 counts)" +
-          ((fCap > 0 && fTot > fCap) ? ". Farmland is OVER your count by " + (fTot - fCap) + " — your numbers stand as set: plant what fits and replant the same plots as harvests finish" : "") +
-          ((wCap > 0 && wTot > wCap) ? ". Woodland is OVER your count by " + (wTot - wCap) + " — your numbers stand as set: plant what fits and replant the same plots as harvests finish" : "") + ".");
+          ((fCap > 0 && fTot > fCap) ? ". Farmland is OVER your count by " + (fTot - fCap) + ": plant what fits and replant the same plots as harvests finish" : "") +
+          ((wCap > 0 && wTot > wCap) ? ". Woodland is OVER your count by " + (wTot - wCap) + ": plant what fits and replant the same plots as harvests finish" : "") + ".");
         var hers = Object.keys(plotOverrides).filter(function(n){ return ITEMS[n] && ITEMS[n].kind === "grow" && (plan.runs[n] !== undefined); }).sort();
         if(hers.length){
           lines.push("Plot counts set by you (these win over the planner's worked-out counts, and the harvests above and below are counted from them): " +
@@ -2546,9 +2638,9 @@
          supply, per-hour rates, Wood Blocks, the layout's basket
          counts — has already recomputed from it inside computePlan
          by the time this renders, because renderAll rebuilt
-         everything. Totals run against the Step 1 plot counts and
-         going over is flagged in the open: her number is never
-         trimmed back to fit. Crops not in the plan yet can be added
+         everything. Totals are hard-capped at the Step 1 plot
+         counts: the controls that set a count stop at the cap, and
+         lowering a Step 1 count trims plantings to fit. Crops not in the plan yet can be added
          from the tap-to-add list under the rows, exactly like the
          Step 5 picker, and then set the same way. */
       (function(){
@@ -2568,14 +2660,17 @@
         var fCap = facCount("Farmland"), wCap = facCount("Woodland");
         var fOver = fCap > 0 && fTot > fCap, wOver = wCap > 0 && wTot > wCap;
         html += '<h3 style="margin-top:22px">🌱 What you\'re growing — set your own plot counts</h3>' +
-          '<p class="sec-sub" style="margin-bottom:0">These are the plantings behind the plan above, with the plot count the plan is using for each. Tap <strong>−</strong> or <strong>+</strong> to change a count (or type it in the box) and the whole plan reworks itself around your number — harvests, ingredient supply and every rate follow from <strong>your plots × the crop\'s yield per plot</strong>. A planting you don\'t touch keeps the planner\'s worked-out count. Your numbers are never trimmed to fit: go over a Step 1 count and it is flagged, not fixed.</p>';
+          '<p class="sec-sub" style="margin-bottom:0">These are the plantings behind the plan above, with the plot count the plan is using for each. Tap <strong>−</strong> or <strong>+</strong> to change a count (or type it in the box) and the whole plan reworks itself around your number — harvests, ingredient supply and every rate follow from <strong>your plots × the crop\'s yield per plot</strong>. A planting you don\'t touch keeps the planner\'s worked-out count. Totals stop at your Step 1 counts: the <strong>+</strong> button stops at the cap, and a typed number over the cap is pulled back to the biggest count that fits.</p>';
         html += '<div class="summary-strip">' +
           '<div class="sum-chip"><b>' + fmt(fTot) + " / " + fmt(fCap) + '</b><span>Farmland plots in this plan / your Step 1 count' + (fOver ? " — ⚠️ over by " + fmt(fTot - fCap) : "") + '</span></div>' +
           '<div class="sum-chip"><b>' + fmt(wTot) + " / " + fmt(wCap) + '</b><span>Woodland plots in this plan / your Step 1 count' + (wOver ? " — ⚠️ over by " + fmt(wTot - wCap) : "") + '</span></div></div>';
+        if(plantTrimNote){
+          html += '<div class="plant-over" role="status">' + esc(plantTrimNote) + "</div>";
+        }
         if(fOver || wOver){
           html += '<div class="plant-over" role="alert">⚠️ <strong>Over your Step 1 plot counts:</strong> ' +
             [fOver ? "Farmland " + fmt(fTot) + " of " + fmt(fCap) + " (over by " + fmt(fTot - fCap) + ")" : "", wOver ? "Woodland " + fmt(wTot) + " of " + fmt(wCap) + " (over by " + fmt(wTot - wCap) + ")" : ""].filter(Boolean).join(" · ") +
-            ". Your counts stand exactly as you set them — nothing was capped or taken away. Plant what fits and replant the same plots as harvests finish, or raise the count in Step 1.</div>";
+            ". Plant what fits and replant the same plots as harvests finish, or raise the count in Step 1.</div>";
         }
         function plantRow(n){
           var it = ITEMS[n];
@@ -2591,7 +2686,7 @@
             '<span class="plant-meta">' + meta + (isSet ? " · planner worked out " + fmt(calc) + (calc === 1 ? " plot" : " plots") : "") + "</span></span>" +
             '<span class="plant-control"><button type="button" class="plant-step" data-plot-dec="' + escA(n) + '" aria-label="One fewer ' + escA(n) + ' plot">−</button>' +
             '<input type="number" data-plot-input="' + escA(n) + '" value="' + plots + '" min="0" step="1" inputmode="numeric" aria-label="' + escA(n) + ' plots — type a number, or use the − and + buttons" />' +
-            '<button type="button" class="plant-step" data-plot-inc="' + escA(n) + '" aria-label="One more ' + escA(n) + ' plot">+</button>' +
+            '<button type="button" class="plant-step" data-plot-inc="' + escA(n) + '" aria-label="One more ' + escA(n) + ' plot"' + ((it.facility === "Farmland" ? fCap : wCap) > 0 && (it.facility === "Farmland" ? fTot : wTot) >= (it.facility === "Farmland" ? fCap : wCap) ? " disabled" : "") + '>+</button>' +
             '<span class="plant-unit">' + (plots === 1 ? "plot" : "plots") + "</span></span>" +
             (isSet ? '<button type="button" class="plant-reset" data-plot-reset="' + escA(n) + '">' + (calc > 0 ? "↺ Use planner's " + fmt(calc) : "↺ Take back out (planner grows none)") + "</button>" : "") +
             "</div>";
@@ -2775,6 +2870,14 @@
          new number at once. */
       area.querySelectorAll("[data-plot-inc]").forEach(function(btn){ btn.addEventListener("click", function(){
         var n = btn.getAttribute("data-plot-inc");
+        var fac = ITEMS[n].facility;
+        /* Hard cap: the + stepper stops at the Step 1 count — when
+           the land type is already fully planted, the tap changes
+           nothing and says why. Stepping down is always allowed. */
+        if(plantMaxFor(fac, plan, n) <= (plan.runs[n] || 0)){
+          toast(fac + " is full: " + fmt(facCount(fac)) + (facCount(fac) === 1 ? " plot is" : " plots are") + " your Step 1 count, so " + n + " stays at " + fmt(plan.runs[n] || 0) + ".");
+          return;
+        }
         plotOverrides[n] = (plan.runs[n] || 0) + 1;
         renderAll();
         toast(n + ": " + plotOverrides[n] + (plotOverrides[n] === 1 ? " plot" : " plots") + ", set by you.");
@@ -2791,18 +2894,43 @@
         if(v === ""){ delete plotOverrides[n]; renderAll(); toast(n + ": back to the planner's count."); return; }
         var p = Math.floor(Number(v));
         if(!(p >= 0)){ renderPlan(); return; }
+        /* Hard cap: a typed number over the cap is clamped to the
+           largest count that fits, with a note that the cap was hit. */
+        var maxP = plantMaxFor(ITEMS[n].facility, plan, n);
+        if(p > maxP){
+          plotOverrides[n] = maxP;
+          renderAll();
+          toast(n + " pulled back to " + fmt(maxP) + (maxP === 1 ? " plot" : " plots") + " — your Step 1 " + ITEMS[n].facility + " count (" + fmt(facCount(ITEMS[n].facility)) + ") is the cap.");
+          return;
+        }
         plotOverrides[n] = p;
         renderAll();
         toast(n + ": " + p + (p === 1 ? " plot" : " plots") + ", set by you.");
       }); });
       area.querySelectorAll("[data-plot-reset]").forEach(function(btn){ btn.addEventListener("click", function(){
         var n = btn.getAttribute("data-plot-reset");
+        /* Handing a planting back to the planner cannot push the
+           total over the cap either: if the planner's own count no
+           longer fits beside the counts she set, it lands on the
+           biggest count that fits, with a note. */
+        var maxR = plantMaxFor(ITEMS[n].facility, plan, n);
+        if((plotCalcRuns[n] || 0) > maxR){
+          plotOverrides[n] = maxR;
+          renderAll();
+          toast(n + ": the planner's " + fmt(plotCalcRuns[n] || 0) + " no longer fits under your Step 1 " + ITEMS[n].facility + " count, so it is set to " + fmt(maxR) + " — the biggest count that fits.");
+          return;
+        }
         delete plotOverrides[n];
         renderAll();
         toast(n + ": back to the planner's count.");
       }); });
       area.querySelectorAll("[data-plot-add]").forEach(function(btn){ btn.addEventListener("click", function(){
         var n = btn.getAttribute("data-plot-add");
+        var facA = ITEMS[n].facility;
+        if(facCount(facA) > 0 && plantTotalFor(facA, plan) >= facCount(facA)){
+          toast(facA + " is full: " + fmt(facCount(facA)) + (facCount(facA) === 1 ? " plot is" : " plots are") + " your Step 1 count, so " + n + " can't be added until something else comes down.");
+          return;
+        }
         plotOverrides[n] = 1;
         renderAll();
         toast(n + " added at 1 plot — set its plots on its row.");
@@ -5679,6 +5807,11 @@
         if(crewGate.modules.hasOwnProperty(d.id)) crewGate.modules[d.id] = true;
       });
       syncModulesFromLevels();
+      /* A refill can lower the Farmland or Woodland count (a smaller
+         RV picked over a bigger one's fill): plantings stranded over
+         the new count are trimmed to fit, with a note. */
+      trimPlantingsToCap("Farmland");
+      trimPlantingsToCap("Woodland");
       setFacProvenance("Facilities filled for RV " + userRV + " — the most RV " + userRV + " allows");
     }
     function fillFromRv(){
@@ -5725,25 +5858,39 @@
         if(f === "Starfall Hammock") sub += " · <strong>Needs a Cool environment to work</strong> (your lookup, Oct 25, 2026): it stands inside a Cooling Unit zone, and that zone counts toward Cooling Unit coverage in Step 5 (Add & Adjust)";
         if(f === "Floral Windmill") sub += " · Gathers Scales (Needs: Flutternym family) · <strong>Scales is hard-gated on Light</strong>: a Sunlamp must cover the windmill or Scales will not run";
         return '<div class="fac-item"><span><span class="nm">' + esc(f) + '</span><span class="kd">' + sub + '</span></span>' +
-          '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-fac-count-dec="' + escA(f) + '" aria-label="One fewer ' + escA(f) + '"' + (facCount(f) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(f) + '" data-fac-count="' + escA(f) + '" aria-label="' + escA(f) + ' count" /><button type="button" class="cnt-btn" data-fac-count-inc="' + escA(f) + '" aria-label="One more ' + escA(f) + '">+</button></span>' + aboveFlagHtml("fac-count:" + f, facCount(f) > rvMaxFacCount(f, userRV)) +
+          '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-fac-count-dec="' + escA(f) + '" aria-label="One fewer ' + escA(f) + '"' + (facCount(f) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(f) + '" data-fac-count="' + escA(f) + '" aria-label="' + escA(f) + ' count" /><button type="button" class="cnt-btn" data-fac-count-inc="' + escA(f) + '" aria-label="One more ' + escA(f) + '"' + (userRV > 0 && facCount(f) >= rvMaxFacCount(f, userRV) ? " disabled" : "") + '>+</button></span>' + aboveFlagHtml("fac-count:" + f, userRV > 0 && facCount(f) > rvMaxFacCount(f, userRV)) +
           ' <span class="src">Lv</span> <input type="number" class="fac-num" min="0" max="' + tiers.length + '" value="' + facLevel(f) + '" data-fac-lvl="' + escA(f) + '" aria-label="' + escA(f) + ' level" />' + aboveFlagHtml("fac-lvl:" + f, facLevel(f) > maxL) + '</span></div>';
       }).join("");
       /* One commit for a facility count, shared by the box itself and
-         its −/+ steppers: the value stands exactly as entered, the
-         box and its minus button update in place (no grid rebuild, so
-         the box being edited is never lost), and everything below
-         re-reads it. */
+         its −/+ steppers: the box and its stepper buttons update in
+         place (no grid rebuild, so the box being edited is never
+         lost), and everything below re-reads it. Hard cap (player's
+         rule, Nov 24, 2026): once an RV is picked, a count can never
+         pass that RV's ladder maximum for the facility — a typed or
+         stepped value over it is clamped to the maximum, with a
+         note. Stepping down is always allowed, and lowering the
+         Farmland or Woodland count trims plantings to fit it. */
       function commitFacCount(f, v){
-        facCounts[f] = isNaN(v) ? 0 : Math.max(0, v);
+        var oldCount = facCounts[f] || 0;
+        var nv = isNaN(v) ? 0 : Math.max(0, v);
+        var maxC = userRV > 0 ? rvMaxFacCount(f, userRV) : null;
+        var capped = false;
+        if(maxC !== null && nv > maxC){ nv = maxC; capped = true; }
+        facCounts[f] = nv;
         grid.querySelectorAll("[data-fac-count]").forEach(function(inp){
           if(inp.getAttribute("data-fac-count") === f) inp.value = facCounts[f];
         });
         grid.querySelectorAll("[data-fac-count-dec]").forEach(function(btn){
           if(btn.getAttribute("data-fac-count-dec") === f) btn.disabled = facCounts[f] <= 0;
         });
-        updateAboveFlag("fac-count:" + f, facCounts[f] > rvMaxFacCount(f, userRV));
+        grid.querySelectorAll("[data-fac-count-inc]").forEach(function(btn){
+          if(btn.getAttribute("data-fac-count-inc") === f) btn.disabled = maxC !== null && facCounts[f] >= maxC;
+        });
+        updateAboveFlag("fac-count:" + f, maxC !== null && facCounts[f] > maxC);
+        if((f === "Farmland" || f === "Woodland") && nv < oldCount) trimPlantingsToCap(f);
         setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
         refreshAfterStage3();
+        if(capped) toast(f + " count capped at " + fmt(maxC) + " — the most RV " + userRV + " allows.");
       }
       grid.querySelectorAll("[data-fac-count]").forEach(function(inp){
         inp.addEventListener("change", function(){
@@ -5792,19 +5939,27 @@
           }
           sub += facSizeNote(b);
           return '<div class="fac-item"><span><span class="nm">' + esc(b) + '</span><span class="kd">' + sub + '</span></span>' +
-            '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-clim-count-dec="' + escA(b) + '" aria-label="One fewer ' + escA(b) + '"' + (facCount(b) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(b) + '" data-clim-count="' + escA(b) + '" aria-label="' + escA(b) + ' count" /><button type="button" class="cnt-btn" data-clim-count-inc="' + escA(b) + '" aria-label="One more ' + escA(b) + '">+</button></span>' + aboveFlagHtml("clim-count:" + b, facCount(b) > maxC) + '</span></div>';
+            '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-clim-count-dec="' + escA(b) + '" aria-label="One fewer ' + escA(b) + '"' + (facCount(b) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(b) + '" data-clim-count="' + escA(b) + '" aria-label="' + escA(b) + ' count" /><button type="button" class="cnt-btn" data-clim-count-inc="' + escA(b) + '" aria-label="One more ' + escA(b) + '"' + (userRV > 0 && facCount(b) >= maxC ? " disabled" : "") + '>+</button></span>' + aboveFlagHtml("clim-count:" + b, userRV > 0 && facCount(b) > maxC) + '</span></div>';
         }).join("");
         function commitClimCount(b, v){
-          climCounts[b] = isNaN(v) ? 0 : Math.max(0, v);
+          var nvC = isNaN(v) ? 0 : Math.max(0, v);
+          var maxCl = userRV > 0 ? (climCountFor(b, userRV) || 0) : null;
+          var cappedCl = false;
+          if(maxCl !== null && nvC > maxCl){ nvC = maxCl; cappedCl = true; }
+          climCounts[b] = nvC;
           cg.querySelectorAll("[data-clim-count]").forEach(function(inp){
             if(inp.getAttribute("data-clim-count") === b) inp.value = climCounts[b];
           });
           cg.querySelectorAll("[data-clim-count-dec]").forEach(function(btn){
             if(btn.getAttribute("data-clim-count-dec") === b) btn.disabled = climCounts[b] <= 0;
           });
-          updateAboveFlag("clim-count:" + b, climCounts[b] > (climCountFor(b, userRV) || 0));
+          cg.querySelectorAll("[data-clim-count-inc]").forEach(function(btn){
+            if(btn.getAttribute("data-clim-count-inc") === b) btn.disabled = maxCl !== null && climCounts[b] >= maxCl;
+          });
+          updateAboveFlag("clim-count:" + b, maxCl !== null && climCounts[b] > maxCl);
           setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
           refreshAfterStage3();
+          if(cappedCl) toast(b + " count capped at " + fmt(maxCl) + " — the most RV " + userRV + " allows.");
         }
         cg.querySelectorAll("[data-clim-count]").forEach(function(inp){
           inp.addEventListener("change", function(){
@@ -5847,19 +6002,27 @@
           }
           sub += facSizeNote(b);
           return '<div class="fac-item"><span><span class="nm">' + esc(b) + '</span><span class="kd">' + sub + '</span></span>' +
-            '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-util-count-dec="' + escA(b) + '" aria-label="One fewer ' + escA(b) + '"' + (facCount(b) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(b) + '" data-util-count="' + escA(b) + '" aria-label="' + escA(b) + ' count" /><button type="button" class="cnt-btn" data-util-count-inc="' + escA(b) + '" aria-label="One more ' + escA(b) + '">+</button></span>' + aboveFlagHtml("util-count:" + b, facCount(b) > maxU) + '</span></div>';
+            '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-util-count-dec="' + escA(b) + '" aria-label="One fewer ' + escA(b) + '"' + (facCount(b) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(b) + '" data-util-count="' + escA(b) + '" aria-label="' + escA(b) + ' count" /><button type="button" class="cnt-btn" data-util-count-inc="' + escA(b) + '" aria-label="One more ' + escA(b) + '"' + (userRV > 0 && facCount(b) >= maxU ? " disabled" : "") + '>+</button></span>' + aboveFlagHtml("util-count:" + b, userRV > 0 && facCount(b) > maxU) + '</span></div>';
         }).join("");
         function commitUtilCount(b, v){
-          utilCounts[b] = isNaN(v) ? 0 : Math.max(0, v);
+          var nvU = isNaN(v) ? 0 : Math.max(0, v);
+          var maxUt = userRV > 0 ? (utilCountFor(b, userRV) || 0) : null;
+          var cappedUt = false;
+          if(maxUt !== null && nvU > maxUt){ nvU = maxUt; cappedUt = true; }
+          utilCounts[b] = nvU;
           ug.querySelectorAll("[data-util-count]").forEach(function(inp){
             if(inp.getAttribute("data-util-count") === b) inp.value = utilCounts[b];
           });
           ug.querySelectorAll("[data-util-count-dec]").forEach(function(btn){
             if(btn.getAttribute("data-util-count-dec") === b) btn.disabled = utilCounts[b] <= 0;
           });
-          updateAboveFlag("util-count:" + b, utilCounts[b] > (utilCountFor(b, userRV) || 0));
+          ug.querySelectorAll("[data-util-count-inc]").forEach(function(btn){
+            if(btn.getAttribute("data-util-count-inc") === b) btn.disabled = maxUt !== null && utilCounts[b] >= maxUt;
+          });
+          updateAboveFlag("util-count:" + b, maxUt !== null && utilCounts[b] > maxUt);
           setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
           refreshAfterStage3();
+          if(cappedUt) toast(b + " count capped at " + fmt(maxUt) + " — the most RV " + userRV + " allows.");
         }
         ug.querySelectorAll("[data-util-count]").forEach(function(inp){
           inp.addEventListener("change", function(){
