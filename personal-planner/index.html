@@ -4313,12 +4313,36 @@
        facility posts, then the named facilities' attached posts,
        then planting, then dedicated haulers from whoever is left.
        Totals come from the picks themselves: distinct named Aniimo
-       plus the posts no owned Aniimo could fill. */
+       plus the posts no owned Aniimo could fill.
+       STAY-THERE RULE (player's, Nov 24, 2026): an Aniimo posted at
+       a stay-there facility — a place where it is physically placed
+       and stays: every Mine, the Well, and the per-copy gather
+       posts (Tidewhisper Sandcastle, Nimbus Bed, Starfall Hammock,
+       Dewy House, Floral Windmill) — covers NOTHING else: no second
+       stay-there post, no machine post, no pairing, sharing or
+       planting cover. Stay-there posts are therefore staffed FIRST,
+       before the machine (processing facility) posts, and their
+       Aniimo are locked out of every later pick; a machine post
+       whose best Aniimo is locked to a stay-there post takes the
+       next-best available Aniimo instead, and a stay-there post
+       nobody free can fill stays unfilled rather than borrowing an
+       Aniimo from another post. Machine-to-machine pairing and
+       sharing are unchanged, "also on X — counted once" wording
+       included: that double-duty is machines only, never a
+       stay-there post. */
     function pickCrew(team, mode, budget){
       var used = {};
       var posts = [];
       var planWorkers = {}; /* idx -> true: facility/slot picks, for planting cover */
       function addPost(p){ p.animal = -1; posts.push(p); return p; }
+      /* The stay-there facilities (player's rule, Nov 24, 2026):
+         the Mines, the Well and the per-copy gather posts. Keyed by
+         the Step 1 facility name, like everything else here. */
+      var STAY_THERE = { "Mine":true, "Well":true, "Tidewhisper Sandcastle":true,
+        "Nimbus Bed":true, "Starfall Hammock":true, "Dewy House":true, "Floral Windmill":true };
+      function isStayThere(f){ return !!(f && STAY_THERE[facCanon(f)]); }
+      var stayLocked = {}; /* idx -> true: Aniimo locked to a stay-there post */
+      function lockStay(p){ if(p && p.animal >= 0 && p.facility && isStayThere(p.facility)) stayLocked[p.animal] = true; }
       /* Per-copy production for the production-ruled stations (every
          facility whose data carries family tags: Sandcastle, Dewy
          House, Nimbus Bed, Starfall Hammock, Floral Windmill): the
@@ -4373,6 +4397,7 @@
             used[aS.idx] = true; p.animal = aS.idx;
             if(p.req > 1 && animalAbility(aS, p.job) < p.req) p.steppedDown = true;
           }
+          lockStay(p);
           return p;
         }
         var a = bestAnimalFor(p.job, postTraits(p), p.req, used);
@@ -4387,6 +4412,7 @@
           if(a) p.steppedDown = true;
         }
         if(a){ used[a.idx] = true; p.animal = a.idx; }
+        lockStay(p);
         return p;
       }
       /* Always staffed first, one post per pinned copy. */
@@ -4402,6 +4428,29 @@
           }
         }
       });
+      /* The named facilities' attached posts, one per copy out,
+         split in two passes by the stay-there rule: the stay-there
+         copies (stayOnly true) are staffed HERE, before the facility
+         posts, so their Aniimo are locked before any machine post
+         picks; the rest (the climate machines) are staffed after
+         the facility posts, in their original place below. */
+      function addPlacedPosts(stayOnly){
+        if(!team.placed) return;
+        FAC_ANIIMO.forEach(function(fa){
+          if(isStayThere(fa.facility) !== stayOnly) return;
+          var pl = team.placed[fa.facility];
+          if(!pl) return;
+          for(var i = 0; i < pl.count; i++){
+            var p = addPost({ kind:"placed", facility:fa.facility, job:fa.job, req:crewReqLvl(fa.job, fa.facility), trait:FAC_TRAIT[fa.facility] || null });
+            /* Placed copies follow the Always-covered copies of the
+               same facility in the gather assignment, so this copy's
+               production is the assignment at that position. */
+            p.production = copyProduction(fa.facility, (alwaysSeen[facCanon(fa.facility)] || 0) + i);
+            tryPick(p);
+          }
+        });
+      }
+      addPlacedPosts(true);
       /* Facility posts. Best: one post per facility, with pairing.
          Minimum: shared slots per job under the 80% rule. */
       var facList = Object.keys(team.byFac).map(function(f){ return team.byFac[f]; });
@@ -4413,10 +4462,34 @@
         var byJob = {};
         facList.forEach(function(bf){ (byJob[bf.job] = byJob[bf.job] || []).push(bf); });
         var slotAnimals = {}, slotJobsSeen = {};
+        /* Stay-there rule (player's, Nov 24, 2026): a slot covering
+           a stay-there post (a Mine, the Well, a leisure gather
+           post) is staffed FIRST, from a fresh pick — no Aniimo is
+           reused onto it — and its Aniimo is never reused onto
+           another slot. A job whose facilities mix stay-there and
+           machine posts (Water: the Well and the Bouncy Brew Keg)
+           gets a separate slot for each side, so no Aniimo stands
+           at the Well and at a machine at once. Machine slots keep
+           sharing between themselves exactly as before. */
+        var slotGroups = [];
         JOB_ORDER.forEach(function(job){
-          var assigns = byJob[job];
-          if(!assigns) return;
+          var assigns0 = byJob[job];
+          if(!assigns0) return;
           slotJobsSeen[job] = {};
+          var stayA = assigns0.filter(function(bf){ return isStayThere(bf.facility); });
+          var machA = assigns0.filter(function(bf){ return !isStayThere(bf.facility); });
+          if(stayA.length && machA.length){
+            slotGroups.push({ job:job, assigns:stayA, stay:true });
+            slotGroups.push({ job:job, assigns:machA, stay:false });
+          } else {
+            slotGroups.push({ job:job, assigns:assigns0, stay:stayA.length > 0 });
+          }
+        });
+        slotGroups.sort(function(g1, g2){ return (g1.stay ? 0 : 1) - (g2.stay ? 0 : 1); });
+        slotGroups.forEach(function(grp){
+          var job = grp.job;
+          var assigns = grp.assigns;
+          var slotStay = grp.stay;
           var n = minJobWorkers(assigns.length);
           for(var s = 0; s < n; s++){
             var p = addPost({ kind:"slot", job:job, assigns:assigns, req:crewReqLvl(job, null) });
@@ -4425,7 +4498,7 @@
                individual, counted once, as Minimum always counted. */
             var cand = null;
             var famSetSlot = postFamilySet(p);
-            if(famSetSlot){
+            if(famSetSlot && !slotStay){
               /* A shared slot covering a family-ruled post (the
                  Sandcastle, or another family-tagged station with a
                  known production)
@@ -4446,6 +4519,7 @@
               var famNoneSlot = familyNoneNames(p).length === postFamilyFamilies(p).length;
               Object.keys(slotAnimals).forEach(function(k){
                 if(slotJobsSeen[job][k]) return;
+                if(stayLocked[k]) return;
                 var a = ROSTER[k];
                 if(isSandcastlePost(p) && sandcastleBanned(a)) return;
                 if(animalAbility(a, job) < 1) return;
@@ -4453,9 +4527,10 @@
                 if(!cand || rankCompareFamily(a, cand, job, postTraits(p), famSetSlot) < 0) cand = a;
               });
               if(cand && p.req > 1 && animalAbility(cand, job) < p.req) p.steppedDown = true;
-            } else {
+            } else if(!slotStay) {
               Object.keys(slotAnimals).forEach(function(k){
                 if(slotJobsSeen[job][k]) return;
+                if(stayLocked[k]) return;
                 var a = ROSTER[k];
                 if(animalAbility(a, job) < p.req) return;
                 if(!cand || rankCompareT(a, cand, job, postTraits(p)) < 0) cand = a;
@@ -4466,6 +4541,7 @@
                    when it holds the job at any level. */
                 Object.keys(slotAnimals).forEach(function(k){
                   if(slotJobsSeen[job][k]) return;
+                  if(stayLocked[k]) return;
                   var a = ROSTER[k];
                   if(animalAbility(a, job) < 1) return;
                   if(!cand || rankCompareT(a, cand, job, postTraits(p)) < 0) cand = a;
@@ -4475,12 +4551,27 @@
             }
             if(cand){ p.animal = cand.idx; p.shared = true; }
             else tryPick(p);
-            if(p.animal >= 0){ slotAnimals[p.animal] = true; slotJobsSeen[job][p.animal] = true; planWorkers[p.animal] = true; }
+            if(p.animal >= 0){ slotAnimals[p.animal] = true; slotJobsSeen[job][p.animal] = true; planWorkers[p.animal] = true; if(slotStay) stayLocked[p.animal] = true; }
           }
         });
       } else {
         var facPosts = facList.map(function(bf){
           return addPost({ kind:"fac", facility:bf.facility, job:bf.job, bf:bf, req:crewReqLvl(bf.job, bf.facility), trait:FAC_TRAIT[bf.facility] || null });
+        });
+        /* Stay-there facility posts lock first (player's rule,
+           Nov 24, 2026): a facility post at a stay-there facility
+           (a Mine post in the plan, the Well, a leisure gather
+           post) is picked before every machine post, in the order
+           the helper lists them, and its Aniimo is then unavailable
+           to the machines — a machine post whose best Aniimo is
+           locked to a stay-there post takes the next-best available
+           Aniimo in the main pass below. The main pass skips these
+           posts (already picked), so a stay-there Aniimo never
+           pairs outward onto a machine either. */
+        facPosts.forEach(function(p){
+          if(!isStayThere(p.facility)) return;
+          tryPick(p);
+          if(p.animal >= 0) planWorkers[p.animal] = true;
         });
         facPosts.forEach(function(p, pi){
           if(p.animal >= 0) return; /* already named by a pairing */
@@ -4499,13 +4590,16 @@
              whose production names a family) is always picked on
              its own under its family rule, so no Aniimo — banned or
              simply non-family — can be paired into one sideways.
-             (An Aniimo picked FOR such a post may still pair outward
-             onto a later post with no family rule, exactly like
-             anyone else.) */
+             Pairing never fills a stay-there post either (the
+             isStayThere guards in both loops below): stay-there
+             posts were all picked on their own in the stay-there
+             passes above, so pairing here only ever joins two
+             machine posts. */
           for(var qi = pi + 1; qi < facPosts.length; qi++){
             var q = facPosts[qi];
             if(q.animal >= 0 || q.job === p.job) continue;
             if(postFamilySet(q)) continue;
+            if(isStayThere(q.facility)) continue;
             if(animalAbility(a, q.job) >= q.req){ q.animal = a.idx; q.paired = true; pairedDone = true; break; }
           }
           if(!pairedDone){
@@ -4513,26 +4607,18 @@
               var q2 = facPosts[qj];
               if(q2.animal >= 0 || q2.job === p.job) continue;
               if(postFamilySet(q2)) continue;
+              if(isStayThere(q2.facility)) continue;
               if(animalAbility(a, q2.job) >= 1){ q2.animal = a.idx; q2.paired = true; q2.steppedDown = true; break; }
             }
           }
         });
       }
-      /* The named facilities' attached posts, one per copy out. */
-      if(team.placed){
-        FAC_ANIIMO.forEach(function(fa){
-          var pl = team.placed[fa.facility];
-          if(!pl) return;
-          for(var i = 0; i < pl.count; i++){
-            var p = addPost({ kind:"placed", facility:fa.facility, job:fa.job, req:crewReqLvl(fa.job, fa.facility), trait:FAC_TRAIT[fa.facility] || null });
-            /* Placed copies follow the Always-covered copies of the
-               same facility in the gather assignment, so this copy's
-               production is the assignment at that position. */
-            p.production = copyProduction(fa.facility, (alwaysSeen[facCanon(fa.facility)] || 0) + i);
-            tryPick(p);
-          }
-        });
-      }
+      /* The named facilities' attached posts that are not
+         stay-there posts (the climate machines), one per copy out —
+         the stay-there copies were already staffed above, before
+         the facility posts, so their Aniimo were never available
+         to the machines. */
+      addPlacedPosts(false);
       /* Stations with no verified job: a head each, nobody named. */
       Object.keys(team.uncounted || {}).sort().forEach(function(f){
         addPost({ kind:"uncounted", facility:f, job:null, noJob:true });
@@ -4546,6 +4632,7 @@
         var coverer = null;
         Object.keys(planWorkers).forEach(function(k){
           var a = ROSTER[k];
+          if(stayLocked[k]) return; /* a stay-there Aniimo covers nothing else, planting included */
           if(animalAbility(a, "Grass") < plantPost.req) return;
           if(!coverer || rankCompareT(a, coverer, "Grass", []) < 0) coverer = a;
         });
@@ -4554,6 +4641,7 @@
              level covers the planting, labelled as a step-down. */
           Object.keys(planWorkers).forEach(function(k){
             var a = ROSTER[k];
+            if(stayLocked[k]) return; /* a stay-there Aniimo covers nothing else, planting included */
             if(animalAbility(a, "Grass") < 1) return;
             if(!coverer || rankCompareT(a, coverer, "Grass", []) < 0) coverer = a;
           });
@@ -4669,11 +4757,17 @@
             var candPosts = posts.filter(function(p){ return p.kind === "fac" && p.job === jobOrder[jo].job && p.animal >= 0; });
             if(!candPosts.length) continue;
             var candTarget = candPosts[0].animal;
+            /* Stay-there rule: a share never lands on an Aniimo
+               locked to a stay-there post — it keeps its one post. */
+            if(stayLocked[candTarget]) continue;
             var counts = {};
             posts.forEach(function(p){ if(p.animal >= 0) counts[p.animal] = (counts[p.animal] || 0) + 1; });
             var candSrc = null;
             candPosts.forEach(function(p){
               if(p.animal === candTarget) return;
+              /* Stay-there rule: a stay-there facility post is never
+                 the one shared away — its Aniimo stays on it alone. */
+              if(isStayThere(p.facility)) return;
               var famSetFit = postFamilySet(p);
               if(famSetFit && !inFamilySet(ROSTER[candTarget], famSetFit)) return;
               if(!candSrc || (counts[p.animal] || 0) <= (counts[candSrc.animal] || 0)) candSrc = p;
