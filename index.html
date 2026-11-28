@@ -10750,7 +10750,7 @@
          board can never run on a second copy of the totals. */
       return Math.max(0, facCount(f) || 0);
     }
-    function suggNewPlot(num, role){
+    function suggNewPlot(num, role, keepCenter){
       /* Occupancy is kept at half square resolution (40 by 30 cells per
          plot) so true sizes with a half square pack and overlap exactly.
          Starts still land on whole squares: suggFind only tries whole
@@ -10758,12 +10758,24 @@
       var occ = [], y;
       for(y = 0; y < 30; y++){ var row = []; for(var x = 0; x < 40; x++) row.push(false); occ.push(row); }
       var st = { num:num, role:role, occ:occ, pieces:[], spots:[] };
-      if(role === "farm"){
+      if(role === "farm" && keepCenter !== false){
         /* The middle 2 by 2 stays clear in the occupancy grid, so
            nothing is placed there and the center stays open grass
            where a climate unit can be dropped. It is not drawn and
            not labeled: lines under the board say which climate unit
-           to use and where instead. */
+           to use and where instead. Plots that will hold a copied
+           field-layout zone are the one exception (keepCenter false,
+           see nextFarmPlot in suggBuildOnce): a copied zone brings
+           its OWN building middle, kept clear by placeZoneExact, and
+           the generic center block would sit exactly where the field
+           layout legitimately packs plots — a full zone (19 Farmland,
+           or 8 Woodland) covers every anchor that could dodge a fixed
+           2 by 2 at (9, 6), so with the block in place nearly every
+           real zone failed its exact placement and fell back to a
+           generic compact pack that barely changed from plan to
+           plan. That is why the board's fields did not follow the
+           planner's per-plan field layout; zone plots now skip the
+           generic block and keep each zone's own middle instead. */
         suggMark(st, 9, 6, 2, 2);
       }
       return st;
@@ -10882,17 +10894,21 @@
       }
       if(own["Floral Windmill"] > 0) addUnplaced("Floral Windmill", own["Floral Windmill"], "it has no verified size, so it is never drawn. Place it by hand.");
       var plots = {}, usedNums = {};
-      function takePlot(role){
+      function takePlot(role, keepCenter){
         /* Front to back (SUGG_FRONT_ORDER), not plot-number order:
            the farm takes the front-most unlocked plots, and every
            later group takes the front-most plots still free, so the
            whole board fills from the front and the groups stay in
-           their promised order behind the farm. */
+           their promised order behind the farm. keepCenter is passed
+           straight to suggNewPlot: farm plots taken for copied
+           field-layout zones pass false (each zone keeps its own
+           building middle clear instead); every other plot keeps
+           the default. */
         var pick = null;
         for(var oi = 0; oi < SUGG_FRONT_ORDER.length; oi++){ var m = SUGG_FRONT_ORDER[oi]; if(unlocked[m] && !usedNums[m] && !(reservedNum && role !== "farm" && m === reservedNum)){ pick = m; break; } }
         if(pick === null) return null;
         usedNums[pick] = true;
-        var st = suggNewPlot(pick, role);
+        var st = suggNewPlot(pick, role, keepCenter);
         plots[pick] = st;
         return st;
       }
@@ -10962,7 +10978,16 @@
       if(farmSegs && farmSegs.segments.length){
         var farmSeq = 0;
         var curFarmPlot = null;
-        function nextFarmPlot(){ curFarmPlot = takePlot("farm"); return curFarmPlot; }
+        /* Zone plots skip the generic center block (keepCenter
+           false): a copied zone keeps its own building middle clear
+           via placeZoneExact, and the fixed center block made exact
+           placement of any full zone impossible, which is what sent
+           the board's fields back to a same-every-time compact pack
+           instead of this plan's own field layout. Plots taken only
+           for grows-anywhere and spare land (fillFarmPiece's own
+           overflow) keep the center block as before. */
+        function nextFarmPlot(){ curFarmPlot = takePlot("farm", false); return curFarmPlot; }
+        function nextFillPlot(){ curFarmPlot = takePlot("farm", true); return curFarmPlot; }
         function placeFarmPiece(st, fac, crop, zoneLabel){
           var s = SUGG_DRAW[fac];
           if(!s) return false;
@@ -10974,16 +10999,23 @@
           return piece;
         }
         function fillFarmPiece(fac, crop, zoneLabel){
-          if(!curFarmPlot) nextFarmPlot();
+          if(!curFarmPlot) nextFillPlot();
           if(!curFarmPlot){ addUnplaced(fac, 1, "no free plot left for the farms at RV " + rv + "."); return; }
           if(placeFarmPiece(curFarmPlot, fac, crop, zoneLabel)) return;
-          var stN = nextFarmPlot();
+          var stN = nextFillPlot();
           if(!stN){ addUnplaced(fac, 1, "no free plot left for the farms at RV " + rv + "."); return; }
           if(!placeFarmPiece(stN, fac, crop, zoneLabel)) addUnplaced(fac, 1, "it did not fit on a fresh farm plot.");
         }
         function placeZoneExact(st, seg){
           var extW = 0, extH = 0;
           seg.placements.forEach(function(p){ extW = Math.max(extW, (p.x + p.size) / 2); extH = Math.max(extH, (p.y + p.size) / 2); });
+          /* The zone building's own ground, in board squares at the
+             same translation as the placements: an anchor only
+             counts when this ground is clear too, so the drop point
+             named under the board never lands on a piece another
+             zone already put there. */
+          var br = buildingRect(seg.building);
+          var bSide = buildingSide(seg.building) / 2;
           for(var ay = 0; ay + extH <= 15.001; ay += 0.5){
             for(var ax = 0; ax + extW <= 20.001; ax += 0.5){
               var ok = true;
@@ -10992,6 +11024,7 @@
                 var sz0 = SUGG_DRAW[ITEMS[pp2.name].facility];
                 if(!sz0 || !suggFree(st, ax + pp2.x / 2, ay + pp2.y / 2, sz0[0], sz0[1])) ok = false;
               }
+              if(ok && !suggFree(st, ax + br.x / 2, ay + br.y / 2, bSide, bSide)) ok = false;
               if(!ok) continue;
               var label = seg.building + " zone " + seg.zoneNo + " of " + seg.zoneTotal;
               seg.placements.forEach(function(p){
@@ -11004,8 +11037,7 @@
                  the field layout: its footprint is marked taken in
                  the middle of the zone and nothing is drawn there,
                  so the unit drops into the same middle. */
-              var br = buildingRect(seg.building);
-              suggMark(st, ax + br.x / 2, ay + br.y / 2, buildingSide(seg.building) / 2, buildingSide(seg.building) / 2);
+              suggMark(st, ax + br.x / 2, ay + br.y / 2, bSide, bSide);
               seg.plotNum = st.num;
               seg.drop = { x:ax + br.x / 2 + buildingSide(seg.building) / 4, y:ay + br.y / 2 + buildingSide(seg.building) / 4 };
               return true;
@@ -11219,7 +11251,23 @@
           Object.keys(combined).forEach(function(n){ fieldCounts[n] = 1; });
         }
         if(!Object.keys(fieldCounts).length) return null;
-        var plan = computeFieldLayout(fieldCounts, false, false);
+        /* The field layout is computed with the EXACT call Step 5's
+           own layout makes (renderLayout): same combined counts,
+           same mode, and the same Starfall Hammock / Floral
+           Windmill flags worked out the same way from the basket
+           and strategy plans — so the segments below are this
+           plan's field layout itself, never a near-copy of it that
+           could drift from what the planner shows. Any change to
+           the plan (basket, strategy, goals, plot counts, layout
+           mode, Step 1) rebuilds that layout, and this board —
+           redrawn from it on the same pass — changes with it. */
+        var starNeededS = false;
+        if(basket.length && (computePlan().gross["Star"] || 0) > 0) starNeededS = true;
+        if(typeof bpResult !== "undefined" && bpResult && (bpResult.exp.gross["Star"] || 0) > 0) starNeededS = true;
+        var scalesNeededS = false;
+        if(basket.length && (computePlan().gross["Scales"] || 0) > 0) scalesNeededS = true;
+        if(typeof bpResult !== "undefined" && bpResult && (bpResult.exp.gross["Scales"] || 0) > 0) scalesNeededS = true;
+        var plan = computeFieldLayout(fieldCounts, starNeededS && facCount("Starfall Hammock") > 0, scalesNeededS && facCount("Floral Windmill") > 0);
         var planted = plan.planted || {};
         if(!Object.keys(planted).length) return null;
         var segments = [];
@@ -11471,7 +11519,7 @@
       html += '<p style="margin-top:10px"><span class="sugg-off-sw" aria-hidden="true"></span><strong>On and off, live:</strong> this board rebuilds itself every time anything changes — RV level, Step 1 counts, basket, strategy, goals, Always pins, copies added or taken back in Step 5, a copy set to Off there, crops added or removed — and the marks are worked out from the plan as it stands at that moment. A piece your current plan is using draws in its full colour. A piece that is placed but <strong>not</strong> being used stays on the board in its place, faded with a dashed outline and marked <strong>OFF</strong>: that covers copies past the number your plan runs, a copy you switched off in Step 5, a Hatchinator while no Aniipod Maker is running, and a Storage Unit on a plot where nothing is on. <strong>Farmland and Woodland spots are never marked off:</strong> an unplanted field or woodland is not off — it is simply empty and available — so land always draws in its full colour, and its tip and plot line say what grows there or that it is empty for now. Change anything and the off pieces switch on — or on pieces switch off — on the redraw; only lowering a Step 1 count takes a facility off the board. Hover or tap any piece and its tip says whether it is on or off, and why.</p>';
       html += '<p style="margin-top:10px">The basket and recipe steps decide what to grow and what to cook. This layout just keeps the farm and the cooking together for orders.</p>';
       html += '<p style="margin-top:10px"><strong>Hover or tap any Farmland or Woodland piece</strong> on the board and it names the crop or tree that spot should grow — the same planting the growing list after Step 4 lays out for your current basket, strategy plan and hand-added crops. A spot your plan does not use says so instead; pick recipes and it names its crop. The farm plot list below repeats the same assignments in writing.</p>';
-      html += '<p style="margin-top:10px"><strong>Easy to rearrange:</strong> the Farmlands and Woodlands all sit together in one farm block at the front, arranged zone by zone in the field layout\'s own configuration — the same zones, with the same plots and crops in each, as the growing list after Step 4 lays out — because they are what people move most, kept together so they are easy to swap and rearrange.' + (res.movingRoom ? " Plot " + res.movingRoom + ", directly beside the farm block, is left open as moving room for that swapping, and the later groups start after it." : "") + '</p>';
+      html += '<p style="margin-top:10px"><strong>Easy to rearrange:</strong> the Farmlands and Woodlands all sit together in one farm block at the front, arranged zone by zone in the field layout\'s own configuration — the same zones, with the same plots and crops in each, as the growing list after Step 4 lays out — because they are what people move most, kept together so they are easy to swap and rearrange. <strong>It follows your plan, every time:</strong> run a different planner — change the basket, the strategy or goals, a plot count in the growing list, or the Best/Minimum layout mode — and this farm block is redrawn from the new field layout, zone by zone and plot by plot; it never keeps an older plan\'s arrangement.' + (res.movingRoom ? " Plot " + res.movingRoom + ", directly beside the farm block, is left open as moving room for that swapping, and the later groups start after it." : "") + '</p>';
       html += (function(){
         var bits = [];
         bits.push("machines are grouped by the ability that runs them, so the machines one Aniimo covers between them (all the Fire machines together, both Wind machines, both Dark machines, both Artisanship machines) sit side by side instead of scattered");
