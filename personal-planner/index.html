@@ -256,6 +256,22 @@
       .zone-block .zb-grid svg{display:block;border:2px solid var(--card-line);border-radius:10px;background:#fff}
       .zone-block .zb-side{flex:1 1 280px;min-width:0}
       .zone-block .zb-side h3{font-size:1.2rem}
+      /* Your Zones crew view + Buy Next list (player's picks, Nov 27, 2026) */
+      .zone-cards{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+      .zone-card{background:var(--card);border:2px solid var(--card-line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 18px}
+      .zone-card h3{font-size:1.28rem}
+      .zone-card .zsub{margin:4px 0 0;font-weight:600;color:var(--ink-soft);font-size:.94rem}
+      .zone-card h5{font-family:"Baloo 2",sans-serif;font-size:1rem;margin:12px 0 4px}
+      .zone-crew{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+      .zone-crew li{background:#fff;border:2px solid var(--card-line);border-radius:10px;padding:8px 11px;font-weight:700}
+      .zone-crew li .zc-posts{display:block;font-weight:600;color:var(--ink-soft);font-size:.9rem;margin-top:2px}
+      .buy-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+      .buy-item{display:flex;gap:12px;background:#fff;border:2px solid var(--card-line);border-radius:14px;padding:12px 14px}
+      .buy-rank{flex:none;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+      .buy-main{flex:1 1 280px;min-width:0}
+      .buy-main h4{font-size:1.05rem;margin:0}
+      .buy-main p{margin:3px 0 0;font-weight:600;color:var(--ink-soft);font-size:.94rem}
+      .buy-kind{flex:none;align-self:flex-start}
       .zb-rows{display:flex;flex-direction:column;gap:5px;margin-top:8px}
       .zb-row{display:flex;gap:8px;flex-wrap:wrap;align-items:baseline;font-weight:700}
       .zb-row .zb-k{font-family:"Baloo 2",sans-serif;font-weight:800;flex:none;min-width:86px}
@@ -425,6 +441,8 @@
           <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. The plan builds itself — and rebuilds itself on every change you make, so it is never out of date.</p></div>
           <div class="step"><span class="n">Steps 5–7</span><br /><b>➕ Add &amp; Adjust, crew &amp; home</b><p>Add &amp; Adjust plants it — Mines included, in Facilities out. Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
           <div class="step"><span class="n">🗺️</span><br /><b>Suggested layout</b><p>A live board that adapts as you add, take off or change anything — everything stays out at its arranged place, drawn at true sizes and shapes, and whatever your current plan isn't using is marked Off instead of disappearing. Fields sit in the climate zones their crops need, machines in rows by the ability that works them, storage spread through the districts, and power follows the planner's live decision. Tap the board to see it big.</p></div>
+          <div class="step"><span class="n">🗺️</span><br /><b>Your zones</b><p>Your Step 6 crew regrouped by Production Zone — the buildings in each zone, the ability pool it draws on, and your Aniimo standing there, like the zone screens in game.</p></div>
+          <div class="step"><span class="n">🛒</span><br /><b>Buy next</b><p>Everything your RV already lets you buy or upgrade that you don't have yet — each one with what it opens, biggest unlock first, so every coin run has a target.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
         </div>
       </header>
@@ -442,7 +460,9 @@
         <a href="#jobs">🎛️ Job Picks</a>
         <a href="#team">👥 Team Helper</a>
         <a href="#home">🏠 Home &amp; Bud Tickets</a>
+        <a href="#zones">🗺️ Your Zones</a>
         <a href="#suggested">🗺️ Suggested Layout</a>
+        <a href="#buynext">🛒 Buy Next</a>
         <a href="#sources">🔍 Sources &amp; Flags</a>
       </nav>
 
@@ -807,6 +827,16 @@
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
+      <!-- ================= YOUR ZONES: CREW BY PRODUCTION ZONE ================= -->
+      <section id="zones">
+        <div class="sec-head"><span class="sec-num">🗺️</span><h2>🗺️ Your Zones — Crew by Production Zone</h2></div>
+        <p class="sec-sub">The same crew Step 6 just picked — nobody new, nobody counted twice — regrouped the way your homeland is actually arranged: one card per Production Zone, with <strong>the buildings standing in it</strong>, <strong>the ability pool that zone draws on</strong>, and <strong>your Aniimo standing there</strong>, like the zone screens in game (your Zone 9 Infergon and friends). It follows the ⭐ Best / 🪶 Minimum toggle in Step 6 and rebuilds on every change, exactly as the crew does. Stay-there posts keep their Aniimo in their own zone: an Aniimo locked to a Mine never shows up working a machine somewhere else, and the climate machines read any level here just as they do in Step 6.</p>
+        <div id="zonesOut" aria-live="polite"></div>
+        <p class="src" style="margin-top:16px">Zones grouped? <a href="#suggested">Next: the Suggested Layout board, right below ↓</a></p>
+      </section>
+
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
       <!-- ================= SUGGESTED HOMELAND LAYOUT ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">🗺️</span><h2>🗺️ Suggested Homeland Layout — Live Board</h2></div>
@@ -854,7 +884,19 @@
           <div class="sugg-zoom-bar"><span>🗺️ Suggested Homeland Layout — big view</span><button type="button" id="sgZoomClose">✕ Close</button></div>
           <div class="sugg-zoom-scroll" id="sgZoomScroll"></div>
         </div>
-        <p class="src" style="margin-top:16px">Done looking? <a href="#sources">Next: Sources &amp; Flags, right below ↓</a></p>
+        <p class="src" style="margin-top:16px">Done looking? <a href="#buynext">Next: Buy Next — what to save for, right below ↓</a></p>
+      </section>
+
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
+      <!-- ================= BUY NEXT ================= -->
+      <section id="buynext">
+        <div class="sec-head"><span class="sec-num">🛒</span><h2>🛒 Buy Next — What to Save For</h2></div>
+        <p class="sec-sub">For when the RV and the modules are upgraded but the coins can't cover everything at once: here is <strong>everything your current RV already lets you buy or upgrade that your Step 1 boxes say you don't have yet</strong> — each one with <strong>what it opens</strong>, in the order that opens the most. Brand-new facilities and climate buildings first (they open whole lists at once), then the facility upgrade that unlocks the most, then module levels, then extra copies. Buy one in game, step its Step 1 box up to match, and it drops off this list on its own — the list rebuilds from your boxes on every change, like everything else here.</p>
+        <div class="card">
+          <div id="buyNextOut" aria-live="polite"></div>
+        </div>
+        <p class="src" style="margin-top:16px">List done? <a href="#sources">Next: Sources &amp; Flags, right below ↓</a></p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
@@ -925,6 +967,7 @@
           <li><strong>Recipe-catalog audit (Nov 21, 2026):</strong> 18 category-less recipes (Cotton Thread and its loom, mill, pot, jar and dryer kin) made pickable in the basket again; Silver Ore added as the Mine's seventh product (Mine Lv 7, unlocking at RV 21); Premium and Quick variants given their own gated entries — Premium recipes in the basket behind their Kitchen or Crafting Module gates, Quick gathers in the facility product lists behind their Resource Detector gates.</li>
           <li><strong>Level variants:</strong> where the book lists an item at several levels with bigger yields, there is <strong>one entry per item at its base level and base yield</strong>, so plans never come up short. Where two different items share ingredients without the Premium pattern (Wind Chime / Advanced Wind Chime, Lemon Incense / Advanced Lemon Incense), both are listed separately and say so.</li>
           <li><strong>Flagged in the audit, never guessed:</strong> (1) Captain Spud has no climate tag — it wasn't in the verified in-game survey. (2) The book lists no prices or blurbs, so none were invented for the additions.</li>
+          <li><strong>Buy Next list and Your Zones crew view (the player's picks, Nov 27, 2026):</strong> both are read-only regroupings of data already on this page — nothing new is computed about the game. Buy Next reads your Step 1 boxes against the same FAC_RV, FAC_COUNT, CLIM_COUNT, UTIL_COUNT and MODULE_UNLOCKS tables everything else reads, and names as an unlock only the recipes, crops and gathers in ITEMS whose facility level the step reaches; an item that also waits on a module says so beside its name. No shop prices are shown, because the planner's data carries none. Crackle Generators and Power Poles are left off the list on purpose: their counts are ceilings the ⚡ Power decision draws on, not a shopping list. Your Zones regroups Step 6's own picks (the same pickCrew posts, the same named Aniimo, the same Best / Minimum / fitted choice) under the zone arrangement the Suggested Layout board uses — Mines block, climate fields, ability rows, leisure row, hauling — and picks nobody new and counts nobody twice.</li>
         </ul>
         <p>Companion pages: the Aniimo Master Guide and the Aniimo Quick-Reference Graphics carry the combat, traits, RV Parks and myth-busting reference that this planner builds on.</p>
       </footer>
@@ -5939,6 +5982,7 @@
         if(contentEl) contentEl.hidden = true;
         area.innerHTML = "";
         setAlwaysPlanCrew(null);
+        renderZones({ mode:"gate" });
         renderHome();
         return;
       }
@@ -5954,6 +5998,7 @@
       if(!basket.length && !levelingOn && !(typeof bpResult !== "undefined" && bpResult)){
         area.innerHTML = '<div class="empty-plan">Your crew appears here once your basket has a recipe in it, or after you find your plan in Step 4.</div>';
         setAlwaysPlanCrew(0);
+        renderZones({ mode:"empty" });
         renderHome();
         return;
       }
@@ -5965,6 +6010,7 @@
       if(!facs.length && !uncountedFacs.length && !placedFacs.length && !alwaysCrewTotal()){
         area.innerHTML = '<div class="note note-good" style="margin-top:14px"><h4>🎉 No crew needed</h4><p>No facility has to run for this plan, so nobody needs to staff anything: everything in it is grown or gathered, with no station time at all.</p></div>';
         setAlwaysPlanCrew(0);
+        renderZones({ mode:"none" });
         return;
       }
       var jobFacCount = {};
@@ -6031,6 +6077,7 @@
           "Always crew: <strong>" + alwaysTotal + "</strong> · Plan crew: <strong>" + (minSize - alwaysTotal) + "</strong> at Minimum (Best plan crew: " + (bestSize - alwaysTotal) + ") · Total: <strong>" + minSize + "</strong>. " + aniimoCapText(userRV) + ", so the plan side does not fit in the " + Math.max(0, cap - alwaysTotal) + " places the Always crew leaves, and no plan crew is shown. " +
           "The Always list is never trimmed: only the plan side is cut. To fix it: take recipes out of the basket, switch strategy, or level the RV up first.</p></div>" +
           (alwaysTotal > 0 ? '<div class="putout"><h3>📌 Always crew · never trimmed</h3>' + teamTable(putOutAlwaysLines(team, picksMin).join("")) + "</div>" : "");
+        renderZones({ mode:"nofit" });
         renderHome();
         return;
       }
@@ -6116,7 +6163,329 @@
       }
       html += uncountedHtml(team.uncounted);
       area.innerHTML = html;
+      renderZones({ mode:"ok", team:team, picks:picks, effMode:effMode });
       renderHome();
+    }
+
+    /* ============ Buy Next + Your Zones (the player's picks, Nov 27, 2026) ============
+       Two read-only views over state the planner already holds. Buy
+       Next reads the Step 1 boxes against the same verified tables
+       everything else reads (FAC_RV, FAC_COUNT, CLIM_COUNT,
+       UTIL_COUNT, MODULE_UNLOCKS) and lists what the current RV
+       already allows that the boxes say is not there yet, each step
+       with what it opens, biggest unlock first. Your Zones regroups
+       the Step 6 picks renderTeam just made — renderTeam hands its
+       own team and picks over at every exit, so the two views can
+       never disagree — under the zone arrangement the Suggested
+       Layout board uses. Neither view picks, prices or counts
+       anything new. */
+
+    /* ---------- Buy Next ---------- */
+    /* The extra gates one item still waits on besides its facility
+       level, so an unlock line never pretends the facility step
+       alone opens something a module also gates. */
+    function buyNextAlsoNeeds(it){
+      var bits = [];
+      if(it.ecoGate && (moduleLevels.ecological || 0) < it.ecoGate) bits.push("Ecological Module Lv " + it.ecoGate);
+      if(it.moduleGate && (moduleLevels[it.moduleId || "crafting"] || 0) < it.moduleGate) bits.push(moduleDisplayName(it.moduleId || "crafting") + " Lv " + it.moduleGate);
+      if(it.rdGate && (moduleLevels.resource || 0) < it.rdGate) bits.push("Resource Detector Lv " + it.rdGate);
+      return bits;
+    }
+    /* Recipes, crops and gathers at one facility whose level sits
+       in (fromLvl, toLvl], from the planner's own ITEMS data. */
+    function buyNextUnlockNames(facility, fromLvl, toLvl){
+      var out = [];
+      Object.keys(ITEMS).forEach(function(n){
+        var it = ITEMS[n];
+        if(!it || facCanon(it.facility) !== facCanon(facility)) return;
+        if(!(it.lvl > fromLvl && it.lvl <= toLvl)) return;
+        out.push({ name:n, also:buyNextAlsoNeeds(it) });
+      });
+      out.sort(function(a, b){ return a.name.localeCompare(b.name); });
+      return out;
+    }
+    function buyNextUnlockText(list){
+      if(!list.length) return "";
+      var shown = list.slice(0, 6);
+      var s = shown.map(function(u){
+        return esc(u.name) + (u.also.length ? ' <span class="src">(also needs ' + esc(u.also.join(" and ")) + ")</span>" : "");
+      }).join(", ");
+      if(list.length > shown.length) s += " and " + (list.length - shown.length) + " more";
+      return s;
+    }
+    function buyNextEntries(){
+      var entries = [];
+      if(!userRV) return entries;
+      /* Facilities: build the first one (Lv 0), else the next level
+         up — one step at a time, the way the game sells them. */
+      Object.keys(FAC_RV).forEach(function(f){
+        var maxLvl = maxFacLevel(f, userRV) || 0;
+        if(maxLvl < 1) return;
+        var have = facLevel(f);
+        if(have <= 0){
+          var un = buyNextUnlockNames(f, 0, 1);
+          entries.push({ group:1, weight:un.length, kind:"Build",
+            title:"Build your first " + f,
+            why:"Opens " + esc(f) + " Lv 1" + (un.length ? " — and with it: " + buyNextUnlockText(un) + "." : ".") });
+        } else if(have < maxLvl){
+          var un2 = buyNextUnlockNames(f, have, have + 1);
+          entries.push({ group:2, weight:un2.length, kind:"Upgrade",
+            title:"Upgrade " + f + " — Lv " + have + " → Lv " + (have + 1),
+            why: un2.length ? "Opens: " + buyNextUnlockText(un2) + "."
+              : "No recipe, crop or gather sits exactly at Lv " + (have + 1) + " in the planner's data — the step still counts toward Lv " + maxLvl + ", the most RV " + userRV + " allows this facility." });
+        }
+        /* Extra copies, once the facility itself stands. */
+        var maxC = maxFacCount(f, userRV) || 0;
+        var haveC = facCount(f);
+        if(have >= 1 && maxC > haveC){
+          entries.push({ group:5, weight:0, kind:"Add a copy",
+            title:(haveC <= 0 ? "Put out your first " + f : "Put out another " + f) + " — you have " + haveC + " of " + maxC,
+            why:(f === "Farmland" || f === "Woodland") ? "One more plot growing at the same time." : "One more copy working at the same time." });
+        }
+      });
+      /* Climate buildings: the first one opens a whole climate. */
+      Object.keys(CLIM_COUNT).forEach(function(b){
+        var maxC = climCountFor(b, userRV) || 0;
+        var haveC = climCounts[b] || 0;
+        if(maxC < 1 || haveC >= maxC) return;
+        if(haveC <= 0){
+          var crops = Object.keys(CLIMATE).filter(function(n){ return CLIMATE[n].building === b; }).sort();
+          entries.push({ group:1, weight:crops.length, kind:"Build",
+            title:"Build your first " + b,
+            why:"Opens a 9 × 9 zone of " + (b === "Heat Furnace" ? "Warm and Scorching" : b === "Cooling Unit" ? "Cool and Freeze" : "Adequate light") + " ground. The crops that live in it: " + crops.map(function(n){ return esc(n); }).join(", ") + "." });
+        } else {
+          entries.push({ group:4, weight:0, kind:"Add a copy",
+            title:"Add another " + b + " — you have " + haveC + " of " + maxC,
+            why:"One more 9 × 9 climate zone, so more plots grow at their own temperature instead of sharing a zone and slowing down." });
+        }
+      });
+      /* Counts-only buildings worth saving for: storage and
+         hatching. Crackle Generators and Power Poles are
+         deliberately NOT listed: their counts are ceilings the
+         ⚡ Power decision draws on, never a shopping list. */
+      [["Storage Unit", "One more passive store to stand by another district — shorter hauls, and storage never needs a worker."],
+       ["Hatchinator", "One more egg incubating at the same time."]].forEach(function(pair){
+        var name = pair[0];
+        var maxC = utilCountFor(name, userRV) || 0;
+        var haveC = utilCounts[name] || 0;
+        if(maxC < 1 || haveC >= maxC) return;
+        entries.push({ group:5, weight:0, kind:haveC <= 0 ? "Build" : "Add a copy",
+          title:(haveC <= 0 ? "Build your first " + name : "Add another " + name + " — you have " + haveC + " of " + maxC),
+          why:pair[1] });
+      });
+      /* Modules: the next level, with its own named unlock. A level
+         whose unlock the data does not name is skipped, never
+         guessed at. */
+      MODULE_DEFS.forEach(function(d){
+        var cur = moduleLevels[d.id] || 0;
+        if(cur >= rvMaxModuleLevel(d, userRV)) return;
+        var next = null;
+        (MODULE_UNLOCKS[d.id] || []).forEach(function(u){ if(u.lvl === cur + 1) next = u; });
+        if(!next) return;
+        entries.push({ group:3, weight:1, kind:cur <= 0 ? "Buy" : "Upgrade",
+          title:(cur <= 0 ? "Get the " + d.name + " — Lv 1" : "Upgrade the " + d.name + " — Lv " + cur + " → Lv " + (cur + 1)),
+          why:"Unlocks: " + esc(next.label) + "." });
+      });
+      /* The smart order: new facilities and climates first (whole
+         lists open at once), then the upgrade opening the most,
+         then module levels, then extra copies. */
+      entries.sort(function(a, b){
+        if(a.group !== b.group) return a.group - b.group;
+        if(b.weight !== a.weight) return b.weight - a.weight;
+        return a.title.localeCompare(b.title);
+      });
+      return entries;
+    }
+    function renderBuyNext(){
+      var out = document.getElementById("buyNextOut");
+      if(!out) return;
+      if(!userRV){
+        out.innerHTML = '<div class="empty-plan">Pick your RV level in Step 1 first — then this list shows everything that RV lets you buy or upgrade that you don\'t have yet, each with what it opens, biggest unlock first.</div>';
+        return;
+      }
+      var entries = buyNextEntries();
+      if(!entries.length){
+        out.innerHTML = '<div class="note note-good" style="margin-top:0"><h4>🎉 Nothing left to buy at RV ' + userRV + '</h4><p>Every facility, climate building, storage, hatchinator and module is already at the most RV ' + userRV + ' allows, going by your Step 1 boxes. ' + (userRV < 20 ? "The next round of unlocks rides on RV " + (userRV + 1) + " — its bill is priced in the Level Up strategy (Step 3)." : "You are at the top of the ladder — there is no next RV to save toward.") + '</p></div>';
+        return;
+      }
+      var html = '<p class="fac-state" style="margin-top:0">At RV ' + userRV + ', your Step 1 boxes leave <strong>' + entries.length + '</strong> ' + (entries.length === 1 ? "thing" : "things") + ' you can still buy or upgrade — biggest unlock first. Buy one in game, step its box up, and it drops off here.</p>';
+      html += '<div class="buy-list">' + entries.map(function(e, i){
+        return '<div class="buy-item"><span class="buy-rank">' + (i + 1) + '</span><div class="buy-main"><h4>' + esc(e.title) + '</h4><p>' + e.why + '</p></div><span class="verdict v-ok buy-kind">' + esc(e.kind) + "</span></div>";
+      }).join("") + "</div>";
+      html += '<p class="src" style="margin-top:10px">The planner\'s data carries no shop prices, so no coin costs are shown — check the price in game; what each step opens is the part worth planning around.</p>';
+      out.innerHTML = html;
+    }
+
+    /* ---------- Your Zones: the Step 6 crew, by Production Zone ---------- */
+    var ZONE_DEFS = [
+      { id:"mines", name:"⛏️ Mines block", sub:"The Mines in one Earth block, with the standing Land Cultivation post — stay-there posts: the Aniimo on a Mine lives at that Mine.", facs:["Mine"] },
+      { id:"furnace", name:"🔥 Furnace fields", sub:"The Heat Furnace zones, with the Warm and Scorching plots ringing them. Any Fire level runs a furnace.", facs:["Heat Furnace"] },
+      { id:"cold", name:"❄️ Cold fields & wells", sub:"The Cooling Unit zones for the Freeze and Cool plots, with the Wells standing by the cold fields their Water crew waters. Any Ice level runs a Cooling Unit.", facs:["Cooling Unit", "Well"] },
+      { id:"light", name:"💡 Light fields", sub:"The Sunlamp zones, with the Adequate-light plots ringing them. Any Light level runs a Sunlamp.", facs:["Sunlamp"] },
+      { id:"fields", name:"🌾 Fields & planting", sub:"The Farmland and Woodland posts and the planting crew — Grass work, and fields take no personality bonus.", facs:["Farmland", "Woodland"] },
+      { id:"fire", name:"🔥 Fire row", sub:"The Fire machines in one short row, so the Fire crew works them all without crossing the map.", facs:["Chimney Kiln", "Blazing Stove", "Simmering Pot", "Claw Game Cooker"] },
+      { id:"wind", name:"🌬️ Wind row", sub:"Mills and Looms side by side — one Wind crew covers both.", facs:["Carousel Mill", "Joy Wheel Loom"] },
+      { id:"artisan", name:"🛠️ Artisanship row", sub:"Crafting Tables and Woodworking Benches together for the Artisanship crew.", facs:["Crafting Table", "Woodworking Bench"] },
+      { id:"dark", name:"🌑 Dark row", sub:"Dryers and Pickling Jars together for the Dark crew.", facs:["Jukebox Dryer", "Pickling Jar"] },
+      { id:"water", name:"💧 Water row", sub:"The Brew Kegs — the Water work that isn't the Wells.", facs:["Bouncy Brew Keg"] },
+      { id:"perfume", name:"🌸 Perfumery row", sub:"The Phonolfactory Tables and their Perfumery crew.", facs:["Phonolfactory Table"] },
+      { id:"lightning", name:"⚡ Lightning row", sub:"The Aniipod Maker and the Dance Pad Polisher — at 30 × level they always stay Aniimo-run, never on the grid.", facs:["Aniipod Maker", "Dance Pad Polisher"] },
+      { id:"leisure", name:"🏖️ Leisure row", sub:"Sandcastles, Dewy Houses, Nimbus Beds, the Hammock and the Windmill — Leisure posts, several of them stay-there, and Step 6's family rules apply here exactly as there.", facs:["Tidewhisper Sandcastle", "Dewy House", "Nimbus Bed", "Starfall Hammock", "Floral Windmill"] },
+      { id:"hauling", name:"📦 Hauling & storage", sub:"The dedicated haulers stand here. Storage Units themselves are passive — no worker — and spread through the districts on the layout board; every other zone's crew carries its own output first, and only what is left needs a hauler of its own.", facs:[] },
+      { id:"other", name:"🧭 Everywhere else", sub:"Posts that don't sit in one of the zones above.", facs:[] }
+    ];
+    var ZONE_OF_FAC = {};
+    ZONE_DEFS.forEach(function(z){ z.facs.forEach(function(f){ ZONE_OF_FAC[f] = z.id; }); });
+    function zoneIdForPost(p){
+      if(p.kind === "hauling") return "hauling";
+      if(p.kind === "planting") return "fields";
+      if(p.kind === "land") return "mines";
+      if(p.kind === "slot"){
+        var f0 = p.assigns && p.assigns.length ? p.assigns[0].facility : null;
+        return (f0 && ZONE_OF_FAC[facCanon(f0)]) || "other";
+      }
+      if(p.facility) return ZONE_OF_FAC[facCanon(p.facility)] || "other";
+      return "other";
+    }
+    function zonePostText(p){
+      if(p.kind === "slot") return "covers " + p.assigns.map(function(bf){ return bf.facility; }).join(", ") + " — shared, facilities take turns";
+      if(p.kind === "planting") return "Planting — at least 1 Grass Aniimo for planting";
+      if(p.kind === "land") return "Land Cultivation — cultivating & reclaiming land";
+      if(p.kind === "hauling") return "Dedicated hauler";
+      var s = p.facility || "Post";
+      if(p.kind === "always") s += " · 📌 Always staffed";
+      if(p.production) s += " — making " + p.production;
+      else if(p.kind === "placed" && p.facility === "Mine"){ var mp = currentMinePicks(); if(mp && mp.assignments && mp.assignments.length) s += " — " + mp.assignments.join(", "); }
+      else if(p.kind === "placed"){ var fi = facilityPlanItems(p.facility); if(fi.length) s += " — " + fi.join(", "); }
+      else if(p.bf && p.bf.items && p.bf.items.length) s += " — " + p.bf.items.join(", ");
+      if(p.paired) s += " · also covers another post — counted once, there";
+      if(p.sharedFit) s += " · shared to fit your RV limit — counted once";
+      return s;
+    }
+    function renderZones(state){
+      var out = document.getElementById("zonesOut");
+      if(!out) return;
+      if(!state || state.mode === "gate"){
+        out.innerHTML = '<div class="empty-plan">Your zones are drawn from your crew, so they wait on the same setup as Step 6: pick your RV level and module levels in Step 1, and the zones appear here — buildings, ability pool and the Aniimo standing in each.</div>';
+        return;
+      }
+      if(state.mode === "empty"){
+        out.innerHTML = '<div class="empty-plan">No crew yet, so no zones to draw. Put a recipe in your basket (Step 2) or find your plan in Step 4, and this view groups that crew by Production Zone.</div>';
+        return;
+      }
+      if(state.mode === "none"){
+        out.innerHTML = '<div class="note note-good" style="margin-top:0"><h4>🎉 No crew, no zones</h4><p>This plan runs no facility at all, so nobody stands anywhere — there is nothing to group.</p></div>';
+        return;
+      }
+      if(state.mode === "nofit"){
+        out.innerHTML = '<div class="note note-warn" style="margin-top:0"><h4>No crew fits RV ' + userRV + ' yet</h4><p>Step 6 above has the numbers. Until a crew fits, there are no zone assignments to draw — the Always crew is never trimmed, so it is the plan side that has to shrink.</p></div>';
+        return;
+      }
+      var team = state.team, picks = state.picks;
+      var needAll = allFacilityNeedCounts();
+      /* Buildings per zone, from the team itself: what the plan
+         puts out, the copies it staffs, and your pins. */
+      var bld = {};
+      function noteBld(f, copies, items, job, uncounted){
+        f = facCanon(f);
+        if(!bld[f]) bld[f] = { facility:f, copies:0, items:[], job:job || null, uncounted:false };
+        if(copies && copies > bld[f].copies) bld[f].copies = copies;
+        (items || []).forEach(function(n){ if(bld[f].items.indexOf(n) === -1) bld[f].items.push(n); });
+        if(job && !bld[f].job) bld[f].job = job;
+        if(uncounted) bld[f].uncounted = true;
+      }
+      Object.keys(team.byFac).forEach(function(f){ var bf = team.byFac[f]; noteBld(f, deployedCount(f, needAll[f] || 0), bf.items, bf.job, false); });
+      Object.keys(team.placed || {}).forEach(function(f){ noteBld(f, team.placed[f].count, facilityPlanItems(f), team.placed[f].job, false); });
+      (team.always || []).forEach(function(al){ noteBld(al.facility, al.count, facilityPlanItems(al.facility), al.job, false); });
+      Object.keys(team.uncounted || {}).forEach(function(f){ noteBld(f, deployedCount(f, needAll[f] || 0), team.uncounted[f].items, null, true); });
+      var zoneBld = {}, zonePosts = {};
+      Object.keys(bld).forEach(function(f){
+        var z = ZONE_OF_FAC[f] || "other";
+        (zoneBld[z] = zoneBld[z] || []).push(bld[f]);
+      });
+      picks.posts.forEach(function(p){
+        var z = zoneIdForPost(p);
+        (zonePosts[z] = zonePosts[z] || []).push(p);
+      });
+      var modeLabel = state.effMode === "minimum" ? "🪶 Minimum" : state.effMode === "fitted" ? "⭐ Best, fitted to RV " + userRV : "⭐ Best";
+      var zonesShown = ZONE_DEFS.filter(function(z){ return (zonePosts[z.id] || []).length || (zoneBld[z.id] || []).length; }).length;
+      var html = '<p class="fac-state" style="margin-top:0">Crew view: <strong>' + modeLabel + '</strong> — the same picks as Step 6, regrouped. <strong>' + Object.keys(picks.byAnimal).length + '</strong> of your Aniimo stand across <strong>' + zonesShown + '</strong> ' + (zonesShown === 1 ? "zone" : "zones") + (picks.unfilled ? ' · <strong>' + picks.unfilled + '</strong> ' + (picks.unfilled === 1 ? "post has" : "posts have") + ' nobody free yet' : "") + '.</p>';
+      html += '<div class="zone-cards">';
+      ZONE_DEFS.forEach(function(z){
+        var posts = zonePosts[z.id] || [];
+        var blds = (zoneBld[z.id] || []).slice().sort(function(a, b){ return a.facility.localeCompare(b.facility); });
+        if(!posts.length && !blds.length) return;
+        html += '<div class="zone-card"><h3>' + z.name + '</h3><p class="zsub">' + z.sub + "</p>";
+        if(blds.length){
+          html += "<h5>🏭 Buildings here</h5><div>" + blds.map(function(b){
+            var pill = b.job ? assignHtml({ facility:b.facility, items:b.items }, b.job, null)
+              : '<span class="assign">' + esc(b.facility) + (b.items.length ? ' <span class="src">(' + b.items.map(function(n){ return esc(n); }).join(", ") + ")</span>" : "") + "</span>";
+            return pill + (b.copies > 1 ? ' <span class="src">×' + b.copies + " out</span>" : "");
+          }).join("") + "</div>";
+          if(blds.some(function(b){ return b.uncounted; })) html += '<p class="src" style="margin-top:6px">A station marked here with no worker named has no verified job in the planner\'s data yet — the same note Step 6 gives it.</p>';
+        }
+        /* The ability pool: every job this zone's posts draw on,
+           with how many of your Aniimo serve it here. */
+        var pool = {}, poolOrder = [];
+        posts.forEach(function(p){
+          if(!p.job) return;
+          if(!pool[p.job]){ pool[p.job] = { job:p.job, animals:{}, unfilled:0, anyLevel:false }; poolOrder.push(p.job); }
+          var e = pool[p.job];
+          if(p.animal >= 0) e.animals[p.animal] = true; else e.unfilled++;
+          if(p.facility && isClimateMachine(p.facility)) e.anyLevel = true;
+        });
+        if(poolOrder.length){
+          html += '<h5>🐾 Ability pool</h5><div class="team-counts">' + poolOrder.map(function(j){
+            var e = pool[j], n = Object.keys(e.animals).length;
+            return '<span class="job-chip">' + abilityMarker(j, false) + "<b>" + esc(j) + "</b>&nbsp;· " + (e.anyLevel ? "any level" : "Lv " + crewReqLvl(j, null) + " asked") + " · " + n + " Aniimo" + (e.unfilled ? " · " + e.unfilled + " unfilled" : "") + "</span>";
+          }).join("") + "</div>";
+        }
+        /* The crew standing here, one line per Aniimo, with every
+           post it holds in this zone. */
+        var byAnimalZ = {}, unfilledZ = [];
+        posts.forEach(function(p){
+          if(p.kind === "planting" && p.covered) return; /* its own line below */
+          if(p.animal >= 0) (byAnimalZ[p.animal] = byAnimalZ[p.animal] || []).push(p);
+          else if(p.job) unfilledZ.push(p);
+        });
+        var lines = [];
+        Object.keys(byAnimalZ).forEach(function(k){
+          var a = ROSTER[k], ps = byAnimalZ[k];
+          var jobsZ = [];
+          ps.forEach(function(p){ if(p.job && jobsZ.indexOf(p.job) === -1) jobsZ.push(p.job); });
+          var marks = jobsZ.map(function(j){
+            var pp = null;
+            ps.forEach(function(x){ if(!pp && x.job === j) pp = x; });
+            return (pp.facility && isClimateMachine(pp.facility)) ? anyLevelMarker(j, null)
+              : abilityMarkerLvl(j, animalAbility(a, j), !!(pp.trait && traitMatch(a, pp.trait)), pickWhyText(a, pp));
+          }).join("");
+          var postLines = ps.map(function(p){
+            var sd = stepDownText(p, a);
+            return esc(zonePostText(p)) + (sd ? " · " + esc(sd) : "");
+          });
+          lines.push("<li>" + marks + "<strong>" + esc(animalLabel(a)) + '</strong><span class="zc-posts">' + postLines.join("<br />") + "</span></li>");
+        });
+        unfilledZ.forEach(function(p){
+          var where = p.facility ? p.facility : (p.assigns ? p.assigns.map(function(bf){ return bf.facility; }).join(", ") : "post");
+          lines.push("<li>" + abilityMarker(p.job, !!p.trait) + "<strong>" + esc(p.job) + " Aniimo — " + esc(where) + '</strong><span class="zc-posts">' + pickSubHtml(p) + "</span></li>");
+        });
+        posts.forEach(function(p){
+          if(p.kind !== "planting" || !p.covered || p.animal < 0) return;
+          var ca = ROSTER[p.animal], mainFac = null;
+          (picks.byAnimal[p.animal] || []).forEach(function(x){ if(!mainFac && x.kind !== "planting" && x.facility) mainFac = x.facility; });
+          lines.push("<li>" + abilityMarkerLvl("Grass", animalAbility(ca, "Grass"), false, null) + '<strong>Planting</strong><span class="zc-posts">Covered by ' + esc(ca.species) + ", who is already on the crew" + (mainFac ? " at the " + esc(mainFac) : "") + " — counted once, in that post's zone.</span></li>");
+        });
+        if(z.id === "hauling" && picks.hauling && picks.hauling.need > 0){
+          var hs = picks.hauling;
+          lines.push("<li><strong>Hauling power: " + fmtHaulPower(hs.need) + ' needed</strong><span class="zc-posts">' +
+            (hs.coverDetails.length ? "Covered by the working crew: " + hs.coverDetails.map(function(d){ return esc(ROSTER[d.idx].species) + " (Hauling Lv " + d.lvl + ", covers " + fmtHaulPower(d.weight) + ")"; }).join(", ") + ". " : "") +
+            (hs.dedicated ? "The " + hs.dedicated + " dedicated " + (hs.dedicated === 1 ? "hauler" : "haulers") + " above stand in this zone." : "No dedicated haulers needed — the working crew covers it all.") + "</span></li>");
+        }
+        if(lines.length) html += "<h5>👥 Standing here</h5><ul class=\"zone-crew\">" + lines.join("") + "</ul>";
+        html += "</div>";
+      });
+      html += "</div>";
+      out.innerHTML = html;
     }
 
     /* assignment tooltips: hover on desktop, tap toggles on touch, focus works too */
@@ -6194,6 +6563,7 @@
        in, exactly the bug renderModulePanels was split out to avoid. */
     function refreshAfterStage3(){
       renderModulePanels();
+      renderBuyNext();
       if(typeof renderAlways === "function") renderAlways();
       renderAll(); renderLayoutPicker(); renderLayout(); renderRvPlan();
       if(typeof renderSuggestedLayout === "function") renderSuggestedLayout();
@@ -11790,6 +12160,7 @@
       renderPowerRef();
       renderRvPlan();
       renderLadder();
+      renderBuyNext();
     })();
     </script>
   </body>
