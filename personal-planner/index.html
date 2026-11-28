@@ -178,6 +178,11 @@
       .fac-item input:disabled{background:var(--bg-soft);color:var(--ink-faint)}
       .fac-ctl{display:flex;align-items:center;gap:6px;flex:none;flex-wrap:wrap;justify-content:flex-end;max-width:100%}
       .fac-item input.fac-num{width:64px;padding:8px 6px}
+      /* Step 1 split levels: copies of one facility standing at two levels */
+      .fac-split{flex:1 1 100%;display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:.84rem;font-weight:700;color:var(--ink-soft);border-top:1px dashed var(--card-line);padding-top:7px}
+      .fac-split input.fac-num{width:58px;min-height:40px}
+      .mini-btn{min-height:40px;border-radius:999px;border:2px solid var(--card-line);background:#fff;font-weight:800;font-size:.82rem;color:var(--ink);line-height:1;padding:6px 12px;flex:none;white-space:nowrap;cursor:pointer}
+      .mini-btn:hover{border-color:var(--accent);color:var(--accent)}
       /* Step 1 count steppers: big −/+ either side of a count box, so a
          count can be changed or a facility added without typing. */
       .count-step{display:inline-flex;align-items:center;gap:4px}
@@ -440,7 +445,7 @@
           <div class="step"><span class="n">Step 3</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
           <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. The plan builds itself — and rebuilds itself on every change you make, so it is never out of date.</p></div>
           <div class="step"><span class="n">Steps 5–7</span><br /><b>➕ Add &amp; Adjust, crew &amp; home</b><p>Add &amp; Adjust plants it — Mines included, in Facilities out. Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
-          <div class="step"><span class="n">🗺️</span><br /><b>Suggested layout</b><p>A live board that adapts as you add, take off or change anything — everything stays out at its arranged place, drawn at true sizes and shapes, and whatever your current plan isn't using is marked Off instead of disappearing. Fields sit in the climate zones their crops need, machines in rows by the ability that works them, storage spread through the districts, and power follows the planner's live decision. Tap the board to see it big.</p></div>
+          <div class="step"><span class="n">🗺️</span><br /><b>Suggested layout</b><p>A live board that adapts as you add, take off or change anything — everything stays out at its arranged place, drawn at true sizes and shapes, and whatever your current plan isn't using is marked Off instead of disappearing — except the plots, which are never Off: unplanted, a field is just empty. Fields sit in the climate zones their crops need, machines in rows by the ability that works them, storage spread through the districts, and power follows the planner's live decision. The Farmland and Woodland blocks stand toward the front of the board, the workshop rows toward the back. Tap the board to see it big.</p></div>
           <div class="step"><span class="n">🗺️</span><br /><b>Your zones</b><p>Your Step 6 crew regrouped by Production Zone — the buildings in each zone, the ability pool it draws on, and your Aniimo standing there, like the zone screens in game.</p></div>
           <div class="step"><span class="n">🛒</span><br /><b>Buy next</b><p>Everything your RV already lets you buy or upgrade that you don't have yet — each one with what it opens, biggest unlock first, so every coin run has a target.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
@@ -469,7 +474,7 @@
       <!-- ================= STEP 1: SET UP FIRST ================= -->
       <section id="facilities">
         <div class="sec-head"><span class="sec-num">Step 1</span><h2>🏭 Set Up First — RV, Facilities &amp; Modules</h2></div>
-        <p class="sec-sub"><strong>Boxes start empty — nothing is carried in.</strong> Pick your RV level and every box fills to the most that RV allows; change any number with − and +, or by typing. Picking a new RV refills them. Counts stop at the most your picked RV allows — a number typed or stepped over that max is pulled back to it. Lowering your Farmland or Woodland count trims the plan's plantings to fit, and the trim is noted.</p>
+        <p class="sec-sub"><strong>Boxes start empty — nothing is carried in.</strong> Pick your RV level and every box fills to the most that RV allows; change any number with − and +, or by typing. Picking a new RV refills them. Counts stop at the most your picked RV allows — a number typed or stepped over that max is pulled back to it. Lowering your Farmland or Woodland count trims the plan's plantings to fit, and the trim is noted. <strong>Copies at two levels?</strong> On any facility with 2 or more copies out, tap <em>Copies at two levels?</em> on its row and say how many copies stand at the level in the Lv box and what level the rest are at — the plans, the ⚡ Power decision and Buy Next all read the split.</p>
 
         <div class="card">
           <h3>🏭 Your facilities &amp; modules</h3>
@@ -840,14 +845,14 @@
       <!-- ================= SUGGESTED HOMELAND LAYOUT ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">🗺️</span><h2>🗺️ Suggested Homeland Layout — Live Board</h2></div>
-        <p class="sec-sub"><strong>A living suggestion: it adapts and changes as you add, take off, or change anything in the planner.</strong> Every facility stays <strong>put out at its arranged place</strong> — drawn on the homeland grid (80 squares across by 60 back) at <strong>true sizes and true shapes</strong>, no overlaps, nothing shrunk, nothing squared off: a 2 × 1.5 bench draws as a 2 × 1.5 rectangle, exactly as it stands in game, just on this board's smaller scale. What switches is whether each piece is <strong>On or Off</strong>: the board reads your Step 1 counts, your basket, your strategy, your Step 5 picks and your per-copy Off switches, and redraws itself on every change. A piece your current state isn't using — not owned at your Step 1 count, owned but idle in this plan, set Off copy by copy, a climate zone with nothing planted in it, a generator or pole the live power decision doesn't need — <strong>stays out on the board, grey and dashed, labelled OFF</strong>, with the reason in its hover tip. Where each thing stands follows what the planner has learned: plots sit in the climate zones their crops actually need, machines cluster by the <strong>ability</strong> that works them, the E-Mode machines huddle inside the power grid, and the Storage Units are <strong>spread through the districts</strong> instead of piled in one spot, so hauling stays a short walk everywhere. Step the RV level below and the <strong>Farmland and Woodland blocks redraw</strong> at that level's caps — and once Step 1 is set up, they never draw past the counts you entered there. <strong>Tap the board to see it big.</strong></p>
+        <p class="sec-sub"><strong>A living suggestion: it adapts and changes as you add, take off, or change anything in the planner.</strong> Every facility stays <strong>put out at its arranged place</strong> — drawn on the homeland grid (80 squares across by 60 back) at <strong>true sizes and true shapes</strong>, no overlaps, nothing shrunk, nothing squared off: a 2 × 1.5 bench draws as a 2 × 1.5 rectangle, exactly as it stands in game, just on this board's smaller scale. What switches is whether each piece is <strong>On or Off</strong>: the board reads your Step 1 counts, your basket, your strategy, your Step 5 picks and your per-copy Off switches, and redraws itself on every change. A piece your current state isn't using — not owned at your Step 1 count, owned but idle in this plan, set Off copy by copy, a climate zone with nothing planted in it, a generator or pole the live power decision doesn't need — <strong>stays out on the board, grey and dashed, labelled OFF</strong>, with the reason in its hover tip. The plots are the one exception: a Farmland or Woodland is <strong>never Off</strong> — planted it works, unplanted it is simply empty, and it draws in its live colours with its number either way. Where each thing stands follows what the planner has learned: plots sit in the climate zones their crops actually need, machines cluster by the <strong>ability</strong> that works them, the E-Mode machines huddle inside the power grid, and the Storage Units are <strong>spread through the districts</strong> instead of piled in one spot, so hauling stays a short walk everywhere. The <strong>Farmland and Woodland blocks stand toward the front</strong> of the board — the near edge, at the bottom — with the climate zones their crops ring, and the machine rows stand toward the back. Every plot is <strong>outlined and numbered</strong> — Farmland and Woodland each count from 1 in the order the board fills their places — so you can point at any plot by its number, here and in the big view. Step the RV level below and the <strong>Farmland and Woodland blocks redraw</strong> at that level's caps — and once Step 1 is set up, they never draw past the counts you entered there. <strong>Tap the board to see it big.</strong></p>
 
         <div class="card">
           <h3>🧭 How this layout is arranged — abilities and zone coverage</h3>
           <p style="margin:6px 0 0;font-weight:600">🌡️ <strong>Fields follow the crops' climates.</strong> The plots are shared out by the climates the planner's crop list actually calls for, and Farmland and Woodland that need the same building pack into the same zone together, largest first: the heat trees (Warm and Scorching) and the Scorching fields ring the three Heat Furnaces; the Freeze and Cool crops ring the three Cooling Units; the Adequate-light crops ring the Sunlamp; and the grows-anywhere crops take the neutral ground in the middle and the room left over in the zones. Every covered plot's center sits inside its 9 × 9 (the center rule), and the climate squares are kept apart, so no two zones blend by accident. The two <strong>Starfall Hammocks stand inside the third Cooling Unit's square</strong> — the Hammock needs a Cool environment to work — and the <strong>Floral Windmill stands inside its own Sunlamp's square</strong>, because Scales is hard-gated on Light.</p>
           <p style="margin:8px 0 0;font-weight:600">🐾 <strong>Machines cluster by ability, because crew is shared per ability.</strong> One Aniimo covers every facility that needs its ability, so the workshop rows group the work: a Fire row (Kilns, Stove, Pots, Claw Cookers), a Wind row (Mills and Looms), then Artisanship (Crafting Tables and Benches), Dark (Dryers and Pickling Jars), Water (Brew Kegs), Perfumery (Phonolfactory Tables), and one Leisure row (Sandcastles, Nimbus Beds, Dewy Houses) — each crew works one short row instead of crossing the map. The 9 Mines stay in one Earth block, the Wells stand by the cold fields their Water crew waters, and the Hatchinators line one row. <strong>Storage Units are spread out — one by the Mines, one by the furnace fields, one by the cold fields, one by the light and neutral fields, one by the workshop rows and one by the Hatchinators</strong> — because hauling is zone-local: the less an Aniimo walks, the faster things get done.</p>
           <p style="margin:8px 0 0;font-weight:600">⚡ <strong>Power is placed, not just counted — and decided live.</strong> The board runs the planner's ⚡ Power decision on the machines your current plan actually has On: the generators it needs switch On and the E-Mode machines cluster around them, and only the Power Poles that genuinely extend the powered area to a switched machine switch On with them — each On pole's 7 × 7 overlaps an already-powered square, and a switched machine takes E-Mode only where its center lands inside the powered area (the lavender wash on the board); the check line counts any that fall outside on this arrangement, and they stay Aniimo-run where they stand. When the decision says skip the grid, the generators and poles stay out, marked Off, and every machine keeps its Aniimo. The Aniipod Maker and Dance Pad Polisher stand outside the grid on the east side: at 30 × level they always stay Aniimo-run, like the Mines and Wells. Hover or tap any piece for its name, true size, and whether it is On or Off — and why.</p>
-          <p style="margin:8px 0 0;font-weight:600">🔄 <strong>On and Off follow your planner, live.</strong> Add a recipe and the facilities and plots it needs switch On in their climate-matched places; take one off and they go back to Off. Raise or lower a Step 1 count and the copies past it read <em>not owned</em>; add a copy in Step 5 and it switches On; set a copy Off in Facilities Out and it reads Off here too; a climate unit is On only while something On stands in its zone, and a Storage Unit is On while its district has work near it. Nothing is ever taken off the board — unused just means marked Off.</p>
+          <p style="margin:8px 0 0;font-weight:600">🔄 <strong>On and Off follow your planner, live.</strong> Add a recipe and the facilities it needs switch On in their places, and the plots it plants fill in their climate-matched places; take one off and the facilities go back to Off and the plots go back to empty. Raise or lower a Step 1 count and the copies past it read <em>not owned</em>; add a copy in Step 5 and it switches On; set a copy Off in Facilities Out and it reads Off here too; a climate unit is On only while something On stands in its zone, and a Storage Unit is On while its district has work near it. Nothing is ever taken off the board — unused just means marked Off, and a plot is never marked Off at all: unplanted, it is simply empty.</p>
           <div class="controls" style="margin-top:14px;align-items:center">
             <div class="field">
               <label>Fields &amp; woodlands at RV level</label>
@@ -864,7 +869,7 @@
               <span class="hint">Or tap the board itself. The big view keeps every true size and shape — scroll to look around, Close to come back.</span>
             </div>
           </div>
-          <div class="sugg-board" id="sgBoard" role="img" tabindex="0" aria-label="Suggested homeland layout at RV 18: mines in one block top left, fields and woodlands in climate clusters across the top and middle, machines in ability rows along the bottom inside the power grid, every item drawn at its true size and true shape. Activate to open the enlarged view."></div>
+          <div class="sugg-board" id="sgBoard" role="img" tabindex="0" aria-label="Suggested homeland layout at RV 18: farmland and woodlands in climate clusters across the front and middle, every plot outlined and numbered, machines in ability rows toward the back inside the power grid, mines in one block at the front left, every item drawn at its true size and true shape. Activate to open the enlarged view."></div>
           <p class="fac-state" id="sgCaption" aria-live="polite"></p>
           <p style="margin-top:10px"><strong>Check line (live board):</strong> <span id="sgCheck"></span></p>
           <div class="map-legend">
@@ -875,7 +880,7 @@
             <p class="lg-row"><span class="lg-sw" style="background:#f6a98b"></span>Heat Furnace 1 × 1 · <span class="lg-sw" style="background:#bfe0f2"></span>Cooling Unit 2 × 2 · <span class="lg-sw" style="background:#ffe9a8"></span>Sunlamp 1 × 1 — dashed square = its 9 × 9 coverage</p>
             <p class="lg-row"><span class="lg-sw" style="background:#e6e0f2"></span>Crackle Generator 2 × 2 · Power Pole 1.5 × 1.5 — the pale lavender wash is the powered area (Generator covers 11 × 11, Pole covers 7 × 7)</p>
             <p class="lg-row"><span class="lg-sw" style="background:#e6e0f2"></span>Storage Unit 2 × 2 — six of them, spread one to a district, never clustered</p>
-            <p class="lg-row"><span class="lg-sw" style="background:#ded8e8;border-style:dashed"></span>OFF — grey, dashed and labelled OFF: out at its arranged place, but not being used by your current planner state (hover it for the reason)</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#ded8e8;border-style:dashed"></span>OFF — grey, dashed and labelled OFF: out at its arranged place, but not being used by your current planner state (hover it for the reason). Never a plot: Farmland and Woodland always draw in their live colours — planted, or empty and ready</p>
           </div>
           <div id="sgCounts"></div>
           <p style="margin-top:10px" id="sgPower">⚡ <strong>Power on this board, decided live:</strong> the board runs the planner's power decision on your current plan — this line, and the generators and poles on the board, update with it.</p>
@@ -928,7 +933,7 @@
           <li><strong>Step 5 (Add &amp; Adjust) also reads your strategy plan:</strong> once run, its plantings join the same What You're Growing list as their own group there, and the layout combines them with the basket's counts from that one list.</li>
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the center rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, each plot's center inside its 9 × 9 zone and hanging over its edge where the center rule allows, so one zone holds up to 24 Farmland around a Heat Furnace or Sunlamp, 21 Farmland around a Cooling Unit, 8 Woodland, or a mix of the two lands packed together up to whatever genuinely fits, and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
           <li><strong>Facility sizes</strong> (measured from your in-game screenshots and cross-checked against wikily.gg game data, Nov 9, 2026): every facility's true footprint in tiles now shows beside its name in Step 1, in the Always list, on its Step 5 (Add &amp; Adjust) block and in the strategy plan's facility table. Farmland 2 × 2, Woodland 3.5 × 3.5, Mine 5 × 5, Well 2 × 2, Aniipod Maker 4.5 × 4.5, Crafting Table 4 × 4, Woodworking Bench 2 × 1.5, Chimney Kiln 5 × 5, Blazing Stove 2.5 × 2.5, Simmering Pot 3 × 3, Claw Game Cooker 1.5 × 1.5, Jukebox Dryer 2.5 × 2.5, Pickling Jar 2.5 × 2, Joy Wheel Loom 4 × 4, Carousel Mill 5 × 5, Phonolfactory Table 3.5 × 3.5, Bouncy Brew Keg 3 × 3, Dance Pad Polisher 2.5 × 2.5, Storage Unit 2 × 2, Hatchinator 2 × 2, Tidewhisper Sandcastle 5 × 5, Dewy House 2 × 2, Nimbus Bed 5 × 5, Starfall Hammock 5 × 5, Heat Furnace 1 × 1, Sunlamp 1 × 1, Cooling Unit 2 × 2, Crackle Generator 2 × 2 (covers 11 × 11), Crackle Power Pole 1.5 × 1.5 (covers 7 × 7). The Floral Windmill has no verified size, so none is shown for it. Sizes are display only: no plan, crew or power figure reads them, and the layout packer keeps the reserved building footprints above.</li>
-          <li><strong>Step 1 (setup):</strong> the boxes start empty on a fresh load — no RV level, counts or module levels are carried in. Picking an RV level, or tapping Fill from RV level, fills them to the most that RV allows — facility counts, facility levels, climate counts and module levels. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying and plans follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
+          <li><strong>Step 1 (setup):</strong> the boxes start empty on a fresh load — no RV level, counts or module levels are carried in. Picking an RV level, or tapping Fill from RV level, fills them to the most that RV allows — facility counts, facility levels, climate counts and module levels. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying and plans follow the entered values. Facility tier caps per RV come from AniimoTools' station tables. <strong>Split levels (player's ask, Nov 27, 2026):</strong> a facility whose copies stand at two levels records it on its Step 1 row — how many copies stand at the Lv box's level (the top level) and the level the rest stand at. The Lv box stays the top level for locking and gating, because a recipe, crop or gather is open when at least one copy can run it (Premium Wheat's "a Farmland at Lv 6" reads the same way); the split itself feeds the readers that count copies: the ⚡ Power decision draws 15 (or 30) × each running copy's own level, and Buy Next lists bringing the lower copies up as its own upgrade step. A Fill clears every split, since a fill sets one level for all copies; lowering a count or the top level clamps or clears a split that no longer fits.</li>
           <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17 — corrected Nov 18, 2026: AniimoTools' placement table and Aniiland agree on the third at RV 17, and the player owns 3 at RV 17 in her own game, so Fill sets 3 (the Oct 29, 2026 note that capped it at 2 recorded the 2 she owned then and is retired); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19. Counts-only buildings now have Step 1 boxes on the same Fill (audited Nov 18, 2026, Aniiland counts table cross-checked against AniimoTools' placement table): Storage Unit 1 at RV 2, then one more at RV 4, 7, 10, 13 and 16 (6 at RV 17, matching the player's own game), 7 at RV 19, 8 at RV 20; Hatchinator 3 at RV 2 rising to 10 at RV 9; Crackle Generator 1 at RV 12, 2 at RV 15, 3 at RV 18; Crackle Power Pole 6 at RV 12, then 12, 18, 24 and 30 at RV 14, 16, 18 and 20 (18 at RV 17, matching the player's own game). Every surface — Step 1 boxes, plan caps, facility cards and layout ceilings — reads these same tables; there is no second copy of a count anywhere on the page.</li>
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 18 — Aniiland's counts table and AniimoTools' placement table agree; corrected Nov 18, 2026, it previously read RV 20). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
@@ -951,7 +956,7 @@
           <li><strong>Minimum crew, the 80% rule (Aniiland):</strong> a shared worker gets a second pair of hands for a job only when the first worker's combined workload passes 80%. This planner counts each facility a worker covers as 20% of a full load, so a job covering five or more facilities gets a second worker, and workers split the facilities so none passes 80%. Best mode is unchanged.</li>
           <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
           <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
-          <li><strong>Power — what it does, and the planner's E-Mode decision (what it does: the game's own help texts via aniimo.guide, cross-checked with extracted game data, Nov 27, 2026; caps and copies fixed Nov 7, 2026):</strong> from RV 12, a processing facility inside the power grid can run on <strong>E-Mode</strong> — on a timer, with no Aniimo working it. A Crackle Generator makes the power but needs <strong>one Lightning Aniimo working it</strong>; its supply is capped by its own level. A Crackle Power Pole makes no power: it relays, covers 7 × 7, and must overlap an already-powered area. Power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>; the Step 1 fill uses the right copy count for the picked RV. While supply beats demand the grid runs faster, up to <strong>120%</strong>; over the supply, everything on the grid slows below 100%. <strong>The decision (the planner's own take, at the player's ask, Nov 27, 2026):</strong> each plan's ⚡ Power decision box switches only the cheap 15 × level processing machines, cheapest draw first, under the fewest generators whose supply covers the demand — and only when the machines freed outnumber the Lightning Aniimo the generators take, so a one-machine plan is told to skip the grid. The four 30 × level buildings always stay Aniimo-run, as do gather, leisure, climate and field posts; Farmland and Woodland plots draw nothing. Poles start at zero in every decision and go out only for a machine a generator's 11 × 11 cannot reach. The Suggested Layout follows the same decision, live: it runs the decision on the machines the current plan has On, stands the generators and poles that decision needs in their arranged lane places (machines clustered in ability rows around them, On poles chaining outward with each square overlapping an already-powered one, every switched machine's center inside the powered area, which the board checks on every render), and marks the rest Off — at the everything-out RV 18 arrangement that works out to the same 2 generators the fixed board stood, against the caps of 3 and 24. Power zone sizes stay as measured: Crackle Generator 22 × 22 cells, Power Pole 14 × 14 cells.</li>
+          <li><strong>Power — what it does, and the planner's E-Mode decision (what it does: the game's own help texts via aniimo.guide, cross-checked with extracted game data, Nov 27, 2026; caps and copies fixed Nov 7, 2026):</strong> from RV 12, a processing facility inside the power grid can run on <strong>E-Mode</strong> — on a timer, with no Aniimo working it. A Crackle Generator makes the power but needs <strong>one Lightning Aniimo working it</strong>; its supply is capped by its own level. A Crackle Power Pole makes no power: it relays, covers 7 × 7, and must overlap an already-powered area. Power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>; the Step 1 fill uses the right copy count for the picked RV. While supply beats demand the grid runs faster, up to <strong>120%</strong>; over the supply, everything on the grid slows below 100%. <strong>The decision (the planner's own take, at the player's ask, Nov 27, 2026):</strong> each plan's ⚡ Power decision box switches only the cheap 15 × level processing machines, cheapest draw first, under the fewest generators whose supply covers the demand — and only when the machines freed outnumber the Lightning Aniimo the generators take, so a one-machine plan is told to skip the grid. The four 30 × level buildings always stay Aniimo-run, as do gather, leisure, climate and field posts; Farmland and Woodland plots draw nothing. Poles start at zero in every decision and go out only for a machine a generator's 11 × 11 cannot reach. The Suggested Layout follows the same decision, live: it runs the decision on the machines the current plan has On, stands the generators and poles that decision needs in their arranged lane places (machines clustered in ability rows around them, On poles chaining outward with each square overlapping an already-powered one, every switched machine's center inside the powered area, which the board checks on every render), and marks the rest Off — at the everything-out RV 18 arrangement that works out to the same 2 generators the fixed board stood, against the caps of 3 and 24. Power zone sizes stay as measured: Crackle Generator 22 × 22 cells, Power Pole 14 × 14 cells. When Step 1 records a facility at two levels (split levels, Nov 27, 2026), the decision prices each running copy at its own level's draw — the copies a plan runs are its best copies, counted top level first — instead of one level times the copy count.</li>
           <li><strong>Family gates are the game's own tags (deep-dive audit, Nov 7, 2026; My Crew enforces every one family-first, with the normal-ranking fallback and row note when a family has no pickable member):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
           <li><strong>Climate and light gates on recipes (audit, Nov 7, 2026):</strong> Scales and Quick Scales are hard-gated on Light: the plan must include a Sunlamp covering the Floral Windmill in Step 5 (Add & Adjust), and the plan warns if it is missing. Pearl and Quick Pearl want Warmth +1: without Heat Furnace coverage of the Sandcastle they run at 80%, and the adjusted per-hour figure is shown, labelled. Star wants Cool -1: 80% without Cooling Unit coverage. Sweet Cone wants Cold -2: 50% without. Gold-Speck Cap wants Warmth +1: 80% without.</li>
           <li><strong>Storage Units take no worker (audit, Nov 7, 2026):</strong> Storage Units are passive. They have no crew slot, no crew count and no worker-based power math, and they never appear in the crew.</li>
@@ -959,7 +964,7 @@
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
-          <li><strong>Suggested Homeland Layout (replaced the old My Homeland Layout, Nov 27, 2026; rearranged for abilities and zone coverage later the same day, at the player's ask):</strong> a fixed suggestion for RV 18 with everything out at its RV 18 cap from this planner's own ladder (Farmland 38, Woodland 19, Mines 9, Heat Furnace 3, Cooling Unit 3, Woodworking Bench 4, Chimney Kiln 4, Starfall Hammock 2, Floral Windmill 1, Storage 6, Dewy House 2, and every other facility at its ladder RV 18 cap) — except power, which follows the planner's E-Mode decision (2 Crackle Generators and 6 Power Poles, not the caps of 3 and 24) — drawn on the homeland grid at true sizes <strong>and true shapes</strong> on the half-tile grid with no overlaps and nothing shrunk or squared off: each piece's drawn width and height are its spec width and height, so a 2 × 1.5 Woodworking Bench draws as a 2 × 1.5 rectangle. Tapping the board opens the same drawing enlarged in a full-screen overlay (scrollable, Close or Escape to return), with sizes and shapes preserved at that scale. <strong>Placement rules (the learned ones):</strong> plots are shared out by the climates their crops need from this planner's own crop list — heat trees and Scorching fields ring the Heat Furnaces, Freeze/Cool crops ring the Cooling Units, Adequate-light crops ring the Sunlamp, grows-anywhere crops take neutral ground — with Farmland and Woodland of one climate packed into the same zones, largest first; the climate squares are kept apart so no zones blend by accident; the Starfall Hammocks stand inside the third Cooling Unit's square (the Hammock needs a Cool environment to work) and the Floral Windmill inside its own Sunlamp's square (Scales is hard-gated on Light); machines stand in rows grouped by the ability that works them, because crew is shared per ability; the E-Mode machines cluster inside the power grid and the poles chain square to square from the generators; and the six Storage Units are spread one to a district — Mines, furnace fields, cold fields, light and neutral fields, workshop rows, Hatchinators — because hauling is zone-local and shorter walks finish faster (player's rule, Nov 27, 2026). Every piece drawn inside a coverage square has its center inside that square (center rule). The RV stepper redraws only the Farmland and Woodland blocks at each level's ladder caps. <strong>Farmland's true size is 2 × 2</strong> — the twice-measured firsthand record (Oct 23, 2026 climate measurements, cross-checked Nov 9, 2026), confirmed by the player's Nov 27, 2026 furnace-cluster screenshot where a Farmland is visibly about half a Woodland's 3.5 width; the 3 × 3 figure used in the previous pass was an error. <strong>Sizes not firsthand-verified:</strong> Crafting Table (4 × 4), Aniipod Maker (4.5 × 4.5), Dance Pad Polisher (2.5 × 2.5) and Floral Windmill (drawn 5 × 5, with the other big leisure stations) keep the sizes this planner already used for them; they are not firsthand-verified. The board re-checks itself on every render and prints the results in its check line: zero overlaps on the half-tile grid, every drawn size equal to its spec size, Farmland/Woodland counts equal to the caps, every covered center inside its zone, climate squares never overlapping, no pole off the power chain, and no E-Mode machine outside the powered area. <strong>Live On/Off (later Nov 27, 2026, at the player's ask):</strong> the board is no longer a fixed everything-on picture — it adapts as things are added, taken off or changed anywhere in the planner (Step 1 counts, basket, strategy, Step 5 copies, plot counts and per-copy Off switches all feed it, and it re-renders on every change), while every facility stays put out at its arranged place: a piece the current state isn't using is drawn grey and dashed, labelled OFF, with the reason in its tip — not owned at the Step 1 count, owned but idle in the current plan, set Off, a climate zone with nothing On in it, or a generator/pole the live power decision (the same powerDecision the plans read, run on the copies that are On) doesn't need. Farmland and Woodland still step with the board's RV stepper, and once Step 1 is set up they never draw past the counts entered there; planted plots switch On in climate-matched slots first, so adding or removing a crop moves the On marks between zones with it.</li>
+          <li><strong>Suggested Homeland Layout (replaced the old My Homeland Layout, Nov 27, 2026; rearranged for abilities and zone coverage later the same day, at the player's ask):</strong> a fixed suggestion for RV 18 with everything out at its RV 18 cap from this planner's own ladder (Farmland 38, Woodland 19, Mines 9, Heat Furnace 3, Cooling Unit 3, Woodworking Bench 4, Chimney Kiln 4, Starfall Hammock 2, Floral Windmill 1, Storage 6, Dewy House 2, and every other facility at its ladder RV 18 cap) — except power, which follows the planner's E-Mode decision (2 Crackle Generators and 6 Power Poles, not the caps of 3 and 24) — drawn on the homeland grid at true sizes <strong>and true shapes</strong> on the half-tile grid with no overlaps and nothing shrunk or squared off: each piece's drawn width and height are its spec width and height, so a 2 × 1.5 Woodworking Bench draws as a 2 × 1.5 rectangle. Tapping the board opens the same drawing enlarged in a full-screen overlay (scrollable, Close or Escape to return), with sizes and shapes preserved at that scale. <strong>Placement rules (the learned ones):</strong> plots are shared out by the climates their crops need from this planner's own crop list — heat trees and Scorching fields ring the Heat Furnaces, Freeze/Cool crops ring the Cooling Units, Adequate-light crops ring the Sunlamp, grows-anywhere crops take neutral ground — with Farmland and Woodland of one climate packed into the same zones, largest first; the climate squares are kept apart so no zones blend by accident; the Starfall Hammocks stand inside the third Cooling Unit's square (the Hammock needs a Cool environment to work) and the Floral Windmill inside its own Sunlamp's square (Scales is hard-gated on Light); machines stand in rows grouped by the ability that works them, because crew is shared per ability; the E-Mode machines cluster inside the power grid and the poles chain square to square from the generators; and the six Storage Units are spread one to a district — Mines, furnace fields, cold fields, light and neutral fields, workshop rows, Hatchinators — because hauling is zone-local and shorter walks finish faster (player's rule, Nov 27, 2026). Every piece drawn inside a coverage square has its center inside that square (center rule). The RV stepper redraws only the Farmland and Woodland blocks at each level's ladder caps. <strong>Farmland's true size is 2 × 2</strong> — the twice-measured firsthand record (Oct 23, 2026 climate measurements, cross-checked Nov 9, 2026), confirmed by the player's Nov 27, 2026 furnace-cluster screenshot where a Farmland is visibly about half a Woodland's 3.5 width; the 3 × 3 figure used in the previous pass was an error. <strong>Sizes not firsthand-verified:</strong> Crafting Table (4 × 4), Aniipod Maker (4.5 × 4.5), Dance Pad Polisher (2.5 × 2.5) and Floral Windmill (drawn 5 × 5, with the other big leisure stations) keep the sizes this planner already used for them; they are not firsthand-verified. The board re-checks itself on every render and prints the results in its check line: zero overlaps on the half-tile grid, every drawn size equal to its spec size, Farmland/Woodland counts equal to the caps, every covered center inside its zone, climate squares never overlapping, no pole off the power chain, and no E-Mode machine outside the powered area. <strong>Live On/Off (later Nov 27, 2026, at the player's ask):</strong> the board is no longer a fixed everything-on picture — it adapts as things are added, taken off or changed anywhere in the planner (Step 1 counts, basket, strategy, Step 5 copies, plot counts and per-copy Off switches all feed it, and it re-renders on every change), while every facility stays put out at its arranged place: a piece the current state isn't using is drawn grey and dashed, labelled OFF, with the reason in its tip — not owned at the Step 1 count, owned but idle in the current plan, set Off, a climate zone with nothing On in it, or a generator/pole the live power decision (the same powerDecision the plans read, run on the copies that are On) doesn't need. Farmland and Woodland still step with the board's RV stepper, and once Step 1 is set up they never draw past the counts entered there; planted plots switch On in climate-matched slots first, so adding or removing a crop moves the On marks between zones with it. <strong>Front move (player's ask, Nov 27, 2026):</strong> the whole arrangement is mirrored front-to-back (y → 60 − y − height, applied to the zones, both slot lists and SG_FIXED in one flip pass), so the Farmland and Woodland blocks and the climate zones they ring stand toward the front (near, bottom) edge of the board, the machine rows and power lane toward the back, and the Mines block at the front left. Mirroring preserves every learned relationship exactly — coverage and the center rule, climate squares kept apart, the pole chain, storage spread — and the board's per-render checks re-verify them all on the mirrored board. <strong>Plot numbers (player's ask, Nov 27, 2026):</strong> every Farmland and Woodland piece is drawn with a stronger outline and carries its number as its label — numbered per land, from 1, in the order the board fills its slots (the piece's copy order) — with the number also named in its hover tip ("Farmland plot 7"). The zoom view renders the same SVG, so the numbers read at the big scale too. <strong>Plots are never Off (player's correction, Nov 27, 2026):</strong> the grey, dashed, OFF treatment does not apply to Farmland or Woodland at all — an unplanted plot is empty, not off — so plots always draw in their live colours with their number as the only label, planted or empty; their tips read "planted" or "empty", the caption and counts lines name plots as planted/empty, and the board's totals count empty plots separately from Off pieces. (The first numbering pass briefly showed an OFF under an unplanted plot's number; that is retired by this correction.)</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
@@ -967,7 +972,7 @@
           <li><strong>Recipe-catalog audit (Nov 21, 2026):</strong> 18 category-less recipes (Cotton Thread and its loom, mill, pot, jar and dryer kin) made pickable in the basket again; Silver Ore added as the Mine's seventh product (Mine Lv 7, unlocking at RV 21); Premium and Quick variants given their own gated entries — Premium recipes in the basket behind their Kitchen or Crafting Module gates, Quick gathers in the facility product lists behind their Resource Detector gates.</li>
           <li><strong>Level variants:</strong> where the book lists an item at several levels with bigger yields, there is <strong>one entry per item at its base level and base yield</strong>, so plans never come up short. Where two different items share ingredients without the Premium pattern (Wind Chime / Advanced Wind Chime, Lemon Incense / Advanced Lemon Incense), both are listed separately and say so.</li>
           <li><strong>Flagged in the audit, never guessed:</strong> (1) Captain Spud has no climate tag — it wasn't in the verified in-game survey. (2) The book lists no prices or blurbs, so none were invented for the additions.</li>
-          <li><strong>Buy Next list and Your Zones crew view (the player's picks, Nov 27, 2026):</strong> both are read-only regroupings of data already on this page — nothing new is computed about the game. Buy Next reads your Step 1 boxes against the same FAC_RV, FAC_COUNT, CLIM_COUNT, UTIL_COUNT and MODULE_UNLOCKS tables everything else reads, and names as an unlock only the recipes, crops and gathers in ITEMS whose facility level the step reaches; an item that also waits on a module says so beside its name. No shop prices are shown, because the planner's data carries none. Crackle Generators and Power Poles are left off the list on purpose: their counts are ceilings the ⚡ Power decision draws on, not a shopping list. Your Zones regroups Step 6's own picks (the same pickCrew posts, the same named Aniimo, the same Best / Minimum / fitted choice) under the zone arrangement the Suggested Layout board uses — Mines block, climate fields, ability rows, leisure row, hauling — and picks nobody new and counts nobody twice.</li>
+          <li><strong>Buy Next list and Your Zones crew view (the player's picks, Nov 27, 2026):</strong> both are read-only regroupings of data already on this page — nothing new is computed about the game. Buy Next reads your Step 1 boxes against the same FAC_RV, FAC_COUNT, CLIM_COUNT, UTIL_COUNT and MODULE_UNLOCKS tables everything else reads, and names as an unlock only the recipes, crops and gathers in ITEMS whose facility level the step reaches; an item that also waits on a module says so beside its name. No shop prices are shown, because the planner's data carries none. Crackle Generators and Power Poles are left off the list on purpose: their counts are ceilings the ⚡ Power decision draws on, not a shopping list. Your Zones regroups Step 6's own picks (the same pickCrew posts, the same named Aniimo, the same Best / Minimum / fitted choice) under the zone arrangement the Suggested Layout board uses — Mines block, climate fields, ability rows, leisure row, hauling — and picks nobody new and counts nobody twice. Split levels (Nov 27, 2026): when Step 1 records a facility's copies at two levels, Buy Next lists the lower copies as their own catch-up upgrade step — Lv lo → Lv top, with the split spelled out — even when the top copies already sit at the RV's max level, because only the top copies can run the recipes, crops and gathers above the lower level.</li>
         </ul>
         <p>Companion pages: the Aniimo Master Guide and the Aniimo Quick-Reference Graphics carry the combat, traits, RV Parks and myth-busting reference that this planner builds on.</p>
       </footer>
@@ -1913,14 +1918,17 @@
       Object.keys(facWorking).forEach(function(f){
         var w = facWorking[f] || 0;
         if(!(w > 0)) return;
-        var lvl = facLevel(f);
-        /* A running station with no Step 1 level of its own counts
-           at Lv 1, the lowest level any running building can have. */
-        if(!(lvl > 0)) lvl = 1;
-        if(POWER_HIGH_DRAW[f]){ d.keptHigh.push({ f:f, copies:w, drawEach:30 * lvl }); return; }
+        /* Per-copy levels (split levels, Nov 27, 2026): the copies a
+           plan runs are its best copies, each drawing 15 (or 30) ×
+           its own level — so a facility standing at two levels feeds
+           the decision its real mix, not one level times the count.
+           facCopyLevels keeps the old rule for a station with no
+           Step 1 level of its own: it counts at Lv 1. */
+        var lvls = facCopyLevels(f, w);
+        if(POWER_HIGH_DRAW[f]){ d.keptHigh.push({ f:f, copies:w, drawEach:30 * lvls[0] }); return; }
         if(POWER_EMODE.indexOf(f) > -1){
           d.hadCandidates = true;
-          for(var i = 0; i < w; i++) copies.push({ f:f, draw:15 * lvl });
+          lvls.forEach(function(lv){ copies.push({ f:f, draw:15 * lv }); });
         }
       });
       if(!d.hadCandidates){ d.verdict = d.keptHigh.length ? "highonly" : "none"; return d; }
@@ -1945,8 +1953,10 @@
       if(!chosen.length){ d.verdict = "notworth"; d.demand = 0; d.gens = 0; return d; }
       var byFac = {};
       chosen.forEach(function(c){
-        if(!byFac[c.f]) byFac[c.f] = { f:c.f, copies:0, drawEach:c.draw, draw:0 };
+        if(!byFac[c.f]) byFac[c.f] = { f:c.f, copies:0, drawEach:c.draw, drawHi:c.draw, draw:0 };
         byFac[c.f].copies++; byFac[c.f].draw += c.draw;
+        if(c.draw < byFac[c.f].drawEach) byFac[c.f].drawEach = c.draw;
+        if(c.draw > byFac[c.f].drawHi) byFac[c.f].drawHi = c.draw;
       });
       d.emode = Object.keys(byFac).map(function(k){ return byFac[k]; }).sort(function(a, b){ return a.drawEach - b.drawEach || (a.f < b.f ? -1 : 1); });
       d.supply = d.gens * d.perGen;
@@ -1964,14 +1974,15 @@
       var keptLine = "";
       if(d.keptHigh.length){
         keptLine = "<p><strong>Always Aniimo-run:</strong> " + d.keptHigh.map(function(k){
-          return esc(k.f) + (k.copies > 1 ? " ×" + k.copies : "") + " (would draw " + fmt(k.drawEach) + " each on E-Mode)";
+          var spK = facSplitOf(k.f);
+          return esc(k.f) + (k.copies > 1 ? " ×" + k.copies : "") + " (would draw " + (spK ? fmt(30 * spK.lo) + "–" + fmt(30 * spK.top) + " each on E-Mode, by copy" : fmt(k.drawEach) + " each on E-Mode") + ")";
         }).join(", ") + " — at <strong>30 × level</strong> each they would eat a generator by themselves, so the planner never switches them. Mines, Wells and the other gather, leisure and climate posts keep their Aniimo too: E-Mode is for processing machines.</p>";
       }
       var polesLine = "<p><strong>Power Poles: start with none out.</strong> A pole makes no power — it only relays it (1.5 × 1.5, covers 7 × 7, and it must overlap an already-powered area). Cluster the E-Mode machines inside the generator's 11 × 11 and no pole earns its space; add one only for a machine that cannot fit in that square. You have " + fmt(d.polesAvail) + " available — the planner never puts out more than the reach needs.</p>";
       if(d.verdict === "use"){
         var spare = d.supply - d.demand;
         var list = d.emode.map(function(e){
-          return "<li><strong>" + esc(e.f) + (e.copies > 1 ? " ×" + e.copies : "") + "</strong> — draws " + fmt(e.draw) + " (" + fmt(e.drawEach) + " each, 15 × its level)</li>";
+          return "<li><strong>" + esc(e.f) + (e.copies > 1 ? " ×" + e.copies : "") + "</strong> — draws " + fmt(e.draw) + " (" + (e.drawHi > e.drawEach ? fmt(e.drawEach) + "–" + fmt(e.drawHi) + " each, 15 × each copy's own level" : fmt(e.drawEach) + " each, 15 × its level") + ")</li>";
         }).join("");
         var leftLine = "";
         if(d.leftOut.length){
@@ -2196,8 +2207,18 @@
     }
     /* Entered Step 1 values: what every plan actually reads. */
     var facLevels = {}, facCounts = {}, climCounts = {}, utilCounts = {};
+    /* Split levels (player's ask, Nov 27, 2026): facility -> { n, lo },
+       for copies that are NOT all one level — of the facility's Count,
+       n copies stand at the Lv box's level (the top level) and the rest
+       at Lv lo. facLevel stays the top level everywhere it already
+       reads (a recipe is open when at least one copy can run it);
+       facSplitOf / facLevelDist / facCopyLevels hand the per-copy
+       truth to the readers that count copies — the ⚡ Power decision's
+       per-copy draw and Buy Next's catch-up upgrades. */
+    var facSplit = {};
     var facProvenance = "Nothing is filled in yet — pick your RV level in Step 1 to fill every box, or type your own counts";
     function fillFacilitiesOnly(rv){
+      facSplit = {}; /* a fill sets one top level for every copy — any split is gone */
       Object.keys(FAC_RV).forEach(function(f){
         facLevels[f] = maxFacLevel(f, rv) || 0;
         facCounts[f] = rvMaxFacCount(f, rv);
@@ -2257,6 +2278,70 @@
       if(UTIL_COUNT[facility]) return utilCounts.hasOwnProperty(facility) ? utilCounts[facility] : 0;
       if(FAC_RV[facility]) return facCounts.hasOwnProperty(facility) ? facCounts[facility] : 0;
       return 0;
+    }
+    /* The split-level truth for one facility, normalised: { top, nTop,
+       lo, nLo } when its copies genuinely stand at two levels, else
+       null. A split only counts while the top level is 2 or more (a
+       lower level must exist) and the count is 2 or more; the stored
+       numbers are clamped inside both, so a count or level edited
+       after the split can never leave it pointing outside them. */
+    function facSplitOf(facility){
+      facility = facCanon(facility);
+      var sp = facSplit[facility];
+      if(!sp) return null;
+      var top = facLevel(facility), count = facCount(facility);
+      if(top < 2 || count < 2) return null;
+      var nTop = Math.max(1, Math.min(count - 1, Math.floor(sp.n) || 1));
+      var lo = Math.max(1, Math.min(top - 1, Math.floor(sp.lo) || top - 1));
+      return { top:top, nTop:nTop, lo:lo, nLo:count - nTop };
+    }
+    /* Copies by level, highest first: [{ lvl, n }, ...]. One entry
+       when there is no split — every copy at the Lv box's level. */
+    function facLevelDist(facility){
+      facility = facCanon(facility);
+      var sp = facSplitOf(facility);
+      if(sp) return [{ lvl:sp.top, n:sp.nTop }, { lvl:sp.lo, n:sp.nLo }];
+      return [{ lvl:facLevel(facility), n:facCount(facility) }];
+    }
+    /* The levels of the w copies a plan runs, best copies first — a
+       plan works its best copies, so the top level's copies are
+       counted first, and any copies past the owned count repeat the
+       lowest owned level. A level of 0 (a station with no Step 1
+       level of its own, or not built) reads as Lv 1, the lowest
+       level any running building can have — the same rule the power
+       decision has always used. */
+    function facCopyLevels(facility, w){
+      var dist = facLevelDist(facility), out = [];
+      for(var d = 0; d < dist.length; d++){
+        var lv = dist[d].lvl > 0 ? dist[d].lvl : 1;
+        for(var i = 0; i < dist[d].n && out.length < w; i++) out.push(lv);
+      }
+      var pad = dist.length ? (dist[dist.length - 1].lvl > 0 ? dist[dist.length - 1].lvl : 1) : 1;
+      while(out.length < w) out.push(pad);
+      return out;
+    }
+    /* The Step 1 split-level row for one facility: the two number
+       boxes when a split is recorded, or the offer to record one
+       when the facility has 2+ copies at Lv 2+ (a lower level must
+       exist to split down to). The Lv box stays the TOP level: the
+       first split box says how many copies stand at it, the second
+       gives the rest their level. */
+    function facSplitRowHtml(f){
+      var cnt = facCount(f), top = facLevel(f);
+      var sp = facSplit[f];
+      if(sp){
+        var nTop = Math.max(1, Math.min(Math.max(1, cnt - 1), Math.floor(sp.n) || 1));
+        var lo = Math.max(1, Math.floor(sp.lo) || Math.max(1, top - 1));
+        return '<div class="fac-split"><span><strong>Two levels:</strong></span>' +
+          '<input type="number" class="fac-num" min="1" value="' + nTop + '" data-fac-split-n="' + escA(f) + '" aria-label="How many of your ' + escA(f) + ' stand at the level in the Lv box" />' +
+          '<span>of <span data-split-count="' + escA(f) + '">' + cnt + '</span> at Lv <span data-split-top="' + escA(f) + '">' + top + '</span> · the other <span data-split-rest="' + escA(f) + '">' + Math.max(0, cnt - nTop) + '</span> at Lv</span>' +
+          '<input type="number" class="fac-num" min="1" value="' + lo + '" data-fac-split-lo="' + escA(f) + '" aria-label="Level of your other ' + escA(f) + '" />' +
+          '<button type="button" class="mini-btn" data-fac-split-off="' + escA(f) + '">One level</button></div>';
+      }
+      if(cnt >= 2 && top >= 2){
+        return '<div class="fac-split"><button type="button" class="mini-btn" data-fac-split-on="' + escA(f) + '">Copies at two levels?</button><span>e.g. some at Lv ' + top + ', the rest lower</span></div>';
+      }
+      return "";
     }
     /* A recipe or step is locked when your facility level sits below its recipe level.
        Facilities with no verified tier table (the leisure station) never lock. */
@@ -6234,6 +6319,17 @@
             why: un2.length ? "Opens: " + buyNextUnlockText(un2) + "."
               : "No recipe, crop or gather sits exactly at Lv " + (have + 1) + " in the planner's data — the step still counts toward Lv " + maxLvl + ", the most RV " + userRV + " allows this facility." });
         }
+        /* Split levels (player's ask, Nov 27, 2026): copies standing
+           below the top level are their own upgrade step — bringing
+           them up is what lets every copy run the top level's list,
+           not just the few already there. It is listed even when the
+           top copies already sit at the RV's max level. */
+        var spB = facSplitOf(f);
+        if(spB){
+          entries.push({ group:2, weight:spB.nLo, kind:"Upgrade",
+            title:"Upgrade your other " + f + " — Lv " + spB.lo + " → Lv " + spB.top,
+            why:"Your Step 1 split says " + spB.nTop + " of your " + facCount(f) + " " + f + " stand at Lv " + spB.top + ", and " + spB.nLo + (spB.nLo === 1 ? " stands" : " stand") + " at Lv " + spB.lo + ". Only the Lv " + spB.top + " copies can run the recipes, crops and gathers above Lv " + spB.lo + " — upgrading the rest brings every copy up to Lv " + spB.top + "." });
+        }
         /* Extra copies, once the facility itself stands. */
         var maxC = maxFacCount(f, userRV) || 0;
         var haveC = facCount(f);
@@ -6638,7 +6734,7 @@
         if(f === "Floral Windmill") sub += " · Gathers Scales (Needs: Flutternym family) · <strong>Scales is hard-gated on Light</strong>: a Sunlamp must cover the windmill or Scales will not run";
         return '<div class="fac-item"><span><span class="nm">' + esc(f) + '</span><span class="kd">' + sub + '</span></span>' +
           '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-fac-count-dec="' + escA(f) + '" aria-label="One fewer ' + escA(f) + '"' + (facCount(f) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(f) + '" data-fac-count="' + escA(f) + '" aria-label="' + escA(f) + ' count" /><button type="button" class="cnt-btn" data-fac-count-inc="' + escA(f) + '" aria-label="One more ' + escA(f) + '"' + (userRV > 0 && facCount(f) >= rvMaxFacCount(f, userRV) ? " disabled" : "") + '>+</button></span>' + aboveFlagHtml("fac-count:" + f, userRV > 0 && facCount(f) > rvMaxFacCount(f, userRV)) +
-          ' <span class="src">Lv</span> <input type="number" class="fac-num" min="0" max="' + tiers.length + '" value="' + facLevel(f) + '" data-fac-lvl="' + escA(f) + '" aria-label="' + escA(f) + ' level" />' + aboveFlagHtml("fac-lvl:" + f, facLevel(f) > maxL) + '</span></div>';
+          ' <span class="src">Lv</span> <input type="number" class="fac-num" min="0" max="' + tiers.length + '" value="' + facLevel(f) + '" data-fac-lvl="' + escA(f) + '" aria-label="' + escA(f) + ' level" />' + aboveFlagHtml("fac-lvl:" + f, facLevel(f) > maxL) + '</span>' + facSplitRowHtml(f) + '</div>';
       }).join("");
       /* One commit for a facility count, shared by the box itself and
          its −/+ steppers: the box and its stepper buttons update in
@@ -6666,6 +6762,26 @@
           if(btn.getAttribute("data-fac-count-inc") === f) btn.disabled = maxC !== null && facCounts[f] >= maxC;
         });
         updateAboveFlag("fac-count:" + f, maxC !== null && facCounts[f] > maxC);
+        /* A count change can shrink or kill a split: clamp the number
+           standing at the top level and refresh the split row's own
+           numbers in place; with fewer than 2 copies left there is
+           nothing to split, so the split clears and the grid redraws. */
+        if(facSplit[f]){
+          if(nv < 2){ delete facSplit[f]; renderFacilities(); }
+          else {
+            if(facSplit[f].n > nv - 1) facSplit[f].n = nv - 1;
+            if(!(facSplit[f].n >= 1)) facSplit[f].n = 1;
+            grid.querySelectorAll("[data-split-count]").forEach(function(el){
+              if(el.getAttribute("data-split-count") === f) el.textContent = nv;
+            });
+            grid.querySelectorAll("[data-split-rest]").forEach(function(el){
+              if(el.getAttribute("data-split-rest") === f) el.textContent = nv - facSplit[f].n;
+            });
+            grid.querySelectorAll("[data-fac-split-n]").forEach(function(inp2){
+              if(inp2.getAttribute("data-fac-split-n") === f) inp2.value = facSplit[f].n;
+            });
+          }
+        }
         if((f === "Farmland" || f === "Woodland") && nv < oldCount) trimPlantingsToCap(f);
         setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
         refreshAfterStage3();
@@ -6694,9 +6810,76 @@
           var v = parseInt(inp.value, 10);
           facLevels[f] = isNaN(v) ? 0 : Math.max(0, v);
           inp.value = facLevels[f];
+          /* A level change moves a split's top with it: the lower
+             level is pulled back under the new top, and below Lv 2
+             there is no lower level to split down to, so the split
+             clears and the grid redraws. */
+          if(facSplit[f]){
+            if(facLevels[f] < 2){ delete facSplit[f]; renderFacilities(); }
+            else {
+              if(facSplit[f].lo >= facLevels[f]) facSplit[f].lo = facLevels[f] - 1;
+              grid.querySelectorAll("[data-split-top]").forEach(function(el){
+                if(el.getAttribute("data-split-top") === f) el.textContent = facLevels[f];
+              });
+              grid.querySelectorAll("[data-fac-split-lo]").forEach(function(inp2){
+                if(inp2.getAttribute("data-fac-split-lo") === f) inp2.value = facSplit[f].lo;
+              });
+            }
+          }
           updateAboveFlag("fac-lvl:" + f, facLevels[f] > (maxFacLevel(f, userRV) || 0));
           setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
           refreshAfterStage3();
+        });
+      });
+      /* Split levels: turn one on or off, or edit its two numbers.
+         These commit on a tap or on leaving the box (the change
+         event) — never mid-typing — so the grid is rebuilt to redraw
+         the row, the same full redraw the Fill button does, and
+         every plan then re-reads the split. */
+      grid.querySelectorAll("[data-fac-split-on]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var f = btn.getAttribute("data-fac-split-on");
+          facSplit[f] = { n:Math.max(1, Math.floor(facCount(f) / 2)), lo:Math.max(1, facLevel(f) - 1) };
+          setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+          renderFacilities();
+          refreshAfterStage3();
+          toast(f + ": split levels on — set how many stand at Lv " + facLevel(f) + " and what level the rest are.");
+        });
+      });
+      grid.querySelectorAll("[data-fac-split-off]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var f = btn.getAttribute("data-fac-split-off");
+          delete facSplit[f];
+          setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+          renderFacilities();
+          refreshAfterStage3();
+          toast(f + ": back to one level — every copy reads as Lv " + facLevel(f) + ".");
+        });
+      });
+      function commitSplit(f){
+        var sp = facSplit[f];
+        if(!sp) return;
+        var cnt = facCount(f), top = facLevel(f);
+        sp.n = Math.max(1, Math.min(Math.max(1, cnt - 1), Math.floor(sp.n) || 1));
+        sp.lo = Math.max(1, Math.min(Math.max(1, top - 1), Math.floor(sp.lo) || Math.max(1, top - 1)));
+        setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+        renderFacilities();
+        refreshAfterStage3();
+      }
+      grid.querySelectorAll("[data-fac-split-n]").forEach(function(inp){
+        inp.addEventListener("change", function(){
+          var f = inp.getAttribute("data-fac-split-n");
+          if(!facSplit[f]) return;
+          facSplit[f].n = parseInt(inp.value, 10);
+          commitSplit(f);
+        });
+      });
+      grid.querySelectorAll("[data-fac-split-lo]").forEach(function(inp){
+        inp.addEventListener("change", function(){
+          var f = inp.getAttribute("data-fac-split-lo");
+          if(!facSplit[f]) return;
+          facSplit[f].lo = parseInt(inp.value, 10);
+          commitSplit(f);
         });
       });
       /* Climate building counts: counts only, no levels. Like the
@@ -11314,7 +11497,11 @@
        E-Mode machines cluster inside a power grid whose poles chain
        square to square from the generators; and the Storage Units
        are spread one to a district, because hauling is zone-local
-       and short walks are faster.
+       and short walks are faster. The whole arrangement is then
+       mirrored front-to-back (the flip pass below SG_FIXED), so
+       the Farmland and Woodland districts stand toward the FRONT
+       of the board — the near edge, at the bottom — and the
+       machine rows toward the back (player's ask, Nov 27, 2026).
        The board is LIVE (player's ask, later Nov 27, 2026): it
        adapts and changes as things are added, taken off or changed
        anywhere in the planner — Step 1 counts and levels, the
@@ -11327,7 +11514,12 @@
        OFF, with the reason in its tip (not owned at the Step 1
        count, owned but idle in the current plan, set Off copy by
        copy, a climate zone with nothing On in it, a generator or
-       pole the live power decision doesn't need). Farmland and
+       pole the live power decision doesn't need). The one
+       exception is the plots (player's correction, Nov 27, 2026):
+       a Farmland or Woodland is NEVER Off — sgSvg always draws
+       plots in their live colours with their number, and their
+       state reads planted or empty, never Off; sgBuild's totals
+       count empty plots separately from Off pieces. Farmland and
        Woodland blocks still step with the board's own RV stepper,
        and once Step 1 is set up they never draw past the counts
        entered there. The board re-runs its checks on every render
@@ -11447,13 +11639,16 @@
     /* Everything that is NOT a field or woodland: fixed at the RV 18
        arrangement, placed by ability and zone coverage. Mines in one
        3 by 3 Earth block. The leisure stations share one Leisure row
-       under the cold fields; the two Starfall Hammocks stand inside
+       across the middle; the two Starfall Hammocks stand inside
        Cooling Unit 3's square (zone-tagged, so the board's own check
        verifies their centers), and the Floral Windmill stands inside
        Sunlamp 2's square the same way. The workshop is two machine
        rows grouped by the ability that works them — Fire then Wind
-       above the power lane, Artisanship, Dark, Water and Perfumery
-       below it — with the generators and poles in the lane between.
+       on one side of the power lane, Artisanship, Dark, Water and
+       Perfumery on the other — with the generators and poles in the
+       lane between. (The flip pass below SG_FIXED then mirrors the
+       whole arrangement front-to-back, so the fields stand at the
+       front of the board and these rows toward the back.)
        Storage Units are spread one to a district, never clustered:
        hauling is zone-local, so each district keeps its own store
        a short walk away. */
@@ -11512,6 +11707,26 @@
       add("Storage Unit", 10.5, 21); add("Storage Unit", 54, 26.5);
       add("Storage Unit", 5, 41); add("Storage Unit", 20.5, 46);
       for(i = 0; i < 10; i++) add("Hatchinator", i * 2, 46);
+    })();
+    /* Front move (player's ask, Nov 27, 2026): the arrangement above
+       was designed back-to-front — the field districts along the back
+       of the board, the machine rows along the front. She wants the
+       Farmland and Woodland toward the FRONT of the homeland, so the
+       whole arrangement is mirrored front-to-back (y -> 60 - y -
+       height): the Farmland and Woodland blocks, with the climate
+       zones they ring, now stand along the front (near, bottom) edge
+       of the board, the workshop rows and power lane toward the
+       back, and the Mines block at the front left. A mirror keeps
+       every learned relationship exact — zone coverage and the
+       center rule, climate squares kept apart, the pole chain,
+       E-Mode reach, storage spread one to a district, no overlaps —
+       only the facing changes, and the board's own checks re-verify
+       all of it on every render, exactly as before. */
+    (function(){
+      SG_ZONES.forEach(function(z){ z.y = 60 - z.y - SG_SIZE[z.unit][1]; });
+      SG_WOOD_SLOTS.forEach(function(sl){ sl.y = 60 - sl.y - SG_SIZE["Woodland"][1]; });
+      SG_FARM_SLOTS.forEach(function(sl){ sl.y = 60 - sl.y - SG_SIZE["Farmland"][1]; });
+      SG_FIXED.forEach(function(p){ p.y = 60 - p.y - SG_SIZE[p.name][1]; });
     })();
     var sgLevel = 18;
     function sgPiece(name, x, y, zone){
@@ -11830,10 +12045,19 @@
         counts[pc.name] = (counts[pc.name] || 0) + 1;
         if(pc.on) onCounts[pc.name] = (onCounts[pc.name] || 0) + 1;
       });
-      var onTotal = 0;
-      pieces.forEach(function(pc){ if(pc.on) onTotal++; });
+      /* Board totals: plots are never Off (player's correction,
+         Nov 27, 2026) — an unplanted Farmland or Woodland is empty,
+         not off — so planted plots count with the On pieces, Off
+         counts only the other facilities, and empty plots are
+         counted separately as their own thing. */
+      var onTotal = 0, offTotal = 0, emptyPlots = 0;
+      pieces.forEach(function(pc){
+        if(pc.name === "Farmland" || pc.name === "Woodland"){ if(pc.on) onTotal++; else emptyPlots++; }
+        else if(pc.on) onTotal++;
+        else offTotal++;
+      });
       return { pieces:pieces, counts:counts, onCounts:onCounts, farmDrawn:farms, woodDrawn:Math.min(woodCap, SG_WOOD_SLOTS.length),
-        live:st, zoneOn:zoneOn, onTotal:onTotal, offTotal:pieces.length - onTotal };
+        live:st, zoneOn:zoneOn, onTotal:onTotal, offTotal:offTotal, emptyPlots:emptyPlots };
     }
     /* The board's own verification, run on every render: (1) zero
        overlaps on the half-tile grid — Off pieces still stand on
@@ -11902,7 +12126,7 @@
         brokenPoles:rest.length, unpowered:unpowered };
     }
     function sgSvg(res){
-      var out = '<svg viewBox="0 0 80 60" role="img" aria-label="Suggested homeland layout: mines in one block, fields and woodlands in climate clusters matched to their crops, machines in ability rows along the bottom inside the power grid, storage spread through the districts, every item at its true size and true shape" font-family="Baloo 2, Nunito, sans-serif">';
+      var out = '<svg viewBox="0 0 80 60" role="img" aria-label="Suggested homeland layout: farmland and woodlands in climate clusters matched to their crops across the front and middle, every plot outlined and numbered, machines in ability rows toward the back inside the power grid, mines in one block at the front left, storage spread through the districts, every item at its true size and true shape" font-family="Baloo 2, Nunito, sans-serif">';
       out += '<defs><pattern id="sgGrid" width="1" height="1" patternUnits="userSpaceOnUse"><path d="M0.5 0V1M0 0.5H1" stroke="rgba(255,255,255,0.38)" stroke-width="0.035"/><path d="M1 0H0V1" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="0.05"/></pattern></defs>';
       out += '<rect x="0" y="0" width="80" height="60" fill="#79b657"/>';
       SG_ZONES.forEach(function(z){
@@ -11924,23 +12148,58 @@
       });
       res.pieces.forEach(function(pc){
         var col = SG_COLORS[pc.name] || ["#eeeeee","#888888"];
-        var tip = pc.name + " · true size " + pc.w + " by " + pc.h + " squares" + (pc.zone
+        /* Plots are numbered (player's ask, Nov 27, 2026): every
+           Farmland and Woodland piece carries its number — per land,
+           in the order the board fills its slots (the piece's own
+           copy index) — as its label and in its tip, so a plot can
+           be pointed at by number. The zoom view renders this same
+           SVG, so the numbers hold there too. Plots also draw with
+           a stronger outline than the other pieces, so each plot
+           reads as its own outlined square. */
+        var isPlot = pc.name === "Farmland" || pc.name === "Woodland";
+        var plotNo = isPlot ? (pc.copyIdx || 0) + 1 : 0;
+        var tip = pc.name + (isPlot ? " plot " + plotNo : "") + " · true size " + pc.w + " by " + pc.h + " squares" + (pc.zone
           ? (pc.name === "Farmland" || pc.name === "Woodland"
               ? " · covered by the " + pc.zone + " climate zone (center inside its 9 by 9)"
               : " · stands inside the " + pc.zone + " zone (its center is inside the 9 by 9)")
           : "");
         if(pc.name === "Floral Windmill") tip += " · size not firsthand-verified (see Sources & Flags)";
-        if(pc.on) tip += pc.switched ? (pc.powered ? " · ON — running on E-Mode in the power grid" : " · ON — the power decision switches this one to E-Mode, but on this arrangement its center falls outside the powered area, so it stays Aniimo-run here") : " · ON — in use by your current plan";
-        else tip += " · OFF — " + (pc.why || "not being used right now");
-        if(pc.on){
-          out += '<rect x="' + (pc.x + 0.06) + '" y="' + (pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="' + col[0] + '" stroke="' + col[1] + '" stroke-width="0.09" data-tip="' + escA(tip) + '"/>';
-        } else {
-          out += '<rect x="' + (pc.x + 0.06) + '" y="' + (pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="#ded8e8" fill-opacity="0.88" stroke="#9a8cb3" stroke-width="0.09" stroke-dasharray="0.55 0.4" data-tip="' + escA(tip) + '"/>';
+        if(isPlot){
+          /* A plot is never Off (player's correction, Nov 27, 2026):
+             planted, or empty and available — those are its only
+             two states, in the tip as on the board. */
+          tip += pc.on ? " · planted — your current plan has a crop growing here"
+            : " · empty — " + ((res.live && !res.live.hasSetup) ? "nothing is set up or planted yet" : "nothing planted here by your current plan; the plot stands ready to plant");
         }
-        var lab = pc.on ? (SG_SHORT[pc.name] !== undefined ? SG_SHORT[pc.name] : pc.name) : "OFF";
-        if(lab){
-          var f = Math.min(1.05, (pc.w * 0.94) / (0.58 * lab.length), pc.h * 0.52);
-          if(f >= 0.34) out += '<text x="' + (pc.x + pc.w / 2) + '" y="' + (pc.y + pc.h / 2 + f * 0.36).toFixed(2) + '" text-anchor="middle" font-size="' + f.toFixed(2) + '" font-weight="700" fill="' + (pc.on ? "#3d2a47" : "#7d6f96") + '" pointer-events="none">' + esc(lab) + "</text>";
+        else if(pc.on) tip += pc.switched ? (pc.powered ? " · ON — running on E-Mode in the power grid" : " · ON — the power decision switches this one to E-Mode, but on this arrangement its center falls outside the powered area, so it stays Aniimo-run here") : " · ON — in use by your current plan";
+        else tip += " · OFF — " + (pc.why || "not being used right now");
+        var sw = isPlot ? 0.16 : 0.09;
+        if(pc.on || isPlot){
+          /* Plots take this live-colour branch whether planted or
+             empty: no faded fill, no dashed outline, ever. */
+          out += '<rect x="' + (pc.x + 0.06) + '" y="' + (pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="' + col[0] + '" stroke="' + col[1] + '" stroke-width="' + sw + '" data-tip="' + escA(tip) + '"/>';
+        } else {
+          out += '<rect x="' + (pc.x + 0.06) + '" y="' + (pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="#ded8e8" fill-opacity="0.88" stroke="#9a8cb3" stroke-width="' + sw + '" stroke-dasharray="0.55 0.4" data-tip="' + escA(tip) + '"/>';
+        }
+        if(isPlot){
+          /* The number is the plot's label, planted or empty —
+             a plot carries no OFF mark, ever. */
+          var lines = [String(plotNo)];
+          var maxLen = 0;
+          lines.forEach(function(s){ if(s.length > maxLen) maxLen = s.length; });
+          var pf = Math.min(1.0, (pc.w * 0.94) / (0.58 * maxLen), (pc.h * 0.92) / (lines.length * 1.18));
+          if(pf >= 0.3){
+            var y0 = pc.y + pc.h / 2 - ((lines.length - 1) * pf * 1.18) / 2 + pf * 0.36;
+            lines.forEach(function(s, li){
+              out += '<text x="' + (pc.x + pc.w / 2) + '" y="' + (y0 + li * pf * 1.18).toFixed(2) + '" text-anchor="middle" font-size="' + pf.toFixed(2) + '" font-weight="700" fill="#3d2a47" pointer-events="none">' + esc(s) + "</text>";
+            });
+          }
+        } else {
+          var lab = pc.on ? (SG_SHORT[pc.name] !== undefined ? SG_SHORT[pc.name] : pc.name) : "OFF";
+          if(lab){
+            var f = Math.min(1.05, (pc.w * 0.94) / (0.58 * lab.length), pc.h * 0.52);
+            if(f >= 0.34) out += '<text x="' + (pc.x + pc.w / 2) + '" y="' + (pc.y + pc.h / 2 + f * 0.36).toFixed(2) + '" text-anchor="middle" font-size="' + f.toFixed(2) + '" font-weight="700" fill="' + (pc.on ? "#3d2a47" : "#7d6f96") + '" pointer-events="none">' + esc(lab) + "</text>";
+          }
         }
       });
       out += '<rect x="0" y="0" width="80" height="60" fill="url(#sgGrid)" pointer-events="none"/>';
@@ -11955,15 +12214,15 @@
       var res = sgBuild(sgLevel);
       var st = res.live;
       board.innerHTML = sgSvg(res);
-      board.setAttribute("aria-label", "Suggested homeland layout, live board: " + res.onTotal + " pieces on, " + res.offTotal + " off, following your Step 1 counts, basket, strategy and Step 5 picks. Mines in one block top left, fields and woodlands in climate clusters across the top and middle, machines in ability rows along the bottom, storage spread through the districts, every item at its true size and true shape; pieces that are off are grey, dashed and labelled OFF. Activate to open the enlarged view.");
+      board.setAttribute("aria-label", "Suggested homeland layout, live board: " + res.onTotal + " pieces on, " + res.offTotal + " off, " + res.emptyPlots + " plots standing empty, following your Step 1 counts, basket, strategy and Step 5 picks. Farmland and woodlands in climate clusters across the front and middle, every plot outlined and numbered, machines in ability rows toward the back, mines in one block at the front left, storage spread through the districts, every item at its true size and true shape; pieces that are off are grey, dashed and labelled OFF — plots are never off, an unplanted plot is just empty. Activate to open the enlarged view.");
       var v = sgVerify(res);
       var cap = document.getElementById("sgCaption");
       if(cap){
         var fOn = res.onCounts["Farmland"] || 0, wOn = res.onCounts["Woodland"] || 0;
         var fTot = res.counts["Farmland"] || 0, wTot = res.counts["Woodland"] || 0;
-        cap.textContent = "Live board — fields & woodlands stepped to RV " + sgLevel + ": " + res.farmDrawn + " Farmland drawn (" + fOn + " planted On, " + (fTot - fOn) + " Off), " + res.woodDrawn + " Woodland drawn (" + wOn + " planted On, " + (wTot - wOn) + " Off) · " + res.onTotal + " pieces On, " + res.offTotal + " Off in all. " +
-          "The board follows your Step 1 counts, basket, strategy, Step 5 picks and Off switches — add, take off or change anything anywhere and it redraws itself. Pieces that aren't being used stay out at their arranged places, marked Off." +
-          (!st.hasSetup ? " Nothing is filled in Step 1 yet, so everything reads Off until you set up." : (!st.hasPlan ? " No plan is using anything yet — pick basket recipes or a strategy and the pieces it needs switch On here." : ""));
+        cap.textContent = "Live board — fields & woodlands stepped to RV " + sgLevel + ": " + res.farmDrawn + " Farmland drawn (" + fOn + " planted, " + (fTot - fOn) + " empty), " + res.woodDrawn + " Woodland drawn (" + wOn + " planted, " + (wTot - wOn) + " empty) · " + res.onTotal + " pieces On, " + res.offTotal + " Off, " + res.emptyPlots + " plots standing empty in all. " +
+          "The board follows your Step 1 counts, basket, strategy, Step 5 picks and Off switches — add, take off or change anything anywhere and it redraws itself. Pieces that aren't being used stay out at their arranged places, marked Off — except the plots: a Farmland or Woodland is never Off, an unplanted one is simply empty. Every Farmland and Woodland plot is outlined and numbered — Farmland 1 up, Woodland 1 up, in the order the board fills their places — on this board and in the big view alike, so any plot can be pointed at by its number." +
+          (!st.hasSetup ? " Nothing is filled in Step 1 yet, so the facilities read Off and the plots stand empty until you set up." : (!st.hasPlan ? " No plan is using anything yet — pick basket recipes or a strategy and the pieces it needs switch On here." : ""));
       }
       var chk = document.getElementById("sgCheck");
       if(chk){
@@ -11973,7 +12232,7 @@
           " · climate squares overlapping each other: " + v.zoneClash +
           " · power grid: On poles off the chain " + v.brokenPoles + ", E-Mode machines outside the powered area " + v.unpowered +
           " · overlaps on the half-tile grid: " + v.overlaps +
-          " · pieces On " + res.onTotal + ", Off " + res.offTotal + ".";
+          " · pieces On " + res.onTotal + ", Off " + res.offTotal + ", plots standing empty " + res.emptyPlots + " (plots are never Off).";
       }
       var pw = document.getElementById("sgPower");
       if(pw){
@@ -12004,7 +12263,13 @@
           var t = res.counts[f] || 0;
           if(!t) return;
           var on = res.onCounts[f] || 0;
-          parts.push(esc(f) + " ×" + t + (on === t ? " — all On" : (on === 0 ? " — all Off" : " — " + on + " On, " + (t - on) + " Off")));
+          if(f === "Farmland" || f === "Woodland"){
+            /* Plots are never Off: planted or empty are the only
+               two states this line names for them. */
+            parts.push(esc(f) + " ×" + t + (on === t ? " — all planted" : (on === 0 ? " — all empty" : " — " + on + " planted, " + (t - on) + " empty")));
+          } else {
+            parts.push(esc(f) + " ×" + t + (on === t ? " — all On" : (on === 0 ? " — all Off" : " — " + on + " On, " + (t - on) + " Off")));
+          }
         });
         countsEl.innerHTML = '<p style="margin-top:10px"><strong>Out on the board (live):</strong> ' + parts.join(" · ") + ".</p>";
       }
