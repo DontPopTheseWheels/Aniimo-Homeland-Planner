@@ -8217,14 +8217,31 @@
                and Woodland of one climate share a zone wherever they
                fit). When the building's groups share, they pack into
                one pool capped at the trial pack's together count (and
-               never above the Step 1 count); otherwise this group's
-               zones are capped at the count its own trial pack
-               needed, which keeps the building's total inside the
-               Step 1 count. With none owned, zones are hypothetical
-               (noted above) and never cap the planting. */
+               never above the Step 1 count). When they do not share,
+               each group packs into its own pool, but the Step 1
+               count is a budget for the BUILDING, not per group: this
+               group's pool may open only the zones the building has
+               left after the zones its other groups already opened
+               (field.buildingZones counts every zone opened for the
+               building; this pool's own zones are subtracted back out,
+               so the figure stays steady while this pool grows). The
+               Sunlamp has only one climate group (Adequate light), so
+               it never shares — without this budget its Step 1 count
+               bound nothing at all, and stepping it down in Step 1
+               left the plan untouched (player's report, Nov 27, 2026:
+               Sunlamps 2 -> 1 and the plan did not change). With none
+               owned, zones are hypothetical (noted above) and never
+               cap the planting. */
             var shared = !!shareMode[B];
-            var cap = shared ? (owned[B] > 0 ? Math.min(sharedCap[B], owned[B]) : Infinity) : grp.sepZones;
-            while(take < want && packerAddPlot(packerFor(B, grp.info.key, shared), n, cap, onNewZone)) take++;
+            var pkB = packerFor(B, grp.info.key, shared);
+            var cap;
+            if(shared) cap = owned[B] > 0 ? Math.min(sharedCap[B], owned[B]) : Infinity;
+            else if(owned[B] > 0){
+              var openedElsewhere = Math.max(0, (field.buildingZones[B] || 0) - pkB.zones.length);
+              cap = Math.max(0, Math.min(grp.sepZones, owned[B] - openedElsewhere));
+            }
+            else cap = grp.sepZones;
+            while(take < want && packerAddPlot(pkB, n, cap, onNewZone)) take++;
             if(take < want) buildingCut[B] = true;
           } else {
             take = want;
