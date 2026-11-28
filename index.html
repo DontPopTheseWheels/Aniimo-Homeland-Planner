@@ -349,7 +349,7 @@
           <div class="step"><span class="n">Step 1</span><br /><b>🏭 Set up first</b><p>Pick your RV level — nothing is pre-picked for you. Picking fills the boxes; change any number with − and +.</p></div>
           <div class="step"><span class="n">Step 2</span><br /><b>🧺 Recipe basket</b><p>Pick recipes, no amounts. The planner sizes the whole chain for you.</p></div>
           <div class="step"><span class="n">Step 3</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
-          <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Picking a strategy builds its plan on the spot — and every change after that rebuilds it right away.</p></div>
+          <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Picking a strategy builds its plan on the spot — and every change after that rebuilds it right away. Right after it, <strong>⚡ Power &amp; E-Mode</strong> gives the planner's call on generators and poles for that plan.</p></div>
           <div class="step"><span class="n">Steps 5–7</span><br /><b>🛠️ Add &amp; Adjust, crew &amp; home</b><p>Add &amp; Adjust places it — Mines included, picked on their block in Facilities out — Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
           <div class="step"><span class="n">New</span><br /><b>🗺️ Suggested homeland</b><p>One full grid suggestion for your whole homeland, drawn from your RV level and your Step 1 facilities. Follow it or ignore it.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
@@ -362,6 +362,7 @@
         <a href="#basket">🧺 Step 2 · Recipe Basket</a>
         <a href="#strategy">🎯 Step 3 · Strategy</a>
         <a href="#bestplan">⭐ Step 4 · Strategy Plan</a>
+        <a href="#power">⚡ Power &amp; E-Mode</a>
         <a href="#growing">🌱 What You're Growing</a>
         <a href="#rv" id="rvNavLink" hidden>🚐 Level Up Bill</a>
         <a href="#layout">🛠️ Step 5 · Add &amp; Adjust</a>
@@ -400,7 +401,7 @@
           <p class="src" style="margin-top:4px">Counts fill from your RV too, or type your own. Source: Aniiland roadmap ladder (RV 7 unlock also backed by GameWith); the steps rest on Aniiland alone, so each count carries the single-source flag.<br />The layout puts out only the buildings the plan needs — never more than these counts.</p>
           <div class="fac-grid" id="climGrid"></div>
           <h4 style="margin-top:20px">🗄️ Storage, hatching &amp; power — counts from your RV</h4>
-          <p class="src" style="margin-top:4px">Storage Units, Hatchinators, Crackle Generators and Crackle Power Poles have no level of their own — just a count, and it fills from your RV like every other count on this card. The same boxes feed everything else: the Suggested Layout reads the Storage Unit and Hatchinator counts from here (its own two boxes are these same counts), and the power lines read the Generator and Power Pole counts from here. Source: Aniiland's building-count table, cross-checked against AniimoTools' RV level lists — Storage 4 at RV 12 in both — and your own RV 17 totals.</p>
+          <p class="src" style="margin-top:4px">Storage Units, Hatchinators, Crackle Generators and Crackle Power Poles have no level of their own — just a count, and it fills from your RV like every other count on this card. The same boxes feed everything else: the Suggested Layout reads the Storage Unit and Hatchinator counts from here (its own two boxes are these same counts), and the power call reads the Generator and Power Pole counts from here — it treats them as what you <em>have</em>, never as what to put out. Source: Aniiland's building-count table, cross-checked against AniimoTools' RV level lists — Storage 4 at RV 12 in both — and your own RV 17 totals.</p>
           <div class="fac-grid" id="extraGrid"></div>
           <h4 style="margin-top:20px">🧩 Your module levels</h4>
           <p class="src" style="margin-top:4px">Fill sets these too, or type each level. Only checked yields are used.</p>
@@ -554,7 +555,37 @@
           <h4>🔍 How to read the prices and flags on a best plan</h4>
           <p>Sell prices: shop price research (checked Oct 24, 2026).<br /><span class="verdict v-ok">Cross-checked</span> = two sources agree. <span class="verdict v-mix">Single source, spot-check in game</span> = Aniiland only. <span class="verdict v-lock">No verified sell price</span> = can't earn Home Coins.<br />Star items are in but flagged <span class="verdict v-mix">Not verified yet, included because it makes sense</span>; the plan says how much of the rate rests on them. Aniimo XP and Mineral Sand per run have no checked figures — flagged, never made up.</p>
         </div>
-        <p class="src" style="margin-top:16px">Plan built? <a href="#growing">Next: What you're growing — every planting from your basket and this plan in one list, below ↓</a> Your Mines are picked from this plan on the Mine block in Facilities out in Step 5, never before it — and they refresh with it on every change.</p>
+        <p class="src" style="margin-top:16px">Plan built? <a href="#power">Next: Power &amp; E-Mode — the planner's call on generators and poles for this plan, below ↓</a> Your Mines are picked from this plan on the Mine block in Facilities out in Step 5, never before it — and they refresh with it on every change.</p>
+      </section>
+
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
+      <!-- ================= POWER & E-MODE ================= -->
+      <section id="power">
+        <div class="sec-head"><span class="sec-num">⚡</span><h2>⚡ Power &amp; E-Mode — Generators, Poles &amp; the Planner's Call</h2></div>
+        <p class="sec-sub">You don't have to decide about power any more — <strong>the planner decides, per plan</strong>, and says so in plain words: whether a grid earns its place, exactly which machines to switch to E-Mode, how many generators and poles that takes (usually far fewer than you own), and how many Aniimo better off you end up. The call rebuilds with every change, like everything else here.</p>
+
+        <div class="card">
+          <h3>🔌 What the pieces actually do</h3>
+          <p style="margin-top:8px;font-weight:600"><strong>Crackle Generator</strong> (2 × 2, covers 11 × 11) makes the grid's electricity — but it doesn't run itself: <strong>one Lightning Aniimo works each generator</strong>, and its supply is capped by its level, which follows your Power Module: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1,000, Lv 4 = 1,200, Lv 5 = 1,500</strong> (Lv 1 at RV 12, then a level every two RVs — Lv 4 at RV 18). A strong Lightning Aniimo gets that full cap out of it.</p>
+          <p style="margin-top:8px;font-weight:600"><strong>Crackle Power Pole</strong> (1.5 × 1.5, covers 7 × 7) makes <strong>no power of its own</strong>. It is a relay: it stretches the grid's reach, and it only passes power on when it overlaps an area that is already powered. A facility touching any powered area gets electricity.</p>
+          <p style="margin-top:8px;font-weight:600"><strong>E-Mode</strong> (from RV 12): a processing facility inside the grid can run <strong>on a timer instead of an Aniimo</strong> — that Aniimo is freed for other work or for home. Every switched-on facility draws power: <strong>15 × its level</strong> for most, <strong>30 × level</strong> for the Mine, Well, Aniipod Maker and Dance Pad Polisher. While supply beats demand, the grid runs <strong>faster — up to 120%</strong>; the moment demand passes supply, <strong>everything on the grid slows below 100%</strong>.</p>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3>🧭 How the planner makes the call</h3>
+          <p style="margin-top:8px;font-weight:600">It reads the machines your current plan actually runs — basket, strategy and Step 5 additions together — and tries the smallest grid first:</p>
+          <ul style="margin:8px 0 0;padding-left:20px;font-weight:600;display:flex;flex-direction:column;gap:5px">
+            <li><strong>Cheapest machines first.</strong> Copies switch on in order of power draw, lowest first, under the fewest generators that hold them — and never past the supply, so a recommended grid can never slow anything down.</li>
+            <li><strong>A grid must pay for its Aniimo.</strong> Each generator out costs a Lightning Aniimo who stays at that post. The call only says yes when the machines freed outnumber the generators by at least 2 — otherwise the honest answer is no grid, and your Aniimo stay on their machines (where most of them also haul their own output to storage; a generator Aniimo never does).</li>
+            <li><strong>Never switched on:</strong> Mines, Wells, Aniipod Makers and Dance Pad Polishers — at 30 × level, one can eat a whole generator. The gather posts (Sandcastle, Dewy House, Nimbus Bed, Hammock, Floral Windmill) keep their Aniimo because their family gates need one standing there, and the climate units keep theirs. Fields and Storage Units draw nothing and have nothing to switch.</li>
+            <li><strong>Poles only stretch, never lead.</strong> Switched-on machines sit together inside their generator's 11 × 11, so most calls need <strong>no poles at all</strong>. Poles are only called for when the switched-on set spreads past one cluster — and then just a few, never the whole count in Step 1. Extra generators and poles stay in storage.</li>
+            <li><strong>Headroom is the point.</strong> A grid loaded near its cap runs at plain speed; a grid with supply to spare runs faster, up to 120%. The call keeps the spare power on purpose instead of switching everything on and slowing the lot.</li>
+          </ul>
+        </div>
+
+        <div id="powerPanel" aria-live="polite" style="margin-top:16px"></div>
+        <p class="src" style="margin-top:16px">Call read? <a href="#growing">Next: What you're growing, below ↓</a> The same call is printed inside your basket plan and your strategy plan, on each facility's block in Step 5, and as a swap note in your crew in Step 6 — one decision, everywhere it matters.</p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
@@ -697,6 +728,7 @@
           </div>
           <p class="src" id="teamModeNote" style="margin-top:10px"></p>
           <div id="teamArea"></div>
+          <div id="teamPowerNote" style="margin-top:14px"></div>
           </div>
         </div>
         <p class="src" style="margin-top:16px">Crewed? <a href="#home">Next: Step 7 — home &amp; Bud Tickets, right below ↓</a></p>
@@ -810,7 +842,8 @@
           <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
           <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
           
-          <li><strong>Power headroom (caps and copies fixed Nov 7, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>. Fill from RV level uses the right copy count for the picked RV, and the power headroom line totals all generators. Spare power raises grid speed up to <strong>120%</strong>; over the total supply, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator 22 × 22, Power Pole 14 × 14.</li>
+          <li><strong>Power headroom (caps and copies fixed Nov 7, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>. Fill from RV level uses the right copy count for the picked RV. Spare power raises grid speed up to <strong>120%</strong>; over the total supply, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator covers 11 × 11, Power Pole covers 7 × 7 (the older 22 × 22 / 14 × 14 figures were the same zones counted in half-square cells).</li>
+          <li><strong>Power &amp; E-Mode — the planner decides (player's ask, Nov 27, 2026):</strong> what the pieces do is from the game's own help texts via aniimo.guide, cross-checked with the extracted game data (the lookup the player was shown the same day): the Crackle Generator makes the grid's supply but needs <strong>one Lightning Aniimo working it</strong>, its output capped by its level; the Crackle Power Pole is a relay only — no power of its own, it stretches the grid and must overlap an already-powered area; from RV 12 a processing facility inside the grid can run in <strong>E-Mode</strong> on a timer instead of an Aniimo. The decision rules are the planner's own, stated in the Power &amp; E-Mode section and applied identically in the basket plan, the strategy plan, the Step 5 facility blocks, the Step 6 crew note, the Power panel and the Suggested Layout note: only the twelve processing facilities (Carousel Mill, Crafting Table, Woodworking Bench, Chimney Kiln, Blazing Stove, Simmering Pot, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Joy Wheel Loom, Phonolfactory Table, Bouncy Brew Keg) can be switched; copies are taken cheapest-draw first under the fewest generators that hold them and never past supply; a grid is only recommended when copies switched minus generators out nets at least 2 Aniimo; Mines, Wells, Aniipod Makers and Dance Pad Polishers are never switched (30 × level — the standing player advice is never to E-Mode Mines or the Well), gather posts are never switched (their family gates need an Aniimo standing there), and climate units, fields and passive pieces are never switched. Poles follow the cluster rule: switched-on machines sit inside their generator's 11 × 11, so a call needs no poles unless the switched-on set spans more than five facility kinds, and then only ⌈(kinds − 5) / 3⌉, at most 6 — a placement heuristic of the planner's, flagged as such, never the Step 1 count. The generator counts the call may use are the Step 1 boxes (what she has), capped by the RV ladder; generators and poles beyond the call stay in storage. The Put out list still shows the all-Aniimo crew; the power swap is printed as its own note in Step 6 (generator Aniimo on, switched machines' Aniimo off, net change and the Bud Tickets those Aniimo earn at home at the verified Step 7 rates) rather than rewriting the crew totals. The old all-on power line — every building counted as if on E-Mode, warning of a slowdown nobody chose — is retired; the all-on draw survives only as the contrast figure inside each call. No exact speed percentage is computed from headroom: the game states only that spare power speeds the grid up to 120% at most, so the call names headroom bands in words and invents no formula.</li>
           <li><strong>Family gates are hard requirements (deep-dive audit, Nov 7, 2026):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
           <li><strong>Climate and light gates on recipes (audit, Nov 7, 2026):</strong> Scales and Quick Scales are hard-gated on Light: the plan must include a Sunlamp covering the Floral Windmill in Step 5 · Add & Adjust, and the plan warns if it is missing. Pearl and Quick Pearl want Warmth +1: without Heat Furnace coverage of the Sandcastle they run at 80%, and the adjusted per-hour figure is shown, labelled. Star wants Cool -1: 80% without Cooling Unit coverage. Sweet Cone wants Cold -2: 50% without. Gold-Speck Cap wants Warmth +1: 80% without.</li>
           <li><strong>Storage Units take no worker (audit, Nov 7, 2026):</strong> Storage Units are passive. They have no crew slot, no crew count and no worker-based power math, and they never appear in the crew.</li>
@@ -818,7 +851,7 @@
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
-          <li><strong>Suggested Homeland Layout (added Nov 9, 2026, player's ask):</strong> one suggestion board for the whole homeland, drawn from the RV level and the Step 1 facility counts — Storage Units and Hatchinators included, since their counts live in Step 1 and fill from the RV level (the two boxes in this panel are those same Step 1 counts, kept in step both ways). The arrangement is generic for any player and is worked out fresh from those counts each time the board draws, never copied from any one homeland: the layout is built around the farm and trees, and like is grouped with like (farms and trees together, the cooking buildings, Simmering Pot, Blazing Stove, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Carousel Mill and Joy Wheel Loom, on the plots right beside the farm, then the remaining workshops, Crafting Table, Woodworking Bench, Chimney Kiln, Phonolfactory Table, Bouncy Brew Keg, Dance Pad Polisher and Aniipod Maker, then Mines together, leisure pieces together, Hatchinators together, wet works together, and one Storage Unit spread onto each busy plot), groups take unlocked plots in unlock order starting from the lowest number and stay compact, at a low RV or with small counts the groups use fewer plots, and unlocked plots no group needs stay open. The grid is the game's homeland grid: 16 plots in a 4 by 4 arrangement (rows top to bottom: 13, 14, 15, 16 / 12, 7, 8, 9 / 11, 4, 3, 6 / 10, 2, 1, 5), each plot 20 big squares across by 15 up, 80 by 60 in all, and plot numbers are the unlock order, so RV level N unlocks plots 1 to N. Facility sizes are the verified table above, and every piece on the board is drawn at its true size, packing and overlap checks included: Woodland 3.5 by 3.5, Aniipod Maker 4.5 by 4.5, Woodworking Bench 2 by 1.5, Claw Game Cooker 1.5 by 1.5, Blazing Stove 2.5 by 2.5, Jukebox Dryer 2.5 by 2.5, Pickling Jar 2.5 by 2, Phonolfactory Table 3.5 by 3.5 and Dance Pad Polisher 2.5 by 2.5, with every other facility at its whole number size. Placement starts are counted in whole squares only, so a half can sit on a piece's far edge, exactly like the real footprints; the board's grid shows little quarter squares, so halves draw exactly. The Aniipod Maker's 4.5 by 4.5 size is wikily's and is not confirmed in game, and the board says so. The Floral Windmill has no verified size, so it is never drawn, only listed as still to place by hand. Climate units, Crackle Generators and Power Poles are pocket items and are never drawn as pieces: nothing is placed in the middle 2 by 2 of each farm plot, so its center stays open grass, and open grass is kept beside each Starfall Hammock and each Tidewhisper Sandcastle on the leisure plot the same way, with nothing drawn there either. The farm plots pack into one compact block, side by side and stacked so their corners meet, for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered only when its center falls inside that area (the center rule, player-verified in game Nov 27, 2026 — a plot that only touches the area with an edge is not covered), so one unit dropped at a corner shared by up to four farm plots can cover all of them at once, because their centers sit inside its 9 by 9, and more whenever more farm plots' centers fall inside the area. Lines under the board say which climate unit to use and where, and the farm lines are worked out from the board as drawn: each names a best drop spot, a spot where one dropped unit touches the most farm plots, and says how many farm plots that one unit covers. Any climate unit can be the one dropped at a named spot, a Cooling Unit, Heat Furnace or Sunlamp, whichever the crops it covers need. When only one farm plot is placed, its line still names the center of its plot. A Cooling Unit goes on the open grass beside each Starfall Hammock, and a Heat Furnace goes on the open grass beside each Tidewhisper Sandcastle. No game bonus for the farm and cooking closeness is claimed anywhere; the grouping only keeps the grow and cook steps together for orders, and the basket and recipe steps, not the layout, decide what to grow and what to cook. Instruction lines are listed only for pieces actually placed. Placed counts are summed and checked against the entered counts before the board shows, and the check line under the board prints both.</li>
+          <li><strong>Suggested Homeland Layout (added Nov 9, 2026, player's ask):</strong> one suggestion board for the whole homeland, drawn from the RV level and the Step 1 facility counts — Storage Units and Hatchinators included, since their counts live in Step 1 and fill from the RV level (the two boxes in this panel are those same Step 1 counts, kept in step both ways). The arrangement is generic for any player and is worked out fresh from those counts each time the board draws, never copied from any one homeland: the layout is built around the farm and trees, and like is grouped with like (farms and trees together, the cooking buildings, Simmering Pot, Blazing Stove, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Carousel Mill and Joy Wheel Loom, on the plots right beside the farm, then the remaining workshops, Crafting Table, Woodworking Bench, Chimney Kiln, Phonolfactory Table, Bouncy Brew Keg, Dance Pad Polisher and Aniipod Maker, then Mines together, leisure pieces together, Hatchinators together, wet works together, and one Storage Unit spread onto each busy plot), groups take unlocked plots in unlock order starting from the lowest number and stay compact, at a low RV or with small counts the groups use fewer plots, and unlocked plots no group needs stay open. The grid is the game's homeland grid: 16 plots in a 4 by 4 arrangement (rows top to bottom: 13, 14, 15, 16 / 12, 7, 8, 9 / 11, 4, 3, 6 / 10, 2, 1, 5), each plot 20 big squares across by 15 up, 80 by 60 in all, and plot numbers are the unlock order, so RV level N unlocks plots 1 to N. Facility sizes are the verified table above, and every piece on the board is drawn at its true size, packing and overlap checks included: Woodland 3.5 by 3.5, Aniipod Maker 4.5 by 4.5, Woodworking Bench 2 by 1.5, Claw Game Cooker 1.5 by 1.5, Blazing Stove 2.5 by 2.5, Jukebox Dryer 2.5 by 2.5, Pickling Jar 2.5 by 2, Phonolfactory Table 3.5 by 3.5 and Dance Pad Polisher 2.5 by 2.5, with every other facility at its whole number size. Placement starts are counted in whole squares only, so a half can sit on a piece's far edge, exactly like the real footprints; the board's grid shows little quarter squares, so halves draw exactly. The Aniipod Maker's 4.5 by 4.5 size is wikily's and is not confirmed in game, and the board says so. The Floral Windmill has no verified size, so it is never drawn, only listed as still to place by hand. Climate units, Crackle Generators and Power Poles are pocket items and are never drawn as pieces: nothing is placed in the middle 2 by 2 of each farm plot, so its center stays open grass, and open grass is kept beside each Starfall Hammock and each Tidewhisper Sandcastle on the leisure plot the same way, with nothing drawn there either. Since Nov 27, 2026 the note under the board also prints the planner's power call for the current plan — how many generators and poles to actually drop beside the cooking and workshop plots — instead of leaving the Step 1 counts (3 generators and 24 poles at RV 18) reading as if they all go out; they do not, and the call says what does. The farm plots pack into one compact block, side by side and stacked so their corners meet, for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered only when its center falls inside that area (the center rule, player-verified in game Nov 27, 2026 — a plot that only touches the area with an edge is not covered), so one unit dropped at a corner shared by up to four farm plots can cover all of them at once, because their centers sit inside its 9 by 9, and more whenever more farm plots' centers fall inside the area. Lines under the board say which climate unit to use and where, and the farm lines are worked out from the board as drawn: each names a best drop spot, a spot where one dropped unit touches the most farm plots, and says how many farm plots that one unit covers. Any climate unit can be the one dropped at a named spot, a Cooling Unit, Heat Furnace or Sunlamp, whichever the crops it covers need. When only one farm plot is placed, its line still names the center of its plot. A Cooling Unit goes on the open grass beside each Starfall Hammock, and a Heat Furnace goes on the open grass beside each Tidewhisper Sandcastle. No game bonus for the farm and cooking closeness is claimed anywhere; the grouping only keeps the grow and cook steps together for orders, and the basket and recipe steps, not the layout, decide what to grow and what to cook. Instruction lines are listed only for pieces actually placed. Placed counts are summed and checked against the entered counts before the board shows, and the check line under the board prints both.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
@@ -1794,23 +1827,230 @@
       });
       return used;
     }
-    /* facWorking: { facility: how many of that building the plan runs }.
-       One plain line: used, total supply from every generator copy
-       the RV allows, spare, and a clear warning when the plan goes
-       over the total. */
-    function powerHeadroomHtml(facWorking){
+    /* ============ E-Mode: the planner decides (player's ask, Nov 27, 2026) ============
+       What the pieces do (the game's own help texts, via aniimo.guide,
+       cross-checked with the extracted game data — the same lookup the
+       player was shown before she asked for this):
+       - Crackle Generator (2 × 2, covers 11 × 11): makes the grid's
+         supply, but it does not run itself — ONE Lightning Aniimo works
+         each generator out, and its supply is capped by the generator
+         level (the Power Module ladder in POWER_GEN_CAPS above).
+       - Crackle Power Pole (1.5 × 1.5, covers 7 × 7): a relay only. It
+         makes no power; it stretches the grid's reach, and it has to
+         overlap an already-powered area to pass power on.
+       - E-Mode (from RV 12): a processing facility inside the grid can
+         run on a timer instead of an Aniimo. Supply over demand speeds
+         the grid up, to 120% at most; demand over supply slows
+         everything on the grid below 100%.
+       The planner's call, worked out fresh for every plan:
+       - Only processing machines are ever switched on: the twelve
+         E_MODE_OK facilities below. Mines, Wells, Aniipod Makers and
+         Dance Pad Polishers draw 30 × level — one of them can eat a
+         whole generator — so they are NEVER switched on. The gather
+         posts keep their Aniimo (their family gates need one standing
+         there), the climate units keep theirs, and fields, storage
+         and passive pieces draw nothing and have nothing to switch.
+       - Copies are taken cheapest first (lowest draw per copy), whole
+         plans at a time, under the FEWEST generators that hold them:
+         a generator is only worth its Lightning Aniimo when the
+         machines it frees outnumber it — the call needs a net gain of
+         at least 2 Aniimo (copies switched on minus generators out)
+         before it says yes, and it never loads a grid past its
+         supply, so a recommended grid never slows anything down.
+       - Poles follow the cluster rule: the switched-on machines sit
+         together beside their generator, inside its 11 × 11, so a
+         small grid needs NO poles at all. Poles are only called for
+         when the switched-on set spreads past one cluster (more than
+         five facility kinds), and then only a few — never the whole
+         Step 1 count. Extra generators and poles stay in storage.
+       The old line counted EVERY building as if it were on E-Mode and
+       warned about a slowdown nobody had chosen; that all-on figure
+       now appears only as the contrast the call is measured against. */
+    var E_MODE_OK = { "Carousel Mill":true, "Crafting Table":true, "Woodworking Bench":true, "Chimney Kiln":true, "Blazing Stove":true, "Simmering Pot":true, "Claw Game Cooker":true, "Jukebox Dryer":true, "Pickling Jar":true, "Joy Wheel Loom":true, "Phonolfactory Table":true, "Bouncy Brew Keg":true };
+    var E_MODE_GATHER = { "Tidewhisper Sandcastle":true, "Dewy House":true, "Nimbus Bed":true, "Homeland leisure station":true, "Starfall Hammock":true, "Floral Windmill":true };
+    var E_MODE_CLIMATE = { "Cooling Unit":true, "Heat Furnace":true, "Sunlamp":true };
+    function powerDrawPerCopy(f){
+      var lvl = facLevel(f);
+      if(!(lvl > 0)) lvl = 1;
+      return (POWER_HIGH_DRAW[f] ? 30 : 15) * lvl;
+    }
+    function powerHeadroomBand(loadPct){
+      if(loadPct <= 60) return "deep in spare power — the switched-on machines run at their fastest, up to 120%";
+      if(loadPct <= 85) return "comfortably under supply — spare power still speeds the grid up, towards 120% at most";
+      return "just under supply — full speed, but no spare-power bonus left over";
+    }
+    /* The decision itself. facWorking: { facility: copies the plan runs }.
+       Returns everything the three renderers (plan lines, the Power
+       section panel, the facility blocks) need, so every place on the
+       page gives the same call for the same plan. */
+    function powerPlan(facWorking){
       var genLvl = powerGenLevel(userRV);
-      if(genLvl === 0){
-        return "⚡ Power: power unlocks at <strong>RV 12</strong> (Power Module Lv 1), so " + (userRV ? "a plan at RV " + userRV + " has" : "with no RV level picked yet there is") + " no power grid yet. From RV 12, buildings on E-mode draw power and this line counts it.";
+      var perGen = genLvl ? (POWER_GEN_CAPS[genLvl] || 0) : 0;
+      var gensOwned = Math.max(0, Math.min(facCount("Crackle Generator") || 0, powerGenCopies(userRV) || 0));
+      var polesOwned = facCount("Crackle Power Pole") || 0;
+      var cand = [], skipHigh = [], skipGather = [], skipClimate = [];
+      Object.keys(facWorking || {}).forEach(function(f){
+        var w = facWorking[f] || 0;
+        if(!(w > 0)) return;
+        if(f === "Farmland" || f === "Woodland" || f === "Storage Unit" || f === "Storage Units" || f === "Hatchinator" || f === "Crackle Generator" || f === "Crackle Power Pole") return;
+        var per = powerDrawPerCopy(f);
+        if(E_MODE_OK[f]) cand.push({ f:f, copies:w, lvl:Math.max(1, facLevel(f) || 1), per:per, total:per * w });
+        else if(POWER_HIGH_DRAW[f]) skipHigh.push({ f:f, copies:w, per:per, total:per * w });
+        else if(E_MODE_GATHER[f]) skipGather.push({ f:f, copies:w });
+        else if(E_MODE_CLIMATE[f]) skipClimate.push({ f:f, copies:w });
+      });
+      cand.sort(function(a, b){ return a.per - b.per || a.f.localeCompare(b.f); });
+      skipHigh.sort(function(a, b){ return a.f.localeCompare(b.f); });
+      var allOn = powerUsed(facWorking);
+      var plan = { genLvl:genLvl, perGen:perGen, gensOwned:gensOwned, polesOwned:polesOwned,
+        cand:cand, skipHigh:skipHigh, skipGather:skipGather, skipClimate:skipClimate, allOn:allOn,
+        use:false, gens:0, poles:0, chosen:[], demand:0, supply:0, loadPct:0, freed:0, net:0, reason:"" };
+      if(genLvl === 0 || !cand.length) return plan;
+      if(gensOwned === 0){ plan.reason = "nogens"; return plan; }
+      /* Expand to single copies, cheapest first, then try each
+         generator count: fill that supply cheapest-first and score it
+         by net Aniimo freed (copies on minus generators out). The best
+         score wins; ties go to fewer generators, then more headroom. */
+      var units = [];
+      cand.forEach(function(c){ for(var i = 0; i < c.copies; i++) units.push({ f:c.f, per:c.per }); });
+      var best = null;
+      for(var g = 1; g <= gensOwned; g++){
+        var supply = g * perGen, demand = 0, taken = [];
+        for(var u = 0; u < units.length; u++){
+          if(demand + units[u].per > supply) continue;
+          demand += units[u].per; taken.push(units[u]);
+        }
+        var net = taken.length - g;
+        var score = { g:g, supply:supply, demand:demand, taken:taken, net:net, load:supply ? demand / supply : 1 };
+        if(!best || score.net > best.net || (score.net === best.net && (score.g < best.g || (score.g === best.g && score.load < best.load)))) best = score;
       }
-      var used = powerUsed(facWorking);
-      var copies = powerGenCopies(userRV);
-      var perGen = POWER_GEN_CAPS[genLvl];
-      var cap = copies * perGen;
-      var base = "⚡ Power: this plan's buildings would use <strong>" + fmt(used) + " power</strong> on E-mode (15 × level each; 30 × level for the Mine, Well, Aniipod Maker and Dance Pad Polisher), with <strong>" + copies + (copies === 1 ? " Crackle Generator" : " Crackle Generators") + " Lv " + genLvl + "</strong> (the count and level RV " + userRV + " allows, " + fmt(perGen) + " supply each). Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7. ";
-      var spare = cap - used;
-      if(spare >= 0) return base + "Total supply <strong>" + fmt(cap) + "</strong>, so <strong>" + fmt(spare) + " power spare</strong>. Spare power speeds the grid up, to 120% at most.";
-      return base + "Total supply <strong>" + fmt(cap) + "</strong>: <strong>over the supply by " + fmt(-spare) + ", so everything on the grid slows below 100%.</strong> Take a building off E-mode to get back under.";
+      if(!best || best.net < 2){
+        plan.reason = "net";
+        if(best){ plan.freed = best.taken.length; plan.net = best.net; plan.gens = best.g; plan.demand = best.demand; plan.supply = best.supply; }
+        return plan;
+      }
+      var byFac = {};
+      best.taken.forEach(function(t){ byFac[t.f] = (byFac[t.f] || 0) + 1; });
+      plan.chosen = cand.filter(function(c){ return byFac[c.f] > 0; }).map(function(c){
+        return { f:c.f, copies:byFac[c.f], of:c.copies, lvl:c.lvl, per:c.per, total:c.per * byFac[c.f] };
+      });
+      plan.use = true;
+      plan.gens = best.g; plan.supply = best.supply; plan.demand = best.demand;
+      plan.loadPct = best.supply ? Math.round(100 * best.demand / best.supply) : 0;
+      plan.freed = best.taken.length; plan.net = best.net;
+      var kinds = plan.chosen.length;
+      plan.poles = kinds <= 5 ? 0 : Math.min(polesOwned, Math.ceil((kinds - 5) / 3), 6);
+      return plan;
+    }
+    function powerSkipText(pp){
+      var bits = [];
+      if(pp.skipHigh.length) bits.push("Never on E-Mode: " + pp.skipHigh.map(function(s){ return "<strong>" + esc(s.f) + "</strong> (" + s.per + " power a copy at 30 × Lv " + Math.max(1, facLevel(s.f) || 1) + (s.copies > 1 ? ", " + fmt(s.total) + " for all " + s.copies : "") + " — even one copy eats a big share of a generator)"; }).join(", ") + " — these keep their Aniimo");
+      if(pp.skipGather.length) bits.push("Gather posts keep their Aniimo too (" + pp.skipGather.map(function(s){ return esc(s.f); }).join(", ") + "): their family gates need one standing there");
+      if(pp.skipClimate.length) bits.push("Climate units (" + pp.skipClimate.map(function(s){ return esc(s.f); }).join(", ") + ") run on their own Aniimo and are never switched");
+      return bits.join(". ") + (bits.length ? "." : "");
+    }
+    /* The compact call, printed inside the basket plan and the strategy
+       plan where the old all-on line used to sit. */
+    function powerHeadroomHtml(facWorking){
+      var pp = powerPlan(facWorking);
+      if(pp.genLvl === 0){
+        return '<div class="note note-info"><h4>⚡ Power &amp; E-Mode: no grid yet</h4><p>Power unlocks at <strong>RV 12</strong> (Power Module Lv 1), so ' + (userRV ? "a plan at RV " + userRV + " has" : "with no RV level picked yet there is") + ' no power grid yet and every machine keeps its Aniimo. From RV 12 this line stops counting and starts <strong>deciding</strong>: which machines are worth switching to E-Mode, and how small the grid can be. <a href="#power">How the call is made ↓</a></p></div>';
+      }
+      if(!pp.cand.length){
+        return '<div class="note note-info"><h4>⚡ Power &amp; E-Mode: the planner\'s call — no grid for this plan</h4><p>This plan runs <strong>no processing machines</strong>, so E-Mode has nothing to take over: leave the Crackle Generators and Power Poles in storage and keep every Aniimo where they are. ' + powerSkipText(pp) + ' <a href="#power">Full power section ↓</a></p></div>';
+      }
+      if(pp.reason === "nogens"){
+        return '<div class="note note-info"><h4>⚡ Power &amp; E-Mode: no generators in Step 1</h4><p>Your Step 1 Crackle Generator count is <strong>0</strong>, so there is no grid to decide about — every machine keeps its Aniimo. Raise the Generator count in Step 1 (RV ' + userRV + ' allows ' + powerGenCopies(userRV) + ') and the call is worked out on the spot. <a href="#power">Full power section ↓</a></p></div>';
+      }
+      if(!pp.use){
+        return '<div class="note note-info"><h4>⚡ Power &amp; E-Mode: the planner\'s call — not worth it for this plan</h4><p>Best case, the grid frees <strong>' + pp.freed + (pp.freed === 1 ? " machine" : " machines") + '</strong> but the ' + (pp.gens === 1 ? "generator it needs costs" : "generators it needs cost") + ' <strong>' + pp.gens + ' Lightning Aniimo</strong> to run — a net gain of ' + pp.net + ', under the 2 a grid has to earn to be worth its space and its Aniimo. Keep the generators in storage for this plan; the machines keep their Aniimo and run at full speed. ' + powerSkipText(pp) + ' <a href="#power">Full power section ↓</a></p></div>';
+      }
+      var chosenTxt = pp.chosen.map(function(c){ return "<strong>" + esc(c.f) + "</strong>" + (c.of > c.copies ? " ×" + c.copies + " of " + c.of : " ×" + c.copies) + " (" + fmt(c.total) + ")"; }).join(", ");
+      return '<div class="note note-teal"><h4>⚡ Power &amp; E-Mode: the planner\'s call — a small grid earns its place here</h4><p>Switch on: ' + chosenTxt + '. That is <strong>' + fmt(pp.demand) + ' power</strong> against <strong>' + fmt(pp.supply) + '</strong> from <strong>' + pp.gens + (pp.gens === 1 ? " Crackle Generator" : " Crackle Generators") + ' Lv ' + pp.genLvl + '</strong> (' + fmt(pp.perGen) + ' each) — ' + pp.loadPct + '% loaded, ' + powerHeadroomBand(pp.loadPct) + '. The grid frees <strong>' + pp.freed + (pp.freed === 1 ? " machine Aniimo" : " machine Aniimo") + '</strong>; the ' + (pp.gens === 1 ? "generator" : "generators") + ' take' + (pp.gens === 1 ? "s" : "") + ' <strong>' + pp.gens + ' Lightning Aniimo</strong>, so the plan is <strong>' + pp.net + ' Aniimo better off</strong>. ' +
+        (pp.poles === 0 ? '<strong>No Power Poles needed</strong>: sit the switched-on machines together inside the generator\'s 11 × 11 and the grid reaches them all. ' : 'Stretch it with <strong>' + pp.poles + (pp.poles === 1 ? " Power Pole" : " Power Poles") + '</strong> only if some switched-on machines cannot sit by the generator — each pole (1.5 × 1.5, covers 7 × 7) must overlap an already-powered area. ') +
+        (pp.gensOwned > pp.gens ? 'Your other ' + (pp.gensOwned - pp.gens) + (pp.gensOwned - pp.gens === 1 ? " generator stays" : " generators stay") + ' in storage. ' : '') +
+        powerSkipText(pp) + ' Switching <em>everything</em> on would draw ' + fmt(pp.allOn) + ' and slow the whole grid — that is exactly what the pick avoids. <a href="#power">Full power section ↓</a></p></div>';
+    }
+    /* The working counts of the plan on show right now, combined the
+       same way the strategy plan's power line builds them, so the
+       Power section panel and the Team note give the same call as the
+       plan lines. */
+    function currentPlanWorking(){
+      var fw = {};
+      try {
+        var nc = allFacilityNeedCounts();
+        Object.keys(nc).forEach(function(f){ if((nc[f] || 0) > 0) fw[f] = Math.min(nc[f], facCount(f) > 0 ? facCount(f) : nc[f]); });
+        var nc2 = facilityNeedCounts();
+        ["Well", "Dewy House", "Tidewhisper Sandcastle", "Starfall Hammock", "Nimbus Bed", "Floral Windmill"].forEach(function(f){
+          if(typeof isGatherPickFac === "function" && !isGatherPickFac(f) && f !== "Floral Windmill") return;
+          var w = deployedCount(f, Math.min(nc2[f] || 0, facCount(f)));
+          if(w > 0) fw[f] = Math.max(fw[f] || 0, w);
+        });
+        if(typeof currentMinePicks === "function"){
+          var ms = currentMinePicks();
+          var out = (ms.blockOut != null ? ms.blockOut : ms.totalOut) || 0;
+          if(out > 0) fw["Mine"] = out;
+        }
+        alwaysList.forEach(function(f){ var c = alwaysCount(f); if(c > 0) fw[f] = Math.max(fw[f] || 0, deployedCount(f, c)); });
+        applyAddedPower(fw);
+      } catch(e){ /* the panel falls back to whatever was gathered */ }
+      return fw;
+    }
+    /* The full panel in the Power & E-Mode section, plus the swap note
+       inside the Team Helper: both read the one decision above. */
+    function renderPowerPanel(){
+      var panel = document.getElementById("powerPanel");
+      var teamNote = document.getElementById("teamPowerNote");
+      if(!panel && !teamNote) return;
+      var fw = currentPlanWorking();
+      var pp = powerPlan(fw);
+      if(teamNote){
+        if(pp.genLvl === 0 || !pp.cand.length || pp.reason === "nogens"){
+          teamNote.innerHTML = "";
+        } else if(!pp.use){
+          teamNote.innerHTML = '<div class="note note-info"><h4>⚡ Power call for this crew: no grid</h4><p>The planner\'s power call for this plan is <strong>no grid</strong> — the best grid frees ' + pp.freed + ' but costs ' + pp.gens + ' Lightning Aniimo to run it (net ' + pp.net + '), under the 2 a grid must earn. The crew above stands as shown, all Aniimo on their machines. <a href="#power">Power &amp; E-Mode ↓</a></p></div>';
+        } else {
+          teamNote.innerHTML = '<div class="note note-teal"><h4>⚡ If you follow the power call</h4><p>Put <strong>' + pp.gens + ' Lightning Aniimo</strong> on the ' + (pp.gens === 1 ? "Crackle Generator" : "Crackle Generators") + ' (they stay at that post and never haul), and take the Aniimo off the switched-on machines: ' + pp.chosen.map(function(c){ return "<strong>" + esc(c.f) + "</strong> ×" + c.copies; }).join(", ") + '. Net crew change: <strong>' + pp.net + ' fewer Aniimo on production</strong> — those ' + pp.net + ' can live at home instead, earning Bud Tickets (120 a day each if regular, more with Sparkling or Prismana tags). The Put out list above still shows the all-Aniimo crew; swap these posts in game. <a href="#power">Power &amp; E-Mode ↓</a></p></div>';
+        }
+      }
+      if(!panel) return;
+      if(!userRV){
+        panel.innerHTML = '<div class="empty-plan">⚡ Pick your RV level in Step 1 and the call appears here: the planner reads your plan\'s machines, your Step 1 Generator and Pole counts, and your Power Module level, and decides whether a grid earns its place.</div>';
+        return;
+      }
+      if(pp.genLvl === 0){
+        panel.innerHTML = '<div class="note note-info"><h4>⚡ No grid at RV ' + userRV + ' yet</h4><p>Power opens at <strong>RV 12</strong> (Power Module Lv 1). Until then there is nothing to decide: every machine keeps its Aniimo, and the Crackle Generator and Power Pole counts stay at 0. The call starts the moment your RV reaches 12.</p></div>';
+        return;
+      }
+      var head = '<p class="fac-state" aria-live="polite">⚡ At RV ' + userRV + ': Power Module Lv ' + pp.genLvl + ' · one Crackle Generator supplies ' + fmt(pp.perGen) + ' · you have ' + pp.gensOwned + (pp.gensOwned === 1 ? " Generator" : " Generators") + ' and ' + pp.polesOwned + (pp.polesOwned === 1 ? " Power Pole" : " Power Poles") + ' in Step 1 · this plan runs ' + pp.cand.reduce(function(a, c){ return a + c.copies; }, 0) + ' switchable machine copies</p>';
+      if(!pp.cand.length){
+        panel.innerHTML = head + '<div class="note note-info" style="margin-top:12px"><h4>The call: no grid for this plan</h4><p>Your current plan — basket, strategy and anything you added in Step 5 — runs <strong>no processing machines</strong>, so E-Mode has nothing to take over. Leave every generator and pole in storage. ' + powerSkipText(pp) + ' Pick a basket with cooking or crafting in it and the call is worked out again on the spot.</p></div>';
+        return;
+      }
+      if(pp.reason === "nogens"){
+        panel.innerHTML = head + '<div class="note note-info" style="margin-top:12px"><h4>No generators to call on</h4><p>Your Step 1 Crackle Generator count is <strong>0</strong> — the boxes are what you have, and the call respects them exactly as they stand. Raise the count in Step 1 (RV ' + userRV + ' allows ' + powerGenCopies(userRV) + ') and the call for this plan is worked out on the spot.</p></div>';
+        return;
+      }
+      if(!pp.use){
+        panel.innerHTML = head + '<div class="note note-info" style="margin-top:12px"><h4>The call: not worth it for this plan</h4><p>The cheapest grid for this plan switches on ' + pp.freed + (pp.freed === 1 ? " machine" : " machines") + ' (' + fmt(pp.demand) + ' power) but spends <strong>' + pp.gens + ' Lightning Aniimo</strong> running ' + (pp.gens === 1 ? "its generator" : "its generators") + ' — net gain <strong>' + pp.net + '</strong>, and a grid has to net at least 2 Aniimo to earn its space, its generator Aniimo and the slower, timer-based running. So: <strong>no grid</strong>. Your machines keep their Aniimo, who also carry their own output to storage where the generator Aniimo never could. ' + powerSkipText(pp) + '</p><p style="margin-top:8px">The call flips on its own when a plan runs more cheap machines at once — a bigger basket is what makes a grid pay.</p></div>';
+        return;
+      }
+      var rows = pp.chosen.map(function(c){
+        return '<li style="background:#fff;border:2px solid var(--card-line);border-radius:10px;padding:8px 11px;font-weight:700"><strong>' + esc(c.f) + '</strong> — switch ' + (c.of > c.copies ? c.copies + " of its " + c.of + " copies" : (c.copies === 1 ? "its 1 copy" : "all " + c.copies + " copies")) + ' to E-Mode · Lv ' + c.lvl + ' · ' + c.per + ' power a copy · <strong>' + fmt(c.total) + ' in all</strong> · frees ' + c.copies + (c.copies === 1 ? " Aniimo" : " Aniimo") + '</li>';
+      }).join("");
+      var leftOut = pp.cand.filter(function(c){ var ch = pp.chosen.filter(function(x){ return x.f === c.f; })[0]; return !ch || ch.copies < c.copies; }).map(function(c){
+        var ch = pp.chosen.filter(function(x){ return x.f === c.f; })[0];
+        var left = c.copies - (ch ? ch.copies : 0);
+        return "<strong>" + esc(c.f) + "</strong> ×" + left + " (" + c.per + " power a copy — left on its Aniimo: adding it would either pass the supply or eat the headroom that keeps the grid fast)";
+      });
+      panel.innerHTML = head +
+        '<div class="note note-teal" style="margin-top:12px"><h4>⚡ The call: build the small grid — ' + pp.gens + (pp.gens === 1 ? " generator" : " generators") + ', ' + (pp.poles === 0 ? "no poles" : pp.poles + (pp.poles === 1 ? " pole" : " poles")) + '</h4>' +
+        '<p>Demand <strong>' + fmt(pp.demand) + '</strong> of <strong>' + fmt(pp.supply) + '</strong> supply (' + pp.loadPct + '% loaded): ' + powerHeadroomBand(pp.loadPct) + '. Aniimo: <strong>' + pp.freed + ' freed</strong> off the machines, <strong>' + pp.gens + ' Lightning Aniimo</strong> onto the ' + (pp.gens === 1 ? "generator" : "generators") + ' — <strong>net ' + pp.net + ' Aniimo better off</strong>, and those ' + pp.net + ' can live at home earning Bud Tickets instead (120 a day each if regular, 180 Sparkling or Prismana, 270 both).</p>' +
+        '<ul style="list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px">' + rows + '</ul>' +
+        '<p style="margin-top:10px"><strong>Placement:</strong> ' + (pp.poles === 0 ? 'sit the switched-on machines together beside the generator, inside its 11 × 11 — one cluster, <strong>no Power Poles at all</strong>. ' : 'sit most switched-on machines beside the generator inside its 11 × 11, and stretch the grid with <strong>' + pp.poles + (pp.poles === 1 ? " Power Pole" : " Power Poles") + '</strong> to the rest — a pole only passes power on when it overlaps an already-powered area. ') + 'The generator is 2 × 2 and takes 1 Lightning Aniimo: use a strong Lightning Aniimo so the generator runs at its Lv ' + pp.genLvl + ' cap of ' + fmt(pp.perGen) + '. ' + (pp.gensOwned > pp.gens ? 'Your other ' + (pp.gensOwned - pp.gens) + (pp.gensOwned - pp.gens === 1 ? " generator stays" : " generators stay") + ' in storage — more generators would only spend more Lightning Aniimo for headroom this plan cannot use. ' : '') + (pp.polesOwned > pp.poles ? 'The rest of your ' + pp.polesOwned + ' poles stay in storage too. ' : '') + '</p>' +
+        (leftOut.length ? '<p style="margin-top:8px"><strong>Left on Aniimo on purpose:</strong> ' + leftOut.join("; ") + '.</p>' : '') +
+        '<p style="margin-top:8px">' + powerSkipText(pp) + '</p>' +
+        '<p style="margin-top:8px">For contrast: switching <em>every</em> building in this plan on at once would draw <strong>' + fmt(pp.allOn) + '</strong> — ' + (pp.allOn > pp.supply ? 'over even this grid\'s supply, so the whole grid would slow below 100%. The pick above is what makes power worth using at all.' : 'the pick above still wins: it keeps the headroom that makes the grid fast, and frees the same Aniimo for less.') + '</p></div>';
     }
     function eventBadge(it){
       if(!it || !it.event) return "";
@@ -2539,6 +2779,7 @@
       syncFacExtras();
       renderTeam();
       renderLayout();
+      if(typeof renderPowerPanel === "function") renderPowerPanel();
       if(levelingOn) renderRvPlan();
       var area = document.getElementById("planArea");
       if(!basket.length){
@@ -2663,7 +2904,7 @@
       /* And any other facility with hand-added copies draws power
          for its deployed total, job pick or not. */
       applyAddedPower(facWorkingBP);
-      html += '<p class="src" style="margin-top:10px">' + powerHeadroomHtml(facWorkingBP) + '</p>';
+      html += '<div style="margin-top:12px">' + powerHeadroomHtml(facWorkingBP) + '</div>';
       /* Mines are NOT set here any more (player's workflow fix,
          Oct 29, 2026): this basket plan sits above the strategy
          picker, and the strategy itself can claim Mines, so the
@@ -5080,7 +5321,7 @@
           pf.textContent = "⚡ Power opens at RV 12 (Power Module Lv 1). At RV " + userRV + " there is no power grid yet, so no generator supply is counted.";
         } else {
           var gCopies = powerGenCopies(userRV);
-          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + ", Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each), total supply " + fmt(powerGenSupply(userRV)) + ", and " + facCount("Crackle Power Pole") + " Crackle Power Poles. Fill from RV level and the power headroom lines use these counts and this supply — the Generator and Power Pole counts are the Step 1 boxes below. Generator size 2 × 2, covers 11 × 11. Power Pole size 1.5 × 1.5, covers 7 × 7.";
+          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + " available, Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each, " + fmt(powerGenSupply(userRV)) + " if every one were out), and " + facCount("Crackle Power Pole") + " Crackle Power Poles in the Step 1 boxes below. You do not put them all out: the planner's power call (Power & E-Mode, after Step 4) reads these counts and your plan's machines, and calls for only the generators and poles that earn their place — the rest stay in storage. Generator size 2 × 2, covers 11 × 11, and takes 1 Lightning Aniimo each. Power Pole size 1.5 × 1.5, covers 7 × 7, makes no power of its own.";
         }
       }
       var grid = document.getElementById("facGrid");
@@ -5240,8 +5481,8 @@
         var extraHints = {
           "Storage Unit":"Passive, takes no worker · one goes on each busy plot in the Suggested Layout",
           "Hatchinator":"All of them group together on the hatchery plot in the Suggested Layout",
-          "Crackle Generator":"Makes the power grid's supply — the power lines above read this count",
-          "Crackle Power Pole":"Spreads the grid — covers 7 × 7 each"
+          "Crackle Generator":"Makes the grid's supply, 1 Lightning Aniimo each — the power call reads this count and only calls for the ones a plan earns",
+          "Crackle Power Pole":"Relay only, makes no power — stretches the grid 7 × 7 each; the power call asks for poles only when the switched-on machines spread past one generator's 11 × 11"
         };
         xg.innerHTML = Object.keys(EXTRA_COUNT).map(function(n){
           var maxC = extraCountFor(n, userRV) || 0;
@@ -7756,6 +7997,35 @@
         "Well":"Its Water Aniimo also water the crops; rain waters them for free when it rains (Nov 26, 2026 update)"
       };
       var blocks = [];
+      /* The power call for this layout's working counts, worked out
+         once for every block (the same powerPlan the plan lines and
+         the Power section use), so each block's E-Mode row agrees
+         with the call printed in the plans. */
+      var ppL = (function(){
+        var fw = {};
+        var an = allFacilityNeedCounts();
+        Object.keys(an).forEach(function(f){ if((an[f] || 0) > 0) fw[f] = Math.min(an[f], facCount(f) > 0 ? facCount(f) : an[f]); });
+        if(usedCounts) Object.keys(usedCounts).forEach(function(f){ if((usedCounts[f] || 0) > 0) fw[f] = Math.max(fw[f] || 0, Math.min(usedCounts[f], facCount(f) > 0 ? facCount(f) : usedCounts[f])); });
+        if(climateUsed) Object.keys(climateUsed).forEach(function(f){ if((climateUsed[f] || 0) > 0) fw[f] = Math.max(fw[f] || 0, climateUsed[f]); });
+        alwaysList.forEach(function(f){ var c = alwaysCount(f); if(c > 0) fw[f] = Math.max(fw[f] || 0, deployedCount(f, c)); });
+        applyAddedPower(fw);
+        return powerPlan(fw);
+      })();
+      var ppChosen = {};
+      ppL.chosen.forEach(function(c){ ppChosen[c.f] = c; });
+      function eModeRowHtml(f){
+        if(ppL.genLvl === 0) return "";
+        if(E_MODE_OK[f]){
+          var c = ppChosen[f];
+          if(ppL.use && c) return '<div class="zb-row"><span class="zb-k">E-Mode</span><span><strong>⚡ Switch ' + (c.of > c.copies ? c.copies + " of " + c.of + " copies" : (c.copies === 1 ? "this copy" : "all " + c.copies + " copies")) + ' on</strong> — ' + c.per + ' power a copy (' + fmt(c.total) + ' in all) on the planner\'s grid: ' + ppL.gens + (ppL.gens === 1 ? " generator" : " generators") + ', ' + fmt(ppL.demand) + ' of ' + fmt(ppL.supply) + ' supply. Its Aniimo is freed. <a href="#power">The call ↓</a></span></div>';
+          if(ppL.use) return '<div class="zb-row"><span class="zb-k">E-Mode</span><span>Keeps its Aniimo in this plan — the planner\'s grid is full or keeping its headroom, and this machine (' + powerDrawPerCopy(f) + ' power a copy) did not make the pick. <a href="#power">The call ↓</a></span></div>';
+          return '<div class="zb-row"><span class="zb-k">E-Mode</span><span>No grid for this plan — the planner\'s call is that a grid would not earn its generator Aniimo here, so this machine keeps its Aniimo. <a href="#power">The call ↓</a></span></div>';
+        }
+        if(POWER_HIGH_DRAW[f]) return '<div class="zb-row"><span class="zb-k">E-Mode</span><span><strong>Never</strong> — at 30 × level (' + powerDrawPerCopy(f) + ' power a copy) it would eat the grid. It keeps its Aniimo in every call. <a href="#power">Why ↓</a></span></div>';
+        if(E_MODE_GATHER[f]) return '<div class="zb-row"><span class="zb-k">E-Mode</span><span>Never — a gather post: its family gate needs an Aniimo standing here, so it is never switched. <a href="#power">Why ↓</a></span></div>';
+        if(E_MODE_CLIMATE[f]) return '<div class="zb-row"><span class="zb-k">E-Mode</span><span>Never — a climate unit runs on its own Aniimo; it is not a processing machine and is never switched. <a href="#power">Why ↓</a></span></div>';
+        return "";
+      }
       /* The Count line for a block: the plan's count on its own, or the
          working split once copies have been added by hand, in the
          player's own format: "3 working (2 for the plan + 1 added by
@@ -7835,6 +8105,7 @@
           '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(fa.facility, working, floorC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(namedProd) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span' + (fa.job ? ' tabindex="0" data-tip="' + escA(isClimateMachine(fa.facility) ? (fa.job + " · any level · 1 Aniimo per building this plan uses (" + working + " working for this plan) · the level of the Aniimo running a climate machine does not matter — any " + fa.job + " Aniimo runs it") : (fa.job + " Lv." + BEST_WORKERS[fa.job].lvl + " · strongest known: " + BEST_WORKERS[fa.job].name + " Lv." + BEST_WORKERS[fa.job].lvl + " · 1 Aniimo per building this plan uses (" + working + " working for this plan)")) + '"' : "") + '>' + (fa.job ? (isClimateMachine(fa.facility) ? anyLevelMarker(fa.job, null) + "1 " + fa.job + " Aniimo each, " + working + " in all · any level" : abilityMarker(fa.job, !!FAC_TRAIT[fa.facility]) + "1 " + fa.job + " Aniimo each, " + working + " in all") : "1 Aniimo each, " + working + ' in all · type <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
+          eModeRowHtml(fa.facility) +
           '<div class="zb-row"><span class="zb-k">Why</span><span>' + esc(pinC > 0 && planC <= 0 ? "Pinned in Always staffed in Step 1: it stays out and staffed even when no recipe uses it" : planC > 0 ? (why[fa.facility] || "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add") : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
           mineTallyRow +
           "</div>" + gatherHtml + "</div>";
@@ -7894,6 +8165,7 @@
           '<div class="zb-row"><span class="zb-k">Deploy</span><span>' + facStepperHtml(f, working, floorC, ownedC) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Producing</span><span>' + esc(prodTxt) + '</span></div>' +
           '<div class="zb-row"><span class="zb-k">Aniimo</span><span>' + (worker ? (planC > 0 ? "1 " + esc(worker) + " Aniimo post for this facility in your crew below" + (extra > 0 ? "; added copies with a job pick share that post and count in your crew and power" : "") : "Its job pick below puts a " + esc(worker) + " Aniimo post for this facility in your crew, and the copy counts in your power and totals") : 'Worker <span class="verdict v-mix">not verified yet</span>') + '</span></div>' +
+          eModeRowHtml(f) +
           '<div class="zb-row"><span class="zb-k">Why</span><span>' + (pinC > 0 && planC <= 0 ? "Pinned in Always staffed in Step 1: it stays out and staffed even when no recipe uses it" : planC > 0 ? "This plan uses it, so it is out: only as many copies as the plan needs, plus any you add" : "You put this out yourself from the add-a-facility list below; the plan does not need it") + '</span></div>' +
           "</div>" + (facList.length ? facPickHtml(f, floorC, working) : extraPickHtml(f, planC, working)) + "</div>");
       });
@@ -8942,6 +9214,7 @@
         bpResult = null; bpStale = false; bpBuiltSig = null;
         if(typeof renderMines === "function") renderMines();
         if(typeof renderSuggestedLayout === "function") renderSuggestedLayout();
+        if(typeof renderPowerPanel === "function") renderPowerPanel();
         return;
       }
       if(bpRefreshing){ bpRefreshQueued = true; return; }
@@ -8949,6 +9222,7 @@
       if(bpResult && bpBuiltSig !== null && bpBuiltSig === sig) return;
       bpRefreshing = true;
       try { renderBestPlan(); } finally { bpRefreshing = false; }
+      if(typeof renderPowerPanel === "function") renderPowerPanel();
       /* renderBestPlan -> findBestPlan stamps bpBuiltSig/bpRefreshedAt. */
       if(bpRefreshQueued){ bpRefreshQueued = false; refreshStrategyPlan(); }
     }
@@ -9858,7 +10132,7 @@
       /* And any other facility with hand-added copies draws power
          for its deployed total, job pick or not. */
       applyAddedPower(facWorkingSP);
-      html += '<p class="src" style="margin-top:10px">' + powerHeadroomHtml(facWorkingSP) + '</p>';
+      html += '<div style="margin-top:12px">' + powerHeadroomHtml(facWorkingSP) + '</div>';
       html += '<div class="note note-info"><h4>💰 What this plan earns</h4><p>' + (bpPerHH > 0
         ? 'Counted: <strong>' + fmtRate(res.coinsCycle * bpPerHH) + ' Home Coins per hour</strong> after seed costs.' +
           (res.starSell > 0 ? ' Of that counted rate, <strong>' + fmtRate(res.starSell * bpPerHH) + ' Home Coins per hour</strong> rests on recipes that use Star (' + res.starRecipes.map(function(n){ return esc(n); }).join(", ") + '). <span class="verdict v-mix">' + UNVERIFIED_FLAG + ": Aniimax uses Star too, flagged unverified there</span>." : "") +
@@ -10556,7 +10830,12 @@
           });
         }
       });
-      html += '<div class="note note-info"><h4>Climate units and power: what to use and where</h4><p>Cooling Units, Heat Furnaces, Sunlamps, Crackle Generators and Power Poles are never placed on this board. They live in the pocket until you drop one in. The middle of each farm plot stays open grass, and so does the grass beside the leisure pieces, with nothing placed there and nothing drawn there. The farm lines below are worked out from the board as drawn: they name the best spots to drop one unit, the spots where its 9 by 9 area touches the most farm plots, and say how many farm plots that one unit covers.</p>' + (climateLines.length ? '<ul style="margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px">' + climateLines.join("") + "</ul>" : '<p style="margin-top:8px">No farm or leisure pieces are placed on this board, so no climate unit is needed for it.</p>') + "</div>";
+      html += '<div class="note note-info"><h4>Climate units and power: what to use and where</h4><p>Cooling Units, Heat Furnaces, Sunlamps, Crackle Generators and Power Poles are never placed on this board. They live in the pocket until you drop one in. The middle of each farm plot stays open grass, and so does the grass beside the leisure pieces, with nothing placed there and nothing drawn there. The farm lines below are worked out from the board as drawn: they name the best spots to drop one unit, the spots where its 9 by 9 area touches the most farm plots, and say how many farm plots that one unit covers.</p>' + (climateLines.length ? '<ul style="margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px">' + climateLines.join("") + "</ul>" : '<p style="margin-top:8px">No farm or leisure pieces are placed on this board, so no climate unit is needed for it.</p>') + (function(){
+        var ppS = powerPlan(currentPlanWorking());
+        if(ppS.genLvl === 0) return '<p style="margin-top:8px"><strong>Power:</strong> no grid before RV 12 — generators and poles stay in the pocket.</p>';
+        if(!ppS.use) return '<p style="margin-top:8px"><strong>Power:</strong> the planner\'s call for your current plan is <strong>no grid</strong> — do not spread generators or poles over this board for it. <a href="#power">The call ↑</a></p>';
+        return '<p style="margin-top:8px"><strong>Power:</strong> the planner\'s call for your current plan is <strong>' + ppS.gens + (ppS.gens === 1 ? " Crackle Generator" : " Crackle Generators") + (ppS.poles === 0 ? " and no Power Poles" : " and " + ppS.poles + (ppS.poles === 1 ? " Power Pole" : " Power Poles")) + '</strong> — drop the generator beside the cooking and workshop plots so the switched-on machines (' + ppS.chosen.map(function(c){ return esc(c.f); }).join(", ") + ') sit inside its 11 × 11' + (ppS.poles === 0 ? ', and leave every other generator and pole in storage, however many Step 1 says you own' : ', stretching with the poles only to machines that cannot sit by it') + '. <a href="#power">The call ↑</a></p>';
+      })() + "</div>";
       if((res.own["Aniipod Maker"] || 0) > 0) html += '<p><strong>Aniipod Maker size note:</strong> its size, 4.5 by 4.5 big squares, comes from wikily and is not confirmed in game. On this board it is drawn at that true size, 4.5 by 4.5.</p>';
       html += '<p><strong>True sizes, halves included:</strong> Woodland (3.5 by 3.5), Aniipod Maker (4.5 by 4.5), Phonolfactory Table (3.5 by 3.5), Woodworking Bench (2 by 1.5), Claw Game Cooker (1.5 by 1.5), Blazing Stove, Jukebox Dryer and Dance Pad Polisher (2.5 by 2.5) and Pickling Jar (2.5 by 2) are all drawn at their true size, and the packing and overlap checks use those true sizes too. Every start you count on this board is still a whole number; a half sits on a piece\'s far edge, exactly like the real footprints.</p>';
       res.spotNotes.forEach(function(sn){ html += '<p><strong>Climate unit note:</strong> ' + esc(sn) + "</p>"; });
@@ -10799,6 +11078,7 @@
       renderSuggestedLayout();
       renderRvPlan();
       renderLadder();
+      if(typeof renderPowerPanel === "function") renderPowerPanel();
     })();
     </script>
   </body>
