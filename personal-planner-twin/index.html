@@ -443,10 +443,10 @@
           <p class="src" style="margin-top:4px">Counts fill from your RV too, or type your own. Source: Aniiland roadmap ladder (RV 7 unlock also backed by GameWith); the steps rest on Aniiland alone, so each count carries the single-source flag.<br />The layout puts out only the buildings the plan needs — never more than these counts.</p>
           <div class="fac-grid" id="climGrid"></div>
           <h4 style="margin-top:20px">🗄️ Storage, hatching &amp; power — counts from your RV</h4>
-          <p class="src" style="margin-top:4px">Storage Units, Hatchinators, Crackle Generators and Crackle Power Poles have no level of their own — just a count, and it fills from your RV like every other count on this card. The same boxes feed everything else: the Suggested Layout reads the Storage Unit and Hatchinator counts from here (its own two boxes are these same counts), and the power call reads the Generator and Power Pole counts from here — it treats them as what you <em>have</em>, never as what to put out. Source: Aniiland's building-count table, cross-checked against AniimoTools' RV level lists — Storage 4 at RV 12 in both — and your own RV 17 totals.</p>
+          <p class="src" style="margin-top:4px">Storage Units, Hatchinators and Crackle Power Poles have no level of their own — just a count, and it fills from your RV like every other count on this card. <strong>Crackle Generators do have a level</strong>, so beside their count there is a <strong>Lv box</strong> too: fill sets it to the highest level your RV allows, or type the level your Generators actually are — their level sets how much power each one supplies (Lv 1 = 600, up to Lv 5 = 1,500), and the power call reads the count <em>and</em> the level from these boxes. The same boxes feed everything else: the Suggested Layout reads the Storage Unit and Hatchinator counts from here (its own two boxes are these same counts), and the power call reads the Generator count and level and the Power Pole count from here — it treats them as what you <em>have</em>, never as what to put out. Source: Aniiland's building-count table, cross-checked against AniimoTools' RV level lists — Storage 4 at RV 12 in both — and your own RV 17 totals.</p>
           <div class="fac-grid" id="extraGrid"></div>
           <h4 style="margin-top:20px">🧩 Your module levels — RV Cabin &amp; Rooftop Loft</h4>
-          <p class="src" style="margin-top:4px">Fill sets these too, or type each level. Only checked yields are used. The Rooftop Loft components — Plant Research Module, Incubation Reaction Module, Signal Transmitter and Power Module — are listed here with the RV condition for each level, from your in-game panels (Nov 28, 2026); no effect rates are shown where your panels named only the unlock.</p>
+          <p class="src" style="margin-top:4px">Fill sets these too, or type each level. Only checked yields are used. The RV Cabin components — Ecological Module, Kitchen Module, Resource Detector, Crafting Module and <strong>Rest Module</strong> — and the Rooftop Loft components — Plant Research Module, Incubation Reaction Module, Signal Transmitter and Power Module — are listed here with the RV condition for each level, from your in-game panels (Nov 28, 2026); no effect rates are shown where your panels named only the unlock. <strong>Rest Module</strong> is the Cabin sofa module (yours Lv 3, +10% max stamina); its upgrade costs weren't on your panel, so none are shown. <strong>Incubation Reaction Module has no levels to climb</strong> — it is a single unlock, so its control below is a simple Have it / Don't have it toggle, not a level box.</p>
           <div class="fac-grid" id="modLevelGrid"></div>
           <div id="modStatus" aria-live="polite"></div>
           <h4 style="margin-top:20px">🧩 Module harvests in your plan</h4>
@@ -619,7 +619,7 @@
 
         <div class="card">
           <h3>🔌 What the pieces actually do</h3>
-          <p style="margin-top:8px;font-weight:600"><strong>Crackle Generator</strong> (2 × 2, covers 11 × 11) makes the grid's electricity — but it doesn't run itself: <strong>one Lightning Aniimo works each generator</strong>, and its supply is capped by its level, which follows your Power Module: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1,000, Lv 4 = 1,200, Lv 5 = 1,500</strong> (Lv 1 at RV 12, then a level every two RVs — Lv 4 at RV 18). A strong Lightning Aniimo gets that full cap out of it.</p>
+          <p style="margin-top:8px;font-weight:600"><strong>Crackle Generator</strong> (2 × 2, covers 11 × 11) makes the grid's electricity — but it doesn't run itself: <strong>one Lightning Aniimo works each generator</strong>, and its supply is capped by its own level — the Lv box beside its count in Step 1: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1,000, Lv 4 = 1,200, Lv 5 = 1,500</strong> (generators open at RV 12, and your RV caps their level: Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20). A strong Lightning Aniimo gets that full cap out of it.</p>
           <p style="margin-top:8px;font-weight:600"><strong>Crackle Power Pole</strong> (1.5 × 1.5, covers 7 × 7) makes <strong>no power of its own</strong>. It is a relay: it stretches the grid's reach, and it only passes power on when it overlaps an area that is already powered. A facility touching any powered area gets electricity.</p>
           <p style="margin-top:8px;font-weight:600"><strong>E-Mode</strong> (from RV 12): a processing facility inside the grid can run <strong>on a timer instead of an Aniimo</strong> — that Aniimo is freed for other work or for home. Every switched-on facility draws power: <strong>15 × its level</strong> for most, <strong>30 × level</strong> for the Mine, Well, Aniipod Maker and Dance Pad Polisher. While supply beats demand, the grid runs <strong>faster — up to 120%</strong>; the moment demand passes supply, <strong>everything on the grid slows below 100%</strong>.</p>
         </div>
@@ -882,7 +882,8 @@
           <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, packs each building's plots into the fewest zones that cover them (Farmland and Woodland plots of one climate sharing one 9 × 9 zone, every plot with its center inside it and clear of the building's own tiles in the middle), shares zones between two climates whenever that covers the plan with fewer buildings, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
           <li><strong>Buy Next (added Nov 27, 2026):</strong> the list is the Step 1 boxes held against the same tables Fill reads — facility levels and counts (Aniiland roadmap, cross-checked as at FAC_COUNT), climate counts, the count-only four, and module levels through the AniimoTools unlock RVs. Its order is a planning order, not game data: picked-plan locks first (the basket's own lock walk), then copies, facility levels, module levels and utility counts the picked RV already allows, then the next RV's bill and unlocks from the ladder above. "What it opens" is read from the recipe list and the module unlock labels. <strong>No facility or upgrade prices are shown, because the checked data carries none</strong> — the only coin figure on the list is the next RV's bill, from the ladder.</li>
           <li><strong>Split facility levels — adding groups (player's design, Nov 28, 2026, replacing the Nov 27 carve-out model):</strong> a facility's copies need not all stand at one level. Each Step 1 facility box carries a ⇅ Split levels row that opens a second group: the two group counts <strong>add</strong>, with the total shown in her format — “16 at Lv 5 + 2 at Lv 6 = 18” — so entering 16 at Lv 5 plus 2 at Lv 6 counts 18, never 16. Everywhere a single facility level is read (recipe locks and gates, Premium Wheat's Farmland Lv 6, power draw, the plan's station levels), the planner reads the <strong>highest level any copy reaches</strong>, per copy group — a recipe at that level is makeable because those copies can make it — while Buy Next reads the split itself copy by copy and lists only the copies still at the lower level as left to upgrade, naming their count, so a facility is never called finished while some of its copies lag, and never charged for copies already upgraded. Fill from RV level, Manual fill and picking an RV clear splits (a fill sets every copy to the one top level, a manual fill starts at 0).</li>
-          <li><strong>Rooftop Loft modules (player's in-game panels, Nov 28, 2026):</strong> the game's Component Upgrade Rooftop Loft tab — Plant Research Module (hers Lv 4; premium crops; Lv 4 unlock = increased chance of all mutation types; level-up condition RV 15), Incubation Reaction Module (hers Lv 1; unlock = increased Homeland Hatchinator efficiency; condition RV 9), Signal Transmitter (hers Lv 3; unlocks RV Park accommodates 3 Aniimo + Aniimo Dispatch – Camping; condition RV 16) and the Power Module Lv 5 node (requires RV 20; unlocks Crackle Generator Level 5 + Crackle Power Pole placement limit increase; cost 1 toolbox + 30,000 coins) — now stands in Step 1's module list and in Buy Next, each level gated by its RV condition, cross-checked against the RV ladder where the ladder names it. No effect rates are shown: her panels name the unlocks, not rates, so none are invented.</li>
+          <li><strong>Rooftop Loft modules (player's in-game panels, Nov 28, 2026):</strong> the game's Component Upgrade Rooftop Loft tab — Plant Research Module (hers Lv 4; premium crops; Lv 4 unlock = increased chance of all mutation types; level-up condition RV 15), Incubation Reaction Module (hers owned; unlock = increased Homeland Hatchinator efficiency; condition RV 9), Signal Transmitter (hers Lv 3; unlocks RV Park accommodates 3 Aniimo + Aniimo Dispatch – Camping; condition RV 16) and the Power Module Lv 5 node (requires RV 20; unlocks Crackle Generator Level 5 + Crackle Power Pole placement limit increase; cost 1 toolbox + 30,000 coins) — now stands in Step 1's module list and in Buy Next, each level gated by its RV condition, cross-checked against the RV ladder where the ladder names it. No effect rates are shown: her panels name the unlocks, not rates, so none are invented. <strong>Incubation Reaction is a single unlock, not a ladder (player's fix, Nov 28, 2026):</strong> her panel shows one node only — you have it or you don't — and the price research agrees (single level, 3,600 coins + 2 toolkits, no Lv 2 exists), so Step 1 shows it as a Have it / Don't have it toggle with no level box, its status reads owned / not owned, and Buy Next never suggests a next level for it.</li>
+          <li><strong>Rest Module (player's in-game panel, Nov 28, 2026 — added Nov 28, 2026 after she spotted it missing):</strong> the RV Cabin tab's fifth module, the sofa module — hers Lv 3, +10% max stamina, level-up condition RV 5 on her panel; the RV ladder in this planner names its steps (Rest Module at RV 1, Lv 2 at RV 3, Lv 3 at RV 5), which match that condition. It now stands in Step 1's module list (max Lv 3, filled from RV like every other module) and in Buy Next. Her panel showed it maxed, so its upgrade costs were not on screen and the price research did not cover it: <strong>its costs are marked unknown and none are invented.</strong> It touches stamina only, so no plan number reads it.</li>
           <li><strong>Manual fill (player's design, Nov 28, 2026):</strong> beside Fill from RV level, Manual fill lists every facility and module the picked RV allows with counts at 0 and each card's RV cap shown as its ceiling; she enters her real counts and levels (splits via the adding groups). Nothing is stored between sessions — the planner still opens clean, exactly as with every other Step 1 state on this page.</li>
           <li><strong>Your Zones (added Nov 27, 2026):</strong> the zones are the Suggested Layout's own plot groups (Farms, Cooking, Workshops, Mines, Leisure, Wet works, Hatchery) — the planner's arrangement suggestion, not a game zone list — and the crew on each card is the Team Helper's single crew read per building (per-copy posts, the facility's plan worker, Always pins), never a second crew. Ability pools name each building's job from the same game-data list as FAC_JOB, with the strongest known Aniimo per ability from the same per-species data the crew table ranks by. Climate units, the power grid and the Floral Windmill are never drawn on the board, so they close the view as their own card.</li>
           <li><strong>Overlap (Add & Adjust):</strong> only the Steam guide's two verified blends are noted — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so a band never places or covers a crop: every crop keeps its own climate zone and building count (Cool crops always keep their own Cooling Unit zones, Warm crops their own Heat Furnace zones), nothing is deducted for a band anywhere, and a band appears only as an uncounted note naming the crops whose zones could cross to make it. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
@@ -893,7 +894,7 @@
           <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17 (AniimoTools' RV 17 list and Aniiland's count table agree, and her own game confirms 3 at RV 17 — corrected Nov 18, 2026; the Oct 29, 2026 note that capped Cooling at 2 was her count before she reached RV 17); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19. Counts with no level follow the same one-table rule (Aniiland's building-count table, cross-checked against AniimoTools' RV lists and its RV 12 max-out table, and her own RV 17 totals, Nov 18, 2026): Storage Unit 1 at RV 2, 2 at RV 4, 3 at RV 7, 4 at RV 10, 5 at RV 13, 6 at RV 16, 7 at RV 19, 8 at RV 20; Hatchinator 3 at RV 2 rising by one a level to 10 at RV 9; Crackle Generator 1 at RV 12, 2 at RV 15, 3 at RV 18; Crackle Power Pole 6 at RV 12, 12 at RV 14, 18 at RV 16, 24 at RV 18, 30 at RV 20. All four have Step 1 boxes filled by the same Fill, and the totals line, every facility card and every layout ceiling read those boxes — there is no second copy of the totals anywhere.</li>
           <li><strong>Strategy plans</strong> work the Aniimax way: basket first, then the one strategy. Prices are Co-op Store sell prices from the filed shop price research (checked Oct 24, 2026): two-source prices are marked cross-checked (seed prices in part, Wheatmeal 70, Bamboo 13, Rock 7, Wood Sculpture 90); most mid/late prices are Aniiland only and marked single source. Items with no listed sell price (Wood Block, Mineral Sand, building tiers, growth items, Aniipods) cannot earn Home Coins. Per-hour rates run at the slowest crop's pace and say so. Aniimo XP and Mineral Sand per Mine run have no verified figures — flagged, never invented. Special unlock recipes (Rose Shortbread, Potato Kvass) are left out of strategy plans. Unverified-but-sensible items are included and flagged: Star (Aniimax uses it too, flagged there), with its share of the counted rate stated on the plan. Wood Blocks are counted by Woodland level (see above).</li>
           <li><strong>The Starfall Hammock</strong> unlocks at RV 12, Lv 1 only, max 1 out (2 at RV 18 — Aniiland's building-count table and AniimoTools' RV 18 list agree; corrected Nov 18, 2026 from RV 20, and still flagged <span class="verdict v-mix">count single source</span> in the panel like every above-RV 12 step). Its product is Star, flagged unverified wherever a plan uses it. It needs a Cool temperature to work (your lookup, Oct 25, 2026), so the layout stands it inside a Cooling Unit zone when a plan gathers Star. Assigned Aniimo: <strong>any Aniimo from the Celestis family</strong> (the game's own note, your screenshot Oct 27, 2026). Star's panel also shows Recommended Environment: Cool — noted only; no climate logic uses it.</li>
-          <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 9): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut, 9 Quick Agave. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 10): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales, Quick Pearl, Quick Snowmelt Cold Spring. Crafting (max 8): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Advanced Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume, Premium Quicksilver Springstone. Seven change numbers, auto-applied from Ecological: Bamboo ×23 (Lv 2), Lemon ×42 (Lv 4), Rice ×79 (Lv 5), Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8), Agave ×10 (Lv 9). Quick Wheat (×42, Lv 1) and Quick Potato (×46, Lv 3) are verified from the player's own panels (Nov 21, 2026) but are not auto-applied: their Quick grow times (20 min and 40 min) differ from the base crops' (4 min and 10 min 40 s), and the module switch changes yield only. Premium Wheat appears in no module ladder — it is not a module unlock at all: it switches on by itself at RV 12 with a Farmland at Lv 6 (Wheat Seeds planted on a Lv 6 Farmland grow Premium Wheat instead; The Hidden Gaming Lair's Premium Wheat page and the planner's Farmland ladder, RV 12 for Lv 6), auto-applied from your Step 1 RV and Farmland level like the Ecological harvests. Since Nov 27, 2026 the seven Ecological Quicks are <strong>also their own selectable entries</strong> — Quick Bamboo, Quick Lemon, Quick Rice, Quick Maple Syrup, Quick Strawberry, Quick Coconut and Quick Agave — each labelled with <strong>both gates</strong> (its Ecological Module unlock level AND the facility row it lives in: Woodland Lv 3, 4, 5 and 6 rows, Farmland Lv 6 and 7 rows), with its real yield, 40-minute grow time, unit price and byproducts from the player's own panels (Nov 27, 2026): Bamboo ×23 + 21 Wood Blocks, Lemon ×42 + 47 Wood Blocks, Rice ×79 (Energy 360), Maple Syrup ×30, Strawberry ×26 (Cool, Energy 950), Coconut ×8, Agave ×10. The Woodland Quicks drop Wood Blocks at their row's rate off the same ladder as every tree.</li>
+          <li><strong>Module levels and verified unlocks</strong> (AniimoTools, cross-checked against aniimoguide and the Aniiland roadmap): Ecological (max 9): Lv 1 Quick Wheat, 2 Quick Bamboo, 3 Quick Potato, 4 Quick Lemon, 5 Quick Rice, 6 Quick Maple Syrup, 7 Quick Strawberry, 8 Quick Coconut, 9 Quick Agave. Kitchen (max 7): Feeding, Premium Bread, Premium Potato Soup, Premium Sweet Rice Wine, Premium Salted Lemon, Premium Jello, Premium Berry Chocolate Coconut Pudding. Resource Detector (max 10): Quick Well Water, Quick Sea Salt, Quick Aromathyst, Quick Fresh Water, Quick Wool, Quick Deep Rock Spring Water, Quick Natural Mineral Water, Quick Scales, Quick Pearl, Quick Snowmelt Cold Spring. Crafting (max 8): Premium River-Washed Stones, Premium Rose Freshener, Advanced Lemon Incense, Advanced Wind Chime, Premium Soap, Premium Gemstone Dust, Premium Mixed Perfume, Premium Quicksilver Springstone. Rest Module (max 3, RV Cabin; player's panel, Nov 28, 2026): stamina increased, +10% max stamina at Lv 3, steps at RV 1 / 3 / 5 from the RV ladder, upgrade costs unknown. Incubation Reaction Module: no ladder at all — a single unlock at RV 9 (3,600 coins + 2 toolkits), have-it-or-not. Seven change numbers, auto-applied from Ecological: Bamboo ×23 (Lv 2), Lemon ×42 (Lv 4), Rice ×79 (Lv 5), Maple Syrup ×30 (Lv 6), Strawberry ×26 (Lv 7), Coconut ×8 (Lv 8), Agave ×10 (Lv 9). Quick Wheat (×42, Lv 1) and Quick Potato (×46, Lv 3) are verified from the player's own panels (Nov 21, 2026) but are not auto-applied: their Quick grow times (20 min and 40 min) differ from the base crops' (4 min and 10 min 40 s), and the module switch changes yield only. Premium Wheat appears in no module ladder — it is not a module unlock at all: it switches on by itself at RV 12 with a Farmland at Lv 6 (Wheat Seeds planted on a Lv 6 Farmland grow Premium Wheat instead; The Hidden Gaming Lair's Premium Wheat page and the planner's Farmland ladder, RV 12 for Lv 6), auto-applied from your Step 1 RV and Farmland level like the Ecological harvests. Since Nov 27, 2026 the seven Ecological Quicks are <strong>also their own selectable entries</strong> — Quick Bamboo, Quick Lemon, Quick Rice, Quick Maple Syrup, Quick Strawberry, Quick Coconut and Quick Agave — each labelled with <strong>both gates</strong> (its Ecological Module unlock level AND the facility row it lives in: Woodland Lv 3, 4, 5 and 6 rows, Farmland Lv 6 and 7 rows), with its real yield, 40-minute grow time, unit price and byproducts from the player's own panels (Nov 27, 2026): Bamboo ×23 + 21 Wood Blocks, Lemon ×42 + 47 Wood Blocks, Rice ×79 (Energy 360), Maple Syrup ×30, Strawberry ×26 (Cool, Energy 950), Coconut ×8, Agave ×10. The Woodland Quicks drop Wood Blocks at their row's rate off the same ladder as every tree.</li>
           <li><strong>Team Helper crew counts</strong> are worked out from the whole plan: basket + strategy plan facilities (deduped by facility) + the bill's jobs in Level Up mode. Best = one dedicated worker per busy facility; Minimum = shared workers under the 80% rule (see the Minimum entry below). Crews count individuals, not job slots: a multi-ability Aniimo counts once across machine posts (Somniwing: Grass Lv 4 + Leisure Lv 4) — but never across a stay-there post (player's rule, Nov 24, 2026): an Aniimo placed at a Mine, the Well or a gather post (Tidewhisper Sandcastle, Dewy House, Nimbus Bed, Starfall Hammock, Floral Windmill) covers that post only, so a plan that puts a Somniwing on a Leisure gather post still needs its own Grass Aniimo for the fields, and stay-there Aniimo never count toward Hauling cover either. <strong>My Crew (Nov 27, 2026):</strong> this personal planner names the player's own Aniimo for every post, picked from a baked-in snapshot of her roster — the home list, 201 Aniimo, as of Nov 27, 2026; her battle party and the 95 undecided are never picked, and neither is any animal marked Release or with no verified jobs. Special forms (Prismana, Sparkling, Umbral, Alpha, Regional) are pickable like anyone else. Ranking is her own rule: highest ability level for the job first (one whole level outweighs everything else), personality-facility match second (the facility's +20% letter against the same slot of the animal's 4-letter personality), already homeland-based third, highest CP last. A post asks the level the generic worker table names for its job (Fire Lv 3, Grass Lv 4, Leisure Lv 4, and so on); climate machines ask any level. <strong>Sandcastle family rule (Sparkle's standing rule, Nov 7, 2026):</strong> Tidewhisper Sandcastle posts go to the Panpanta and Shelly families first — a family member ranks ahead of every other candidate, even at a lower Leisure level (labelled a step-down as usual) — and Turbo and Gracewing never work the Sandcastle, in any mode, including step-down picks and pairing or sharing reuse; if that leaves a Sandcastle post with nobody, it reads unfilled like any other post. The rule touches Sandcastle posts only: Turbo and Gracewing stay fully pickable everywhere else. <strong>Production-family rules (Sparkle's, completed Nov 18, 2026, from her in-game Select Product screens; extended the same day to every family tag in the planner's own data):</strong> which family staffs a leisure station depends on what that station is producing — the product or gather the plan assigns to the post, per-copy gather picks included. A Tidewhisper Sandcastle post producing Sea Salt ranks the Susuta family first, a post producing Pearls ranks the Shelly family first, and a post producing Sweet Cone ranks the Sugar family first; when a Sandcastle post's production is known, that production rule replaces the generic Panpanta/Shelly preference for that post, and when its production is not assigned the generic preference is the fallback. A Dewy House post producing Aromathyst ranks the Dewy family first. A Nimbus Bed post producing Wool ranks the Nimbi family first — both Wool formulas count as Wool, the Lv 1 formula and the Lv 2 Quick Recipe: Wool — and a post producing Petals ranks the Iris family first. A Starfall Hammock post gathering Star ranks the Celestis family first, and one gathering Gold-Speck Cap ranks the Coinwisp family first. A Floral Windmill post gathering Scales ranks the Flutternym family first. A post at any of these stations with no production assigned picks by the normal ranking. Family membership is the evolution line: Susuta's line is Susuta, Popota, Panpanta and Piopiota; Shelly's is Shelly, Sheldon and Sherro; the Sugar family is the Sugarfish line — Sugarfish, Sugarslime and Sugartini; Dewy's is Dewy and Fragrancier; Nimbi's is Nimbi, Turbo and Dreaple; Iris's is Iris, Irisal and Irisalis; Celestis's is Celestis and Stellarys; Coinwisp's is Coinwisp and Pouchwisp; Flutternym's is Flutternym and Gracewing. When a tagged family has no pickable member in her roster at all, the post still fills by the normal ranking — never left unfilled for that reason alone — and its row says the family has no pickable member she owns. Family-first ranking, the step-down labels and the absolute Turbo/Gracewing Sandcastle ban work exactly as for the generic rule in every mode, including pairing and sharing reuse. Step-down (player's decision, Nov 17, 2026): when nobody free meets a post's asked level, the best Aniimo holding that job at any level fills the post under the same ranking, labelled on its put-out and assignment rows — "below the Lv {asked} asked — works slower", or "below the Lv {best} best — works slower" where the asked level is only the best-worker preference (the Leisure Lv 4 posts) — and its tooltip says it stepped down because no Lv {asked} animal was available. Only a post whose job no available owned Aniimo holds at any level stays unfilled; there the row says so plainly and keeps the strongest known Aniimo (Fire Scorchhowl Lv 3, Water Glacy Lv 3, Grass Somniwing Lv 4 / Irisalis Lv 4, Lightning Blazen Lv 3, Earth Shrubclaw Lv 3, Wind Tromber Lv 3, Dark Inferlupa Lv 3, Ice Geoclaw Lv 3, Light Fennelun Lv 3, Hauling Bouldus Lv 3, Artisanship Ignitis Lv 3, Leisure Somniwing Lv 4, Perfumery Fragrancier Lv 3) as a what-to-catch note only. Her sheet files the Cooling Unit's job as Cooling for several species (Glacy, Glynsera, Prawnch) at the same levels the generic data gives their Ice job, and as Ice for others, so the picker reads both names as the Ice job. Jobs follow the game's own data (aniimoguide homeland job list, build 1.1.3846247, read Oct 29, 2026), one job per facility, never keyed to a product: Leisure — Tidewhisper Sandcastle, Dewy House, Nimbus Bed, Starfall Hammock, Floral Windmill; Perfumery — Phonolfactory Table; Light — Sunlamp; Dark — Jukebox Dryer, Pickling Jar; Fire — Claw Game Cooker, Simmering Pot, Blazing Stove, Chimney Kiln, Heat Furnace; Water — Well, Bouncy Brew Keg; Wind — Carousel Mill, Joy Wheel Loom; Earth — Mine, plus the standing Land Cultivation post (cultivating and reclaiming land — Earth's other duty in the game's own Home Abilities text, which the guides phrase as reclaiming land); Artisanship — Crafting Table, Woodworking Bench; Lightning — Aniipod Maker, Dance Pad Polisher; Ice — Cooling Unit; Grass — Farmland, Woodland. The field posts were filled in on Nov 24, 2026: the aniimoguide list names no job for Farmland or Woodland, but the game's own Home Abilities popup gives Grass "planting seeds, gathering resources", which is exactly what the fields are — before the fix, the two field posts sat in the crew with no job and no worker named. Each field post now names her best Grass Aniimo by the standard ranking, the Farmland and Woodland posts never share one Aniimo, and fields take no personality +20% bonus. <strong>Hauling:</strong> the need is the player's stand-in rule, not game data (player's combo, Nov 17, 2026): counted in hauling power — 2, +1 per 10 facility copies out, cap 8; Farmland, Woodland and Storage Units never count toward the copies. Cover: the actual picked Aniimo's own Hauling, read off her roster — a picked Aniimo with Hauling covers, once, in its main job, weighted by its own Hauling level (Lv 4 counts 2, Lv 3 counts 1.5, Lv 1–2 count 1); dedicated haulers, picked by name from her remaining Aniimo with the highest Hauling, fill what is left, every fraction rounded up. Her roster is hauling-rich where the generic table was blind: her Inferlupa is Hauling Lv 4 (the verified per-species data found no Hauling for his species at all), and her Glynsera and Grizbo ♀ Lv 60 are Hauling Lv 4 too. <strong>Utility-post rule:</strong> Aniimo on the Crackle Generator, Cooling Units, Heat Furnaces and Sunlamps can't leave their posts, so those posts never count toward cover — only production posts cover. <strong>Stay-there rule (Nov 24, 2026):</strong> Aniimo on stay-there posts — Mines, Wells and the gather posts — are placed there and stay there, so they never count toward cover either, and they are never shared or paired with any other post in Best, fitted Best or Minimum. Grass never reads 0: planting always counts at least 1. The named facilities carry an attached Aniimo each only for the copies the plan actually uses (player's rule, Oct 29, 2026: only as many as needed to accomplish the plan — never every copy owned): Mine, Well, Dewy House, Tidewhisper Sandcastle and Starfall Hammock count the copies the plan's own batches and runs need (one where the yield varies and no run count can be verified), the Nimbus Bed is the Homeland leisure station (the player's word, Oct 29, 2026), so it counts the copies the plan's leisure gathers need, and the three climate buildings count only where the layout puts them out (sharing zones cuts the count; buildings out, plots sharing and Aniimo saved are stated in the layout and crew). Crew entries name the picked Aniimo — species, sex, level, CP and its ability level for the job — and the Personality match column shows that animal's own match. Markers: a circle in the ability's game colour with the level inside, gold ring = the plan counts on that facility's personality bonus (+20%).</li>
           <li><strong>Adding facilities by hand (player's ask, Oct 29, 2026):</strong> each facility block in Add & Adjust has − and + steppers. + puts out extra copies she owns, never above her Step 1 count; − takes back only copies she added; the plan's own count is the floor. Added copies are marked "added by you" and count in full: crew, power, totals, and the strategy plan's Working column. Amounts stay plan-driven — added copies are staffed spares, except Mines: each added Mine digs the material on its line, at that material's per run yield. Added copies live in memory only and reset when the basket or strategy changes. The layout also ends with an "Add a facility this plan isn't using" list, so any owned facility can go out even when no recipe needs it.</li>
           <li><strong>Mines live in Facilities out (player's flow fix, Nov 16, 2026; the picker itself dates to Oct 29, 2026):</strong> there is no separate Mines step any more — the one Mine picker sits on the Mine block in Facilities out, in Step 5 · Add & Adjust, after the strategy plan, because the strategy itself can claim Mines (the Level Up bill's ore chain, a goal's materials). Mines the plan claims are marked "used by this plan" and pre-set to the plan's materials, but every Mine out is pickable (player's consistency fix, Nov 18, 2026, retiring her Oct 29, 2026 rule that plan-claimed Mines stay locked): her pick on a plan Mine wins over the plan's, every tally that reads actual picks follows it, and if a material the plan uses ends up gathered by no Mine, the Mine block and card say so plainly ("This plan uses X, but no mine is gathering it now") instead of pretending the plan is still covered. She picks for Mines she adds past the plan's too, up to her Step 1 count (her example: 7 owned, 1 used by the plan, 6 left to add). Added Mines count like claimed ones — Earth crew, power, totals, per run yield; Mine takes count per run, never per hour (run times not checked). <strong>All mining gives Mineral Sand</strong> (player's rule): every run brings sand with the picked material, amount varies, so no Mine needs to sit on sand to earn it and no sand amount is counted. Picks and added Mines live in memory only and reset when the basket or strategy changes.</li>
@@ -914,7 +915,7 @@
           <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
           
           <li><strong>Power headroom (caps and copies fixed Nov 7, 2026):</strong> power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Plan outputs count the buildings each plan runs, at the levels entered in Step 1; Farmland and Woodland plots draw nothing. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>. Fill from RV level uses the right copy count for the picked RV. Spare power raises grid speed up to <strong>120%</strong>; over the total supply, everything on the grid slows below 100%. Power zone sizes stay as measured: Crackle Generator covers 11 × 11, Power Pole covers 7 × 7 (the older 22 × 22 / 14 × 14 figures were the same zones counted in half-square cells).</li>
-          <li><strong>Power &amp; E-Mode — the planner decides (player's ask, Nov 27, 2026):</strong> what the pieces do is from the game's own help texts via aniimo.guide, cross-checked with the extracted game data (the lookup the player was shown the same day): the Crackle Generator makes the grid's supply but needs <strong>one Lightning Aniimo working it</strong>, its output capped by its level; the Crackle Power Pole is a relay only — no power of its own, it stretches the grid and must overlap an already-powered area; from RV 12 a processing facility inside the grid can run in <strong>E-Mode</strong> on a timer instead of an Aniimo. The decision rules are the planner's own, stated in the Power &amp; E-Mode section and applied identically in the basket plan, the strategy plan, the Step 5 facility blocks, the Step 6 crew note, the Power panel and the Suggested Layout note: only the twelve processing facilities (Carousel Mill, Crafting Table, Woodworking Bench, Chimney Kiln, Blazing Stove, Simmering Pot, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Joy Wheel Loom, Phonolfactory Table, Bouncy Brew Keg) can be switched; copies are taken cheapest-draw first under the fewest generators that hold them and never past supply; a grid is only recommended when copies switched minus generators out nets at least 2 Aniimo; Mines, Wells, Aniipod Makers and Dance Pad Polishers are never switched (30 × level — the standing player advice is never to E-Mode Mines or the Well), gather posts are never switched (their family gates need an Aniimo standing there), and climate units, fields and passive pieces are never switched. Poles follow the cluster rule: switched-on machines sit inside their generator's 11 × 11, so a call needs no poles unless the switched-on set spans more than five facility kinds, and then only ⌈(kinds − 5) / 3⌉, at most 6 — a placement heuristic of the planner's, flagged as such, never the Step 1 count. The generator counts the call may use are the Step 1 boxes (what she has), capped by the RV ladder; generators and poles beyond the call stay in storage. The Put out list still shows the all-Aniimo crew; the power swap is printed as its own note in Step 6 (generator Aniimo on, switched machines' Aniimo off, net change and the Bud Tickets those Aniimo earn at home at the verified Step 7 rates) rather than rewriting the crew totals. The old all-on power line — every building counted as if on E-Mode, warning of a slowdown nobody chose — is retired; the all-on draw survives only as the contrast figure inside each call. No exact speed percentage is computed from headroom: the game states only that spare power speeds the grid up to 120% at most, so the call names headroom bands in words and invents no formula.</li>
+          <li><strong>Power &amp; E-Mode — the planner decides (player's ask, Nov 27, 2026):</strong> what the pieces do is from the game's own help texts via aniimo.guide, cross-checked with the extracted game data (the lookup the player was shown the same day): the Crackle Generator makes the grid's supply but needs <strong>one Lightning Aniimo working it</strong>, its output capped by its level; the Crackle Power Pole is a relay only — no power of its own, it stretches the grid and must overlap an already-powered area; from RV 12 a processing facility inside the grid can run in <strong>E-Mode</strong> on a timer instead of an Aniimo. The decision rules are the planner's own, stated in the Power &amp; E-Mode section and applied identically in the basket plan, the strategy plan, the Step 5 facility blocks, the Step 6 crew note, the Power panel and the Suggested Layout note: only the twelve processing facilities (Carousel Mill, Crafting Table, Woodworking Bench, Chimney Kiln, Blazing Stove, Simmering Pot, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Joy Wheel Loom, Phonolfactory Table, Bouncy Brew Keg) can be switched; copies are taken cheapest-draw first under the fewest generators that hold them and never past supply; a grid is only recommended when copies switched minus generators out nets at least 2 Aniimo; Mines, Wells, Aniipod Makers and Dance Pad Polishers are never switched (30 × level — the standing player advice is never to E-Mode Mines or the Well), gather posts are never switched (their family gates need an Aniimo standing there), and climate units, fields and passive pieces are never switched. Poles follow the cluster rule: switched-on machines sit inside their generator's 11 × 11, so a call needs no poles unless the switched-on set spans more than five facility kinds, and then only ⌈(kinds − 5) / 3⌉, at most 6 — a placement heuristic of the planner's, flagged as such, never the Step 1 count. The generator count and level the call may use are the Step 1 boxes (what she has — the level entered in the Lv box beside the Generator count since Nov 28, 2026, filled to the RV ladder's cap and flagged when typed above it); generators and poles beyond the call stay in storage. The Put out list still shows the all-Aniimo crew; the power swap is printed as its own note in Step 6 (generator Aniimo on, switched machines' Aniimo off, net change and the Bud Tickets those Aniimo earn at home at the verified Step 7 rates) rather than rewriting the crew totals. The old all-on power line — every building counted as if on E-Mode, warning of a slowdown nobody chose — is retired; the all-on draw survives only as the contrast figure inside each call. No exact speed percentage is computed from headroom: the game states only that spare power speeds the grid up to 120% at most, so the call names headroom bands in words and invents no formula.</li>
           <li><strong>Family gates are hard requirements (deep-dive audit, Nov 7, 2026):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
           <li><strong>Climate and light gates on recipes (audit, Nov 7, 2026):</strong> Scales and Quick Scales are hard-gated on Light: the plan must include a Sunlamp covering the Floral Windmill in Step 5 · Add & Adjust, and the plan warns if it is missing. Pearl and Quick Pearl want Warmth +1: without Heat Furnace coverage of the Sandcastle they run at 80%, and the adjusted per-hour figure is shown, labelled. Star wants Cool -1: 80% without Cooling Unit coverage. Sweet Cone wants Cold -2: 50% without. Gold-Speck Cap wants Warmth +1: 80% without.</li>
           <li><strong>Storage Units take no worker (audit, Nov 7, 2026):</strong> Storage Units are passive. They have no crew slot, no crew count and no worker-based power math, and they never appear in the crew.</li>
@@ -1049,12 +1050,19 @@
       for(var i = 0; i < steps.length; i++){ if(steps[i][0] > rv) return steps[i]; }
       return null;
     }
-    /* ============ counts with no level: storage, hatching, power ============
-       These four have a count per RV but no facility level and no
-       recipes, so they live outside FAC_RV / CLIM_COUNT — but they fill
-       from the RV through the same fill, sit in Step 1 boxes like every
-       other count, and every reader goes through facCount, so there is
-       exactly one table of totals per RV on the page. Aniiland's
+    /* ============ counts outside FAC_RV: storage, hatching, power ============
+       These four have a count per RV and no recipes, so they live
+       outside FAC_RV / CLIM_COUNT — but they fill from the RV through
+       the same fill, sit in Step 1 boxes like every other count, and
+       every reader goes through facCount, so there is exactly one
+       table of totals per RV on the page. Three of them (Storage
+       Unit, Hatchinator, Crackle Power Pole) are count-only; the
+       Crackle Generator ALSO has a level of its own (player's ask,
+       Nov 28, 2026: "when it asks for the number of generators it
+       should ask for the level as well"), entered in the Lv box
+       beside its count and held in extraLevels — its level sets the
+       supply per generator in POWER_GEN_CAPS, and the power call
+       reads the entered level, never the RV ladder's. Aniiland's
        building-count table (RV 1 to 20), cross-checked against
        AniimoTools' RV level lists and its RV 12 max-out table (Storage
        Unit 4 at RV 12 in both) and the player's own RV 17 totals
@@ -1493,8 +1501,9 @@
       { id:"kitchen", name:"Kitchen Module", max:7, hint:"Premium food recipes, Premium Bread at Lv 2" },
       { id:"resource", name:"Resource Detector", max:10, hint:"Quick gather recipes, Well Water at Lv 1 to Snowmelt Cold Spring at Lv 10" },
       { id:"crafting", name:"Crafting Module", max:8, hint:"Premium and Advanced crafted items, from Lv 1 to Premium Quicksilver Springstone at Lv 8" },
+      { id:"rest", name:"Rest Module", max:3, hint:"RV Cabin · sofa module, +10% max stamina at Lv 3; upgrade costs unknown — not on your panel, so none are shown" },
       { id:"plant", name:"Plant Research Module", max:4, hint:"Rooftop Loft · premium crops; Lv 4 raises the chance of all mutation types" },
-      { id:"incubation", name:"Incubation Reaction Module", max:1, hint:"Rooftop Loft · increased Homeland Hatchinator efficiency" },
+      { id:"incubation", name:"Incubation Reaction Module", max:1, binary:true, hint:"Rooftop Loft · single unlock — you have it or you don't, there is no Lv 2 · increased Homeland Hatchinator efficiency" },
       { id:"signal", name:"Signal Transmitter", max:3, hint:"Rooftop Loft · RV Park Aniimo trips; Lv 3 holds 3 Aniimo + Aniimo Dispatch – Camping" },
       { id:"power", name:"Power Module", max:5, hint:"Rooftop Loft · Crackle Generator levels; Lv 5 at RV 20 (1 toolbox + 30,000 coins)" }
     ];
@@ -1538,6 +1547,19 @@
         { lvl:6, rv:18, label:"Premium Gemstone Dust (Crafting Table)" },
         { lvl:7, rv:19, label:"Premium Mixed Perfume (Phonolfactory Table)" }
       ],
+      /* RV Cabin Rest Module (player's in-game panel, Nov 28, 2026:
+         hers Lv 3 in the RV Cabin tab, the sofa module, +10% max
+         stamina; level-up condition RV 5 on her panel). The RV
+         ladder in this planner names the earlier steps — Rest
+         Module at RV 1, Lv 2 at RV 3, Lv 3 at RV 5 — which match
+         that RV 5 condition. Her panel showed it maxed, so its
+         upgrade costs were not on screen and the price research
+         did not cover it: no costs are shown, none are invented. */
+      rest:[
+        { lvl:1, rv:1, label:"Stamina increased (RV ladder: Rest Module at RV 1)" },
+        { lvl:2, rv:3, label:"Rest Module Lv. 2 (RV ladder: Rest Module Lv. 2 at RV 3)" },
+        { lvl:3, rv:5, label:"+10% max stamina (your panel, Nov 28, 2026: Lv 3, level-up condition RV 5) — upgrade costs unknown, not shown on your panel, so none are listed" }
+      ],
       /* Rooftop Loft tab (player's in-game panels, Nov 28, 2026).
          RV conditions are the level-up conditions on her panels,
          cross-checked against the RV ladder's unlock lines where the
@@ -1550,7 +1572,7 @@
         { lvl:4, rv:15, label:"Increased chance of all mutation types (your panel, Nov 28, 2026: Lv 4 unlock, level-up condition RV 15)" }
       ],
       incubation:[
-        { lvl:1, rv:9, label:"Increased Homeland Hatchinator efficiency (your panel, Nov 28, 2026: unlock, condition RV 9)" }
+        { lvl:1, rv:9, label:"Increased Homeland Hatchinator efficiency — single unlock, there is no Lv 2: you have it or you don't (your panel, Nov 28, 2026: condition RV 9; price research: 3,600 coins + 2 toolkits)" }
       ],
       signal:[
         { lvl:1, rv:6, label:"Signal Transmitter — Aniimo trips from parks (RV ladder, RV 6)" },
@@ -1894,6 +1916,20 @@
        and Woodland plots draw nothing. */
     var POWER_HIGH_DRAW = { "Mine":true, "Well":true, "Aniipod Maker":true, "Dance Pad Polisher":true };
     var POWER_GEN_CAPS = { 1:600, 2:800, 3:1000, 4:1200, 5:1500 };
+    var GEN_MAX_LEVEL = 5;
+    /* The generator level the player entered in the Step 1 Lv box
+       beside the Generator count (extraLevels). Fill from RV sets
+       it to the most the picked RV allows (powerGenLevel below);
+       Manual fill and a fresh page leave it at 0 for her to type,
+       exactly like every other facility's Lv box. The power call
+       reads THIS level — what her generators actually are — so a
+       Lv 3 generator at RV 18 supplies 1,000, not the RV cap's
+       1,200. */
+    function genLevel(){
+      return extraLevels["Crackle Generator"] || 0;
+    }
+    /* The highest generator level an RV allows (the ladder cap the
+       entered level is filled to and flagged against). */
     function powerGenLevel(rv){
       if(rv < 12) return 0;
       if(rv < 14) return 1;
@@ -1909,9 +1945,12 @@
       return extraCountFor("Crackle Generator", rv) || 0;
     }
     function powerGenSupply(rv){
-      var lvl = powerGenLevel(rv);
+      /* Total supply if every generator she HAS were out, at the
+         level she entered in Step 1 — count and level both read
+         from the Step 1 boxes, like the power call itself. */
+      var lvl = genLevel();
       if(!lvl) return 0;
-      return powerGenCopies(rv) * (POWER_GEN_CAPS[lvl] || 0);
+      return (facCount("Crackle Generator") || 0) * (POWER_GEN_CAPS[lvl] || 0);
     }
     function powerUsed(facWorking){
       var used = 0;
@@ -1987,7 +2026,11 @@
        section panel, the facility blocks) need, so every place on the
        page gives the same call for the same plan. */
     function powerPlan(facWorking){
-      var genLvl = powerGenLevel(userRV);
+      /* The generator level is the one entered in Step 1 (genLevel),
+         NOT the RV ladder's cap: her generators supply at the level
+         they actually are. powerGenLevel(userRV) rides along as
+         rvGenLvl so the panels can name the RV cap beside it. */
+      var genLvl = genLevel();
       var perGen = genLvl ? (POWER_GEN_CAPS[genLvl] || 0) : 0;
       var gensOwned = Math.max(0, Math.min(facCount("Crackle Generator") || 0, powerGenCopies(userRV) || 0));
       var polesOwned = facCount("Crackle Power Pole") || 0;
@@ -2005,7 +2048,7 @@
       cand.sort(function(a, b){ return a.per - b.per || a.f.localeCompare(b.f); });
       skipHigh.sort(function(a, b){ return a.f.localeCompare(b.f); });
       var allOn = powerUsed(facWorking);
-      var plan = { genLvl:genLvl, perGen:perGen, gensOwned:gensOwned, polesOwned:polesOwned,
+      var plan = { genLvl:genLvl, rvGenLvl:powerGenLevel(userRV), perGen:perGen, gensOwned:gensOwned, polesOwned:polesOwned,
         cand:cand, skipHigh:skipHigh, skipGather:skipGather, skipClimate:skipClimate, allOn:allOn,
         use:false, gens:0, poles:0, chosen:[], demand:0, supply:0, loadPct:0, freed:0, net:0, reason:"" };
       if(genLvl === 0 || !cand.length) return plan;
@@ -2057,7 +2100,10 @@
     function powerHeadroomHtml(facWorking){
       var pp = powerPlan(facWorking);
       if(pp.genLvl === 0){
-        return '<div class="note note-info"><h4>⚡ Power &amp; E-Mode: no grid yet</h4><p>Power unlocks at <strong>RV 12</strong> (Power Module Lv 1), so ' + (userRV ? "a plan at RV " + userRV + " has" : "with no RV level picked yet there is") + ' no power grid yet and every machine keeps its Aniimo. From RV 12 this line stops counting and starts <strong>deciding</strong>: which machines are worth switching to E-Mode, and how small the grid can be. <a href="#power">How the call is made ↓</a></p></div>';
+        if(pp.rvGenLvl === 0){
+          return '<div class="note note-info"><h4>⚡ Power &amp; E-Mode: no grid yet</h4><p>Power unlocks at <strong>RV 12</strong> (Power Module Lv 1), so ' + (userRV ? "a plan at RV " + userRV + " has" : "with no RV level picked yet there is") + ' no power grid yet and every machine keeps its Aniimo. From RV 12 this line stops counting and starts <strong>deciding</strong>: which machines are worth switching to E-Mode, and how small the grid can be. <a href="#power">How the call is made ↓</a></p></div>';
+        }
+        return '<div class="note note-info"><h4>⚡ Power &amp; E-Mode: no generator level entered yet</h4><p>Your RV ' + userRV + ' allows Crackle Generators up to <strong>Lv ' + pp.rvGenLvl + '</strong>, but the <strong>Lv box beside the Generator count in Step 1</strong> is still 0, so the planner does not know what level your generators are — and their level sets their supply. Set that Lv box (Fill from RV level sets it to Lv ' + pp.rvGenLvl + ') and the call is worked out on the spot. Until then every machine keeps its Aniimo. <a href="#power">How the call is made ↓</a></p></div>';
       }
       if(!pp.cand.length){
         return '<div class="note note-info"><h4>⚡ Power &amp; E-Mode: the planner\'s call — no grid for this plan</h4><p>This plan runs <strong>no processing machines</strong>, so E-Mode has nothing to take over: leave the Crackle Generators and Power Poles in storage and keep every Aniimo where they are. ' + powerSkipText(pp) + ' <a href="#power">Full power section ↓</a></p></div>';
@@ -2228,14 +2274,18 @@
       }
       if(!panel) return;
       if(!userRV){
-        panel.innerHTML = '<div class="empty-plan">⚡ Pick your RV level in Step 1 and the call appears here: the planner reads your plan\'s machines, your Step 1 Generator and Pole counts, and your Power Module level, and decides whether a grid earns its place.</div>';
+        panel.innerHTML = '<div class="empty-plan">⚡ Pick your RV level in Step 1 and the call appears here: the planner reads your plan\'s machines, your Step 1 Generator count and level, and your Pole count, and decides whether a grid earns its place.</div>';
         return;
       }
       if(pp.genLvl === 0){
-        panel.innerHTML = '<div class="note note-info"><h4>⚡ No grid at RV ' + userRV + ' yet</h4><p>Power opens at <strong>RV 12</strong> (Power Module Lv 1). Until then there is nothing to decide: every machine keeps its Aniimo, and the Crackle Generator and Power Pole counts stay at 0. The call starts the moment your RV reaches 12.</p></div>';
+        if(pp.rvGenLvl === 0){
+          panel.innerHTML = '<div class="note note-info"><h4>⚡ No grid at RV ' + userRV + ' yet</h4><p>Power opens at <strong>RV 12</strong> (Power Module Lv 1). Until then there is nothing to decide: every machine keeps its Aniimo, and the Crackle Generator and Power Pole counts stay at 0. The call starts the moment your RV reaches 12.</p></div>';
+        } else {
+          panel.innerHTML = '<div class="note note-info"><h4>⚡ No generator level entered yet</h4><p>Your RV ' + userRV + ' allows Crackle Generators up to <strong>Lv ' + pp.rvGenLvl + '</strong>, but the <strong>Lv box beside the Generator count in Step 1</strong> is still 0 — the planner plans power from the level your generators actually are, and that level sets each one\'s supply (Lv ' + pp.rvGenLvl + ' = ' + fmt(POWER_GEN_CAPS[pp.rvGenLvl]) + ' each). Set the Lv box in Step 1 — Fill from RV level sets it to Lv ' + pp.rvGenLvl + ' — and the call for this plan is worked out on the spot.</p></div>';
+        }
         return;
       }
-      var head = '<p class="fac-state" aria-live="polite">⚡ At RV ' + userRV + ': Power Module Lv ' + pp.genLvl + ' · one Crackle Generator supplies ' + fmt(pp.perGen) + ' · you have ' + pp.gensOwned + (pp.gensOwned === 1 ? " Generator" : " Generators") + ' and ' + pp.polesOwned + (pp.polesOwned === 1 ? " Power Pole" : " Power Poles") + ' in Step 1 · this plan runs ' + pp.cand.reduce(function(a, c){ return a + c.copies; }, 0) + ' switchable machine copies · ⚡ E-Mode toggle (Step 5): <strong>' + ((typeof eModeOn !== "undefined" && eModeOn) ? "ON — you are following this call, and the layouts arrange for the grid" : "OFF — facilities are laid out Aniimo-run; this call is a suggestion you are not following") + '</strong></p>';
+      var head = '<p class="fac-state" aria-live="polite">⚡ At RV ' + userRV + ': your Crackle Generators are <strong>Lv ' + pp.genLvl + '</strong> (the Step 1 Lv box; RV ' + userRV + ' allows up to Lv ' + pp.rvGenLvl + ') · one Crackle Generator supplies ' + fmt(pp.perGen) + ' · you have ' + pp.gensOwned + (pp.gensOwned === 1 ? " Generator" : " Generators") + ' and ' + pp.polesOwned + (pp.polesOwned === 1 ? " Power Pole" : " Power Poles") + ' in Step 1 · this plan runs ' + pp.cand.reduce(function(a, c){ return a + c.copies; }, 0) + ' switchable machine copies · ⚡ E-Mode toggle (Step 5): <strong>' + ((typeof eModeOn !== "undefined" && eModeOn) ? "ON — you are following this call, and the layouts arrange for the grid" : "OFF — facilities are laid out Aniimo-run; this call is a suggestion you are not following") + '</strong></p>';
       if(!pp.cand.length){
         panel.innerHTML = head + '<div class="note note-info" style="margin-top:12px"><h4>The call: no grid for this plan</h4><p>Your current plan — basket, strategy and anything you added in Step 5 — runs <strong>no processing machines</strong>, so E-Mode has nothing to take over. Leave every generator and pole in storage. ' + powerSkipText(pp) + ' Pick a basket with cooking or crafting in it and the call is worked out again on the spot.</p></div>';
         return;
@@ -2342,7 +2392,7 @@
        set by hand. Premium Wheat is not a module unlock either: sync derives it
        from Step 1 exactly like the Ecological harvests — on only
        when RV is 12 or more AND a Farmland stands at Lv 6. */
-    var moduleLevels = { ecological:0, kitchen:0, resource:0, crafting:0, plant:0, incubation:0, signal:0, power:0 };
+    var moduleLevels = { ecological:0, kitchen:0, resource:0, crafting:0, rest:0, plant:0, incubation:0, signal:0, power:0 };
     function premiumWheatMet(){
       return (typeof userRV !== "undefined" ? userRV : 0) >= 12 && (typeof facLevel === "function" ? facLevel("Farmland") : 0) >= 6;
     }
@@ -2381,7 +2431,7 @@
       return Math.min(def.max, m);
     }
     /* Entered Step 1 values: what every plan actually reads. */
-    var facLevels = {}, facCounts = {}, climCounts = {}, extraCounts = {};
+    var facLevels = {}, facCounts = {}, climCounts = {}, extraCounts = {}, extraLevels = {};
     /* Split levels — ADDING groups (player's design, Nov 28, 2026,
        replacing the Nov 27 carve-out model): a facility's copies
        stand in two groups that ADD, with the total shown —
@@ -2426,6 +2476,9 @@
       });
       Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = climCountFor(b, rv) || 0; });
       Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = extraCountFor(n, rv) || 0; });
+      /* A fill sets the Generator level to the most the RV allows,
+         like every other facility's Lv box. */
+      extraLevels["Crackle Generator"] = powerGenLevel(rv);
     }
     /* The state starts at 0 and STAYS at 0 until the player picks
        an RV level (player's ask, Nov 15, 2026 — no RV auto-selected):
@@ -2434,6 +2487,7 @@
     Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
     Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
     Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = 0; });
+    extraLevels["Crackle Generator"] = 0;
     function setFacProvenance(text){
       facProvenance = text;
       var el = document.getElementById("facSourceLine");
@@ -7098,6 +7152,7 @@
       Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
       Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
       Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = 0; });
+      extraLevels["Crackle Generator"] = 0;
       MODULE_DEFS.forEach(function(d){
         moduleLevels[d.id] = 0;
         if(crewGate.modules.hasOwnProperty(d.id)) crewGate.modules[d.id] = false;
@@ -7121,7 +7176,7 @@
         parts.push(st ? f + " " + st : f + " " + facCount(f));
       });
       ["Cooling Unit", "Heat Furnace", "Sunlamp"].forEach(function(b){ parts.push(b + " " + facCount(b)); });
-      Object.keys(EXTRA_COUNT).forEach(function(n){ parts.push(n + " " + facCount(n)); });
+      Object.keys(EXTRA_COUNT).forEach(function(n){ parts.push(n === "Crackle Generator" ? n + " " + facCount(n) + " at Lv " + genLevel() : n + " " + facCount(n)); });
       return "🏭 Your facility totals at RV " + userRV + " — the Step 1 boxes as they stand: " + parts.join(" · ");
     }
     function updateRvTotalsLine(){
@@ -7178,6 +7233,23 @@
       refreshAfterStage3();
       if(cappedTo !== null) toast(name + " capped at " + cappedTo + " — that's the most RV " + userRV + " allows.");
     }
+    /* One commit for the Crackle Generator's level — the Lv box
+       beside its count in Step 1 (player's ask, Nov 28, 2026).
+       Like the facility Lv boxes: capped only by the generator's
+       own maximum (Lv 5), never by the RV maximum — a level above
+       what the picked RV allows is flagged "above RV max" and used
+       exactly as typed. The box updates in place and every power
+       surface re-reads the level on the spot. */
+    function commitExtraLevel(name, v){
+      var val = isNaN(v) ? 0 : Math.max(0, Math.min(GEN_MAX_LEVEL, Math.floor(v)));
+      extraLevels[name] = val;
+      document.querySelectorAll("[data-extra-lvl]").forEach(function(inp){
+        if(inp.getAttribute("data-extra-lvl") === name) inp.value = extraLevels[name];
+      });
+      updateAboveFlag("extra-lvl:" + name, extraLevels[name] > powerGenLevel(userRV));
+      setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+      refreshAfterStage3();
+    }
     function renderFacilities(){
       updateRvTotalsLine();
       var srcLine = document.getElementById("facSourceLine");
@@ -7188,14 +7260,17 @@
       if(srcNear) srcNear.textContent = "🏭 " + facProvenance;
       var pf = document.getElementById("powerFillLine");
       if(pf){
-        var gLvl = powerGenLevel(userRV);
+        var rvGLvl = powerGenLevel(userRV);
         if(!userRV){
           pf.textContent = "⚡ Power follows your RV level (it opens at RV 12, Power Module Lv 1). No RV level is picked yet, so no generator supply is counted.";
-        } else if(gLvl === 0){
+        } else if(rvGLvl === 0){
           pf.textContent = "⚡ Power opens at RV 12 (Power Module Lv 1). At RV " + userRV + " there is no power grid yet, so no generator supply is counted.";
         } else {
-          var gCopies = powerGenCopies(userRV);
-          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + " available, Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each, " + fmt(powerGenSupply(userRV)) + " if every one were out), and " + facCount("Crackle Power Pole") + " Crackle Power Poles in the Step 1 boxes below. You do not put them all out: the planner's power call (Power & E-Mode, after Step 4) reads these counts and your plan's machines, and calls for only the generators and poles that earn their place — the rest stay in storage. Generator size 2 × 2, covers 11 × 11, and takes 1 Lightning Aniimo each. Power Pole size 1.5 × 1.5, covers 7 × 7, makes no power of its own.";
+          var gCopies = facCount("Crackle Generator");
+          var gLvl = genLevel();
+          pf.textContent = "⚡ Power at RV " + userRV + ": " + gCopies + (gCopies === 1 ? " Crackle Generator" : " Crackle Generators") + " in the Step 1 boxes below" +
+            (gLvl > 0 ? ", at Lv " + gLvl + " (" + fmt(POWER_GEN_CAPS[gLvl]) + " supply each, " + fmt(powerGenSupply(userRV)) + " if every one were out)" : " — but no Generator level entered yet: set the Lv box beside the Generator count (RV " + userRV + " allows up to Lv " + rvGLvl + ") so the planner knows what each one supplies") +
+            ", and " + facCount("Crackle Power Pole") + " Crackle Power Poles. RV " + userRV + " allows up to ×" + powerGenCopies(userRV) + " Generators at Lv " + rvGLvl + ". You do not put them all out: the planner's power call (Power & E-Mode, after Step 4) reads the Generator count and level in these boxes and your plan's machines, and calls for only the generators and poles that earn their place — the rest stay in storage. Generator size 2 × 2, covers 11 × 11, and takes 1 Lightning Aniimo each. Power Pole size 1.5 × 1.5, covers 7 × 7, makes no power of its own.";
         }
       }
       var grid = document.getElementById("facGrid");
@@ -7491,18 +7566,22 @@
           });
         });
       }
-      /* No-level counts (EXTRA_COUNT): Storage Unit, Hatchinator,
-         Crackle Generator, Crackle Power Pole. Counts only, no level
-         box. Filled by the same RV fill, committed through the one
+      /* Counts outside FAC_RV (EXTRA_COUNT): Storage Unit, Hatchinator,
+         Crackle Generator, Crackle Power Pole. All four are counts,
+         filled by the same RV fill, committed through the one
          commitExtraCount, and read everywhere through facCount — the
          Suggested Layout's Storage and Hatchinator boxes are these
-         same counts. */
+         same counts. The Crackle Generator ALSO asks for its level
+         (player's ask, Nov 28, 2026): a Lv box beside its count,
+         committed through commitExtraLevel into extraLevels, filled
+         to the RV cap by the same fill — its level sets the supply
+         per generator the power call works with. */
       var xg = document.getElementById("extraGrid");
       if(xg){
         var extraHints = {
           "Storage Unit":"Passive, takes no worker · spread through the Suggested Layout, beside the pieces they serve",
           "Hatchinator":"All of them group together on the hatchery plot in the Suggested Layout",
-          "Crackle Generator":"Makes the grid's supply, 1 Lightning Aniimo each — the power call reads this count and only calls for the ones a plan earns",
+          "Crackle Generator":"Makes the grid's supply, 1 Lightning Aniimo each — its level sets the supply (Lv 1 = 600, Lv 2 = 800, Lv 3 = 1,000, Lv 4 = 1,200, Lv 5 = 1,500); the power call reads this count and level and only calls for the ones a plan earns",
           "Crackle Power Pole":"Relay only, makes no power — stretches the grid 7 × 7 each; the power call asks for poles only when the switched-on machines spread past one generator's 11 × 11"
         };
         xg.innerHTML = Object.keys(EXTRA_COUNT).map(function(n){
@@ -7513,13 +7592,25 @@
             var nxt = extraNextStep(n, userRV);
             sub = extraHints[n] + " · max " + maxC + " out at RV " + userRV + (nxt ? " · next at RV " + nxt[0] : " · top count at your RV");
           }
+          if(n === "Crackle Generator" && userRV > 0 && powerGenLevel(userRV) > 0){
+            sub += " · up to Lv " + powerGenLevel(userRV) + " at RV " + userRV;
+          }
           sub += facSizeNote(n);
+          var lvlHtml = "";
+          if(n === "Crackle Generator"){
+            lvlHtml = ' <span class="src">Lv</span> <input type="number" class="fac-num" min="0" max="' + GEN_MAX_LEVEL + '" value="' + genLevel() + '" data-extra-lvl="' + escA(n) + '" aria-label="' + escA(n) + ' level" />' + aboveFlagHtml("extra-lvl:" + n, genLevel() > powerGenLevel(userRV));
+          }
           return '<div class="fac-item"><span><span class="nm">' + esc(n) + '</span><span class="kd">' + sub + '</span></span>' +
-            '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-extra-count-dec="' + escA(n) + '" aria-label="One fewer ' + escA(n) + '"' + (facCount(n) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(n) + '" data-extra-count="' + escA(n) + '" aria-label="' + escA(n) + ' count" /><button type="button" class="cnt-btn" data-extra-count-inc="' + escA(n) + '" aria-label="One more ' + escA(n) + '"' + (userRV > 0 && facCount(n) >= maxC ? " disabled" : "") + '>+</button></span>' + aboveFlagHtml("extra-count:" + n, facCount(n) > maxC) + '</span></div>';
+            '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-extra-count-dec="' + escA(n) + '" aria-label="One fewer ' + escA(n) + '"' + (facCount(n) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(n) + '" data-extra-count="' + escA(n) + '" aria-label="' + escA(n) + ' count" /><button type="button" class="cnt-btn" data-extra-count-inc="' + escA(n) + '" aria-label="One more ' + escA(n) + '"' + (userRV > 0 && facCount(n) >= maxC ? " disabled" : "") + '>+</button></span>' + aboveFlagHtml("extra-count:" + n, facCount(n) > maxC) + lvlHtml + '</span></div>';
         }).join("");
         xg.querySelectorAll("[data-extra-count]").forEach(function(inp){
           inp.addEventListener("change", function(){
             commitExtraCount(inp.getAttribute("data-extra-count"), parseInt(inp.value, 10));
+          });
+        });
+        xg.querySelectorAll("[data-extra-lvl]").forEach(function(inp){
+          inp.addEventListener("change", function(){
+            commitExtraLevel(inp.getAttribute("data-extra-lvl"), parseInt(inp.value, 10));
           });
         });
         xg.querySelectorAll("[data-extra-count-inc]").forEach(function(btn){
@@ -7544,10 +7635,37 @@
       if(mlg){
         mlg.innerHTML = MODULE_DEFS.map(function(d){
           var rvCapM = userRV ? rvMaxModuleLevel(d, userRV) : 0;
+          /* Binary modules (Incubation Reaction, player's fix Nov 28,
+             2026): one single unlock — you have it or you don't, there
+             is no level ladder — so the card carries a Have it /
+             Don't have it toggle instead of a Lv number box. The
+             stored value stays 0/1 so Fill, RV caps and every other
+             reader keep working unchanged. */
+          if(d.binary){
+            var binCap = !userRV ? ' · single unlock — first needs RV ' + ((MODULE_UNLOCKS[d.id] || [])[0] ? (MODULE_UNLOCKS[d.id][0].rv) : "—") : (rvCapM > 0 ? ' · RV ' + userRV + ' allows it (single unlock, no levels to climb)' : ' · not open yet at RV ' + userRV + ' — needs RV ' + ((MODULE_UNLOCKS[d.id] || [])[0] ? (MODULE_UNLOCKS[d.id][0].rv) : "—"));
+            var binOwned = (moduleLevels[d.id] || 0) > 0;
+            return '<div class="fac-item"><span><span class="nm">' + esc(d.name) + '</span><span class="kd">' + esc(d.hint) + binCap + '</span></span>' +
+              '<span class="fac-ctl"><button type="button" class="chip" data-modbin="' + d.id + '" aria-pressed="' + binOwned + '" aria-label="' + esc(d.name) + ': toggle whether you have this single-unlock module">' + (binOwned ? "✓ Have it" : "Don't have it yet") + '</button></span></div>';
+          }
           var capTxt = !userRV ? ' · max Lv ' + d.max : (rvCapM > 0 ? ' · RV ' + userRV + ' allows up to Lv ' + rvCapM + ' (module max Lv ' + d.max + ')' : ' · not open yet at RV ' + userRV + ' — first level needs RV ' + ((MODULE_UNLOCKS[d.id] || [])[0] ? (MODULE_UNLOCKS[d.id][0].rv) : "—"));
           return '<div class="fac-item"><span><span class="nm">' + esc(d.name) + '</span><span class="kd">' + esc(d.hint) + capTxt + '</span></span>' +
             '<span class="fac-ctl"><span class="src">Lv</span> <input type="number" min="0" max="' + d.max + '" value="' + (moduleLevels[d.id] || 0) + '" data-modlvl="' + d.id + '" aria-label="Your ' + esc(d.name) + ' level" />' + aboveFlagHtml("modlvl:" + d.id, (moduleLevels[d.id] || 0) > rvMaxModuleLevel(d, userRV)) + '</span></div>';
         }).join("");
+        mlg.querySelectorAll("[data-modbin]").forEach(function(btn){
+          btn.addEventListener("click", function(){
+            var id = btn.getAttribute("data-modbin");
+            var def = MODULE_DEFS.filter(function(d){ return d.id === id; })[0];
+            moduleLevels[id] = (moduleLevels[id] || 0) > 0 ? 0 : 1;
+            var nowOwned = moduleLevels[id] > 0;
+            btn.setAttribute("aria-pressed", String(nowOwned));
+            btn.textContent = nowOwned ? "✓ Have it" : "Don't have it yet";
+            setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+            syncModulesFromLevels();
+            renderModulePanels(); renderAll(); renderCrops(); renderLayoutPicker(); renderLayout();
+            refreshStrategyPlan();
+            toast(def.name + (nowOwned ? " marked as owned — it's a single unlock, no levels." : " marked as not owned.") + " Plan refreshed on the spot.");
+          });
+        });
         mlg.querySelectorAll("[data-modlvl]").forEach(function(inp){
           inp.addEventListener("change", function(){
             var id = inp.getAttribute("data-modlvl");
@@ -7585,13 +7703,22 @@
         } else {
           statusHtml = '<div class="mod-status">' + MODULE_DEFS.map(function(d){
             var lvl = moduleLevels[d.id] || 0;
+            /* Binary modules read as owned / not owned, never as a
+               level: there is no ladder to show for them. */
+            if(d.binary){
+              var bOwned = lvl > 0;
+              var bRows = MODULE_UNLOCKS[d.id].map(function(u){
+                return '<li class="' + (bOwned ? "owned" : "") + '">' + (bOwned ? "✓ " : "🔒 ") + "Single unlock (needs RV " + u.rv + "): " + esc(u.label) + "</li>";
+              }).join("");
+              return '<div class="mod-group"><h5>' + esc(d.name) + ": " + (bOwned ? "✓ Have it" : "Don't have it yet") + ' — single unlock, no levels</h5><ul>' + bRows + "</ul></div>";
+            }
             var rows = MODULE_UNLOCKS[d.id].map(function(u){
               var owned = lvl >= u.lvl;
               return '<li class="' + (owned ? "owned" : "") + '">' + (owned ? "✓ " : "🔒 ") + "Lv " + u.lvl + " (needs RV " + u.rv + "): " + esc(u.label) + (u.modId ? " · yield auto-applied in your plans" : "") + "</li>";
             }).join("");
             return '<div class="mod-group"><h5>' + esc(d.name) + ": Lv " + lvl + " of " + d.max + '</h5><ul>' + rows + "</ul></div>";
           }).join("") + "</div>" +
-          '<p class="src" style="margin-top:8px">The Kitchen, Resource Detector, Crafting and Rooftop Loft lists (Plant Research, Incubation Reaction, Signal Transmitter, Power) just show what you own and what each level unlocks — no effect rates are shown where your panels named only the unlock, so none are invented. Only the Ecological harvests above change your grow numbers; the Power Module level follows the generator ladder in Power &amp; E-Mode.</p>';
+          '<p class="src" style="margin-top:8px">The Kitchen, Resource Detector, Crafting, Rest and Rooftop Loft lists (Plant Research, Incubation Reaction, Signal Transmitter, Power) just show what you own and what each level unlocks — no effect rates are shown where your panels named only the unlock, so none are invented. Incubation Reaction is a single unlock, shown as have-it-or-not, with no level ladder. Only the Ecological harvests above change your grow numbers; the Power Module level follows the generator ladder in Power &amp; E-Mode.</p>';
         }
         ms.innerHTML = statusHtml;
       }
@@ -11307,6 +11434,7 @@
           rv: userRV || 0,
           fc: Object.keys(FAC_RV).map(function(f){ return [f, facCount(f), facLevel(f)]; }),
           cc: Object.keys(CLIM_COUNT).map(function(b){ return [b, facCount(b)]; }),
+          gl: genLevel(),
           ml: MODULE_DEFS.map(function(d){ return [d.id, moduleLevels[d.id] || 0]; }),
           pw: modulesOwned.premiumWheat ? 1 : 0,
           /* Her Step 5 plot counts are strategy-plan inputs too: a
@@ -11339,7 +11467,7 @@
     document.addEventListener("change", function(e){
       var t = e.target;
       if(!t || !t.getAttribute) return;
-      if(t.getAttribute("data-modlvl") || t.getAttribute("data-fac-count") || t.getAttribute("data-fac-lvl") || t.getAttribute("data-clim-count") || t.id === "rvLevel") refreshStrategyPlan();
+      if(t.getAttribute("data-modlvl") || t.getAttribute("data-fac-count") || t.getAttribute("data-fac-lvl") || t.getAttribute("data-clim-count") || t.getAttribute("data-extra-lvl") || t.id === "rvLevel") refreshStrategyPlan();
     });
 
     function renderGoals(){
@@ -13676,7 +13804,7 @@
       });
       html += '<div class="note note-info"><h4>Climate units and power: what to use and where</h4><p>Cooling Units, Heat Furnaces, Sunlamps, Crackle Generators and Power Poles are never placed on this board. They live in the pocket until you drop one in. The middle of each farm zone stays open grass — the spot its unit drops into — and so does the grass beside the leisure pieces, with nothing placed there and nothing drawn there. The farm lines below name the field layout\'s own zones, copied onto this board with the same configuration: one line per zone, naming its building, the plots and crops in it, where the zone\'s middle sits on the board, and how the zones compare with the count you own.</p>' + (climateLines.length ? '<ul style="margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px">' + climateLines.join("") + "</ul>" : '<p style="margin-top:8px">No farm or leisure pieces are placed on this board, so no climate unit is needed for it.</p>') + (function(){
         var ppS = powerPlan(currentPlanWorking());
-        if(ppS.genLvl === 0) return '<p style="margin-top:8px"><strong>Power:</strong> no grid before RV 12 — generators and poles stay in the pocket.</p>';
+        if(ppS.genLvl === 0) return ppS.rvGenLvl === 0 ? '<p style="margin-top:8px"><strong>Power:</strong> no grid before RV 12 — generators and poles stay in the pocket.</p>' : '<p style="margin-top:8px"><strong>Power:</strong> no generator level entered in Step 1 yet — set the Lv box beside the Generator count there and the planner can make its power call for this board.</p>';
         if(!ppS.use) return '<p style="margin-top:8px"><strong>Power:</strong> the planner\'s call for your current plan is <strong>no grid</strong> — do not spread generators or poles over this board for it. <a href="#power">The call ↑</a></p>';
         if(typeof eModeOn === "undefined" || !eModeOn) return '<p style="margin-top:8px"><strong>Power:</strong> ⚡ <strong>E-Mode is OFF</strong> — the planner\'s call suggests <strong>' + ppS.gens + (ppS.gens === 1 ? " Crackle Generator" : " Crackle Generators") + (ppS.poles === 0 ? " and no Power Poles" : " and " + ppS.poles + (ppS.poles === 1 ? " Power Pole" : " Power Poles")) + '</strong> for ' + ppS.chosen.map(function(c){ return esc(c.f); }).join(", ") + ', but you are not following it, so this board lays every machine out Aniimo-run, with no grid clustering. Flip ⚡ E-Mode on in Step 5 and the board, the call and the E-Mode picture all switch to the grid together. <a href="#power">The call ↑</a></p>';
         var chosenNames = {};
@@ -13936,10 +14064,25 @@
         levelRows.push({ name:f, badge:"Upgrade", change:"Lv " + have + " → Lv " + (have + 1) + (maxL > have + 1 ? " (RV " + rv + " allows Lv " + maxL + ")" : ""),
           why:opens.length ? "Opens: " + bnNames(opens, 4) + "." : "No recipe in the checked list sits at " + f + " Lv " + (have + 1) + " — the level still readies the facility for anything beyond the list." });
       });
+      /* The Crackle Generator's level (the Lv box beside its count
+         in Step 1): an owned generator below the level her RV
+         allows is an upgrade like any facility level — each level
+         raises every generator's supply. */
+      if(facCount("Crackle Generator") > 0){
+        var gHave = genLevel(), gMaxL = powerGenLevel(rv);
+        if(gMaxL > 0 && gHave < gMaxL){
+          levelRows.push({ name:"Crackle Generator", badge:"Upgrade", change:"Lv " + gHave + " → Lv " + (gHave + 1) + (gMaxL > gHave + 1 ? " (RV " + rv + " allows Lv " + gMaxL + ")" : ""),
+            why:"Raises each Generator's supply from " + fmt(POWER_GEN_CAPS[gHave] || 0) + " to " + fmt(POWER_GEN_CAPS[gHave + 1] || 0) + " — a bigger grid, or the same grid with more spare power to run it faster." });
+        }
+      }
       levelRows.sort(function(a, b){ return a.name.localeCompare(b.name); });
-      /* Module levels her RV already allows. */
+      /* Module levels her RV already allows. Binary modules are
+         skipped here (player's fix, Nov 28, 2026): Incubation
+         Reaction is a single unlock — you have it or you don't —
+         so Buy Next never suggests a "next level" for it. */
       var modRows = [];
       MODULE_DEFS.forEach(function(def){
+        if(def.binary) return;
         if(modNeed[def.id] !== undefined) return;
         var have = moduleLevels[def.id] || 0, maxM = rvMaxModuleLevel(def, rv);
         if(have >= maxM) return;
@@ -14012,6 +14155,11 @@
           });
         });
         Object.keys(MODULE_UNLOCKS).forEach(function(id){
+          /* Binary modules (Incubation Reaction) are not listed as
+             a level here either — a single unlock, not a Lv step. */
+          var bnDef = null;
+          MODULE_DEFS.forEach(function(d){ if(d.id === id) bnDef = d; });
+          if(bnDef && bnDef.binary) return;
           (MODULE_UNLOCKS[id] || []).forEach(function(u){
             if(u.rv !== rv + 1) return;
             if(aheadMod[id + "|" + u.lvl]) return;
@@ -14184,6 +14332,7 @@
           Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
           Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
           Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = 0; });
+          extraLevels["Crackle Generator"] = 0;
           MODULE_DEFS.forEach(function(d){ moduleLevels[d.id] = 0; crewGate.modules[d.id] = false; });
           modulesOwned.premiumWheat = false;
           syncModulesFromLevels();
@@ -14274,6 +14423,7 @@
         syncModulesFromLevels();
         setFacProvenance("No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts");
         Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = 0; });
+        extraLevels["Crackle Generator"] = 0;
         var ssI = document.getElementById("suggStorageInput"); if(ssI) ssI.value = "0";
         var shI = document.getElementById("suggHatchInput"); if(shI) shI.value = "0";
         var hlT = document.getElementById("hideLockedToggle"); if(hlT) hlT.checked = false;
