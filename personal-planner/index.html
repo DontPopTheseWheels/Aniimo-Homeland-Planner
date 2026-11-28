@@ -336,6 +336,7 @@
       /* Suggested Homeland Layout board */
       .sugg-board{border:2px solid var(--card-line);border-radius:12px;overflow:hidden;cursor:zoom-in;background:#79b657;margin-top:12px}
       .sugg-board:focus{outline:3px solid var(--accent);outline-offset:2px}
+      .sugg-board#sgBoard{cursor:default}
       .sugg-board svg{display:block;width:100%;height:auto}
       .sugg-zoom{position:fixed;inset:0;z-index:80;background:rgba(38,26,48,.92);display:flex;flex-direction:column}
       .sugg-zoom[hidden]{display:none}
@@ -413,7 +414,7 @@
           <div class="step"><span class="n">Step 3</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
           <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. The plan builds itself — and rebuilds itself on every change you make, so it is never out of date.</p></div>
           <div class="step"><span class="n">Steps 5–7</span><br /><b>➕ Add &amp; Adjust, crew &amp; home</b><p>Add &amp; Adjust plants it — Mines included, in Facilities out. Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
-          <div class="step"><span class="n">Mine</span><br /><b>🗺️ My homeland layout</b><p>Your real 16 plots on the homeland grid, every spot placed in whole squares and labeled — what goes there, what it makes, and who works it. The plots, pieces and workers are your real homeland and stay put; every recipe label on it refreshes live from your current basket and plan, every time they change.</p></div>
+          <div class="step"><span class="n">🗺️</span><br /><b>Suggested layout</b><p>A fixed RV 18 suggestion with everything out at its cap, drawn on the grid at true sizes — mines in one block, a workshop area, and fields and woodlands in climate clusters. Step the RV level there and only the fields and woodlands redraw.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
         </div>
       </header>
@@ -431,7 +432,7 @@
         <a href="#jobs">🎛️ Job Picks</a>
         <a href="#team">👥 Team Helper</a>
         <a href="#home">🏠 Home &amp; Bud Tickets</a>
-        <a href="#suggested">🗺️ My Homeland Layout</a>
+        <a href="#suggested">🗺️ Suggested Layout</a>
         <a href="#sources">🔍 Sources &amp; Flags</a>
       </nav>
 
@@ -677,7 +678,7 @@
       <!-- ================= STEP 5: ADD & ADJUST ================= -->
       <section id="layout">
         <div class="sec-head"><span class="sec-num">Step 5</span><h2>➕ Add &amp; Adjust</h2></div>
-        <p class="sec-sub"><strong>⭐ Best</strong> plants the full field your RV allows. <strong>🪶 Minimum</strong> plants one plot of each crop.<br />Plots needing the same climate building share its zones, so only the buildings the plots fill go out — never more than your Step 1 counts. Sizes, true in game: Farmland plot 3 × 3, Woodland plot 3.5 × 3.5, one climate building covers a 9 × 9 square centered on itself.<br /><strong>Center rule, and no overlaps:</strong> a plot counts as covered when its center is inside the climate square — a center on the boundary counts as inside too — so edge plots can hang over the zone's edge and still count in full, as long as their center stays inside — and the climate building takes up space too. The building stands in the middle of its zone on its own tiles, so no plot is ever placed on them and no two plots overlap each other — plots pack around the building, and one zone holds up to 8 plots around its building — Farmland, Woodland, or the two lands sharing the zone: a 9th plot's center always falls outside the 9 × 9, so it would get no cover at all (verified in your game, Nov 27, 2026). Keep edge plots clear of other climate buildings, so nothing blends by accident.</p>
+        <p class="sec-sub"><strong>⭐ Best</strong> plants the full field your RV allows. <strong>🪶 Minimum</strong> plants one plot of each crop.<br />Plots needing the same climate building share its zones, so only the buildings the plots fill go out — never more than your Step 1 counts. Sizes, true in game: Farmland plot 2 × 2, Woodland plot 3.5 × 3.5, one climate building covers a 9 × 9 square centered on itself.<br /><strong>Center rule, and no overlaps:</strong> a plot counts as covered when its center is inside the climate square — a center on the boundary counts as inside too — so edge plots can hang over the zone's edge and still count in full, as long as their center stays inside — and the climate building takes up space too. The building stands in the middle of its zone on its own tiles, so no plot is ever placed on them and no two plots overlap each other — plots pack around the building: one zone holds up to <strong>24 Farmland</strong> around a Heat Furnace or Sunlamp (centers on a 2-tile pitch, minus the unit's own cell), up to <strong>21 Farmland</strong> around a Cooling Unit (its 2 × 2 footprint takes more of the middle), up to <strong>8 Woodland</strong>, and a zone mixing Farmland and Woodland caps at <strong>8 plots total</strong> — past those counts a plot's center always falls outside the 9 × 9, so it would get no cover at all (verified in your game, Nov 27, 2026). Keep edge plots clear of other climate buildings, so nothing blends by accident.</p>
 
         <div class="card" id="jobs" style="margin-bottom:14px">
           <h3>🎛️ Where to find each job pick</h3>
@@ -791,45 +792,37 @@
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
-      <!-- ================= MY HOMELAND LAYOUT (personal copy only) ================= -->
+      <!-- ================= SUGGESTED HOMELAND LAYOUT ================= -->
       <section id="suggested">
-        <div class="sec-head"><span class="sec-num">Mine</span><h2>🗺️ My Homeland Layout</h2></div>
-        <p class="sec-sub"><strong>This is your homeland as it stands — on the grid, and always current.</strong> Your 16 plots sit in their real positions on the homeland grid, and every plot is drawn as a grid board with its pieces drawn at their true sizes, halves included: fields and woodlands with their crops, mines by material, facilities, climate units and Leisure pieces, every spot labeled with what should sit there, what it makes, and who works it. Spare, open and unstaffed spots are labeled exactly that. The plots, pieces and workers are your real homeland and never move — but <strong>every recipe label on this board is rebuilt live from your basket as it stands right now</strong>: change a recipe or a count anywhere on the page and this board refreshes itself with it, so it can never hold onto an older basket. <strong>Working order: Right → Left, Front → Back</strong> — start at the front-right and work across, then move back a row.</p>
+        <div class="sec-head"><span class="sec-num">🗺️</span><h2>🗺️ Suggested Homeland Layout — RV 18, Everything Out</h2></div>
+        <p class="sec-sub"><strong>A fixed suggestion, not a plan output.</strong> Everything is out at its <strong>RV 18 cap</strong> from this planner's own RV ladder, at max building level, drawn on the homeland grid (80 squares across by 60 back) at <strong>true sizes only</strong> — no overlaps, nothing shrunk. The 9 Mines sit in one block; machines, storage, Hatchinators and the leisure stations share one workshop area; fields and woodlands sit in climate clusters, each with its climate unit drawn in the middle and its 9 × 9 coverage square shown. Step the RV level below and <strong>only the Farmland and Woodland blocks redraw</strong> at that level's caps — everything else stays at the RV 18 arrangement, because fields and woodlands are what get rebuilt each level anyway.</p>
 
-        <div class="note note-info" style="margin-bottom:14px">
-          <h4>🎯 Current plan only — refreshed live, every change</h4>
-          <p id="myLivePlanNote">Your current plan will be listed here, and the board below rebuilt from it, the moment you pick recipes or a strategy.</p>
-          <p class="src" id="myLiveStamp" style="margin-top:6px" aria-live="polite"></p>
-        </div>
-
-        <div class="my-board" id="myBoard" role="img" aria-label="Your homeland on the grid: 16 plots in a 4 by 4 arrangement, back row at the top and front row at the bottom, each plot showing its pieces drawn at their true sizes, halves included"></div>
-        <p class="src" style="margin-top:8px">The whole homeland on its grid — back row at the top, front row at the bottom, so Plot 1 sits in the front row, second from the right. Hover or tap any square for its label — hover a Farmland field or a Woodland and it says which crop that spot should grow. Every plot is then drawn big underneath, square by square, with every spot spelled out in words beside it.</p>
-
-        <div class="layout-legend">
-          <h3>How to read the grid</h3>
-          <div class="map-legend">
-            <p class="lg-row"><span class="lg-sw" style="background:#d7e8a8"></span>Farmland field — the label names the crop</p>
-            <p class="lg-row"><span class="lg-sw" style="background:#e8b07e"></span>Woodland — the label names the tree crop</p>
-            <p class="lg-row"><span class="lg-sw" style="background:#f6cf8b"></span>Workshop &amp; facility</p>
-            <p class="lg-row"><span class="lg-sw" style="background:#e8ddc8"></span>Mine — the label names the material</p>
-            <p class="lg-row"><span class="lg-sw" style="background:#f3b8d0"></span>Leisure Corner piece</p>
-            <p class="lg-row"><span class="lg-sw" style="background:#bfe0f2"></span>Water &amp; climate — CU = Cooling Unit · HF = Heat Furnace · SL = Sunlamp</p>
-            <p class="lg-row"><span class="lg-sw" style="background:repeating-linear-gradient(45deg,#fff 0 3px,#e6e0f2 3px 6px)"></span>Open or unstaffed spot — labeled exactly that</p>
+        <div class="card">
+          <h3>🌡️ How the climate clusters work</h3>
+          <p style="margin:6px 0 0;font-weight:600">The 19 Woodlands ring the three Heat Furnaces — <strong>8 + 8 + 3</strong> — every Woodland's center inside its furnace's 9 × 9 (the center rule). Farmlands fill the three Cooling Unit zones (Freeze/Cool, 8 each), a Sunlamp zone (Adequate light, 6), the third furnace's spare room (Scorching, 6), and the last 2 sit neutral between the clusters. A second Sunlamp stands in the workshop covering the Floral Windmill, which needs Light for Scales. Crackle Generators (11 × 11 range) and Power Poles (7 × 7 range) are spread along the workshop and cluster rows so the facilities around them fall inside power range. Hover or tap any piece for its name and true size.</p>
+          <div class="controls" style="margin-top:14px;align-items:center">
+            <div class="field">
+              <label>Fields &amp; woodlands at RV level</label>
+              <span class="stepper">
+                <button type="button" id="sgPrev" aria-label="One RV level down">−</button>
+                <input type="number" id="sgLevelInput" min="1" max="20" step="1" value="18" aria-label="RV level for the Farmland and Woodland blocks" />
+                <button type="button" id="sgNext" aria-label="One RV level up">+</button>
+              </span>
+              <span class="hint">Only the Farmland and Woodland blocks change. Everything else stays at the RV 18 arrangement.</span>
+            </div>
           </div>
-          <p class="src" style="margin-top:8px"><strong>True sizes, halves included:</strong> every piece is drawn at its real size — Farmland fields are their real 2 by 2, Woodlands are really 3.5 by 3.5, and facilities draw at their real size too, halves included (Crafting Table 4.5 by 4.5, Phonolfactory 3.5 by 3.5, Aniipod Maker 3 by 3, Dance Pad Polisher 2 by 2). Pieces sit on a half-square grid: each big board is one plot, 20 squares across by 15 back — 40 by 30 half-squares — so a half in a size or a position lands exactly where it does in game, and the grid tells you where to put everything. <strong>Climate cover:</strong> each Cooling Unit, Heat Furnace and Sunlamp covers 9 by 9 squares centered on the unit itself, and a crop counts as covered only when its center lands inside that 9 by 9 (the center rule, verified in your game) — a crop whose center falls outside gets no cover, however much of it reaches in. On the farm plots each unit sits among its crops, and every crop in a zone is placed where its unit's cover reaches it — Zone 1's crops around the Cooling Unit, Zone 2's crops between the two Heat Furnaces, and Zone 3's crops where the Sunlamp's cover reaches them. Where a spot's exact square inside its plot was never pinned down, the piece sits in a sensible free spot in that same plot — its label is exact about the plot it belongs in, and the list beside each board carries the full spot: what goes there, what it makes, and who works it.</p>
-        </div>
-
-        <div class="my-details" id="myDetails"></div>
-
-        <div class="card" style="margin-top:14px">
-          <h3>At a glance</h3>
-          <p style="margin:6px 0 0;font-weight:600">Farms on Plots 3 &amp; 6 · Water on Plot 4 · Hatching on Plot 5 · Workshop Rows 1 &amp; 3 across Plots 7 &amp; 9 · Kilns on Plot 8 · Rest &amp; family gates on Plot 10 · Mines on Plot 13 · Spare: Plot 1 · Open: Plots 11 &amp; 12 · Empty: Plots 14, 15 &amp; 16 · Unstaffed spots: Mine 8 and Well spot 3 on Plot 4.</p>
-          <p class="src" style="margin-top:8px">Plots 7 &amp; 9 hold the workshop together as Rows 1 &amp; 3. Their boards place the facilities in a sensible arrangement across the two plots, because the exact split between the two rows was never pinned — every facility, recipe and worker label is exact; only which of the two rows a piece sits in is this board's arrangement.</p>
-        </div>
-
-        <div class="note note-warn">
-          <h4>⚠️ Three rules this layout lives by</h4>
-          <p><strong>Hauler is load-bearing.</strong> Inferlupa (Hauling 4) isn't optional: finished goods pile up at the facility, and when the pile is full, production stops — he carries it to storage. That's why Mine 8 above is unstaffed. <strong>Food bowls full = full speed:</strong> an empty bowl drops every worker to ×0.2 speed. <strong>Workers don't wander to help:</strong> when inputs run out, an Aniimo stops at his own facility and never starts another building on his own — moving him along a chain is your job. If a line stalls, check in this order: ① inputs in the warehouse? ② food bowl full? ③ output pile cleared by the hauler?</p>
+          <div class="sugg-board" id="sgBoard" role="img" aria-label="Suggested homeland layout at RV 18: mines in one block top left, climate clusters of woodlands and fields across the top and middle, workshop area along the bottom, every item drawn at its true size"></div>
+          <p class="fac-state" id="sgCaption" aria-live="polite"></p>
+          <p style="margin-top:10px"><strong>Check line (RV 18):</strong> <span id="sgCheck"></span></p>
+          <div class="map-legend">
+            <p class="lg-row"><span class="lg-sw" style="background:#b9dc7f"></span>Farmland 2 × 2</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#8fce7e"></span>Woodland 3.5 × 3.5</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#d8ccc0"></span>Mine 5 × 5</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#f6cf8b"></span>Workshop &amp; leisure facilities (true sizes)</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#f6a98b"></span>Heat Furnace 1 × 1 · <span class="lg-sw" style="background:#bfe0f2"></span>Cooling Unit 2 × 2 · <span class="lg-sw" style="background:#ffe9a8"></span>Sunlamp 1 × 1 — dashed square = its 9 × 9 coverage</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#e6e0f2"></span>Crackle Generator 2 × 2 · Power Pole 1.5 × 1.5</p>
+          </div>
+          <div id="sgCounts"></div>
         </div>
         <p class="src" style="margin-top:16px">Done looking? <a href="#sources">Next: Sources &amp; Flags, right below ↓</a></p>
       </section>
@@ -853,15 +846,15 @@
           <li><strong>Crop environments (verified from your own game, Oct 23, 2026):</strong> two separate tags — a temperature tag (Recommended: grows best there, still grows elsewhere) and Adequate light (Required: hard requirement). Cooling Unit serves Freeze/Cool; Heat Furnace serves Warm/Scorching; Sunlamp serves Adequate light. Cool: Rose, Strawberry, Ginseng, Apple. Freeze: Cranberry, Maple Syrup. Warm: Cherry Blossom, Chestnut. Scorching: Sugarcane, Agave, Palm Bark, Natural Rubber, Coconut, Cocoa. Adequate light: Lavender, Grapes, Walnut, Orange Flower. Every other crop: no special environment needed.</li>
           <li><strong>Sea Salt is the known bottleneck</strong> <span class="verdict v-mix">single community source</span>: it comes only from the Tidewhisper Sandcastle. Per your in-game panels (Oct 27, 2026): Sea Salt needs the <strong>Susuta family</strong>, Pearl needs the <strong>Shelly family</strong>, Star (Starfall Hammock) takes <strong>any Aniimo from the Celestis family</strong>.</li>
           <li><strong>Wood Blocks by Woodland level</strong> (your screenshots, Oct 25, 2026): Lv 1 = 1, Lv 2 = 8, Lv 3 = 21, Lv 4 = 47, Lv 5 = 75, Lv 6 = 122 per plot, same for every tree at that level. Mineral Sand comes from the Mine in amounts that vary, so no fake yield is shown.</li>
-          <li><strong>Climate coverage:</strong> a climate building affects a 9 × 9 square centered on itself (your Edit-mode screenshot, Oct 23, 2026; the zone size and the true plot sizes below were re-verified in your game on Nov 27, 2026, after two planner configs claimed a 9th covered plot whose center fell outside the zone). <strong>Center rule (verified in your game, Nov 24, 2026):</strong> a plot counts as covered when <strong>its center is inside</strong> that square — a center on the boundary counts as inside — so it does not have to fit fully inside, and edge plots can hang over the zone's edge and still count in full; but a plot whose center falls outside is not covered, however much of it reaches in (your Nov 24 screenshot: a Woodland plot with only a sliver inside a Heat Furnace's zone was not covered). This replaces the touch rule checked Oct 29, 2026, which said any part touching the area counted. <strong>No overlaps (player's rule, Oct 31, 2026):</strong> climate units take up space and items can't overlap — the building itself stands in the middle of its zone on its own tiles (Cooling Unit 2 × 2, Heat Furnace 1 × 1, Sunlamp 1 × 1), which the packer keeps clear before it places a single plot. Plots pack around the building, never on it and never over each other, so one zone holds up to 8 plots around its building — Farmland, Woodland, or both lands sharing — and never 9: the 9th plot's center falls outside the 9 × 9 and gets no cover (your in-game build check, Nov 27, 2026). Zones are kept apart, and the only blends are the plan's own shared zones, said out loud.</li>
-          <li><strong>Plot footprints and power zones</strong> (your screenshots, Oct 23, 2026): Farmland 3 × 3, Woodland 3.5 × 3.5, climate zone 9 × 9 (true sizes, re-verified in your game Nov 27, 2026; the packer works on a half-square grid so the halves land exactly), Crackle Generator zone 22 × 22, Power Pole zone 14 × 14. Packing assumes plots edge to edge.</li>
+          <li><strong>Climate coverage:</strong> a climate building affects a 9 × 9 square centered on itself (your Edit-mode screenshot, Oct 23, 2026; the zone size and the true plot sizes below were re-verified in your game on Nov 27, 2026, after two planner configs claimed a 9th covered plot whose center fell outside the zone). <strong>Center rule (verified in your game, Nov 24, 2026):</strong> a plot counts as covered when <strong>its center is inside</strong> that square — a center on the boundary counts as inside — so it does not have to fit fully inside, and edge plots can hang over the zone's edge and still count in full; but a plot whose center falls outside is not covered, however much of it reaches in (your Nov 24 screenshot: a Woodland plot with only a sliver inside a Heat Furnace's zone was not covered). This replaces the touch rule checked Oct 29, 2026, which said any part touching the area counted. <strong>No overlaps (player's rule, Oct 31, 2026):</strong> climate units take up space and items can't overlap — the building itself stands in the middle of its zone on its own tiles (Cooling Unit 2 × 2, Heat Furnace 1 × 1, Sunlamp 1 × 1), which the packer keeps clear before it places a single plot. Plots pack around the building, never on it and never over each other. With Farmland at its true 2 × 2 (corrected Nov 27, 2026 — see the plot footprints entry below), one zone holds up to 24 Farmland around a Heat Furnace or Sunlamp (centers on a 2-tile pitch, minus the unit's own cell), up to 21 Farmland around a Cooling Unit (2 × 2 footprint), up to 8 Woodland, and a zone mixing Farmland and Woodland caps at 8 plots total: past those counts a plot's center falls outside the 9 × 9 and gets no cover (your in-game build check, Nov 27, 2026). Zones are kept apart, and the only blends are the plan's own shared zones, said out loud.</li>
+          <li><strong>Plot footprints and power zones</strong> (your screenshots, Oct 23, 2026): Farmland 2 × 2, Woodland 3.5 × 3.5, climate zone 9 × 9 (Farmland's 2 × 2 is the twice-measured firsthand record, Oct 23, 2026, cross-checked Nov 9, 2026, and confirmed by your Nov 27, 2026 furnace-cluster screenshot; the packer works on a half-square grid so the halves land exactly), Crackle Generator zone 22 × 22, Power Pole zone 14 × 14. Packing assumes plots edge to edge.</li>
           <li><strong>Strategy, the next-level bill, and the basket offset:</strong> one strategy at a time (player's rule, Oct 27, 2026, the Aniimax model). Level Up targets the single next level's bill as a fixed one-time package, outside per-hour rates; Goals runs the ranked goals and the bill plays no part. In Level Up mode, the basket's net Wood Block surplus (counted production by Woodland level, minus what basket recipes use) comes off the bill, shown line by line. Mineral Sand is never offset: it rides along with Mine runs in amounts that vary, so it is flagged, not guessed.</li>
           <li><strong>The basket takes recipes only, never amounts (max 10).</strong> The planner sizes each picked recipe to the facilities you have out; the chain under it is worked out, then the plan is fitted inside your limits (facility counts, plot counts) and scaled down where a limit binds — the plan names the limit. What the plan makes and earns is shown per hour, worked out at the slowest crop's pace (craft and gather times are not verified, and rates say so).</li>
           <li><strong>Crop plot counts live in What You're Growing only</strong> (player's decision, Nov 27, 2026): the two "counts behind the layout" lists that used to sit in Step 5 are gone, and the layout reads its crop counts from the What You're Growing list — the basket's plantings (with her own counts on top), the strategy plan's plantings and hand-added crops all settle there, so there is one list and one place to change a number. Hand picks in Step 5 stay optional extras in their own group, never merged.</li>
           <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, packs each building's plots into the fewest zones that cover them (Farmland and Woodland plots of one climate sharing one 9 × 9 zone, every plot's center inside it and clear of the building's own tiles in the middle), shares zones between two climates whenever that covers the plan with fewer buildings, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
           <li><strong>Overlap (Step 5, Add &amp; Adjust):</strong> only the Steam guide's two verified blends are noted — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so a band never places or covers a crop: every crop keeps its own climate zone and building count (Cool crops always keep their own Cooling Unit zones, Warm crops their own Heat Furnace zones), nothing is deducted for a band anywhere, and a band appears only as an uncounted note naming the crops whose zones could cross to make it. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
           <li><strong>Step 5 (Add &amp; Adjust) also reads your strategy plan:</strong> once run, its plantings join the same What You're Growing list as their own group there, and the layout combines them with the basket's counts from that one list.</li>
-          <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the center rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, each plot's center inside its 9 × 9 zone and hanging over its edge where the center rule allows, so one zone holds up to 8 plots around its building and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
+          <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the center rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, each plot's center inside its 9 × 9 zone and hanging over its edge where the center rule allows, so one zone holds up to 24 Farmland around a Heat Furnace or Sunlamp, 21 Farmland around a Cooling Unit, 8 Woodland, or 8 plots total in a mixed zone, and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
           <li><strong>Facility sizes</strong> (measured from your in-game screenshots and cross-checked against wikily.gg game data, Nov 9, 2026): every facility's true footprint in tiles now shows beside its name in Step 1, in the Always list, on its Step 5 (Add &amp; Adjust) block and in the strategy plan's facility table. Farmland 2 × 2, Woodland 3.5 × 3.5, Mine 5 × 5, Well 2 × 2, Aniipod Maker 4.5 × 4.5, Crafting Table 4 × 4, Woodworking Bench 2 × 1.5, Chimney Kiln 5 × 5, Blazing Stove 2.5 × 2.5, Simmering Pot 3 × 3, Claw Game Cooker 1.5 × 1.5, Jukebox Dryer 2.5 × 2.5, Pickling Jar 2.5 × 2, Joy Wheel Loom 4 × 4, Carousel Mill 5 × 5, Phonolfactory Table 3.5 × 3.5, Bouncy Brew Keg 3 × 3, Dance Pad Polisher 2.5 × 2.5, Storage Unit 2 × 2, Hatchinator 2 × 2, Tidewhisper Sandcastle 5 × 5, Dewy House 2 × 2, Nimbus Bed 5 × 5, Starfall Hammock 5 × 5, Heat Furnace 1 × 1, Sunlamp 1 × 1, Cooling Unit 2 × 2, Crackle Generator 2 × 2 (covers 11 × 11), Crackle Power Pole 1.5 × 1.5 (covers 7 × 7). The Floral Windmill has no verified size, so none is shown for it. Sizes are display only: no plan, crew or power figure reads them, and the layout packer keeps the reserved building footprints above.</li>
           <li><strong>Step 1 (setup):</strong> the boxes start empty on a fresh load — no RV level, counts or module levels are carried in. Picking an RV level, or tapping Fill from RV level, fills them to the most that RV allows — facility counts, facility levels, climate counts and module levels. Any box can then be changed with its − and + steppers or typed over, and more of any facility can be added the same way; a value above the RV maximum is used as entered and flagged "above RV max". Recipe greying and plans follow the entered values. Facility tier caps per RV come from AniimoTools' station tables.</li>
           <li><strong>Facility max counts:</strong> from <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a>, cross-checked: <a href="https://aniimoguide.com/homeland">aniimoguide</a> confirms counts against game data to RV 11 (Farmland, Woodland and Mine counts solid at all 20 levels), AniimoTools' max-out table matches all 21 facilities at RV 12, and the Steam guide confirms the fourth Well at RV 19. Above RV 12, other facilities' steps rest on Aniiland alone, flagged <span class="verdict v-mix">count single source</span>. Correction settled: RV 14 Farmland max is 30 (28 is RV 13). <strong>Player-verified in game</strong> (her Build screenshot and words, Oct 28, 2026): Carousel Mill max placement is 2 (2/2 at RV 15), running Lv 4 at RV 14–15 with Lv 5 locked until RV 16 and Lv 6 until RV 18; she has 3 Wells at Lv 4 at RV 14–15. The Fill tables match these exactly and may not exceed them. Climate buildings follow the same ladder: Heat Furnace 1 at RV 7, 2 at RV 12, 3 at RV 17; Cooling Unit 1 at RV 7, 2 at RV 13, 3 at RV 17 — corrected Nov 18, 2026: AniimoTools' placement table and Aniiland agree on the third at RV 17, and the player owns 3 at RV 17 in her own game, so Fill sets 3 (the Oct 29, 2026 note that capped it at 2 recorded the 2 she owned then and is retired); Sunlamp 1 at RV 9, 2 at RV 13, 3 at RV 19. Counts-only buildings now have Step 1 boxes on the same Fill (audited Nov 18, 2026, Aniiland counts table cross-checked against AniimoTools' placement table): Storage Unit 1 at RV 2, then one more at RV 4, 7, 10, 13 and 16 (6 at RV 17, matching the player's own game), 7 at RV 19, 8 at RV 20; Hatchinator 3 at RV 2 rising to 10 at RV 9; Crackle Generator 1 at RV 12, 2 at RV 15, 3 at RV 18; Crackle Power Pole 6 at RV 12, then 12, 18, 24 and 30 at RV 14, 16, 18 and 20 (18 at RV 17, matching the player's own game). Every surface — Step 1 boxes, plan caps, facility cards and layout ceilings — reads these same tables; there is no second copy of a count anywhere on the page.</li>
@@ -894,7 +887,7 @@
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
-          <li><strong>My Homeland Layout (personal copy):</strong> in this personal copy, the layout section shows the player's own 16-plot homeland of record drawn on the homeland grid — plots in their grid positions, each plot a grid board with its pieces placed in whole squares and every spot labeled with what goes there, what it makes and who works it — instead of a generated suggestion. Where a spot's exact square inside its plot was never pinned, its piece sits in a sensible free spot in that same plot and the label stays exact at plot level. It is fixed reference, not a plan output: it never regenerates from Step 1 counts, and changing recipes, counts or crew elsewhere never rewrites it.</li>
+          <li><strong>Suggested Homeland Layout (replaced the old My Homeland Layout, Nov 27, 2026):</strong> a fixed suggestion for RV 18 with everything out at its RV 18 cap from this planner's own ladder (Farmland 38, Woodland 19, Mines 9, Heat Furnace 3, Cooling Unit 3, Crackle Power Poles 24, Crackle Generator 3, Woodworking Bench 4, Chimney Kiln 4, Starfall Hammock 2, Floral Windmill 1, Storage 6, Dewy House 2, and every other facility at its ladder RV 18 cap), drawn on the homeland grid at true sizes on the half-tile grid with no overlaps and nothing shrunk. Woodlands ring the three Heat Furnaces 8 + 8 + 3; Farmlands fill the Cooling Unit zones, a Sunlamp zone, the third furnace's spare room, and 2 neutral plots between clusters; every plot drawn inside a coverage square has its center inside that square (center rule). The RV stepper redraws only the Farmland and Woodland blocks at each level's ladder caps. <strong>Farmland's true size is 2 × 2</strong> — the twice-measured firsthand record (Oct 23, 2026 climate measurements, cross-checked Nov 9, 2026), confirmed by the player's Nov 27, 2026 furnace-cluster screenshot where a Farmland is visibly about half a Woodland's 3.5 width; the 3 × 3 figure used in the previous pass was an error. <strong>Sizes not firsthand-verified:</strong> Crafting Table (4 × 4), Aniipod Maker (4.5 × 4.5), Dance Pad Polisher (2.5 × 2.5) and Floral Windmill (drawn 5 × 5, with the other big leisure stations) keep the sizes this planner already used for them; they are not firsthand-verified. The board was machine-checked before delivery: zero overlaps on the half-tile grid, every drawn size equal to its spec size, Farmland/Woodland counts equal to the caps at every stepper level, and every covered plot's center inside its zone.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
@@ -7022,7 +7015,7 @@
       }
       var mats = mineMaterialsUpTo(ms.lvl);
       var s = '<div class="note note-teal"><h4>⛏️ Set your Mines — pick each Mine\'s material</h4>';
-      s += '<p>Set your Mines here — this is the only place. The Mine card above shows what each Mine is bringing in from these picks; change a pick here and the card, the totals, your crew and the My Homeland Layout mine check all follow.</p>';
+      s += '<p>Set your Mines here — this is the only place. The Mine card above shows what each Mine is bringing in from these picks; change a pick here and the card, the totals and your crew all follow.</p>';
       s += '<p><strong>Every mining run brings Mineral Sand too</strong>, whatever the Mine is set to. The amount varies <span class="verdict v-mix">Not verified yet</span>, so no sand number is counted — you never need a Mine on sand just to get sand.</p>';
       s += '<p style="margin-top:8px">';
       if(ms.planNeed > 0){
@@ -7326,7 +7319,7 @@
     /* ============ Step 5: Add & Adjust ============
        Sizes measured from the player's own in-game screenshots (Oct 23, 2026),
        in the build grid's fine cells (bold lines sit every 2 fine cells):
-       Farmland plots 3 x 3, Woodland plots 3.5 x 3.5, climate zones 9 x 9 (half-square grid: 6, 7 and 18 half-cells)
+       Farmland plots 2 x 2, Woodland plots 3.5 x 3.5, climate zones 9 x 9 (half-square grid: 4, 7 and 18 half-cells)
        centered on the building, Crackle Generator zone 22 x 22, Crackle
        Power Pole zone 14 x 14. Packing is edge to edge, no paths.
        Coverage follows the center rule verified in the player's own
@@ -7334,9 +7327,11 @@
        lies inside the zone -- a center on the boundary counts as
        inside -- so plots are laid only where their centers fall in
        the zone's own grid and the last row and column may hang over
-       the far edges -- a zone then holds up to 8 plots of either
-       land around its building (re-verified Nov 27, 2026 with the
-       true sizes: a 9th plot's center always falls outside), and
+       the far edges -- a zone then holds up to 24 Farmland around
+       a Heat Furnace or Sunlamp, 21 Farmland around a Cooling Unit,
+       8 Woodland, and 8 plots total when the two lands mix
+       (re-verified Nov 27, 2026 with the true sizes: past those
+       counts a plot's center always falls outside), and
        fewer buildings can cover a plan. (An earlier touch rule -- any part touching the
        zone counts -- was checked Oct 29, 2026 and retired Nov 24,
        2026, when the player's screenshot showed an edge plot with
@@ -7356,14 +7351,22 @@
     /* TRUE sizes on the half-square grid (player-verified in game,
        Nov 27, 2026): the grid unit below is a HALF square. A climate
        zone is 9 x 9 squares = 18 half-cells across, centered on the
-       building. A Farmland plot is truly 3 x 3 squares = 6 half-cells;
+       building. A Farmland plot is truly 2 x 2 squares = 4 half-cells
+       (twice-measured firsthand record, Oct 23, 2026, cross-checked
+       Nov 9, 2026, and confirmed by the player's Nov 27, 2026
+       furnace-cluster screenshot, where a Farmland is visibly about
+       half a Woodland's width; an earlier 3 x 3 figure was an error
+       and is retired);
        a Woodland plot is truly 3.5 x 3.5 squares = 7 half-cells. A
        plot is covered ONLY when its CENTER lands inside the 9 x 9 —
-       so one zone holds at most 8 plots around its building, never 9:
-       the 9th plot's center always falls outside the zone. (The old
-       model — Farmland 4 x 4 and an 18 x 18 zone in whole cells —
-       overcounted and is retired.) */
-    var PLOT_SIZE = { "Farmland":6, "Woodland":7 };
+       so one zone holds at most 24 Farmland around a Heat Furnace or
+       Sunlamp (centers on a 2-tile pitch, minus the unit's own cell),
+       21 Farmland around a Cooling Unit (2 x 2 footprint), 8 Woodland,
+       and 8 plots total in a mixed Farmland + Woodland zone: past
+       those counts a plot's center always falls outside the zone.
+       (The old model — Farmland 4 x 4 and an 18 x 18 zone in whole
+       cells — overcounted and is retired.) */
+    var PLOT_SIZE = { "Farmland":4, "Woodland":7 };
     var ZONE_CELLS = 18; /* half-cells: a 9 x 9 square zone */
     var TOUCH_PARTIAL = true;
     /* Occupancy canvas for one zone's packing: the zone itself plus
@@ -7810,11 +7813,14 @@
          clear (zoneGridNew marks them taken).
          Simulated with the same first-fit the field layout uses, so
          this number can never promise a plot that would land on the
-         building or on another plot: at most 8 plots of either land
-         around a building under the center rule with true sizes
-         (verified in game, Nov 27, 2026 — the 9th plot's center
-         always falls outside the 9 x 9). With no building named,
-         nothing is reserved (9 plots). */
+         building or on another plot: at most 24 Farmland around a
+         Heat Furnace or Sunlamp, 21 Farmland around a Cooling Unit,
+         and 8 Woodland around any building, under the center rule
+         with true sizes (verified in game, Nov 27, 2026 — past those
+         counts a plot's center always falls outside the 9 x 9).
+         Mixed Farmland + Woodland zones cap at 8 plots total, which
+         packerAddPlot enforces. With no building named, nothing is
+         reserved. */
       var grid = zoneGridNew(building);
       var size = PLOT_SIZE[facility];
       var n = 0, pos;
@@ -8023,7 +8029,7 @@
     }
     /* Mixed-land zone packing (player's rule, Oct 29, 2026): a climate
        building covers one 9 × 9 square of ground, whatever land the
-       plots covered by it sit on — so Farmland (3 × 3) and Woodland (3.5 × 3.5)
+       plots covered by it sit on — so Farmland (2 × 2) and Woodland (3.5 × 3.5)
        plots that need the same building are packed into the SAME zone
        wherever their centers fall inside it, and a new building is opened
        only when no open zone can cover the next plot. Owning two of a
@@ -8083,9 +8089,19 @@
        Returns false when the plot fits nowhere the cap allows. */
     function packerAddPlot(pk, name, cap, onZone){
       var size = PLOT_SIZE[ITEMS[name].facility];
+      var isWood = ITEMS[name].facility === "Woodland";
       for(var i = 0; i < pk.zones.length; i++){
-        var pos = gridFit(pk.zones[i].grid, size);
-        if(pos){ placeIntoZone(pk.zones[i], name, size, pos); return true; }
+        /* Mixed-zone cap (verified in game, Nov 27, 2026): a zone
+           holding BOTH lands caps at 8 plots total, even though a
+           Farmland-only zone now fits up to 24 (Farmland is truly
+           2 x 2). A zone that already holds a Woodland — or that
+           would gain its first Woodland alongside Farmland — takes
+           no plot past 8. */
+        var z = pk.zones[i];
+        var zHasWood = (z.placements || []).some(function(p){ return ITEMS[p.name] && ITEMS[p.name].facility === "Woodland"; });
+        if((zHasWood || (isWood && z.plots > 0)) && z.plots >= 8) continue;
+        var pos = gridFit(z.grid, size);
+        if(pos){ placeIntoZone(z, name, size, pos); return true; }
       }
       if(pk.zones.length >= cap) return false;
       var zone = { building:pk.building, crops:{}, keys:[], plots:0, placements:[], grid:zoneGridNew(pk.building) };
@@ -8134,7 +8150,7 @@
          keeps its own zones at its own temperature, so those crops
          still grow at 100 percent. Farmland and Woodland plots of the
          SAME climate pack into one zone together wherever their
-         3 x 3 and 3.5 x 3.5 plots' centers fall inside its 9 x 9
+         2 x 2 and 3.5 x 3.5 plots' centers fall inside its 9 x 9
          (center rule: a plot counts when its center is inside the
          zone, a center on the boundary counts, and the rest may hang
          over the far edge), clear of
@@ -8488,7 +8504,7 @@
        blocks; a possible overlap band is added afterwards as an
        uncounted note block, never instead of zones. */
     /* One packed zone drawn as it was packed: every plot at its real
-       size (Farmland 3 × 3, Woodland 3.5 × 3.5) in its packed spot, so a
+       size (Farmland 2 × 2, Woodland 3.5 × 3.5) in its packed spot, so a
        zone holding both lands shows both, and the building itself
        stands in the middle on top, as in the older grids. */
     function mixedZoneSvg(z, label){
@@ -9136,7 +9152,7 @@
       var html = "";
       ["Farmland", "Woodland"].forEach(function(fac){
         var names = Object.keys(ITEMS).filter(function(n){ return ITEMS[n].kind === "grow" && ITEMS[n].facility === fac; }).sort();
-        html += '<h4 style="margin-top:18px">' + (fac === "Farmland" ? "🌾 Farmland crops" : "🌳 Woodland crops") + ' <span class="src">each plot is ' + (fac === "Farmland" ? "3 × 3" : "3.5 × 3.5") + " squares</span></h4>" +
+        html += '<h4 style="margin-top:18px">' + (fac === "Farmland" ? "🌾 Farmland crops" : "🌳 Woodland crops") + ' <span class="src">each plot is ' + (fac === "Farmland" ? "2 × 2" : "3.5 × 3.5") + " squares</span></h4>" +
           '<div class="pick-grid">' + names.map(function(n){
             var kd = climateLabel(n);
             if(n === "Premium Wheat" && !modulesOwned.premiumWheat) kd += " · not switched on yet: needs RV 12 and a Farmland at Lv 6 in Step 1";
@@ -9424,7 +9440,7 @@
         html += '<div class="summary-strip">' +
           '<div class="sum-chip"><b>' + Object.keys(distinct).length + '</b><span>different crops</span></div>' +
           '<div class="sum-chip"><b>' + fmt(totalFarm + totalWood) + '</b><span>plots to grow in all</span></div>' +
-          '<div class="sum-chip"><b>' + fmt(totalFarm) + '</b><span>Farmland plots in all (3 × 3 each)</span></div>' +
+          '<div class="sum-chip"><b>' + fmt(totalFarm) + '</b><span>Farmland plots in all (2 × 2 each)</span></div>' +
           '<div class="sum-chip"><b>' + fmt(totalWood) + '</b><span>Woodland plots in all (3.5 × 3.5 each)</span></div>' +
           '<div class="sum-chip"><b>' + fmt(totalFarm + totalWood) + '</b><span>seeds in all (one per plot)</span></div>' +
           '<div class="sum-chip"><b>' + fmt(totalB) + '</b><span>climate buildings for the whole need, if planted at once</span></div>' +
@@ -10685,31 +10701,27 @@
         : "Strategy: Goals. Your ranked goals run now — the leveling bill is off, nothing stacks.");
     }
 
-    /* ============ Suggested Homeland Layout ============
-       One suggestion board for the whole homeland, built only from the
-       RV level in Step 1 (userRV) and the entered Step 1 counts
-       (facCount) — Storage Units and Hatchinators included, from their
-       Step 1 boxes in the storage, power & hatching group. The grid is
-       the game's homeland grid: 16 plots in a 4 by 4 arrangement,
-       each plot 20 big squares across by 15 up, 80 by 60 in all, and
-       plot numbers are the unlock order, so RV level N unlocks plots
-       1 to N. The arrangement is generic for any player: it is computed
-       fresh from those counts with like grouped with like, groups
-       taking unlocked plots in unlock order, and it is not copied from
-       any one homeland. Every piece is drawn at its true verified size, and the
-       true sizes drive the packing and overlap math too. Placement
-       starts are whole squares only, so
-       a half can sit on a piece's far edge, exactly like the real
-       footprints; the board's grid shows little quarter squares, so
-       halves draw exactly. No two pieces overlap and nothing leaves
-       its plot: every placement goes through one occupancy grid per
-       plot, kept at half square resolution so halves are exact.
-       Placed counts are summed and checked against the entered counts
-       before anything is shown. */
-    var SUGG_PLOT_ROWS = [[13,14,15,16],[12,7,8,9],[11,4,3,6],[10,2,1,5]];
-    /* True verified sizes, the same table as FAC_SIZE above. Halves are
-       kept exact everywhere: drawing, packing and overlap checks. */
-    var SUGG_DRAW = {
+    /* ============ Suggested Homeland Layout (fixed RV 18 suggestion) ============
+       A FIXED suggestion, replacing the old plan-driven My Homeland
+       Layout (player's decision, Nov 27, 2026: she rebuilds her fields
+       and woodlands every RV level anyway and did not use the old
+       section). Everything is drawn out at its RV 18 cap from this
+       planner's own ladders (FAC_COUNT, CLIM_COUNT, UTIL_COUNT), at
+       true sizes only, on the homeland grid (80 by 60 squares, pieces
+       on the half-tile grid), no overlaps, nothing shrunk. The Mines
+       sit in one block; machines, storage, Hatchinators and leisure
+       stations share one workshop area; fields and woodlands sit in
+       climate clusters with the climate unit in the middle and its
+       9 x 9 coverage square drawn. The RV stepper redraws ONLY the
+       Farmland and Woodland blocks at that level's ladder caps; the
+       rest of the layout never moves. The arrangement below was
+       machine-checked before delivery: zero overlaps on the half-tile
+       grid, every drawn size equal to its spec size, Farmland and
+       Woodland counts equal to the caps at every stepper level, and
+       every covered plot's center inside its zone — and the board
+       re-runs the overlap, size and center checks on every render
+       and prints the result in its check line. */
+    var SG_SIZE = {
       "Farmland":[2,2], "Woodland":[3.5,3.5], "Mine":[5,5], "Well":[2,2],
       "Aniipod Maker":[4.5,4.5], "Crafting Table":[4,4], "Woodworking Bench":[2,1.5],
       "Chimney Kiln":[5,5], "Blazing Stove":[2.5,2.5], "Simmering Pot":[3,3],
@@ -10717,9 +10729,12 @@
       "Joy Wheel Loom":[4,4], "Carousel Mill":[5,5], "Phonolfactory Table":[3.5,3.5],
       "Bouncy Brew Keg":[3,3], "Dance Pad Polisher":[2.5,2.5],
       "Storage Unit":[2,2], "Hatchinator":[2,2],
-      "Tidewhisper Sandcastle":[5,5], "Dewy House":[2,2], "Nimbus Bed":[5,5], "Starfall Hammock":[5,5]
+      "Tidewhisper Sandcastle":[5,5], "Dewy House":[2,2], "Nimbus Bed":[5,5],
+      "Starfall Hammock":[5,5], "Floral Windmill":[5,5],
+      "Heat Furnace":[1,1], "Sunlamp":[1,1], "Cooling Unit":[2,2],
+      "Crackle Generator":[2,2], "Crackle Power Pole":[1.5,1.5]
     };
-    var SUGG_COLORS = {
+    var SG_COLORS = {
       "Farmland":["#b9dc7f","#6d9c3f"], "Woodland":["#8fce7e","#47823a"], "Mine":["#d8ccc0","#8a7a6a"],
       "Well":["#bfe0f2","#4a86b5"], "Phonolfactory Table":["#a8d4ea","#3d729e"], "Bouncy Brew Keg":["#cdeef5","#4a9ab5"],
       "Dance Pad Polisher":["#d5c8f5","#7d63b8"], "Aniipod Maker":["#ffd9a8","#d18a2e"],
@@ -10729,921 +10744,245 @@
       "Joy Wheel Loom":["#f2cd6b","#c39a28"], "Carousel Mill":["#f0b95e","#c07f24"],
       "Storage Unit":["#e6e0f2","#8a76b8"], "Hatchinator":["#cfe3ff","#5b84c4"],
       "Tidewhisper Sandcastle":["#f7c3d9","#c96f9c"], "Dewy House":["#fbd9e8","#d18bb0"],
-      "Nimbus Bed":["#f3b8d0","#bd5f8c"], "Starfall Hammock":["#ffc7b8","#cf7a52"]
+      "Nimbus Bed":["#f3b8d0","#bd5f8c"], "Starfall Hammock":["#ffc7b8","#cf7a52"],
+      "Floral Windmill":["#f7c3d9","#a85f96"],
+      "Heat Furnace":["#f6a98b","#cf6238"], "Cooling Unit":["#bfe0f2","#4a86b5"], "Sunlamp":["#ffe9a8","#d1a92e"],
+      "Crackle Generator":["#e6e0f2","#8a76b8"], "Crackle Power Pole":["#d9d2ea","#8a76b8"]
     };
-    /* The cooking buildings are their own group, placed on the plots
-       right after the farm block: a layout is mostly about the farm,
-       what is grown and what gets cooked for orders, so the grow and
-       cook buildings stay together. No game bonus for the closeness is
-       claimed anywhere; it only keeps those steps together. */
-    var SUGG_COOKING_ORDER = ["Carousel Mill","Joy Wheel Loom","Simmering Pot","Blazing Stove","Jukebox Dryer","Pickling Jar","Claw Game Cooker"];
-    var SUGG_WORKSHOP_ORDER = ["Chimney Kiln","Aniipod Maker","Crafting Table","Phonolfactory Table","Bouncy Brew Keg","Dance Pad Polisher","Woodworking Bench"];
-    var SUGG_LEISURE_ORDER = ["Tidewhisper Sandcastle","Nimbus Bed","Starfall Hammock","Dewy House"];
-    var SUGG_WET_ORDER = ["Well"];
-    var SUGG_ROLE_LABEL = { farm:"Farms", cooking:"Cooking", workshop:"Workshops", mine:"Mines", leisure:"Leisure", wet:"Wet works", hatch:"Hatchery" };
-    /* No group has favourite plots. Plot choice is one generic rule for
-       every player, applied fresh in suggBuild: groups take unlocked
-       plots in unlock order, lowest number first, and stay compact, so
-       the same counts at the same RV always draw the same board for
-       anyone, and plots no group needs stay open. Within a group the
-       biggest pieces are placed first, which is a packing rule, not a
-       layout copied from anyone: large footprints pack cleanly when
-       they go down before the small ones fill the gaps. */
-    var suggLast = null;
-    function suggOwnCount(f){
-      /* Every count — Storage Units and Hatchinators included — reads
-         the one Step 1 table through facCount. There is no second,
-         section-local copy of these numbers. */
-      return Math.max(0, facCount(f) || 0);
-    }
-    function suggNewPlot(num, role){
-      /* Occupancy is kept at half square resolution (40 by 30 cells per
-         plot) so true sizes with a half square pack and overlap exactly.
-         Starts still land on whole squares: suggFind only tries whole
-         number starts, and a half sits on a piece's far edge. */
-      var occ = [], y;
-      for(y = 0; y < 30; y++){ var row = []; for(var x = 0; x < 40; x++) row.push(false); occ.push(row); }
-      var st = { num:num, role:role, occ:occ, pieces:[], spots:[] };
-      if(role === "farm"){
-        /* The middle 2 by 2 stays clear in the occupancy grid, so
-           nothing is placed there and the center stays open grass
-           where a climate unit can be dropped. It is not drawn and
-           not labeled: lines under the board say which climate unit
-           to use and where instead. */
-        suggMark(st, 9, 6, 2, 2);
-      }
-      return st;
-    }
-    function suggMark(st, x, y, w, h){
-      var x2 = Math.round(x * 2), y2 = Math.round(y * 2), w2 = Math.round(w * 2), h2 = Math.round(h * 2);
-      for(var j = y2; j < y2 + h2; j++) for(var i = x2; i < x2 + w2; i++) st.occ[j][i] = true;
-    }
-    function suggFree(st, x, y, w, h){
-      if(x < 0 || y < 0 || x + w > 20 || y + h > 15) return false;
-      var x2 = Math.round(x * 2), y2 = Math.round(y * 2), w2 = Math.round(w * 2), h2 = Math.round(h * 2);
-      for(var j = y2; j < y2 + h2; j++) for(var i = x2; i < x2 + w2; i++) if(st.occ[j][i]) return false;
-      return true;
-    }
-    function suggFind(st, w, h){
-      for(var y = 0; y + h <= 15; y++) for(var x = 0; x + w <= 20; x++) if(suggFree(st, x, y, w, h)) return { x:x, y:y };
+    var SG_SHORT = {
+      "Farmland":"Farm", "Woodland":"Wood", "Heat Furnace":"HF", "Cooling Unit":"CU", "Sunlamp":"SL",
+      "Crackle Power Pole":"", "Hatchinator":"Hatch", "Storage Unit":"Store", "Crackle Generator":"Gen",
+      "Woodworking Bench":"Bench", "Floral Windmill":"Windmill", "Tidewhisper Sandcastle":"Sandcastle",
+      "Phonolfactory Table":"Phono", "Dance Pad Polisher":"Dance Pad", "Aniipod Maker":"Aniipod",
+      "Claw Game Cooker":"Claw", "Jukebox Dryer":"Dryer", "Pickling Jar":"Pickle Jar",
+      "Bouncy Brew Keg":"Brew Keg", "Starfall Hammock":"Hammock", "Carousel Mill":"Carousel",
+      "Chimney Kiln":"Kiln", "Crafting Table":"Crafting", "Joy Wheel Loom":"Loom",
+      "Simmering Pot":"Pot", "Blazing Stove":"Stove", "Nimbus Bed":"Nimbus", "Dewy House":"Dewy"
+    };
+    /* Climate units and their 9 x 9 coverage squares. The unit stands
+       in the middle of its square; a plot is covered only when its
+       center lands inside the square (the center rule). SL2 stands in
+       the workshop: its square covers the Floral Windmill, which needs
+       Light for Scales. */
+    var SG_ZONES = [
+      { id:"F1", unit:"Heat Furnace", x:21, y:4, tint:"#fbe7e1" },
+      { id:"F2", unit:"Heat Furnace", x:33.5, y:4, tint:"#fbe7e1" },
+      { id:"F3", unit:"Heat Furnace", x:46, y:4, tint:"#fbe7e1" },
+      { id:"CU1", unit:"Cooling Unit", x:3.5, y:19.5, tint:"#dcecfb" },
+      { id:"CU2", unit:"Cooling Unit", x:16.5, y:19.5, tint:"#dcecfb" },
+      { id:"CU3", unit:"Cooling Unit", x:29.5, y:19.5, tint:"#dcecfb" },
+      { id:"SL1", unit:"Sunlamp", x:43, y:20, tint:"#fdf3da" },
+      { id:"SL2", unit:"Sunlamp", x:66, y:30, tint:"#fdf3da" }
+    ];
+    function sgZoneById(id){
+      for(var i = 0; i < SG_ZONES.length; i++) if(SG_ZONES[i].id === id) return SG_ZONES[i];
       return null;
     }
-    function suggPlace(st, name){
-      var s = SUGG_DRAW[name];
-      if(!s) return false;
-      var pos = suggFind(st, s[0], s[1]);
-      if(!pos) return false;
-      suggMark(st, pos.x, pos.y, s[0], s[1]);
-      var piece = { name:name, x:pos.x, y:pos.y, w:s[0], h:s[1] };
-      st.pieces.push(piece);
-      return piece;
+    function sgZoneSquare(z){
+      var s = SG_SIZE[z.unit];
+      var cx = z.x + s[0] / 2, cy = z.y + s[1] / 2;
+      return { x:cx - 4.5, y:cy - 4.5, w:9, h:9, cx:cx, cy:cy };
     }
-    /* Farm pieces pack for climate efficiency: each piece goes to the
-       free whole square start that keeps the farm block's bounding box
-       smallest (ties: smaller box outline, then the scan order above),
-       so the Farmland and Woodland plots sit side by side and stacked
-       in one compact block and their corners meet. A climate unit
-       covers a 9 by 9 area around itself and a farm plot counts as
-       covered when any part of it touches that area, so corners that
-       meet are what let one dropped unit cover several farm plots at
-       once. The kept clear middle of the farm plot stays clear: it is
-       already marked in the occupancy grid before any piece is placed. */
-    function suggFindCompact(st, w, h){
-      var bx0 = null, by0 = 0, bx1 = 0, by1 = 0;
-      st.pieces.forEach(function(pc){
-        if(bx0 === null){ bx0 = pc.x; by0 = pc.y; bx1 = pc.x + pc.w; by1 = pc.y + pc.h; }
-        else { if(pc.x < bx0) bx0 = pc.x; if(pc.y < by0) by0 = pc.y; if(pc.x + pc.w > bx1) bx1 = pc.x + pc.w; if(pc.y + pc.h > by1) by1 = pc.y + pc.h; }
-      });
-      var best = null, bestArea = Infinity, bestPer = Infinity;
-      for(var y = 0; y + h <= 15; y++) for(var x = 0; x + w <= 20; x++){
-        if(!suggFree(st, x, y, w, h)) continue;
-        var ax0 = bx0 === null ? x : Math.min(bx0, x), ay0 = bx0 === null ? y : Math.min(by0, y);
-        var ax1 = bx0 === null ? x + w : Math.max(bx1, x + w), ay1 = bx0 === null ? y + h : Math.max(by1, y + h);
-        var area = (ax1 - ax0) * (ay1 - ay0), per = (ax1 - ax0) + (ay1 - ay0);
-        if(area < bestArea - 1e-9 || (Math.abs(area - bestArea) < 1e-9 && per < bestPer - 1e-9)){ best = { x:x, y:y }; bestArea = area; bestPer = per; }
-      }
-      return best;
-    }
-    function suggPlaceCompact(st, name){
-      var s = SUGG_DRAW[name];
-      if(!s) return false;
-      var pos = suggFindCompact(st, s[0], s[1]);
-      if(!pos) return false;
-      suggMark(st, pos.x, pos.y, s[0], s[1]);
-      var piece = { name:name, x:pos.x, y:pos.y, w:s[0], h:s[1] };
-      st.pieces.push(piece);
-      return piece;
-    }
-    function suggReserve(st, piece, w, h, kind, label){
-      var cands = [
-        [piece.x + piece.w, piece.y], [piece.x, piece.y + piece.h],
-        [piece.x - w, piece.y], [piece.x, piece.y - h],
-        [piece.x + piece.w, piece.y + piece.h - h], [piece.x + piece.w - w, piece.y + piece.h]
-      ];
-      for(var i = 0; i < cands.length; i++){
-        var cx = cands[i][0], cy = cands[i][1];
-        if(suggFree(st, cx, cy, w, h)){
-          suggMark(st, cx, cy, w, h);
-          st.spots.push({ kind:kind, x:cx, y:cy, w:w, h:h, label:label });
-          return true;
-        }
-      }
-      return false;
-    }
-    function suggBuildOnce(reservedNum){
-      var rv = userRV;
-      var unlocked = {};
-      for(var n = 1; n <= 16; n++) unlocked[n] = n <= Math.min(rv, 16);
-      var own = {};
-      Object.keys(SUGG_DRAW).forEach(function(f){ own[f] = suggOwnCount(f); });
-      own["Floral Windmill"] = suggOwnCount("Floral Windmill");
-      var unplaced = [];
-      function addUnplaced(name, count, reason){
-        if(!(count > 0)) return;
-        for(var i = 0; i < unplaced.length; i++){
-          if(unplaced[i].name === name && unplaced[i].reason === reason){ unplaced[i].count += count; return; }
-        }
-        unplaced.push({ name:name, count:count, reason:reason });
-      }
-      if(own["Floral Windmill"] > 0) addUnplaced("Floral Windmill", own["Floral Windmill"], "it has no verified size, so it is never drawn. Place it by hand.");
-      var plots = {}, usedNums = {};
-      function takePlot(role){
-        var pick = null;
-        for(var m = 1; m <= 16; m++){ if(unlocked[m] && !usedNums[m] && !(reservedNum && role !== "farm" && m === reservedNum)){ pick = m; break; } }
-        if(pick === null) return null;
-        usedNums[pick] = true;
-        var st = suggNewPlot(pick, role);
-        plots[pick] = st;
-        return st;
-      }
-      var spotNotes = [];
-      function fillRole(role, queue, noPlotReason, fullReason){
-        var st = null, fresh = false;
-        while(queue.length){
-          if(!st){ st = takePlot(role); fresh = true; if(!st){ addUnplaced(queue[0].name, queue.length, noPlotReason); queue.length = 0; break; } }
-          var head = queue[0];
-          var piece = suggPlace(st, head.name);
-          if(piece){
-            queue.shift(); fresh = false;
-            if(role === "leisure" && head.name === "Starfall Hammock"){
-              if(!suggReserve(st, piece, 2, 2, "cool", "Cooling Unit")) spotNotes.push("The leisure plot filled up before open grass could be kept empty beside a Starfall Hammock for a Cooling Unit.");
-            }
-            if(role === "leisure" && head.name === "Tidewhisper Sandcastle"){
-              if(!suggReserve(st, piece, 1, 1, "heat", "Heat Furnace")) spotNotes.push("The leisure plot filled up before open grass could be kept empty beside a Tidewhisper Sandcastle for a Heat Furnace.");
-            }
-          } else if(fresh){
-            addUnplaced(head.name, 1, fullReason); queue.shift(); st = null;
-          } else st = null;
-        }
-      }
-      /* Farms fill like fillRole, same plot taking and same unplaced
-         reasons, but pieces go down with the compact packer so the
-         whole farm group forms one tight block per plot, corners
-         meeting, for climate coverage. */
-      function suggFillFarm(queue){
-        var st = null, fresh = false;
-        while(queue.length){
-          if(!st){ st = takePlot("farm"); fresh = true; if(!st){ addUnplaced(queue[0].name, queue.length, "no free plot left for the farms at RV " + rv + "."); queue.length = 0; break; } }
-          var head = queue[0];
-          var piece = suggPlaceCompact(st, head.name);
-          if(piece){ queue.shift(); fresh = false; }
-          else if(fresh){ addUnplaced(head.name, 1, "it did not fit on a fresh farm plot."); queue.shift(); st = null; }
-          else st = null;
-        }
-      }
-      function expand(order){
-        var q = [];
-        order.forEach(function(f){ for(var i = 0; i < (own[f] || 0); i++) q.push({ name:f }); });
-        return q;
-      }
-      suggFillFarm(expand(["Woodland","Farmland"]));
-      fillRole("cooking", expand(SUGG_COOKING_ORDER), "no free plot left for the cooking buildings at RV " + rv + ".", "it did not fit on a fresh cooking plot.");
-      fillRole("workshop", expand(SUGG_WORKSHOP_ORDER), "no free plot left for the workshops at RV " + rv + ".", "it did not fit on a fresh workshop plot.");
-      fillRole("mine", expand(["Mine"]), "no free plot left for the Mines at RV " + rv + ".", "it did not fit on a fresh mine plot.");
-      fillRole("leisure", expand(SUGG_LEISURE_ORDER), "no free plot left for the leisure buildings at RV " + rv + ".", "it did not fit on a fresh leisure plot.");
-      fillRole("wet", expand(SUGG_WET_ORDER), "no free plot left for the wet works at RV " + rv + ".", "it did not fit on a fresh wet works plot.");
-      fillRole("hatch", expand(["Hatchinator"]), "no free plot left for the hatchery at RV " + rv + ".", "it did not fit on a fresh hatchery plot.");
-      var busy = Object.keys(plots).map(function(k){ return plots[k]; }).filter(function(st){ return st.pieces.length > 0; });
-      busy.sort(function(a, b){ return a.num - b.num; });
-      var storageLeft = own["Storage Unit"] || 0;
-      busy.forEach(function(st){ if(storageLeft > 0 && suggPlace(st, "Storage Unit")) storageLeft--; });
-      if(storageLeft > 0) addUnplaced("Storage Unit", storageLeft, "the suggestion puts one Storage Unit on each busy plot, and every busy plot has one. The rest stay spare.");
-      var placed = {};
-      Object.keys(plots).forEach(function(k){
-        plots[k].pieces.forEach(function(pc){ placed[pc.name] = (placed[pc.name] || 0) + 1; });
-      });
-      var mismatches = [];
-      Object.keys(own).forEach(function(f){
-        var un = 0;
-        unplaced.forEach(function(u){ if(u.name === f) un += u.count; });
-        if((placed[f] || 0) + un !== (own[f] || 0)) mismatches.push(f + ": placed " + (placed[f] || 0) + ", still to place " + un + ", yours " + (own[f] || 0));
-        if((placed[f] || 0) > (own[f] || 0)) mismatches.push(f + ": more placed than you own");
-      });
-      var openNums = [], lockedNums = [];
-      for(var m = 1; m <= 16; m++){ if(!unlocked[m]) lockedNums.push(m); else if(!plots[m]) openNums.push(m); }
-      return { rv:rv, own:own, placed:placed, unplaced:unplaced, mismatches:mismatches, plots:plots, openNums:openNums, lockedNums:lockedNums, spotNotes:spotNotes, movingRoom:(reservedNum && !plots[reservedNum] ? reservedNum : null) };
-    }
-    /* Farmlands and Woodlands are the pieces players move most, so
-       the farm block is the easy to rearrange part of the suggestion.
-       When a first build leaves an unlocked plot open anyway, the
-       plot directly beside the farm block on the board (sharing an
-       edge with a farm plot, lowest plot number first) is kept open
-       as moving room instead of an open plot elsewhere, and the
-       later groups start after it. The build is run again with that
-       one plot held back from every group after the farm. If no
-       plot is left open, or no plot sits beside the farm block, or
-       holding one back would leave anything unplaced that fitted
-       before, the first build stands unchanged. */
-    function suggBuild(){
-      var first = suggBuildOnce(null);
-      if(!first.openNums.length) return first;
-      var farmNums = Object.keys(first.plots).filter(function(k){ return first.plots[k].role === "farm" && first.plots[k].pieces.length > 0; }).map(function(k){ return +k; });
-      if(!farmNums.length) return first;
-      var pos = {};
-      SUGG_PLOT_ROWS.forEach(function(rowNums, r){ rowNums.forEach(function(num, c){ pos[num] = { r:r, c:c }; }); });
-      var cand = [];
-      for(var m = 1; m <= Math.min(first.rv, 16); m++){
-        if(farmNums.indexOf(m) > -1 || !pos[m]) continue;
-        var beside = farmNums.some(function(fn){ return Math.abs(pos[fn].r - pos[m].r) + Math.abs(pos[fn].c - pos[m].c) === 1; });
-        if(beside) cand.push(m);
-      }
-      if(!cand.length) return first;
-      cand.sort(function(a, b){ return a - b; });
-      var reserved = cand[0];
-      if(first.openNums.length === 1 && first.openNums[0] === reserved){ first.movingRoom = reserved; return first; }
-      var second = suggBuildOnce(reserved);
-      if(second.mismatches.length || !second.openNums.length || second.plots[reserved]) return first;
-      function unplacedTotal(res){ return res.unplaced.reduce(function(sum, u){ return sum + u.count; }, 0); }
-      if(unplacedTotal(second) > unplacedTotal(first)) return first;
-      return second;
-    }
-    function suggLabel(name, w, h){
-      var f = w >= 5 ? 1.02 : (w >= 4 ? 0.92 : (w >= 3 ? 0.8 : 0.62));
-      var cpl = Math.max(3, Math.floor(w / (0.52 * f)));
-      var words = name.split(" "), lines = [], cur = "";
-      words.forEach(function(word){
-        if(!cur) cur = word;
-        else if((cur + " " + word).length <= cpl) cur += " " + word;
-        else { lines.push(cur); cur = word; }
-      });
-      if(cur) lines.push(cur);
-      /* True sizes can be short (a 1.5 tall Cooker, a 2 tall Jar): shrink
-         the type until the wrapped lines fit the piece's true height. */
-      if(h && lines.length * f * 1.08 > h) f = Math.max(0.34, h / (lines.length * 1.08) * 0.96);
-      return { lines:lines, f:f };
-    }
-    function suggPieceTip(pc, plotNum){
-      var ts = FAC_SIZE[pc.name];
-      var tip = pc.name + " · Plot " + plotNum;
-      if(ts) tip += " · true size " + ts[0] + " by " + ts[1] + " big squares, drawn at that size";
-      tip += " · starts at " + pc.x + " across, " + pc.y + " back on this plot";
-      if(pc.name === "Aniipod Maker") tip += " · this size comes from wikily and is not confirmed in game";
-      return tip;
-    }
-    function suggSvg(res, suffix){
-      var out = '<svg viewBox="0 0 80 60" role="img" aria-label="Suggested layout for the whole homeland at RV ' + res.rv + ': 16 plots in a 4 by 4 arrangement, each plot 20 big squares across by 15 up" font-family="Baloo 2, Nunito, sans-serif">';
-      out += '<defs><pattern id="suggGrid' + suffix + '" width="1" height="1" patternUnits="userSpaceOnUse"><path d="M0.5 0V1M0 0.5H1" stroke="rgba(255,255,255,0.38)" stroke-width="0.035"/><path d="M1 0H0V1" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="0.05"/></pattern></defs>';
-      out += '<rect x="0" y="0" width="80" height="60" fill="#79b657"/>';
-      SUGG_PLOT_ROWS.forEach(function(rowNums, r){
-        rowNums.forEach(function(num, c){
-          var ox = c * 20, oy = r * 15;
-          if((r + c) % 2 === 0) out += '<rect x="' + ox + '" y="' + oy + '" width="20" height="15" fill="rgba(0,0,0,0.045)"/>';
-          var st = res.plots[num];
-          var locked = res.lockedNums.indexOf(num) > -1;
-          if(locked) out += '<rect x="' + ox + '" y="' + oy + '" width="20" height="15" fill="rgba(64,54,84,0.52)"/>';
-          if(st){
-            /* Kept open grass (the farm plot centers and the grass
-               reserved beside the leisure pieces) is not drawn and
-               carries no label or tip on the board. Lines under the
-               board say which climate unit to use and where. */
-            st.pieces.forEach(function(pc){
-              var col = SUGG_COLORS[pc.name] || ["#eeeeee","#888888"];
-              out += '<rect x="' + (ox + pc.x + 0.06) + '" y="' + (oy + pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="' + col[0] + '" stroke="' + col[1] + '" stroke-width="0.09" data-tip="' + escA(suggPieceTip(pc, num)) + '"/>';
-              var lab = suggLabel(pc.name, pc.w, pc.h);
-              var cx = ox + pc.x + pc.w / 2;
-              var y0 = oy + pc.y + pc.h / 2 - ((lab.lines.length - 1) * lab.f * 1.08) / 2 + lab.f * 0.36;
-              out += '<text x="' + cx + '" y="' + y0.toFixed(2) + '" text-anchor="middle" font-size="' + lab.f + '" font-weight="700" fill="#3d2a47" pointer-events="none">';
-              lab.lines.forEach(function(ln, li){ out += li === 0 ? esc(ln) : '<tspan x="' + cx + '" dy="' + (lab.f * 1.08).toFixed(2) + '">' + esc(ln) + '</tspan>'; });
-              out += '</text>';
-            });
-          }
-          if(!st && !locked){
-            out += '<text x="' + (ox + 10) + '" y="' + (oy + 6.6) + '" text-anchor="middle" font-size="1.7" font-weight="800" fill="rgba(255,255,255,0.92)">Open</text>';
-            out += '<text x="' + (ox + 10) + '" y="' + (oy + 8.6) + '" text-anchor="middle" font-size="0.85" font-weight="700" fill="rgba(255,255,255,0.85)">' + (res.movingRoom === num ? "moving room by the farm" : "for decorating and growing") + '</text>';
-          }
-          if(locked){
-            out += '<text x="' + (ox + 10) + '" y="' + (oy + 7.2) + '" text-anchor="middle" font-size="1.5" font-weight="800" fill="rgba(255,255,255,0.92)">Locked</text>';
-            out += '<text x="' + (ox + 10) + '" y="' + (oy + 9.1) + '" text-anchor="middle" font-size="0.85" font-weight="700" fill="rgba(255,255,255,0.85)">opens at RV ' + num + '</text>';
-          }
-          out += '<rect x="' + ox + '" y="' + oy + '" width="20" height="15" fill="url(#suggGrid' + suffix + ')"/>';
-          out += '<rect x="' + ox + '" y="' + oy + '" width="20" height="15" fill="none" stroke="#ffffff" stroke-width="0.16"/>';
-          if(st) out += '<text x="' + (ox + 19.6) + '" y="' + (oy + 2) + '" text-anchor="end" font-size="1.05" font-weight="800" fill="#ffffff" stroke="rgba(61,42,71,0.45)" stroke-width="0.16" style="paint-order:stroke">' + esc(SUGG_ROLE_LABEL[st.role] || "") + '</text>';
-          out += '<rect x="' + (ox + 0.25) + '" y="' + (oy + 0.25) + '" width="' + (num >= 10 ? 3.6 : 2.6) + '" height="2.3" rx="0.5" fill="#3d2a47"/>';
-          out += '<text x="' + (ox + 0.25 + (num >= 10 ? 1.8 : 1.3)) + '" y="' + (oy + 1.98) + '" text-anchor="middle" font-size="1.5" font-weight="800" fill="#ffffff">' + num + '</text>';
-        });
-      });
-      out += '<rect x="0" y="0" width="80" height="60" fill="none" stroke="rgba(61,42,71,0.55)" stroke-width="0.3"/>';
-      out += '</svg>';
-      return out;
-    }
-    function renderSuggestedLayout(){
-      var board = document.getElementById("suggBoard");
-      var under = document.getElementById("suggUnder");
-      if(!board || !under) return;
-      var res = suggBuild();
-      suggLast = res;
-      board.innerHTML = suggSvg(res, "A");
-      var usedCount = Object.keys(res.plots).length;
-      var html = res.rv > 0
-        ? '<p class="fac-state" aria-live="polite">Suggestion for RV ' + res.rv + ": plots 1 to " + Math.min(res.rv, 16) + " are open to you · " + usedCount + (usedCount === 1 ? " plot" : " plots") + " used · " + res.openNums.length + " left open · " + res.lockedNums.length + " locked</p>"
-        : '<p class="fac-state" aria-live="polite">No RV level picked yet — pick your RV in Step 1 and this suggestion fills in for that level.</p>';
-      var parts = [];
-      Object.keys(SUGG_DRAW).concat(["Floral Windmill"]).forEach(function(f){
-        var o = res.own[f] || 0, p = res.placed[f] || 0;
-        if(o > 0) parts.push(esc(f) + " " + p + " placed of " + o + " yours");
-      });
-      if(res.mismatches.length){
-        html += '<div class="note note-warn"><h4>Count check found a problem</h4><p>' + res.mismatches.map(esc).join("<br />") + "</p></div>";
-      } else {
-        html += '<p style="margin-top:10px"><strong>Count check:</strong> ' + (parts.length ? parts.join(" · ") : "no facilities set yet") + '. Nothing was placed past your counts.</p>';
-      }
-      html += '<p style="margin-top:10px">The basket and recipe steps decide what to grow and what to cook. This layout just keeps the farm and the cooking together for orders.</p>';
-      html += '<p style="margin-top:10px"><strong>Easy to rearrange:</strong> the Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange.' + (res.movingRoom ? " Plot " + res.movingRoom + ", directly beside the farm block, is left open as moving room for that swapping, and the later groups start after it." : "") + '</p>';
-      var climateLines = [];
-      var suggPlotsSorted = Object.keys(res.plots).map(function(k){ return res.plots[k]; }).sort(function(a, b){ return a.num - b.num; });
-      /* Farm climate lines are worked out from the board as drawn.
-         Every Farmland and Woodland piece is collected in whole board
-         coordinates, then the best drop spots are picked greedily: a
-         climate unit covers a 9 by 9 area around itself, a farm plot
-         counts as covered when any part of it touches that area, and
-         the candidate spots are the farm plots' own corners, so a
-         corner shared by up to four farm plots is picked first
-         whenever it touches the most still uncovered farm plots. Each
-         picked spot gets one line naming the spot and saying how many
-         farm plots that one unit covers. With only one farm plot
-         placed, its line stays the center line it has always had. */
-      var suggOrigin = {};
-      SUGG_PLOT_ROWS.forEach(function(rowNums, r){ rowNums.forEach(function(num, c){ suggOrigin[num] = { x:c * 20, y:r * 15 }; }); });
-      var farmPiecesAll = [];
-      suggPlotsSorted.forEach(function(st){
-        if(st.role !== "farm") return;
-        var o = suggOrigin[st.num];
-        st.pieces.forEach(function(pc){
-          if(pc.name === "Farmland" || pc.name === "Woodland") farmPiecesAll.push({ name:pc.name, plot:st.num, x:o.x + pc.x, y:o.y + pc.y, w:pc.w, h:pc.h });
-        });
-      });
-      function suggCoord(v){ return (Math.round(v * 10) / 10).toString(); }
-      if(farmPiecesAll.length === 1){
-        climateLines.push("<li><strong>Plot " + farmPiecesAll[0].plot + ", farms:</strong> Put a climate unit in the center of this plot, on the open grass in the middle 2 by 2. Drop a Cooling Unit, Heat Furnace or Sunlamp there, whichever the crops on this plot need.</li>");
-      } else if(farmPiecesAll.length > 1){
-        var candMap = {}, candList = [];
-        farmPiecesAll.forEach(function(p){
-          [[p.x, p.y], [p.x + p.w, p.y], [p.x, p.y + p.h], [p.x + p.w, p.y + p.h]].forEach(function(pt){
-            var key = pt[0] + "," + pt[1];
-            if(!candMap[key]){ candMap[key] = { x:pt[0], y:pt[1], shared:0 }; candList.push(candMap[key]); }
-            candMap[key].shared++;
-          });
-        });
-        function suggCovers(c, p){ return p.x <= c.x + 4.5 && p.x + p.w >= c.x - 4.5 && p.y <= c.y + 4.5 && p.y + p.h >= c.y - 4.5; }
-        var uncovered = farmPiecesAll.slice(), farmSpots = [];
-        while(uncovered.length){
-          var bestCand = null, bestSet = null;
-          candList.forEach(function(c){
-            var set = uncovered.filter(function(p){ return suggCovers(c, p); });
-            if(set.length && (!bestSet || set.length > bestSet.length || (set.length === bestSet.length && c.shared > bestCand.shared))){ bestCand = c; bestSet = set; }
-          });
-          if(!bestCand) break;
-          farmSpots.push({ x:bestCand.x, y:bestCand.y, shared:bestCand.shared, pieces:bestSet });
-          var coveredIdx = {};
-          bestSet.forEach(function(p){ coveredIdx[farmPiecesAll.indexOf(p)] = true; });
-          uncovered = uncovered.filter(function(p){ return !coveredIdx[farmPiecesAll.indexOf(p)]; });
-        }
-        farmSpots.forEach(function(sp){
-          var refNum = null, refCount = -1;
-          Object.keys(suggOrigin).forEach(function(k){
-            var num = +k, o = suggOrigin[num];
-            if(sp.x >= o.x && sp.x <= o.x + 20 && sp.y >= o.y && sp.y <= o.y + 15){
-              var cnt = 0;
-              sp.pieces.forEach(function(p){ if(p.plot === num) cnt++; });
-              if(cnt > refCount || (cnt === refCount && (refNum === null || num < refNum))){ refNum = num; refCount = cnt; }
-            }
-          });
-          if(refNum === null) refNum = sp.pieces[0].plot;
-          var ro = suggOrigin[refNum];
-          var nF = 0, nW = 0;
-          sp.pieces.forEach(function(p){ if(p.name === "Farmland") nF++; else nW++; });
-          var coverText;
-          if(sp.pieces.length === 1) coverText = "that one farm plot";
-          else if(nF > 0 && nW > 0) coverText = sp.pieces.length + " farm plots at once: " + nF + " Farmland and " + nW + " Woodland";
-          else if(nW > 0) coverText = nW + " Woodland plots at once";
-          else coverText = nF + " Farmland plots at once";
-          var spotDesc = sp.shared >= 2 ? "the corner where " + sp.shared + " farm plots meet" : "a corner of the farm block";
-          climateLines.push("<li><strong>Plot " + refNum + ", farms:</strong> Drop one climate unit at " + spotDesc + ", " + suggCoord(sp.x - ro.x) + " across and " + suggCoord(sp.y - ro.y) + " back on this plot. Any climate unit can be the one dropped there: a Cooling Unit, Heat Furnace or Sunlamp, whichever the crops it covers need. That one unit covers " + coverText + ".</li>");
-        });
-      }
-      suggPlotsSorted.forEach(function(st){
-        if(st.role === "leisure"){
-          st.pieces.forEach(function(pc){
-            if(pc.name === "Starfall Hammock") climateLines.push("<li><strong>Plot " + st.num + ", Starfall Hammock:</strong> Put a Cooling Unit on the open grass beside this Starfall Hammock.</li>");
-            if(pc.name === "Tidewhisper Sandcastle") climateLines.push("<li><strong>Plot " + st.num + ", Tidewhisper Sandcastle:</strong> Put a Heat Furnace on the open grass beside this Tidewhisper Sandcastle.</li>");
-          });
-        }
-      });
-      html += '<div class="note note-info"><h4>Climate units and power: what to use and where</h4><p>Cooling Units, Heat Furnaces, Sunlamps, Crackle Generators and Power Poles are never placed on this board. They live in the pocket until you drop one in. The middle of each farm plot stays open grass, and so does the grass beside the leisure pieces, with nothing placed there and nothing drawn there. The farm lines below are worked out from the board as drawn: they name the best spots to drop one unit, the spots where its 9 by 9 area touches the most farm plots, and say how many farm plots that one unit covers.</p>' + (climateLines.length ? '<ul style="margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px">' + climateLines.join("") + "</ul>" : '<p style="margin-top:8px">No farm or leisure pieces are placed on this board, so no climate unit is needed for it.</p>') + "</div>";
-      if((res.own["Aniipod Maker"] || 0) > 0) html += '<p><strong>Aniipod Maker size note:</strong> its size, 4.5 by 4.5 big squares, comes from wikily and is not confirmed in game. On this board it is drawn at that true size, 4.5 by 4.5.</p>';
-      html += '<p><strong>True sizes, halves included:</strong> Woodland (3.5 by 3.5), Aniipod Maker (4.5 by 4.5), Phonolfactory Table (3.5 by 3.5), Woodworking Bench (2 by 1.5), Claw Game Cooker (1.5 by 1.5), Blazing Stove, Jukebox Dryer and Dance Pad Polisher (2.5 by 2.5) and Pickling Jar (2.5 by 2) are all drawn at their true size, and the packing and overlap checks use those true sizes too. Every start you count on this board is still a whole number; a half sits on a piece\'s far edge, exactly like the real footprints.</p>';
-      res.spotNotes.forEach(function(sn){ html += '<p><strong>Climate unit note:</strong> ' + esc(sn) + "</p>"; });
-      if(res.unplaced.length){
-        html += '<div class="note note-warn"><h4>Still to place by hand</h4><p>' + res.unplaced.map(function(u){ return "<strong>" + esc(u.name) + " ×" + u.count + ":</strong> " + esc(u.reason); }).join("<br />") + "</p></div>";
-      }
-      var items = [];
-      SUGG_PLOT_ROWS.forEach(function(rowNums){
-        rowNums.forEach(function(num){
-          var st = res.plots[num];
-          if(!st) return;
-          var counts = {}, order = [];
-          st.pieces.forEach(function(pc){ if(!counts[pc.name]){ counts[pc.name] = 0; order.push(pc.name); } counts[pc.name]++; });
-          var line = "<strong>Plot " + num + ", " + esc((SUGG_ROLE_LABEL[st.role] || "").toLowerCase()) + ":</strong> " + order.map(function(f){ return esc(f) + " ×" + counts[f]; }).join(", ") + ".";
-          items.push("<li>" + line + "</li>");
-        });
-      });
-      res.openNums.slice().sort(function(a, b){ return a - b; }).forEach(function(num){ items.push(num === res.movingRoom ? "<li><strong>Plot " + num + ":</strong> open as moving room beside the farm block, kept empty so Farmlands and Woodlands are easy to swap and rearrange.</li>" : "<li><strong>Plot " + num + ":</strong> open, for decorating and growing.</li>"); });
-      if(items.length) html += '<ul class="sugg-plot-list">' + items.join("") + "</ul>";
-      if(res.lockedNums.length) html += '<p style="margin-top:10px">Locked for now: ' + res.lockedNums.map(function(num){ return "Plot " + num + " (opens at RV " + num + ")"; }).join(", ") + ".</p>";
-      under.innerHTML = html;
-    }
-    (function suggWire(){
-      function bindCount(inputId, decId, incId, get, set){
-        var inp = document.getElementById(inputId), dec = document.getElementById(decId), inc = document.getElementById(incId);
-        if(!inp) return;
-        function commit(v){ v = isNaN(v) ? 0 : Math.max(0, Math.floor(v)); set(v); inp.value = v; if(dec) dec.disabled = v <= 0; renderSuggestedLayout(); }
-        inp.addEventListener("change", function(){ commit(parseInt(inp.value, 10)); });
-        if(inc) inc.addEventListener("click", function(){ commit(get() + 1); });
-        if(dec){ dec.disabled = get() <= 0; dec.addEventListener("click", function(){ commit(get() - 1); }); }
-      }
-      bindCount("suggStorageInput", "suggStorageDec", "suggStorageInc", function(){ return utilCounts["Storage Unit"] || 0; }, function(v){ utilCounts["Storage Unit"] = v; });
-      bindCount("suggHatchInput", "suggHatchDec", "suggHatchInc", function(){ return utilCounts["Hatchinator"] || 0; }, function(v){ utilCounts["Hatchinator"] = v; });
-      var board = document.getElementById("suggBoard");
-      var zoom = document.getElementById("suggZoom");
-      function openZoom(){
-        if(!zoom || !suggLast) return;
-        document.getElementById("suggZoomScroll").innerHTML = suggSvg(suggLast, "B");
-        zoom.hidden = false;
-      }
-      function closeZoom(){ if(zoom) zoom.hidden = true; }
-      if(board){
-        board.addEventListener("click", openZoom);
-        board.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openZoom(); } });
-      }
-      var closeBtn = document.getElementById("suggZoomClose");
-      if(closeBtn) closeBtn.addEventListener("click", closeZoom);
-      if(zoom) zoom.addEventListener("click", function(e){ if(e.target === zoom) closeZoom(); });
-      document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeZoom(); });
-    })();
-
-
-
-    /* ============ My Homeland Layout: her homeland ON THE GRID ============
-       Fixed reference for this personal copy only: it never reads Step 1
-       counts, the basket or any plan, and nothing else on the page can
-       rewrite it. Plot positions are the homeland map's own 4 by 4
-       arrangement (the same rows the layout board above uses): back row
-       at the top, front row at the bottom. Every plot is a 20 by 15
-       board and every piece is drawn at its TRUE size, halves included,
-       placed on a half-square grid (40 by 30 half-square cells) — the
-       way she counts in game. Where a spot's exact square inside its
-       plot was never pinned, the packer below puts the piece in the
-       first sensible free spot in that same plot; labels stay exact at
-       plot level and the words beside each big board carry the full
-       spot. Farm zones keep their own bands of their plot (Zone 1 over
-       Zone 2 on Plot 3, Zone 3 over Zone 4 on Plot 6) so each zone's
-       crops and its climate unit stay together, and the farm pieces on
-       Plots 3 and 6 carry pinned positions worked out so each climate
-       unit's 9 by 9 cover, centered on the unit itself, reaches every
-       crop in its zone — a crop counts as covered when any part of it
-       overlaps that 9 by 9. */
-    var MY_ROWS = [[13,14,15,16],[12,7,8,9],[11,4,3,6],[10,2,1,5]];
-    var MY_COL = {
-      "Ginseng":["#d7e8a8","#7d9c46"], "Rose":["#f6c3d6","#c96f9c"], "Sugarcane":["#a9d97c","#5f943a"],
-      "Lavender":["#cdbcf0","#8468b8"], "Magic Pumpkin":["#f7bd72","#cf7f24"], "Memory Lanternfruit":["#f9e08a","#c7a028"],
-      "Wheat":["#f2dd8f","#c2a13c"], "Rice":["#dcebc0","#8aa864"], "Grapes":["#cfa9e0","#8a5fa8"],
-      "Maple":["#e8b07e","#b06f35"], "Coconut":["#c9a876","#8a6b3f"], "Cocoa":["#d9b48f","#8a5a33"], "Lemon":["#eee08a","#a89a3e"],
-      "Cooling Unit":["#bfe0f2","#4a86b5"], "Heat Furnace":["#f6a98b","#cf6238"], "Sunlamp":["#ffe9a8","#d1a92e"],
-      "Well":["#bfe0f2","#4a86b5"],
-      "MineShell":["#e8ddc8","#a08b62"], "MineCopper":["#eab892","#b06f35"], "MineQuartz":["#dcd6f2","#8a76b8"],
-      "Hatchinator":["#cfe3ff","#5b84c4"], "Aniipod Maker":["#ffd9a8","#d18a2e"],
-      "Carousel Mill":["#f0b95e","#c07f24"], "Jukebox Dryer":["#e8c39a","#b98a4e"], "Simmering Pot":["#f9d976","#c7a028"],
-      "Bouncy Brew Keg":["#cdeef5","#4a9ab5"], "Claw Game Cooker":["#f7bf9a","#cf8547"], "Dance Pad Polisher":["#d5c8f5","#7d63b8"],
-      "Crafting Table":["#f6cf8b","#c98f2e"], "Blazing Stove":["#f6a98b","#cf6238"], "Pickling Jar":["#dce8a0","#93a83e"],
-      "Phonolfactory":["#a8d4ea","#3d729e"], "Joy Wheel Loom":["#f2cd6b","#c39a28"], "Woodworking Bench":["#eecfa0","#bd9040"],
-      "Chimney Kiln":["#f2b183","#c96f35"], "Storage Unit":["#e6e0f2","#8a76b8"],
-      "Nimbus Bed":["#f3b8d0","#bd5f8c"], "Starfall Hammock":["#ffc7b8","#cf7a52"],
-      "Tidewhisper Sandcastle":["#f7c3d9","#c96f9c"], "Dewy House":["#fbd9e8","#d18bb0"]
-    };
-    var MY_PLOTS = {};
-    function myDef(num, role, title, sub, pieces, spots, emptyWord, emptySub){
-      MY_PLOTS[num] = { num:num, role:role, title:title, sub:sub, pieces:pieces, spots:spots, emptyWord:emptyWord || "", emptySub:emptySub || "" };
-    }
-    function myFac(name, short, full, w, h, colKey, cls){
-      return { s:short, f:full, w:w, h:h, c:colKey || name, cls:cls || "" };
-    }
-    function myFields(crop, n, zoneLabel){
-      var out = [];
-      /* Fields draw at their real size, 2 wide by 2 tall. The crop's
-         name is written on the piece itself: it wraps at the space in
-         the name, and long names (over 12 letters) take the p-long
-         small-text treatment so they stay whole inside the 2 by 2. */
-      for(var i = 0; i < n; i++) out.push({ s:crop, crop:crop, land:"Farmland", f:zoneLabel + " · " + crop + " field " + (i + 1) + " of " + n + " — Farmland, true size 2 by 2", w:2, h:2, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
-      return out;
-    }
-    function myWoods(crop, n, zoneLabel){
-      var out = [];
-      /* Woodlands draw at their real size, 3.5 by 3.5 — halves
-         included, never rounded, so a woodland always claims exactly
-         the space it really takes. */
-      for(var i = 0; i < n; i++) out.push({ s:crop, crop:crop, land:"Woodland", f:zoneLabel + " · " + crop + " woodland " + (i + 1) + " of " + n + " — Woodland, true size 3.5 by 3.5", w:3.5, h:3.5, c:crop, cls:"farm-piece" + (crop.length > 12 ? " p-long" : "") });
-      return out;
-    }
-    /* Pin a piece (or a whole list of pieces) to exact half-square
-       positions — used on the farm plots so each climate unit sits
-       among its crops and its 9 by 9 cover reaches every one of them. */
-    function myAt(pc, x, y){ pc.x = x; pc.y = y; return pc; }
-    function myPos(list, pts){ list.forEach(function(pc, i){ if(pts[i]){ pc.x = pts[i][0]; pc.y = pts[i][1]; } }); return list; }
-    function myBand(list, y0, y1){ list.forEach(function(pc){ pc.band = [y0, y1]; }); return list; }
-    function myCat(){ var out = []; for(var i = 0; i < arguments.length; i++) out = out.concat(arguments[i]); return out; }
-
-    myDef(1, "Event", "Event Plot", "Kept clear for events.", [],
-      '<li class="open"><strong>Spare</strong> — leave empty</li>', "Spare", "leave empty for events");
-    myDef(2, "Decorating", "Decorating", "Your decorating plot.",
-      [{ s:"Decorating", f:"Decorating — your decor goes here · Plot 2", w:18, h:13, x:1, y:1, c:"Storage Unit", cls:"decor-piece" }],
-      '<li><strong>Decorating</strong> — your decor goes here</li>');
-    myDef(3, "Farm A", "Zones 1 &amp; 2 — 15 fields + 9 woodlands", "Fragrancier M 37 (Grass 4, Water 3) plants and waters everything.",
-      myCat(
-        myBand(myCat(
-          [myAt(myFac("Cooling Unit", "Cooling Unit", "Zone 1 climate · Cooling Unit — its 9 by 9 cover, centered on the unit, reaches every Zone 1 crop · Plot 3, Farm A", 2, 2), 9.5, 3.5)],
-          myPos(myWoods("Maple", 5, "Zone 1 — Cool (Cooling Unit)"), [[3,0],[6.5,0],[10,0],[13.5,0],[3,3.5]]),
-          myPos(myFields("Ginseng", 6, "Zone 1 — Cool (Cooling Unit)"), [[6.5,3.5],[11.5,3.5],[13.5,3.5],[6.5,5.5],[8.5,5.5],[11.5,5.5]])
-        ), 0, 8),
-        myBand(myCat(
-          [myAt(myFac("Heat Furnace", "HF", "Zone 2 climate · Heat Furnace 1 of 2 — toward the left end of Zone 2; its 9 by 9 cover, centered on the unit, reaches Zone 2's left-hand crops · Plot 3, Farm A", 1, 1), 5, 11.5),
-           myAt(myFac("Heat Furnace", "HF", "Zone 2 climate · Heat Furnace 2 of 2 — toward the right end of Zone 2; its 9 by 9 cover, centered on the unit, reaches Zone 2's right-hand crops · Plot 3, Farm A", 1, 1), 14, 11.5)],
-          myPos(myWoods("Coconut", 2, "Zone 2 — Scorching (2× Heat Furnace)"), [[1,8],[4.5,8]]),
-          myPos(myWoods("Cocoa", 2, "Zone 2 — Scorching (2× Heat Furnace)"), [[8,8],[11.5,8]]),
-          myPos(myFields("Sugarcane", 6, "Zone 2 — Scorching (2× Heat Furnace)"), [[15,8],[17,8],[1,11.5],[3,11.5],[6,11.5],[8,11.5]]),
-          myPos(myFields("Rice", 3, "Zone 2 — Scorching (2× Heat Furnace)"), [[10,11.5],[12,11.5],[15,11.5]])
-        ), 8, 15)
-      ),
-      '<li><strong>Zone 1 — Cool</strong> (Cooling Unit): Ginseng ×6 fields · Maple ×5 woodlands — both are current-plan crops: Ginseng Water dries a whole field of Ginseng into one Dried Ginseng, so four fields could not keep the Keg fed, and the Maple woodlands feed Maple Sugar Chunk (and through it, Premium Jello)</li><li><strong>Zone 2 — Scorching</strong> (2× Heat Furnace): Sugarcane ×6 fields · Rice ×3 fields · Coconut ×2 woodlands · Cocoa ×2 woodlands — Rice is the plan crop here: three fields of it keep the Magic Pumpkin Cake\'s Milled Rice fed without breaking up Zone 4\'s Wheat block. Sugarcane, Coconut and Cocoa are <strong>not</strong> in the current plan\'s recipes — they are money crops filling this Scorching zone, Cocoa the top money woodland</li>');
-    myDef(4, "Wet Works", "Wet Works", "Wells and water for the Keg and homeland.",
-      [myFac("Well", "Deep Rock Well", "Deep Rock Well — Dreaple · Deep Rock Spring Water · Plot 4", 2, 2),
-       myFac("Well", "Well", "Well — Panpanta · Plain Fresh Water · Plot 4", 2, 2),
-       myFac("Well", "Well 3 · Unstaffed", "Well spot 3 — Unstaffed · Plot 4", 2, 2, "Well", "open-piece")],
-      '<li><strong>Deep Rock Well</strong> — Dreaple · Deep Rock Spring Water</li><li><strong>Well</strong> — Panpanta · Plain Fresh Water</li><li class="open"><strong>Well spot 3 — Unstaffed</strong></li>');
+    /* Woodland slots, in fill order: ring packing around Furnace 1
+       (8), Furnace 2 (8), then Furnace 3 (top row of 3, plus one spare
+       slot at its left-middle that only the RV 19-20 count of 20
+       needs). Every slot's center sits inside its furnace's 9 x 9. */
+    var SG_WOOD_SLOTS = [];
     (function(){
-      var hatch = [];
-      for(var i = 0; i < 10; i++) hatch.push(myFac("Hatchinator", "Hatch", "Hatchinator " + (i + 1) + " of 10 — passive, no worker · Plot 5, Hatchery", 2, 2));
-      myDef(5, "Hatchery", "Hatchery", "Hatching and Aniipods.",
-        myCat([myFac("Aniipod Maker", "Aniipod Maker", "Aniipod Maker — Dazmand · Aniipod Mega · Plot 5, Hatchery · true size 3 by 3", 3, 3)], hatch),
-        '<li><strong>Hatchinators ×10</strong> — passive, no worker</li><li><strong>Aniipod Maker</strong> — Dazmand · Aniipod Mega</li>');
-    })();
-    myDef(6, "Farm B", "Zones 3 &amp; 4 — 23 fields + 6 woodlands", "The board draws Zone 3 as it stands now, with the event planting. Zone 3's planting changes when the event ends — both versions are in the list.",
-      myCat(
-        myBand(myCat(
-          [myAt(myFac("Sunlamp", "SL", "Zone 3 climate · Sunlamp — its 9 by 9 cover, centered on the unit, reaches every Zone 3 crop · Plot 6, Farm B", 1, 1), 10, 5.5)],
-          myPos(myFields("Magic Pumpkin", 5, "Zone 3 — Adequate (Sunlamp), event running"), [[5,0],[7,0],[9,0],[11,0],[13,0]]),
-          myPos(myFields("Memory Lanternfruit", 5, "Zone 3 — Adequate (Sunlamp), event running"), [[5,2],[7,2],[9,2],[11,2],[13,2]]),
-          myPos(myFields("Lavender", 3, "Zone 3 — Adequate (Sunlamp), event running"), [[5,4],[7,4],[12,4]])
-        ), 0, 8),
-        myBand(myCat(
-          myWoods("Lemon", 4, "Zone 4 — No unit (open air)"),
-          myWoods("Maple", 2, "Zone 4 — No unit (open air)"),
-          myFields("Wheat", 10, "Zone 4 — No unit (open air)")
-        ), 8, 15)
-      ),
-      '<li><strong>Zone 3 — Adequate</strong> (Sunlamp), now — event running: Magic Pumpkin ×5 fields · Memory Lanternfruit ×5 fields · Lavender ×3 fields — every Sunlamp spot now grows a crop that needs the light: the event pair feeds the Soup first, then Cake and Nectar, and Lavender starts the Cookies planting now instead of waiting for Dec 10. Lemon moved down to Zone 4 — it grows anywhere, so it was spending light it does not need</li><li><strong>Zone 3 — after the Dec 10 event ends:</strong> Lavender ×5 fields · Grapes ×4 fields (a post-event idea only — Grapes are not in the current plan)</li><li><strong>Zone 4 — No unit</strong> (open air): Wheat ×10 fields · Lemon ×4 woodlands · Maple ×2 woodlands — Wheat (Wheatmeal for the Cookies) and Maple (Maple Sugar Chunk, via Maple Syrup) are the plan crops here; Lemon is not in the current plan\'s recipes — it sits in open air because it grows anywhere. Wheat stays at ten (exactly one Wheatmeal a cycle for the Cookies), and Zone 4 Maple drops to two: open air is the worst spot for a Freeze crop, so the main Maple block stays in Zone 1 under the Cooling Unit. Rice moved to the spare end of Zone 2\'s row on Plot 3 — it grows anywhere, and this plot has no room left beside the Wheat block</li>');
-    myDef(7, "Workshop 1", "Workshop Row 1", "Workshop facilities — Rows 1 &amp; 3 together; this board's split between the rows is the sensible arrangement, not a pinned one.",
-      [myFac("Carousel Mill", "Carousel Mill 1", "Carousel Mill 1 — Cornet · Lavender Powder (for Lavender Cookies) · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
-       myFac("Carousel Mill", "Carousel Mill 2", "Carousel Mill 2 — Turbo M 54 · Wheatmeal (for Lavender Cookies) and Milled Rice (for Magic Pumpkin Cake), taking turns · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 5, 5),
-       myFac("Crafting Table", "Crafting Table 1", "Crafting Table 1 — Fenmane · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4.5, 4.5),
-       myFac("Crafting Table", "Crafting Table 2", "Crafting Table 2 — Gachapus · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4.5, 4.5),
-       myFac("Phonolfactory Table", "Phonolfactory 1", "Phonolfactory 1 — Ignitis M 48 · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3.5, 3.5, "Phonolfactory"),
-       myFac("Joy Wheel Loom", "Joy Wheel Loom", "Joy Wheel Loom — Hypnyto · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 4, 4),
-       myFac("Woodworking Bench", "Wood Bench 1", "Woodworking Bench 1 — Melloblum · Not in current plan — building stock only, no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
-       myFac("Woodworking Bench", "Wood Bench 2", "Woodworking Bench 2 — Ignitis F 47 · Not in current plan — building stock only, no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
-       myFac("Woodworking Bench", "Wood Bench 3", "Woodworking Bench 3 — Popapus · Not in current plan — building stock only, no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 1.5),
-       myFac("Storage Unit", "Storage", "Storage Units — storage for finished goods, no worker · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
-       myFac("Storage Unit", "Storage", "Storage Units — storage for finished goods, no worker · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2)],
-      '<li><strong>Carousel Mill 1</strong> — Cornet · Lavender Powder (for Lavender Cookies)</li><li><strong>Carousel Mill 2</strong> — Turbo M 54 · Wheatmeal (for Lavender Cookies) and Milled Rice (for Magic Pumpkin Cake), taking turns</li><li><strong>Crafting Table 1</strong> — Fenmane · Not in current plan — no recipe assigned</li><li><strong>Crafting Table 2</strong> — Gachapus · Not in current plan — no recipe assigned</li><li><strong>Phonolfactory 1</strong> — Ignitis M 48 · Not in current plan — no recipe assigned</li><li><strong>Joy Wheel Loom</strong> — Hypnyto · Not in current plan — no recipe assigned</li><li><strong>Woodworking Bench 1</strong> — Melloblum · Not in current plan — building stock only</li><li><strong>Woodworking Bench 2</strong> — Ignitis F 47 · Not in current plan — building stock only</li><li><strong>Woodworking Bench 3</strong> — Popapus · Not in current plan — building stock only</li><li><strong>Storage Units</strong> — storage for finished goods</li>');
-    myDef(8, "Kilns", "Workshop Row 2 — Kilns", "Ore chain only.",
-      [myFac("Chimney Kiln", "Kiln 1", "Chimney Kiln 1 — Magmarex M 47 · Not in current plan — building stock only, no recipe assigned · Plot 8", 5, 5),
-       myFac("Chimney Kiln", "Kiln 2", "Chimney Kiln 2 — Scorchhowl M 40 · Not in current plan — building stock only, no recipe assigned · Plot 8", 5, 5),
-       myFac("Chimney Kiln", "Kiln 3", "Chimney Kiln 3 — Lavazar F 55 · Not in current plan — building stock only, no recipe assigned · Plot 8", 5, 5)],
-      '<li><strong>Chimney Kiln 1</strong> — Magmarex M 47 · Not in current plan — building stock only</li><li><strong>Chimney Kiln 2</strong> — Scorchhowl M 40 · Not in current plan — building stock only</li><li><strong>Chimney Kiln 3</strong> — Lavazar F 55 · Not in current plan — building stock only</li>');
-    myDef(9, "Workshop 3", "Workshop Row 3", "Workshop facilities — Rows 1 &amp; 3 together; this board's split between the rows is the sensible arrangement, not a pinned one.",
-      [myFac("Phonolfactory Table", "Phonolfactory 2", "Phonolfactory 2 — Stellarys M 40 · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3.5, 3.5, "Phonolfactory"),
-       myFac("Simmering Pot", "Simmering Pot 1", "Simmering Pot 1 — Magmarex F 57 · Maple Sugar Chunk · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Simmering Pot", "Simmering Pot 2", "Simmering Pot 2 — Sparkelf INFP · Golden Lantern Pumpkin Soup · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Blazing Stove", "Blazing Stove 1", "Blazing Stove 1 — Infergon · Premium Jello · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
-       myFac("Blazing Stove", "Blazing Stove 2", "Blazing Stove 2 — Sparkelf ENFJ · Magic Pumpkin Cake · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
-       myFac("Jukebox Dryer", "Jukebox Dryer", "Jukebox Dryer — Pouchwisp · Dried Ginseng (for Ginseng Water) · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2.5),
-       myFac("Bouncy Brew Keg", "Brew Keg", "Bouncy Brew Keg — Sherro · Ginseng Water and Gleam Fruit Nectar, taking turns · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 3, 3),
-       myFac("Dance Pad Polisher", "Dance Pad Polisher", "Dance Pad Polisher — Blazen · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2, 2),
-       myFac("Claw Game Cooker", "Claw Cooker 1", "Claw Game Cooker 1 — Flamerion · Lavender Cookies · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 1.5, 1.5),
-       myFac("Claw Game Cooker", "Claw Cooker 2", "Claw Game Cooker 2 — Scorchhowl F 28 · Not in current plan — no recipe assigned (Lavender Cookies is Cooker 1\'s job) · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 1.5, 1.5),
-       myFac("Pickling Jar", "Pickling Jar", "Pickling Jar — Stellarys M 45 · Not in current plan — no recipe assigned · Workshop Rows 1 &amp; 3 (Plots 7 &amp; 9 together)", 2.5, 2)],
-      '<li><strong>Jukebox Dryer</strong> — Pouchwisp · Dried Ginseng (for Ginseng Water)</li><li><strong>Simmering Pot 1</strong> — Magmarex F 57 · Maple Sugar Chunk</li><li><strong>Simmering Pot 2</strong> — Sparkelf INFP · Golden Lantern Pumpkin Soup</li><li><strong>Bouncy Brew Keg</strong> — Sherro · Ginseng Water and Gleam Fruit Nectar, taking turns</li><li><strong>Claw Game Cooker 1</strong> — Flamerion · Lavender Cookies</li><li><strong>Claw Game Cooker 2</strong> — Scorchhowl F 28 · Not in current plan — no recipe assigned (Lavender Cookies is Cooker 1\'s job; there is no second cooker recipe in this plan and no queue behind it)</li><li><strong>Dance Pad Polisher</strong> — Blazen · Not in current plan — no recipe assigned</li><li><strong>Blazing Stove 1</strong> — Infergon · Premium Jello</li><li><strong>Blazing Stove 2</strong> — Sparkelf ENFJ · Magic Pumpkin Cake</li><li><strong>Pickling Jar</strong> — Stellarys M 45 · Not in current plan — no recipe assigned</li><li><strong>Phonolfactory 2</strong> — Stellarys M 40 · Not in current plan — no recipe assigned</li>');
-    myDef(10, "Leisure", "Leisure Corner", "Rest and family gates.",
-      [myFac("Nimbus Bed", "Nimbus Bed 1", "Nimbus Bed 1 — Irisal · Petals (for Premium Jello) · Plot 10, Leisure Corner", 5, 5),
-       myFac("Nimbus Bed", "Nimbus Bed 2", "Nimbus Bed 2 — Turbo Prismana · Not in current plan — no recipe assigned · Plot 10, Leisure Corner", 5, 5),
-       myFac("Starfall Hammock", "Starfall Hammock", "Starfall Hammock — Stellarys F 45 · Not in current plan — no recipe assigned · Plot 10, Leisure Corner", 5, 5),
-       myFac("Tidewhisper Sandcastle", "Sandcastle 1", "Tidewhisper Sandcastle 1 — Susuta · Not in current plan — no recipe assigned · Plot 10, Leisure Corner", 5, 5),
-       myFac("Tidewhisper Sandcastle", "Sandcastle 2", "Tidewhisper Sandcastle 2 — second Sandcastle spot · Not in current plan · Plot 10, Leisure Corner", 5, 5),
-       myFac("Dewy House", "Dewy House", "Dewy House — Fragrancier F 47 · Not in current plan — no recipe assigned · Plot 10, Leisure Corner", 2, 2)],
-      '<li><strong>Nimbus Bed 1</strong> — Irisal · Petals (for Premium Jello)</li><li><strong>Nimbus Bed 2</strong> — Turbo Prismana · Not in current plan — no recipe assigned</li><li><strong>Starfall Hammock</strong> — Stellarys F 45 · Not in current plan — no recipe assigned</li><li><strong>Tidewhisper Sandcastle 1</strong> — Susuta · Not in current plan — no recipe assigned</li><li><strong>Tidewhisper Sandcastle 2</strong> — second Sandcastle spot · Not in current plan</li><li><strong>Dewy House</strong> — Fragrancier F 47 · Not in current plan — no recipe assigned</li>');
-    myDef(11, "Open", "Open", "", [], '<li class="open"><strong>Open</strong> — nothing placed yet</li>', "Open", "nothing placed yet");
-    myDef(12, "Open", "Open", "", [], '<li class="open"><strong>Open</strong> — nothing placed yet</li>', "Open", "nothing placed yet");
-    myDef(13, "Mines", "The Mines — 8 spots", "7 staffed, 1 unstaffed.",
-      [myFac("Mine", "Mine 1 · Shell", "Mine 1 — Shell · Shrubclaw M 60 · Plot 13, The Mines", 5, 5, "MineShell"),
-       myFac("Mine", "Mine 2 · Shell", "Mine 2 — Shell · Shrubclaw M 45 · Plot 13, The Mines", 5, 5, "MineShell"),
-       myFac("Mine", "Mine 3 · Copper", "Mine 3 — Copper Ore · Shrubclaw F 49 · Plot 13, The Mines", 5, 5, "MineCopper"),
-       myFac("Mine", "Mine 4 · Copper", "Mine 4 — Copper Ore · Waleetle F 60 · Plot 13, The Mines", 5, 5, "MineCopper"),
-       myFac("Mine", "Mine 5 · Copper", "Mine 5 — Copper Ore · Grizbo F 42 · Plot 13, The Mines", 5, 5, "MineCopper"),
-       myFac("Mine", "Mine 6 · Quartz", "Mine 6 — Quartz Ore · Bouldus · Plot 13, The Mines", 5, 5, "MineQuartz"),
-       myFac("Mine", "Mine 7 · Quartz", "Mine 7 — Quartz Ore · Grizbo F 60 · Plot 13, The Mines", 5, 5, "MineQuartz"),
-       myFac("Mine", "Mine 8 · Unstaffed", "Mine 8 — Unstaffed · its crew spot is Inferlupa the hauler instead · Plot 13, The Mines", 5, 5, "MineQuartz", "open-piece")],
-      '<li><strong>Mine 1 — Shell</strong> · Shrubclaw M 60</li><li><strong>Mine 2 — Shell</strong> · Shrubclaw M 45</li><li><strong>Mine 3 — Copper Ore</strong> · Shrubclaw F 49</li><li><strong>Mine 4 — Copper Ore</strong> · Waleetle F 60</li><li><strong>Mine 5 — Copper Ore</strong> · Grizbo F 42</li><li><strong>Mine 6 — Quartz Ore</strong> · Bouldus</li><li><strong>Mine 7 — Quartz Ore</strong> · Grizbo F 60</li><li class="open"><strong>Mine 8 — Unstaffed</strong> · its crew spot is Inferlupa the hauler instead</li>');
-    myDef(14, "Empty", "Empty — Growth Row", "", [], '<li class="open"><strong>Empty</strong> — growth row, room to expand</li>', "Empty", "growth row, room to expand");
-    myDef(15, "Empty", "Empty — Growth Row", "", [], '<li class="open"><strong>Empty</strong> — growth row, room to expand</li>', "Empty", "growth row, room to expand");
-    myDef(16, "Empty", "Empty — Growth Row", "", [], '<li class="open"><strong>Empty</strong> — growth row, room to expand</li>', "Empty", "growth row, room to expand");
-
-    /* Half-square packer: the board is 40 by 30 half-square cells
-       (20 by 15 big squares). Sizes and starts are exact to the half
-       square, so true sizes like 3.5 by 3.5 and 2 by 1.5 pack and land
-       exactly where they would in game. First sensible free spot,
-       scanning front to back, left to right, inside the piece's band
-       of its plot; pinned pieces keep their pinned half-square spot. */
-    function myPack(pieces){
-      var occ = [], y, x;
-      for(y = 0; y < 30; y++){ var row = []; for(x = 0; x < 40; x++) row.push(false); occ.push(row); }
-      function free(cx, cy, cw, ch){
-        if(cx < 0 || cy < 0 || cx + cw > 40 || cy + ch > 30) return false;
-        for(var j = cy; j < cy + ch; j++) for(var i = cx; i < cx + cw; i++) if(occ[j][i]) return false;
-        return true;
-      }
-      function mark(cx, cy, cw, ch){ for(var j = cy; j < cy + ch; j++) for(var i = cx; i < cx + cw; i++) occ[j][i] = true; }
-      var placed = [], unplaced = [];
-      pieces.forEach(function(pc){
-        var cw = Math.round(pc.w * 2), ch = Math.round(pc.h * 2);
-        if(typeof pc.x === "number"){
-          var pcx = Math.round(pc.x * 2), pcy = Math.round(pc.y * 2);
-          if(free(pcx, pcy, cw, ch)){ mark(pcx, pcy, cw, ch); placed.push({ pc:pc, x:pc.x, y:pc.y }); return; }
-        }
-        var y0 = pc.band ? Math.round(pc.band[0] * 2) : 0, y1 = pc.band ? Math.round(pc.band[1] * 2) : 30, done = false;
-        for(var cy = y0; cy + ch <= y1 && !done; cy++) for(var cx = 0; cx + cw <= 40 && !done; cx++){
-          if(free(cx, cy, cw, ch)){ mark(cx, cy, cw, ch); placed.push({ pc:pc, x:cx / 2, y:cy / 2 }); done = true; }
-        }
-        if(!done) unplaced.push(pc);
-      });
-      return { placed:placed, unplaced:unplaced };
-    }
-    function myGridHtml(def, big){
-      var res = myPack(def.pieces);
-      var out = '<div class="my-pgrid' + (big ? " big" : "") + '">';
-      res.placed.forEach(function(pl){
-        var pc = pl.pc, col = MY_COL[pc.c] || ["#eeeeee","#888888"];
-        var tip = (pc.crop ? "Grow " + pc.crop + " here — this " + pc.land + " spot should be " + pc.crop + " · " : "") + (pc._liveF || pc.f) + " · starts " + pl.x + " across, " + pl.y + " back on Plot " + def.num;
-        var showLabel = big || (pc.w >= 5 && pc.h >= 3);
-        out += '<div class="my-piece' + (pc.cls ? " " + pc.cls : "") + ((pc.w <= 2 || pc.h <= 2) ? " p-sm" : "") + '" style="left:' + (pl.x / 20 * 100) + "%;top:" + (pl.y / 15 * 100) + "%;width:" + (pc.w / 20 * 100) + "%;height:" + (pc.h / 15 * 100) + "%;background:" + col[0] + ";border-color:" + col[1] + '" data-tip="' + escA(tip) + '">' + (showLabel ? "<span>" + esc(pc.s) + "</span>" : "") + "</div>";
-      });
-      if(!def.pieces.length && def.emptyWord){
-        out += '<div class="my-empty-word">' + esc(def.emptyWord) + (def.emptySub ? "<small>" + esc(def.emptySub) + "</small>" : "") + "</div>";
-      }
-      out += "</div>";
-      return { html:out, unplaced:res.unplaced };
-    }
-    /* ============ My Homeland board: LIVE labels ============
-       The plot geography above (MY_PLOTS) is her real homeland:
-       positions, true sizes, pieces and workers never move. But the
-       recipe each facility piece is "making" used to be baked into
-       those definitions as fixed text, so the board could never
-       refresh — it kept naming an older plan forever. Now every
-       render rebuilds each facility piece's recipe segment live
-       from the CURRENT basket plan (computePlan): copies of a
-       facility take the basket chain's products in order, extra
-       products take turns on the last copy, and a facility with
-       no job in the basket reads "Not in current plan — no recipe
-       assigned". The strategy plan never writes onto this board —
-       it refreshes live in its own steps instead. Farm plantings, Mine
-       materials, hatchers, storage and climate units are physical
-       homeland facts, not plan labels, so they keep their labels;
-       the farm and Mine plots instead gain a live check line that
-       says what the current plan actually uses from them. */
-    var MY_FAC_BY_COL = { "Phonolfactory": "Phonolfactory Table" };
-    var MY_SKIP_COLS = { "Hatchinator":1, "Storage Unit":1, "Mine":1, "Cooling Unit":1, "Heat Furnace":1, "Sunlamp":1 };
-    var MY_LIVE_SPOT_PLOTS = { 4:1, 5:1, 7:1, 8:1, 9:1, 10:1 };
-    function myPieceFac(pc){
-      if(!pc || pc.crop) return null;
-      if(pc.cls && (pc.cls.indexOf("decor-piece") > -1 || pc.cls.indexOf("open-piece") > -1)) return null;
-      var fac = MY_FAC_BY_COL[pc.c] || pc.c;
-      if(MY_SKIP_COLS[fac]) return null;
-      if(!FAC_JOB[fac] && !(typeof FAC_RV !== "undefined" && FAC_RV[fac])) return null;
-      return fac;
-    }
-    function myLiveContext(){
-      /* This board follows the BASKET only — her own picks. The
-         strategy plan refreshes live in Steps 4–7, but it never
-         writes onto this board: a strategy filler is a suggestion,
-         not an assignment, and her rule is that this board names
-         only what she actually picked (plus the steps feeding
-         those picks). */
-      var gross = {}, parents = {}, finals = {}, basketNames = [];
-      basket.forEach(function(b){ finals[b.name] = true; basketNames.push(b.name); });
-      var bp = computePlan();
-      Object.keys(bp.gross).forEach(function(n){ if((bp.gross[n] || 0) > 0) gross[n] = true; });
-      Object.keys(gross).forEach(function(n){
-        var it = ITEMS[n];
-        if(!it || it.kind !== "craft") return;
-        for(var k in it.needs){
-          if(!parents[k]) parents[k] = [];
-          if(parents[k].indexOf(n) === -1) parents[k].push(n);
-        }
-      });
-      var prodsCache = {};
-      function prodsFor(fac){
-        if(prodsCache[fac]) return prodsCache[fac];
-        var out = [];
-        function push(n){ if(n && out.indexOf(n) === -1) out.push(n); }
-        var fa = bp.facAssign && bp.facAssign[fac];
-        if(fa && fa.products) fa.products.forEach(push);
-        /* Any other basket-chain product at this facility the
-           per-copy assignment did not list (gather steps ride in
-           the gross, not always in facAssign's product order). */
-        Object.keys(gross).forEach(function(n){
-          var it = ITEMS[n];
-          if(it && it.kind !== "grow" && facCanon(it.facility) === fac) push(n);
+      [[17,0,"F1"],[29.5,0,"F2"]].forEach(function(c){
+        var zx = c[0], zy = c[1], zid = c[2];
+        [[0,0],[3.5,0],[7,0],[0,3.5],[7,3.5],[0,7],[3.5,7],[7,7]].forEach(function(d){
+          SG_WOOD_SLOTS.push({ x:zx + d[0], y:zy + d[1], zone:zid });
         });
-        /* The Deep Rock Well piece takes Deep Rock Spring Water
-           first when the plan gathers it, matching its name. */
-        if(fac === "Well"){
-          var di = out.indexOf("Deep Rock Spring Water");
-          if(di > 0){ out.splice(di, 1); out.unshift("Deep Rock Spring Water"); }
+      });
+      [[42,0],[45.5,0],[49,0],[42,3.5]].forEach(function(d){
+        SG_WOOD_SLOTS.push({ x:d[0], y:d[1], zone:"F3" });
+      });
+    })();
+    /* Farmland slots, in fill order: the three Cooling Unit zones
+       (8 each, Freeze/Cool), the Sunlamp zone (Adequate light), the
+       third furnace's spare room (Scorching), and neutral slots
+       between the clusters last. Slots that would land on a drawn
+       Woodland are skipped at build time. */
+    var SG_FARM_SLOTS = [];
+    (function(){
+      [[0,16,"CU1"],[13,16,"CU2"],[26,16,"CU3"]].forEach(function(c){
+        var zx = c[0], zy = c[1], zid = c[2];
+        [[0,0],[2,0],[4,0],[6,0],[8,0],[0,2],[6,2],[8,2]].forEach(function(d){
+          SG_FARM_SLOTS.push({ x:zx + d[0], y:zy + d[1], zone:zid });
+        });
+      });
+      [[39,16],[41,16],[43,16],[45,16],[47,16],[39,18],[41,18],[45,18],[47,18],[39,20],[41,20],[45,20],[47,20]].forEach(function(d){
+        SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"SL1" });
+      });
+      [[48,4],[50,4],[48,6],[50,6],[46,6],[48,8],[50,8],[46,8],[44,8],[42,8],[44,6],[42,6]].forEach(function(d){
+        SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"F3" });
+      });
+      [[54,0],[56,0],[58,0],[60,0]].forEach(function(d){
+        SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:null });
+      });
+    })();
+    /* Everything that is NOT a field or woodland: fixed at the RV 18
+       arrangement. Mines in one 3 by 3 block; generators and poles
+       along the cluster and workshop rows; the workshop in rows along
+       the bottom (kilns, mills and leisure stations, then machines,
+       then the Hatchinators). */
+    var SG_FIXED = [];
+    (function(){
+      function add(name, x, y){ SG_FIXED.push({ name:name, x:x, y:y }); }
+      var r, c, i;
+      for(r = 0; r < 3; r++) for(c = 0; c < 3; c++) add("Mine", c * 5, r * 5);
+      [[60,26],[64,26],[68,26]].forEach(function(d){ add("Crackle Generator", d[0], d[1]); });
+      for(i = 0; i < 18; i++) add("Crackle Power Pole", 17 + 3.5 * i, 12.5);
+      for(i = 0; i < 6; i++) add("Crackle Power Pole", 2 + 10 * i, 26);
+      [["Chimney Kiln",0],["Chimney Kiln",5],["Chimney Kiln",10],["Chimney Kiln",15],
+       ["Carousel Mill",20],["Carousel Mill",25],
+       ["Tidewhisper Sandcastle",30],["Tidewhisper Sandcastle",35],
+       ["Nimbus Bed",40],["Nimbus Bed",45],
+       ["Starfall Hammock",50],["Starfall Hammock",55],
+       ["Floral Windmill",60]].forEach(function(d){ add(d[0], d[1], 28); });
+      [["Dewy House",65,28],["Dewy House",67,28],["Well",69,28],["Well",71,28],["Well",73,28],
+       ["Storage Unit",75,28],["Storage Unit",77,28]].forEach(function(d){ add(d[0], d[1], d[2]); });
+      [["Crafting Table",0],["Crafting Table",4],["Joy Wheel Loom",8],["Joy Wheel Loom",12],
+       ["Aniipod Maker",16],["Phonolfactory Table",20.5],["Phonolfactory Table",24],
+       ["Simmering Pot",27.5],["Simmering Pot",30.5],["Bouncy Brew Keg",33.5],["Bouncy Brew Keg",36.5],
+       ["Blazing Stove",39.5],["Blazing Stove",42],["Jukebox Dryer",44.5],["Jukebox Dryer",47],
+       ["Pickling Jar",49.5],["Pickling Jar",52],["Dance Pad Polisher",54.5],
+       ["Claw Game Cooker",57],["Claw Game Cooker",58.5],
+       ["Woodworking Bench",60],["Woodworking Bench",62],["Woodworking Bench",64],["Woodworking Bench",66],
+       ["Storage Unit",68],["Storage Unit",70],["Storage Unit",72],["Storage Unit",74]
+      ].forEach(function(d){ add(d[0], d[1], 33); });
+      for(i = 0; i < 10; i++) add("Hatchinator", i * 2, 37.5);
+    })();
+    var sgLevel = 18;
+    function sgPiece(name, x, y, zone){
+      var s = SG_SIZE[name];
+      return { name:name, x:x, y:y, w:s[0], h:s[1], zone:zone || null };
+    }
+    function sgOverlaps(a, b){
+      return a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+    }
+    function sgBuild(level){
+      var pieces = [];
+      SG_ZONES.forEach(function(z){ pieces.push(sgPiece(z.unit, z.x, z.y, null)); });
+      SG_FIXED.forEach(function(f){ pieces.push(sgPiece(f.name, f.x, f.y, null)); });
+      var woodCap = Math.max(0, maxFacCount("Woodland", level) || 0);
+      var farmCap = Math.max(0, maxFacCount("Farmland", level) || 0);
+      var farmPieces = [];
+      SG_WOOD_SLOTS.slice(0, woodCap).forEach(function(sl){
+        var pc = sgPiece("Woodland", sl.x, sl.y, sl.zone);
+        pieces.push(pc); farmPieces.push(pc);
+      });
+      var farms = 0;
+      for(var i = 0; i < SG_FARM_SLOTS.length && farms < farmCap; i++){
+        var sl2 = SG_FARM_SLOTS[i];
+        var cand = sgPiece("Farmland", sl2.x, sl2.y, sl2.zone);
+        var blocked = false;
+        for(var j = 0; j < farmPieces.length; j++){ if(sgOverlaps(cand, farmPieces[j])){ blocked = true; break; } }
+        if(blocked) continue;
+        pieces.push(cand); farmPieces.push(cand); farms++;
+      }
+      var counts = {};
+      pieces.forEach(function(pc){ counts[pc.name] = (counts[pc.name] || 0) + 1; });
+      return { pieces:pieces, counts:counts, farmDrawn:farms, woodDrawn:Math.min(woodCap, SG_WOOD_SLOTS.length) };
+    }
+    /* The board's own verification, run on every render: (1) zero
+       overlaps on the half-tile grid, (2) every drawn size equals the
+       spec size in SG_SIZE, (3) counts are reported for the check
+       line, (4) every plot drawn inside a coverage square has its
+       center inside that square. */
+    function sgVerify(res){
+      var overlaps = 0, badSize = 0, badCenter = 0, i, j;
+      var half = res.pieces.map(function(pc){
+        return { name:pc.name, x:Math.round(pc.x * 2), y:Math.round(pc.y * 2), w:Math.round(pc.w * 2), h:Math.round(pc.h * 2), zone:pc.zone };
+      });
+      for(i = 0; i < half.length; i++) for(j = i + 1; j < half.length; j++){
+        var a = half[i], b = half[j];
+        if(a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) overlaps++;
+      }
+      res.pieces.forEach(function(pc){
+        var s = SG_SIZE[pc.name];
+        if(!s || s[0] !== pc.w || s[1] !== pc.h) badSize++;
+        if(pc.zone){
+          var sq = sgZoneSquare(sgZoneById(pc.zone));
+          var cx = pc.x + pc.w / 2, cy = pc.y + pc.h / 2;
+          if(!(cx >= sq.x && cx <= sq.x + sq.w && cy >= sq.y && cy <= sq.y + sq.h)) badCenter++;
         }
-        prodsCache[fac] = out;
-        return out;
-      }
-      return { gross:gross, parents:parents, finals:finals, basketNames:basketNames, prodsFor:prodsFor };
+      });
+      return { overlaps:overlaps, badSize:badSize, badCenter:badCenter };
     }
-    function myProductLabel(ctx, name){
-      if(ctx.finals[name]) return name;
-      var ps = (ctx.parents[name] || []).filter(function(p){ return ctx.gross[p]; });
-      return ps.length ? name + " (for " + ps.join(", ") + ")" : name;
-    }
-    function myAssignFor(ctx, fac, count){
-      var prods = ctx.prodsFor(fac);
-      var idle = (fac === "Woodworking Bench" || fac === "Chimney Kiln")
-        ? "Not in current plan — building stock only, no recipe assigned"
-        : "Not in current plan — no recipe assigned";
-      var out = [], i;
-      if(!prods.length){ for(i = 0; i < count; i++) out.push(idle); return out; }
-      if(prods.length <= count){
-        for(i = 0; i < count; i++) out.push(i < prods.length ? myProductLabel(ctx, prods[i]) : idle);
-        return out;
-      }
-      for(i = 0; i < count - 1; i++) out.push(myProductLabel(ctx, prods[i]));
-      out.push(prods.slice(count - 1).map(function(n){ return myProductLabel(ctx, n); }).join(" and ") + ", taking turns");
+    function sgSvg(res){
+      var out = '<svg viewBox="0 0 80 60" role="img" aria-label="Suggested homeland layout: mines in one block, climate clusters of woodlands and fields, workshop area along the bottom, every item at its true size" font-family="Baloo 2, Nunito, sans-serif">';
+      out += '<defs><pattern id="sgGrid" width="1" height="1" patternUnits="userSpaceOnUse"><path d="M0.5 0V1M0 0.5H1" stroke="rgba(255,255,255,0.38)" stroke-width="0.035"/><path d="M1 0H0V1" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="0.05"/></pattern></defs>';
+      out += '<rect x="0" y="0" width="80" height="60" fill="#79b657"/>';
+      SG_ZONES.forEach(function(z){
+        var sq = sgZoneSquare(z);
+        out += '<rect x="' + sq.x + '" y="' + sq.y + '" width="9" height="9" fill="' + z.tint + '" fill-opacity="0.55" stroke="#3d2a47" stroke-opacity="0.55" stroke-width="0.12" stroke-dasharray="1.2 0.8"/>';
+      });
+      res.pieces.forEach(function(pc){
+        var col = SG_COLORS[pc.name] || ["#eeeeee","#888888"];
+        var tip = pc.name + " · true size " + pc.w + " by " + pc.h + " squares" + (pc.zone ? " · covered by the " + pc.zone + " climate zone (center inside its 9 by 9)" : "");
+        if(pc.name === "Floral Windmill") tip += " · size not firsthand-verified (see Sources & Flags)";
+        out += '<rect x="' + (pc.x + 0.06) + '" y="' + (pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="' + col[0] + '" stroke="' + col[1] + '" stroke-width="0.09" data-tip="' + escA(tip) + '"/>';
+        var lab = SG_SHORT[pc.name] !== undefined ? SG_SHORT[pc.name] : pc.name;
+        if(lab){
+          var f = Math.min(1.05, (pc.w * 0.94) / (0.58 * lab.length), pc.h * 0.52);
+          if(f >= 0.34) out += '<text x="' + (pc.x + pc.w / 2) + '" y="' + (pc.y + pc.h / 2 + f * 0.36).toFixed(2) + '" text-anchor="middle" font-size="' + f.toFixed(2) + '" font-weight="700" fill="#3d2a47" pointer-events="none">' + esc(lab) + "</text>";
+        }
+      });
+      out += '<rect x="0" y="0" width="80" height="60" fill="url(#sgGrid)" pointer-events="none"/>';
+      out += '<rect x="0" y="0" width="80" height="60" fill="none" stroke="rgba(61,42,71,0.55)" stroke-width="0.3"/>';
+      out += "</svg>";
       return out;
     }
-    function myRebuildF(pc, liveText){
-      if(!liveText) return pc.f;
-      var parts = pc.f.split(" — ");
-      if(parts.length < 2) return pc.f;
-      var segs = parts.slice(1).join(" — ").split(" · ");
-      if(segs.length < 3) return pc.f;
-      return parts[0] + " — " + segs[0] + " · " + liveText + " · " + segs.slice(2).join(" · ");
-    }
-    function myApplyLive(){
-      var ctx = myLiveContext();
-      var counts = {}, n, def;
-      for(n = 1; n <= 16; n++){
-        def = MY_PLOTS[n];
-        if(!def) continue;
-        def.pieces.forEach(function(pc){ var f = myPieceFac(pc); if(f) counts[f] = (counts[f] || 0) + 1; });
+    function sgDelta(n){ return "(" + (n > 0 ? "+" : "") + n + ")"; }
+    function renderSuggestedLayout(){
+      var board = document.getElementById("sgBoard");
+      if(!board) return;
+      var res = sgBuild(sgLevel);
+      board.innerHTML = sgSvg(res);
+      var cap = document.getElementById("sgCaption");
+      if(cap){
+        var fCap = Math.max(0, maxFacCount("Farmland", sgLevel) || 0), wCap = Math.max(0, maxFacCount("Woodland", sgLevel) || 0);
+        var fPrev = sgLevel > 1 ? Math.max(0, maxFacCount("Farmland", sgLevel - 1) || 0) : 0;
+        var wPrev = sgLevel > 1 ? Math.max(0, maxFacCount("Woodland", sgLevel - 1) || 0) : 0;
+        cap.textContent = "RV " + sgLevel + ": " + fCap + " Farmland " + sgDelta(fCap - fPrev) + ", " + wCap + " Woodland " + sgDelta(wCap - wPrev) + " — fields and woodlands drawn at the RV " + sgLevel + " caps; everything else stays at the RV 18 arrangement.";
       }
-      var assigns = {};
-      Object.keys(counts).forEach(function(f){ assigns[f] = myAssignFor(ctx, f, counts[f]); });
-      var seen = {};
-      for(n = 1; n <= 16; n++){
-        def = MY_PLOTS[n];
-        if(!def) continue;
-        def.pieces.forEach(function(pc){
-          var f = myPieceFac(pc);
-          if(!f){ pc._liveF = null; return; }
-          var i = seen[f] || 0;
-          seen[f] = i + 1;
-          pc._liveF = myRebuildF(pc, assigns[f][i]);
-        });
+      var chk = document.getElementById("sgCheck");
+      if(chk){
+        var res18 = sgLevel === 18 ? res : sgBuild(18);
+        var v = sgVerify(res18);
+        var f18 = Math.max(0, maxFacCount("Farmland", 18) || 0), w18 = Math.max(0, maxFacCount("Woodland", 18) || 0);
+        chk.textContent = "Farmland drawn " + res18.farmDrawn + "/" + f18 + " · Woodland drawn " + res18.woodDrawn + "/" + w18 +
+          " · every item drawn at its true size (" + (v.badSize === 0 ? "checked" : v.badSize + " wrong") + ")" +
+          " · every covered plot's center checked inside its zone (" + (v.badCenter === 0 ? "all inside" : v.badCenter + " outside") + ")" +
+          " · overlaps on the half-tile grid: " + v.overlaps + ".";
       }
-      return ctx;
-    }
-    function myLiveSpots(def){
-      var lis = [], hatchCount = 0, seenF = {};
-      def.pieces.forEach(function(pc){
-        if(pc.c === "Hatchinator"){ hatchCount++; return; }
-        var f = pc._liveF || pc.f;
-        if(seenF[f]) return;
-        seenF[f] = true;
-        var idx = f.indexOf(" — ");
-        var head = idx > -1 ? f.slice(0, idx) : f;
-        var rest = idx > -1 ? f.slice(idx + 3) : "";
-        var open = pc.cls && pc.cls.indexOf("open-piece") > -1;
-        lis.push('<li' + (open ? ' class="open"' : "") + "><strong>" + esc(head) + "</strong>" + (rest ? " — " + esc(rest) : "") + "</li>");
-      });
-      if(hatchCount) lis.unshift('<li><strong>Hatchinators ×' + hatchCount + "</strong> — passive, no worker</li>");
-      return lis.join("");
-    }
-    function myFarmCheckLi(def, ctx){
-      var planted = [];
-      def.pieces.forEach(function(pc){ if(pc.crop && planted.indexOf(pc.crop) === -1) planted.push(pc.crop); });
-      if(!planted.length) return "";
-      if(!Object.keys(ctx.gross).length) return '<li><strong>Live check</strong> — no basket or strategy plan yet: pick recipes and this line names which of these crops your plan uses, updated on every change</li>';
-      var used = planted.filter(function(c){ return ctx.gross[c]; });
-      var unused = planted.filter(function(c){ return !ctx.gross[c]; });
-      return "<li><strong>Live check</strong> — your current plan uses from this plot: " + (used.length ? used.map(function(c){ return esc(c); }).join(", ") : "none of these crops") + (unused.length ? " · planted here but not in this plan: " + unused.map(function(c){ return esc(c); }).join(", ") : "") + "</li>";
-    }
-    function myMineCheckLi(){
-      /* Live by construction, never a snapshot: this line used to read
-         bpResult.mine.assignments, the pick list frozen when the
-         strategy plan was last computed. The Mine picker handlers
-         update the live minePick list and re-render this board BEFORE
-         the recomputed plan replaces bpResult (and the live-refresh
-         fingerprint does not include the Mine picks), so the frozen
-         list is what this line kept showing — a plan built with no
-         Mines out fell through to the "no strategy plan yet" wording,
-         and a hand-changed pick never reached this line at all.
-         Now the line derives from currentMinePicks() — the same
-         mineSetup resolution the Facilities Out Mine block and its
-         picker handlers read — so it always names each Mine out with
-         the material currently picked for it, plan-set or hand-set.
-         "No plan yet" is said only when no strategy plan stands. */
-      var hasPlan = typeof bpResult !== "undefined" && !!bpResult;
-      if(!hasPlan){
-        return "<li><strong>Live check</strong> — no strategy plan yet, so Facilities out has no live Mine picks; the spots above are your standing mine spots</li>";
+      var countsEl = document.getElementById("sgCounts");
+      if(countsEl){
+        var res18b = sgLevel === 18 ? res : sgBuild(18);
+        var order = ["Farmland","Woodland","Mine","Heat Furnace","Cooling Unit","Sunlamp","Crackle Generator","Crackle Power Pole","Storage Unit","Hatchinator","Well","Dewy House","Chimney Kiln","Woodworking Bench","Carousel Mill","Crafting Table","Aniipod Maker","Phonolfactory Table","Joy Wheel Loom","Simmering Pot","Bouncy Brew Keg","Blazing Stove","Jukebox Dryer","Pickling Jar","Claw Game Cooker","Dance Pad Polisher","Tidewhisper Sandcastle","Nimbus Bed","Starfall Hammock","Floral Windmill"];
+        var parts = [];
+        order.forEach(function(f){ if(res18b.counts[f]) parts.push(esc(f) + " ×" + res18b.counts[f]); });
+        countsEl.innerHTML = '<p style="margin-top:10px"><strong>Out at RV 18:</strong> ' + parts.join(" · ") + ".</p>";
       }
-      var live = (typeof currentMinePicks === "function") ? currentMinePicks() : null;
-      var assigns = live && live.assignments ? live.assignments : [];
-      if(assigns.length){
-        return "<li><strong>Live check</strong> — Mines as Facilities out has them right now: " + assigns.map(function(m, i){ return "Mine " + (i + 1) + ": " + esc(m); }).join(" · ") + " — the spots above are your standing mine spots; the Mines picker in Facilities out is the live pick list</li>";
-      }
-      return "<li><strong>Live check</strong> — a strategy plan is built, but no Mines are out in Facilities out right now; the spots above are your standing mine spots</li>";
+      var inp = document.getElementById("sgLevelInput");
+      if(inp && parseInt(inp.value, 10) !== sgLevel) inp.value = sgLevel;
+      var prev = document.getElementById("sgPrev"), next = document.getElementById("sgNext");
+      if(prev) prev.disabled = sgLevel <= 1;
+      if(next) next.disabled = sgLevel >= 20;
     }
-    function myUpdateNote(ctx){
-      var note = document.getElementById("myLivePlanNote");
-      var stamp = document.getElementById("myLiveStamp");
-      if(note){
-        var steps = Object.keys(ctx.gross).filter(function(n){ return !ctx.finals[n] && ITEMS[n] && ITEMS[n].kind !== "grow"; });
-        var crops = Object.keys(ctx.gross).filter(function(n){ return ITEMS[n] && ITEMS[n].kind === "grow"; });
-        if(!ctx.basketNames.length && !steps.length){
-          note.innerHTML = "Nothing is picked yet, so every station below honestly reads <strong>Not in current plan</strong>. Pick recipes in Step 2 and this note and every label on the board rebuild themselves from your basket at once — no button, no waiting.";
-        } else {
-          var parts = [];
-          if(ctx.basketNames.length) parts.push("<strong>Your basket:</strong> " + ctx.basketNames.map(function(n){ return esc(n); }).join(" · "));
-          if(steps.length) parts.push("<strong>Steps that feed them:</strong> " + steps.map(function(n){ return esc(n); }).join(" · "));
-          if(crops.length) parts.push("<strong>Crops they grow:</strong> " + crops.map(function(n){ return esc(n); }).join(" · "));
-          note.innerHTML = "The recipe labels on this board list <strong>only your current basket</strong> — rebuilt just now from: " + parts.join(" — ") + ". A station with no job in this basket is marked <strong>Not in current plan</strong> and names no recipe, so nothing from an older basket can stay on the board. Your strategy plan refreshes live in Steps 4–7 too, but it never writes onto this board — a strategy suggestion is not an assignment until you pick it into your basket.";
-        }
+    (function sgWire(){
+      function setLevel(v){
+        v = isNaN(v) ? 18 : Math.max(1, Math.min(20, Math.floor(v)));
+        sgLevel = v;
+        renderSuggestedLayout();
       }
-      if(stamp){
-        stamp.textContent = "↻ Board refreshed just now (" + new Date().toLocaleTimeString("en-US", { hour:"numeric", minute:"2-digit", second:"2-digit" }) + ") — rebuilt from your basket as it stands. Change anything above and this board refreshes with it, and the Step 4 plan, the Mines in Facilities out, the layout and the crew all refresh themselves too — no button to tap, nothing ever stale.";
-      }
-    }
-    function renderMyHomeland(){
-      var board = document.getElementById("myBoard");
-      var details = document.getElementById("myDetails");
-      if(!board || !details) return;
-      var ctx = myApplyLive();
-      var bHtml = "";
-      MY_ROWS.forEach(function(rowNums){
-        rowNums.forEach(function(num){
-          var def = MY_PLOTS[num];
-          var g = myGridHtml(def, false);
-          bHtml += '<div class="my-cell' + (!def.pieces.length ? " is-empty" : "") + '"><div class="my-cell-head"><span class="n">' + num + '</span><span class="r">' + esc(def.role) + "</span></div>" + g.html + "</div>";
-        });
-      });
-      board.innerHTML = bHtml;
-      var dHtml = "";
-      for(var n = 1; n <= 16; n++){
-        var def = MY_PLOTS[n];
-        var g = myGridHtml(def, true);
-        var cap = "Plot " + n + " on the grid · 20 squares across by 15 back · true sizes, halves included";
-        if(g.unplaced.length) cap += " · " + g.unplaced.length + " piece(s) did not fit the drawing — their labels are in the list";
-        var spotsHtml = MY_LIVE_SPOT_PLOTS[def.num] ? myLiveSpots(def)
-          : def.spots + (def.num === 3 || def.num === 6 ? myFarmCheckLi(def, ctx) : "") + (def.num === 13 ? myMineCheckLi() : "");
-        dHtml += '<div class="my-detail"><div class="md-grid">' + g.html + '<div class="md-cap">' + esc(cap) + '</div></div><div class="md-side"><span class="pnum">Plot ' + n + (def.role ? " · " + esc(def.role) : "") + "</span><h3>" + def.title + "</h3>" + (def.sub ? "<p>" + def.sub + "</p>" : "") + '<ul class="my-spots">' + spotsHtml + "</ul></div></div>";
-      }
-      details.innerHTML = dHtml;
-      myUpdateNote(ctx);
-    }
-    renderMyHomeland();
+      var prev = document.getElementById("sgPrev"), next = document.getElementById("sgNext"), inp = document.getElementById("sgLevelInput");
+      if(prev) prev.addEventListener("click", function(){ setLevel(sgLevel - 1); });
+      if(next) next.addEventListener("click", function(){ setLevel(sgLevel + 1); });
+      if(inp) inp.addEventListener("change", function(){ setLevel(parseInt(inp.value, 10)); });
+    })();
 
     /* ============ init ============ */
     (function init(){
