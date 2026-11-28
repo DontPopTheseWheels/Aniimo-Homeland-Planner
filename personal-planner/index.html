@@ -345,7 +345,8 @@
       /* Suggested Homeland Layout board */
       .sugg-board{border:2px solid var(--card-line);border-radius:12px;overflow:hidden;cursor:zoom-in;background:#79b657;margin-top:12px}
       .sugg-board:focus{outline:3px solid var(--accent);outline-offset:2px}
-      .sugg-board#sgBoard{cursor:default}
+      .sugg-board#sgBoard{cursor:zoom-in}
+      .sugg-board#sgBoard:focus{outline:3px solid var(--accent);outline-offset:2px}
       .sugg-board svg{display:block;width:100%;height:auto}
       .sugg-zoom{position:fixed;inset:0;z-index:80;background:rgba(38,26,48,.92);display:flex;flex-direction:column}
       .sugg-zoom[hidden]{display:none}
@@ -423,7 +424,7 @@
           <div class="step"><span class="n">Step 3</span><br /><b>🎯 One strategy at a time</b><p>One job beyond your basket: <strong>Level Up</strong> pays your next RV bill, <strong>Goals</strong> works down your ranked list. Never both.</p></div>
           <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. The plan builds itself — and rebuilds itself on every change you make, so it is never out of date.</p></div>
           <div class="step"><span class="n">Steps 5–7</span><br /><b>➕ Add &amp; Adjust, crew &amp; home</b><p>Add &amp; Adjust plants it — Mines included, in Facilities out. Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
-          <div class="step"><span class="n">🗺️</span><br /><b>Suggested layout</b><p>A fixed RV 18 suggestion with everything out at its cap, drawn on the grid at true sizes — mines in one block, a workshop area, and fields and woodlands in climate clusters. Power is the exception: the planner decides it, there and in every plan. Step the RV level there and only the fields and woodlands redraw.</p></div>
+          <div class="step"><span class="n">🗺️</span><br /><b>Suggested layout</b><p>A fixed RV 18 suggestion with everything out at its cap, drawn on the grid at true sizes and shapes — fields in the climate zones their crops need, machines in rows by the ability that works them, storage spread through the districts, and power placed as a working grid the planner decides. Step the RV level there and only the fields and woodlands redraw; tap the board to see it big.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
         </div>
       </header>
@@ -809,11 +810,13 @@
       <!-- ================= SUGGESTED HOMELAND LAYOUT ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">🗺️</span><h2>🗺️ Suggested Homeland Layout — RV 18, Everything Out</h2></div>
-        <p class="sec-sub"><strong>A fixed suggestion, not a plan output.</strong> Everything is out at its <strong>RV 18 cap</strong> from this planner's own RV ladder, at max building level — <strong>except power</strong>, which follows the planner's E-Mode decision (2 generators and 6 poles, not the 3 and 24 the cap allows) — drawn on the homeland grid (80 squares across by 60 back) at <strong>true sizes only</strong> — no overlaps, nothing shrunk. The 9 Mines sit in one block; machines, storage, Hatchinators and the leisure stations share one workshop area; fields and woodlands sit in climate clusters, each with its climate unit drawn in the middle and its 9 × 9 coverage square shown. Step the RV level below and <strong>only the Farmland and Woodland blocks redraw</strong> at that level's caps — everything else stays at the RV 18 arrangement, because fields and woodlands are what get rebuilt each level anyway.</p>
+        <p class="sec-sub"><strong>A fixed suggestion, not a plan output.</strong> Everything is out at its <strong>RV 18 cap</strong> from this planner's own RV ladder, at max building level — <strong>except power</strong>, which follows the planner's E-Mode decision (2 generators and 6 poles, not the 3 and 24 the cap allows) — drawn on the homeland grid (80 squares across by 60 back) at <strong>true sizes and true shapes</strong> — no overlaps, nothing shrunk, nothing squared off: a 2 × 1.5 bench draws as a 2 × 1.5 rectangle, exactly as it stands in game, just on this board's smaller scale. Where each thing stands follows what the planner has learned: plots sit in the climate zones their crops actually need, machines cluster by the <strong>ability</strong> that works them, the E-Mode machines huddle inside the power grid, and the Storage Units are <strong>spread through the districts</strong> instead of piled in one spot, so hauling stays a short walk everywhere. Step the RV level below and <strong>only the Farmland and Woodland blocks redraw</strong> at that level's caps — everything else stays at the RV 18 arrangement, because fields and woodlands are what get rebuilt each level anyway. <strong>Tap the board to see it big.</strong></p>
 
         <div class="card">
-          <h3>🌡️ How the climate clusters work</h3>
-          <p style="margin:6px 0 0;font-weight:600">The 19 Woodlands ring the three Heat Furnaces — <strong>8 + 8 + 3</strong> — every Woodland's center inside its furnace's 9 × 9 (the center rule). Farmlands fill the three Cooling Unit zones (Freeze/Cool, 8 each), a Sunlamp zone (Adequate light, 6), the third furnace's spare room (Scorching, 6), and the last 2 sit neutral between the clusters. A second Sunlamp stands in the workshop covering the Floral Windmill, which needs Light for Scales. Power is the one thing <strong>not</strong> put out at its cap: the board follows the planner's E-Mode decision — <strong>2 Crackle Generators</strong> by the workshop (the cheap processors out here draw 2,010 at max level; two Lv 4 generators supply 2,400, so the third generator RV 18 allows stays in storage) and <strong>6 Power Poles</strong> along the workshop row for reach, not the 24 the cap allows. The Mine, Well, Aniipod Maker and Dance Pad Polisher stay Aniimo-run even here — at 30 × level they would eat a generator by themselves. Hover or tap any piece for its name and true size.</p>
+          <h3>🧭 How this layout is arranged — abilities and zone coverage</h3>
+          <p style="margin:6px 0 0;font-weight:600">🌡️ <strong>Fields follow the crops' climates.</strong> The plots are shared out by the climates the planner's crop list actually calls for, and Farmland and Woodland that need the same building pack into the same zone together, largest first: the heat trees (Warm and Scorching) and the Scorching fields ring the three Heat Furnaces; the Freeze and Cool crops ring the three Cooling Units; the Adequate-light crops ring the Sunlamp; and the grows-anywhere crops take the neutral ground in the middle and the room left over in the zones. Every covered plot's center sits inside its 9 × 9 (the center rule), and the climate squares are kept apart, so no two zones blend by accident. The two <strong>Starfall Hammocks stand inside the third Cooling Unit's square</strong> — the Hammock needs a Cool environment to work — and the <strong>Floral Windmill stands inside its own Sunlamp's square</strong>, because Scales is hard-gated on Light.</p>
+          <p style="margin:8px 0 0;font-weight:600">🐾 <strong>Machines cluster by ability, because crew is shared per ability.</strong> One Aniimo covers every facility that needs its ability, so the workshop rows group the work: a Fire row (Kilns, Stove, Pots, Claw Cookers), a Wind row (Mills and Looms), then Artisanship (Crafting Tables and Benches), Dark (Dryers and Pickling Jars), Water (Brew Kegs), Perfumery (Phonolfactory Tables), and one Leisure row (Sandcastles, Nimbus Beds, Dewy Houses) — each crew works one short row instead of crossing the map. The 9 Mines stay in one Earth block, the Wells stand by the cold fields their Water crew waters, and the Hatchinators line one row. <strong>Storage Units are spread out — one by the Mines, one by the furnace fields, one by the cold fields, one by the light and neutral fields, one by the workshop rows and one by the Hatchinators</strong> — because hauling is zone-local: the less an Aniimo walks, the faster things get done.</p>
+          <p style="margin:8px 0 0;font-weight:600">⚡ <strong>Power is placed, not just counted.</strong> The E-Mode machines cluster around the 2 Crackle Generators, and the 6 Power Poles chain outward in a lane between the workshop rows — each pole's 7 × 7 overlaps an already-powered square, and every E-Mode machine's center lands inside the powered area (the lavender wash on the board). The Aniipod Maker and Dance Pad Polisher stand outside the grid on the east side: at 30 × level they always stay Aniimo-run, like the Mines and Wells. Hover or tap any piece for its name and true size.</p>
           <div class="controls" style="margin-top:14px;align-items:center">
             <div class="field">
               <label>Fields &amp; woodlands at RV level</label>
@@ -824,8 +827,13 @@
               </span>
               <span class="hint">Only the Farmland and Woodland blocks change. Everything else stays at the RV 18 arrangement.</span>
             </div>
+            <div class="field">
+              <label>Board size</label>
+              <button type="button" id="sgZoomBtn">🔍 See it big</button>
+              <span class="hint">Or tap the board itself. The big view keeps every true size and shape — scroll to look around, Close to come back.</span>
+            </div>
           </div>
-          <div class="sugg-board" id="sgBoard" role="img" aria-label="Suggested homeland layout at RV 18: mines in one block top left, climate clusters of woodlands and fields across the top and middle, workshop area along the bottom, every item drawn at its true size"></div>
+          <div class="sugg-board" id="sgBoard" role="img" tabindex="0" aria-label="Suggested homeland layout at RV 18: mines in one block top left, fields and woodlands in climate clusters across the top and middle, machines in ability rows along the bottom inside the power grid, every item drawn at its true size and true shape. Activate to open the enlarged view."></div>
           <p class="fac-state" id="sgCaption" aria-live="polite"></p>
           <p style="margin-top:10px"><strong>Check line (RV 18):</strong> <span id="sgCheck"></span></p>
           <div class="map-legend">
@@ -834,10 +842,15 @@
             <p class="lg-row"><span class="lg-sw" style="background:#d8ccc0"></span>Mine 5 × 5</p>
             <p class="lg-row"><span class="lg-sw" style="background:#f6cf8b"></span>Workshop &amp; leisure facilities (true sizes)</p>
             <p class="lg-row"><span class="lg-sw" style="background:#f6a98b"></span>Heat Furnace 1 × 1 · <span class="lg-sw" style="background:#bfe0f2"></span>Cooling Unit 2 × 2 · <span class="lg-sw" style="background:#ffe9a8"></span>Sunlamp 1 × 1 — dashed square = its 9 × 9 coverage</p>
-            <p class="lg-row"><span class="lg-sw" style="background:#e6e0f2"></span>Crackle Generator 2 × 2 · Power Pole 1.5 × 1.5</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#e6e0f2"></span>Crackle Generator 2 × 2 · Power Pole 1.5 × 1.5 — the pale lavender wash is the powered area (Generator covers 11 × 11, Pole covers 7 × 7)</p>
+            <p class="lg-row"><span class="lg-sw" style="background:#e6e0f2"></span>Storage Unit 2 × 2 — six of them, spread one to a district, never clustered</p>
           </div>
           <div id="sgCounts"></div>
-          <p style="margin-top:10px">⚡ <strong>Power on this board, decided:</strong> 27 cheap processing machines out × their max-level draws = <strong>2,010 demand</strong>; <strong>2 Lv 4 Crackle Generators</strong> supply 2,400 — supply ahead of demand, so the E-Mode machines run faster (up to 120%), 25 Aniimo are freed net of the 2 Lightning Aniimo the generators take, and no third generator is put out. Your own plans get the same decision, sized to the plan, in the ⚡ Power decision box in Step 4.</p>
+          <p style="margin-top:10px" id="sgPower">⚡ <strong>Power on this board, decided:</strong> 28 cheap processing machines out × their max-level draws = <strong>2,070 demand</strong>; <strong>2 Lv 4 Crackle Generators</strong> supply 2,400 — supply ahead of demand, so the E-Mode machines run faster (up to 120%), 26 Aniimo are freed net of the 2 Lightning Aniimo the generators take, and no third generator is put out. Every one of those 28 machines stands with its center inside the powered area, and the poles chain square to square from the generators. Your own plans get the same decision, sized to the plan, in the ⚡ Power decision box in Step 4.</p>
+        </div>
+        <div class="sugg-zoom" id="sgZoom" hidden role="dialog" aria-modal="true" aria-label="Suggested homeland layout, enlarged view">
+          <div class="sugg-zoom-bar"><span>🗺️ Suggested Homeland Layout — big view</span><button type="button" id="sgZoomClose">✕ Close</button></div>
+          <div class="sugg-zoom-scroll" id="sgZoomScroll"></div>
         </div>
         <p class="src" style="margin-top:16px">Done looking? <a href="#sources">Next: Sources &amp; Flags, right below ↓</a></p>
       </section>
@@ -894,7 +907,7 @@
           <li><strong>Minimum crew, the 80% rule (Aniiland):</strong> a shared worker gets a second pair of hands for a job only when the first worker's combined workload passes 80%. This planner counts each facility a worker covers as 20% of a full load, so a job covering five or more facilities gets a second worker, and workers split the facilities so none passes 80%. Best mode is unchanged.</li>
           <li><strong>Aniipod Maker rate:</strong> about 4 Aniipods per hour at the base maker, 1 pod per about 15 minutes <span class="verdict v-mix">single source: aniimoguide.com, read off the in-game bar</span>. Higher maker levels are not scaled up: no faster rate is verified, so the base figure is shown with its flag wherever the maker works.</li>
           <li><strong>Seeds to have ready (While you're away):</strong> crops keep replanting on their own as long as seeds last (player-confirmed). The list is the layout's planted plots per crop times the grow rounds that fit in the hours typed, rounds rounded up, using the grow times already in this planner's data. A crop with no verified grow time is listed as not verified instead of counted. Magical Wonder Night seeds ride along in the same list at 4 Weird Jelly Beans per seed, with a combined bean total when both event crops are planted, and their one-round bean cost (plots × 4) shows even with no hours typed. Beans are display only: no Home Coin figure counts them.</li>
-          <li><strong>Power — what it does, and the planner's E-Mode decision (what it does: the game's own help texts via aniimo.guide, cross-checked with extracted game data, Nov 27, 2026; caps and copies fixed Nov 7, 2026):</strong> from RV 12, a processing facility inside the power grid can run on <strong>E-Mode</strong> — on a timer, with no Aniimo working it. A Crackle Generator makes the power but needs <strong>one Lightning Aniimo working it</strong>; its supply is capped by its own level. A Crackle Power Pole makes no power: it relays, covers 7 × 7, and must overlap an already-powered area. Power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>; the Step 1 fill uses the right copy count for the picked RV. While supply beats demand the grid runs faster, up to <strong>120%</strong>; over the supply, everything on the grid slows below 100%. <strong>The decision (the planner's own take, at the player's ask, Nov 27, 2026):</strong> each plan's ⚡ Power decision box switches only the cheap 15 × level processing machines, cheapest draw first, under the fewest generators whose supply covers the demand — and only when the machines freed outnumber the Lightning Aniimo the generators take, so a one-machine plan is told to skip the grid. The four 30 × level buildings always stay Aniimo-run, as do gather, leisure, climate and field posts; Farmland and Woodland plots draw nothing. Poles start at zero in every decision and go out only for a machine a generator's 11 × 11 cannot reach. The Suggested Layout follows the same decision: its 27 cheap processors at max level draw 2,010, so it stands 2 generators and 6 poles instead of the RV 18 caps of 3 and 24. Power zone sizes stay as measured: Crackle Generator 22 × 22 cells, Power Pole 14 × 14 cells.</li>
+          <li><strong>Power — what it does, and the planner's E-Mode decision (what it does: the game's own help texts via aniimo.guide, cross-checked with extracted game data, Nov 27, 2026; caps and copies fixed Nov 7, 2026):</strong> from RV 12, a processing facility inside the power grid can run on <strong>E-Mode</strong> — on a timer, with no Aniimo working it. A Crackle Generator makes the power but needs <strong>one Lightning Aniimo working it</strong>; its supply is capped by its own level. A Crackle Power Pole makes no power: it relays, covers 7 × 7, and must overlap an already-powered area. Power unlocks at <strong>RV 12</strong> (Power Module Lv 1; <a href="https://aniimotools.dev/systems/homeland/rv-levels/">AniimoTools, RV Levels</a> and <a href="https://aniiland.wintira.win/guides/rv-level-roadmap">Aniiland's RV roadmap</a> agree), and generator levels follow the module: Lv 1 at RV 12, Lv 2 at RV 14, Lv 3 at RV 16, Lv 4 at RV 18, Lv 5 at RV 20. Draw (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3806795108">Steam Community RV/Homeland Guide</a>): a building on E-mode costs <strong>15 × its level</strong>; Mine, Well, Aniipod Maker and Dance Pad Polisher cost <strong>30 × level</strong>. Supply per Crackle Generator by its level: <strong>Lv 1 = 600, Lv 2 = 800, Lv 3 = 1000, Lv 4 = 1200, Lv 5 = 1500</strong> (AniimoTools' generator page and the game-data extraction agree). Generator copies: <strong>1 before RV 15, 2 from RV 15, 3 from RV 18</strong>; the Step 1 fill uses the right copy count for the picked RV. While supply beats demand the grid runs faster, up to <strong>120%</strong>; over the supply, everything on the grid slows below 100%. <strong>The decision (the planner's own take, at the player's ask, Nov 27, 2026):</strong> each plan's ⚡ Power decision box switches only the cheap 15 × level processing machines, cheapest draw first, under the fewest generators whose supply covers the demand — and only when the machines freed outnumber the Lightning Aniimo the generators take, so a one-machine plan is told to skip the grid. The four 30 × level buildings always stay Aniimo-run, as do gather, leisure, climate and field posts; Farmland and Woodland plots draw nothing. Poles start at zero in every decision and go out only for a machine a generator's 11 × 11 cannot reach. The Suggested Layout follows the same decision: its 28 cheap processors at max level draw 2,070, so it stands 2 generators and 6 poles instead of the RV 18 caps of 3 and 24 — and it places them, too: the machines cluster in ability rows around the generators, the poles chain outward in a lane between the rows with each pole's square overlapping an already-powered one, and every E-Mode machine's center lands inside the powered area, which the board checks on every render. Power zone sizes stay as measured: Crackle Generator 22 × 22 cells, Power Pole 14 × 14 cells.</li>
           <li><strong>Family gates are the game's own tags (deep-dive audit, Nov 7, 2026; My Crew enforces every one family-first, with the normal-ranking fallback and row note when a family has no pickable member):</strong> Sea Salt and Quick Sea Salt need the Susuta family; Pearl and Quick Pearl need Shelly; Aromathyst and Quick Aromathyst need Dewy; Wool and Quick Wool need Nimbi; Petals needs Iris; Star needs Celestis; Scales and Quick Scales need Flutternym. Sweet Cone needs Sugar and Gold-Speck Cap needs Coinwisp, each labelled <span class="verdict v-mix">single-source</span> wherever shown. The recipe picker shows each gated recipe's family need, the Team Helper's crew slot for a gated recipe reads as a family-only requirement (for example "Leisure worker, Susuta family ONLY"), and copied plan text lists the family requirement lines. Jello, Premium Jello, Dye and Dried Flowers eat Petals, which only the Iris family makes; Woolen Yarn eats Wool, which only the Nimbi family makes: when a plan includes one of these and the input is not also being made in the plan, the plan warns that it depends on that family's production. No unlock RV is stated for Quick Pearl: that figure is unresolved.</li>
           <li><strong>Climate and light gates on recipes (audit, Nov 7, 2026):</strong> Scales and Quick Scales are hard-gated on Light: the plan must include a Sunlamp covering the Floral Windmill in Step 5 (Add & Adjust), and the plan warns if it is missing. Pearl and Quick Pearl want Warmth +1: without Heat Furnace coverage of the Sandcastle they run at 80%, and the adjusted per-hour figure is shown, labelled. Star wants Cool -1: 80% without Cooling Unit coverage. Sweet Cone wants Cold -2: 50% without. Gold-Speck Cap wants Warmth +1: 80% without.</li>
           <li><strong>Storage Units take no worker (audit, Nov 7, 2026):</strong> Storage Units are passive. They have no crew slot, no crew count and no worker-based power math, and they never appear in the crew.</li>
@@ -902,7 +915,7 @@
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
-          <li><strong>Suggested Homeland Layout (replaced the old My Homeland Layout, Nov 27, 2026):</strong> a fixed suggestion for RV 18 with everything out at its RV 18 cap from this planner's own ladder (Farmland 38, Woodland 19, Mines 9, Heat Furnace 3, Cooling Unit 3, Crackle Power Poles 24, Crackle Generator 3, Woodworking Bench 4, Chimney Kiln 4, Starfall Hammock 2, Floral Windmill 1, Storage 6, Dewy House 2, and every other facility at its ladder RV 18 cap), drawn on the homeland grid at true sizes on the half-tile grid with no overlaps and nothing shrunk. Woodlands ring the three Heat Furnaces 8 + 8 + 3; Farmlands fill the Cooling Unit zones, a Sunlamp zone, the third furnace's spare room, and 2 neutral plots between clusters; every plot drawn inside a coverage square has its center inside that square (center rule). The RV stepper redraws only the Farmland and Woodland blocks at each level's ladder caps. <strong>Farmland's true size is 2 × 2</strong> — the twice-measured firsthand record (Oct 23, 2026 climate measurements, cross-checked Nov 9, 2026), confirmed by the player's Nov 27, 2026 furnace-cluster screenshot where a Farmland is visibly about half a Woodland's 3.5 width; the 3 × 3 figure used in the previous pass was an error. <strong>Sizes not firsthand-verified:</strong> Crafting Table (4 × 4), Aniipod Maker (4.5 × 4.5), Dance Pad Polisher (2.5 × 2.5) and Floral Windmill (drawn 5 × 5, with the other big leisure stations) keep the sizes this planner already used for them; they are not firsthand-verified. The board was machine-checked before delivery: zero overlaps on the half-tile grid, every drawn size equal to its spec size, Farmland/Woodland counts equal to the caps at every stepper level, and every covered plot's center inside its zone.</li>
+          <li><strong>Suggested Homeland Layout (replaced the old My Homeland Layout, Nov 27, 2026; rearranged for abilities and zone coverage later the same day, at the player's ask):</strong> a fixed suggestion for RV 18 with everything out at its RV 18 cap from this planner's own ladder (Farmland 38, Woodland 19, Mines 9, Heat Furnace 3, Cooling Unit 3, Woodworking Bench 4, Chimney Kiln 4, Starfall Hammock 2, Floral Windmill 1, Storage 6, Dewy House 2, and every other facility at its ladder RV 18 cap) — except power, which follows the planner's E-Mode decision (2 Crackle Generators and 6 Power Poles, not the caps of 3 and 24) — drawn on the homeland grid at true sizes <strong>and true shapes</strong> on the half-tile grid with no overlaps and nothing shrunk or squared off: each piece's drawn width and height are its spec width and height, so a 2 × 1.5 Woodworking Bench draws as a 2 × 1.5 rectangle. Tapping the board opens the same drawing enlarged in a full-screen overlay (scrollable, Close or Escape to return), with sizes and shapes preserved at that scale. <strong>Placement rules (the learned ones):</strong> plots are shared out by the climates their crops need from this planner's own crop list — heat trees and Scorching fields ring the Heat Furnaces, Freeze/Cool crops ring the Cooling Units, Adequate-light crops ring the Sunlamp, grows-anywhere crops take neutral ground — with Farmland and Woodland of one climate packed into the same zones, largest first; the climate squares are kept apart so no zones blend by accident; the Starfall Hammocks stand inside the third Cooling Unit's square (the Hammock needs a Cool environment to work) and the Floral Windmill inside its own Sunlamp's square (Scales is hard-gated on Light); machines stand in rows grouped by the ability that works them, because crew is shared per ability; the E-Mode machines cluster inside the power grid and the poles chain square to square from the generators; and the six Storage Units are spread one to a district — Mines, furnace fields, cold fields, light and neutral fields, workshop rows, Hatchinators — because hauling is zone-local and shorter walks finish faster (player's rule, Nov 27, 2026). Every piece drawn inside a coverage square has its center inside that square (center rule). The RV stepper redraws only the Farmland and Woodland blocks at each level's ladder caps. <strong>Farmland's true size is 2 × 2</strong> — the twice-measured firsthand record (Oct 23, 2026 climate measurements, cross-checked Nov 9, 2026), confirmed by the player's Nov 27, 2026 furnace-cluster screenshot where a Farmland is visibly about half a Woodland's 3.5 width; the 3 × 3 figure used in the previous pass was an error. <strong>Sizes not firsthand-verified:</strong> Crafting Table (4 × 4), Aniipod Maker (4.5 × 4.5), Dance Pad Polisher (2.5 × 2.5) and Floral Windmill (drawn 5 × 5, with the other big leisure stations) keep the sizes this planner already used for them; they are not firsthand-verified. The board re-checks itself on every render and prints the results in its check line: zero overlaps on the half-tile grid, every drawn size equal to its spec size, Farmland/Woodland counts equal to the caps, every covered center inside its zone, climate squares never overlapping, no pole off the power chain, and no E-Mode machine outside the powered area.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
@@ -10913,20 +10926,28 @@
        and woodlands every RV level anyway and did not use the old
        section). Everything is drawn out at its RV 18 cap from this
        planner's own ladders (FAC_COUNT, CLIM_COUNT, UTIL_COUNT), at
-       true sizes only, on the homeland grid (80 by 60 squares, pieces
-       on the half-tile grid), no overlaps, nothing shrunk. The Mines
-       sit in one block; machines, storage, Hatchinators and leisure
-       stations share one workshop area; fields and woodlands sit in
-       climate clusters with the climate unit in the middle and its
-       9 x 9 coverage square drawn. The RV stepper redraws ONLY the
-       Farmland and Woodland blocks at that level's ladder caps; the
-       rest of the layout never moves. The arrangement below was
-       machine-checked before delivery: zero overlaps on the half-tile
-       grid, every drawn size equal to its spec size, Farmland and
-       Woodland counts equal to the caps at every stepper level, and
-       every covered plot's center inside its zone — and the board
-       re-runs the overlap, size and center checks on every render
-       and prints the result in its check line. */
+       true sizes and true shapes only, on the homeland grid (80 by
+       60 squares, pieces on the half-tile grid), no overlaps, nothing
+       shrunk or squared off. Placement follows the planner's learned
+       rules (rearranged Nov 27, 2026 at the player's ask): plots are
+       shared out by the climates their crops need — heat crops ring
+       the furnaces, cold crops the Cooling Units, light crops the
+       Sunlamp, grows-anywhere crops the neutral ground — with
+       Farmland and Woodland of one climate packed into the same
+       zones; the Starfall Hammocks stand inside a Cooling Unit
+       square and the Floral Windmill inside a Sunlamp square;
+       machines cluster in rows by the ability that works them,
+       because crew is shared per ability; the E-Mode machines
+       cluster inside a power grid whose poles chain square to
+       square from the generators; and the Storage Units are spread
+       one to a district, because hauling is zone-local and short
+       walks are faster. The RV stepper redraws ONLY the Farmland
+       and Woodland blocks at that level's ladder caps; the rest of
+       the layout never moves. The board re-runs its checks on every
+       render — overlaps, true size and shape, covered centers,
+       climate squares kept apart, the pole chain and E-Mode
+       coverage — and prints the results in its check line. Tapping
+       the board opens the same drawing enlarged in an overlay. */
     var SG_SIZE = {
       "Farmland":[2,2], "Woodland":[3.5,3.5], "Mine":[5,5], "Well":[2,2],
       "Aniipod Maker":[4.5,4.5], "Crafting Table":[4,4], "Woodworking Bench":[2,1.5],
@@ -10967,8 +10988,11 @@
     };
     /* Climate units and their 9 x 9 coverage squares. The unit stands
        in the middle of its square; a plot is covered only when its
-       center lands inside the square (the center rule). SL2 stands in
-       the workshop: its square covers the Floral Windmill, which needs
+       center lands inside the square (the center rule). The squares
+       are kept apart from each other, so no two zones blend by
+       accident. CU3's square also covers the two Starfall Hammocks,
+       which need a Cool environment to work. SL2 stands by the
+       workshop: its square covers the Floral Windmill, which needs
        Light for Scales. */
     var SG_ZONES = [
       { id:"F1", unit:"Heat Furnace", x:21, y:4, tint:"#fbe7e1" },
@@ -10978,7 +11002,7 @@
       { id:"CU2", unit:"Cooling Unit", x:16.5, y:19.5, tint:"#dcecfb" },
       { id:"CU3", unit:"Cooling Unit", x:29.5, y:19.5, tint:"#dcecfb" },
       { id:"SL1", unit:"Sunlamp", x:43, y:20, tint:"#fdf3da" },
-      { id:"SL2", unit:"Sunlamp", x:66, y:30, tint:"#fdf3da" }
+      { id:"SL2", unit:"Sunlamp", x:67, y:29, tint:"#fdf3da" }
     ];
     function sgZoneById(id){
       for(var i = 0; i < SG_ZONES.length; i++) if(SG_ZONES[i].id === id) return SG_ZONES[i];
@@ -10989,83 +11013,118 @@
       var cx = z.x + s[0] / 2, cy = z.y + s[1] / 2;
       return { x:cx - 4.5, y:cy - 4.5, w:9, h:9, cx:cx, cy:cy };
     }
-    /* Woodland slots, in fill order: ring packing around Furnace 1
-       (8), Furnace 2 (8), then Furnace 3 (top row of 3, plus one spare
-       slot at its left-middle that only the RV 19-20 count of 20
-       needs). Every slot's center sits inside its furnace's 9 x 9. */
+    /* Woodland slots, in fill order, shared out by the climates the
+       tree crops actually need (the planner's CLIMATE list): the heat
+       trees (Warm and Scorching) ring Furnace 1 (8) and the top of
+       Furnace 2 (4); the cold trees (Freeze Maple, Cool Apple) ring
+       Cooling Units 1 and 2 (2 each); the light trees (Walnut, Orange
+       Flower) ring the Sunlamp (3). One spare slot in Furnace 3's zone
+       serves only the RV 19-20 count of 20. Every slot's center sits
+       inside its unit's 9 x 9. */
     var SG_WOOD_SLOTS = [];
     (function(){
-      [[17,0,"F1"],[29.5,0,"F2"]].forEach(function(c){
-        var zx = c[0], zy = c[1], zid = c[2];
-        [[0,0],[3.5,0],[7,0],[0,3.5],[7,3.5],[0,7],[3.5,7],[7,7]].forEach(function(d){
-          SG_WOOD_SLOTS.push({ x:zx + d[0], y:zy + d[1], zone:zid });
-        });
+      [[0,0],[3.5,0],[7,0],[0,3.5],[7,3.5],[0,7],[3.5,7],[7,7]].forEach(function(d){
+        SG_WOOD_SLOTS.push({ x:17 + d[0], y:d[1], zone:"F1" });
       });
-      [[42,0],[45.5,0],[49,0],[42,3.5]].forEach(function(d){
-        SG_WOOD_SLOTS.push({ x:d[0], y:d[1], zone:"F3" });
+      [[29.5,0],[33,0],[36.5,0],[29.5,3.5]].forEach(function(d){
+        SG_WOOD_SLOTS.push({ x:d[0], y:d[1], zone:"F2" });
       });
+      [[0,16],[5.5,16]].forEach(function(d){ SG_WOOD_SLOTS.push({ x:d[0], y:d[1], zone:"CU1" }); });
+      [[13,16],[18.5,16]].forEach(function(d){ SG_WOOD_SLOTS.push({ x:d[0], y:d[1], zone:"CU2" }); });
+      [[39,16],[44.5,16],[39,21.5]].forEach(function(d){ SG_WOOD_SLOTS.push({ x:d[0], y:d[1], zone:"SL1" }); });
+      SG_WOOD_SLOTS.push({ x:42, y:0, zone:"F3" });
     })();
-    /* Farmland slots, in fill order: the three Cooling Unit zones
-       (8 each, Freeze/Cool), the Sunlamp zone (Adequate light), the
-       third furnace's spare room (Scorching), and neutral slots
-       between the clusters last. Slots that would land on a drawn
-       Woodland are skipped at build time. */
+    /* Farmland slots, in fill order, shared out the same way: Freeze
+       and Cool fields ring Cooling Units 1 and 2 (4 each, packed
+       under the cold trees in the same zones — mixed lands share a
+       zone, largest first); Adequate-light fields ring the Sunlamp
+       (7, sharing with the light trees); Scorching fields fill the
+       room left in Furnaces 2 and 3 (6 each); four more cold fields
+       sit over the Starfall Hammocks in Cooling Unit 3's zone; and
+       the grows-anywhere fields take the neutral ground below the
+       Sunlamp zone (7, plus 2 spare slots only the RV 19-20 count of
+       40 needs). Slots that would land on a drawn Woodland are
+       skipped at build time. */
     var SG_FARM_SLOTS = [];
     (function(){
-      [[0,16,"CU1"],[13,16,"CU2"],[26,16,"CU3"]].forEach(function(c){
-        var zx = c[0], zy = c[1], zid = c[2];
-        [[0,0],[2,0],[4,0],[6,0],[8,0],[0,2],[6,2],[8,2]].forEach(function(d){
-          SG_FARM_SLOTS.push({ x:zx + d[0], y:zy + d[1], zone:zid });
-        });
-      });
-      [[39,16],[41,16],[43,16],[45,16],[47,16],[39,18],[41,18],[45,18],[47,18],[39,20],[41,20],[45,20],[47,20]].forEach(function(d){
-        SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"SL1" });
-      });
-      [[48,4],[50,4],[48,6],[50,6],[46,6],[48,8],[50,8],[46,8],[44,8],[42,8],[44,6],[42,6]].forEach(function(d){
-        SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"F3" });
-      });
-      [[54,0],[56,0],[58,0],[60,0]].forEach(function(d){
+      [[0,21.5],[2,21.5],[5.5,21.5],[7.5,21.5]].forEach(function(d){ SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"CU1" }); });
+      [[13,21.5],[15,21.5],[18.5,21.5],[20.5,21.5]].forEach(function(d){ SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"CU2" }); });
+      [[42.5,16],[42.5,18],[44.5,20],[46.5,20],[44.5,22.5],[42.5,22.5],[46.5,22.5]].forEach(function(d){ SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"SL1" }); });
+      [[29.5,7],[31.5,7],[33.5,7],[35.5,7],[37.5,7],[36.5,3.5]].forEach(function(d){ SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"F2" }); });
+      [[42,4],[44,4],[48,4],[50,4],[44,6],[48,6]].forEach(function(d){ SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"F3" }); });
+      [[26,17],[33,17],[26,19.5],[33,19.5]].forEach(function(d){ SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:"CU3" }); });
+      [[39,27],[41,27],[43,27],[45,27],[47,27],[49,27],[51,27],[39,29.5],[41,29.5]].forEach(function(d){
         SG_FARM_SLOTS.push({ x:d[0], y:d[1], zone:null });
       });
     })();
     /* Everything that is NOT a field or woodland: fixed at the RV 18
-       arrangement. Mines in one 3 by 3 block; generators and poles
-       along the cluster and workshop rows; the workshop in rows along
-       the bottom (kilns, mills and leisure stations, then machines,
-       then the Hatchinators). */
+       arrangement, placed by ability and zone coverage. Mines in one
+       3 by 3 Earth block. The leisure stations share one Leisure row
+       under the cold fields; the two Starfall Hammocks stand inside
+       Cooling Unit 3's square (zone-tagged, so the board's own check
+       verifies their centers), and the Floral Windmill stands inside
+       Sunlamp 2's square the same way. The workshop is two machine
+       rows grouped by the ability that works them — Fire then Wind
+       above the power lane, Artisanship, Dark, Water and Perfumery
+       below it — with the generators and poles in the lane between.
+       Storage Units are spread one to a district, never clustered:
+       hauling is zone-local, so each district keeps its own store
+       a short walk away. */
     var SG_FIXED = [];
     (function(){
-      function add(name, x, y){ SG_FIXED.push({ name:name, x:x, y:y }); }
+      function add(name, x, y, zone){ SG_FIXED.push({ name:name, x:x, y:y, zone:zone || null }); }
       var r, c, i;
       for(r = 0; r < 3; r++) for(c = 0; c < 3; c++) add("Mine", c * 5, r * 5);
       /* Power follows the planner's E-Mode decision, not the RV cap:
-         with every processor out at RV 18 max level, the cheap
-         15 x level machines draw 2,010 in total, so exactly two
+         with every processor out at RV 18 max level, the 28 cheap
+         15 x level machines draw 2,070 in total, so exactly two
          Lv 4 Generators (1,200 supply each) cover them with supply
          to spare — the third generator RV 18 allows stays in storage.
-         The Mine, Well, Aniipod Maker and Dance Pad Polisher stay
-         Aniimo-run even here. Six poles stand along the workshop row
-         for reach; the other 18 RV 18 allows are not put out. */
-      [[60,26],[64,26]].forEach(function(d){ add("Crackle Generator", d[0], d[1]); });
-      for(i = 0; i < 6; i++) add("Crackle Power Pole", 2 + 10 * i, 26);
-      [["Chimney Kiln",0],["Chimney Kiln",5],["Chimney Kiln",10],["Chimney Kiln",15],
-       ["Carousel Mill",20],["Carousel Mill",25],
-       ["Tidewhisper Sandcastle",30],["Tidewhisper Sandcastle",35],
-       ["Nimbus Bed",40],["Nimbus Bed",45],
-       ["Starfall Hammock",50],["Starfall Hammock",55],
-       ["Floral Windmill",60]].forEach(function(d){ add(d[0], d[1], 28); });
-      [["Dewy House",65,28],["Dewy House",67,28],["Well",69,28],["Well",71,28],["Well",73,28],
-       ["Storage Unit",75,28],["Storage Unit",77,28]].forEach(function(d){ add(d[0], d[1], d[2]); });
-      [["Crafting Table",0],["Crafting Table",4],["Joy Wheel Loom",8],["Joy Wheel Loom",12],
-       ["Aniipod Maker",16],["Phonolfactory Table",20.5],["Phonolfactory Table",24],
-       ["Simmering Pot",27.5],["Simmering Pot",30.5],["Bouncy Brew Keg",33.5],["Bouncy Brew Keg",36.5],
-       ["Blazing Stove",39.5],["Blazing Stove",42],["Jukebox Dryer",44.5],["Jukebox Dryer",47],
-       ["Pickling Jar",49.5],["Pickling Jar",52],["Dance Pad Polisher",54.5],
-       ["Claw Game Cooker",57],["Claw Game Cooker",58.5],
-       ["Woodworking Bench",60],["Woodworking Bench",62],["Woodworking Bench",64],["Woodworking Bench",66],
-       ["Storage Unit",68],["Storage Unit",70],["Storage Unit",72],["Storage Unit",74]
-      ].forEach(function(d){ add(d[0], d[1], 33); });
-      for(i = 0; i < 10; i++) add("Hatchinator", i * 2, 37.5);
+         The two generators stand in a lane between the machine rows
+         and the six poles chain outward from them, each pole's 7 x 7
+         overlapping an already-powered square, until the powered
+         area covers every E-Mode machine's center. The Mine, Well,
+         Aniipod Maker and Dance Pad Polisher stay Aniimo-run even
+         here; the last two stand east of the grid, outside it. */
+      add("Crackle Generator", 34, 38.5); add("Crackle Generator", 38, 38.5);
+      [13.25,19.75,26.25,46.25,52.75,59.25].forEach(function(px){ add("Crackle Power Pole", px, 38.75); });
+      /* Row A, by ability: Fire (Kilns, Stoves, Pots, Claw Cookers),
+         then Wind (Mills, Looms) — every one an E-Mode machine with
+         its center inside the powered area. */
+      [9,14.5,20,25.5].forEach(function(kx){ add("Chimney Kiln", kx, 33.5); });
+      add("Blazing Stove", 31, 34); add("Blazing Stove", 33.5, 34);
+      add("Simmering Pot", 36.5, 34); add("Simmering Pot", 39.5, 34);
+      add("Claw Game Cooker", 43, 34); add("Claw Game Cooker", 43, 35.75);
+      add("Carousel Mill", 46, 33.5); add("Carousel Mill", 51, 33.5);
+      add("Joy Wheel Loom", 56.5, 34); add("Joy Wheel Loom", 60.5, 34);
+      /* Row B, by ability: Artisanship (Crafting Tables, Benches),
+         Dark (Dryers, Pickling Jars), Water (Brew Kegs), Perfumery
+         (Phonolfactory Tables) — all E-Mode, all powered. */
+      add("Crafting Table", 10, 41); add("Crafting Table", 14, 41);
+      [18.5,20.5,22.5,24.5].forEach(function(bx){ add("Woodworking Bench", bx, 41.5); });
+      add("Jukebox Dryer", 29, 41); add("Jukebox Dryer", 31.5, 41);
+      add("Pickling Jar", 34.5, 41); add("Pickling Jar", 37, 41);
+      add("Bouncy Brew Keg", 45, 41); add("Bouncy Brew Keg", 48, 41);
+      add("Phonolfactory Table", 52, 41); add("Phonolfactory Table", 55.5, 41);
+      /* Aniimo-run machines, east of the grid: Lightning posts that
+         never switch to E-Mode. */
+      add("Aniipod Maker", 69, 35); add("Dance Pad Polisher", 74, 35);
+      /* One Leisure row: Sandcastles, Nimbus Beds, Dewy Houses. */
+      add("Tidewhisper Sandcastle", 9, 27.5); add("Tidewhisper Sandcastle", 14.5, 27.5);
+      add("Nimbus Bed", 20, 27.5); add("Nimbus Bed", 25.5, 27.5);
+      add("Dewy House", 31, 27.5); add("Dewy House", 33.5, 27.5);
+      add("Floral Windmill", 62, 26.5, "SL2");
+      /* The Hammocks inside Cooling Unit 3's square (Cool to work). */
+      add("Starfall Hammock", 26, 22, "CU3"); add("Starfall Hammock", 31, 22, "CU3");
+      /* Wells by the cold fields their Water crew waters. */
+      add("Well", 1, 27); add("Well", 1, 29.5); add("Well", 1, 32);
+      /* Storage, spread one to a district: Mines, furnace fields,
+         cold fields, light and neutral fields, workshop rows,
+         Hatchinators. */
+      add("Storage Unit", 15.5, 12.5); add("Storage Unit", 52, 10.5);
+      add("Storage Unit", 10.5, 21); add("Storage Unit", 54, 26.5);
+      add("Storage Unit", 5, 41); add("Storage Unit", 20.5, 46);
+      for(i = 0; i < 10; i++) add("Hatchinator", i * 2, 46);
     })();
     var sgLevel = 18;
     function sgPiece(name, x, y, zone){
@@ -11078,7 +11137,7 @@
     function sgBuild(level){
       var pieces = [];
       SG_ZONES.forEach(function(z){ pieces.push(sgPiece(z.unit, z.x, z.y, null)); });
-      SG_FIXED.forEach(function(f){ pieces.push(sgPiece(f.name, f.x, f.y, null)); });
+      SG_FIXED.forEach(function(f){ pieces.push(sgPiece(f.name, f.x, f.y, f.zone)); });
       var woodCap = Math.max(0, maxFacCount("Woodland", level) || 0);
       var farmCap = Math.max(0, maxFacCount("Farmland", level) || 0);
       var farmPieces = [];
@@ -11101,9 +11160,16 @@
     }
     /* The board's own verification, run on every render: (1) zero
        overlaps on the half-tile grid, (2) every drawn size equals the
-       spec size in SG_SIZE, (3) counts are reported for the check
-       line, (4) every plot drawn inside a coverage square has its
-       center inside that square. */
+       spec size in SG_SIZE — true size and true shape, since the
+       drawn width and height are the spec width and height, (3)
+       counts are reported for the check line, (4) every piece drawn
+       inside a coverage square — plots, the Starfall Hammocks and
+       the Floral Windmill — has its center inside that square, (5)
+       the climate squares never overlap each other, so no zones
+       blend by accident, and (6) the power grid really works: every
+       pole's 7 x 7 overlaps an already-powered square (the chain
+       from the generators), and every E-Mode machine's center lands
+       inside the powered area. */
     function sgVerify(res){
       var overlaps = 0, badSize = 0, badCenter = 0, i, j;
       var half = res.pieces.map(function(pc){
@@ -11122,19 +11188,63 @@
           if(!(cx >= sq.x && cx <= sq.x + sq.w && cy >= sq.y && cy <= sq.y + sq.h)) badCenter++;
         }
       });
-      return { overlaps:overlaps, badSize:badSize, badCenter:badCenter };
+      var zoneClash = 0;
+      for(i = 0; i < SG_ZONES.length; i++) for(j = i + 1; j < SG_ZONES.length; j++){
+        var za = sgZoneSquare(SG_ZONES[i]), zb = sgZoneSquare(SG_ZONES[j]);
+        if(za.x < zb.x + zb.w && zb.x < za.x + za.w && za.y < zb.y + zb.h && zb.y < za.y + za.h) zoneClash++;
+      }
+      function rectsTouch(a, b){ return a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h; }
+      function inRect(cx, cy, r){ return cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h; }
+      var powered = [], poleSq = [];
+      res.pieces.forEach(function(pc){
+        var cx = pc.x + pc.w / 2, cy = pc.y + pc.h / 2;
+        if(pc.name === "Crackle Generator") powered.push({ x:cx - 5.5, y:cy - 5.5, w:11, h:11 });
+        if(pc.name === "Crackle Power Pole") poleSq.push({ x:cx - 3.5, y:cy - 3.5, w:7, h:7 });
+      });
+      var chain = powered.slice(), rest = poleSq.slice(), guard = 0;
+      while(rest.length && guard++ < 50){
+        var moved = false;
+        for(i = rest.length - 1; i >= 0; i--){
+          var linked = false;
+          for(j = 0; j < chain.length; j++){ if(rectsTouch(rest[i], chain[j])){ linked = true; break; } }
+          if(linked){ chain.push(rest[i]); rest.splice(i, 1); moved = true; }
+        }
+        if(!moved) break;
+      }
+      var unpowered = 0;
+      res.pieces.forEach(function(pc){
+        if(POWER_EMODE.indexOf(pc.name) === -1) return;
+        var cx = pc.x + pc.w / 2, cy = pc.y + pc.h / 2, ok = false;
+        for(var k = 0; k < chain.length; k++){ if(inRect(cx, cy, chain[k])){ ok = true; break; } }
+        if(!ok) unpowered++;
+      });
+      return { overlaps:overlaps, badSize:badSize, badCenter:badCenter, zoneClash:zoneClash,
+        brokenPoles:rest.length, unpowered:unpowered };
     }
     function sgSvg(res){
-      var out = '<svg viewBox="0 0 80 60" role="img" aria-label="Suggested homeland layout: mines in one block, climate clusters of woodlands and fields, workshop area along the bottom, every item at its true size" font-family="Baloo 2, Nunito, sans-serif">';
+      var out = '<svg viewBox="0 0 80 60" role="img" aria-label="Suggested homeland layout: mines in one block, fields and woodlands in climate clusters matched to their crops, machines in ability rows along the bottom inside the power grid, storage spread through the districts, every item at its true size and true shape" font-family="Baloo 2, Nunito, sans-serif">';
       out += '<defs><pattern id="sgGrid" width="1" height="1" patternUnits="userSpaceOnUse"><path d="M0.5 0V1M0 0.5H1" stroke="rgba(255,255,255,0.38)" stroke-width="0.035"/><path d="M1 0H0V1" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="0.05"/></pattern></defs>';
       out += '<rect x="0" y="0" width="80" height="60" fill="#79b657"/>';
       SG_ZONES.forEach(function(z){
         var sq = sgZoneSquare(z);
         out += '<rect x="' + sq.x + '" y="' + sq.y + '" width="9" height="9" fill="' + z.tint + '" fill-opacity="0.55" stroke="#3d2a47" stroke-opacity="0.55" stroke-width="0.12" stroke-dasharray="1.2 0.8"/>';
       });
+      /* The powered area, as a pale wash under the pieces: each
+         Generator's 11 x 11 and each Pole's 7 x 7, chained from the
+         generators — the same squares sgVerify checks. */
+      res.pieces.forEach(function(pc){
+        var span = pc.name === "Crackle Generator" ? 11 : pc.name === "Crackle Power Pole" ? 7 : 0;
+        if(!span) return;
+        var cx = pc.x + pc.w / 2, cy = pc.y + pc.h / 2;
+        out += '<rect x="' + (cx - span / 2) + '" y="' + (cy - span / 2) + '" width="' + span + '" height="' + span + '" fill="#8a76b8" fill-opacity="0.13" stroke="#8a76b8" stroke-opacity="0.5" stroke-width="0.1" stroke-dasharray="1 0.7"/>';
+      });
       res.pieces.forEach(function(pc){
         var col = SG_COLORS[pc.name] || ["#eeeeee","#888888"];
-        var tip = pc.name + " · true size " + pc.w + " by " + pc.h + " squares" + (pc.zone ? " · covered by the " + pc.zone + " climate zone (center inside its 9 by 9)" : "");
+        var tip = pc.name + " · true size " + pc.w + " by " + pc.h + " squares" + (pc.zone
+          ? (pc.name === "Farmland" || pc.name === "Woodland"
+              ? " · covered by the " + pc.zone + " climate zone (center inside its 9 by 9)"
+              : " · stands inside the " + pc.zone + " zone (its center is inside the 9 by 9)")
+          : "");
         if(pc.name === "Floral Windmill") tip += " · size not firsthand-verified (see Sources & Flags)";
         out += '<rect x="' + (pc.x + 0.06) + '" y="' + (pc.y + 0.06) + '" width="' + (pc.w - 0.12) + '" height="' + (pc.h - 0.12) + '" rx="0.18" fill="' + col[0] + '" stroke="' + col[1] + '" stroke-width="0.09" data-tip="' + escA(tip) + '"/>';
         var lab = SG_SHORT[pc.name] !== undefined ? SG_SHORT[pc.name] : pc.name;
@@ -11167,9 +11277,26 @@
         var v = sgVerify(res18);
         var f18 = Math.max(0, maxFacCount("Farmland", 18) || 0), w18 = Math.max(0, maxFacCount("Woodland", 18) || 0);
         chk.textContent = "Farmland drawn " + res18.farmDrawn + "/" + f18 + " · Woodland drawn " + res18.woodDrawn + "/" + w18 +
-          " · every item drawn at its true size (" + (v.badSize === 0 ? "checked" : v.badSize + " wrong") + ")" +
-          " · every covered plot's center checked inside its zone (" + (v.badCenter === 0 ? "all inside" : v.badCenter + " outside") + ")" +
+          " · every item drawn at its true size and true shape (" + (v.badSize === 0 ? "checked" : v.badSize + " wrong") + ")" +
+          " · every covered piece's center checked inside its zone — plots, both Starfall Hammocks and the Floral Windmill (" + (v.badCenter === 0 ? "all inside" : v.badCenter + " outside") + ")" +
+          " · climate squares overlapping each other: " + v.zoneClash +
+          " · power grid: poles off the chain " + v.brokenPoles + ", E-Mode machines outside the powered area " + v.unpowered +
           " · overlaps on the half-tile grid: " + v.overlaps + ".";
+      }
+      var pw = document.getElementById("sgPower");
+      if(pw){
+        var resP = sgLevel === 18 ? res : sgBuild(18);
+        var machines = 0, demand = 0;
+        POWER_EMODE.forEach(function(f){
+          var n = resP.counts[f] || 0;
+          if(!n) return;
+          var tiers = FAC_RV[f] || [], lvl = 0;
+          tiers.forEach(function(r){ if(r <= 18) lvl++; });
+          machines += n; demand += n * 15 * lvl;
+        });
+        var perGen = POWER_GEN_CAPS[powerGenLevel(18)] || 0, gens = resP.counts["Crackle Generator"] || 0;
+        var supply = perGen * gens;
+        pw.innerHTML = "⚡ <strong>Power on this board, decided:</strong> " + machines + " cheap processing machines out × their max-level draws = <strong>" + fmt(demand) + " demand</strong>; <strong>" + gens + " Lv " + powerGenLevel(18) + " Crackle Generators</strong> supply " + fmt(supply) + " — supply ahead of demand, so the E-Mode machines run faster (up to 120%), " + (machines - gens) + " Aniimo are freed net of the " + gens + " Lightning Aniimo the generators take, and no third generator is put out. Every one of those machines stands with its center inside the powered area, and the poles chain square to square from the generators — both checked on every redraw, in the check line above. Your own plans get the same decision, sized to the plan, in the ⚡ Power decision box in Step 4.";
       }
       var countsEl = document.getElementById("sgCounts");
       if(countsEl){
@@ -11195,6 +11322,39 @@
       if(prev) prev.addEventListener("click", function(){ setLevel(sgLevel - 1); });
       if(next) next.addEventListener("click", function(){ setLevel(sgLevel + 1); });
       if(inp) inp.addEventListener("change", function(){ setLevel(parseInt(inp.value, 10)); });
+      /* The big view: the board (or its button) opens a full-screen
+         overlay holding a fresh copy of the same SVG at 1500px wide —
+         the same drawing, so true sizes and true shapes hold at the
+         larger scale too — scrollable to look around, closed by its
+         Close button, the Escape key, or a tap on the dark surround.
+         It re-renders on open, so it always shows the RV level the
+         board is stepped to. */
+      var board = document.getElementById("sgBoard"), zoom = document.getElementById("sgZoom"),
+          zoomScroll = document.getElementById("sgZoomScroll"), zoomBtn = document.getElementById("sgZoomBtn"),
+          zoomClose = document.getElementById("sgZoomClose");
+      function openZoom(){
+        if(!zoom || !zoomScroll) return;
+        zoomScroll.innerHTML = sgSvg(sgBuild(sgLevel));
+        zoom.hidden = false;
+        if(zoomClose) zoomClose.focus();
+      }
+      function closeZoom(){
+        if(!zoom) return;
+        zoom.hidden = true;
+        if(board) board.focus();
+      }
+      if(board){
+        board.addEventListener("click", openZoom);
+        board.addEventListener("keydown", function(e){
+          if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openZoom(); }
+        });
+      }
+      if(zoomBtn) zoomBtn.addEventListener("click", openZoom);
+      if(zoomClose) zoomClose.addEventListener("click", closeZoom);
+      if(zoom) zoom.addEventListener("click", function(e){ if(e.target === zoom) closeZoom(); });
+      document.addEventListener("keydown", function(e){
+        if(e.key === "Escape" && zoom && !zoom.hidden) closeZoom();
+      });
     })();
 
     /* ============ init ============ */
