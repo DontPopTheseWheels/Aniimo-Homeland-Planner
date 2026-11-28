@@ -169,6 +169,13 @@
       .fac-item input:disabled{background:var(--bg-soft);color:var(--ink-faint)}
       .fac-ctl{display:flex;align-items:center;gap:6px;flex:none;flex-wrap:wrap;justify-content:flex-end;max-width:100%}
       .fac-item input.fac-num{width:64px;padding:8px 6px}
+      /* Step 1 split levels: some copies of a facility at a second level */
+      .fac-split{flex:1 1 100%;background:var(--bg-soft);border:2px dashed var(--card-line);border-radius:10px;padding:9px 11px;margin-top:2px}
+      .fac-split .split-line{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-weight:700;font-size:.92rem}
+      .fac-split input.fac-num{width:64px;min-height:44px;text-align:center;padding:8px 6px}
+      .fac-split .split-rest{flex:1 1 200px;color:var(--ink-soft);font-weight:700;font-size:.88rem}
+      .split-btn{flex:1 1 100%;min-height:44px;border-radius:10px;border:2px dashed var(--card-line);background:#fff;font-weight:800;font-size:.9rem;color:var(--ink);padding:8px 12px;text-align:left}
+      .split-btn:hover{border-color:var(--accent);color:var(--accent)}
       /* Step 1 count steppers: big −/+ either side of a count box, so a
          count can be changed or a facility added without typing. */
       .count-step{display:inline-flex;align-items:center;gap:4px}
@@ -398,7 +405,7 @@
       <!-- ================= STEP 1: SET UP FIRST ================= -->
       <section id="facilities">
         <div class="sec-head"><span class="sec-num">Step 1</span><h2>🏭 Set Up First — RV, Facilities &amp; Modules</h2></div>
-        <p class="sec-sub"><strong>No RV level is picked for you.</strong> The picker starts on “Pick your RV level…” and every box starts at 0. Pick your RV level and the boxes fill to the most that RV allows; picking a new RV refills them. Change any number with − and +, or by typing. Lower counts are always fine, but a count can never go above the most your picked RV allows — a number over the max is set to the max, with a note. Type over any box that doesn't match your game.</p>
+        <p class="sec-sub"><strong>No RV level is picked for you.</strong> The picker starts on “Pick your RV level…” and every box starts at 0. Pick your RV level and the boxes fill to the most that RV allows; picking a new RV refills them. Change any number with − and +, or by typing. Lower counts are always fine, but a count can never go above the most your picked RV allows — a number over the max is set to the max, with a note. Type over any box that doesn't match your game. <strong>Copies at two different levels?</strong> Tap <strong>⇅ Split levels</strong> under a facility's boxes and say how many of its copies stand at a second level — five Farmlands at Lv 7 with the rest at Lv 6, say, or Crafting Tables at two levels. Plans then read the higher level for what that facility can make, and <a href="#buynext">Buy Next</a> counts only the copies still at the lower level as left to upgrade.</p>
 
         <div class="card">
           <h3>🏭 Your facilities &amp; modules</h3>
@@ -460,7 +467,7 @@
       <!-- ================= BUY NEXT ================= -->
       <section id="buynext">
         <div class="sec-head"><span class="sec-num">New</span><h2>🛒 Buy Next — What to Save For</h2></div>
-        <p class="sec-sub">Built from <strong>your Step 1 boxes</strong> held against <strong>what your picked RV level allows</strong>: every copy, facility level and module level your RV has already unlocked that your boxes say you don't have yet, in the order worth buying them in. <strong>For your plan first</strong> — anything a recipe you've picked is locked behind — then <strong>copies</strong> your RV allows, then <strong>facility levels</strong>, then <strong>module levels</strong>, then climate and utility counts, and finally <strong>what the next RV level opens</strong>, bill included, so a coin run always has a target. Each line says what the buy opens, from the same checked recipe and unlock tables everything else on this page reads. Change any Step 1 box and this list rebuilds on the spot: step a box down to what you actually own and the rest appears here as your shopping list; buy something in game, step its box up, and it leaves the list. Nothing here changes your boxes — it's a list, not a fill.</p>
+        <p class="sec-sub">Built from <strong>your Step 1 boxes</strong> held against <strong>what your picked RV level allows</strong>: every copy, facility level and module level your RV has already unlocked that your boxes say you don't have yet, in the order worth buying them in. <strong>For your plan first</strong> — anything a recipe you've picked is locked behind — then <strong>copies</strong> your RV allows, then <strong>facility levels</strong>, then <strong>module levels</strong>, then climate and utility counts, and finally <strong>what the next RV level opens</strong>, bill included, so a coin run always has a target. Each line says what the buy opens, from the same checked recipe and unlock tables everything else on this page reads. Change any Step 1 box and this list rebuilds on the spot: step a box down to what you actually own and the rest appears here as your shopping list; buy something in game, step its box up, and it leaves the list. Nothing here changes your boxes — it's a list, not a fill. <strong>Split levels count copy by copy:</strong> if a facility's copies stand at two levels (the ⇅ Split levels boxes in Step 1), the copies already at the higher level are never listed as still to upgrade — only the copies still at the lower level are, with their count named on the line.</p>
         <div id="buyNextOut" aria-live="polite"></div>
         <p class="src" style="margin-top:16px">Saving up? <a href="#basket">Next: Step 2 — pick your recipes ↓</a></p>
       </section>
@@ -814,7 +821,7 @@
       <!-- ================= SUGGESTED HOMELAND LAYOUT ================= -->
       <section id="suggested">
         <div class="sec-head"><span class="sec-num">Suggestion</span><h2>🗺️ Suggested Homeland Layout</h2></div>
-        <p class="sec-sub"><strong>This is a suggestion only.</strong> Follow it, change it, or ignore it: it never changes anything else in the planner. It shows <strong>one tidy way any player can arrange a homeland</strong>. A layout is mostly about the farm, so this one is <strong>built around the farm and trees</strong>: what to grow, and what to have cooking for orders. The Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange. When an unlocked plot would be left open anyway, the plot directly beside the farm block is the one left open as moving room, and the later groups start after that open plot, so swapping a Farmland or a Woodland never means working around the other buildings. Like goes with like, with farms and trees together, the cooking buildings on the plots right beside the farm so what is grown and what gets cooked for orders stays together, then the other workshops, Mines together, leisure pieces together, Hatchinators together and the wet works together, and Storage Units spread through the whole layout — never clustered in one spot — each one beside the pieces it serves, because hauling is zone-local: the less an Aniimo walks to storage, the faster things get done. Placement follows abilities and zone coverage, not just kind: crops are laid onto the board in climate order, so the crops that share a climate sit together inside one unit's reach, and the unit lines under the board are worked out per climate building from the crops actually planted; the machines the power call switches to E-Mode go down together first, so one generator's 11 by 11 reaches the whole cluster; and the rest of the machines are grouped by the ability that runs them, so the machines one Aniimo covers between them sit side by side. The farm plots are packed into one tight block, side by side and stacked so their corners meet, and that is for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered only when its center falls inside that area (the center rule), so one unit dropped at a corner shared by farm plots can cover all of them at once, because their centers sit inside its 9 by 9. It is worked out fresh from <strong>your RV level</strong> and the <strong>facility counts in Step 1</strong> every time it draws, on the true homeland grid: 16 plots in a 4 by 4 arrangement, each plot <strong>20 big squares across by 15 up</strong>, so the whole board is <strong>80 across by 60 up</strong>. Plot numbers are the unlock order, so at RV level N you have plots 1 to N. Groups take the earliest plots you have unlocked, in number order, and stay compact, apart from that one moving room plot beside the farm block when a plot is spare: at a low RV or with small counts they use fewer plots, and any unlocked plot no group needs is left open. Locked plots show muted with their number. The board redraws itself whenever anything anywhere in the planner changes — your RV level, a Step 1 count, your basket, your strategy or goals, an Always pin, a copy added or taken back in Step 5, a crop added or removed, even one copy switched off in Step 5 — and it is rebuilt from the plan as it stands at that moment, never from an older one. <strong>Facilities are still all placed, even the ones your current plan is not using:</strong> a piece no recipe, strategy, pin or added copy is running — or a copy you set to Off in Step 5, or a farm spot with no crop assigned — stays on the board in its place, faded with a dashed outline and marked <strong>OFF</strong>, so you can still see where it would go. The moment a change makes a plan use it, it switches back on by itself on the redraw; taking a facility off in Step 1 is the only thing that removes it from the board. <strong>Hover or tap any Farmland or Woodland piece</strong> and it says which crop or tree that spot should grow, from your current plan — the same planting the growing list after Step 4 lays out.</p>
+        <p class="sec-sub"><strong>This is a suggestion only.</strong> Follow it, change it, or ignore it: it never changes anything else in the planner. It shows <strong>one tidy way any player can arrange a homeland</strong>. A layout is mostly about the farm, so this one is <strong>built around the farm and trees</strong>: what to grow, and what to have cooking for orders. The Farmlands and Woodlands all sit together in one farm block <strong>at the front of the board — the top rows as the board is drawn</strong> — because they are what people move most, kept together at the front so they are easy to reach, swap and rearrange. When an unlocked plot would be left open anyway, the plot directly beside the farm block is the one left open as moving room, and the later groups start after that open plot, so swapping a Farmland or a Woodland never means working around the other buildings. Like goes with like, with farms and trees together, the cooking buildings on the plots right beside the farm so what is grown and what gets cooked for orders stays together, then the other workshops, Mines together, leisure pieces together, Hatchinators together and the wet works together, and Storage Units spread through the whole layout — never clustered in one spot — each one beside the pieces it serves, because hauling is zone-local: the less an Aniimo walks to storage, the faster things get done. Placement follows abilities and zone coverage, not just kind: crops are laid onto the board in climate order, so the crops that share a climate sit together inside one unit's reach, and the unit lines under the board are worked out per climate building from the crops actually planted; the machines the power call switches to E-Mode go down together first, so one generator's 11 by 11 reaches the whole cluster; and the rest of the machines are grouped by the ability that runs them, so the machines one Aniimo covers between them sit side by side. The farm plots are packed into one tight block, side by side and stacked so their corners meet, and that is for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered only when its center falls inside that area (the center rule), so one unit dropped at a corner shared by farm plots can cover all of them at once, because their centers sit inside its 9 by 9. It is worked out fresh from <strong>your RV level</strong> and the <strong>facility counts in Step 1</strong> every time it draws, on the true homeland grid: 16 plots in a 4 by 4 arrangement, each plot <strong>20 big squares across by 15 up</strong>, so the whole board is <strong>80 across by 60 up</strong>. Plot numbers are the unlock order, so at RV level N you have plots 1 to N. Groups take the front-most plots you have unlocked — front rows first, then back — and stay compact, apart from that one moving room plot beside the farm block when a plot is spare: at a low RV or with small counts they use fewer plots, and any unlocked plot no group needs is left open. Locked plots show muted with their number. The board redraws itself whenever anything anywhere in the planner changes — your RV level, a Step 1 count, your basket, your strategy or goals, an Always pin, a copy added or taken back in Step 5, a crop added or removed, even one copy switched off in Step 5 — and it is rebuilt from the plan as it stands at that moment, never from an older one. <strong>Facilities are still all placed, even the ones your current plan is not using:</strong> a piece no recipe, strategy, pin or added copy is running — or a copy you set to Off in Step 5 — stays on the board in its place, faded with a dashed outline and marked <strong>OFF</strong>, so you can still see where it would go. <strong>One exception: Farmland and Woodland spots are never marked OFF</strong> — an unplanted field or woodland is not off, it is simply empty and available, and always draws in its full colour. The moment a change makes a plan use it, it switches back on by itself on the redraw; taking a facility off in Step 1 is the only thing that removes it from the board. <strong>Hover or tap any Farmland or Woodland piece</strong> and it says which crop or tree that spot should grow, from your current plan — the same planting the growing list after Step 4 lays out.</p>
 
         <div class="card">
           <h3>🗄️ Storage Units &amp; Hatchinators — the same counts as Step 1</h3>
@@ -826,7 +833,7 @@
               <span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" id="suggHatchDec" aria-label="One fewer Hatchinator">−</button><input type="number" class="fac-num" min="0" value="0" id="suggHatchInput" aria-label="Hatchinator count" /><button type="button" class="cnt-btn" id="suggHatchInc" aria-label="One more Hatchinator">+</button></span></span></div>
           </div>
           <div class="sugg-board" id="suggBoard" tabindex="0" role="button" aria-label="Suggested homeland layout board. Activate to see it bigger."></div>
-          <p class="src" style="margin-top:8px">Tap or click the board to see it bigger: a full-screen view of the same layout opens, with + Bigger and − Smaller buttons (and Fit whole board) so you can zoom right into any corner, scroll or drag to look around, and Close back to the page. Every piece is drawn at its true size and its true shape, halves included, at the big scale too: each piece keeps its real proportions, only rendered smaller on the board's scale — a 2 by 1.5 bench stays a wide, low rectangle, never squared off — and the board's grid shows little quarter squares, so a half square draws exactly. Every start on the board is still a whole number of squares, so you can count along the white lines; a half can sit on a piece's far edge, exactly like the real footprints.</p>
+          <p class="src" style="margin-top:8px">Every plot is outlined and carries its number in the dark pill at its top-left corner — the same numbers the plot lines below use, so any plot can be named by its number. Tap or click the board to see it bigger: a full-screen view of the same layout opens, with + Bigger and − Smaller buttons (and Fit whole board) so you can zoom right into any corner, scroll or drag to look around, and Close back to the page. Every piece is drawn at its true size and its true shape, halves included, at the big scale too: each piece keeps its real proportions, only rendered smaller on the board's scale — a 2 by 1.5 bench stays a wide, low rectangle, never squared off — and the board's grid shows little quarter squares, so a half square draws exactly. Every start on the board is still a whole number of squares, so you can count along the white lines; a half can sit on a piece's far edge, exactly like the real footprints.</p>
           <div id="suggUnder" aria-live="polite"></div>
         </div>
         <p class="src" style="margin-top:16px">Done looking? <a href="#sources">Next: Sources &amp; Flags, right below ↓</a></p>
@@ -857,6 +864,7 @@
           <li><strong>Add & Adjust reads your basket:</strong> every crop the plan needs, grouped by climate, with the Grow list's own plot counts. The − and + buttons adjust a crop's count and the change sticks; a crop at 0 stays listed. Hand picks are optional extras in their own group, never merged. Above-level crops stay listed, greyed, and still count.</li>
           <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, packs each building's plots into the fewest zones that cover them (Farmland and Woodland plots of one climate sharing one 9 × 9 zone, every plot with its center inside it and clear of the building's own tiles in the middle), shares zones between two climates whenever that covers the plan with fewer buildings, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
           <li><strong>Buy Next (added Nov 27, 2026):</strong> the list is the Step 1 boxes held against the same tables Fill reads — facility levels and counts (Aniiland roadmap, cross-checked as at FAC_COUNT), climate counts, the count-only four, and module levels through the AniimoTools unlock RVs. Its order is a planning order, not game data: picked-plan locks first (the basket's own lock walk), then copies, facility levels, module levels and utility counts the picked RV already allows, then the next RV's bill and unlocks from the ladder above. "What it opens" is read from the recipe list and the module unlock labels. <strong>No facility or upgrade prices are shown, because the checked data carries none</strong> — the only coin figure on the list is the next RV's bill, from the ladder.</li>
+          <li><strong>Split facility levels (player's ask, Nov 27, 2026):</strong> a facility's copies need not all stand at one level — her example: five Farmlands at Lv 7, the rest at Lv 6; Crafting Tables at two levels the same way. Each Step 1 facility box carries a ⇅ Split levels row: how many copies stand at a second level, and which level; the Lv box keeps the level of the remaining copies. One second level per facility. Everywhere a single facility level is read (recipe locks and gates, Premium Wheat's Farmland Lv 6, power draw, the plan's station levels), the planner reads the <strong>highest level any copy reaches</strong> — a recipe at that level is makeable because those copies can make it — while Buy Next reads the split itself and lists only the copies still at the lower level as left to upgrade, naming their count, so a facility is never called finished while some of its copies lag, and never charged for copies already upgraded. Fill from RV level and picking an RV clear splits (a fill sets every copy to the one top level); lowering a count shrinks a split group with it, and a count of 0 ends it.</li>
           <li><strong>Your Zones (added Nov 27, 2026):</strong> the zones are the Suggested Layout's own plot groups (Farms, Cooking, Workshops, Mines, Leisure, Wet works, Hatchery) — the planner's arrangement suggestion, not a game zone list — and the crew on each card is the Team Helper's single crew read per building (per-copy posts, the facility's plan worker, Always pins), never a second crew. Ability pools name each building's job from the same game-data list as FAC_JOB, with the strongest known Aniimo per ability from the same per-species data the crew table ranks by. Climate units, the power grid and the Floral Windmill are never drawn on the board, so they close the view as their own card.</li>
           <li><strong>Overlap (Add & Adjust):</strong> only the Steam guide's two verified blends are noted — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so a band never places or covers a crop: every crop keeps its own climate zone and building count (Cool crops always keep their own Cooling Unit zones, Warm crops their own Heat Furnace zones), nothing is deducted for a band anywhere, and a band appears only as an uncounted note naming the crops whose zones could cross to make it. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
           <li><strong>Add & Adjust also reads your strategy plan:</strong> once built, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your basket, setup, strategy or goals change, that plan rebuilds and refreshes on the spot and its group rebuilds with it: nothing from an old plan is ever listed as part of the current plan — not here, not in the facility blocks' Producing lines, not in the crew or the Mines.</li>
@@ -895,8 +903,8 @@
           <li><strong>Crafting Module gates on Phonolfactory recipes (audit, Nov 7, 2026):</strong> Advanced Lemon Incense needs Crafting Module 3, Premium Soap needs Crafting Module 5, and Premium Mixed Perfume needs Crafting Module 7, shown the same way as the planner's other module gates.</li>
           <li><strong>Quick recipes and Modification Toolkits (checked Oct 28, 2026):</strong> Quick and Premium recipes are gated behind Component Upgrades bought with Modification Toolkits (GameWith, Game8 and itemlevel.net agree — confirmed). Toolkits come from RV level-ups and from Home Index grades (Game8; AniimoTools). No toolkit endpoint at 16,000 Index is claimed here: that figure is <span class="verdict v-mix">not verified</span>.</li>
           <li><strong>New-plot cleanup payout (checked Oct 28, 2026):</strong> unlocking a Farmland or Woodland plot (plots 2 to 16) and clearing its debris pays out one-time Wood Blocks and Mineral Sand (AniimoTools and Game8 agree — confirmed). Per-plot amounts are not verified, so the Level Up section carries it as a words-only note and no number comes off any bill for it.</li>
-          <li><strong>Suggested Homeland Layout (added Nov 9, 2026, player's ask):</strong> one suggestion board for the whole homeland, drawn from the RV level and the Step 1 facility counts — Storage Units and Hatchinators included, since their counts live in Step 1 and fill from the RV level (the two boxes in this panel are those same Step 1 counts, kept in step both ways). The arrangement is generic for any player and is worked out fresh from those counts each time the board draws, never copied from any one homeland: the layout is built around the farm and trees, and like is grouped with like (farms and trees together, the cooking buildings, Simmering Pot, Blazing Stove, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Carousel Mill and Joy Wheel Loom, on the plots right beside the farm, then the remaining workshops, Crafting Table, Woodworking Bench, Chimney Kiln, Phonolfactory Table, Bouncy Brew Keg, Dance Pad Polisher and Aniipod Maker, then Mines together, leisure pieces together, Hatchinators together, wet works together, and Storage Units spread through the whole layout beside the pieces they serve — never clustered in one spot, because hauling is zone-local and the less an Aniimo walks to storage the faster things get done: one per busy plot first, busiest plots first, each at the free spot nearest the middle of that plot's pieces, then any left over go one at a time to the plot whose pieces are farthest from their storage so far, beside those far pieces), groups take unlocked plots in unlock order starting from the lowest number and stay compact, at a low RV or with small counts the groups use fewer plots, and unlocked plots no group needs stay open. The grid is the game's homeland grid: 16 plots in a 4 by 4 arrangement (rows top to bottom: 13, 14, 15, 16 / 12, 7, 8, 9 / 11, 4, 3, 6 / 10, 2, 1, 5), each plot 20 big squares across by 15 up, 80 by 60 in all, and plot numbers are the unlock order, so RV level N unlocks plots 1 to N. Facility sizes are the verified table above, and every piece on the board is drawn at its true size and its true shape — the real footprint scaled by one uniform factor, so proportions are exact and nothing is squared off, stretched or reshaped for drawing convenience (a fixed inset off both sides took proportionally more off a short side and squared pieces off; the inset is proportional now) — packing and overlap checks included: Woodland 3.5 by 3.5, Aniipod Maker 4.5 by 4.5, Woodworking Bench 2 by 1.5, Claw Game Cooker 1.5 by 1.5, Blazing Stove 2.5 by 2.5, Jukebox Dryer 2.5 by 2.5, Pickling Jar 2.5 by 2, Phonolfactory Table 3.5 by 3.5 and Dance Pad Polisher 2.5 by 2.5, with every other facility at its whole number size. Placement starts are counted in whole squares only, so a half can sit on a piece's far edge, exactly like the real footprints; the board's grid shows little quarter squares, so halves draw exactly. The Aniipod Maker's 4.5 by 4.5 size is wikily's and is not confirmed in game, and the board says so. The Floral Windmill has no verified size, so it is never drawn, only listed as still to place by hand. Climate units, Crackle Generators and Power Poles are pocket items and are never drawn as pieces: nothing is placed in the middle 2 by 2 of each farm plot, so its center stays open grass, and open grass is kept beside each Starfall Hammock and each Tidewhisper Sandcastle on the leisure plot the same way, with nothing drawn there either. Since Nov 27, 2026 the note under the board also prints the planner's power call for the current plan — how many generators and poles to actually drop beside the cooking and workshop plots — instead of leaving the Step 1 counts (3 generators and 24 poles at RV 18) reading as if they all go out; they do not, and the call says what does. The farm plots pack into one compact block, side by side and stacked so their corners meet, for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered only when its center falls inside that area (the center rule, player-verified in game Nov 27, 2026 — a plot that only touches the area with an edge is not covered), so one unit dropped at a corner shared by up to four farm plots can cover all of them at once, because their centers sit inside its 9 by 9, and more whenever more farm plots' centers fall inside the area. Lines under the board say which climate unit to use and where, and since Nov 27, 2026 they are worked out PER CLIMATE BUILDING from the board as drawn and the crops assigned to it: one dropped unit serves one climate, so the old lines (any unit at the corner covering the most farm plots, whatever those plots grew) could name a corner whose plots needed two different buildings and serve neither well. Crops are now assigned across the farm block in board order from the climate-grouped queues, so each climate's crops sit together; then, inside each building's group, drop spots are picked greedily at that group's own corners under the same center rule, each line names the unit, the spot and the crops that one unit covers, a spot covering two temperatures says to set it to the majority temperature with the minority growing at its falloff rate (and what one more unit would do instead), and a count line compares the spots needed with the Step 1 count owned — including what happens to plots left out of reach (Adequate-light crops do not grow at all uncovered; temperature crops grow at their no-unit rate). With no crops assigned, one line says the spots are named once recipes are picked. The Floral Windmill line follows the same coverage logic: stand it inside a Sunlamp reach, because Scales are hard-gated on Light. Placement inside the cooking and workshop groups follows abilities and power coverage the same day: the machines the power call switches to E-Mode are placed first in each group so they cluster where one generator's 11 by 11 reaches them, and the rest are ordered by their FAC_JOB ability so the machines one Aniimo covers between them sit side by side, the hand order (largest first) standing inside one ability. A Cooling Unit goes on the open grass beside each Starfall Hammock, and a Heat Furnace goes on the open grass beside each Tidewhisper Sandcastle. No game bonus for the farm and cooking closeness is claimed anywhere; the grouping only keeps the grow and cook steps together for orders, and the basket and recipe steps, not the layout, decide what to grow and what to cook. Instruction lines are listed only for pieces actually placed. Placed counts are summed and checked against the entered counts before the board shows, and the check line under the board prints both. Tapping or clicking the board (or Enter/Space on it) opens the same layout full-screen at a larger scale: the same drawing at one uniform scale, so true sizes and true shapes hold there too, with zoom controls (opens at 1500 px wide; +/− step between 600 and 3600; Fit whole board sizes it to the screen), pan by scroll, touch-scroll or mouse-drag, the pieces' hover/tap tips working in the big view (the tip layer sits above the overlay), and Close, a tap on the dimmed surround, or Esc returning to the page.</li>
-          <li><strong>Suggested Layout adapts live, with unused facilities marked OFF (player's ask, Nov 27, 2026):</strong> the board rebuilds from the plan as it stands on every change — RV level, Step 1 counts, basket, strategy, goals, Always pins, copies added or taken back in Step 5, per-copy picks there, and crops added or removed all reach it (through the layout and setup refreshes, and directly from the Step 5 stepper and pick handlers) — so nothing on it can sit stale from an older plan. Placement still puts out every facility owned in Step 1; what changed is the marking. A placed copy is ON when the current plan runs it — the same working counts the power call and the crew read (basket + strategy + Always pins + copies added by hand), minus any copy set to Off on its Step 5 block, read back through the same per-copy pick lists those blocks show. Copies past the working count are OFF: they stay placed at their true size and shape, faded with a dashed outline and an OFF line under the name, in the small board and the zoomed board alike, with the on/off split printed in the count check and in each plot's line under the board. Farmland and Woodland spots are on exactly when the plan assigns them a crop, off (spare) otherwise; a Storage Unit is on when its plot holds at least one piece that is on; Hatchinators read on while any Aniipod Maker copy runs, off otherwise. Lowering a Step 1 count is the only change that removes a facility from the board.</li>
+          <li><strong>Suggested Homeland Layout (added Nov 9, 2026, player's ask):</strong> one suggestion board for the whole homeland, drawn from the RV level and the Step 1 facility counts — Storage Units and Hatchinators included, since their counts live in Step 1 and fill from the RV level (the two boxes in this panel are those same Step 1 counts, kept in step both ways). The arrangement is generic for any player and is worked out fresh from those counts each time the board draws, never copied from any one homeland: the layout is built around the farm and trees, and like is grouped with like (farms and trees together, the cooking buildings, Simmering Pot, Blazing Stove, Claw Game Cooker, Jukebox Dryer, Pickling Jar, Carousel Mill and Joy Wheel Loom, on the plots right beside the farm, then the remaining workshops, Crafting Table, Woodworking Bench, Chimney Kiln, Phonolfactory Table, Bouncy Brew Keg, Dance Pad Polisher and Aniipod Maker, then Mines together, leisure pieces together, Hatchinators together, wet works together, and Storage Units spread through the whole layout beside the pieces they serve — never clustered in one spot, because hauling is zone-local and the less an Aniimo walks to storage the faster things get done: one per busy plot first, busiest plots first, each at the free spot nearest the middle of that plot's pieces, then any left over go one at a time to the plot whose pieces are farthest from their storage so far, beside those far pieces), groups take unlocked plots from the front of the board to the back (the board's rows read top to bottom, so the farm group — placed first — takes the front-most unlocked plots and the Farmlands and Woodlands sit at the front, player's ask, Nov 27, 2026; plot numbers remain the unlock order, and this order only chooses which unlocked plot a group takes), at a low RV or with small counts the groups use fewer plots, and unlocked plots no group needs stay open. The grid is the game's homeland grid: 16 plots in a 4 by 4 arrangement (rows top to bottom: 13, 14, 15, 16 / 12, 7, 8, 9 / 11, 4, 3, 6 / 10, 2, 1, 5), each plot 20 big squares across by 15 up, 80 by 60 in all, and plot numbers are the unlock order, so RV level N unlocks plots 1 to N. Each plot is drawn with a clear outline (a white halo under an ink stroke, so the boundary reads over grass, pieces and the locked shade alike) and its number in a dark pill at its top-left corner, on the small board and in the zoomed view alike (player's ask, Nov 27, 2026), so plots can be referred to by number and the plot lines under the board can be followed on the drawing. Facility sizes are the verified table above, and every piece on the board is drawn at its true size and its true shape — the real footprint scaled by one uniform factor, so proportions are exact and nothing is squared off, stretched or reshaped for drawing convenience (a fixed inset off both sides took proportionally more off a short side and squared pieces off; the inset is proportional now) — packing and overlap checks included: Woodland 3.5 by 3.5, Aniipod Maker 4.5 by 4.5, Woodworking Bench 2 by 1.5, Claw Game Cooker 1.5 by 1.5, Blazing Stove 2.5 by 2.5, Jukebox Dryer 2.5 by 2.5, Pickling Jar 2.5 by 2, Phonolfactory Table 3.5 by 3.5 and Dance Pad Polisher 2.5 by 2.5, with every other facility at its whole number size. Placement starts are counted in whole squares only, so a half can sit on a piece's far edge, exactly like the real footprints; the board's grid shows little quarter squares, so halves draw exactly. The Aniipod Maker's 4.5 by 4.5 size is wikily's and is not confirmed in game, and the board says so. The Floral Windmill has no verified size, so it is never drawn, only listed as still to place by hand. Climate units, Crackle Generators and Power Poles are pocket items and are never drawn as pieces: nothing is placed in the middle 2 by 2 of each farm plot, so its center stays open grass, and open grass is kept beside each Starfall Hammock and each Tidewhisper Sandcastle on the leisure plot the same way, with nothing drawn there either. Since Nov 27, 2026 the note under the board also prints the planner's power call for the current plan — how many generators and poles to actually drop beside the cooking and workshop plots — instead of leaving the Step 1 counts (3 generators and 24 poles at RV 18) reading as if they all go out; they do not, and the call says what does. The farm plots pack into one compact block, side by side and stacked so their corners meet, for climate efficiency: a climate unit covers a 9 by 9 area around itself and a farm plot counts as covered only when its center falls inside that area (the center rule, player-verified in game Nov 27, 2026 — a plot that only touches the area with an edge is not covered), so one unit dropped at a corner shared by up to four farm plots can cover all of them at once, because their centers sit inside its 9 by 9, and more whenever more farm plots' centers fall inside the area. Lines under the board say which climate unit to use and where, and since Nov 27, 2026 they are worked out PER CLIMATE BUILDING from the board as drawn and the crops assigned to it: one dropped unit serves one climate, so the old lines (any unit at the corner covering the most farm plots, whatever those plots grew) could name a corner whose plots needed two different buildings and serve neither well. Crops are now assigned across the farm block in board order from the climate-grouped queues, so each climate's crops sit together; then, inside each building's group, drop spots are picked greedily at that group's own corners under the same center rule, each line names the unit, the spot and the crops that one unit covers, a spot covering two temperatures says to set it to the majority temperature with the minority growing at its falloff rate (and what one more unit would do instead), and a count line compares the spots needed with the Step 1 count owned — including what happens to plots left out of reach (Adequate-light crops do not grow at all uncovered; temperature crops grow at their no-unit rate). With no crops assigned, one line says the spots are named once recipes are picked. The Floral Windmill line follows the same coverage logic: stand it inside a Sunlamp reach, because Scales are hard-gated on Light. Placement inside the cooking and workshop groups follows abilities and power coverage the same day: the machines the power call switches to E-Mode are placed first in each group so they cluster where one generator's 11 by 11 reaches them, and the rest are ordered by their FAC_JOB ability so the machines one Aniimo covers between them sit side by side, the hand order (largest first) standing inside one ability. A Cooling Unit goes on the open grass beside each Starfall Hammock, and a Heat Furnace goes on the open grass beside each Tidewhisper Sandcastle. No game bonus for the farm and cooking closeness is claimed anywhere; the grouping only keeps the grow and cook steps together for orders, and the basket and recipe steps, not the layout, decide what to grow and what to cook. Instruction lines are listed only for pieces actually placed. Placed counts are summed and checked against the entered counts before the board shows, and the check line under the board prints both. Tapping or clicking the board (or Enter/Space on it) opens the same layout full-screen at a larger scale: the same drawing at one uniform scale, so true sizes and true shapes hold there too, with zoom controls (opens at 1500 px wide; +/− step between 600 and 3600; Fit whole board sizes it to the screen), pan by scroll, touch-scroll or mouse-drag, the pieces' hover/tap tips working in the big view (the tip layer sits above the overlay), and Close, a tap on the dimmed surround, or Esc returning to the page.</li>
+          <li><strong>Suggested Layout adapts live, with unused facilities marked OFF (player's ask, Nov 27, 2026):</strong> the board rebuilds from the plan as it stands on every change — RV level, Step 1 counts, basket, strategy, goals, Always pins, copies added or taken back in Step 5, per-copy picks there, and crops added or removed all reach it (through the layout and setup refreshes, and directly from the Step 5 stepper and pick handlers) — so nothing on it can sit stale from an older plan. Placement still puts out every facility owned in Step 1; what changed is the marking. A placed copy is ON when the current plan runs it — the same working counts the power call and the crew read (basket + strategy + Always pins + copies added by hand), minus any copy set to Off on its Step 5 block, read back through the same per-copy pick lists those blocks show. Copies past the working count are OFF: they stay placed at their true size and shape, faded with a dashed outline and an OFF line under the name, in the small board and the zoomed board alike, with the on/off split printed in the count check and in each plot's line under the board. Farmland and Woodland spots are never marked off (player's correction, Nov 27, 2026): an unplanted field or woodland is empty and available, not off, so land pieces always draw in full colour and their counts read planted/empty, never on/off; a Storage Unit is on when its plot holds at least one piece that is on; Hatchinators read on while any Aniipod Maker copy runs, off otherwise. Lowering a Step 1 count is the only change that removes a facility from the board.</li>
           <li><strong>Picker lists are alphabetical, always:</strong> the ten recipe slots list every makeable recipe A to Z, and the category chips and the search box only narrow the lists, never reorder them.</li>
           <li><strong>Grape Candy</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Rock Candy ×1, Claw Game Cooker Lv 5, Fire worker, workload 243, unit price 2,850. The screenshot's second icon looked like sugar cubes; the book names Rock Candy, so the planner follows the book.</li>
           <li><strong>Grape Lemon Drink</strong> (from your screenshot, checked against Daily Aniimo): Grapes ×9, Lemon ×16, Deep Rock Spring Water ×6, Bouncy Brew Keg Lv 3, Water worker, workload 243, unit price 2,970. The screenshot's water icon was first read as Plain Fresh Water; the book says Deep Rock Spring Water, and the planner follows the book.</li>
@@ -2203,8 +2211,22 @@
     }
     /* Entered Step 1 values: what every plan actually reads. */
     var facLevels = {}, facCounts = {}, climCounts = {}, extraCounts = {};
+    /* Split levels (player's ask, Nov 27, 2026): a facility's copies
+       are not always all at one level — five Farmlands can sit at
+       Lv 7 while the rest are Lv 6. facSplit[f] = { n, lvl } means
+       n of the facCount(f) copies stand at lvl instead of the main
+       Lv box's level (the level the other copies keep). One second
+       level per facility is all the game case she named needs.
+       facLevel(f) below returns the HIGHEST level any copy reaches,
+       so unlock and recipe checks see what at least one copy can
+       make; Buy Next reads the split itself (facSplitOf) and lists
+       the copies still at the lower level as still to upgrade. */
+    var facSplit = {};
     var facProvenance = "No RV level picked yet — pick your RV level above and the boxes fill, or type your own counts";
     function fillFacilitiesOnly(rv){
+      /* A fill sets every copy to the one top level, so any split
+         entered by hand goes away with it. */
+      facSplit = {};
       Object.keys(FAC_RV).forEach(function(f){
         facLevels[f] = maxFacLevel(f, rv) || 0;
         facCounts[f] = rvMaxFacCount(f, rv);
@@ -2249,8 +2271,51 @@
     var FAC_ALIAS = { "Homeland leisure station": "Nimbus Bed" };
     function facCanon(f){ return FAC_ALIAS[f] || f; }
     function facLevel(facility){
+      /* The highest level any copy of the facility reaches: the main
+         Lv box, or the split's second level when some copies stand
+         higher. With no split entered this is exactly the Lv box, as
+         before — every lock, gate and yield check reads it, so a
+         recipe at the higher level counts as makeable because the
+         copies at that level can make it. */
+      facility = facCanon(facility);
+      var base = facLevels.hasOwnProperty(facility) ? facLevels[facility] : 0;
+      var sp = facSplit[facility];
+      if(sp && (sp.n || 0) > 0 && (facCounts[facility] || 0) > 0 && (sp.lvl || 0) > base) return sp.lvl;
+      return base;
+    }
+    /* The level in the main Lv box itself (the level the copies
+       outside any split group stand at). The Step 1 Lv box shows
+       this, never the split-raised maximum. */
+    function facLevelMain(facility){
       facility = facCanon(facility);
       return facLevels.hasOwnProperty(facility) ? facLevels[facility] : 0;
+    }
+    /* The split as it stands, clamped to the copies owned: { n
+       copies at lvl, rest at the main level } — or null when there
+       is no working split (none entered, no copies, a count of 0 in
+       the split group, or the second level equals the main level,
+       which is one level said twice). Buy Next reads this. */
+    function facSplitOf(facility){
+      facility = facCanon(facility);
+      var sp = facSplit[facility];
+      if(!sp) return null;
+      var total = facCount(facility);
+      var n = Math.max(0, Math.min(sp.n || 0, total));
+      if(total <= 0 || n <= 0) return null;
+      var lvl = Math.max(0, sp.lvl || 0), main = facLevelMain(facility);
+      if(lvl === main) return null;
+      return { n:n, lvl:lvl, rest:total - n, mainLvl:main };
+    }
+    /* The words under a split's boxes: how many copies stay at the
+       main Lv box's level. Shown in Step 1 and refreshed in place
+       when the count, the split count or the main level changes. */
+    function splitRestText(f){
+      var sp = facSplit[f];
+      if(!sp) return "";
+      var total = facCount(f);
+      var n = Math.max(0, Math.min(sp.n || 0, total));
+      var rest = total - n;
+      return "The other " + rest + (rest === 1 ? " copy stays" : " copies stay") + " at Lv " + facLevelMain(f) + " (the Lv box above). Plans read the higher level for what this facility can make; Buy Next counts the copies at the lower level as still to upgrade.";
     }
     function facCount(facility){
       facility = facCanon(facility);
@@ -5386,9 +5451,25 @@
         if(f === "Carousel Mill" || f === "Well") sub += ' <span class="verdict v-ok">player-verified in game</span>';
         if(f === "Starfall Hammock") sub += " · <strong>Needs a Cool environment to work</strong> (your lookup, Oct 25, 2026): it stands inside a Cooling Unit zone, and that zone counts toward Cooling Unit coverage in Add & Adjust";
         if(f === "Floral Windmill") sub += " · Gathers Scales (Needs: Flutternym family) · <strong>Scales is hard-gated on Light</strong>: a Sunlamp must cover the windmill or Scales will not run";
+        /* Split levels (player's ask, Nov 27, 2026): under the Count
+           and Lv boxes, either a button offering a second level for
+           some copies, or the second level's own boxes — how many
+           copies stand at it, with − and + like every count here,
+           and which level it is — plus the line naming the copies
+           that stay at the main Lv. The Lv box itself always shows
+           the main level (facLevelMain), never the split maximum. */
+        var splitHtml;
+        var spRaw = facSplit[f];
+        if(spRaw){
+          var spN = Math.max(0, Math.min(spRaw.n || 0, facCount(f)));
+          splitHtml = '<span class="fac-split"><span class="split-line"><span class="src">…of which</span> <span class="count-step"><button type="button" class="cnt-btn" data-fac-split-dec="' + escA(f) + '" aria-label="One fewer ' + escA(f) + ' at the second level"' + (spN <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + spN + '" data-fac-split-n="' + escA(f) + '" aria-label="How many ' + escA(f) + ' stand at the second level" /><button type="button" class="cnt-btn" data-fac-split-inc="' + escA(f) + '" aria-label="One more ' + escA(f) + ' at the second level"' + (spN >= facCount(f) ? " disabled" : "") + '>+</button></span> <span class="src">at Lv</span> <input type="number" class="fac-num" min="0" max="' + tiers.length + '" value="' + Math.max(0, spRaw.lvl || 0) + '" data-fac-split-lvl="' + escA(f) + '" aria-label="Second level for some ' + escA(f) + '" /></span>' +
+            '<span class="split-line" style="margin-top:6px"><span class="split-rest" data-fac-split-rest="' + escA(f) + '">' + esc(splitRestText(f)) + '</span><button type="button" class="unpin-btn" data-fac-split-del="' + escA(f) + '">✕ Back to one level</button></span></span>';
+        } else {
+          splitHtml = '<button type="button" class="split-btn" data-fac-split-add="' + escA(f) + '">⇅ Split levels — some of my ' + esc(f) + ' are at a different level</button>';
+        }
         return '<div class="fac-item"><span><span class="nm">' + esc(f) + '</span><span class="kd">' + sub + '</span></span>' +
           '<span class="fac-ctl"><span class="src">Count</span> <span class="count-step"><button type="button" class="cnt-btn" data-fac-count-dec="' + escA(f) + '" aria-label="One fewer ' + escA(f) + '"' + (facCount(f) <= 0 ? " disabled" : "") + '>−</button><input type="number" class="fac-num" min="0" value="' + facCount(f) + '" data-fac-count="' + escA(f) + '" aria-label="' + escA(f) + ' count" /><button type="button" class="cnt-btn" data-fac-count-inc="' + escA(f) + '" aria-label="One more ' + escA(f) + '"' + (userRV > 0 && facCount(f) >= rvMaxFacCount(f, userRV) ? " disabled" : "") + '>+</button></span>' + aboveFlagHtml("fac-count:" + f, facCount(f) > rvMaxFacCount(f, userRV)) +
-          ' <span class="src">Lv</span> <input type="number" class="fac-num" min="0" max="' + tiers.length + '" value="' + facLevel(f) + '" data-fac-lvl="' + escA(f) + '" aria-label="' + escA(f) + ' level" />' + aboveFlagHtml("fac-lvl:" + f, facLevel(f) > maxL) + '</span></div>';
+          ' <span class="src">Lv</span> <input type="number" class="fac-num" min="0" max="' + tiers.length + '" value="' + facLevelMain(f) + '" data-fac-lvl="' + escA(f) + '" aria-label="' + escA(f) + ' level" />' + aboveFlagHtml("fac-lvl:" + f, facLevelMain(f) > maxL) + '</span>' + splitHtml + '</div>';
       }).join("");
       /* One commit for a facility count, shared by the box itself and
          its −/+ steppers: the box and its stepper buttons update in
@@ -5410,6 +5491,18 @@
           if(val > mx){ val = mx; cappedTo = mx; }
         }
         facCounts[f] = val;
+        /* A split group can never hold more copies than exist:
+           shrinking the count shrinks the group with it, a count of
+           0 ends the split, and the split's own boxes follow in
+           place like the count's do. */
+        if(facSplit[f]){
+          if(val <= 0) delete facSplit[f];
+          else if((facSplit[f].n || 0) > val) facSplit[f].n = val;
+          var spInp = grid.querySelector('[data-fac-split-n="' + f + '"]');
+          if(spInp && facSplit[f]) spInp.value = facSplit[f].n;
+          var spRestEl = grid.querySelector('[data-fac-split-rest="' + f + '"]');
+          if(spRestEl) spRestEl.textContent = facSplit[f] ? splitRestText(f) : "";
+        }
         grid.querySelectorAll("[data-fac-count]").forEach(function(inp){
           if(inp.getAttribute("data-fac-count") === f) inp.value = facCounts[f];
         });
@@ -5448,6 +5541,87 @@
           facLevels[f] = isNaN(v) ? 0 : Math.max(0, v);
           inp.value = facLevels[f];
           updateAboveFlag("fac-lvl:" + f, facLevels[f] > (maxFacLevel(f, userRV) || 0));
+          var spRestLv = grid.querySelector('[data-fac-split-rest="' + f + '"]');
+          if(spRestLv && facSplit[f]) spRestLv.textContent = splitRestText(f);
+          setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+          refreshAfterStage3();
+        });
+      });
+      /* Split levels: one commit for how many copies stand at the
+         second level, shared by its box and its −/+ steppers. A
+         split count of 0 is the same as no split, so the row folds
+         back to the offer button (a grid rebuild — a click or a
+         finished edit, never mid-typing). Adding a split starts it
+         at one copy, one level below the main Lv (or Lv 1 when the
+         main Lv is 0), ready to be set to the real numbers. */
+      function commitFacSplitN(f, v){
+        var sp = facSplit[f];
+        if(!sp) return;
+        var n = isNaN(v) ? 0 : Math.max(0, Math.min(v, facCount(f)));
+        if(n <= 0){
+          delete facSplit[f];
+          renderFacilities();
+        } else {
+          sp.n = n;
+          var inp2 = grid.querySelector('[data-fac-split-n="' + f + '"]');
+          if(inp2) inp2.value = n;
+          var rst2 = grid.querySelector('[data-fac-split-rest="' + f + '"]');
+          if(rst2) rst2.textContent = splitRestText(f);
+          grid.querySelectorAll("[data-fac-split-dec]").forEach(function(btn){
+            if(btn.getAttribute("data-fac-split-dec") === f) btn.disabled = n <= 0;
+          });
+          grid.querySelectorAll("[data-fac-split-inc]").forEach(function(btn){
+            if(btn.getAttribute("data-fac-split-inc") === f) btn.disabled = n >= facCount(f);
+          });
+        }
+        setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+        refreshAfterStage3();
+      }
+      grid.querySelectorAll("[data-fac-split-add]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var f = btn.getAttribute("data-fac-split-add");
+          var main = facLevelMain(f);
+          facSplit[f] = { n: facCount(f) > 0 ? 1 : 0, lvl: main > 0 ? main - 1 : 1 };
+          renderFacilities();
+          setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+          refreshAfterStage3();
+          toast(f + " split: set how many copies stand at the second level, and which level it is.");
+        });
+      });
+      grid.querySelectorAll("[data-fac-split-del]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var f = btn.getAttribute("data-fac-split-del");
+          delete facSplit[f];
+          renderFacilities();
+          setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
+          refreshAfterStage3();
+        });
+      });
+      grid.querySelectorAll("[data-fac-split-n]").forEach(function(inp){
+        inp.addEventListener("change", function(){
+          commitFacSplitN(inp.getAttribute("data-fac-split-n"), parseInt(inp.value, 10));
+        });
+      });
+      grid.querySelectorAll("[data-fac-split-inc]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var f = btn.getAttribute("data-fac-split-inc");
+          if(facSplit[f]) commitFacSplitN(f, (facSplit[f].n || 0) + 1);
+        });
+      });
+      grid.querySelectorAll("[data-fac-split-dec]").forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var f = btn.getAttribute("data-fac-split-dec");
+          if(facSplit[f]) commitFacSplitN(f, (facSplit[f].n || 0) - 1);
+        });
+      });
+      grid.querySelectorAll("[data-fac-split-lvl]").forEach(function(inp){
+        inp.addEventListener("change", function(){
+          var f = inp.getAttribute("data-fac-split-lvl");
+          var sp = facSplit[f];
+          if(!sp) return;
+          var v = parseInt(inp.value, 10);
+          sp.lvl = isNaN(v) ? 0 : Math.max(0, Math.min(v, (FAC_RV[f] || []).length));
+          inp.value = sp.lvl;
           setFacProvenance("Facilities changed by hand — the lists use the boxes exactly as they stand");
           refreshAfterStage3();
         });
@@ -10366,6 +10540,20 @@
        Placed counts are summed and checked against the entered counts
        before anything is shown. */
     var SUGG_PLOT_ROWS = [[13,14,15,16],[12,7,8,9],[11,4,3,6],[10,2,1,5]];
+    /* The front of the board (player's ask, Nov 27, 2026): the top
+       rows as the board is drawn are the front of the homeland, and
+       the Farmlands and Woodlands belong there — they are the pieces
+       a player walks to and swaps most, so they sit where she comes
+       in, not at the back. Groups fill the board front to back in
+       this order — SUGG_PLOT_ROWS read top row first, left to right —
+       so the farm group, placed first, takes the front-most unlocked
+       plots, and each later group takes the front-most plots left,
+       which also keeps the cooking buildings on the plots right
+       behind the farm, as the section text promises. Plot numbers
+       stay the unlock order (RV N unlocks plots 1 to N): this order
+       only chooses WHICH unlocked plot a group takes, never which
+       plots are unlocked. */
+    var SUGG_FRONT_ORDER = [13,14,15,16,12,7,8,9,11,4,3,6,10,2,1,5];
     /* True verified sizes, the same table as FAC_SIZE above. Halves are
        kept exact everywhere: drawing, packing and overlap checks. */
     var SUGG_DRAW = {
@@ -10402,12 +10590,14 @@
     var SUGG_ROLE_LABEL = { farm:"Farms", cooking:"Cooking", workshop:"Workshops", mine:"Mines", leisure:"Leisure", wet:"Wet works", hatch:"Hatchery" };
     /* No group has favourite plots. Plot choice is one generic rule for
        every player, applied fresh in suggBuild: groups take unlocked
-       plots in unlock order, lowest number first, and stay compact, so
-       the same counts at the same RV always draw the same board for
-       anyone, and plots no group needs stay open. Within a group the
-       biggest pieces are placed first, which is a packing rule, not a
-       layout copied from anyone: large footprints pack cleanly when
-       they go down before the small ones fill the gaps. */
+       plots from the front of the board to the back (SUGG_FRONT_ORDER:
+       top rows as drawn first), farm first so the fields sit at the
+       front, and stay compact, so the same counts at the same RV
+       always draw the same board for anyone, and plots no group needs
+       stay open. Within a group the biggest pieces are placed first,
+       which is a packing rule, not a layout copied from anyone: large
+       footprints pack cleanly when they go down before the small
+       ones fill the gaps. */
     var suggLast = null;
     /* Efficiency ordering for the cooking and workshop queues
        (player's ask, Nov 27, 2026: place things efficiently and
@@ -10470,9 +10660,12 @@
        (facPick / gatherPick / extraPick, read back through the
        same facAssignments / gatherAssignments the blocks show).
        Copies past the working count are OFF: placed, but idle.
-       Farmland and Woodland pieces are on exactly when the plan
-       assigns them a crop (the crop queues below); a farm spot
-       with no crop is a spare, marked OFF. A Storage Unit is on
+       Farmland and Woodland pieces are NEVER off (player's
+       correction, Nov 27, 2026): an unplanted field or woodland
+       is not off — it is simply empty and available — so land
+       pieces always flag on and always draw in full colour,
+       planted or not. What grows on them is read from the crop
+       assignment, never from this flag. A Storage Unit is on
        when its plot holds at least one piece that is on — it is
        serving that plot — and off on a plot where nothing is on.
        Hatchinators hatch what the Aniipod Maker makes, so they
@@ -10529,8 +10722,12 @@
           if(pc.name === "Storage Unit" || pc.name === "Hatchinator") return;
           counters[pc.name] = (counters[pc.name] || 0) + 1;
           if(pc.name === "Farmland" || pc.name === "Woodland"){
-            var a = cropAssign ? cropAssign.get(pc) : null;
-            flags.set(pc, !!(a && a.crop));
+            /* Land is never off (player's correction, Nov 27,
+               2026): planted or empty, a field or woodland is a
+               live plot and draws in full colour. The crop
+               assignment still says what grows there — it just
+               never switches the piece off. */
+            flags.set(pc, true);
           } else {
             flags.set(pc, counters[pc.name] <= (info.on[pc.name] || 0));
           }
@@ -10686,8 +10883,13 @@
       if(own["Floral Windmill"] > 0) addUnplaced("Floral Windmill", own["Floral Windmill"], "it has no verified size, so it is never drawn. Place it by hand.");
       var plots = {}, usedNums = {};
       function takePlot(role){
+        /* Front to back (SUGG_FRONT_ORDER), not plot-number order:
+           the farm takes the front-most unlocked plots, and every
+           later group takes the front-most plots still free, so the
+           whole board fills from the front and the groups stay in
+           their promised order behind the farm. */
         var pick = null;
-        for(var m = 1; m <= 16; m++){ if(unlocked[m] && !usedNums[m] && !(reservedNum && role !== "farm" && m === reservedNum)){ pick = m; break; } }
+        for(var oi = 0; oi < SUGG_FRONT_ORDER.length; oi++){ var m = SUGG_FRONT_ORDER[oi]; if(unlocked[m] && !usedNums[m] && !(reservedNum && role !== "farm" && m === reservedNum)){ pick = m; break; } }
         if(pick === null) return null;
         usedNums[pick] = true;
         var st = suggNewPlot(pick, role);
@@ -10947,7 +11149,7 @@
         if(cropAssign && cropAssign.crop){
           tip = "Grow " + cropAssign.crop + " here · " + cropAssign.crop + " · " + pc.name + " spot " + (cropAssign.idx + 1) + " of " + cropAssign.total + " your current plan plants · " + climateLabel(cropAssign.crop) + " · Plot " + plotNum;
         } else {
-          tip = pc.name + " · Plot " + plotNum + " · OFF — no crop assigned to this spot yet: pick recipes in Step 2 (or add a crop by hand in the growing list after Step 4) and your plan will name the crop this spot should grow and switch it on — until then it is a spare " + pc.name + " in this suggestion, placed but marked off";
+          tip = pc.name + " · Plot " + plotNum + " · empty for now — no crop assigned to this spot yet: pick recipes in Step 2 (or add a crop by hand in the growing list after Step 4) and your plan will name the crop this spot should grow. An unplanted " + pc.name + " is never off — it is a live plot, simply empty and available";
         }
       } else if(isOff){
         tip = pc.name + " · Plot " + plotNum + " · OFF — placed in this suggestion, but your current plan is not using this copy: no basket recipe, strategy, Always pin or copy added in Step 5 runs it (or this copy is set to Off in Step 5). It stays on the board so you can see where it goes, and it switches on by itself on the redraw the moment a change makes a plan use it";
@@ -11020,10 +11222,19 @@
             out += '<text x="' + (ox + 10) + '" y="' + (oy + 9.1) + '" text-anchor="middle" font-size="0.85" font-weight="700" fill="rgba(255,255,255,0.85)">opens at RV ' + num + '</text>';
           }
           out += '<rect x="' + ox + '" y="' + oy + '" width="20" height="15" fill="url(#suggGrid' + suffix + ')"/>';
-          out += '<rect x="' + ox + '" y="' + oy + '" width="20" height="15" fill="none" stroke="#ffffff" stroke-width="0.16"/>';
+          /* Every plot is outlined and numbered (player's ask,
+             Nov 27, 2026): she refers to plots by number, so each
+             plot's edge is drawn as a real outline — a white halo
+             under an ink stroke, so the boundary reads over grass,
+             pieces and the locked shade alike — and its number sits
+             in a dark pill at the plot's top-left corner, big
+             enough to read on the small board. Both are this same
+             drawing, so the zoomed board carries them identically. */
+          out += '<rect x="' + ox + '" y="' + oy + '" width="20" height="15" fill="none" stroke="#ffffff" stroke-width="0.52"/>';
+          out += '<rect x="' + ox + '" y="' + oy + '" width="20" height="15" fill="none" stroke="rgba(61,42,71,0.9)" stroke-width="0.26"/>';
           if(st) out += '<text x="' + (ox + 19.6) + '" y="' + (oy + 2) + '" text-anchor="end" font-size="1.05" font-weight="800" fill="#ffffff" stroke="rgba(61,42,71,0.45)" stroke-width="0.16" style="paint-order:stroke">' + esc(SUGG_ROLE_LABEL[st.role] || "") + '</text>';
-          out += '<rect x="' + (ox + 0.25) + '" y="' + (oy + 0.25) + '" width="' + (num >= 10 ? 3.6 : 2.6) + '" height="2.3" rx="0.5" fill="#3d2a47"/>';
-          out += '<text x="' + (ox + 0.25 + (num >= 10 ? 1.8 : 1.3)) + '" y="' + (oy + 1.98) + '" text-anchor="middle" font-size="1.5" font-weight="800" fill="#ffffff">' + num + '</text>';
+          out += '<rect x="' + (ox + 0.3) + '" y="' + (oy + 0.3) + '" width="' + (num >= 10 ? 4.6 : 3.4) + '" height="3.1" rx="0.6" fill="#3d2a47" stroke="#ffffff" stroke-width="0.14"/>';
+          out += '<text x="' + (ox + 0.3 + (num >= 10 ? 2.3 : 1.7)) + '" y="' + (oy + 2.62) + '" text-anchor="middle" font-size="1.95" font-weight="800" fill="#ffffff">' + num + '</text>';
         });
       });
       out += '<rect x="0" y="0" width="80" height="60" fill="none" stroke="rgba(61,42,71,0.55)" stroke-width="0.3"/>';
@@ -11045,10 +11256,30 @@
           res.plots[k].pieces.forEach(function(pc){ if(res.onFlags.get(pc)) onCounts[pc.name] = (onCounts[pc.name] || 0) + 1; });
         });
       }
+      /* Land counts read planted / empty, never on / off (player's
+         correction, Nov 27, 2026): how many Farmland and Woodland
+         spots the plan assigns a crop to, from the same crop
+         assignment the board draws. */
+      var landPlanted = {};
+      try {
+        var ccAssign = suggCropAssignments(res);
+        Object.keys(res.plots).forEach(function(k){
+          res.plots[k].pieces.forEach(function(pc){
+            if(pc.name !== "Farmland" && pc.name !== "Woodland") return;
+            var a = ccAssign.get(pc);
+            if(a && a.crop) landPlanted[pc.name] = (landPlanted[pc.name] || 0) + 1;
+          });
+        });
+      } catch(e){ landPlanted = {}; }
       var parts = [];
       Object.keys(SUGG_DRAW).concat(["Floral Windmill"]).forEach(function(f){
         var o = res.own[f] || 0, p = res.placed[f] || 0;
         if(o > 0){
+          if(f === "Farmland" || f === "Woodland"){
+            var pl = landPlanted[f] || 0;
+            parts.push(esc(f) + " " + p + " placed of " + o + " yours" + (p > 0 ? (pl >= p ? " — all planted" : " — " + pl + " planted, " + (p - pl) + " empty (land is never off)") : ""));
+            return;
+          }
           var onC = onCounts[f] || 0, offC = p - onC;
           parts.push(esc(f) + " " + p + " placed of " + o + " yours" + (p > 0 ? (offC > 0 ? " — " + onC + " on, " + offC + " off" : " — all on") : ""));
         }
@@ -11058,7 +11289,7 @@
       } else {
         html += '<p style="margin-top:10px"><strong>Count check:</strong> ' + (parts.length ? parts.join(" · ") : "no facilities set yet") + '. Nothing was placed past your counts.</p>';
       }
-      html += '<p style="margin-top:10px"><span class="sugg-off-sw" aria-hidden="true"></span><strong>On and off, live:</strong> this board rebuilds itself every time anything changes — RV level, Step 1 counts, basket, strategy, goals, Always pins, copies added or taken back in Step 5, a copy set to Off there, crops added or removed — and the marks are worked out from the plan as it stands at that moment. A piece your current plan is using draws in its full colour. A piece that is placed but <strong>not</strong> being used stays on the board in its place, faded with a dashed outline and marked <strong>OFF</strong>: that covers copies past the number your plan runs, a copy you switched off in Step 5, a Hatchinator while no Aniipod Maker is running, a Storage Unit on a plot where nothing is on, and a Farmland or Woodland spot with no crop assigned (a spare). Change anything and the off pieces switch on — or on pieces switch off — on the redraw; only lowering a Step 1 count takes a facility off the board. Hover or tap any piece and its tip says whether it is on or off, and why.</p>';
+      html += '<p style="margin-top:10px"><span class="sugg-off-sw" aria-hidden="true"></span><strong>On and off, live:</strong> this board rebuilds itself every time anything changes — RV level, Step 1 counts, basket, strategy, goals, Always pins, copies added or taken back in Step 5, a copy set to Off there, crops added or removed — and the marks are worked out from the plan as it stands at that moment. A piece your current plan is using draws in its full colour. A piece that is placed but <strong>not</strong> being used stays on the board in its place, faded with a dashed outline and marked <strong>OFF</strong>: that covers copies past the number your plan runs, a copy you switched off in Step 5, a Hatchinator while no Aniipod Maker is running, and a Storage Unit on a plot where nothing is on. <strong>Farmland and Woodland spots are never marked off:</strong> an unplanted field or woodland is not off — it is simply empty and available — so land always draws in its full colour, and its tip and plot line say what grows there or that it is empty for now. Change anything and the off pieces switch on — or on pieces switch off — on the redraw; only lowering a Step 1 count takes a facility off the board. Hover or tap any piece and its tip says whether it is on or off, and why.</p>';
       html += '<p style="margin-top:10px">The basket and recipe steps decide what to grow and what to cook. This layout just keeps the farm and the cooking together for orders.</p>';
       html += '<p style="margin-top:10px"><strong>Hover or tap any Farmland or Woodland piece</strong> on the board and it names the crop or tree that spot should grow — the same planting the growing list after Step 4 lays out for your current basket, strategy plan and hand-added crops. A spot your plan does not use says so instead; pick recipes and it names its crop. The farm plot list below repeats the same assignments in writing.</p>';
       html += '<p style="margin-top:10px"><strong>Easy to rearrange:</strong> the Farmlands and Woodlands all sit together in one farm block because they are what people move most, kept together so they are easy to swap and rearrange.' + (res.movingRoom ? " Plot " + res.movingRoom + ", directly beside the farm block, is left open as moving room for that swapping, and the later groups start after it." : "") + '</p>';
@@ -11222,7 +11453,7 @@
         var plainPieces = farmPiecesAll.filter(function(p){ return p.crop && !(CLIMATE[p.crop] && CLIMATE[p.crop].building); });
         if(plainPieces.length) climateLines.push("<li><strong>Farms — no unit needed:</strong> " + suggCropCounts(plainPieces) + " grow anywhere, so no climate unit is spent on them — they fill the farm block wherever they land.</li>");
         var sparePieces = farmPiecesAll.filter(function(p){ return !p.crop; });
-        if(sparePieces.length) climateLines.push("<li><strong>Farms — spare spots:</strong> " + sparePieces.length + (sparePieces.length === 1 ? " farm plot on this board has" : " farm plots on this board have") + " no crop assigned, so no unit is planned for them until your plan names a crop.</li>");
+        if(sparePieces.length) climateLines.push("<li><strong>Farms — empty spots:</strong> " + sparePieces.length + (sparePieces.length === 1 ? " farm plot on this board has" : " farm plots on this board have") + " no crop assigned yet — live plots, simply empty — so no unit is planned for them until your plan names a crop.</li>");
         /* The Floral Windmill is never drawn (no verified size), but
            its hard Light gate is a placement rule the board can
            still serve: it belongs inside a Sunlamp's reach. */
@@ -11276,7 +11507,7 @@
               if(a && a.crop){ if(!cropCounts[a.crop]){ cropCounts[a.crop] = 0; cropOrder.push(a.crop); } cropCounts[a.crop]++; }
             });
             if(farmSpots) line += cropOrder.length
-              ? " Grow here: " + cropOrder.map(function(n){ return esc(n) + " ×" + cropCounts[n]; }).join(", ") + (cropOrder.reduce(function(sum, n){ return sum + cropCounts[n]; }, 0) < farmSpots ? ", and the rest spare until your plan names a crop for them" : "") + "."
+              ? " Grow here: " + cropOrder.map(function(n){ return esc(n) + " ×" + cropCounts[n]; }).join(", ") + (cropOrder.reduce(function(sum, n){ return sum + cropCounts[n]; }, 0) < farmSpots ? ", and the rest empty until your plan names a crop for them" : "") + "."
               : " No crop assigned to these spots yet — pick recipes in Step 2 and your plan names what each spot should grow.";
           }
           items.push("<li>" + line + "</li>");
@@ -11464,7 +11695,29 @@
         if(facNeed[f] !== undefined) return;
         if(facCount(f) === 0) return;
         var have = facLevel(f), maxL = maxFacLevel(f, rv);
-        if(maxL === null || have >= maxL) return;
+        if(maxL === null) return;
+        /* Split levels (player's ask, Nov 27, 2026): the copies are
+           read group by group, not by the one Lv box. When some
+           copies already stand at the top level the single-level
+           test above (highest level against the RV maximum) would
+           call this facility done and list nothing — but the copies
+           still at the lower level are exactly what she still has
+           to buy, so the row names them: how many, at which level,
+           and what the next level up opens for them. */
+        var sp = facSplitOf(f);
+        if(sp){
+          var lowLvl = Math.min(sp.lvl, sp.mainLvl);
+          if(lowLvl >= maxL) return;
+          var lowN = sp.lvl < sp.mainLvl ? sp.n : sp.rest;
+          var highLvl = Math.max(sp.lvl, sp.mainLvl), highN = facCount(f) - lowN;
+          var opensS = bnItemsAt(f, lowLvl, lowLvl + 1);
+          levelRows.push({ name:f, badge:"Upgrade",
+            change:lowN + " of " + facCount(f) + " copies still Lv " + lowLvl + " → Lv " + (lowLvl + 1) + (maxL > lowLvl + 1 ? " (RV " + rv + " allows Lv " + maxL + ")" : ""),
+            why:(opensS.length ? "Opens for those copies: " + bnNames(opensS, 4) + ". " : "No recipe in the checked list sits at " + f + " Lv " + (lowLvl + 1) + " — the level still readies those copies for anything beyond the list. ") +
+              "The other " + highN + (highN === 1 ? " copy is" : " copies are") + " already at Lv " + highLvl + " — your split levels in Step 1, read copy by copy." });
+          return;
+        }
+        if(have >= maxL) return;
         var opens = bnItemsAt(f, have, have + 1);
         levelRows.push({ name:f, badge:"Upgrade", change:"Lv " + have + " → Lv " + (have + 1) + (maxL > have + 1 ? " (RV " + rv + " allows Lv " + maxL + ")" : ""),
           why:opens.length ? "Opens: " + bnNames(opens, 4) + "." : "No recipe in the checked list sits at " + f + " Lv " + (have + 1) + " — the level still readies the facility for anything beyond the list." });
@@ -11870,6 +12123,7 @@
           crewGate.rv = false;
           userRV = 0;
           syncRvFrom();
+          facSplit = {};
           Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
           Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
           Object.keys(EXTRA_COUNT).forEach(function(n){ extraCounts[n] = 0; });
@@ -11953,6 +12207,7 @@
         crewGate.rv = false;
         userRV = 0; syncRvFrom();
         if(rvSel) rvSel.value = "";
+        facSplit = {};
         Object.keys(FAC_RV).forEach(function(f){ facLevels[f] = 0; facCounts[f] = 0; });
         Object.keys(CLIM_COUNT).forEach(function(b){ climCounts[b] = 0; });
         MODULE_DEFS.forEach(function(d){ moduleLevels[d.id] = 0; crewGate.modules[d.id] = false; });
