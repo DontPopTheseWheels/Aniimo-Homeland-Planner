@@ -318,6 +318,19 @@
       .strat-btn[aria-pressed="true"]{background:var(--card);border-color:var(--accent);box-shadow:var(--shadow)}
       .strat-btn[aria-pressed="true"] .strat-state{background:var(--accent);border-color:var(--accent);color:#fff}
       .strat-btn:hover{border-color:var(--accent)}
+      /* Buy Next list */
+      .buy-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+      .buy-row{background:#fff;border:2px solid var(--card-line);border-radius:12px;padding:10px 12px}
+      .buy-row .buy-head{display:flex;gap:8px 12px;flex-wrap:wrap;align-items:baseline;justify-content:space-between}
+      .buy-row .buy-name{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.02rem}
+      .buy-row .buy-change{font-weight:800;color:var(--accent);white-space:nowrap}
+      .buy-row .buy-why{font-size:.9rem;color:var(--ink-soft);font-weight:600;margin-top:3px}
+      .buy-group{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.12rem;margin:18px 0 0}
+      .buy-group:first-of-type{margin-top:12px}
+      /* Your Zones crew cards */
+      .zone-pool{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+      .zone-pool .job-chip{display:inline-flex;align-items:center;gap:2px}
+      .zc-off{color:var(--ink-faint);font-weight:700}
       /* Suggested Homeland Layout board */
       .sugg-board{border:2px solid var(--card-line);border-radius:12px;overflow:hidden;cursor:zoom-in;background:#79b657;margin-top:12px}
       .sugg-board:focus{outline:3px solid var(--accent);outline-offset:2px}
@@ -358,6 +371,7 @@
           <div class="step"><span class="n">Step 4</span><br /><b>⭐ Strategy plan</b><p>Rank goals if you picked Goals. Picking a strategy builds its plan on the spot — and every change after that rebuilds it right away. Right after it, <strong>⚡ Power &amp; E-Mode</strong> gives the planner's call on generators and poles for that plan.</p></div>
           <div class="step"><span class="n">Steps 5–7</span><br /><b>🛠️ Add &amp; Adjust, crew &amp; home</b><p>Add &amp; Adjust places it — Mines included, picked on their block in Facilities out — Team staffs it, leftover crew slots earn Bud Tickets at home.</p></div>
           <div class="step"><span class="n">New</span><br /><b>🗺️ Suggested homeland</b><p>One full grid suggestion for your whole homeland, drawn from your RV level and your Step 1 facilities. It redraws itself whenever anything changes, and facilities your plan is not using stay placed, marked OFF. Follow it or ignore it.</p></div>
+          <div class="step"><span class="n">New</span><br /><b>🛒 Buy next &amp; 🗺️ your zones</b><p><strong>Buy Next</strong> lists what your RV already allows that your Step 1 boxes say you don't have yet — in buying order, each with what it opens. <strong>Your Zones</strong> regroups your crew by the Production Zones on the Suggested Layout, each zone's ability pool beside its buildings.</p></div>
           <div class="step"><span class="n">Always</span><br /><b>🔍 Checked numbers</b><p>Recipes and the RV ladder come from checked game data. Anything shaky is flagged, never filled in.</p></div>
         </div>
       </header>
@@ -365,6 +379,7 @@
       <nav class="toc" aria-label="Planner sections">
         <a href="#facilities">🏭 Step 1 · Setup</a>
         <a href="#alwaysCard">📌 Always Staffed</a>
+        <a href="#buynext">🛒 Buy Next</a>
         <a href="#basket">🧺 Step 2 · Recipe Basket</a>
         <a href="#strategy">🎯 Step 3 · Strategy</a>
         <a href="#bestplan">⭐ Step 4 · Strategy Plan</a>
@@ -374,6 +389,7 @@
         <a href="#layout">🛠️ Step 5 · Add &amp; Adjust</a>
         <a href="#jobs">🎛️ Job Picks</a>
         <a href="#team">👥 Step 6 · Team</a>
+        <a href="#zones">🗺️ Your Zones</a>
         <a href="#home">🏠 Step 7 · Home &amp; Bud Tickets</a>
         <a href="#suggested">🗺️ Suggested Layout</a>
         <a href="#sources">🔍 Sources &amp; Flags</a>
@@ -437,6 +453,16 @@
           </div>
           <p class="src" style="margin-top:10px">Use − and + to change a pin, down to 0 and up to the copies you own above. A pin at 0 staffs nobody but stays on your list. Tap <strong>✕ Unpin</strong> to take a facility off your list entirely — you can pin it again later from the Add dropdown above. If a recipe is picked for a pinned copy, that copy follows the recipe's family rules, like any other copy. A pinned copy with no recipe just needs a worker with the right job.</p>
         </div>
+      </section>
+
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
+      <!-- ================= BUY NEXT ================= -->
+      <section id="buynext">
+        <div class="sec-head"><span class="sec-num">New</span><h2>🛒 Buy Next — What to Save For</h2></div>
+        <p class="sec-sub">Built from <strong>your Step 1 boxes</strong> held against <strong>what your picked RV level allows</strong>: every copy, facility level and module level your RV has already unlocked that your boxes say you don't have yet, in the order worth buying them in. <strong>For your plan first</strong> — anything a recipe you've picked is locked behind — then <strong>copies</strong> your RV allows, then <strong>facility levels</strong>, then <strong>module levels</strong>, then climate and utility counts, and finally <strong>what the next RV level opens</strong>, bill included, so a coin run always has a target. Each line says what the buy opens, from the same checked recipe and unlock tables everything else on this page reads. Change any Step 1 box and this list rebuilds on the spot: step a box down to what you actually own and the rest appears here as your shopping list; buy something in game, step its box up, and it leaves the list. Nothing here changes your boxes — it's a list, not a fill.</p>
+        <div id="buyNextOut" aria-live="polite"></div>
+        <p class="src" style="margin-top:16px">Saving up? <a href="#basket">Next: Step 2 — pick your recipes ↓</a></p>
       </section>
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
@@ -742,6 +768,16 @@
 
       <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
 
+      <!-- ================= YOUR ZONES: CREW BY PRODUCTION ZONE ================= -->
+      <section id="zones">
+        <div class="sec-head"><span class="sec-num">After Step 6</span><h2>🗺️ Your Zones — Crew by Production Zone</h2></div>
+        <p class="sec-sub">The same crew as <a href="#team">Step 6 · Team Helper</a>, regrouped the way the game shows it to you: <strong>by Production Zone</strong>. Zones are the plots of the <a href="#suggested">Suggested Layout</a> board below — Farms, Cooking, Workshops, Mines, Leisure, Wet works and the Hatchery — and each zone card lists <strong>the buildings sitting in it</strong> (with their on/off marks from your current plan, exactly as the board draws them), <strong>who works there</strong>, and the zone's <strong>ability pool</strong>: the abilities those buildings need, each with the strongest known Aniimo for it, the same names Step 6 ranks by. Heads are still counted once, in Step 6 — this view never adds crew of its own: a machine Aniimo can cover two posts in its zone, a stay-there post (Mine, Well, gather posts) always takes its own Aniimo, and a machine the power call puts on E-Mode shows ⚡ here with no Aniimo posted. Change anything — RV, Step 1 counts, basket, strategy, Step 5 picks — and the zones rebuild with everything else.</p>
+        <div id="zonesOut" aria-live="polite"></div>
+        <p class="src" style="margin-top:16px">Zoned? <a href="#home">Next: Step 7 — home &amp; Bud Tickets, right below ↓</a></p>
+      </section>
+
+      <div class="pawdiv" aria-hidden="true">🐾 🐾 🐾</div>
+
       <!-- ================= HOME SIDE & BUD TICKETS ================= -->
       <section id="home">
         <div class="sec-head"><span class="sec-num">Step 7</span><h2>🏠 Home &amp; Bud Tickets</h2></div>
@@ -820,6 +856,8 @@
           <li><strong>The basket takes recipes only, never amounts (max 10).</strong> The planner sizes each picked recipe to the facilities you have out; the chain under it is worked out, then the plan is fitted inside your limits (facility counts, plot counts) and scaled down where a limit binds — the plan names the limit. What the plan makes and earns is shown per hour, worked out at the slowest crop's pace (craft and gather times are not verified, and rates say so).</li>
           <li><strong>Add & Adjust reads your basket:</strong> every crop the plan needs, grouped by climate, with the Grow list's own plot counts. The − and + buttons adjust a crop's count and the change sticks; a crop at 0 stays listed. Hand picks are optional extras in their own group, never merged. Above-level crops stay listed, greyed, and still count.</li>
           <li><strong>Two layouts only, toggled:</strong> ⭐ Best (full field) and 🪶 Minimum (one plot of each crop). The layout never exceeds your RV counts for plots or climate buildings, packs each building's plots into the fewest zones that cover them (Farmland and Woodland plots of one climate sharing one 9 × 9 zone, every plot with its center inside it and clear of the building's own tiles in the middle), shares zones between two climates whenever that covers the plan with fewer buildings, and states the sharing — the crew staffs only the buildings the layout puts out. Whole-plan totals lead the helper; when the need is bigger than one field, it shows the best full field and says to replant it as harvests finish. Time basis: crops grow side by side; a replanted crop adds its grow time again per round.</li>
+          <li><strong>Buy Next (added Nov 27, 2026):</strong> the list is the Step 1 boxes held against the same tables Fill reads — facility levels and counts (Aniiland roadmap, cross-checked as at FAC_COUNT), climate counts, the count-only four, and module levels through the AniimoTools unlock RVs. Its order is a planning order, not game data: picked-plan locks first (the basket's own lock walk), then copies, facility levels, module levels and utility counts the picked RV already allows, then the next RV's bill and unlocks from the ladder above. "What it opens" is read from the recipe list and the module unlock labels. <strong>No facility or upgrade prices are shown, because the checked data carries none</strong> — the only coin figure on the list is the next RV's bill, from the ladder.</li>
+          <li><strong>Your Zones (added Nov 27, 2026):</strong> the zones are the Suggested Layout's own plot groups (Farms, Cooking, Workshops, Mines, Leisure, Wet works, Hatchery) — the planner's arrangement suggestion, not a game zone list — and the crew on each card is the Team Helper's single crew read per building (per-copy posts, the facility's plan worker, Always pins), never a second crew. Ability pools name each building's job from the same game-data list as FAC_JOB, with the strongest known Aniimo per ability from the same per-species data the crew table ranks by. Climate units, the power grid and the Floral Windmill are never drawn on the board, so they close the view as their own card.</li>
           <li><strong>Overlap (Add & Adjust):</strong> only the Steam guide's two verified blends are noted — Scorching + Cool counts as Warm; Freezing + Warm counts as Cool. No other pairing is claimed. Band sizes are <strong>not verified</strong>, so a band never places or covers a crop: every crop keeps its own climate zone and building count (Cool crops always keep their own Cooling Unit zones, Warm crops their own Heat Furnace zones), nothing is deducted for a band anywhere, and a band appears only as an uncounted note naming the crops whose zones could cross to make it. Light is independent: Adequate-light crops can sit inside temperature zones, ground counted once.</li>
           <li><strong>Add & Adjust also reads your strategy plan:</strong> once built, its seed counts appear in their own group ("From your strategy plan"), never merged with the basket or hand picks, with the same climate grouping and steppers. If your basket, setup, strategy or goals change, that plan rebuilds and refreshes on the spot and its group rebuilds with it: nothing from an old plan is ever listed as part of the current plan — not here, not in the facility blocks' Producing lines, not in the crew or the Mines.</li>
           <li><strong>Building footprints</strong> (your placement screenshots, Oct 24, 2026): Cooling Unit 2 × 2 = 4 tiles, Heat Furnace 1 × 1, Sunlamp 1 × 1, Crackle Generator 2 × 2 = 4, Power Pole 1 × 1. Zone capacity follows the center rule above and counts the building's own tiles as taken: plots pack around the building standing in the middle, each with its center inside its 9 × 9 zone and hanging over its edge only where the center rule allows, so one zone holds up to 24 Farmland or 8 Woodland plots (24 Farmland around a Cooling Unit too; when the lands share, plots pack largest first and a shared zone holds more than 8 in all — 1 Woodland with 18 Farmland fits in one) and no item overlaps another; building tiles are also counted in the space totals so you can see their space cost.</li>
@@ -11248,6 +11286,495 @@
       if(items.length) html += '<ul class="sugg-plot-list">' + items.join("") + "</ul>";
       if(res.lockedNums.length) html += '<p style="margin-top:10px">Locked for now: ' + res.lockedNums.map(function(num){ return "Plot " + num + " (opens at RV " + num + ")"; }).join(", ") + ".</p>";
       under.innerHTML = html;
+      /* Buy Next and Your Zones read the same Step 1 boxes, basket,
+         strategy and Step 5 picks as this board, so they rebuild
+         whenever it does — every change that reaches this render
+         (RV pick, Step 1 edits, basket, strategy, goals, pins,
+         Step 5 steppers and picks, the board's own count boxes)
+         refreshes them on the spot, from the plan as it stands. */
+      if(typeof renderBuyNext === "function") renderBuyNext();
+      if(typeof renderZones === "function") renderZones();
+    }
+
+    /* ============ Buy Next list (player's pick, Nov 27, 2026) ============
+       What she does not own yet or has not upgraded yet, read off
+       her Step 1 boxes against the most her picked RV allows (the
+       same verified tables Fill reads: FAC_RV / FAC_COUNT for
+       facility levels and counts, CLIM_COUNT, EXTRA_COUNT and
+       MODULE_UNLOCKS through rvMaxModuleLevel). The order is the
+       point: first anything a recipe she has picked is locked
+       behind (chainLockSteps over the basket and, when one stands,
+       the strategy plan's gross), then copies her RV allows, then
+       facility levels, then module levels, then climate and
+       utility counts, then what the NEXT RV level opens (LADDER's
+       bill plus every tier, count step and module unlock sitting
+       at that RV), and last the picked-plan locks that sit above
+       the next RV. "What it opens" is read from the same data as
+       everything else: ITEMS at the facility level in question and
+       the MODULE_UNLOCKS labels. No facility or upgrade prices are
+       shown: the planner's checked data carries none, so none are
+       invented. The list never touches her boxes. */
+    function bnItemsAt(f, lo, hi){
+      var names = [];
+      Object.keys(ITEMS).forEach(function(n){
+        var it = ITEMS[n];
+        if(!it || !it.facility) return;
+        if(facCanon(it.facility) !== f) return;
+        if(it.lvl > lo && it.lvl <= hi) names.push(n);
+      });
+      return names.sort();
+    }
+    function bnNames(names, cap){
+      if(!names.length) return "";
+      var shown = names.slice(0, cap || 4);
+      var s = shown.join(", ");
+      if(names.length > shown.length) s += " and " + (names.length - shown.length) + " more";
+      return s;
+    }
+    function bnCopyWhy(f){
+      if(f === "Farmland") return "One more plot to plant: the growing list and the layout fill plots up to your Step 1 count, so a new plot is one more crop growing at once.";
+      if(f === "Woodland") return "One more tree plot: more Wood Blocks and tree crops per planting round, and Wood Blocks feed every RV bill.";
+      if(f === "Mine") return "One more Mine out: one more material pick on the Mine block in Step 5, each with its own Earth Aniimo.";
+      if(f === "Well") return "One more Well out: one more water pick in Step 5, each with its own Water Aniimo.";
+      return "One more copy out at once: the plan places and staffs copies up to your Step 1 count, so this copy works alongside the ones you have.";
+    }
+    function bnExtraWhy(n){
+      if(n === "Storage Unit") return "One more Storage Unit to spread through the layout, beside the pieces it serves — hauling is zone-local, so a nearer unit means shorter walks and faster hauling.";
+      if(n === "Hatchinator") return "One more Hatchinator on the hatchery plot, hatching what your Aniipod Maker makes.";
+      if(n === "Crackle Generator") return "One more Generator in your counts for the power call to work with — the call itself sits in Power & E-Mode, and it never puts out more than the plan earns.";
+      if(n === "Crackle Power Pole") return "One more Power Pole in your counts for the grid's reach — poles only go out where the power call sends them.";
+      if(n === "Cooling Unit") return "One more Cooling Unit to drop: each one covers a 9 × 9 square (center rule) for Freeze and Cool crops.";
+      if(n === "Heat Furnace") return "One more Heat Furnace to drop: each one covers a 9 × 9 square (center rule) for Warm and Scorching crops.";
+      if(n === "Sunlamp") return "One more Sunlamp to drop: each one covers a 9 × 9 square (center rule), and Adequate light crops do not grow at all outside its reach.";
+      return "One more in your Step 1 counts.";
+    }
+    function buyNextBuild(){
+      var rv = userRV;
+      var groups = [];
+      function addGroup(title, rows){ if(rows.length) groups.push({ title:title, rows:rows }); }
+      /* What the picked plan is locked behind, from the same lock
+         walk the basket cards use (facility levels and module
+         gates, through whole chains). */
+      /* Needs are kept per level, not just as one maximum: a
+         facility can owe the plan a level her RV already allows
+         AND a higher one locked behind a later RV, and both rows
+         are worth showing — the buyable one now, the locked one
+         in the locked-behind group. facNeed / modNeed keep the
+         highest BUYABLE need per facility / module, the level the
+         levels and modules groups below defer to. */
+      var facSteps = {}, modSteps = {}, facNeed = {}, modNeed = {};
+      function bnWalk(name){
+        var steps = [];
+        try { steps = chainLockSteps(name) || []; } catch(e){ steps = []; }
+        steps.forEach(function(st){
+          if(st.moduleGate){
+            var ms = modSteps[st.module] || (modSteps[st.module] = {});
+            var me = ms[st.need] || (ms[st.need] = { rv:st.rv || 0, names:[] });
+            if(me.names.indexOf(st.name) === -1) me.names.push(st.name);
+          } else if(st.facility){
+            var fs2 = facSteps[st.facility] || (facSteps[st.facility] = {});
+            var fe = fs2[st.need] || (fs2[st.need] = { rv:st.rv || 0, names:[] });
+            if(fe.names.indexOf(st.name) === -1) fe.names.push(st.name);
+          }
+        });
+      }
+      basket.forEach(function(b){ bnWalk(b.name); });
+      if(typeof bpResult !== "undefined" && bpResult && bpResult.exp && bpResult.exp.gross){
+        Object.keys(bpResult.exp.gross).forEach(function(n){ if((bpResult.exp.gross[n] || 0) > 0) bnWalk(n); });
+      }
+      var planRows = [], aheadRows = [], aheadFac = {}, aheadMod = {};
+      Object.keys(facSteps).sort().forEach(function(f){
+        var byNeed = facSteps[f], have = facLevel(f);
+        var buyNeed = 0, buyNames = [], farNeed = 0, farRv = 0, farNames = [];
+        Object.keys(byNeed).forEach(function(k){
+          var lvl = +k, e = byNeed[k];
+          if((e.rv || 0) <= rv){
+            if(lvl > buyNeed) buyNeed = lvl;
+            e.names.forEach(function(n){ if(buyNames.indexOf(n) === -1) buyNames.push(n); });
+          } else {
+            aheadFac[f + "|" + lvl] = true;
+            if(lvl > farNeed){ farNeed = lvl; farRv = e.rv || 0; }
+            e.names.forEach(function(n){ if(farNames.indexOf(n) === -1) farNames.push(n); });
+          }
+        });
+        if(buyNeed > have){
+          facNeed[f] = buyNeed;
+          var row = { name:f, badge:"For your plan", change:"Lv " + have + " → Lv " + buyNeed,
+            why:"Recipes you've picked run through this: " + bnNames(buyNames.slice().sort(), 4) + " — the highest of them sits at " + f + " Lv " + buyNeed + "." };
+          var maxL = maxFacLevel(f, rv);
+          if(maxL !== null && maxL > buyNeed) row.why += " Your RV allows up to Lv " + maxL + " — the picked recipes only need Lv " + buyNeed + ".";
+          planRows.push(row);
+        }
+        if(farNeed > have){
+          aheadRows.push({ name:f, badge:"For your plan", change:"Lv " + have + " → Lv " + farNeed + " — opens at RV " + farRv,
+            why:"Recipes you've picked run through this: " + bnNames(farNames.slice().sort(), 4) + " — the highest of them sits at " + f + " Lv " + farNeed + ". That level opens at RV " + farRv + ", so it waits until then." });
+        }
+      });
+      Object.keys(modSteps).sort().forEach(function(id){
+        var byNeed = modSteps[id], have = moduleLevels[id] || 0;
+        var buyNeed = 0, buyNames = [], farNeed = 0, farRv = 0, farNames = [];
+        Object.keys(byNeed).forEach(function(k){
+          var lvl = +k, e = byNeed[k];
+          if((e.rv || 0) <= rv){
+            if(lvl > buyNeed) buyNeed = lvl;
+            e.names.forEach(function(n){ if(buyNames.indexOf(n) === -1) buyNames.push(n); });
+          } else {
+            aheadMod[id + "|" + lvl] = true;
+            if(lvl > farNeed){ farNeed = lvl; farRv = e.rv || 0; }
+            e.names.forEach(function(n){ if(farNames.indexOf(n) === -1) farNames.push(n); });
+          }
+        });
+        if(buyNeed > have){
+          modNeed[id] = buyNeed;
+          var row = { name:moduleDisplayName(id), badge:"For your plan", change:"Lv " + have + " → Lv " + buyNeed,
+            why:"Recipes you've picked are gated behind this: " + bnNames(buyNames.slice().sort(), 4) + " need" + (buyNames.length > 1 ? "" : "s") + " " + moduleDisplayName(id) + " Lv " + buyNeed + "." };
+          var def = null;
+          MODULE_DEFS.forEach(function(d){ if(d.id === id) def = d; });
+          var maxM = def ? rvMaxModuleLevel(def, rv) : 0;
+          if(maxM > buyNeed) row.why += " Your RV allows up to Lv " + maxM + " — the picked recipes only need Lv " + buyNeed + ".";
+          planRows.push(row);
+        }
+        if(farNeed > have){
+          aheadRows.push({ name:moduleDisplayName(id), badge:"For your plan", change:"Lv " + have + " → Lv " + farNeed + " — opens at RV " + farRv,
+            why:"Recipes you've picked are gated behind this: " + bnNames(farNames.slice().sort(), 4) + " need" + (farNames.length > 1 ? "" : "s") + " " + moduleDisplayName(id) + " Lv " + farNeed + ". That level opens at RV " + farRv + ", so it waits until then." });
+        }
+      });
+      /* Copies her RV already allows. */
+      var copyRows = [];
+      Object.keys(FAC_RV).forEach(function(f){
+        var maxC = rvMaxFacCount(f, rv), have = facCount(f);
+        if(maxC === null || have >= maxC) return;
+        if(have === 0){
+          var first = bnItemsAt(f, 0, 1);
+          copyRows.push({ name:f, badge:"Buy first", change:"Not owned — RV " + rv + " allows ×" + maxC,
+            why:(first.length ? "Its first recipes: " + bnNames(first, 4) + ". " : "") + bnCopyWhy(f) });
+        } else {
+          copyRows.push({ name:f, badge:"Buy now", change:"×" + have + " of ×" + maxC + " — next is copy " + (have + 1), why:bnCopyWhy(f) });
+        }
+      });
+      copyRows.sort(function(a, b){
+        var ao = a.badge === "Buy first" ? 0 : 1, bo = b.badge === "Buy first" ? 0 : 1;
+        return ao !== bo ? ao - bo : a.name.localeCompare(b.name);
+      });
+      /* Facility levels her RV already allows (a facility a picked
+         recipe needs is already listed above, at the level it
+         needs; an unowned facility is carried by the copies list). */
+      var levelRows = [];
+      Object.keys(FAC_RV).forEach(function(f){
+        if(facNeed[f] !== undefined) return;
+        if(facCount(f) === 0) return;
+        var have = facLevel(f), maxL = maxFacLevel(f, rv);
+        if(maxL === null || have >= maxL) return;
+        var opens = bnItemsAt(f, have, have + 1);
+        levelRows.push({ name:f, badge:"Upgrade", change:"Lv " + have + " → Lv " + (have + 1) + (maxL > have + 1 ? " (RV " + rv + " allows Lv " + maxL + ")" : ""),
+          why:opens.length ? "Opens: " + bnNames(opens, 4) + "." : "No recipe in the checked list sits at " + f + " Lv " + (have + 1) + " — the level still readies the facility for anything beyond the list." });
+      });
+      levelRows.sort(function(a, b){ return a.name.localeCompare(b.name); });
+      /* Module levels her RV already allows. */
+      var modRows = [];
+      MODULE_DEFS.forEach(function(def){
+        if(modNeed[def.id] !== undefined) return;
+        var have = moduleLevels[def.id] || 0, maxM = rvMaxModuleLevel(def, rv);
+        if(have >= maxM) return;
+        var unl = null;
+        (MODULE_UNLOCKS[def.id] || []).forEach(function(u){ if(u.lvl === have + 1) unl = u; });
+        modRows.push({ name:def.name, badge:"Upgrade", change:"Lv " + have + " → Lv " + (have + 1) + (maxM > have + 1 ? " (RV " + rv + " allows Lv " + maxM + ")" : ""),
+          why:unl ? "Unlocks: " + unl.label + "." : def.hint + "." });
+      });
+      /* Climate buildings and the count-only four. */
+      var utilRows = [];
+      Object.keys(CLIM_COUNT).forEach(function(b){
+        var maxC = climCountFor(b, rv) || 0, have = facCount(b);
+        if(have >= maxC) return;
+        utilRows.push({ name:b, badge:have === 0 ? "Buy first" : "Buy now",
+          change:have === 0 ? "Not owned — RV " + rv + " allows ×" + maxC : "×" + have + " of ×" + maxC + " — next is copy " + (have + 1), why:bnExtraWhy(b) });
+      });
+      Object.keys(EXTRA_COUNT).forEach(function(n){
+        var maxC = extraCountFor(n, rv) || 0, have = facCount(n);
+        if(have >= maxC) return;
+        utilRows.push({ name:n, badge:have === 0 ? "Buy first" : "Buy now",
+          change:have === 0 ? "Not owned — RV " + rv + " allows ×" + maxC : "×" + have + " of ×" + maxC + " — next is copy " + (have + 1), why:bnExtraWhy(n) });
+      });
+      utilRows.sort(function(a, b){
+        var ao = a.badge === "Buy first" ? 0 : 1, bo = b.badge === "Buy first" ? 0 : 1;
+        return ao !== bo ? ao - bo : a.name.localeCompare(b.name);
+      });
+      /* What the next RV level opens: its bill, then every tier,
+         count step and module unlock sitting at that RV. Locks a
+         picked recipe is waiting on at exactly that RV already
+         stand in the locked-behind group below, so they are not
+         repeated here. */
+      var nextRows = [];
+      if(rv < 20){
+        var lr = LADDER[rv];
+        if(lr && lr.lvl === rv + 1){
+          var mats = lr.mats.map(function(m){ return m[0] + " ×" + m[1]; }).join(" + ");
+          nextRows.push({ name:"RV " + rv + " → RV " + (rv + 1), badge:"The bill",
+            change:lr.coin.toLocaleString("en-US") + " Home Coins" + (mats ? " + " + mats : ""),
+            why:"Unlocks: " + lr.unlock + ". Needs first: " + lr.prereq + "." });
+        }
+        Object.keys(FAC_RV).forEach(function(f){
+          FAC_RV[f].forEach(function(tRv, i){
+            if(tRv !== rv + 1) return;
+            var lvl = i + 1;
+            if(aheadFac[f + "|" + lvl]) return;
+            if(i === 0){
+              var first = bnItemsAt(f, 0, 1);
+              nextRows.push({ name:f, badge:"New facility", change:"Arrives at RV " + (rv + 1),
+                why:first.length ? "First recipes: " + bnNames(first, 4) + "." : "A new facility for your homeland." });
+            } else {
+              var opens = bnItemsAt(f, lvl - 1, lvl);
+              nextRows.push({ name:f, badge:"New level", change:"Lv " + lvl + " opens at RV " + (rv + 1),
+                why:opens.length ? "Opens: " + bnNames(opens, 4) + "." : "A new level for the " + f + "." });
+            }
+          });
+        });
+        Object.keys(FAC_COUNT).forEach(function(f){
+          FAC_COUNT[f].forEach(function(st){
+            if(st[0] === rv + 1) nextRows.push({ name:f, badge:"More copies", change:"Count rises to ×" + st[1] + " at RV " + (rv + 1), why:bnCopyWhy(f) });
+          });
+        });
+        Object.keys(CLIM_COUNT).forEach(function(b){
+          CLIM_COUNT[b].forEach(function(st){
+            if(st[0] === rv + 1) nextRows.push({ name:b, badge:"More copies", change:"Count rises to ×" + st[1] + " at RV " + (rv + 1), why:bnExtraWhy(b) });
+          });
+        });
+        Object.keys(EXTRA_COUNT).forEach(function(n){
+          EXTRA_COUNT[n].forEach(function(st){
+            if(st[0] === rv + 1) nextRows.push({ name:n, badge:"More copies", change:"Count rises to ×" + st[1] + " at RV " + (rv + 1), why:bnExtraWhy(n) });
+          });
+        });
+        Object.keys(MODULE_UNLOCKS).forEach(function(id){
+          (MODULE_UNLOCKS[id] || []).forEach(function(u){
+            if(u.rv !== rv + 1) return;
+            if(aheadMod[id + "|" + u.lvl]) return;
+            nextRows.push({ name:moduleDisplayName(id), badge:"Module", change:"Lv " + u.lvl + " at RV " + (rv + 1), why:"Unlocks: " + u.label + "." });
+          });
+        });
+        if(nextRows.length > 17){
+          var cutN = nextRows.length - 16;
+          nextRows = nextRows.slice(0, 16);
+          nextRows.push({ name:"…and " + cutN + " more", badge:"", change:"All at RV " + (rv + 1),
+            why:"Pick RV " + (rv + 1) + " in the Step 1 picker and the whole planner — this list included — shows that level's full set." });
+        }
+      }
+      addGroup("🎯 For the plan you've already picked", planRows);
+      addGroup("🏭 Copies your RV " + rv + " already allows", copyRows);
+      addGroup("⬆️ Facility levels your RV " + rv + " already allows", levelRows);
+      addGroup("🧩 Module levels your RV " + rv + " already allows", modRows);
+      addGroup("🌡️ Climate & utility counts your RV " + rv + " already allows", utilRows);
+      addGroup("🚐 At RV " + (rv + 1) + " — after the next level-up", nextRows);
+      addGroup("🔒 For your plan, but locked behind a higher RV", aheadRows);
+      var totalNow = planRows.length + copyRows.length + levelRows.length + modRows.length + utilRows.length;
+      return { groups:groups, totalNow:totalNow };
+    }
+    var buyNextTextCache = "";
+    function renderBuyNext(){
+      var out = document.getElementById("buyNextOut");
+      if(!out) return;
+      if(!userRV){
+        buyNextTextCache = "";
+        out.innerHTML = '<div class="empty-plan">🛒 Pick your RV level in Step 1 and this list fills in: everything that RV allows that your Step 1 boxes say you don\'t have yet — copies, levels and module levels, in buying order, each with what it opens.</div>';
+        return;
+      }
+      try {
+        var built = buyNextBuild();
+        var rv = userRV;
+        var html = "", textLines = ["Buy next — Aniimo Homeland Planner (RV " + rv + ")"];
+        if(built.totalNow > 0){
+          var firstRow = built.groups.length && built.groups[0].rows.length ? built.groups[0].rows[0] : null;
+          html += '<p class="fac-state" aria-live="polite">🛒 At RV ' + rv + ": " + built.totalNow + (built.totalNow === 1 ? " thing" : " things") + " your RV already allows that your boxes don't have yet" + (firstRow ? " · first target: <strong>" + esc(firstRow.name) + "</strong> — " + esc(firstRow.change) : "") + "</p>";
+        } else {
+          html += '<div class="note note-good"><h4>🎉 Nothing to buy at RV ' + rv + "</h4><p>Every copy, facility level, climate count and module level your RV allows is already in your Step 1 boxes." + (rv < 20 ? " The next shopping is the RV " + (rv + 1) + " list below." : "") + "</p></div>";
+        }
+        built.groups.forEach(function(g){
+          html += '<h4 class="buy-group">' + esc(g.title) + '</h4><div class="buy-list">';
+          textLines.push("", g.title);
+          g.rows.forEach(function(r){
+            html += '<div class="buy-row"><div class="buy-head"><span class="buy-name">' + esc(r.name) + (r.badge ? ' <span class="verdict ' + (r.badge === "For your plan" ? "v-lock" : (r.badge === "Buy first" || r.badge === "Buy now" ? "v-ok" : "v-mix")) + '">' + esc(r.badge) + "</span>" : "") + '</span><span class="buy-change">' + esc(r.change) + '</span></div><p class="buy-why">' + esc(r.why) + "</p></div>";
+            textLines.push("- " + r.name + " — " + r.change + " — " + r.why);
+          });
+          html += "</div>";
+        });
+        if(rv >= 20 && built.totalNow === 0){
+          html += '<p style="margin-top:12px">You are at RV 20, the top of the checked ladder — nothing sits above it in the planner\'s data.</p>';
+          textLines.push("", "RV 20 is the top of the checked ladder.");
+        }
+        buyNextTextCache = textLines.join("\n");
+        if(built.groups.length){
+          html += '<div class="plan-actions"><button class="btn" id="copyBuyNextBtn" type="button">📋 Copy the buy-next list</button></div>';
+        }
+        out.innerHTML = html;
+        var copyBtn = document.getElementById("copyBuyNextBtn");
+        if(copyBtn){
+          copyBtn.addEventListener("click", function(){
+            if(navigator.clipboard && navigator.clipboard.writeText){
+              navigator.clipboard.writeText(buyNextTextCache).then(function(){ toast("Buy-next list copied."); }, function(){ toast("Copy was blocked here."); });
+            } else { toast("Copy is not available here."); }
+          });
+        }
+      } catch(e){
+        buyNextTextCache = "";
+        out.innerHTML = '<div class="empty-plan">🛒 The buy-next list could not be built from your Step 1 boxes just now — your boxes themselves are untouched, and the list rebuilds on your next change.</div>';
+      }
+    }
+
+    /* ============ Your Zones: crew by Production Zone (player's
+       pick, Nov 27, 2026) ============
+       The Team Helper's one crew, regrouped by the zones of the
+       Suggested Layout board: suggBuild's plots carry a role
+       (Farms, Cooking, Workshops, Mines, Leisure, Wet works,
+       Hatchery), and each plot becomes one zone card — its
+       buildings with the board's own on/off flags (suggOnFlags),
+       the farm plots' crops (suggCropAssignments), a crew line per
+       building read off computeTeam (per-copy placed posts, the
+       facility's plan worker and its items, Always pins, uncounted
+       facilities), the power call's E-Mode marks, and the zone's
+       ability pool: FAC_JOB per building, strongest known Aniimo
+       from BEST_WORKERS, in JOB_ORDER. Climate units and the grid
+       are never drawn on the board, so they close the view as
+       their own card, with the standing posts (planting floor,
+       Land Cultivation, Hauling) named as belonging to no single
+       zone. Heads are counted once, in Step 6 — the header line
+       quotes homeCrewSizes, the same sizes Step 7 reads. */
+    function zoneCrewHtml(f, team, eMode){
+      /* Storage Units are passive and Hatchinators carry no crew
+         post anywhere in this planner, so neither ever reads as a
+         staffed or idle post here. */
+      if(f === "Storage Unit") return "Passive — takes no worker, never in your crew; it serves the pieces on its plot";
+      if(f === "Hatchinator") return "No crew post — it hatches what the Aniipod Maker makes, and its on/off mark follows the Maker";
+      var parts = [];
+      var job = (team.byFac && team.byFac[f] && team.byFac[f].job) || (team.placed && team.placed[f] && team.placed[f].job) || FAC_JOB[f] || null;
+      if(eMode[f]) parts.push("⚡ <strong>E-Mode</strong> in the power call — the grid runs it, no Aniimo posted");
+      if(team.placed && team.placed[f]){
+        var pl = team.placed[f];
+        parts.push(esc(pl.job) + " Aniimo ×" + pl.count + " — one per copy, stays at this post");
+      }
+      if(team.always){
+        team.always.forEach(function(a){
+          if(a.facility === f) parts.push("📌 Always staffed — " + esc(a.job || job || "") + " Aniimo ×" + a.count);
+        });
+      }
+      if(team.byFac && team.byFac[f] && !eMode[f]){
+        var bf = team.byFac[f];
+        parts.push(esc(bf.job) + " Aniimo — making " + esc(bnNames(bf.items.slice().sort(), 4)));
+      }
+      if(team.uncounted && team.uncounted[f]){
+        parts.push("Counted in the Step 6 crew — " + esc(bnNames(team.uncounted[f].items.slice().sort(), 4)) + " (no named job in the checked data)");
+      }
+      if(!parts.length){
+        parts.push(job
+          ? '<span class="zc-off">Off in your current plan — no Aniimo posted here (' + esc(job) + " works it when a plan runs it)</span>"
+          : '<span class="zc-off">Off in your current plan — no Aniimo posted here</span>');
+      }
+      return parts.join("<br />");
+    }
+    function renderZones(){
+      var out = document.getElementById("zonesOut");
+      if(!out) return;
+      if(!userRV){
+        out.innerHTML = '<div class="empty-plan">🗺️ Pick your RV level in Step 1 and set your facility counts, and this view groups your crew by the Production Zones on the Suggested Layout — each zone with the buildings in it, who works there, and the ability pool that runs them.</div>';
+        return;
+      }
+      try {
+        var res = suggBuild();
+        var plotsAsc = Object.keys(res.plots).map(function(k){ return res.plots[k]; }).sort(function(a, b){ return a.num - b.num; });
+        if(!plotsAsc.length){
+          out.innerHTML = '<div class="empty-plan">🗺️ Your Step 1 counts are all 0, so the Suggested Layout has nothing to place and there are no zones yet — pick your RV level in Step 1 (or type your counts) and the zones appear here.</div>';
+          return;
+        }
+        var cropAssign = suggCropAssignments(res);
+        var flags = suggOnFlags(res, cropAssign);
+        var team = computeTeam();
+        var pp = null;
+        try { pp = powerPlan(currentPlanWorking()); } catch(e){ pp = null; }
+        var eMode = {};
+        if(pp && pp.use) pp.chosen.forEach(function(c){ eMode[c.f] = true; });
+        var crewExists = Object.keys(team.byFac || {}).length > 0 || Object.keys(team.placed || {}).length > 0 || (team.always || []).length > 0;
+        var html = "";
+        var cap = aniimoCapFor(userRV);
+        if(crewExists && cap){
+          var sizes = homeCrewSizes(team);
+          var left = cap - sizes.bestUsable;
+          html += '<p class="fac-state" aria-live="polite">🗺️ RV ' + userRV + " · Aniimo cap " + cap + " · Step 6 crew — ⭐ Best " + sizes.bestUsable + " · 🪶 Minimum " + sizes.minSize + " · " + (left >= 0 ? "places left for home " + left : "the Best crew is over the cap — Step 6 fits the plan side down, the Always crew never trims") + "</p>";
+        } else {
+          html += '<p class="fac-state" aria-live="polite">🗺️ RV ' + userRV + ' · no crew yet — pick recipes in Step 2 and each zone below fills with the crew its buildings need</p>';
+        }
+        html += '<div class="fac-blocks">';
+        plotsAsc.forEach(function(st){
+          var counts = {}, order = [], offC = {};
+          st.pieces.forEach(function(pc){
+            if(!counts[pc.name]){ counts[pc.name] = 0; order.push(pc.name); }
+            counts[pc.name]++;
+            if(flags.get(pc) === false) offC[pc.name] = (offC[pc.name] || 0) + 1;
+          });
+          var rows = [];
+          rows.push('<div class="zb-row"><span class="zb-k">Buildings</span><span>' + order.map(function(f){
+            var s = esc(f) + " ×" + counts[f];
+            if(offC[f]) s += ' <span class="zc-off">(' + (counts[f] - offC[f]) + " on, " + offC[f] + " off)</span>";
+            return s;
+          }).join(" · ") + "</span></div>");
+          if(st.role === "farm"){
+            var cc = {}, co = [];
+            st.pieces.forEach(function(pc){
+              var a = cropAssign.get(pc);
+              if(a && a.crop){ if(!cc[a.crop]){ cc[a.crop] = 0; co.push(a.crop); } cc[a.crop]++; }
+            });
+            if(co.length) rows.push('<div class="zb-row"><span class="zb-k">Growing</span><span>' + co.map(function(n){ return esc(n) + " ×" + cc[n]; }).join(", ") + "</span></div>");
+          }
+          order.forEach(function(f){
+            rows.push('<div class="zb-row"><span class="zb-k">' + esc(f) + '</span><span>' + zoneCrewHtml(f, team, eMode) + "</span></div>");
+          });
+          var poolJobs = [];
+          order.forEach(function(f){
+            var j = FAC_JOB[f];
+            if(j && poolJobs.indexOf(j) === -1) poolJobs.push(j);
+          });
+          poolJobs.sort(function(a, b){ return JOB_ORDER.indexOf(a) - JOB_ORDER.indexOf(b); });
+          if(poolJobs.length){
+            rows.push('<div class="zb-row"><span class="zb-k">Ability pool</span><span class="zone-pool">' + poolJobs.map(function(j){
+              var bw = BEST_WORKERS[j];
+              return '<span class="job-chip">' + abilityMarker(j, false) + "<b>" + esc(j) + "</b>&nbsp;· " + (bw ? "strongest known " + esc(bw.name) + " Lv " + bw.lvl : "any level") + "</span>";
+            }).join("") + "</span></div>");
+          }
+          html += '<div class="fac-block"><h4>Plot ' + st.num + " · " + esc(SUGG_ROLE_LABEL[st.role] || st.role) + '</h4><div class="zb-rows">' + rows.join("") + "</div></div>";
+        });
+        html += "</div>";
+        /* Climate posts, the grid and the Windmill are never drawn
+           on the board, so they close the view as their own card. */
+        var tail = [];
+        Object.keys(CLIM_COUNT).forEach(function(b){
+          var used = (team.climate && team.climate.used) ? (team.climate.used[b] || 0) : 0;
+          if(used > 0){
+            tail.push('<div class="zb-row"><span class="zb-k">' + esc(b) + "</span><span>" + esc(FAC_JOB[b] || "") + " Aniimo ×" + used + " — one per unit the layout puts out; the Aniimo's level doesn't matter at a climate post, any level runs it</span></div>");
+          } else if(facCount(b) > 0){
+            tail.push('<div class="zb-row"><span class="zb-k">' + esc(b) + "</span><span>Owned ×" + facCount(b) + " — none out in your current plan</span></div>");
+          }
+        });
+        if(pp){
+          if(pp.genLvl === 0){
+            tail.push('<div class="zb-row"><span class="zb-k">Power grid</span><span>No grid before RV 12 — every machine keeps its Aniimo.</span></div>');
+          } else if(pp.use){
+            tail.push('<div class="zb-row"><span class="zb-k">Power grid</span><span>⚡ The power call runs <strong>' + pp.gens + (pp.gens === 1 ? " Crackle Generator" : " Crackle Generators") + "</strong> and <strong>" + pp.poles + (pp.poles === 1 ? " Power Pole" : " Power Poles") + '</strong> for this plan — the machines it switches to E-Mode show ⚡ in their zones above. <a href="#power">The call ↑</a></span></div>');
+          } else {
+            tail.push('<div class="zb-row"><span class="zb-k">Power grid</span><span>⚡ The power call for this plan is <strong>no grid</strong> — every machine keeps its Aniimo. <a href="#power">The call ↑</a></span></div>');
+          }
+        }
+        if(facCount("Floral Windmill") > 0){
+          tail.push('<div class="zb-row"><span class="zb-k">Floral Windmill</span><span>×' + facCount("Floral Windmill") + " — placed by hand (no verified size, so it is never drawn on the board); it belongs inside a Sunlamp's reach, and its Leisure post is staffed in Step 6 when a plan runs it</span></div>");
+        }
+        if(tail.length){
+          html += '<div class="card" style="margin-top:12px"><h3>🌡️ Climate posts &amp; the power grid — dropped in, not drawn on the board</h3><div class="zb-rows">' + tail.join("") + "</div></div>";
+        }
+        if(crewExists){
+          var stand = "🌱 Planting — 1 Grass Aniimo floor · 🌍 Land Cultivation — 1 Earth Aniimo, separate from the Mine posts";
+          if(team.hauling) stand += " · 📦 Hauling — this plan needs " + team.hauling.need + " hauling power, covered from the crew first (Step 6 shows the split)";
+          html += '<p style="margin-top:12px"><strong>Standing posts that belong to no single zone:</strong> ' + stand + ".</p>";
+        }
+        out.innerHTML = html;
+      } catch(e){
+        out.innerHTML = '<div class="empty-plan">🗺️ Your zones could not be built from the current plan just now — the Suggested Layout below still shows the whole board, and the zones rebuild on your next change.</div>';
+      }
     }
     (function suggWire(){
       function bindCount(inputId, decId, incId, get, set){
